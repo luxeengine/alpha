@@ -234,7 +234,7 @@ class Core extends snow.App {
         Luxe.resources = resources;
 
             //flag for later
-        headless == (app.window == null);
+        headless = (app.window == null);
 
         if(!headless) {
                 //listen for window events
@@ -312,7 +312,7 @@ class Core extends snow.App {
         shutting_down = true;
 
             //shutdown snow, which calls ondestroy for us
-        app.shutdown();
+        snow.Snow.next(app.shutdown);
 
     } //shutdown
 

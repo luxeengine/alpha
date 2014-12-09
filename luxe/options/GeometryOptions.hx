@@ -11,38 +11,21 @@ import phoenix.Batcher;
 
 typedef GeometryOptions = {
 
+    > RenderProperties,
+    > TransformProperties,
+
         /** The geometry id. if none given, a unique id is generated. */
     @:optional var id : String;
-
         /** if specified, the geometry will not be added to any batcher. */
     @:optional var no_batcher_add : Bool;
-        /** the batcher to add this geometry to (unless no_batcher_add). If not specified, the default batcher is used. */
-    @:optional var batcher : Batcher;
-
-        /** the transform position */
-    @:optional var pos : Vector;
-        /** the transform rotation */
-    @:optional var rotation : Quaternion;
-        /** the transform scale */
-    @:optional var scale : Vector;
-        /** the transform origin */
-    @:optional var origin : Vector;
 
         /** the base color */
     @:optional var color : Color;
-        /** if immediate, this geometry is dropped from the batcher at the end of the frame. */
-    @:optional var immediate : Bool;
-        /** the visibility */
-    @:optional var visible : Bool;
-
-        /** the geometry depth value (see guides)*/
-    @:optional var depth : Float;
-        /** the geometry group id (see guides)*/
-    @:optional var group : Int;
         /** the texture for the geometry */
     @:optional var texture : Texture;
         /** the shader for the geometry */
     @:optional var shader : Shader;
+
         /** the primitive type of the geometry. lines, triangles, point etc */
     @:optional var primitive_type : PrimitiveType;
         /** If specified, the geometry will be clipped to this rectangle region (in world space). */
@@ -63,6 +46,8 @@ typedef RectangleGeometryOptions = {
     @:optional var w : Float;
         /** height */
     @:optional var h : Float;
+        /** optional existing rect. oveerrides x/y/w/h */
+    @:optional var rect : Rectangle;
 
 } //RectangleGeometryOptions
 

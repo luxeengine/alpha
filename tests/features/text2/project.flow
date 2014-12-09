@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'text2',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_text2',
+      package : 'com.luxeengine.text2'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+        unifill : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

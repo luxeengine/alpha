@@ -41,12 +41,13 @@ class Main extends luxe.Game {
         text = new Text({
             pos : new Vector(Luxe.screen.w/2, 100),
             color : new Color().rgb(0x797d76),
-            size : 20,
+            point_size : 20,
             align : TextAlign.center,
             text : _text
         });
 
-        var _textsize = Luxe.renderer.font.get_text_dimensions(_text, new Vector(1,1));
+        var _textsize = new Vector();
+        Luxe.renderer.font.dimensions_of(_text, Luxe.renderer.font.info.point_size, _textsize);
 
             textbounds = new Rectangle((Luxe.screen.w/2) - (_textsize.x/2), 90, _textsize.x, _textsize.y);
 

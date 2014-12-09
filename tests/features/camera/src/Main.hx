@@ -74,7 +74,7 @@ class Main extends luxe.Game {
 
         Luxe.draw.text({
             text : 'A HUD!',
-            size : small_amount * 0.75,
+            point_size : small_amount * 0.75,
             bounds : new Rectangle(small_amount/2, Luxe.screen.h - small_amount, Luxe.screen.w, small_amount),
             color : new Color().rgb(0xff4b03),
             batcher : hud_batcher,

@@ -126,7 +126,7 @@ class Luxe {
             async:_async,
             onload : function( _asset:snow.assets.AssetText) {
 
-                res.json = luxe.utils.JSON.parse(_asset.text);
+                res.json = haxe.Json.parse(_asset.text);
 
                 if(_onload != null) {
                     _onload( res );
@@ -249,16 +249,16 @@ class Luxe {
     } //loadTextures
 
         /** Load a font resource */
-    public static function loadFont( _id:String, ?_path:String, ?_onload : BitmapFont->Void ) : BitmapFont {
+    public static function loadFont( _id:String, ?_path:String, ?_onload : BitmapFont->Void, ?_silent:Bool=false ) : BitmapFont {
 
-        return BitmapFont.load({ id:_id, path:_path, onload:_onload });
+        return BitmapFont.load({ id:_id, path:_path, onload:_onload, silent:_silent });
 
     } //loadFont
 
         /** Load a shader resource */
-    public static function loadShader( ?_ps_id:String='default', ?_vs_id:String='default', ?_onload:Shader->Void ) : Shader {
+    public static function loadShader( ?_ps_id:String='default', ?_vs_id:String='default', ?_onload:Shader->Void, ?_silent:Bool=false ) : Shader {
 
-        return Shader.load(_ps_id, _vs_id, _onload);
+        return Shader.load(_ps_id, _vs_id, _onload, _silent);
 
     } //loadShader
 

@@ -305,7 +305,7 @@ class Entity extends Objects {
         } //for each child
 
             //start the fixed rate timer
-        _start_fixed_rate_timer( fixed_rate );
+        _set_fixed_rate_timer( fixed_rate );
 
             //flag internally
         started = true;
@@ -758,29 +758,36 @@ class Entity extends Objects {
 
         fixed_rate = _rate;
 
-        _stop_fixed_rate_timer();
-        _start_fixed_rate_timer( _rate );
+        if(started) {
+            _set_fixed_rate_timer( _rate );
+        }
 
         return fixed_rate;
 
     } //set_fixed_rate
 
     function _stop_fixed_rate_timer() {
+
         if(fixed_rate_timer != null) {
             fixed_rate_timer.stop();
             fixed_rate_timer = null;
         }
+
     } //_stop_fixed_rate_timer
 
-    function _start_fixed_rate_timer( _rate:Float ) {
-            //only top tier entities call this, all their children are fixed under the parent rate
+    function _set_fixed_rate_timer( _rate:Float, ?_pos:haxe.PosInfos ) {
+
+        _stop_fixed_rate_timer();
+
+            //only top tier entities call this,
+            //all their children are fixed under the parent rate
             //for now, that is.
         if(_rate != 0 && parent == null && !destroyed) {
             fixed_rate_timer = new snow.utils.Timer( _rate );
             fixed_rate_timer.run = _fixed_update;
         } //_rate
 
-    } //_start_fixed_rate_timer
+    } //_set_fixed_rate_timer
 
 //components
 

@@ -3,7 +3,11 @@ package luxe.options;
 import luxe.Vector;
 import luxe.Scene;
 
+import luxe.options.TransformProperties;
+
 typedef EntityOptions = {
+
+    > TransformProperties,
 
         /** the entity name. highly recommended you set this. */
     @:optional var name : String;
@@ -14,10 +18,6 @@ typedef EntityOptions = {
             where the unique part would be the entity id
         */
     @:optional var name_unique : Bool;
-        /** the transform position */
-    @:optional var pos : Vector;
-        /** the transform scale */
-    @:optional var scale : Vector;
         /** if set, add to given scene. If not set, will add to default scene (unless no_scene) */
     @:optional var scene : Scene;
         /** if set, set parent to given entity */

@@ -29,7 +29,7 @@ class Main extends luxe.Game {
                 color : new Color().rgb(0x242424),
                 align : TextAlign.right,
                 align_vertical : TextAlign.bottom,
-                size : 32,
+                point_size : 32,
                 immediate : false
             });
 
@@ -39,7 +39,7 @@ class Main extends luxe.Game {
                 color : new Color().rgb(0xff4b03),
                 align : TextAlign.right,
                 align_vertical : TextAlign.bottom,
-                size : 32,
+                point_size : 32,
                 immediate : false
             });
 

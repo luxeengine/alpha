@@ -122,7 +122,9 @@ class IsometricVisual extends TilemapVisual {
                     p0 : new Vector(map.pos.x + ip.x, map.pos.y + ip.y ),
                     p1 : new Vector(map.pos.x + ip_bot.x, map.pos.y + ip_bot.y),
                     color : color,
-                    depth : 2
+                    depth : options.depth+0.001,
+                    group : options.group,
+                    batcher : options.batcher
                 });
             }
 

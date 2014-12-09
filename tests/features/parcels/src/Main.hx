@@ -34,10 +34,10 @@ class Main extends luxe.Game {
                     { "id" : "font2.fnt", "path" : "assets/fonts/" },
                     { "id" : "font3.fnt", "path" : "assets/fonts/" },
                     { "id" : "font4.fnt", "path" : "assets/fonts/" },
-                    { "id" : "font5.fnt", "path" : "assets/fonts/" },
+                    { "id" : "font5.fnt", "path" : "assets/fonts/" }
                 ],
                 "sounds" : [
-                    { "id" : "assets/sound1.ogg", "name" : "sound1", "is_stream" : true },
+                    { "id" : "assets/sound1.ogg", "name" : "sound1", "is_stream" : true }
                 ],
                 "text" : [
                     { "id" : "assets/text1.txt" },
@@ -56,9 +56,9 @@ class Main extends luxe.Game {
             }
         ';
 
-        var parcel1 = new Parcel();
+        var parcel1 = new Parcel({ silent:false });
 
-            parcel1.from_json( luxe.utils.JSON.parse(json_string) );
+            parcel1.from_json( haxe.Json.parse(json_string) );
 
             //show an animation to test background thread
         sprites = [];

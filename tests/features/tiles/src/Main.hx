@@ -47,7 +47,7 @@ class Main extends luxe.Game {
             pos : new Vector(10,10),
             font : Luxe.renderer.font,
             batcher : batcher,
-            size : 24,
+            point_size : 24,
             text : "move the mouse"
         });
 
@@ -344,7 +344,7 @@ class Main extends luxe.Game {
         for(group in tiled_ortho.tiledmap_data.object_groups) {
 
             for(object in group.objects) {
-                Luxe.draw.text({ text:object.name, size:14, pos:object.pos.clone().multiplyScalar(_scale).add(tiled_ortho.pos) });
+                Luxe.draw.text({ text:object.name, point_size:14, pos:object.pos.clone().multiplyScalar(_scale).add(tiled_ortho.pos) });
                 switch(object.object_type) {
 
                     case TiledObjectType.polyline: {

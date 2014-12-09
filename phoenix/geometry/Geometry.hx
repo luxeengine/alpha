@@ -206,15 +206,9 @@ class Geometry {
 
     } //refresh_key
 
-    public function short_id() {
-
-        return uuid.substr(0, 6);
-
-    } //a shorthand id for easier identification
-
     public function str() {
         if(!state.log) return;
-        trace('\t\tgeometry ; ' + short_id());
+        trace('\t\tgeometry ; ' + id);
         state.log = true;
         state.str();
         state.log = false;
@@ -244,8 +238,7 @@ class Geometry {
         vertices.push( v );
 
         if(vertices.length > Luxe.renderer.batcher.max_verts) {
-            trace('from $id');
-            throw "Currently a single geometry cannot exceed the maximum vert count of " + Luxe.renderer.batcher.max_verts;
+            throw "$id / Currently a single geometry cannot exceed the maximum vert count of " + Luxe.renderer.batcher.max_verts;
         }
 
     } //add

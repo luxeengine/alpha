@@ -135,7 +135,7 @@ class Main extends luxe.Game {
             //again, depth 3 > 2, so its above everything
         text = new Text({
             pos : Luxe.screen.mid,
-            size : text_size, //pt
+            point_size : text_size,
             depth : 3,
             align : TextAlign.center,
             font : montez_font,

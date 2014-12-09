@@ -169,7 +169,7 @@ class Visual extends Entity {
                         batcher : _batcher,
                         depth : (options.depth == null) ? 0 : options.depth,
                         group : (options.group == null) ? 0 : options.group,
-                        visible : (options.visible == null) ? true : options.visible
+                        visible : (options.visible == null) ? visible : options.visible
                     });
 
                 _creating_geometry = false;
@@ -272,7 +272,7 @@ class Visual extends Entity {
 
     function set_texture(_t:Texture) {
 
-        if(geometry != null) {
+        if(geometry != null && geometry.texture != _t) {
             geometry.texture = _t;
         } //geometry!=null
 
@@ -281,7 +281,7 @@ class Visual extends Entity {
 
     function set_shader(_s:Shader) {
 
-        if(geometry != null) {
+        if(geometry != null && geometry.shader != _s) {
             geometry.shader = _s;
         } //geometry!=null
 
@@ -294,8 +294,13 @@ class Visual extends Entity {
 
     function set_geometry(_g:Geometry) : Geometry {
 
+            //same geometry?
+        if(geometry == _g) {
+            return geometry;
+        }
+
+            //kill the existing geometry first
         if(geometry != null) {
-                //kill the existing geometry first
             geometry.drop();
         }
 
@@ -310,19 +315,25 @@ class Visual extends Entity {
 
             _verbose('    assign geometry transform as child : $geometry.id to $name');
 
-            if(_creating_geometry == false) {
+                //:todo: This block is dumb
+                //and was solving some obscure issue
+                //and needs to be redone as it
+                //causes more issues than it solves.
+                {
+                    if(_creating_geometry == false) {
 
-                geometry.color = color;
-                geometry.group = group;
-                geometry.depth = depth;
-                geometry.visible = visible;
-                geometry.shader = shader;
+                        geometry.color = color;
+                        geometry.group = group;
+                        geometry.depth = depth;
+                        geometry.visible = visible;
+                        // geometry.shader = shader;
 
-                if(!ignore_texture_on_geometry_change) {
-                    geometry.texture = texture;
+                        if(!ignore_texture_on_geometry_change) {
+                            // geometry.texture = texture;
+                        }
+
+                    } //_creating_geometry == false
                 }
-
-            } //_creating_geometry == false
 
         } //geometry != null
 
@@ -360,7 +371,8 @@ class Visual extends Entity {
 
         size = _v;
 
-        Vector.Listen( size, _size_change );
+        if(size != null)
+            Vector.Listen( size, _size_change );
 
         return size;
 

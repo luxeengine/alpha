@@ -86,7 +86,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             pos : new Vector(debug.padding.x*2,debug.padding.y*3),
             font : Luxe.renderer.font,
             text : get_render_stats_string(),
-            size : font_size,
+            point_size : font_size,
             batcher : debug.batcher,
             visible : false
         });
@@ -98,7 +98,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             pos : new Vector(debug.padding.x*2,debug.padding.y*7.5),
             font : Luxe.renderer.font,
             text : get_resource_stats_string(),
-            size : font_size,
+            point_size : font_size,
             batcher : debug.batcher,
             visible : false
         });
@@ -110,7 +110,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             pos : new Vector(debug.padding.x*7,debug.padding.y*3),
             font : Luxe.renderer.font,
             text : '',
-            size : font_size*0.8,
+            point_size : font_size*0.8,
             batcher : debug.batcher,
             visible : false
         });

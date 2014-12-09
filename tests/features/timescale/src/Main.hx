@@ -41,7 +41,7 @@ class Main extends luxe.Game {
             pos : new Vector(100, 20),
             color : new Color().rgb(0xf6007b),
             text : 'Press S to toggle time scale control\nMouse x position controls scale',
-            size : 18
+            point_size : 18
         });
 
         player = new Sprite({

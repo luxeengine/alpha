@@ -5,10 +5,94 @@ import luxe.Text;
 import luxe.Color;
 import luxe.Rectangle;
 
+import phoenix.BitmapFont;
+import phoenix.Batcher;
+import phoenix.geometry.TextGeometry;
+
+
 class Main extends luxe.Game {
 
+    var dtl : TextGeometry;
+    var dtr : TextGeometry;
+    var dtc : TextGeometry;
+
+    var batcher : Batcher;
+
+
+    override function config(c:luxe.AppConfig) {
+        // c.window.antialiasing = 2;
+        return c;
+    }
 
     override function ready() {
+
+        // Luxe.renderer.clear_color.set(1,1,1,1);
+
+        var drag = Luxe.camera.add( new CameraDrag({name:'drag'}) );
+            drag.zoom_speed = 0.05;
+
+        setup();
+
+        Luxe.draw.line({
+            p0:new Vector(120,0),
+            p1:new Vector(120,100)
+        });
+
+        dtl = new TextGeometry({
+            pos: new Vector(120,10),
+            align: left,
+            point_size: 16,
+            batcher: Luxe.renderer.batcher
+        });
+
+        dtc = new TextGeometry({
+            pos: new Vector(120,42),
+            align: center,
+            point_size: 16,
+            batcher: Luxe.renderer.batcher
+        });
+
+        dtr = new TextGeometry({
+            pos: new Vector(120,74),
+            align: right,
+            point_size: 16,
+            batcher: Luxe.renderer.batcher
+        });
+
+    } //ready
+
+    override function onkeyup( e:KeyEvent ) {
+
+        if(e.keycode == Key.escape) {
+            Luxe.shutdown();
+        }
+
+    } //onkeyup
+
+    override function update(dt:Float) {
+
+        dtl.text = 'left\n$dt';
+        dtr.text = 'right\n$dt';
+        dtc.text = 'center\n$dt';
+
+    } //update
+
+    function setup() {
+
+            for(i in 0 ... 16) {
+
+                var _s = 8 + (i * 4);
+                var _s_prev = 8 + (i-1 * 4);
+                var _t = '${_s} : luxe is a free, open source cross platform game engine';
+                var _text = new TextGeometry({
+                    color: new Color(1,1,1,1),
+                    text: _t,
+                    pos: new Vector(100,130 + (i * (1.2*Luxe.renderer.font.height_of(_t, _s_prev)))),
+                    batcher: Luxe.renderer.batcher,
+                    point_size: _s,
+                });
+
+            }
 
             //Some don't need to exist in the default scene
             //so we can tell it not to add them there with no_scene : true
@@ -17,7 +101,7 @@ class Main extends luxe.Game {
 
         var _size = 16.0;
         var _line_h = Luxe.renderer.font.height_of(' \n ', _size);
-        var _y = 20.0;
+        var _y = 420.0;
         var _x = 270;
 
         var dim = new Color(1,1,1,0.4);
@@ -144,7 +228,7 @@ class Main extends luxe.Game {
                 text : "luxeengine.com",
                 pos : new Vector(Luxe.screen.mid.x, 10),
                 align : center,
-                size : 25
+                point_size : 25
             });
 
             text_with_component.add(new BounceTest({ name:'bounce' }));
@@ -155,14 +239,6 @@ class Main extends luxe.Game {
     } //ready
 
     var text_with_component:Text;
-
-    override function onkeyup( e:KeyEvent ) {
-
-        if(e.keycode == Key.escape) {
-            Luxe.shutdown();
-        }
-
-    } //onkeyup
 
 
 } //Main

@@ -12,7 +12,8 @@ class Utils {
 
     var _byte_levels : Array<String>;
 
-    @:noCompletion public function new( _luxe:Core ) {
+    @:allow(luxe.Core)
+    function new( _luxe:Core ) {
 
             //store the reference
         core = _luxe;
@@ -24,7 +25,8 @@ class Utils {
     }  //new
 
         /** Generate a short, unique string ID for use ("base62"). */
-    public inline function uniqueid(?val:Int) : String {
+    #if !debug inline #end
+    public function uniqueid(?val:Int) : String {
 
         // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
 
@@ -47,23 +49,27 @@ class Utils {
 
         /** Generates and returns a uniqueid converted to a hashed integer for convenience.
             Uses the default `uniqueid` and `hash` implementation detail. */
-    public inline function uniquehash() : Int {
+    #if !debug inline #end
+    public function uniquehash() : Int {
         return hash( uniqueid() );
     } //uniquehash
 
         /** Generates a integer hash from a string using the default algorithm (murmur3) */
-    public inline function hash( string:String ) : Int {
+    #if !debug inline #end
+    public function hash( string:String ) : Int {
         return hashdjb2( string );
         // return hashmurmur( haxe.io.Bytes.ofString(string) );
     } //hash
 
         /** Generates an integer hash of a string using the murmur 3 algorithm */
-    public inline function hashmurmur( _bytes:haxe.io.Bytes, ?_seed:Int=0 ) : Int {
+    #if !debug inline #end
+    public function hashmurmur( _bytes:haxe.io.Bytes, ?_seed:Int=0 ) : Int {
         return Murmur3.hash( _bytes, _seed );
     } //hashmurmur
 
         /** Generates an integer hash of a string using the djb2 algorithm */
-    public inline function hashdjb2(string:String) : Int {
+    #if !debug inline #end
+    public function hashdjb2(string:String) : Int {
 
             //http://www.cse.yorku.ca/~oz/hash.html
         var _hash : Int = 5381;
@@ -75,18 +81,21 @@ class Utils {
 
     } //hashdjb2
 
+    #if !debug inline #end
     public function uniqueid2() : String {
 
         return haxe.crypto.Md5.encode(Std.string(Luxe.time*Math.random()));
 
     } //uniqueid2
 
+    #if !debug inline #end
     public function uuid() : String {
 
     	return UUID.get();
 
     } //uuid
 
+    #if !debug inline #end
     public function stacktrace( ?_depth:Int = 100 ) : String {
 
         var result = '\n';
@@ -113,6 +122,7 @@ class Utils {
 
     } //stacktrace
 
+    #if !debug inline #end
     public function path_is_relative(_path:String) {
 
         return _path.charAt(0) != "#"
@@ -169,18 +179,91 @@ class Utils {
 
     } //find_assets_image_sequence
 
+        /** :WIP: Wrap text using a knuth plass algorithm for column breaking. */
+    #if !debug inline #end
+    public function text_wrap_column_knuth_plass( _string:String, _column:Int=80) {
+
+        var result = [];
+
+        inline function splitwords(_str:String, _into:Array<String>) {
+            var s = _str;
+            var rgx = new EReg('(\\b[^\\s]+\\b)', 'gm');
+            while (rgx.match(s)) {
+                _into.push(rgx.matched(1));
+                s = rgx.matchedRight();
+            }
+                //no matches?
+            if(_into.length == 0) _into.push(_str);
+            return _into;
+        } //splitwords
+
+        inline function findlen(_lens:Array<Int>, _start:Int, _end:Int) {
+            var total = 0;
+            for(i in (_start-1) ... _end) total += _lens[i];
+            return total + (_end - _start + 1);
+        } //findlen
+
+        inline function getmin(_from:Map<Int,Int>):Int {
+            var min = 0x3FFFFFFF;
+            for(item in _from.keys()) if(item < min) min = item;
+            return min;
+        } //getmin
+
+        var words = [];
+        var lengths = [];
+        var badness = [ 0 => 0 ];
+        var extra = new Map<Int,Int>();
+
+        splitwords(_string, words);
+        words.map(function(w){ lengths.push(w.length); });
+
+        var n = words.length;
+
+        for( i in 1 ... n+1 ) {
+
+            var sums = new Map<Int,Int>();
+            var k = i;
+
+            while( findlen(lengths, k, i) <= _column && k > 0) {
+                var a = (_column - findlen(lengths, k, i));
+                sums[ Std.int(Math.pow(a,3) + badness[k - 1]) ] = k;
+                k -= 1;
+            }
+
+            var mn = getmin(sums);
+            badness[i] = mn;
+            extra[i] = sums[mn];
+
+        } //each word
+
+        var line = 1;
+        while(n > 1) {
+            result.unshift( words.slice(extra[n]-1, n).join(' ') );
+            n = extra[n] - 1;
+            line += 1;
+        }
+
+        if(result.length == 0) result.push(_string);
+        return result;
+
+    } //text_wrap_column_knuth
+
         /** Soft wrap a string by maximum character count. brk default:'\n', col default:80 */
-    public inline function text_wrap_column( _text:String, _brk:String='\n', _column:Int=80) {
+    #if !debug inline #end
+    public function text_wrap_column( _text:String, _brk:String='\n', _column:Int=80) {
 
             //based on http://blog.macromates.com/2006/wrapping-text-with-regular-expressions/
             //take note that the ${_column} is string interpolation, not part of the regex.
             //i.e (.{1,80})( +|$)\n?|(.{80})
 
-        return new EReg('(.{1,${_column}})(?: +|$)\n?|(.{${_column}})','gimu').replace(_text, '$1$2${_brk}');
+        var result = new EReg('(.{1,${_column}})(?: +|$)\n?|(.{${_column}})','gimu').replace(_text, '$1$2${_brk}');
+
+        return StringTools.rtrim(result);
 
     } //text_wrap_column
 
-    public inline function bytes_to_string( bytes:Int ) : String {
+    #if !debug inline #end
+    public function bytes_to_string( bytes:Int ) : String {
 
         var index : Int = Math.floor( Math.log(bytes) / Math.log(1024) );
         var _byte_value = ( bytes / Math.pow(1024, index));
@@ -189,7 +272,8 @@ class Utils {
 
     } //bytes_to_string
 
-    public inline function array_to_bytes(array:Array<Int>):haxe.io.Bytes {
+    #if !debug inline #end
+    public function array_to_bytes(array:Array<Int>):haxe.io.Bytes {
 
         if (array == null) return null;
         var bytes:haxe.io.Bytes = haxe.io.Bytes.alloc(array.length);

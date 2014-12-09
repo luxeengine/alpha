@@ -42,7 +42,7 @@ class Mesh {
             var ext = haxe.io.Path.extension( _options.file );
             switch(ext) {
                 case 'obj':
-                    fromOBJFile( _options.file, _options.texture, null, _options.batcher );
+                    from_obj_file( _options.file, _options.texture, null, _options.batcher );
                 default:
                     throw 'cannot handle files with extension ' + ext + ' right now';
             } //switch ext
@@ -50,7 +50,7 @@ class Mesh {
         } //options.file
 
         if(_options.string != null) {
-            fromString(_options.string, _options.texture, null, _options.batcher);
+            from_string(_options.string, _options.texture, null, _options.batcher);
         }
 
         if(_options.geometry != null){
@@ -59,7 +59,9 @@ class Mesh {
 
         if(geometry != null) {
 
-            geometry.id = _options.file;
+            if(_options.file != null) {
+                geometry.id = _options.file;
+            }
 
         } else {
             throw 'Mesh component with null geometry';
@@ -156,7 +158,7 @@ class Mesh {
 
     } //_obj_add_vert
 
-    public function fromString( string_data:String, texture:Texture, ?_scale:Vector, _batcher:Batcher ) {
+    public function from_string( string_data:String, texture:Texture, ?_scale:Vector, _batcher:Batcher ) {
 
         if(_scale == null) _scale = new Vector(1,1,1);
 
@@ -177,15 +179,15 @@ class Mesh {
 
         } //for all verts
 
-    } //fromString
+    } //from_string
 
-    public function fromOBJFile( asset_id:String, texture:Texture, ?_scale:Vector, _batcher:Batcher ) {
+    public function from_obj_file( asset_id:String, texture:Texture, ?_scale:Vector, _batcher:Batcher ) {
 
         if(_scale == null) _scale = new Vector(1,1,1);
 
         var obj_file = Luxe.loadText(asset_id);
 
-        fromString(obj_file.text, texture, _scale, _batcher);
+        from_string(obj_file.text, texture, _scale, _batcher);
 
     } // from obj file
 

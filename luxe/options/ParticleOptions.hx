@@ -4,15 +4,14 @@ import phoenix.Texture;
 import luxe.Vector;
 import luxe.Color;
 
-    //placeholder for the filename
-typedef ParticleOptions = {
-
-}
+import luxe.options.RenderProperties;
 
 typedef ParticleEmitterOptions = {
+
+    > RenderProperties,
+
     ? name : String,
-    ? depth : Float,
-    ? group : Int,
+
     ? particle_image : Texture,
     ? emit_time : Float,
     ? cache_size : Int,
@@ -42,4 +41,9 @@ typedef ParticleEmitterOptions = {
     ? start_color_random : Color,
     ? end_color : Color,
     ? end_color_random : Color
-}
+
+} //ParticleEmitterOptions
+
+
+    //placeholder for the filename
+typedef ParticleOptions = {}

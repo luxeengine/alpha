@@ -30,6 +30,16 @@ typedef BatcherKey = {
     layer : Int
 }
 
+private typedef DefaultShader = {
+    source: { vert:String, frag:String },
+    shader : Shader
+}
+
+private typedef DefaultShaders = {
+    plain : DefaultShader,
+    textured : DefaultShader,
+    bitmapfont : DefaultShader
+}
 
 class Renderer {
 
@@ -40,11 +50,7 @@ class Renderer {
     public var default_fbo : GLFramebuffer;
     public var default_rbo : GLRenderbuffer;
         //Default rendering
-    public var default_shader : Shader;
-    public var default_shader_textured : Shader;
-    public var default_vert_source : String;
-    public var default_frag_source : String;
-    public var default_frag_textured_source : String;
+    public var shaders : DefaultShaders;
         //Default view and batching renderer
     public var batcher : Batcher;
     public var camera : Camera;
@@ -309,27 +315,49 @@ function get_target() : RenderTexture {
 
         _debug('creating default shaders...');
 
-        default_vert_source = haxe.Resource.getString('default.vert.glsl');
-        default_frag_source = haxe.Resource.getString('default.frag.glsl');
-        default_frag_textured_source = haxe.Resource.getString('default.frag.textured.glsl');
+        var vert = haxe.Resource.getString('default.vert.glsl');
+        var frag = haxe.Resource.getString('default.frag.glsl');
+        var frag_textured = haxe.Resource.getString('default.frag.textured.glsl');
+        var frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.glsl');
+
+        #if luxe_web
+            var ext = snow.platform.web.render.opengl.GL.current_context.getExtension('OES_standard_derivatives');
+        #end
 
             //for web + mobile, these are required
         #if !desktop
-            default_frag_source = "precision mediump float;\n" + default_frag_source;
-            default_frag_textured_source = "precision mediump float;\n" + default_frag_textured_source;
+            frag = "precision mediump float;\n" + frag;
+            frag_textured = "precision mediump float;\n" + frag_textured;
+            frag_bitmapfont = "#extension GL_OES_standard_derivatives : enable\n#extension OES_standard_derivatives : enable\nprecision mediump float;\n" + frag_bitmapfont;
         #end
 
-            //create the default rendering shader
-        default_shader = new Shader( core.resources );
-        default_shader.id = 'default_shader';
+        var _plain = new Shader( core.resources );
+        var _textured = new Shader( core.resources );
+        var _font = new Shader( core.resources );
 
-        default_shader_textured = new Shader( core.resources );
-        default_shader_textured.id = 'default_shader_textured';
+        //set the id's
 
-        default_shader.from_string( default_vert_source, default_frag_source, false );
-        default_shader_textured.from_string( default_vert_source, default_frag_textured_source, false );
+            var _dvs = 'default vertex shader';
 
-        _debug('done. ');
+            _plain.id = 'default_shader';
+            _textured.id = 'default_shader_textured';
+            _font.id = 'default_shader_bitmapfont';
+
+        //create compile and link the shaders
+
+            _plain.from_string( vert, frag, _dvs, 'default fragment shader', false );
+            _textured.from_string( vert, frag_textured, _dvs, 'default textured shader', false );
+            _font.from_string( vert, frag_bitmapfont, _dvs, 'default bitmapfont shader', false );
+
+        //store for use
+
+        shaders = {
+            plain : { shader : _plain, source : { vert:vert, frag:frag } },
+            textured : { shader : _textured, source : { vert:vert, frag:frag_textured } },
+            bitmapfont : { shader : _font, source : { vert:vert, frag:frag_bitmapfont } },
+        };
+
+        _debug('done.');
 
     } //create_default_shaders
 
@@ -340,11 +368,11 @@ function get_target() : RenderTexture {
             font = new BitmapFont({ resources:core.resources });
 
                 //create the font texture
-            var _font_texture = Texture.load_from_resource('cabin.png');
+            var _font_texture = Texture.load_from_resource('default.png');
                 _font_texture.filter_min = FilterType.linear;
 
                 //load the font string data
-            font.from_string( haxe.Resource.getString('cabin.fnt'), '', null, [_font_texture] );
+            font.from_string( 'default.fnt', haxe.Resource.getString('default.fnt'), '', null, [_font_texture] );
 
         _debug("done. " + _font_texture.width + 'x' + _font_texture.height );
 

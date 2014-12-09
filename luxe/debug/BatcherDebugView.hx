@@ -111,7 +111,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
             Luxe.draw.text({
                 immediate:as_immediate,
                 bounds : new Rectangle(_p.x-_bwhalf, _p.y, _bw, _bh),
-                size : 13,
+                point_size : 13,
                 color : c,
                 batcher : batcher,
                 depth : 999.4,
@@ -133,11 +133,11 @@ class BatcherDebugView extends luxe.debug.DebugView {
             Luxe.draw.text({
                 immediate:as_immediate,
                 pos : t,
-                size : 13,
+                point_size : 13,
                 color : c,
                 batcher : batcher,
                 depth : 999.4,
-                text : _g.short_id(),
+                text : _g.id,
                 align : talign
             })
         ); //node text
@@ -162,7 +162,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
             Luxe.draw.text({
                 immediate:as_immediate,
                 pos : t2,
-                size : 13,
+                point_size : 13,
                 color : c2,
                 batcher : batcher,
                 depth : 999.4,

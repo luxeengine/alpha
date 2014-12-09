@@ -47,7 +47,7 @@ class Main extends luxe.Game {
             pos:new Vector(3,100),
             text : 'size mode : fit\nmove the mouse',
             color : new Color(0,0,0),
-            size : 4
+            point_size : 4
         });
 
 

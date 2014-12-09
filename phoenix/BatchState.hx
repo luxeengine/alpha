@@ -29,19 +29,19 @@ class BatchState {
         last_geom_state = new GeometryState();
     }
 
-    public function active_shader() : phoenix.Shader {
+    public inline function active_shader() : phoenix.Shader {
         if(geom_state.shader != null) {
             return geom_state.shader;
         } else {
             if(geom_state.texture != null) {
-                return batcher.renderer.default_shader_textured;
+                return batcher.renderer.shaders.textured.shader;
             } else {
-                 return batcher.renderer.default_shader;
+                return batcher.renderer.shaders.plain.shader;
             }
         }
     }
 
-    public function activate(batcher:Batcher) {
+    public inline function activate(batcher:Batcher) {
 
             // Handle texture state changes
         if(geom_state.dirty) {
@@ -81,11 +81,11 @@ class BatchState {
                     //fallback onto the default shaders
                 if(geom_state.texture != null) {
                         //if there is a texture attached, use the textured shader
-                    batcher.shader_activate( batcher.renderer.default_shader_textured );
-                    last_shader_id = batcher.renderer.default_shader_textured.program;
+                    batcher.shader_activate( batcher.renderer.shaders.textured.shader );
+                    last_shader_id = batcher.renderer.shaders.textured.shader.program;
                 } else {
-                    batcher.shader_activate( batcher.renderer.default_shader );
-                    last_shader_id = batcher.renderer.default_shader.program;
+                    batcher.shader_activate( batcher.renderer.shaders.plain.shader );
+                    last_shader_id = batcher.renderer.shaders.plain.shader.program;
                 }
 
             }

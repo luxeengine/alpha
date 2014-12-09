@@ -14,6 +14,7 @@ import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.TextureCoord;
 import phoenix.geometry.Vertex;
+import phoenix.geometry.TextGeometry;
 import phoenix.Rectangle;
 import phoenix.Texture;
 
@@ -21,15 +22,17 @@ import luxe.Log.log;
 import luxe.Log._debug;
 import luxe.Log._verbose;
 
-enum TextAlign {
-    left;
-    right;
-    center;
-    top;
-    bottom;
-}
+using luxe.utils.unifill.Unifill;
 
-private typedef Character = {
+@:enum abstract TextAlign(Int) from Int to Int {
+    var left = 0;
+    var right = 1;
+    var center = 2;
+    var top = 3;
+    var bottom = 4;
+} //TextAlign
+
+typedef Character = {
     var id: Int;
     var x: Float;
     var y: Float;
@@ -65,8 +68,10 @@ class BitmapFont extends Resource {
 
         //cached refrence of the ' '(32)
         //character for sizing on tabs/spaces
-    var space_char:Character;
-    var items_loaded : Int = 0;
+    public var space_char: Character;
+        //for loading pages and reporting done
+    var items_loaded: Int = 0;
+    var items_total: Int = 0;
 
     static var generic_names : Array<String> = ['font','', ' '];
 
@@ -89,16 +94,29 @@ class BitmapFont extends Resource {
                 with path to search for textures, onload callback
                 and if textures are already loaded, a custom array of pages */
         public function from_string(
+            _id : String,
             _bitmapfont_data : String,
-            ?_path : String = 'assets/',
-            ?_onload : BitmapFont->Void ,
-            ?_custom_pages:Array<Texture> )
+            ?_path: String = 'assets/',
+            ?_onload: BitmapFont->Void ,
+            ?_custom_pages: Array<Texture>,
+            ?_silent: Bool = false )
         {
 
                 //store the listener
             if(_onload != null) onload = _onload;
                 //parse the file
             info = Parser.parse(_bitmapfont_data);
+
+                //check validity of the font
+            if( info.char_count == 0 || 
+                info.face == null || 
+                (info.pages.length == 0 && _custom_pages.length == 0)
+            ) {
+                log('error / $_id / invalid font data specified for this font, cannot load. This font will not be valid.');
+                do_onload( false );
+                return;
+            }
+
                 //set the id to the face name
             id = '${info.face}';
                 //store cached values
@@ -130,10 +148,74 @@ class BitmapFont extends Resource {
 
         } //kerning
 
-    public inline function width_of( _string:String, _point_size:Float = 1.0, ?_line_widths:Array<Float> ) : Float {
+    public function wrap_string_to_bounds( _string:String, _bounds:Rectangle, _point_size:Float=1.0, _letter_spc:Float=0.0 ) : String {
 
-        //:todo: #98 hardcoded tab width
-        var _tab_width = 4;
+        if(_bounds == null) {
+            return _string;
+        }
+
+        var _cur_x = 0.0; var _idx = 0;
+        var _final_str = '';
+
+        inline function _wordw(_str:String) {
+            return width_of(_str, _point_size, _letter_spc);
+        }
+
+        var _spacew = _wordw(' ');
+
+        inline function _dowrap(_w:Float, _str:String) {
+            if(_cur_x + _w > _bounds.w) {
+                _cur_x = 0;
+                _final_str += '\n';
+            }
+
+            _cur_x += _w;
+            _final_str += _str;
+        } //_dowrap
+
+            var _strings = _string.split(' ');
+            var _count = _strings.length;
+
+            for(_str in _strings) {
+                if(_str.uIndexOf('\n') == -1) {
+                    if(_str == '') _str = ' ';
+                    _dowrap( _wordw(_str), _str );
+                } else {
+                    var _widx = 0;
+                    var _words = _str.split('\n');
+                    for(_word in _words) {
+
+                        if(_word != '') {
+                            _dowrap( _wordw(_word), _word );
+                        } else {
+                            _cur_x = 0;
+                        }
+
+                        if(_widx < _words.length-1) {
+                            _final_str += '\n';
+                            _cur_x = 0;
+                        }
+
+                        _widx++;
+
+                    } //each word
+                } //no spaces
+
+                if(_idx < _count-1) {
+                    _final_str += ' ';
+                    _cur_x += _spacew + _letter_spc;
+                }
+
+                _idx++;
+
+            } //each word
+
+        return _final_str;
+
+    } //wrap_string_to_bounds
+
+    public inline function width_of( _string:String, _point_size:Float = 1.0, _letter_spc:Float = 0.0, ?_line_widths:Array<Float> ) : Float {
+
             //current width counter
         var _cur_x = 0.0;
             //maximum width found
@@ -146,11 +228,13 @@ class BitmapFont extends Resource {
             //Iterate over each character,
             //acculumating the size
         var i = 0;
-        while( i < _string.length ) {
+        var _len = _string.uLength();
+        for( _uglyph in _string.uIterator() ) {
 
-            var _glyph = _string.charAt(i);
+            var _index = _uglyph.toInt();
 
-            if( _glyph == '\n' ) {
+                // 10 = \n
+            if( _index == 10 ) {
 
                 _max_w = Math.max( _max_w, _cur_x );
                 if(_push_widths) _line_widths.push(_cur_x);
@@ -158,21 +242,26 @@ class BitmapFont extends Resource {
 
             } else {
 
-                var _spacing = 0.0;
-                var _index = _glyph.charCodeAt(0);
                 var _char = info.chars.get(_index);
-
-                    //insert character width
-                if(_char != null) _spacing = _char.xadvance;
-                    //insert tabs spacing
-                if( _glyph == '\t' ) _spacing += space_char.xadvance * _tab_width;
-                    //insert kerning values, if any
-                if( i < _string.length - 1 ){
-                    var _next_index = _string.charAt(i+1).charCodeAt(0);
-                    _spacing += kerning( _index, _next_index );
+                if(_char == null) {
+                    _char = space_char;
                 }
 
-                _cur_x += (_spacing * _ratio);
+                var _spacing = _char.xadvance;
+
+                    //insert kerning values, if any
+                if( i < _len - 1 ) {
+
+                    var _next_index = _string.uCharCodeAt(i+1);
+                    _spacing += kerning( _index, _next_index );
+
+                        //if not a new line, add the letter spacing
+                    if(_next_index >= 32) {
+                        _spacing += _letter_spc;
+                    }
+                }
+
+                _cur_x += _spacing * _ratio;
 
             }
 
@@ -183,24 +272,24 @@ class BitmapFont extends Resource {
             //account for the remaining length
         if(_push_widths) _line_widths.push(_cur_x);
 
-            //adjust for any last additions
+            //return the max width found
         return Math.max( _max_w, _cur_x );
 
     } //width_of
 
-    public inline function height_of( _string:String, _point_size:Float ) : Float {
+    public inline function height_of( _string:String, _point_size:Float, _line_spc:Float=0.0 ) : Float {
 
-        return height_of_lines(_string.split('\n'), _point_size);
+        return height_of_lines(_string.split('\n'), _point_size, _line_spc);
 
     } //height_of
 
 
         /** Return the dimensions of a given string, at the specified point size.
             You can also use width_of or height_of, this is a convenience for those */
-    public inline function dimensions_of( _string:String, _point_size:Float, _into:Vector ) : Vector {
+    public inline function dimensions_of( _string:String, _point_size:Float, _into:Vector, _letter_spc:Float=0.0, _line_spc:Float=0.0 ) : Vector {
 
-        var _width = width_of(_string, _point_size);
-        var _height = height_of(_string, _point_size);
+        var _width = width_of(_string, _point_size, _letter_spc);
+        var _height = height_of(_string, _point_size, _line_spc);
 
         return _into.set_xy( _width, _height );
 
@@ -214,12 +303,14 @@ class BitmapFont extends Resource {
                 throw "BitmapFont: load cannot work without a file id to load from.";
             }
 
+            if(_options.silent == null) _options.silent = false;
+
             var font = new BitmapFont( _options );
             var file_path = haxe.io.Path.join([font.options.path, font.options.id]);
 
             Luxe.loadText( file_path, function( font_data:luxe.resource.TextResource ) {
 
-                font.from_string( font_data.text, font.options.path, font.options.onload );
+                font.from_string( _options.id, font_data.text, font.options.path, font.options.onload, null, font.options.silent );
                 font.options.resources.cache(font);
 
             }, true);
@@ -230,10 +321,10 @@ class BitmapFont extends Resource {
 
     //internal
 
-        inline function height_of_lines( _lines:Array<String>, _point_size:Float ) : Float {
+        public inline function height_of_lines( _lines:Array<String>, _point_size:Float, _line_spc:Float=0.0 ) : Float {
 
             var _ratio = _point_size / info.point_size;
-            return _lines.length * (info.line_height * _ratio);
+            return _lines.length * ((info.line_height + _line_spc) * _ratio);
 
         } //height_of
 
@@ -271,294 +362,86 @@ class BitmapFont extends Resource {
 
     //internal load handlers
 
-        function on_completely_loaded() {
+        function do_onload(success:Bool=true) {
 
-            loaded = true;
+            loaded = success;
 
             if(onload != null) {
                 onload( this );
             }
 
-        } //on_completely_loaded
+        } //do_onload
 
-        function one_item_loaded(t:Texture) {
+        function page_loaded(t:Texture) {
 
-            var total_items = Lambda.count(pages);
                 //increment the current count
             items_loaded++;
 
                 //if completely done
-            if(items_loaded == total_items) {
-                on_completely_loaded();
+            if(items_loaded == items_total) {
+                do_onload();
             }
 
-        } //one_item_loaded
+        } //page_loaded
 
         function load_pages( ?_path:String = 'assets/', ?_custom_pages:Array<Texture> ) {
 
             if(_custom_pages == null) {
 
+                items_total = Lambda.count(info.pages);
+
                 for(_page in info.pages) {
 
-                    var _t = Luxe.loadTexture( _path + _page.file );
-                    _t.onload = function(_) {
+                    var _t = Luxe.loadTexture( _path + _page.file, null, options.silent );
+                    if(_t != null) {
+                        _t.onload = function(_) {
 
-                        pages.set(_page.id, _t);
-                        _t.filter_min = FilterType.linear;
-                        //:todo:options
-                        // _t.filter_mag = FilterType.linear;
-                        // _t.generate_mipmaps();
+                            pages.set(_page.id, _t);
 
-                        one_item_loaded(_t);
+                            _t.slot = _page.id;
+                            _t.filter = options.filter;
+                            _t.filter_min = options.filter_min;
+                            _t.filter_mag = options.filter_mag;
 
-                    } //onload
+                            if(options.mipmaps) {
+                                _t.generate_mipmaps();
+                            }
+
+                            page_loaded(_t);
+
+                        } //onload
+                    } else {
+                        throw 'BitmapFont: "${info.face}" specified a page "${_page.file}" with a missing texture at $_path';
+                    }
 
                 } //each page
 
             } else {
 
-                var _id : Int = 0;
+                items_total = _custom_pages.length;
 
+                var _id : Int = 0;
                 for(_page in _custom_pages) {
+                    _page.slot = _id;
                     pages.set(_id, _page);
                     ++_id;
                 }
 
                     //still need the callback for explicit textures
-                on_completely_loaded();
+                do_onload();
 
             } //if custom pages
 
         } //load_pages
 
-
             //Wip refactoring, see #98
-    public function draw_text( opt : TextOptions ) {
+    public function draw_text( opt : TextGeometryOptions ) {
 
-        inline function def_text_options(_opt:TextOptions) {
+        if(opt.batcher == null) opt.batcher = Luxe.renderer.batcher;
 
-            if(_opt.text == null)       _opt.text = '';
-            if(_opt.pos == null)        _opt.pos = new Vector();
-            if(_opt.color == null)      _opt.color = new Color();
+            opt.font = this;
 
-            if(opt.size != null && opt.point_size == null) opt.point_size = opt.size;
-            if(_opt.point_size == null) _opt.point_size = info.point_size;
-
-            if(_opt.depth == null)      _opt.depth = 0.0;
-            if(_opt.group == null)      _opt.group = 0;
-            if(_opt.visible == null)    _opt.visible = true;
-            if(_opt.immediate == null)  _opt.immediate = false;
-            if(_opt.batcher == null)    _opt.batcher = Luxe.renderer.batcher;
-
-            if(_opt.align == null)      _opt.align = TextAlign.left;
-            if(_opt.align_vertical == null) _opt.align_vertical = TextAlign.top;
-
-            return _opt;
-
-        } //def_text_options
-
-        opt = def_text_options(opt);
-
-        var _final_geom = (opt.geometry == null) ? new CompositeGeometry(null) : opt.geometry;
-
-        var _pos_x = opt.pos.x;
-        var _pos_y = opt.pos.y;
-        var _bounds_based : Bool = false;
-
-        if(opt.bounds != null) {
-            _bounds_based = true;
-            _pos_x = opt.bounds.x;
-            _pos_y = opt.bounds.y;
-        }
-
-            //no texture? return empty geometry
-        if(pages[0] == null) {
-            log("Warning ; " + id + " font trying to draw without a texture.");
-            return _final_geom;
-        }
-
-            //an array of geometry items, one for each unique texture
-        var _geoms : Array<Geometry> = new Array<Geometry>();
-        var _page_count = Lambda.count(pages);
-
-        _verbose('creating geometry for each unique texture : ' + _page_count + ' at ' + opt.depth + '\n with ' + opt.color + ' and ' + opt.align + ' and at ' + opt.pos );
-
-        for(i in 0 ... _page_count ) {
-
-            var _g = new Geometry({
-                texture : pages[i],
-                color : opt.color,
-                depth : opt.depth,
-                visible : opt.visible,
-                immediate : opt.immediate
-            });
-
-            _g.id = 'text.page'+i+'.'+opt.text.substr(0,8);
-
-            _g.primitive_type = PrimitiveType.triangles;
-            _g.immediate = opt.immediate;
-            _geoms.push( _g );
-
-        } //for each page
-
-        var _ratio_x = 0.0,
-            _ratio_y = _ratio_x = opt.point_size / info.point_size;
-
-        var _cur_x = 0.0;
-        var _cur_y = 0.0;
-
-        var _lines = opt.text.split('\n');
-
-        var _line_idx = 0;
-        var _line_widths = [];
-        var _txt_width = width_of(opt.text, opt.point_size, _line_widths);
-        var _txt_height = height_of_lines(_lines, opt.point_size);
-        var _txt_half_w = _txt_width / 2;
-        var _txt_half_h = _txt_height / 2;
-
-        for(_line in _lines) {
-
-            var _align_x_offset = 0.0;
-
-                //Calculate alignment position
-                //Left is at 0, so it's handled already
-            _align_x_offset = switch(opt.align) {
-                case center: _txt_half_w - (_line_widths[_line_idx]/2.0);
-                case right: _txt_width - _line_widths[_line_idx];
-                default: 0.0;
-            }
-
-                //if not the first line, add height
-            if( _line_idx != 0 ){
-                _cur_y += info.line_height * _ratio_y;
-                _cur_x = 0;
-            }
-
-            for(i in 0 ... _line.length) {
-
-                var _glyph = _line.charAt(i);
-                var _index = _glyph.charCodeAt(0);
-                var _char = info.chars.get(_index);
-
-                    //hmm, a null character code?
-                    //maybe insert something visible?
-                if(_char == null) {
-                    _char = space_char;
-                }
-
-                    //find the geometry to add it to
-                var _geom = _geoms[_char.page];
-
-                    //Texture size for this page
-                var _tw = pages[_char.page].width_actual;
-                var _th = pages[_char.page].height_actual;
-
-                    //work out the coordinates for the uv's
-                var _u  = _char.x/_tw;
-                var _v  = _char.y/_th;
-                var _u2 = (_char.x + _char.width) / _tw;
-                var _v2 = (_char.y + _char.height) / _th;
-                var _x  = _align_x_offset + _cur_x + ( _char.xoffset * _ratio_x );
-                var _y  = _cur_y + _char.yoffset * _ratio_y;
-                var _w  = _char.width * _ratio_x;
-                var _h  = _char.height * _ratio_y;
-
-                var _x_inc : Float = _char.xadvance;
-                if( i < _line.length-1 ){
-                    var _next_index = _line.charAt(i+1).charCodeAt(0);
-                    _x_inc += kerning( _index, _next_index );
-                }
-
-                if( _glyph == '\t' ){
-                    //:todo:, hardcoded 4 tab size
-                    _x_inc += space_char.xadvance * 4;
-                }
-
-                _cur_x += _x_inc * _ratio_x;
-
-                // _x = Math.round(_x);
-                // _y = Math.round(_y);
-
-                    //First triangle
-
-               var vert0 = new Vertex( new Vector( _x, _y ), opt.color );
-                   vert0.uv.uv0.set_uv(_u,_v);
-
-                var vert1 = new Vertex( new Vector( _x+_w, _y ), opt.color );
-                   vert1.uv.uv0.set_uv(_u2, _v);
-
-                var vert2 = new Vertex( new Vector( _x+_w, _y+_h ), opt.color );
-                    vert2.uv.uv0.set_uv(_u2, _v2);
-
-                   //Second triangle
-
-                var vert3 = new Vertex( new Vector( _x, _y+_h ), opt.color );
-                    vert3.uv.uv0.set_uv(_u, _v2);
-
-                var vert4 = new Vertex( new Vector( _x, _y ), opt.color );
-                    vert4.uv.uv0.set_uv(_u, _v);
-
-                var vert5 = new Vertex( new Vector( _x+_w, _y+_h), opt.color );
-                    vert5.uv.uv0.set_uv(_u2, _v2);
-
-                   //Add to the geomery
-
-                _geom.add( vert0 ); _geom.add( vert1 );  _geom.add( vert2 );
-                _geom.add( vert3 ); _geom.add( vert4 );  _geom.add( vert5 );
-
-            } //for each string
-
-                //next line (if any)
-            _line_idx++;
-
-        } //line in lines
-
-            //alignment offsets
-        var _offset_x = 0.0;
-        var _offset_y = 0.0;
-
-        if(!_bounds_based) {
-
-            _offset_x = switch(opt.align) {
-                case center: _txt_half_w;
-                case right: _txt_width;
-                case _: 0.0;
-            }
-
-        } else {
-
-            var _b_w_h = (opt.bounds.w/2);
-            var _b_h_h = (opt.bounds.h/2);
-
-            _offset_x = switch(opt.align) {
-                case center: -(_b_w_h - _txt_half_w);
-                case right: -(opt.bounds.w - _txt_width);
-                case _: 0.0;
-            }
-
-            _offset_y = switch(opt.align_vertical) {
-                case center:  -(_b_h_h - _txt_half_h);
-                case bottom:  -(opt.bounds.h - _txt_height);
-                case _: 0.0;
-            }
-
-        } //_bounds_based
-
-            //replace the composite with the children geometry we just created
-        _final_geom.replace( _geoms );
-        _final_geom.add_to_batcher( opt.batcher );
-
-            //translate all of the new text according to the actual position
-        _final_geom.transform.origin.set_xy( _offset_x, _offset_y );
-        _final_geom.transform.pos.set_xy( _pos_x, _pos_y );
-
-        // _verbose('drew text ${opt.text.substr(0,10)} at ${_final_geom.transform.pos} with origin ${_final_geom.transform.origin}');
-
-        _final_geom.id += 'drawn_text- ' + opt.text.substr(0,10);
-        _final_geom.immediate = opt.immediate;
-        _final_geom.visible = opt.visible;
-
-        return _final_geom;
+        return new TextGeometry(opt);
 
     } //draw_text
 
@@ -580,7 +463,7 @@ private class Parser {
             }
 
             var _info : FontInfo = {
-                face : '',
+                face : null,
                 chars : new Map(),
                 point_size : 0, base_size : 0,
                 char_count : 0, line_height : 0,
@@ -588,6 +471,13 @@ private class Parser {
             };
 
             var _lines : Array<String> = _font_data.split("\n");
+
+            if(_lines.length == 0) throw "BitmapFont; invalid font data specified for parser.";
+
+            var _first = _lines[0];
+            if( StringTools.ltrim(_first).substr(0, 4) != 'info') {
+                throw "BitmapFont; invalid font data specified for parser. Format should be plain ascii text .fnt file only currently.";
+            }
 
             for(_line in _lines) {
                 var _tokens = _line.split(" ");
