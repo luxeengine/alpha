@@ -75,9 +75,9 @@ class TexturePackerSpriteAnimation {
             //used for finding a sequence by item1, item-1, or item_1
         var _pattern_regex : EReg = null;
 
-        var _type0_re : EReg = new EReg('('+name+')(\\d\\b)', 'gi');
-        var _type1_re : EReg  = new EReg('('+name+')(_\\d\\b)', 'gi');
-        var _type2_re : EReg  = new EReg('('+name+')(-\\d\\b)', 'gi');
+        var _type0_re : EReg = new EReg('('+name+')(\\d+\\b)', 'gi');
+        var _type1_re : EReg  = new EReg('('+name+')(_\\d+\\b)', 'gi');
+        var _type2_re : EReg  = new EReg('('+name+')(-\\d+\\b)', 'gi');
 
             //now we search for the frames we are looking for
         var matched : Array<TexturePackerFrame> = [];
