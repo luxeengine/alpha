@@ -149,7 +149,7 @@ class TextGeometry extends Geometry {
 //Public API
 
         /** Remove any cached vertices that are unused by the current text. */
-    #if !debug inline #end
+    #if release inline #end
     public function tidy() {
 
         var _vertidx = Math.floor(vertices.length / 6);
@@ -221,7 +221,7 @@ class TextGeometry extends Geometry {
 
     } //default_options
 
-    #if !debug inline #end
+    #if release inline #end
     function set_text(_text:String) : String {
 
         if(_text == null) {
@@ -250,12 +250,12 @@ class TextGeometry extends Geometry {
 
     } //set_text
 
-    #if !debug inline #end
+    #if release inline #end
     function stats() {
         return 'letters:${(vertices.length/6)} / cache:${ cache.length }';
     }
 
-    #if !debug inline #end
+    #if release inline #end
     function update_sizes() {
 
         if(!dirty_sizing) return false;
@@ -284,7 +284,7 @@ class TextGeometry extends Geometry {
     } //update_sizes
 
 
-    // #if !debug inline #end
+    // #if release inline #end
     function update_text() {
 
         var _pos_x = 0.0;
@@ -440,7 +440,7 @@ class TextGeometry extends Geometry {
 
     } //update_text
 
-    // #if !debug inline #end
+    // #if release inline #end
     function update_char( _letteridx:Int, _x:Float, _y:Float, _w:Float, _h:Float, _u:Float, _v:Float, _u2:Float, _v2:Float, _color:Color ) {
 
         var vert0:Vertex; var vert1:Vertex; var vert2:Vertex;
@@ -503,7 +503,7 @@ class TextGeometry extends Geometry {
 
 //Setters
 
-    #if !debug inline #end
+    #if release inline #end
     function set_dirty_sizing(_b:Bool) {
 
             dirty_align = true;
@@ -512,7 +512,7 @@ class TextGeometry extends Geometry {
 
     } //set_dirty_sizing
 
-    #if !debug inline #end
+    #if release inline #end
     function set_bounds( _bounds:Rectangle ) {
 
         bounds = _bounds;
@@ -524,7 +524,7 @@ class TextGeometry extends Geometry {
 
     } //set_bounds
 
-    #if !debug inline #end
+    #if release inline #end
     function set_bounds_wrap( _wrap:Bool ) {
 
         bounds_wrap = _wrap;
@@ -536,7 +536,7 @@ class TextGeometry extends Geometry {
 
     } //set_bounds_wrap
 
-    #if !debug inline #end
+    #if release inline #end
     function set_line_spacing(_line_spacing:Float) {
 
         line_spacing = _line_spacing;
@@ -548,7 +548,7 @@ class TextGeometry extends Geometry {
 
     } //set_line_spacing
 
-    #if !debug inline #end
+    #if release inline #end
     function set_letter_spacing(_letter_spacing:Float) {
 
         letter_spacing = _letter_spacing;
@@ -560,7 +560,7 @@ class TextGeometry extends Geometry {
 
     } //set_leading
 
-    #if !debug inline #end
+    #if release inline #end
     function set_align( _align:TextAlign ) {
 
         align = _align;
@@ -572,7 +572,7 @@ class TextGeometry extends Geometry {
 
     } //set_align
 
-    #if !debug inline #end
+    #if release inline #end
     function set_align_vertical( _align_vertical:TextAlign ) {
 
         align_vertical = _align_vertical;
@@ -584,7 +584,7 @@ class TextGeometry extends Geometry {
 
     } //set_align_vertical
 
-    #if !debug inline #end
+    #if release inline #end
     function set_point_size( s:Float ) {
 
         if(s < 0) s = 0;
@@ -601,7 +601,7 @@ class TextGeometry extends Geometry {
 //SDF specific features
 
 
-    #if !debug inline #end
+    #if release inline #end
     function set_smoothness(s:Float) {
 
         if(s < 0) s = 0;
@@ -614,7 +614,7 @@ class TextGeometry extends Geometry {
 
     } //set_smoothness
 
-    #if !debug inline #end
+    #if release inline #end
     function set_thickness(s:Float) {
 
         if(s < 0) s = 0;
@@ -627,7 +627,7 @@ class TextGeometry extends Geometry {
 
     } //set_thickness
 
-    #if !debug inline #end
+    #if release inline #end
     function set_outline(s:Float) {
 
         s = Maths.clamp(s, 0.0, 1.0);
@@ -640,7 +640,7 @@ class TextGeometry extends Geometry {
 
     } //set_outline
 
-    #if !debug inline #end
+    #if release inline #end
     function set_glow_threshold(s:Float) {
 
         if(s < 0) s = 0;
@@ -653,7 +653,7 @@ class TextGeometry extends Geometry {
 
     } //set_glow_threshold
 
-    #if !debug inline #end
+    #if release inline #end
     function set_glow_amount(s:Float) {
 
         if(s < 0) s = 0;
@@ -666,7 +666,7 @@ class TextGeometry extends Geometry {
 
     } //set_glow_amount
 
-    #if !debug inline #end
+    #if release inline #end
     function set_outline_color(c:Color) {
 
         if(shader != null && sdf && unique) {
@@ -677,7 +677,7 @@ class TextGeometry extends Geometry {
 
     } //set_outline_color
 
-    #if !debug inline #end
+    #if release inline #end
     function set_glow_color(c:Color) {
 
         if(shader != null && sdf && unique) {
@@ -691,7 +691,7 @@ class TextGeometry extends Geometry {
         //internal convenience for when
         //the shader type changes to sdf
         //and values need refreshing
-    #if !debug inline #end
+    #if release inline #end
     function flush_uniforms() {
         if(shader != null && sdf) {
             shader.set_float('smoothness', smoothness);

@@ -25,7 +25,7 @@ class Utils {
     }  //new
 
         /** Generate a short, unique string ID for use ("base62"). */
-    #if !debug inline #end
+    #if release inline #end
     public function uniqueid(?val:Int) : String {
 
         // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
@@ -49,26 +49,26 @@ class Utils {
 
         /** Generates and returns a uniqueid converted to a hashed integer for convenience.
             Uses the default `uniqueid` and `hash` implementation detail. */
-    #if !debug inline #end
+    #if release inline #end
     public function uniquehash() : Int {
         return hash( uniqueid() );
     } //uniquehash
 
         /** Generates a integer hash from a string using the default algorithm (murmur3) */
-    #if !debug inline #end
+    #if release inline #end
     public function hash( string:String ) : Int {
         return hashdjb2( string );
         // return hashmurmur( haxe.io.Bytes.ofString(string) );
     } //hash
 
         /** Generates an integer hash of a string using the murmur 3 algorithm */
-    #if !debug inline #end
+    #if release inline #end
     public function hashmurmur( _bytes:haxe.io.Bytes, ?_seed:Int=0 ) : Int {
         return Murmur3.hash( _bytes, _seed );
     } //hashmurmur
 
         /** Generates an integer hash of a string using the djb2 algorithm */
-    #if !debug inline #end
+    #if release inline #end
     public function hashdjb2(string:String) : Int {
 
             //http://www.cse.yorku.ca/~oz/hash.html
@@ -81,21 +81,21 @@ class Utils {
 
     } //hashdjb2
 
-    #if !debug inline #end
+    #if release inline #end
     public function uniqueid2() : String {
 
         return haxe.crypto.Md5.encode(Std.string(Luxe.time*Math.random()));
 
     } //uniqueid2
 
-    #if !debug inline #end
+    #if release inline #end
     public function uuid() : String {
 
     	return UUID.get();
 
     } //uuid
 
-    #if !debug inline #end
+    #if release inline #end
     public function stacktrace( ?_depth:Int = 100 ) : String {
 
         var result = '\n';
@@ -122,7 +122,7 @@ class Utils {
 
     } //stacktrace
 
-    #if !debug inline #end
+    #if release inline #end
     public function path_is_relative(_path:String) {
 
         return _path.charAt(0) != "#"
@@ -180,7 +180,7 @@ class Utils {
     } //find_assets_image_sequence
 
         /** :WIP: Wrap text using a knuth plass algorithm for column breaking. */
-    #if !debug inline #end
+    #if release inline #end
     public function text_wrap_column_knuth_plass( _string:String, _column:Int=80) {
 
         var result = [];
@@ -249,7 +249,7 @@ class Utils {
     } //text_wrap_column_knuth
 
         /** Soft wrap a string by maximum character count. brk default:'\n', col default:80 */
-    #if !debug inline #end
+    #if release inline #end
     public function text_wrap_column( _text:String, _brk:String='\n', _column:Int=80) {
 
             //based on http://blog.macromates.com/2006/wrapping-text-with-regular-expressions/
@@ -262,7 +262,7 @@ class Utils {
 
     } //text_wrap_column
 
-    #if !debug inline #end
+    #if release inline #end
     public function bytes_to_string( bytes:Int ) : String {
 
         var index : Int = Math.floor( Math.log(bytes) / Math.log(1024) );
@@ -272,7 +272,7 @@ class Utils {
 
     } //bytes_to_string
 
-    #if !debug inline #end
+    #if release inline #end
     public function array_to_bytes(array:Array<Int>):haxe.io.Bytes {
 
         if (array == null) return null;
