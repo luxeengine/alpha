@@ -49,11 +49,11 @@ class ProfilerDebugView extends luxe.debug.DebugView {
         }
     }
 
-    public static function start(_id:String) {
+    public static function start(_id:String, ?_max:Float=0.0) {
         var _item = lists.get(_id);
         if(_item == null) {
             //create it
-            _item = new ProfilerValue(_id, new ProfilerBar(_id, new Color().rgb(0xf6007b) ));
+            _item = new ProfilerValue(_id, new ProfilerBar(_id, _max, new Color().rgb(0xf6007b) ));
             _item.bar.pos = new Vector(Luxe.debug.padding.x*2,(Luxe.debug.padding.y*3) + (Lambda.count(lists) * 20) );
             lists.set(_id, _item);
         }
@@ -174,14 +174,14 @@ private class ProfilerBar {
     @:isVar public var value (default,set) : Float;
     @:isVar public var ping (default,set) : Float;
 
-    public function new(_name:String, _color:Color){
+    public function new(_name:String, ?_max:Float=0.0, _color:Color){
 
         color_red = new Color().rgb(0xcc0000);
         color_green = new Color().rgb(0x228844);
         color_normal = new Color().rgb(0xf0f0f0);
 
-            //:todo:snow:
-        max = (1/60) * 1000;
+        max = _max == 0.0 ? (1/60) * 1000 : _max;
+        max = luxe.utils.Maths.fixed(max,1);
         name = _name;
         segment = (width/history);
         height2 = height*2;
@@ -322,7 +322,7 @@ private class ProfilerBar {
     }
 
     function set_text(_t:String) {
-        text_item.text = name + ' | ' + _t + 'ms';
+        text_item.text = '$name (${max}ms) | ${_t}ms';
         return text = _t;
     }
 

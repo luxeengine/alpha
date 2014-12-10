@@ -83,10 +83,10 @@ class Debug {
     } //init
 
         /** start a profiling section for the profiler debug view */
-    public function start(_name:String) {
+    public function start(_name:String, ?_max:Float=0.0) {
         #if !no_debug_console
         if(!core.headless) {
-            ProfilerDebugView.start(_name);
+            ProfilerDebugView.start(_name, _max);
         }
         #end
     }

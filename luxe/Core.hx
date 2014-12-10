@@ -299,8 +299,8 @@ class Core extends snow.App {
             app.window.onrender = render;
 
                 //start here because end is called first below
-            debug.start(core_tag_update);
-            debug.start(core_tag_renderdt);
+            debug.start(core_tag_update, 50);
+            debug.start(core_tag_renderdt, 50);
 
         } //app.window != null && !headless
 
