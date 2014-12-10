@@ -10,9 +10,9 @@ class Main extends luxe.Game {
 
         trace('press space, z, or mouse left.');
 
-        Luxe.input.add('fire', Key.space);
-        Luxe.input.add('fire', Key.key_z);
-        Luxe.input.add('fire', MouseButton.left);
+        Luxe.input.bind_key('fire', Key.space);
+        Luxe.input.bind_key('fire', Key.key_z);
+        Luxe.input.bind_mouse('fire', MouseButton.left);
 
     } //ready
 

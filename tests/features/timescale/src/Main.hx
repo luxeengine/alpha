@@ -51,10 +51,10 @@ class Main extends luxe.Game {
             origin : new Vector( 10, 40 )
         });
 
-        Luxe.input.add('jump', Key.key_w );
-        Luxe.input.add('jump', Key.key_z );
-        Luxe.input.add('jump', Key.space );
-        Luxe.input.add('jump', Key.up );
+        Luxe.input.bind_key('jump', Key.key_w );
+        Luxe.input.bind_key('jump', Key.key_z );
+        Luxe.input.bind_key('jump', Key.space );
+        Luxe.input.bind_key('jump', Key.up );
 
         vel = new Vector(0,0);
 

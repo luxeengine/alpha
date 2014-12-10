@@ -12,20 +12,20 @@ typedef Key             =   snow.input.Keycodes.Keycodes;
 typedef Scan            =   snow.input.Keycodes.Scancodes;
 
 /** A typed mouse button id */
-enum MouseButton {
+@:enum abstract MouseButton(Int) from Int to Int {
 
 /** no mouse buttons */
-    none;
+    var none = 0;
 /** left mouse button */
-    left;
+    var left = 1;
 /** middle mouse button */
-    middle;
+    var middle = 2;
 /** right mouse button */
-    right;
+    var right = 3;
 /** extra button pressed (4) */
-    extra1;
+    var extra1 = 4;
 /** extra button pressed (5) */
-    extra2;
+    var extra2 = 5;
 
 } //MouseButton
 
@@ -224,10 +224,10 @@ class Input {
 
 #if neko
     var key_bindings : Map<String, haxe.ds.EnumValueMap<Int,Bool> >;
-    var mouse_bindings : Map<String, haxe.ds.EnumValueMap<MouseButton,Bool> >;
+    var mouse_bindings : Map<String, haxe.ds.EnumValueMap<Int,Bool> >;
 #else
     var key_bindings : Map<String, Map<Int,Bool> >;
-    var mouse_bindings : Map<String, Map<MouseButton,Bool> >;
+    var mouse_bindings : Map<String, Map<Int,Bool> >;
 #end
 
     var _named_input_released : Map<String, Bool>;
@@ -334,17 +334,17 @@ class Input {
 //Mouse
 
         /** immediate query of the pressed state of a mouse button. only true if pressed within one frame */
-    public function mousepressed( _button:Int ) : Bool {
+    public function mousepressed( _button:MouseButton ) : Bool {
         return core.app.input.mousepressed( _button );
     } //mousepressed
 
         /** immediate query of the released state of a mouse button. only true if released within one frame */
-    public function mousereleased( _button:Int ) : Bool{
+    public function mousereleased( _button:MouseButton ) : Bool{
         return core.app.input.mousereleased( _button );
     } //mousereleased
 
         /** immediate query of the down state of a mouse button. only true while the button is down. :todo: use `MouseButton` like it should be. */
-    public function mousedown( _button:Int ) : Bool{
+    public function mousedown( _button:MouseButton ) : Bool{
         return core.app.input.mousedown( _button );
     } //mousedown
 
@@ -373,43 +373,29 @@ class Input {
 
 //Named event handlers
 
-    function add_key_binding( _name:String, _value:Int ) {
+        /** Bind a named input binding to a `Key` */
+    public function bind_key( _name:String, _key:Int ) {
 
         if( !key_bindings.exists(_name) ) {
             key_bindings.set(_name, new Map<Int,Bool>() );
         } //if the map doesn't exist yet
 
         var kb = key_bindings.get(_name);
-            kb.set( _value, true );
+            kb.set( _key, true );
 
-    } //add_key_binding
+    } //bind_key
 
-    function add_mouse_binding( _name:String, _value:MouseButton ) {
+        /** Bind a named input binding to a `MouseButton` */
+    public function bind_mouse( _name:String, _button:MouseButton ) {
 
         if( !mouse_bindings.exists(_name) ) {
-            mouse_bindings.set(_name, new Map<MouseButton,Bool>());
+            mouse_bindings.set(_name, new Map<Int,Bool>());
         } //if the map doesn't exist yet
 
         var mb = mouse_bindings.get(_name);
-            mb.set( _value, true );
+            mb.set( _button, true );
 
-    } //add_key_binding
-
-        /** add a named input binding to a `Key` keycode, a `MouseButton`. :todo: add gamepad  */
-    public function add<T>( _name:String, _binding_value:T ) {
-
-        if(Std.is(_binding_value, Int)) {
-                //if key value, add it
-            add_key_binding(_name, cast _binding_value);
-
-        } else if(Std.is(_binding_value, MouseButton)) {
-                //if mouse value, add as mouse value
-            add_mouse_binding(_name, cast _binding_value);
-        }
-
-    } //add
-
-
+    } //bind_mouse
 
     @:noCompletion public function check_named_keys( e:KeyEvent, _down:Bool=false ) {
 

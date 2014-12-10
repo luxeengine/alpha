@@ -593,22 +593,6 @@ class Core extends snow.App {
     } //oninputup
 
 //mouse
-    function mouse_button_from_number( button : Int ) : MouseButton {
-
-        switch(button) {
-
-            case    1 : return MouseButton.left;
-            case    2 : return MouseButton.middle;
-            case    3 : return MouseButton.right;
-            case    4 : return MouseButton.extra1;
-            case    5 : return MouseButton.extra2;
-            default   : return MouseButton.none;
-
-        }
-
-        return MouseButton.none;
-
-    } //mouse_button_from_number
 
     override function onmousedown( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
 
@@ -620,7 +604,7 @@ class Core extends snow.App {
             timestamp : timestamp,
             window_id : window_id,
             state : InteractState.down,
-            button : mouse_button_from_number(button),
+            button : button,
             x : x,
             y : y,
             xrel : x,
@@ -647,7 +631,7 @@ class Core extends snow.App {
             timestamp : timestamp,
             window_id : window_id,
             state : InteractState.up,
-            button : mouse_button_from_number(button),
+            button : button,
             x : x,
             y : y,
             xrel : x,
