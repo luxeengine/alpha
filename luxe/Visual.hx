@@ -424,8 +424,13 @@ class Visual extends Entity {
 
 //Geometry properties
 //Clip rect
-    function set_clip_rect(val : Rectangle) : Rectangle {
-        return geometry.clip_rect = val;
+    function set_clip_rect(_val : Rectangle) : Rectangle {
+
+        if(geometry != null) {
+            geometry.clip_rect = _val;
+        }
+
+        return clip_rect = _val;
     }
 
 //Size
