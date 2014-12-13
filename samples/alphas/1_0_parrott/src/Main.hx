@@ -150,7 +150,7 @@ class Main extends luxe.Game {
 
         if(e.keycode == Key.key_s) {
             if(final_view.shader == final_shader) {
-                final_view.shader = Luxe.renderer.default_shader_textured;
+                final_view.shader = Luxe.renderer.shaders.textured.shader;
             } else {
                 final_view.shader = final_shader;
             }
