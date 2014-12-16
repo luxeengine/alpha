@@ -4,6 +4,8 @@ import luxe.Core;
 import luxe.utils.UUID;
 import luxe.utils.Murmur3;
 
+import haxe.CallStack;
+
 class Utils {
 
     public var geometry : luxe.utils.GeometryUtils;
@@ -109,13 +111,20 @@ class Utils {
 
             for(i in 0 ... total) {
                 var stackitem : haxe.CallStack.StackItem = stack[i];
-                var params = stackitem.getParameters();
 
-                    result += ' >  ' + params[1] + ':' + params[2];
+                switch(stack[i]) {
+                    case FilePos(s, file, line):
+                        switch(s) {
+                            case Method(classname, method):
+                                result += '   at $file:$line: $classname.$method';
+                            case _:
+                        }
+                    case _:{}
+                }
 
-                    if(i != total - 1) {
-                        result += '\n';
-                    }
+                if(i != total - 1) {
+                    result += '\n';
+                }
             } //total
 
         return result;
