@@ -21,57 +21,71 @@ class Mesh {
     public var scale    (get,set) : Vector;
     public var rotation (get,set) : Quaternion;
 
+    var options : MeshOptions;
+
     public function new( ?_options:MeshOptions ) {
 
         if(_options == null) {
             throw "Mesh requires non-null options at the moment";
         }
 
+        options = _options;
+
         transform = new Transform();
         transform.listen_pos(set_pos_from_transform);
         transform.listen_rotation(set_rotation_from_transform);
         transform.listen_scale(set_scale_from_transform);
 
-        if(_options.batcher == null) {
-            _options.batcher = Luxe.renderer.batcher;
+        if(options.batcher == null) {
+            options.batcher = Luxe.renderer.batcher;
         }
 
-        if(_options.file != null) {
+        if(options.file != null) {
 
-            // trace("\t Loading Mesh from file " + _options.file );
-            var ext = haxe.io.Path.extension( _options.file );
+            // trace("\t Loading Mesh from file " + options.file );
+            var ext = haxe.io.Path.extension( options.file );
             switch(ext) {
                 case 'obj':
-                    from_obj_file( _options.file, _options.texture, null, _options.batcher );
+                    from_obj_file( options.file, options.texture, null, options.batcher );
                 default:
                     throw 'cannot handle files with extension ' + ext + ' right now';
             } //switch ext
 
-        } //options.file
+        } else if(options.string != null) {
 
-        if(_options.string != null) {
-            from_string(_options.string, _options.texture, null, _options.batcher);
+            from_string(options.string, options.texture, null, options.batcher);
+
+        } else if(options.geometry != null){
+
+            geometry = options.geometry;
+
+            if(options.texture != null) geometry.texture = options.texture;
+            onload();
+            trace('forced geom');
+
         }
 
-        if(_options.geometry != null){
-            geometry = _options.geometry;
-        }
+    } //new
+
+    function onload() {
 
         if(geometry != null) {
-
-            if(_options.file != null) {
-                geometry.id = _options.file;
+            if(options.file != null) {
+                geometry.id = options.file;
             }
-
         } else {
             throw 'Mesh component with null geometry';
         }
 
-        pos = (_options.pos == null) ? new Vector() : _options.pos;
-        scale = (_options.scale == null) ? new Vector(1,1,1) : _options.scale;
-        rotation = (_options.rotation == null) ? new Quaternion() : _options.rotation;
+        pos = (options.pos == null) ? new Vector() : options.pos;
+        scale = (options.scale == null) ? new Vector(1,1,1) : options.scale;
+        rotation = (options.rotation == null) ? new Quaternion() : options.rotation;
 
-    } //new
+        if(options.onload != null) {
+            options.onload(this);
+        }
+
+    } //onload
 
 //Position
 
@@ -179,15 +193,17 @@ class Mesh {
 
         } //for all verts
 
+        onload();
+
     } //from_string
 
     public function from_obj_file( asset_id:String, texture:Texture, ?_scale:Vector, _batcher:Batcher ) {
 
         if(_scale == null) _scale = new Vector(1,1,1);
 
-        var obj_file = Luxe.loadText(asset_id);
-
-        from_string(obj_file.text, texture, _scale, _batcher);
+        Luxe.loadText(asset_id, function(t){
+            from_string(t.text, texture, _scale, _batcher);
+        }, true);
 
     } // from obj file
 

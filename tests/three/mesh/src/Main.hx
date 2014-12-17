@@ -3,6 +3,7 @@ import luxe.Input;
 import luxe.Mesh;
 import luxe.Vector;
 import phoenix.geometry.Geometry;
+import phoenix.Batcher;
 
 class Main extends luxe.Game {
 
@@ -25,25 +26,30 @@ class Main extends luxe.Game {
     	Luxe.camera.view.set_perspective({
     		far:1000,
             near:0.1,
+            fov: 90,
             aspect : Luxe.screen.w/Luxe.screen.h
     	});
 
     		//move up and back a bit
-    	Luxe.camera.pos.set_xyz(0,0.5,2);
-
+    	Luxe.camera.pos.set_xyz(0,1,2);
+            //load a texture
+        var tex = Luxe.loadTexture('assets/tower.jpg');
     		//create the mesh
-    	mesh = new Mesh({ file:'assets/tower.obj', texture:Luxe.loadTexture('assets/tower.jpg') });
+    	mesh = new Mesh({ file:'assets/tower.obj', texture:tex, onload:meshloaded });
 
+
+    } //ready
+
+    function meshloaded(_) {
             //create a second mesh based on the first one
         mesh2 = new Mesh({
-            geometry : new Geometry({ batcher:Luxe.renderer.batcher }),
-            texture : mesh.geometry.texture
+            geometry : new Geometry({ primitive_type: PrimitiveType.triangles, batcher:Luxe.renderer.batcher }),
+            texture : mesh.geometry.texture,
         });
 
         mesh2.geometry.vertices = [].concat(mesh.geometry.vertices);
-        mesh2.transform.pos.set_xy(1,2);
-
-    } //ready
+        mesh2.transform.pos.set_xy(1,0);
+    }
 
     override function onkeyup( e:KeyEvent ) {
 
