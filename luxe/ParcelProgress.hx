@@ -7,20 +7,20 @@ import luxe.Sprite;
 import luxe.Color;
 import luxe.options.ParcelProgressOptions;
 
-class ParcelProgress { 
-    
+class ParcelProgress {
+
     var parcel : Parcel;
 
         //Parcle progress will create a fullscreen overlay
         //color background, logo image, and a progress bar
     var progress_bar        : Sprite;
-    var progress_border     : Sprite;
+    var progress_border     : Visual;
     var background          : Sprite;
 
     var image_logo          : Sprite;
     var options             : ParcelProgressOptions;
 
-        //for now, 
+        //for now,
     var width : Float = 0;
     var height : Float = 0;
 
@@ -54,13 +54,13 @@ class ParcelProgress {
 
         // if(options.texture != null) {
         //     image_logo = new Sprite({
-        //         texture : options.texture, 
+        //         texture : options.texture,
         //         pos : Luxe.screen.mid
         //     });
         // }
 
         var fade_alpha : Float = options.background.a;
-        
+
         if(options.fade_in) {
 
             options.background.a = 0;
@@ -69,17 +69,17 @@ class ParcelProgress {
 
         } //fade in
 
-        width = Luxe.screen.w * 0.75;
-        height = Luxe.screen.h * 0.002;
-        var ypos = Luxe.screen.h * 0.60; 
+        width = Math.ceil(Luxe.screen.w * 0.75);
+        height = Math.ceil(Luxe.screen.h * 0.002);
+        var ypos = Math.ceil(Luxe.screen.h * 0.60);
 
         background = new Sprite({
-            pos : new Vector(),
             no_scene : true,
             size : new Vector( Luxe.screen.w, Luxe.screen.h ),
             centered : false,
             color : options.background,
-            depth : 998
+            depth : 998,
+            visible: true,
         });
 
         progress_bar = new Sprite({
@@ -91,17 +91,16 @@ class ParcelProgress {
             depth : 998
         });
 
-        progress_border = new Sprite({
-            size : new Vector( width, height ),
+        progress_border = new Visual({
             color : options.bar,
             no_scene : true,
-            centered : false,
-            pos : new Vector(Luxe.screen.mid.x - (width/2) - 1, ypos - (height/2) - 1),
+            pos : new Vector(Luxe.screen.mid.x - (width/2), ypos - (height/2)),
             geometry : Luxe.draw.rectangle({
-                w : width + 2,
-                h : height + 2
+                w : width + 1,
+                h : height + 1,
+                depth : 998.1
             }),
-            depth : 998
+            depth : 998.1
         });
 
             //we intercept the onprogress and oncomplete of the parcel
@@ -124,7 +123,7 @@ class ParcelProgress {
         if(amount < 0) amount = 0;
         if(amount > 1) amount = 1;
 
-        progress_bar.size.x = width * amount;
+        progress_bar.size.x = Math.ceil(width * amount);
 
     } //set_progress
 
@@ -132,7 +131,7 @@ class ParcelProgress {
 
             //work out where we are out
         var amount = options.parcel.current_count / options.parcel.total_items;
-        
+
             //update the progress bar
         set_progress( amount );
 
