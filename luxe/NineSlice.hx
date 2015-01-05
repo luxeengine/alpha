@@ -24,7 +24,7 @@ private typedef Slice = {
 };
 
 /** A nineslice based sprite, for scaling */
-class NineSlice extends luxe.Sprite {
+class NineSlice extends luxe.Visual {
 
     public var top : Float = 32;
     public var left : Float = 32;
@@ -343,74 +343,6 @@ class NineSlice extends luxe.Sprite {
 
     } //set_size
 
-    override function set_pos( _v : Vector ) {
-
-        super.set_pos(_v);
-
-        var _pv = _v.clone();
-
-        if(is_set) {
-            _geometry.transform.pos = _pv;
-        }
-
-        return super.set_pos(_pv);
-
-    } //set_pos
-
-    override function ondestroy() {
-
-        if(is_set) {
-            _geometry.drop();
-        }
-
-    } //ondestroy
-
-    override function set_visible(_v:Bool) {
-
-        super.set_visible(_v);
-
-        if(is_set) {
-            _geometry.visible = _v;
-        }
-
-        return visible = _v;
-
-    } //set_visible
-
-    override function set_depth(_d:Float) {
-
-        super.set_depth(_d);
-
-        if(is_set) {
-            _geometry.depth = _d;
-        }
-
-        return depth = _d;
-
-    } //set_depth
-
-//Clip rect
-    override function set_clip_rect(val : Rectangle) : Rectangle {
-
-        if(is_set) {
-            _geometry.clip_rect = val;
-        }
-
-        return clip_rect = val;
-
-    } //set_clip_rect
-
-//Color
-    override function set_color(_color : Color) : Color {
-
-        if(is_set) {
-            _geometry.color = _color;
-        }
-
-        return color = _color;
-
-    } //set_color
-
     function _create(_pos:Vector, _w:Float, _h:Float, ?_reset:Bool = false) {
 
         if(!is_set || _reset) {
@@ -445,6 +377,7 @@ class NineSlice extends luxe.Sprite {
 
         _geometry.transform.pos = _pos;
         _geometry.id = 'NineSlice' + _geometry.id;
+        geometry = _geometry;
 
         added = true;
         is_set = true;
