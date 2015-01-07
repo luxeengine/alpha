@@ -36,6 +36,8 @@ class TiledObject {
     public var width:Int;
         //The width of this object in pixels
     public var height:Int;
+        //The rotation of the object in degrees clockwise
+    public var rotation:Float;
         //The object that represents a poly-like object (line/polygon)
     public var polyobject:TiledPolyObject;
         //The type of object this object represents
@@ -94,6 +96,7 @@ class TiledObject {
         pos.y = Std.parseInt(xml.get("y"));
         width = Std.parseInt(xml.get("width"));
         height = Std.parseInt(xml.get("height"));
+        rotation = xml.get("rotation") != null ? Std.parseFloat(xml.get("rotation")) : 0;
 
         //default to rectangle
         object_type = TiledObjectType.rectangle;
@@ -149,6 +152,9 @@ class TiledObject {
         pos.y = cast Reflect.field(json, "y");
         width = cast Reflect.field(json, "width");
         height = cast Reflect.field(json, "height");
+
+        var _rotation = Reflect.field(json, "rotation");
+        rotation = _rotation != null ? cast _rotation : 0;
 
         //default to rectangle
         object_type = TiledObjectType.rectangle;
