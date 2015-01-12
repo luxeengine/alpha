@@ -1606,18 +1606,6 @@
 
 		Otherwise, including if `v` is null, the result is false.]]></haxe_doc>
 		</isObject>
-		<isEnumValue public="1" set="method" line="83" static="1">
-			<f a="v">
-				<d/>
-				<x path="Bool"/>
-			</f>
-			<haxe_doc>Tells if `v` is an enum value.
-
-		The result is true if `v` is of type EnumValue, i.e. an enum
-		constructor.
-
-		Otherwise, including if `v` is null, the result is false.</haxe_doc>
-		</isEnumValue>
 		<haxe_doc>The Reflect API is a way to manipulate values dynamicly through an
 	abstract interface in an untyped manner. Use with care.</haxe_doc>
 		<meta>
@@ -2245,20 +2233,6 @@
 		expected number of constructor arguments, or if any argument has an
 		invalid type, the result is unspecified.</haxe_doc>
 		</createEnum>
-		<enumParameters public="1" set="method" line="136" static="1">
-			<f a="e">
-				<x path="EnumValue"/>
-				<c path="Array"><d/></c>
-			</f>
-			<haxe_doc>Returns a list of the constructor arguments of enum instance `e`.
-
-		If `e` has no arguments, the result is [].
-
-		Otherwise the result are the values that were used as arguments to `e`,
-		in the order of their declaration.
-
-		If `e` is null, the result is unspecified.</haxe_doc>
-		</enumParameters>
 		<haxe_doc>The haxe Reflection API allows retrieval of type information at runtime.
 
 	This class complements the more lightweight Reflect class, with a focus on
@@ -3012,37 +2986,6 @@
 	<x path="Int"/>
 	<x path="Void"/>
 </f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
-	<class path="haxe.ds.EnumValueMap" params="K:V" file="/usr/lib/haxe/std/haxe/ds/EnumValueMap.hx">
-		<extends path="haxe.ds.BalancedTree">
-			<c path="haxe.ds.EnumValueMap.K"/>
-			<c path="haxe.ds.EnumValueMap.V"/>
-		</extends>
-		<implements path="IMap">
-			<c path="haxe.ds.EnumValueMap.K"/>
-			<c path="haxe.ds.EnumValueMap.V"/>
-		</implements>
-		<compare set="method" line="33" override="1"><f a="k1:k2">
-	<x path="EnumValue"/>
-	<x path="EnumValue"/>
-	<x path="Int"/>
-</f></compare>
-		<compareArgs set="method" line="42"><f a="a1:a2">
-	<c path="Array"><d/></c>
-	<c path="Array"><d/></c>
-	<x path="Int"/>
-</f></compareArgs>
-		<compareArg set="method" line="52"><f a="v1:v2">
-	<d/>
-	<d/>
-	<x path="Int"/>
-</f></compareArg>
-		<new public="1" set="method" line="31"><f a=""><x path="Void"/></f></new>
-		<haxe_doc>EnumValueMap allows mapping of enum value keys to arbitrary values.
-
-	Keys are compared by value and recursively over their parameters. If any
-	parameter is not an enum value, `Reflect.compare` is used to compare them.</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<abstract path="haxe.ds.HashMap" params="K:V" file="/usr/lib/haxe/std/haxe/ds/HashMap.hx">
@@ -3950,17 +3893,17 @@
 			<m n=":coreApi"/>
 		</meta>
 	</class>
-	<class path="hxcpp.StaticRegexp" params="" file="/Users/sven/dev/haxelib/hxcpp/3,1,39/hxcpp/StaticRegexp.hx"><meta>
+	<class path="hxcpp.StaticRegexp" params="" file="/Users/sven/dev/haxelib/hxcpp/3,1,48/hxcpp/StaticRegexp.hx"><meta>
 	<m n=":cppFileCode"><e>"extern \"C\" void regexp_register_prims();"</e></m>
 	<m n=":buildXml"><e><![CDATA["\r\n<target id='haxe'>\r\n  <lib name='${HXCPP}/lib/${BINDIR}/libregexp${LIBEXTRA}${LIBEXT}'/>\r\n</target>\r\n"]]></e></m>
 	<m n=":keep"/>
 </meta></class>
-	<class path="hxcpp.StaticStd" params="" file="/Users/sven/dev/haxelib/hxcpp/3,1,39/hxcpp/StaticStd.hx"><meta>
+	<class path="hxcpp.StaticStd" params="" file="/Users/sven/dev/haxelib/hxcpp/3,1,48/hxcpp/StaticStd.hx"><meta>
 	<m n=":cppFileCode"><e>"extern \"C\" void std_register_prims();"</e></m>
-	<m n=":buildXml"><e><![CDATA["\r\n<target id='haxe'>\r\n  <lib name='${HXCPP}/lib/${BINDIR}/libstd${LIBEXTRA}${LIBEXT}'/>\r\n   <lib name='wsock32.lib' if='windows'/>\r\n</target>\r\n"]]></e></m>
+	<m n=":buildXml"><e><![CDATA["\r\n<target id='haxe'>\r\n  <lib name='${HXCPP}/lib/${BINDIR}/libstd${LIBEXTRA}${LIBEXT}'/>\r\n   <lib name='ws2_32.lib' if='windows'/>\r\n</target>\r\n"]]></e></m>
 	<m n=":keep"/>
 </meta></class>
-	<class path="hxcpp.StaticZlib" params="" file="/Users/sven/dev/haxelib/hxcpp/3,1,39/hxcpp/StaticZlib.hx"><meta>
+	<class path="hxcpp.StaticZlib" params="" file="/Users/sven/dev/haxelib/hxcpp/3,1,48/hxcpp/StaticZlib.hx"><meta>
 	<m n=":cppFileCode"><e>"extern \"C\" void zlib_register_prims();"</e></m>
 	<m n=":buildXml"><e><![CDATA["\r\n<target id='haxe'>\r\n  <lib name='${HXCPP}/lib/${BINDIR}/libzlib${LIBEXTRA}${LIBEXT}'/>\r\n</target>\r\n"]]></e></m>
 	<m n=":keep"/>
@@ -4846,26 +4789,26 @@
 			</f>
 			<haxe_doc>convert a world point to screen space for this camera. handles zoom, rotation, scale, etc</haxe_doc>
 		</world_point_to_screen>
-		<set_pos_from_transform set="method" line="245" override="1"><f a="_pos">
+		<set_pos_from_transform set="method" line="246" override="1"><f a="_pos">
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></set_pos_from_transform>
-		<set_rotation_from_transform set="method" line="264" override="1"><f a="_rotation">
+		<set_rotation_from_transform set="method" line="277" override="1"><f a="_rotation">
 	<c path="phoenix.Quaternion"/>
 	<x path="Void"/>
 </f></set_rotation_from_transform>
-		<set_scale_from_transform set="method" line="274" override="1"><f a="_scale">
+		<set_scale_from_transform set="method" line="287" override="1"><f a="_scale">
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></set_scale_from_transform>
-		<shake public="1" set="method" line="285">
+		<shake public="1" set="method" line="298">
 			<f a="amount">
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Shake the camera a given amount</haxe_doc>
 		</shake>
-		<update public="1" set="method" line="293" override="1">
+		<update public="1" set="method" line="306" override="1">
 			<f a="dt">
 				<x path="Float"/>
 				<x path="Void"/>
@@ -5502,17 +5445,17 @@
 	</class>
 	<class path="luxe.Core" params="" file="/Users/sven/dev/luxe/luxe/luxe/Core.hx">
 		<extends path="snow.App"/>
-		<core_tag_update line="940" static="1"><c path="String"/></core_tag_update>
-		<core_tag_renderdt line="941" static="1"><c path="String"/></core_tag_renderdt>
-		<game_tag_update line="942" static="1"><c path="String"/></game_tag_update>
-		<core_tag_render line="943" static="1"><c path="String"/></core_tag_render>
-		<core_tag_debug line="944" static="1"><c path="String"/></core_tag_debug>
-		<core_tag_updates line="945" static="1"><c path="String"/></core_tag_updates>
-		<core_tag_events line="946" static="1"><c path="String"/></core_tag_events>
-		<core_tag_audio line="947" static="1"><c path="String"/></core_tag_audio>
-		<core_tag_input line="948" static="1"><c path="String"/></core_tag_input>
-		<core_tag_timer line="949" static="1"><c path="String"/></core_tag_timer>
-		<core_tag_scene line="950" static="1"><c path="String"/></core_tag_scene>
+		<core_tag_update line="924" static="1"><c path="String"/></core_tag_update>
+		<core_tag_renderdt line="925" static="1"><c path="String"/></core_tag_renderdt>
+		<game_tag_update line="926" static="1"><c path="String"/></game_tag_update>
+		<core_tag_render line="927" static="1"><c path="String"/></core_tag_render>
+		<core_tag_debug line="928" static="1"><c path="String"/></core_tag_debug>
+		<core_tag_updates line="929" static="1"><c path="String"/></core_tag_updates>
+		<core_tag_events line="930" static="1"><c path="String"/></core_tag_events>
+		<core_tag_audio line="931" static="1"><c path="String"/></core_tag_audio>
+		<core_tag_input line="932" static="1"><c path="String"/></core_tag_input>
+		<core_tag_timer line="933" static="1"><c path="String"/></core_tag_timer>
+		<core_tag_scene line="934" static="1"><c path="String"/></core_tag_scene>
 		<game public="1"><c path="luxe.Game"/></game>
 		<core_thread public="1"><c path="cpp.vm.Thread"/></core_thread>
 		<thread_message public="1"><d/></thread_message>
@@ -5620,11 +5563,7 @@
 	<t path="luxe.InputEvent"/>
 	<x path="Void"/>
 </f></oninputup>
-		<mouse_button_from_number set="method" line="596"><f a="button">
-	<x path="Int"/>
-	<e path="luxe.MouseButton"/>
-</f></mouse_button_from_number>
-		<onmousedown public="1" set="method" line="613" override="1"><f a="x:y:button:timestamp:window_id">
+		<onmousedown public="1" set="method" line="597" override="1"><f a="x:y:button:timestamp:window_id">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -5632,7 +5571,7 @@
 	<x path="Int"/>
 	<x path="Void"/>
 </f></onmousedown>
-		<onmouseup public="1" set="method" line="641" override="1"><f a="x:y:button:timestamp:window_id">
+		<onmouseup public="1" set="method" line="625" override="1"><f a="x:y:button:timestamp:window_id">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -5640,7 +5579,7 @@
 	<x path="Int"/>
 	<x path="Void"/>
 </f></onmouseup>
-		<onmousemove public="1" set="method" line="668" override="1"><f a="x:y:xrel:yrel:timestamp:window_id">
+		<onmousemove public="1" set="method" line="652" override="1"><f a="x:y:xrel:yrel:timestamp:window_id">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -5649,28 +5588,28 @@
 	<x path="Int"/>
 	<x path="Void"/>
 </f></onmousemove>
-		<onmousewheel public="1" set="method" line="694" override="1"><f a="x:y:timestamp:window_id">
+		<onmousewheel public="1" set="method" line="678" override="1"><f a="x:y:timestamp:window_id">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></onmousewheel>
-		<ontouchdown public="1" set="method" line="720" override="1"><f a="x:y:touch_id:timestamp">
+		<ontouchdown public="1" set="method" line="704" override="1"><f a="x:y:touch_id:timestamp">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ontouchdown>
-		<ontouchup public="1" set="method" line="757" override="1"><f a="x:y:touch_id:timestamp">
+		<ontouchup public="1" set="method" line="741" override="1"><f a="x:y:touch_id:timestamp">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ontouchup>
-		<ontouchmove public="1" set="method" line="781" override="1"><f a="x:y:dx:dy:touch_id:timestamp">
+		<ontouchmove public="1" set="method" line="765" override="1"><f a="x:y:dx:dy:touch_id:timestamp">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
@@ -5679,41 +5618,41 @@
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ontouchmove>
-		<ongamepadaxis public="1" set="method" line="807" override="1"><f a="gamepad:axis:value:timestamp">
+		<ongamepadaxis public="1" set="method" line="791" override="1"><f a="gamepad:axis:value:timestamp">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ongamepadaxis>
-		<ongamepaddown public="1" set="method" line="828" override="1"><f a="gamepad:button:value:timestamp">
+		<ongamepaddown public="1" set="method" line="812" override="1"><f a="gamepad:button:value:timestamp">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ongamepaddown>
-		<ongamepadup public="1" set="method" line="849" override="1"><f a="gamepad:button:value:timestamp">
+		<ongamepadup public="1" set="method" line="833" override="1"><f a="gamepad:button:value:timestamp">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ongamepadup>
-		<ongamepaddevice public="1" set="method" line="870" override="1"><f a="gamepad:type:timestamp">
+		<ongamepaddevice public="1" set="method" line="854" override="1"><f a="gamepad:type:timestamp">
 	<x path="Int"/>
 	<x path="snow.types.GamepadDeviceEventType"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ongamepaddevice>
-		<config public="1" set="method" line="903" override="1">
+		<config public="1" set="method" line="887" override="1">
 			<f a="config">
 				<t path="snow.types.AppConfig"/>
 				<t path="snow.types.AppConfig"/>
 			</f>
 			<haxe_doc>return what the game decides for runtime config</haxe_doc>
 		</config>
-		<process_loading_thread set="method" line="911"><f a=""><x path="Void"/></f></process_loading_thread>
+		<process_loading_thread set="method" line="895"><f a=""><x path="Void"/></f></process_loading_thread>
 		<new public="1" set="method" line="107">
 			<f a="_game">
 				<c path="luxe.Game"/>
@@ -5775,8 +5714,9 @@
 			<meta><m n=":noCompletion"/></meta>
 		</init>
 		<start public="1" set="method" line="86">
-			<f a="_name">
+			<f a="_name:?_max" v=":0.0f">
 				<c path="String"/>
+				<x path="Float"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>start a profiling section for the profiler debug view</haxe_doc>
@@ -6141,16 +6081,121 @@
 		<c path="snow.input.Scancodes"/>
 		<haxe_doc>A named list of scancodes. Use to compare against key event `scancode` values</haxe_doc>
 	</typedef>
-	<enum path="luxe.MouseButton" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input">
-		<none><haxe_doc>no mouse buttons</haxe_doc></none>
-		<left><haxe_doc>left mouse button</haxe_doc></left>
-		<middle><haxe_doc>middle mouse button</haxe_doc></middle>
-		<right><haxe_doc>right mouse button</haxe_doc></right>
-		<extra1><haxe_doc>extra button pressed (4)</haxe_doc></extra1>
-		<extra2><haxe_doc>extra button pressed (5)</haxe_doc></extra2>
+	<abstract path="luxe.MouseButton" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input">
+		<from><icast><x path="Int"/></icast></from>
+		<this><x path="Int"/></this>
+		<to><icast><x path="Int"/></icast></to>
 		<haxe_doc>A typed mouse button id</haxe_doc>
-		<meta><m n=":flatEnum"/></meta>
-	</enum>
+		<meta><m n=":enum"/></meta>
+		<impl><class path="luxe._Input.MouseButton_Impl_" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" private="1" module="luxe.Input">
+	<none public="1" get="inline" set="null" line="18" static="1">
+		<x path="luxe.MouseButton"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>no mouse buttons</haxe_doc>
+	</none>
+	<left public="1" get="inline" set="null" line="20" static="1">
+		<x path="luxe.MouseButton"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>left mouse button</haxe_doc>
+	</left>
+	<middle public="1" get="inline" set="null" line="22" static="1">
+		<x path="luxe.MouseButton"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>middle mouse button</haxe_doc>
+	</middle>
+	<right public="1" get="inline" set="null" line="24" static="1">
+		<x path="luxe.MouseButton"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>right mouse button</haxe_doc>
+	</right>
+	<extra1 public="1" get="inline" set="null" line="26" static="1">
+		<x path="luxe.MouseButton"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>extra button pressed (4)</haxe_doc>
+	</extra1>
+	<extra2 public="1" get="inline" set="null" line="28" static="1">
+		<x path="luxe.MouseButton"/>
+		<meta>
+			<m n=":enum"/>
+			<m n=":impl"/>
+		</meta>
+		<haxe_doc>extra button pressed (5)</haxe_doc>
+	</extra2>
+	<meta>
+		<m n=":keep"/>
+		<m n=":enum"/>
+	</meta>
+</class></impl>
+	</abstract>
+	<class path="luxe._Input.MouseButton_Impl_" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" private="1" module="luxe.Input">
+		<none public="1" get="inline" set="null" line="18" static="1">
+			<x path="luxe.MouseButton"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>no mouse buttons</haxe_doc>
+		</none>
+		<left public="1" get="inline" set="null" line="20" static="1">
+			<x path="luxe.MouseButton"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>left mouse button</haxe_doc>
+		</left>
+		<middle public="1" get="inline" set="null" line="22" static="1">
+			<x path="luxe.MouseButton"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>middle mouse button</haxe_doc>
+		</middle>
+		<right public="1" get="inline" set="null" line="24" static="1">
+			<x path="luxe.MouseButton"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>right mouse button</haxe_doc>
+		</right>
+		<extra1 public="1" get="inline" set="null" line="26" static="1">
+			<x path="luxe.MouseButton"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>extra button pressed (4)</haxe_doc>
+		</extra1>
+		<extra2 public="1" get="inline" set="null" line="28" static="1">
+			<x path="luxe.MouseButton"/>
+			<meta>
+				<m n=":enum"/>
+				<m n=":impl"/>
+			</meta>
+			<haxe_doc>extra button pressed (5)</haxe_doc>
+		</extra2>
+		<meta>
+			<m n=":keep"/>
+			<m n=":enum"/>
+		</meta>
+	</class>
 	<enum path="luxe.InteractState" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input">
 		<unknown><haxe_doc>An unknown state</haxe_doc></unknown>
 		<none><haxe_doc>An none state</haxe_doc></none>
@@ -6346,7 +6391,7 @@
 				<haxe_doc>A convenience vector access of the x and y position</haxe_doc>
 			</pos>
 			<button>
-				<e path="luxe.MouseButton"/>
+				<x path="luxe.MouseButton"/>
 				<haxe_doc>The button id, if the event `state` is `down` or `up`</haxe_doc>
 			</button>
 		</a>
@@ -6412,7 +6457,7 @@
 		<mouse_bindings><x path="Map">
 	<c path="String"/>
 	<x path="Map">
-		<e path="luxe.MouseButton"/>
+		<x path="Int"/>
 		<x path="Bool"/>
 	</x>
 </x></mouse_bindings>
@@ -6505,21 +6550,21 @@
 		</scandown>
 		<mousepressed public="1" set="method" line="337">
 			<f a="_button">
-				<x path="Int"/>
+				<x path="luxe.MouseButton"/>
 				<x path="Bool"/>
 			</f>
 			<haxe_doc>immediate query of the pressed state of a mouse button. only true if pressed within one frame</haxe_doc>
 		</mousepressed>
 		<mousereleased public="1" set="method" line="342">
 			<f a="_button">
-				<x path="Int"/>
+				<x path="luxe.MouseButton"/>
 				<x path="Bool"/>
 			</f>
 			<haxe_doc>immediate query of the released state of a mouse button. only true if released within one frame</haxe_doc>
 		</mousereleased>
 		<mousedown public="1" set="method" line="347">
 			<f a="_button">
-				<x path="Int"/>
+				<x path="luxe.MouseButton"/>
 				<x path="Bool"/>
 			</f>
 			<haxe_doc>immediate query of the down state of a mouse button. only true while the button is down. :todo: use `MouseButton` like it should be.</haxe_doc>
@@ -6556,25 +6601,23 @@
 			</f>
 			<haxe_doc>immediate query of the axis value of a gamepad axis.</haxe_doc>
 		</gamepadaxis>
-		<add_key_binding set="method" line="376"><f a="_name:_value">
-	<c path="String"/>
-	<x path="Int"/>
-	<x path="Void"/>
-</f></add_key_binding>
-		<add_mouse_binding set="method" line="387"><f a="_name:_value">
-	<c path="String"/>
-	<e path="luxe.MouseButton"/>
-	<x path="Void"/>
-</f></add_mouse_binding>
-		<add public="1" params="T" set="method" line="399">
-			<f a="_name:_binding_value">
+		<bind_key public="1" set="method" line="377">
+			<f a="_name:_key">
 				<c path="String"/>
-				<c path="add.T"/>
+				<x path="Int"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>add a named input binding to a `Key` keycode, a `MouseButton`. :todo: add gamepad</haxe_doc>
-		</add>
-		<check_named_keys public="1" set="method" line="414">
+			<haxe_doc>Bind a named input binding to a `Key`</haxe_doc>
+		</bind_key>
+		<bind_mouse public="1" set="method" line="389">
+			<f a="_name:_button">
+				<c path="String"/>
+				<x path="luxe.MouseButton"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Bind a named input binding to a `MouseButton`</haxe_doc>
+		</bind_mouse>
+		<check_named_keys public="1" set="method" line="400">
 			<f a="e:?_down" v=":false">
 				<t path="luxe.KeyEvent"/>
 				<x path="Bool"/>
@@ -6582,7 +6625,7 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</check_named_keys>
-		<check_named_mouse public="1" set="method" line="463">
+		<check_named_mouse public="1" set="method" line="449">
 			<f a="e:?_down" v=":false">
 				<t path="luxe.MouseEvent"/>
 				<x path="Bool"/>
@@ -6630,54 +6673,56 @@
 		<pos public="1" get="accessor" set="accessor"><t path="luxe.Vector"/></pos>
 		<scale public="1" get="accessor" set="accessor"><t path="luxe.Vector"/></scale>
 		<rotation public="1" get="accessor" set="accessor"><t path="luxe.Quaternion"/></rotation>
-		<set_pos set="method" line="78"><f a="_pos">
+		<options><t path="luxe.options.MeshOptions"/></options>
+		<onload set="method" line="70"><f a=""><x path="Void"/></f></onload>
+		<set_pos set="method" line="92"><f a="_pos">
 	<t path="luxe.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_pos>
-		<get_pos set="method" line="84"><f a=""><c path="phoenix.Vector"/></f></get_pos>
-		<get_rotation set="method" line="88"><f a=""><c path="phoenix.Quaternion"/></f></get_rotation>
-		<get_scale set="method" line="92"><f a=""><c path="phoenix.Vector"/></f></get_scale>
-		<set_pos_from_transform set="method" line="96"><f a="_pos">
+		<get_pos set="method" line="98"><f a=""><c path="phoenix.Vector"/></f></get_pos>
+		<get_rotation set="method" line="102"><f a=""><c path="phoenix.Quaternion"/></f></get_rotation>
+		<get_scale set="method" line="106"><f a=""><c path="phoenix.Vector"/></f></get_scale>
+		<set_pos_from_transform set="method" line="110"><f a="_pos">
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></set_pos_from_transform>
-		<set_rotation set="method" line="108"><f a="_rotation">
+		<set_rotation set="method" line="122"><f a="_rotation">
 	<t path="luxe.Quaternion"/>
 	<c path="phoenix.Quaternion"/>
 </f></set_rotation>
-		<set_rotation_from_transform set="method" line="114"><f a="_rotation">
+		<set_rotation_from_transform set="method" line="128"><f a="_rotation">
 	<t path="luxe.Quaternion"/>
 	<x path="Void"/>
 </f></set_rotation_from_transform>
-		<set_scale set="method" line="124"><f a="_scale">
+		<set_scale set="method" line="138"><f a="_scale">
 	<t path="luxe.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_scale>
-		<set_scale_from_transform set="method" line="130"><f a="_scale">
+		<set_scale_from_transform set="method" line="144"><f a="_scale">
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></set_scale_from_transform>
-		<_obj_add_vert set="method" line="142"><f a="v:_scale">
+		<_obj_add_vert set="method" line="156"><f a="v:_scale">
 	<t path="luxe.importers.obj.Vertex"/>
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></_obj_add_vert>
-		<from_string public="1" set="method" line="161"><f a="string_data:texture:?_scale:_batcher" v="::null:">
+		<from_string public="1" set="method" line="175"><f a="string_data:texture:?_scale:_batcher" v="::null:">
 	<c path="String"/>
 	<c path="phoenix.Texture"/>
 	<t path="luxe.Vector"/>
 	<c path="phoenix.Batcher"/>
 	<x path="Void"/>
 </f></from_string>
-		<from_obj_file public="1" set="method" line="184"><f a="asset_id:texture:?_scale:_batcher" v="::null:">
+		<from_obj_file public="1" set="method" line="200"><f a="asset_id:texture:?_scale:_batcher" v="::null:">
 	<c path="String"/>
 	<c path="phoenix.Texture"/>
 	<t path="luxe.Vector"/>
 	<c path="phoenix.Batcher"/>
 	<x path="Void"/>
 </f></from_obj_file>
-		<destroy public="1" set="method" line="194"><f a=""><x path="Void"/></f></destroy>
-		<new public="1" set="method" line="24"><f a="?_options" v="null">
+		<destroy public="1" set="method" line="210"><f a=""><x path="Void"/></f></destroy>
+		<new public="1" set="method" line="26"><f a="?_options" v="null">
 	<t path="luxe.options.MeshOptions"/>
 	<x path="Void"/>
 </f></new>
@@ -6819,11 +6864,11 @@
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_locked>
-		<set_clip_rect set="method" line="427"><f a="val">
+		<set_clip_rect set="method" line="427"><f a="_val">
 	<t path="luxe.Rectangle"/>
 	<t path="luxe.Rectangle"/>
 </f></set_clip_rect>
-		<_size_change set="method" line="434"><f a="_v">
+		<_size_change set="method" line="439"><f a="_v">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></_size_change>
@@ -7311,25 +7356,25 @@
 	<class path="luxe.ParcelProgress" params="" file="/Users/sven/dev/luxe/luxe/luxe/ParcelProgress.hx">
 		<parcel><c path="luxe.Parcel"/></parcel>
 		<progress_bar><c path="luxe.Sprite"/></progress_bar>
-		<progress_border><c path="luxe.Sprite"/></progress_border>
+		<progress_border><c path="luxe.Visual"/></progress_border>
 		<background><c path="luxe.Sprite"/></background>
 		<image_logo><c path="luxe.Sprite"/></image_logo>
 		<options><t path="luxe.options.ParcelProgressOptions"/></options>
 		<width><x path="Float"/></width>
 		<height><x path="Float"/></height>
-		<set_progress public="1" set="method" line="122"><f a="amount">
+		<set_progress public="1" set="method" line="121"><f a="amount">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></set_progress>
-		<onprogress public="1" set="method" line="131"><f a="r">
+		<onprogress public="1" set="method" line="130"><f a="r">
 	<c path="luxe.resource.Resource"/>
 	<x path="Void"/>
 </f></onprogress>
-		<oncomplete public="1" set="method" line="141"><f a="p">
+		<oncomplete public="1" set="method" line="140"><f a="p">
 	<c path="luxe.Parcel"/>
 	<x path="Void"/>
 </f></oncomplete>
-		<do_complete set="method" line="158"><f a=""><x path="Void"/></f></do_complete>
+		<do_complete set="method" line="157"><f a=""><x path="Void"/></f></do_complete>
 		<new public="1" set="method" line="27"><f a="_options">
 	<t path="luxe.options.ParcelProgressOptions"/>
 	<x path="Void"/>
@@ -9258,8 +9303,9 @@
 	<c path="String"/>
 	<x path="Void"/>
 </f></show_item>
-		<start public="1" set="method" line="52" static="1"><f a="_id">
+		<start public="1" set="method" line="52" static="1"><f a="_id:?_max" v=":0.0f">
 	<c path="String"/>
+	<x path="Float"/>
 	<x path="Void"/>
 </f></start>
 		<end public="1" set="method" line="64" static="1"><f a="_id">
@@ -9341,8 +9387,9 @@
 	<c path="String"/>
 	<c path="String"/>
 </f></set_text>
-		<new public="1" set="method" line="177"><f a="_name:_color">
+		<new public="1" set="method" line="177"><f a="_name:?_max:_color" v=":0.0f:">
 	<c path="String"/>
+	<x path="Float"/>
 	<t path="luxe.Color"/>
 	<x path="Void"/>
 </f></new>
@@ -11332,6 +11379,13 @@
 		<meta><m n=":optional"/></meta>
 		<haxe_doc>the transform origin</haxe_doc>
 	</origin>
+	<onload>
+		<t path="Null"><f a="">
+	<c path="luxe.Mesh"/>
+	<x path="Void"/>
+</f></t>
+		<meta><m n=":optional"/></meta>
+	</onload>
 	<name>
 		<c path="String"/>
 		<meta><m n=":optional"/></meta>
@@ -15809,26 +15863,26 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<meta><m n=":noCompletion"/></meta>
 		</core>
 		<_byte_levels><c path="Array"><c path="String"/></c></_byte_levels>
-		<uniqueid public="1" get="inline" set="null" line="29">
+		<uniqueid public="1" set="method" line="31">
 			<f a="?val" v="null">
 				<x path="Int"/>
 				<c path="String"/>
 			</f>
 			<haxe_doc>Generate a short, unique string ID for use ("base62").</haxe_doc>
 		</uniqueid>
-		<uniquehash public="1" get="inline" set="null" line="53">
+		<uniquehash public="1" set="method" line="55">
 			<f a=""><x path="Int"/></f>
 			<haxe_doc>Generates and returns a uniqueid converted to a hashed integer for convenience.
             Uses the default `uniqueid` and `hash` implementation detail.</haxe_doc>
 		</uniquehash>
-		<hash public="1" get="inline" set="null" line="59">
+		<hash public="1" set="method" line="61">
 			<f a="string">
 				<c path="String"/>
 				<x path="Int"/>
 			</f>
 			<haxe_doc>Generates a integer hash from a string using the default algorithm (murmur3)</haxe_doc>
 		</hash>
-		<hashmurmur public="1" get="inline" set="null" line="66">
+		<hashmurmur public="1" set="method" line="68">
 			<f a="_bytes:?_seed" v=":0">
 				<c path="haxe.io.Bytes"/>
 				<x path="Int"/>
@@ -15836,30 +15890,30 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			</f>
 			<haxe_doc>Generates an integer hash of a string using the murmur 3 algorithm</haxe_doc>
 		</hashmurmur>
-		<hashdjb2 public="1" get="inline" set="null" line="72">
+		<hashdjb2 public="1" set="method" line="74">
 			<f a="string">
 				<c path="String"/>
 				<x path="Int"/>
 			</f>
 			<haxe_doc>Generates an integer hash of a string using the djb2 algorithm</haxe_doc>
 		</hashdjb2>
-		<uniqueid2 public="1" get="inline" set="null" line="85"><f a=""><c path="String"/></f></uniqueid2>
-		<uuid public="1" get="inline" set="null" line="92"><f a=""><c path="String"/></f></uuid>
-		<stacktrace public="1" get="inline" set="null" line="99"><f a="?_depth" v="100">
+		<uniqueid2 public="1" set="method" line="87"><f a=""><c path="String"/></f></uniqueid2>
+		<uuid public="1" set="method" line="94"><f a=""><c path="String"/></f></uuid>
+		<stacktrace public="1" set="method" line="101"><f a="?_depth" v="100">
 	<x path="Int"/>
 	<c path="String"/>
 </f></stacktrace>
-		<path_is_relative public="1" get="inline" set="null" line="126"><f a="_path">
+		<path_is_relative public="1" set="method" line="135"><f a="_path">
 	<c path="String"/>
 	<x path="Bool"/>
 </f></path_is_relative>
-		<find_assets_image_sequence public="1" set="method" line="139"><f a="_name:?_ext:?_start" v=":'.png':'1'">
+		<find_assets_image_sequence public="1" set="method" line="148"><f a="_name:?_ext:?_start" v=":'.png':'1'">
 	<c path="String"/>
 	<c path="String"/>
 	<c path="String"/>
 	<c path="Array"><c path="String"/></c>
 </f></find_assets_image_sequence>
-		<text_wrap_column_knuth_plass public="1" get="inline" set="null" line="184">
+		<text_wrap_column_knuth_plass public="1" set="method" line="193">
 			<f a="_string:?_column" v=":80">
 				<c path="String"/>
 				<x path="Int"/>
@@ -15867,7 +15921,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			</f>
 			<haxe_doc>:WIP: Wrap text using a knuth plass algorithm for column breaking.</haxe_doc>
 		</text_wrap_column_knuth_plass>
-		<text_wrap_column public="1" get="inline" set="null" line="253">
+		<text_wrap_column public="1" set="method" line="262">
 			<f a="_text:?_brk:?_column" v=":'\n':80">
 				<c path="String"/>
 				<c path="String"/>
@@ -15876,15 +15930,15 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			</f>
 			<haxe_doc>Soft wrap a string by maximum character count. brk default:'\n', col default:80</haxe_doc>
 		</text_wrap_column>
-		<bytes_to_string public="1" get="inline" set="null" line="266"><f a="bytes">
+		<bytes_to_string public="1" set="method" line="275"><f a="bytes">
 	<x path="Int"/>
 	<c path="String"/>
 </f></bytes_to_string>
-		<array_to_bytes public="1" get="inline" set="null" line="276"><f a="array">
+		<array_to_bytes public="1" set="method" line="285"><f a="array">
 	<c path="Array"><x path="Int"/></c>
 	<c path="haxe.io.Bytes"/>
 </f></array_to_bytes>
-		<new set="method" line="16">
+		<new set="method" line="18">
 			<f a="_luxe">
 				<c path="luxe.Core"/>
 				<x path="Void"/>
@@ -21755,17 +21809,17 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<point_ratio><x path="Float"/></point_ratio>
 		<dirty_sizing set="accessor"><x path="Bool"/></dirty_sizing>
 		<dirty_align><x path="Bool"/></dirty_align>
-		<tidy public="1" get="inline" set="null" line="153">
+		<tidy public="1" set="method" line="153">
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>Remove any cached vertices that are unused by the current text.</haxe_doc>
 		</tidy>
 		<default_options set="method" line="178"><f a=""><x path="Void"/></f></default_options>
-		<set_text get="inline" set="null" line="225"><f a="_text">
+		<set_text set="method" line="225"><f a="_text">
 	<c path="String"/>
 	<c path="String"/>
 </f></set_text>
-		<stats get="inline" set="null" line="254"><f a=""><c path="String"/></f></stats>
-		<update_sizes get="inline" set="null" line="259"><f a=""><x path="Bool"/></f></update_sizes>
+		<stats set="method" line="254"><f a=""><c path="String"/></f></stats>
+		<update_sizes set="method" line="259"><f a=""><x path="Bool"/></f></update_sizes>
 		<update_text set="method" line="288"><f a=""><x path="Void"/></f></update_text>
 		<update_char set="method" line="444"><f a="_letteridx:_x:_y:_w:_h:_u:_v:_u2:_v2:_color">
 	<x path="Int"/>
@@ -21780,67 +21834,67 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	<c path="phoenix.Color"/>
 	<x path="Void"/>
 </f></update_char>
-		<set_dirty_sizing get="inline" set="null" line="507"><f a="_b">
+		<set_dirty_sizing set="method" line="507"><f a="_b">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_dirty_sizing>
-		<set_bounds get="inline" set="null" line="516"><f a="_bounds">
+		<set_bounds set="method" line="516"><f a="_bounds">
 	<c path="phoenix.Rectangle"/>
 	<c path="phoenix.Rectangle"/>
 </f></set_bounds>
-		<set_bounds_wrap get="inline" set="null" line="528"><f a="_wrap">
+		<set_bounds_wrap set="method" line="528"><f a="_wrap">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_bounds_wrap>
-		<set_line_spacing get="inline" set="null" line="540"><f a="_line_spacing">
+		<set_line_spacing set="method" line="540"><f a="_line_spacing">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_line_spacing>
-		<set_letter_spacing get="inline" set="null" line="552"><f a="_letter_spacing">
+		<set_letter_spacing set="method" line="552"><f a="_letter_spacing">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_letter_spacing>
-		<set_align get="inline" set="null" line="564"><f a="_align">
+		<set_align set="method" line="564"><f a="_align">
 	<x path="phoenix.TextAlign"/>
 	<x path="phoenix.TextAlign"/>
 </f></set_align>
-		<set_align_vertical get="inline" set="null" line="576"><f a="_align_vertical">
+		<set_align_vertical set="method" line="576"><f a="_align_vertical">
 	<x path="phoenix.TextAlign"/>
 	<x path="phoenix.TextAlign"/>
 </f></set_align_vertical>
-		<set_point_size get="inline" set="null" line="588"><f a="s">
+		<set_point_size set="method" line="588"><f a="s">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_point_size>
-		<set_smoothness get="inline" set="null" line="605"><f a="s">
+		<set_smoothness set="method" line="605"><f a="s">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_smoothness>
-		<set_thickness get="inline" set="null" line="618"><f a="s">
+		<set_thickness set="method" line="618"><f a="s">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_thickness>
-		<set_outline get="inline" set="null" line="631"><f a="s">
+		<set_outline set="method" line="631"><f a="s">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_outline>
-		<set_glow_threshold get="inline" set="null" line="644"><f a="s">
+		<set_glow_threshold set="method" line="644"><f a="s">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_glow_threshold>
-		<set_glow_amount get="inline" set="null" line="657"><f a="s">
+		<set_glow_amount set="method" line="657"><f a="s">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_glow_amount>
-		<set_outline_color get="inline" set="null" line="670"><f a="c">
+		<set_outline_color set="method" line="670"><f a="c">
 	<c path="phoenix.Color"/>
 	<c path="phoenix.Color"/>
 </f></set_outline_color>
-		<set_glow_color get="inline" set="null" line="681"><f a="c">
+		<set_glow_color set="method" line="681"><f a="c">
 	<c path="phoenix.Color"/>
 	<c path="phoenix.Color"/>
 </f></set_glow_color>
-		<flush_uniforms get="inline" set="null" line="695"><f a=""><x path="Void"/></f></flush_uniforms>
+		<flush_uniforms set="method" line="695"><f a=""><x path="Void"/></f></flush_uniforms>
 		<new public="1" set="method" line="101"><f a="_options">
 	<t path="phoenix.geometry.TextGeometryOptions"/>
 	<x path="Void"/>
@@ -26845,415 +26899,425 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Void"/>
 </f></new>
 	</class>
+	<class path="snow.platform.native.render.opengl.GLN" params="" file="/Users/sven/dev/snow/snow/platform/native/render/opengl/GL.hx" module="snow.platform.native.render.opengl.GL" extern="1">
+		<clear public="1" set="method" static="1">
+			<f a="mask">
+				<x path="Int"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":native"><e>"glClear"</e></m></meta>
+		</clear>
+		<meta><m n=":include"><e>"render/opengl/snow_opengl"</e></m></meta>
+	</class>
 	<class path="snow.platform.native.render.opengl.GL" params="" file="/Users/sven/dev/snow/snow/platform/native/render/opengl/GL.hx">
-		<DEPTH_BUFFER_BIT public="1" get="inline" set="null" line="207" static="1"><x path="Int"/></DEPTH_BUFFER_BIT>
-		<STENCIL_BUFFER_BIT public="1" get="inline" set="null" line="208" static="1"><x path="Int"/></STENCIL_BUFFER_BIT>
-		<COLOR_BUFFER_BIT public="1" get="inline" set="null" line="209" static="1"><x path="Int"/></COLOR_BUFFER_BIT>
-		<POINTS public="1" get="inline" set="null" line="212" static="1"><x path="Int"/></POINTS>
-		<LINES public="1" get="inline" set="null" line="213" static="1"><x path="Int"/></LINES>
-		<LINE_LOOP public="1" get="inline" set="null" line="214" static="1"><x path="Int"/></LINE_LOOP>
-		<LINE_STRIP public="1" get="inline" set="null" line="215" static="1"><x path="Int"/></LINE_STRIP>
-		<TRIANGLES public="1" get="inline" set="null" line="216" static="1"><x path="Int"/></TRIANGLES>
-		<TRIANGLE_STRIP public="1" get="inline" set="null" line="217" static="1"><x path="Int"/></TRIANGLE_STRIP>
-		<TRIANGLE_FAN public="1" get="inline" set="null" line="218" static="1"><x path="Int"/></TRIANGLE_FAN>
-		<ZERO public="1" get="inline" set="null" line="230" static="1"><x path="Int"/></ZERO>
-		<ONE public="1" get="inline" set="null" line="231" static="1"><x path="Int"/></ONE>
-		<SRC_COLOR public="1" get="inline" set="null" line="232" static="1"><x path="Int"/></SRC_COLOR>
-		<ONE_MINUS_SRC_COLOR public="1" get="inline" set="null" line="233" static="1"><x path="Int"/></ONE_MINUS_SRC_COLOR>
-		<SRC_ALPHA public="1" get="inline" set="null" line="234" static="1"><x path="Int"/></SRC_ALPHA>
-		<ONE_MINUS_SRC_ALPHA public="1" get="inline" set="null" line="235" static="1"><x path="Int"/></ONE_MINUS_SRC_ALPHA>
-		<DST_ALPHA public="1" get="inline" set="null" line="236" static="1"><x path="Int"/></DST_ALPHA>
-		<ONE_MINUS_DST_ALPHA public="1" get="inline" set="null" line="237" static="1"><x path="Int"/></ONE_MINUS_DST_ALPHA>
-		<DST_COLOR public="1" get="inline" set="null" line="242" static="1"><x path="Int"/></DST_COLOR>
-		<ONE_MINUS_DST_COLOR public="1" get="inline" set="null" line="243" static="1"><x path="Int"/></ONE_MINUS_DST_COLOR>
-		<SRC_ALPHA_SATURATE public="1" get="inline" set="null" line="244" static="1"><x path="Int"/></SRC_ALPHA_SATURATE>
-		<FUNC_ADD public="1" get="inline" set="null" line="250" static="1"><x path="Int"/></FUNC_ADD>
-		<BLEND_EQUATION public="1" get="inline" set="null" line="251" static="1"><x path="Int"/></BLEND_EQUATION>
-		<BLEND_EQUATION_RGB public="1" get="inline" set="null" line="252" static="1"><x path="Int"/></BLEND_EQUATION_RGB>
-		<BLEND_EQUATION_ALPHA public="1" get="inline" set="null" line="253" static="1"><x path="Int"/></BLEND_EQUATION_ALPHA>
-		<FUNC_SUBTRACT public="1" get="inline" set="null" line="256" static="1"><x path="Int"/></FUNC_SUBTRACT>
-		<FUNC_REVERSE_SUBTRACT public="1" get="inline" set="null" line="257" static="1"><x path="Int"/></FUNC_REVERSE_SUBTRACT>
-		<BLEND_DST_RGB public="1" get="inline" set="null" line="260" static="1"><x path="Int"/></BLEND_DST_RGB>
-		<BLEND_SRC_RGB public="1" get="inline" set="null" line="261" static="1"><x path="Int"/></BLEND_SRC_RGB>
-		<BLEND_DST_ALPHA public="1" get="inline" set="null" line="262" static="1"><x path="Int"/></BLEND_DST_ALPHA>
-		<BLEND_SRC_ALPHA public="1" get="inline" set="null" line="263" static="1"><x path="Int"/></BLEND_SRC_ALPHA>
-		<CONSTANT_COLOR public="1" get="inline" set="null" line="264" static="1"><x path="Int"/></CONSTANT_COLOR>
-		<ONE_MINUS_CONSTANT_COLOR public="1" get="inline" set="null" line="265" static="1"><x path="Int"/></ONE_MINUS_CONSTANT_COLOR>
-		<CONSTANT_ALPHA public="1" get="inline" set="null" line="266" static="1"><x path="Int"/></CONSTANT_ALPHA>
-		<ONE_MINUS_CONSTANT_ALPHA public="1" get="inline" set="null" line="267" static="1"><x path="Int"/></ONE_MINUS_CONSTANT_ALPHA>
-		<BLEND_COLOR public="1" get="inline" set="null" line="268" static="1"><x path="Int"/></BLEND_COLOR>
-		<ARRAY_BUFFER public="1" get="inline" set="null" line="271" static="1"><x path="Int"/></ARRAY_BUFFER>
-		<ELEMENT_ARRAY_BUFFER public="1" get="inline" set="null" line="272" static="1"><x path="Int"/></ELEMENT_ARRAY_BUFFER>
-		<ARRAY_BUFFER_BINDING public="1" get="inline" set="null" line="273" static="1"><x path="Int"/></ARRAY_BUFFER_BINDING>
-		<ELEMENT_ARRAY_BUFFER_BINDING public="1" get="inline" set="null" line="274" static="1"><x path="Int"/></ELEMENT_ARRAY_BUFFER_BINDING>
-		<STREAM_DRAW public="1" get="inline" set="null" line="276" static="1"><x path="Int"/></STREAM_DRAW>
-		<STATIC_DRAW public="1" get="inline" set="null" line="277" static="1"><x path="Int"/></STATIC_DRAW>
-		<DYNAMIC_DRAW public="1" get="inline" set="null" line="278" static="1"><x path="Int"/></DYNAMIC_DRAW>
-		<BUFFER_SIZE public="1" get="inline" set="null" line="280" static="1"><x path="Int"/></BUFFER_SIZE>
-		<BUFFER_USAGE public="1" get="inline" set="null" line="281" static="1"><x path="Int"/></BUFFER_USAGE>
-		<CURRENT_VERTEX_ATTRIB public="1" get="inline" set="null" line="283" static="1"><x path="Int"/></CURRENT_VERTEX_ATTRIB>
-		<FRONT public="1" get="inline" set="null" line="286" static="1"><x path="Int"/></FRONT>
-		<BACK public="1" get="inline" set="null" line="287" static="1"><x path="Int"/></BACK>
-		<FRONT_AND_BACK public="1" get="inline" set="null" line="288" static="1"><x path="Int"/></FRONT_AND_BACK>
-		<CULL_FACE public="1" get="inline" set="null" line="301" static="1"><x path="Int"/></CULL_FACE>
-		<BLEND public="1" get="inline" set="null" line="302" static="1"><x path="Int"/></BLEND>
-		<DITHER public="1" get="inline" set="null" line="303" static="1"><x path="Int"/></DITHER>
-		<STENCIL_TEST public="1" get="inline" set="null" line="304" static="1"><x path="Int"/></STENCIL_TEST>
-		<DEPTH_TEST public="1" get="inline" set="null" line="305" static="1"><x path="Int"/></DEPTH_TEST>
-		<SCISSOR_TEST public="1" get="inline" set="null" line="306" static="1"><x path="Int"/></SCISSOR_TEST>
-		<POLYGON_OFFSET_FILL public="1" get="inline" set="null" line="307" static="1"><x path="Int"/></POLYGON_OFFSET_FILL>
-		<SAMPLE_ALPHA_TO_COVERAGE public="1" get="inline" set="null" line="308" static="1"><x path="Int"/></SAMPLE_ALPHA_TO_COVERAGE>
-		<SAMPLE_COVERAGE public="1" get="inline" set="null" line="309" static="1"><x path="Int"/></SAMPLE_COVERAGE>
-		<NO_ERROR public="1" get="inline" set="null" line="312" static="1"><x path="Int"/></NO_ERROR>
-		<INVALID_ENUM public="1" get="inline" set="null" line="313" static="1"><x path="Int"/></INVALID_ENUM>
-		<INVALID_VALUE public="1" get="inline" set="null" line="314" static="1"><x path="Int"/></INVALID_VALUE>
-		<INVALID_OPERATION public="1" get="inline" set="null" line="315" static="1"><x path="Int"/></INVALID_OPERATION>
-		<OUT_OF_MEMORY public="1" get="inline" set="null" line="316" static="1"><x path="Int"/></OUT_OF_MEMORY>
-		<CW public="1" get="inline" set="null" line="319" static="1"><x path="Int"/></CW>
-		<CCW public="1" get="inline" set="null" line="320" static="1"><x path="Int"/></CCW>
-		<LINE_WIDTH public="1" get="inline" set="null" line="323" static="1"><x path="Int"/></LINE_WIDTH>
-		<ALIASED_POINT_SIZE_RANGE public="1" get="inline" set="null" line="324" static="1"><x path="Int"/></ALIASED_POINT_SIZE_RANGE>
-		<ALIASED_LINE_WIDTH_RANGE public="1" get="inline" set="null" line="325" static="1"><x path="Int"/></ALIASED_LINE_WIDTH_RANGE>
-		<CULL_FACE_MODE public="1" get="inline" set="null" line="326" static="1"><x path="Int"/></CULL_FACE_MODE>
-		<FRONT_FACE public="1" get="inline" set="null" line="327" static="1"><x path="Int"/></FRONT_FACE>
-		<DEPTH_RANGE public="1" get="inline" set="null" line="328" static="1"><x path="Int"/></DEPTH_RANGE>
-		<DEPTH_WRITEMASK public="1" get="inline" set="null" line="329" static="1"><x path="Int"/></DEPTH_WRITEMASK>
-		<DEPTH_CLEAR_VALUE public="1" get="inline" set="null" line="330" static="1"><x path="Int"/></DEPTH_CLEAR_VALUE>
-		<DEPTH_FUNC public="1" get="inline" set="null" line="331" static="1"><x path="Int"/></DEPTH_FUNC>
-		<STENCIL_CLEAR_VALUE public="1" get="inline" set="null" line="332" static="1"><x path="Int"/></STENCIL_CLEAR_VALUE>
-		<STENCIL_FUNC public="1" get="inline" set="null" line="333" static="1"><x path="Int"/></STENCIL_FUNC>
-		<STENCIL_FAIL public="1" get="inline" set="null" line="334" static="1"><x path="Int"/></STENCIL_FAIL>
-		<STENCIL_PASS_DEPTH_FAIL public="1" get="inline" set="null" line="335" static="1"><x path="Int"/></STENCIL_PASS_DEPTH_FAIL>
-		<STENCIL_PASS_DEPTH_PASS public="1" get="inline" set="null" line="336" static="1"><x path="Int"/></STENCIL_PASS_DEPTH_PASS>
-		<STENCIL_REF public="1" get="inline" set="null" line="337" static="1"><x path="Int"/></STENCIL_REF>
-		<STENCIL_VALUE_MASK public="1" get="inline" set="null" line="338" static="1"><x path="Int"/></STENCIL_VALUE_MASK>
-		<STENCIL_WRITEMASK public="1" get="inline" set="null" line="339" static="1"><x path="Int"/></STENCIL_WRITEMASK>
-		<STENCIL_BACK_FUNC public="1" get="inline" set="null" line="340" static="1"><x path="Int"/></STENCIL_BACK_FUNC>
-		<STENCIL_BACK_FAIL public="1" get="inline" set="null" line="341" static="1"><x path="Int"/></STENCIL_BACK_FAIL>
-		<STENCIL_BACK_PASS_DEPTH_FAIL public="1" get="inline" set="null" line="342" static="1"><x path="Int"/></STENCIL_BACK_PASS_DEPTH_FAIL>
-		<STENCIL_BACK_PASS_DEPTH_PASS public="1" get="inline" set="null" line="343" static="1"><x path="Int"/></STENCIL_BACK_PASS_DEPTH_PASS>
-		<STENCIL_BACK_REF public="1" get="inline" set="null" line="344" static="1"><x path="Int"/></STENCIL_BACK_REF>
-		<STENCIL_BACK_VALUE_MASK public="1" get="inline" set="null" line="345" static="1"><x path="Int"/></STENCIL_BACK_VALUE_MASK>
-		<STENCIL_BACK_WRITEMASK public="1" get="inline" set="null" line="346" static="1"><x path="Int"/></STENCIL_BACK_WRITEMASK>
-		<VIEWPORT public="1" get="inline" set="null" line="347" static="1"><x path="Int"/></VIEWPORT>
-		<SCISSOR_BOX public="1" get="inline" set="null" line="348" static="1"><x path="Int"/></SCISSOR_BOX>
-		<COLOR_CLEAR_VALUE public="1" get="inline" set="null" line="350" static="1"><x path="Int"/></COLOR_CLEAR_VALUE>
-		<COLOR_WRITEMASK public="1" get="inline" set="null" line="351" static="1"><x path="Int"/></COLOR_WRITEMASK>
-		<UNPACK_ALIGNMENT public="1" get="inline" set="null" line="352" static="1"><x path="Int"/></UNPACK_ALIGNMENT>
-		<PACK_ALIGNMENT public="1" get="inline" set="null" line="353" static="1"><x path="Int"/></PACK_ALIGNMENT>
-		<MAX_TEXTURE_SIZE public="1" get="inline" set="null" line="354" static="1"><x path="Int"/></MAX_TEXTURE_SIZE>
-		<MAX_VIEWPORT_DIMS public="1" get="inline" set="null" line="355" static="1"><x path="Int"/></MAX_VIEWPORT_DIMS>
-		<SUBPIXEL_BITS public="1" get="inline" set="null" line="356" static="1"><x path="Int"/></SUBPIXEL_BITS>
-		<RED_BITS public="1" get="inline" set="null" line="357" static="1"><x path="Int"/></RED_BITS>
-		<GREEN_BITS public="1" get="inline" set="null" line="358" static="1"><x path="Int"/></GREEN_BITS>
-		<BLUE_BITS public="1" get="inline" set="null" line="359" static="1"><x path="Int"/></BLUE_BITS>
-		<ALPHA_BITS public="1" get="inline" set="null" line="360" static="1"><x path="Int"/></ALPHA_BITS>
-		<DEPTH_BITS public="1" get="inline" set="null" line="361" static="1"><x path="Int"/></DEPTH_BITS>
-		<STENCIL_BITS public="1" get="inline" set="null" line="362" static="1"><x path="Int"/></STENCIL_BITS>
-		<POLYGON_OFFSET_UNITS public="1" get="inline" set="null" line="363" static="1"><x path="Int"/></POLYGON_OFFSET_UNITS>
-		<POLYGON_OFFSET_FACTOR public="1" get="inline" set="null" line="365" static="1"><x path="Int"/></POLYGON_OFFSET_FACTOR>
-		<TEXTURE_BINDING_2D public="1" get="inline" set="null" line="366" static="1"><x path="Int"/></TEXTURE_BINDING_2D>
-		<SAMPLE_BUFFERS public="1" get="inline" set="null" line="367" static="1"><x path="Int"/></SAMPLE_BUFFERS>
-		<SAMPLES public="1" get="inline" set="null" line="368" static="1"><x path="Int"/></SAMPLES>
-		<SAMPLE_COVERAGE_VALUE public="1" get="inline" set="null" line="369" static="1"><x path="Int"/></SAMPLE_COVERAGE_VALUE>
-		<SAMPLE_COVERAGE_INVERT public="1" get="inline" set="null" line="370" static="1"><x path="Int"/></SAMPLE_COVERAGE_INVERT>
-		<COMPRESSED_TEXTURE_FORMATS public="1" get="inline" set="null" line="377" static="1"><x path="Int"/></COMPRESSED_TEXTURE_FORMATS>
-		<DONT_CARE public="1" get="inline" set="null" line="380" static="1"><x path="Int"/></DONT_CARE>
-		<FASTEST public="1" get="inline" set="null" line="381" static="1"><x path="Int"/></FASTEST>
-		<NICEST public="1" get="inline" set="null" line="382" static="1"><x path="Int"/></NICEST>
-		<GENERATE_MIPMAP_HINT public="1" get="inline" set="null" line="385" static="1"><x path="Int"/></GENERATE_MIPMAP_HINT>
-		<BYTE public="1" get="inline" set="null" line="388" static="1"><x path="Int"/></BYTE>
-		<UNSIGNED_BYTE public="1" get="inline" set="null" line="389" static="1"><x path="Int"/></UNSIGNED_BYTE>
-		<SHORT public="1" get="inline" set="null" line="390" static="1"><x path="Int"/></SHORT>
-		<UNSIGNED_SHORT public="1" get="inline" set="null" line="391" static="1"><x path="Int"/></UNSIGNED_SHORT>
-		<INT public="1" get="inline" set="null" line="392" static="1"><x path="Int"/></INT>
-		<UNSIGNED_INT public="1" get="inline" set="null" line="393" static="1"><x path="Int"/></UNSIGNED_INT>
-		<FLOAT public="1" get="inline" set="null" line="394" static="1"><x path="Int"/></FLOAT>
-		<DEPTH_COMPONENT public="1" get="inline" set="null" line="397" static="1"><x path="Int"/></DEPTH_COMPONENT>
-		<ALPHA public="1" get="inline" set="null" line="398" static="1"><x path="Int"/></ALPHA>
-		<RGB public="1" get="inline" set="null" line="399" static="1"><x path="Int"/></RGB>
-		<RGBA public="1" get="inline" set="null" line="400" static="1"><x path="Int"/></RGBA>
-		<LUMINANCE public="1" get="inline" set="null" line="401" static="1"><x path="Int"/></LUMINANCE>
-		<LUMINANCE_ALPHA public="1" get="inline" set="null" line="402" static="1"><x path="Int"/></LUMINANCE_ALPHA>
-		<UNSIGNED_SHORT_4_4_4_4 public="1" get="inline" set="null" line="406" static="1"><x path="Int"/></UNSIGNED_SHORT_4_4_4_4>
-		<UNSIGNED_SHORT_5_5_5_1 public="1" get="inline" set="null" line="407" static="1"><x path="Int"/></UNSIGNED_SHORT_5_5_5_1>
-		<UNSIGNED_SHORT_5_6_5 public="1" get="inline" set="null" line="408" static="1"><x path="Int"/></UNSIGNED_SHORT_5_6_5>
-		<FRAGMENT_SHADER public="1" get="inline" set="null" line="411" static="1"><x path="Int"/></FRAGMENT_SHADER>
-		<VERTEX_SHADER public="1" get="inline" set="null" line="412" static="1"><x path="Int"/></VERTEX_SHADER>
-		<MAX_VERTEX_ATTRIBS public="1" get="inline" set="null" line="413" static="1"><x path="Int"/></MAX_VERTEX_ATTRIBS>
-		<MAX_VERTEX_UNIFORM_VECTORS public="1" get="inline" set="null" line="414" static="1"><x path="Int"/></MAX_VERTEX_UNIFORM_VECTORS>
-		<MAX_VARYING_VECTORS public="1" get="inline" set="null" line="415" static="1"><x path="Int"/></MAX_VARYING_VECTORS>
-		<MAX_COMBINED_TEXTURE_IMAGE_UNITS public="1" get="inline" set="null" line="416" static="1"><x path="Int"/></MAX_COMBINED_TEXTURE_IMAGE_UNITS>
-		<MAX_VERTEX_TEXTURE_IMAGE_UNITS public="1" get="inline" set="null" line="417" static="1"><x path="Int"/></MAX_VERTEX_TEXTURE_IMAGE_UNITS>
-		<MAX_TEXTURE_IMAGE_UNITS public="1" get="inline" set="null" line="418" static="1"><x path="Int"/></MAX_TEXTURE_IMAGE_UNITS>
-		<MAX_FRAGMENT_UNIFORM_VECTORS public="1" get="inline" set="null" line="419" static="1"><x path="Int"/></MAX_FRAGMENT_UNIFORM_VECTORS>
-		<SHADER_TYPE public="1" get="inline" set="null" line="420" static="1"><x path="Int"/></SHADER_TYPE>
-		<DELETE_STATUS public="1" get="inline" set="null" line="421" static="1"><x path="Int"/></DELETE_STATUS>
-		<LINK_STATUS public="1" get="inline" set="null" line="422" static="1"><x path="Int"/></LINK_STATUS>
-		<VALIDATE_STATUS public="1" get="inline" set="null" line="423" static="1"><x path="Int"/></VALIDATE_STATUS>
-		<ATTACHED_SHADERS public="1" get="inline" set="null" line="424" static="1"><x path="Int"/></ATTACHED_SHADERS>
-		<ACTIVE_UNIFORMS public="1" get="inline" set="null" line="425" static="1"><x path="Int"/></ACTIVE_UNIFORMS>
-		<ACTIVE_ATTRIBUTES public="1" get="inline" set="null" line="426" static="1"><x path="Int"/></ACTIVE_ATTRIBUTES>
-		<SHADING_LANGUAGE_VERSION public="1" get="inline" set="null" line="427" static="1"><x path="Int"/></SHADING_LANGUAGE_VERSION>
-		<CURRENT_PROGRAM public="1" get="inline" set="null" line="428" static="1"><x path="Int"/></CURRENT_PROGRAM>
-		<NEVER public="1" get="inline" set="null" line="431" static="1"><x path="Int"/></NEVER>
-		<LESS public="1" get="inline" set="null" line="432" static="1"><x path="Int"/></LESS>
-		<EQUAL public="1" get="inline" set="null" line="433" static="1"><x path="Int"/></EQUAL>
-		<LEQUAL public="1" get="inline" set="null" line="434" static="1"><x path="Int"/></LEQUAL>
-		<GREATER public="1" get="inline" set="null" line="435" static="1"><x path="Int"/></GREATER>
-		<NOTEQUAL public="1" get="inline" set="null" line="436" static="1"><x path="Int"/></NOTEQUAL>
-		<GEQUAL public="1" get="inline" set="null" line="437" static="1"><x path="Int"/></GEQUAL>
-		<ALWAYS public="1" get="inline" set="null" line="438" static="1"><x path="Int"/></ALWAYS>
-		<KEEP public="1" get="inline" set="null" line="442" static="1"><x path="Int"/></KEEP>
-		<REPLACE public="1" get="inline" set="null" line="443" static="1"><x path="Int"/></REPLACE>
-		<INCR public="1" get="inline" set="null" line="444" static="1"><x path="Int"/></INCR>
-		<DECR public="1" get="inline" set="null" line="445" static="1"><x path="Int"/></DECR>
-		<INVERT public="1" get="inline" set="null" line="446" static="1"><x path="Int"/></INVERT>
-		<INCR_WRAP public="1" get="inline" set="null" line="447" static="1"><x path="Int"/></INCR_WRAP>
-		<DECR_WRAP public="1" get="inline" set="null" line="448" static="1"><x path="Int"/></DECR_WRAP>
-		<VENDOR public="1" get="inline" set="null" line="451" static="1"><x path="Int"/></VENDOR>
-		<RENDERER public="1" get="inline" set="null" line="452" static="1"><x path="Int"/></RENDERER>
-		<VERSION public="1" get="inline" set="null" line="453" static="1"><x path="Int"/></VERSION>
-		<NEAREST public="1" get="inline" set="null" line="456" static="1"><x path="Int"/></NEAREST>
-		<LINEAR public="1" get="inline" set="null" line="457" static="1"><x path="Int"/></LINEAR>
-		<NEAREST_MIPMAP_NEAREST public="1" get="inline" set="null" line="462" static="1"><x path="Int"/></NEAREST_MIPMAP_NEAREST>
-		<LINEAR_MIPMAP_NEAREST public="1" get="inline" set="null" line="463" static="1"><x path="Int"/></LINEAR_MIPMAP_NEAREST>
-		<NEAREST_MIPMAP_LINEAR public="1" get="inline" set="null" line="464" static="1"><x path="Int"/></NEAREST_MIPMAP_LINEAR>
-		<LINEAR_MIPMAP_LINEAR public="1" get="inline" set="null" line="465" static="1"><x path="Int"/></LINEAR_MIPMAP_LINEAR>
-		<TEXTURE_MAG_FILTER public="1" get="inline" set="null" line="468" static="1"><x path="Int"/></TEXTURE_MAG_FILTER>
-		<TEXTURE_MIN_FILTER public="1" get="inline" set="null" line="469" static="1"><x path="Int"/></TEXTURE_MIN_FILTER>
-		<TEXTURE_WRAP_S public="1" get="inline" set="null" line="470" static="1"><x path="Int"/></TEXTURE_WRAP_S>
-		<TEXTURE_WRAP_T public="1" get="inline" set="null" line="471" static="1"><x path="Int"/></TEXTURE_WRAP_T>
-		<TEXTURE_2D public="1" get="inline" set="null" line="474" static="1"><x path="Int"/></TEXTURE_2D>
-		<TEXTURE public="1" get="inline" set="null" line="475" static="1"><x path="Int"/></TEXTURE>
-		<TEXTURE_CUBE_MAP public="1" get="inline" set="null" line="477" static="1"><x path="Int"/></TEXTURE_CUBE_MAP>
-		<TEXTURE_BINDING_CUBE_MAP public="1" get="inline" set="null" line="478" static="1"><x path="Int"/></TEXTURE_BINDING_CUBE_MAP>
-		<TEXTURE_CUBE_MAP_POSITIVE_X public="1" get="inline" set="null" line="479" static="1"><x path="Int"/></TEXTURE_CUBE_MAP_POSITIVE_X>
-		<TEXTURE_CUBE_MAP_NEGATIVE_X public="1" get="inline" set="null" line="480" static="1"><x path="Int"/></TEXTURE_CUBE_MAP_NEGATIVE_X>
-		<TEXTURE_CUBE_MAP_POSITIVE_Y public="1" get="inline" set="null" line="481" static="1"><x path="Int"/></TEXTURE_CUBE_MAP_POSITIVE_Y>
-		<TEXTURE_CUBE_MAP_NEGATIVE_Y public="1" get="inline" set="null" line="482" static="1"><x path="Int"/></TEXTURE_CUBE_MAP_NEGATIVE_Y>
-		<TEXTURE_CUBE_MAP_POSITIVE_Z public="1" get="inline" set="null" line="483" static="1"><x path="Int"/></TEXTURE_CUBE_MAP_POSITIVE_Z>
-		<TEXTURE_CUBE_MAP_NEGATIVE_Z public="1" get="inline" set="null" line="484" static="1"><x path="Int"/></TEXTURE_CUBE_MAP_NEGATIVE_Z>
-		<MAX_CUBE_MAP_TEXTURE_SIZE public="1" get="inline" set="null" line="485" static="1"><x path="Int"/></MAX_CUBE_MAP_TEXTURE_SIZE>
-		<TEXTURE0 public="1" get="inline" set="null" line="488" static="1"><x path="Int"/></TEXTURE0>
-		<TEXTURE1 public="1" get="inline" set="null" line="489" static="1"><x path="Int"/></TEXTURE1>
-		<TEXTURE2 public="1" get="inline" set="null" line="490" static="1"><x path="Int"/></TEXTURE2>
-		<TEXTURE3 public="1" get="inline" set="null" line="491" static="1"><x path="Int"/></TEXTURE3>
-		<TEXTURE4 public="1" get="inline" set="null" line="492" static="1"><x path="Int"/></TEXTURE4>
-		<TEXTURE5 public="1" get="inline" set="null" line="493" static="1"><x path="Int"/></TEXTURE5>
-		<TEXTURE6 public="1" get="inline" set="null" line="494" static="1"><x path="Int"/></TEXTURE6>
-		<TEXTURE7 public="1" get="inline" set="null" line="495" static="1"><x path="Int"/></TEXTURE7>
-		<TEXTURE8 public="1" get="inline" set="null" line="496" static="1"><x path="Int"/></TEXTURE8>
-		<TEXTURE9 public="1" get="inline" set="null" line="497" static="1"><x path="Int"/></TEXTURE9>
-		<TEXTURE10 public="1" get="inline" set="null" line="498" static="1"><x path="Int"/></TEXTURE10>
-		<TEXTURE11 public="1" get="inline" set="null" line="499" static="1"><x path="Int"/></TEXTURE11>
-		<TEXTURE12 public="1" get="inline" set="null" line="500" static="1"><x path="Int"/></TEXTURE12>
-		<TEXTURE13 public="1" get="inline" set="null" line="501" static="1"><x path="Int"/></TEXTURE13>
-		<TEXTURE14 public="1" get="inline" set="null" line="502" static="1"><x path="Int"/></TEXTURE14>
-		<TEXTURE15 public="1" get="inline" set="null" line="503" static="1"><x path="Int"/></TEXTURE15>
-		<TEXTURE16 public="1" get="inline" set="null" line="504" static="1"><x path="Int"/></TEXTURE16>
-		<TEXTURE17 public="1" get="inline" set="null" line="505" static="1"><x path="Int"/></TEXTURE17>
-		<TEXTURE18 public="1" get="inline" set="null" line="506" static="1"><x path="Int"/></TEXTURE18>
-		<TEXTURE19 public="1" get="inline" set="null" line="507" static="1"><x path="Int"/></TEXTURE19>
-		<TEXTURE20 public="1" get="inline" set="null" line="508" static="1"><x path="Int"/></TEXTURE20>
-		<TEXTURE21 public="1" get="inline" set="null" line="509" static="1"><x path="Int"/></TEXTURE21>
-		<TEXTURE22 public="1" get="inline" set="null" line="510" static="1"><x path="Int"/></TEXTURE22>
-		<TEXTURE23 public="1" get="inline" set="null" line="511" static="1"><x path="Int"/></TEXTURE23>
-		<TEXTURE24 public="1" get="inline" set="null" line="512" static="1"><x path="Int"/></TEXTURE24>
-		<TEXTURE25 public="1" get="inline" set="null" line="513" static="1"><x path="Int"/></TEXTURE25>
-		<TEXTURE26 public="1" get="inline" set="null" line="514" static="1"><x path="Int"/></TEXTURE26>
-		<TEXTURE27 public="1" get="inline" set="null" line="515" static="1"><x path="Int"/></TEXTURE27>
-		<TEXTURE28 public="1" get="inline" set="null" line="516" static="1"><x path="Int"/></TEXTURE28>
-		<TEXTURE29 public="1" get="inline" set="null" line="517" static="1"><x path="Int"/></TEXTURE29>
-		<TEXTURE30 public="1" get="inline" set="null" line="518" static="1"><x path="Int"/></TEXTURE30>
-		<TEXTURE31 public="1" get="inline" set="null" line="519" static="1"><x path="Int"/></TEXTURE31>
-		<ACTIVE_TEXTURE public="1" get="inline" set="null" line="520" static="1"><x path="Int"/></ACTIVE_TEXTURE>
-		<REPEAT public="1" get="inline" set="null" line="523" static="1"><x path="Int"/></REPEAT>
-		<CLAMP_TO_EDGE public="1" get="inline" set="null" line="524" static="1"><x path="Int"/></CLAMP_TO_EDGE>
-		<MIRRORED_REPEAT public="1" get="inline" set="null" line="525" static="1"><x path="Int"/></MIRRORED_REPEAT>
-		<FLOAT_VEC2 public="1" get="inline" set="null" line="528" static="1"><x path="Int"/></FLOAT_VEC2>
-		<FLOAT_VEC3 public="1" get="inline" set="null" line="529" static="1"><x path="Int"/></FLOAT_VEC3>
-		<FLOAT_VEC4 public="1" get="inline" set="null" line="530" static="1"><x path="Int"/></FLOAT_VEC4>
-		<INT_VEC2 public="1" get="inline" set="null" line="531" static="1"><x path="Int"/></INT_VEC2>
-		<INT_VEC3 public="1" get="inline" set="null" line="532" static="1"><x path="Int"/></INT_VEC3>
-		<INT_VEC4 public="1" get="inline" set="null" line="533" static="1"><x path="Int"/></INT_VEC4>
-		<BOOL public="1" get="inline" set="null" line="534" static="1"><x path="Int"/></BOOL>
-		<BOOL_VEC2 public="1" get="inline" set="null" line="535" static="1"><x path="Int"/></BOOL_VEC2>
-		<BOOL_VEC3 public="1" get="inline" set="null" line="536" static="1"><x path="Int"/></BOOL_VEC3>
-		<BOOL_VEC4 public="1" get="inline" set="null" line="537" static="1"><x path="Int"/></BOOL_VEC4>
-		<FLOAT_MAT2 public="1" get="inline" set="null" line="538" static="1"><x path="Int"/></FLOAT_MAT2>
-		<FLOAT_MAT3 public="1" get="inline" set="null" line="539" static="1"><x path="Int"/></FLOAT_MAT3>
-		<FLOAT_MAT4 public="1" get="inline" set="null" line="540" static="1"><x path="Int"/></FLOAT_MAT4>
-		<SAMPLER_2D public="1" get="inline" set="null" line="541" static="1"><x path="Int"/></SAMPLER_2D>
-		<SAMPLER_CUBE public="1" get="inline" set="null" line="542" static="1"><x path="Int"/></SAMPLER_CUBE>
-		<VERTEX_ATTRIB_ARRAY_ENABLED public="1" get="inline" set="null" line="545" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_ENABLED>
-		<VERTEX_ATTRIB_ARRAY_SIZE public="1" get="inline" set="null" line="546" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_SIZE>
-		<VERTEX_ATTRIB_ARRAY_STRIDE public="1" get="inline" set="null" line="547" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_STRIDE>
-		<VERTEX_ATTRIB_ARRAY_TYPE public="1" get="inline" set="null" line="548" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_TYPE>
-		<VERTEX_ATTRIB_ARRAY_NORMALIZED public="1" get="inline" set="null" line="549" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_NORMALIZED>
-		<VERTEX_ATTRIB_ARRAY_POINTER public="1" get="inline" set="null" line="550" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_POINTER>
-		<VERTEX_ATTRIB_ARRAY_BUFFER_BINDING public="1" get="inline" set="null" line="551" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_BUFFER_BINDING>
-		<VERTEX_PROGRAM_POINT_SIZE public="1" get="inline" set="null" line="554" static="1"><x path="Int"/></VERTEX_PROGRAM_POINT_SIZE>
-		<POINT_SPRITE public="1" get="inline" set="null" line="555" static="1"><x path="Int"/></POINT_SPRITE>
-		<COMPILE_STATUS public="1" get="inline" set="null" line="558" static="1"><x path="Int"/></COMPILE_STATUS>
-		<LOW_FLOAT public="1" get="inline" set="null" line="561" static="1"><x path="Int"/></LOW_FLOAT>
-		<MEDIUM_FLOAT public="1" get="inline" set="null" line="562" static="1"><x path="Int"/></MEDIUM_FLOAT>
-		<HIGH_FLOAT public="1" get="inline" set="null" line="563" static="1"><x path="Int"/></HIGH_FLOAT>
-		<LOW_INT public="1" get="inline" set="null" line="564" static="1"><x path="Int"/></LOW_INT>
-		<MEDIUM_INT public="1" get="inline" set="null" line="565" static="1"><x path="Int"/></MEDIUM_INT>
-		<HIGH_INT public="1" get="inline" set="null" line="566" static="1"><x path="Int"/></HIGH_INT>
-		<FRAMEBUFFER public="1" get="inline" set="null" line="569" static="1"><x path="Int"/></FRAMEBUFFER>
-		<RENDERBUFFER public="1" get="inline" set="null" line="570" static="1"><x path="Int"/></RENDERBUFFER>
-		<RGBA4 public="1" get="inline" set="null" line="572" static="1"><x path="Int"/></RGBA4>
-		<RGB5_A1 public="1" get="inline" set="null" line="573" static="1"><x path="Int"/></RGB5_A1>
-		<RGB565 public="1" get="inline" set="null" line="574" static="1"><x path="Int"/></RGB565>
-		<DEPTH_COMPONENT16 public="1" get="inline" set="null" line="575" static="1"><x path="Int"/></DEPTH_COMPONENT16>
-		<STENCIL_INDEX public="1" get="inline" set="null" line="576" static="1"><x path="Int"/></STENCIL_INDEX>
-		<STENCIL_INDEX8 public="1" get="inline" set="null" line="577" static="1"><x path="Int"/></STENCIL_INDEX8>
-		<DEPTH_STENCIL public="1" get="inline" set="null" line="578" static="1"><x path="Int"/></DEPTH_STENCIL>
-		<RENDERBUFFER_WIDTH public="1" get="inline" set="null" line="580" static="1"><x path="Int"/></RENDERBUFFER_WIDTH>
-		<RENDERBUFFER_HEIGHT public="1" get="inline" set="null" line="581" static="1"><x path="Int"/></RENDERBUFFER_HEIGHT>
-		<RENDERBUFFER_INTERNAL_FORMAT public="1" get="inline" set="null" line="582" static="1"><x path="Int"/></RENDERBUFFER_INTERNAL_FORMAT>
-		<RENDERBUFFER_RED_SIZE public="1" get="inline" set="null" line="583" static="1"><x path="Int"/></RENDERBUFFER_RED_SIZE>
-		<RENDERBUFFER_GREEN_SIZE public="1" get="inline" set="null" line="584" static="1"><x path="Int"/></RENDERBUFFER_GREEN_SIZE>
-		<RENDERBUFFER_BLUE_SIZE public="1" get="inline" set="null" line="585" static="1"><x path="Int"/></RENDERBUFFER_BLUE_SIZE>
-		<RENDERBUFFER_ALPHA_SIZE public="1" get="inline" set="null" line="586" static="1"><x path="Int"/></RENDERBUFFER_ALPHA_SIZE>
-		<RENDERBUFFER_DEPTH_SIZE public="1" get="inline" set="null" line="587" static="1"><x path="Int"/></RENDERBUFFER_DEPTH_SIZE>
-		<RENDERBUFFER_STENCIL_SIZE public="1" get="inline" set="null" line="588" static="1"><x path="Int"/></RENDERBUFFER_STENCIL_SIZE>
-		<FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE public="1" get="inline" set="null" line="590" static="1"><x path="Int"/></FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE>
-		<FRAMEBUFFER_ATTACHMENT_OBJECT_NAME public="1" get="inline" set="null" line="591" static="1"><x path="Int"/></FRAMEBUFFER_ATTACHMENT_OBJECT_NAME>
-		<FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL public="1" get="inline" set="null" line="592" static="1"><x path="Int"/></FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL>
-		<FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE public="1" get="inline" set="null" line="593" static="1"><x path="Int"/></FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE>
-		<COLOR_ATTACHMENT0 public="1" get="inline" set="null" line="595" static="1"><x path="Int"/></COLOR_ATTACHMENT0>
-		<DEPTH_ATTACHMENT public="1" get="inline" set="null" line="596" static="1"><x path="Int"/></DEPTH_ATTACHMENT>
-		<STENCIL_ATTACHMENT public="1" get="inline" set="null" line="597" static="1"><x path="Int"/></STENCIL_ATTACHMENT>
-		<DEPTH_STENCIL_ATTACHMENT public="1" get="inline" set="null" line="598" static="1"><x path="Int"/></DEPTH_STENCIL_ATTACHMENT>
-		<NONE public="1" get="inline" set="null" line="600" static="1"><x path="Int"/></NONE>
-		<FRAMEBUFFER_COMPLETE public="1" get="inline" set="null" line="602" static="1"><x path="Int"/></FRAMEBUFFER_COMPLETE>
-		<FRAMEBUFFER_INCOMPLETE_ATTACHMENT public="1" get="inline" set="null" line="603" static="1"><x path="Int"/></FRAMEBUFFER_INCOMPLETE_ATTACHMENT>
-		<FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT public="1" get="inline" set="null" line="604" static="1"><x path="Int"/></FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT>
-		<FRAMEBUFFER_INCOMPLETE_DIMENSIONS public="1" get="inline" set="null" line="605" static="1"><x path="Int"/></FRAMEBUFFER_INCOMPLETE_DIMENSIONS>
-		<FRAMEBUFFER_UNSUPPORTED public="1" get="inline" set="null" line="606" static="1"><x path="Int"/></FRAMEBUFFER_UNSUPPORTED>
-		<FRAMEBUFFER_BINDING public="1" get="inline" set="null" line="608" static="1"><x path="Int"/></FRAMEBUFFER_BINDING>
-		<RENDERBUFFER_BINDING public="1" get="inline" set="null" line="609" static="1"><x path="Int"/></RENDERBUFFER_BINDING>
-		<MAX_RENDERBUFFER_SIZE public="1" get="inline" set="null" line="610" static="1"><x path="Int"/></MAX_RENDERBUFFER_SIZE>
-		<INVALID_FRAMEBUFFER_OPERATION public="1" get="inline" set="null" line="612" static="1"><x path="Int"/></INVALID_FRAMEBUFFER_OPERATION>
-		<UNPACK_FLIP_Y_WEBGL public="1" get="inline" set="null" line="615" static="1"><x path="Int"/></UNPACK_FLIP_Y_WEBGL>
-		<UNPACK_PREMULTIPLY_ALPHA_WEBGL public="1" get="inline" set="null" line="616" static="1"><x path="Int"/></UNPACK_PREMULTIPLY_ALPHA_WEBGL>
-		<CONTEXT_LOST_WEBGL public="1" get="inline" set="null" line="617" static="1"><x path="Int"/></CONTEXT_LOST_WEBGL>
-		<UNPACK_COLORSPACE_CONVERSION_WEBGL public="1" get="inline" set="null" line="618" static="1"><x path="Int"/></UNPACK_COLORSPACE_CONVERSION_WEBGL>
-		<BROWSER_DEFAULT_WEBGL public="1" get="inline" set="null" line="619" static="1"><x path="Int"/></BROWSER_DEFAULT_WEBGL>
-		<versionString public="1" set="method" line="621" static="1"><f a=""><c path="String"/></f></versionString>
-		<activeTexture public="1" set="method" line="625" static="1"><f a="texture">
+		<DEPTH_BUFFER_BIT public="1" get="inline" set="null" line="213" static="1"><x path="Int"/></DEPTH_BUFFER_BIT>
+		<STENCIL_BUFFER_BIT public="1" get="inline" set="null" line="214" static="1"><x path="Int"/></STENCIL_BUFFER_BIT>
+		<COLOR_BUFFER_BIT public="1" get="inline" set="null" line="215" static="1"><x path="Int"/></COLOR_BUFFER_BIT>
+		<POINTS public="1" get="inline" set="null" line="218" static="1"><x path="Int"/></POINTS>
+		<LINES public="1" get="inline" set="null" line="219" static="1"><x path="Int"/></LINES>
+		<LINE_LOOP public="1" get="inline" set="null" line="220" static="1"><x path="Int"/></LINE_LOOP>
+		<LINE_STRIP public="1" get="inline" set="null" line="221" static="1"><x path="Int"/></LINE_STRIP>
+		<TRIANGLES public="1" get="inline" set="null" line="222" static="1"><x path="Int"/></TRIANGLES>
+		<TRIANGLE_STRIP public="1" get="inline" set="null" line="223" static="1"><x path="Int"/></TRIANGLE_STRIP>
+		<TRIANGLE_FAN public="1" get="inline" set="null" line="224" static="1"><x path="Int"/></TRIANGLE_FAN>
+		<ZERO public="1" get="inline" set="null" line="236" static="1"><x path="Int"/></ZERO>
+		<ONE public="1" get="inline" set="null" line="237" static="1"><x path="Int"/></ONE>
+		<SRC_COLOR public="1" get="inline" set="null" line="238" static="1"><x path="Int"/></SRC_COLOR>
+		<ONE_MINUS_SRC_COLOR public="1" get="inline" set="null" line="239" static="1"><x path="Int"/></ONE_MINUS_SRC_COLOR>
+		<SRC_ALPHA public="1" get="inline" set="null" line="240" static="1"><x path="Int"/></SRC_ALPHA>
+		<ONE_MINUS_SRC_ALPHA public="1" get="inline" set="null" line="241" static="1"><x path="Int"/></ONE_MINUS_SRC_ALPHA>
+		<DST_ALPHA public="1" get="inline" set="null" line="242" static="1"><x path="Int"/></DST_ALPHA>
+		<ONE_MINUS_DST_ALPHA public="1" get="inline" set="null" line="243" static="1"><x path="Int"/></ONE_MINUS_DST_ALPHA>
+		<DST_COLOR public="1" get="inline" set="null" line="248" static="1"><x path="Int"/></DST_COLOR>
+		<ONE_MINUS_DST_COLOR public="1" get="inline" set="null" line="249" static="1"><x path="Int"/></ONE_MINUS_DST_COLOR>
+		<SRC_ALPHA_SATURATE public="1" get="inline" set="null" line="250" static="1"><x path="Int"/></SRC_ALPHA_SATURATE>
+		<FUNC_ADD public="1" get="inline" set="null" line="256" static="1"><x path="Int"/></FUNC_ADD>
+		<BLEND_EQUATION public="1" get="inline" set="null" line="257" static="1"><x path="Int"/></BLEND_EQUATION>
+		<BLEND_EQUATION_RGB public="1" get="inline" set="null" line="258" static="1"><x path="Int"/></BLEND_EQUATION_RGB>
+		<BLEND_EQUATION_ALPHA public="1" get="inline" set="null" line="259" static="1"><x path="Int"/></BLEND_EQUATION_ALPHA>
+		<FUNC_SUBTRACT public="1" get="inline" set="null" line="262" static="1"><x path="Int"/></FUNC_SUBTRACT>
+		<FUNC_REVERSE_SUBTRACT public="1" get="inline" set="null" line="263" static="1"><x path="Int"/></FUNC_REVERSE_SUBTRACT>
+		<BLEND_DST_RGB public="1" get="inline" set="null" line="266" static="1"><x path="Int"/></BLEND_DST_RGB>
+		<BLEND_SRC_RGB public="1" get="inline" set="null" line="267" static="1"><x path="Int"/></BLEND_SRC_RGB>
+		<BLEND_DST_ALPHA public="1" get="inline" set="null" line="268" static="1"><x path="Int"/></BLEND_DST_ALPHA>
+		<BLEND_SRC_ALPHA public="1" get="inline" set="null" line="269" static="1"><x path="Int"/></BLEND_SRC_ALPHA>
+		<CONSTANT_COLOR public="1" get="inline" set="null" line="270" static="1"><x path="Int"/></CONSTANT_COLOR>
+		<ONE_MINUS_CONSTANT_COLOR public="1" get="inline" set="null" line="271" static="1"><x path="Int"/></ONE_MINUS_CONSTANT_COLOR>
+		<CONSTANT_ALPHA public="1" get="inline" set="null" line="272" static="1"><x path="Int"/></CONSTANT_ALPHA>
+		<ONE_MINUS_CONSTANT_ALPHA public="1" get="inline" set="null" line="273" static="1"><x path="Int"/></ONE_MINUS_CONSTANT_ALPHA>
+		<BLEND_COLOR public="1" get="inline" set="null" line="274" static="1"><x path="Int"/></BLEND_COLOR>
+		<ARRAY_BUFFER public="1" get="inline" set="null" line="277" static="1"><x path="Int"/></ARRAY_BUFFER>
+		<ELEMENT_ARRAY_BUFFER public="1" get="inline" set="null" line="278" static="1"><x path="Int"/></ELEMENT_ARRAY_BUFFER>
+		<ARRAY_BUFFER_BINDING public="1" get="inline" set="null" line="279" static="1"><x path="Int"/></ARRAY_BUFFER_BINDING>
+		<ELEMENT_ARRAY_BUFFER_BINDING public="1" get="inline" set="null" line="280" static="1"><x path="Int"/></ELEMENT_ARRAY_BUFFER_BINDING>
+		<STREAM_DRAW public="1" get="inline" set="null" line="282" static="1"><x path="Int"/></STREAM_DRAW>
+		<STATIC_DRAW public="1" get="inline" set="null" line="283" static="1"><x path="Int"/></STATIC_DRAW>
+		<DYNAMIC_DRAW public="1" get="inline" set="null" line="284" static="1"><x path="Int"/></DYNAMIC_DRAW>
+		<BUFFER_SIZE public="1" get="inline" set="null" line="286" static="1"><x path="Int"/></BUFFER_SIZE>
+		<BUFFER_USAGE public="1" get="inline" set="null" line="287" static="1"><x path="Int"/></BUFFER_USAGE>
+		<CURRENT_VERTEX_ATTRIB public="1" get="inline" set="null" line="289" static="1"><x path="Int"/></CURRENT_VERTEX_ATTRIB>
+		<FRONT public="1" get="inline" set="null" line="292" static="1"><x path="Int"/></FRONT>
+		<BACK public="1" get="inline" set="null" line="293" static="1"><x path="Int"/></BACK>
+		<FRONT_AND_BACK public="1" get="inline" set="null" line="294" static="1"><x path="Int"/></FRONT_AND_BACK>
+		<CULL_FACE public="1" get="inline" set="null" line="307" static="1"><x path="Int"/></CULL_FACE>
+		<BLEND public="1" get="inline" set="null" line="308" static="1"><x path="Int"/></BLEND>
+		<DITHER public="1" get="inline" set="null" line="309" static="1"><x path="Int"/></DITHER>
+		<STENCIL_TEST public="1" get="inline" set="null" line="310" static="1"><x path="Int"/></STENCIL_TEST>
+		<DEPTH_TEST public="1" get="inline" set="null" line="311" static="1"><x path="Int"/></DEPTH_TEST>
+		<SCISSOR_TEST public="1" get="inline" set="null" line="312" static="1"><x path="Int"/></SCISSOR_TEST>
+		<POLYGON_OFFSET_FILL public="1" get="inline" set="null" line="313" static="1"><x path="Int"/></POLYGON_OFFSET_FILL>
+		<SAMPLE_ALPHA_TO_COVERAGE public="1" get="inline" set="null" line="314" static="1"><x path="Int"/></SAMPLE_ALPHA_TO_COVERAGE>
+		<SAMPLE_COVERAGE public="1" get="inline" set="null" line="315" static="1"><x path="Int"/></SAMPLE_COVERAGE>
+		<NO_ERROR public="1" get="inline" set="null" line="318" static="1"><x path="Int"/></NO_ERROR>
+		<INVALID_ENUM public="1" get="inline" set="null" line="319" static="1"><x path="Int"/></INVALID_ENUM>
+		<INVALID_VALUE public="1" get="inline" set="null" line="320" static="1"><x path="Int"/></INVALID_VALUE>
+		<INVALID_OPERATION public="1" get="inline" set="null" line="321" static="1"><x path="Int"/></INVALID_OPERATION>
+		<OUT_OF_MEMORY public="1" get="inline" set="null" line="322" static="1"><x path="Int"/></OUT_OF_MEMORY>
+		<CW public="1" get="inline" set="null" line="325" static="1"><x path="Int"/></CW>
+		<CCW public="1" get="inline" set="null" line="326" static="1"><x path="Int"/></CCW>
+		<LINE_WIDTH public="1" get="inline" set="null" line="329" static="1"><x path="Int"/></LINE_WIDTH>
+		<ALIASED_POINT_SIZE_RANGE public="1" get="inline" set="null" line="330" static="1"><x path="Int"/></ALIASED_POINT_SIZE_RANGE>
+		<ALIASED_LINE_WIDTH_RANGE public="1" get="inline" set="null" line="331" static="1"><x path="Int"/></ALIASED_LINE_WIDTH_RANGE>
+		<CULL_FACE_MODE public="1" get="inline" set="null" line="332" static="1"><x path="Int"/></CULL_FACE_MODE>
+		<FRONT_FACE public="1" get="inline" set="null" line="333" static="1"><x path="Int"/></FRONT_FACE>
+		<DEPTH_RANGE public="1" get="inline" set="null" line="334" static="1"><x path="Int"/></DEPTH_RANGE>
+		<DEPTH_WRITEMASK public="1" get="inline" set="null" line="335" static="1"><x path="Int"/></DEPTH_WRITEMASK>
+		<DEPTH_CLEAR_VALUE public="1" get="inline" set="null" line="336" static="1"><x path="Int"/></DEPTH_CLEAR_VALUE>
+		<DEPTH_FUNC public="1" get="inline" set="null" line="337" static="1"><x path="Int"/></DEPTH_FUNC>
+		<STENCIL_CLEAR_VALUE public="1" get="inline" set="null" line="338" static="1"><x path="Int"/></STENCIL_CLEAR_VALUE>
+		<STENCIL_FUNC public="1" get="inline" set="null" line="339" static="1"><x path="Int"/></STENCIL_FUNC>
+		<STENCIL_FAIL public="1" get="inline" set="null" line="340" static="1"><x path="Int"/></STENCIL_FAIL>
+		<STENCIL_PASS_DEPTH_FAIL public="1" get="inline" set="null" line="341" static="1"><x path="Int"/></STENCIL_PASS_DEPTH_FAIL>
+		<STENCIL_PASS_DEPTH_PASS public="1" get="inline" set="null" line="342" static="1"><x path="Int"/></STENCIL_PASS_DEPTH_PASS>
+		<STENCIL_REF public="1" get="inline" set="null" line="343" static="1"><x path="Int"/></STENCIL_REF>
+		<STENCIL_VALUE_MASK public="1" get="inline" set="null" line="344" static="1"><x path="Int"/></STENCIL_VALUE_MASK>
+		<STENCIL_WRITEMASK public="1" get="inline" set="null" line="345" static="1"><x path="Int"/></STENCIL_WRITEMASK>
+		<STENCIL_BACK_FUNC public="1" get="inline" set="null" line="346" static="1"><x path="Int"/></STENCIL_BACK_FUNC>
+		<STENCIL_BACK_FAIL public="1" get="inline" set="null" line="347" static="1"><x path="Int"/></STENCIL_BACK_FAIL>
+		<STENCIL_BACK_PASS_DEPTH_FAIL public="1" get="inline" set="null" line="348" static="1"><x path="Int"/></STENCIL_BACK_PASS_DEPTH_FAIL>
+		<STENCIL_BACK_PASS_DEPTH_PASS public="1" get="inline" set="null" line="349" static="1"><x path="Int"/></STENCIL_BACK_PASS_DEPTH_PASS>
+		<STENCIL_BACK_REF public="1" get="inline" set="null" line="350" static="1"><x path="Int"/></STENCIL_BACK_REF>
+		<STENCIL_BACK_VALUE_MASK public="1" get="inline" set="null" line="351" static="1"><x path="Int"/></STENCIL_BACK_VALUE_MASK>
+		<STENCIL_BACK_WRITEMASK public="1" get="inline" set="null" line="352" static="1"><x path="Int"/></STENCIL_BACK_WRITEMASK>
+		<VIEWPORT public="1" get="inline" set="null" line="353" static="1"><x path="Int"/></VIEWPORT>
+		<SCISSOR_BOX public="1" get="inline" set="null" line="354" static="1"><x path="Int"/></SCISSOR_BOX>
+		<COLOR_CLEAR_VALUE public="1" get="inline" set="null" line="356" static="1"><x path="Int"/></COLOR_CLEAR_VALUE>
+		<COLOR_WRITEMASK public="1" get="inline" set="null" line="357" static="1"><x path="Int"/></COLOR_WRITEMASK>
+		<UNPACK_ALIGNMENT public="1" get="inline" set="null" line="358" static="1"><x path="Int"/></UNPACK_ALIGNMENT>
+		<PACK_ALIGNMENT public="1" get="inline" set="null" line="359" static="1"><x path="Int"/></PACK_ALIGNMENT>
+		<MAX_TEXTURE_SIZE public="1" get="inline" set="null" line="360" static="1"><x path="Int"/></MAX_TEXTURE_SIZE>
+		<MAX_VIEWPORT_DIMS public="1" get="inline" set="null" line="361" static="1"><x path="Int"/></MAX_VIEWPORT_DIMS>
+		<SUBPIXEL_BITS public="1" get="inline" set="null" line="362" static="1"><x path="Int"/></SUBPIXEL_BITS>
+		<RED_BITS public="1" get="inline" set="null" line="363" static="1"><x path="Int"/></RED_BITS>
+		<GREEN_BITS public="1" get="inline" set="null" line="364" static="1"><x path="Int"/></GREEN_BITS>
+		<BLUE_BITS public="1" get="inline" set="null" line="365" static="1"><x path="Int"/></BLUE_BITS>
+		<ALPHA_BITS public="1" get="inline" set="null" line="366" static="1"><x path="Int"/></ALPHA_BITS>
+		<DEPTH_BITS public="1" get="inline" set="null" line="367" static="1"><x path="Int"/></DEPTH_BITS>
+		<STENCIL_BITS public="1" get="inline" set="null" line="368" static="1"><x path="Int"/></STENCIL_BITS>
+		<POLYGON_OFFSET_UNITS public="1" get="inline" set="null" line="369" static="1"><x path="Int"/></POLYGON_OFFSET_UNITS>
+		<POLYGON_OFFSET_FACTOR public="1" get="inline" set="null" line="371" static="1"><x path="Int"/></POLYGON_OFFSET_FACTOR>
+		<TEXTURE_BINDING_2D public="1" get="inline" set="null" line="372" static="1"><x path="Int"/></TEXTURE_BINDING_2D>
+		<SAMPLE_BUFFERS public="1" get="inline" set="null" line="373" static="1"><x path="Int"/></SAMPLE_BUFFERS>
+		<SAMPLES public="1" get="inline" set="null" line="374" static="1"><x path="Int"/></SAMPLES>
+		<SAMPLE_COVERAGE_VALUE public="1" get="inline" set="null" line="375" static="1"><x path="Int"/></SAMPLE_COVERAGE_VALUE>
+		<SAMPLE_COVERAGE_INVERT public="1" get="inline" set="null" line="376" static="1"><x path="Int"/></SAMPLE_COVERAGE_INVERT>
+		<COMPRESSED_TEXTURE_FORMATS public="1" get="inline" set="null" line="383" static="1"><x path="Int"/></COMPRESSED_TEXTURE_FORMATS>
+		<DONT_CARE public="1" get="inline" set="null" line="386" static="1"><x path="Int"/></DONT_CARE>
+		<FASTEST public="1" get="inline" set="null" line="387" static="1"><x path="Int"/></FASTEST>
+		<NICEST public="1" get="inline" set="null" line="388" static="1"><x path="Int"/></NICEST>
+		<GENERATE_MIPMAP_HINT public="1" get="inline" set="null" line="391" static="1"><x path="Int"/></GENERATE_MIPMAP_HINT>
+		<BYTE public="1" get="inline" set="null" line="394" static="1"><x path="Int"/></BYTE>
+		<UNSIGNED_BYTE public="1" get="inline" set="null" line="395" static="1"><x path="Int"/></UNSIGNED_BYTE>
+		<SHORT public="1" get="inline" set="null" line="396" static="1"><x path="Int"/></SHORT>
+		<UNSIGNED_SHORT public="1" get="inline" set="null" line="397" static="1"><x path="Int"/></UNSIGNED_SHORT>
+		<INT public="1" get="inline" set="null" line="398" static="1"><x path="Int"/></INT>
+		<UNSIGNED_INT public="1" get="inline" set="null" line="399" static="1"><x path="Int"/></UNSIGNED_INT>
+		<FLOAT public="1" get="inline" set="null" line="400" static="1"><x path="Int"/></FLOAT>
+		<DEPTH_COMPONENT public="1" get="inline" set="null" line="403" static="1"><x path="Int"/></DEPTH_COMPONENT>
+		<ALPHA public="1" get="inline" set="null" line="404" static="1"><x path="Int"/></ALPHA>
+		<RGB public="1" get="inline" set="null" line="405" static="1"><x path="Int"/></RGB>
+		<RGBA public="1" get="inline" set="null" line="406" static="1"><x path="Int"/></RGBA>
+		<LUMINANCE public="1" get="inline" set="null" line="407" static="1"><x path="Int"/></LUMINANCE>
+		<LUMINANCE_ALPHA public="1" get="inline" set="null" line="408" static="1"><x path="Int"/></LUMINANCE_ALPHA>
+		<UNSIGNED_SHORT_4_4_4_4 public="1" get="inline" set="null" line="412" static="1"><x path="Int"/></UNSIGNED_SHORT_4_4_4_4>
+		<UNSIGNED_SHORT_5_5_5_1 public="1" get="inline" set="null" line="413" static="1"><x path="Int"/></UNSIGNED_SHORT_5_5_5_1>
+		<UNSIGNED_SHORT_5_6_5 public="1" get="inline" set="null" line="414" static="1"><x path="Int"/></UNSIGNED_SHORT_5_6_5>
+		<FRAGMENT_SHADER public="1" get="inline" set="null" line="417" static="1"><x path="Int"/></FRAGMENT_SHADER>
+		<VERTEX_SHADER public="1" get="inline" set="null" line="418" static="1"><x path="Int"/></VERTEX_SHADER>
+		<MAX_VERTEX_ATTRIBS public="1" get="inline" set="null" line="419" static="1"><x path="Int"/></MAX_VERTEX_ATTRIBS>
+		<MAX_VERTEX_UNIFORM_VECTORS public="1" get="inline" set="null" line="420" static="1"><x path="Int"/></MAX_VERTEX_UNIFORM_VECTORS>
+		<MAX_VARYING_VECTORS public="1" get="inline" set="null" line="421" static="1"><x path="Int"/></MAX_VARYING_VECTORS>
+		<MAX_COMBINED_TEXTURE_IMAGE_UNITS public="1" get="inline" set="null" line="422" static="1"><x path="Int"/></MAX_COMBINED_TEXTURE_IMAGE_UNITS>
+		<MAX_VERTEX_TEXTURE_IMAGE_UNITS public="1" get="inline" set="null" line="423" static="1"><x path="Int"/></MAX_VERTEX_TEXTURE_IMAGE_UNITS>
+		<MAX_TEXTURE_IMAGE_UNITS public="1" get="inline" set="null" line="424" static="1"><x path="Int"/></MAX_TEXTURE_IMAGE_UNITS>
+		<MAX_FRAGMENT_UNIFORM_VECTORS public="1" get="inline" set="null" line="425" static="1"><x path="Int"/></MAX_FRAGMENT_UNIFORM_VECTORS>
+		<SHADER_TYPE public="1" get="inline" set="null" line="426" static="1"><x path="Int"/></SHADER_TYPE>
+		<DELETE_STATUS public="1" get="inline" set="null" line="427" static="1"><x path="Int"/></DELETE_STATUS>
+		<LINK_STATUS public="1" get="inline" set="null" line="428" static="1"><x path="Int"/></LINK_STATUS>
+		<VALIDATE_STATUS public="1" get="inline" set="null" line="429" static="1"><x path="Int"/></VALIDATE_STATUS>
+		<ATTACHED_SHADERS public="1" get="inline" set="null" line="430" static="1"><x path="Int"/></ATTACHED_SHADERS>
+		<ACTIVE_UNIFORMS public="1" get="inline" set="null" line="431" static="1"><x path="Int"/></ACTIVE_UNIFORMS>
+		<ACTIVE_ATTRIBUTES public="1" get="inline" set="null" line="432" static="1"><x path="Int"/></ACTIVE_ATTRIBUTES>
+		<SHADING_LANGUAGE_VERSION public="1" get="inline" set="null" line="433" static="1"><x path="Int"/></SHADING_LANGUAGE_VERSION>
+		<CURRENT_PROGRAM public="1" get="inline" set="null" line="434" static="1"><x path="Int"/></CURRENT_PROGRAM>
+		<NEVER public="1" get="inline" set="null" line="437" static="1"><x path="Int"/></NEVER>
+		<LESS public="1" get="inline" set="null" line="438" static="1"><x path="Int"/></LESS>
+		<EQUAL public="1" get="inline" set="null" line="439" static="1"><x path="Int"/></EQUAL>
+		<LEQUAL public="1" get="inline" set="null" line="440" static="1"><x path="Int"/></LEQUAL>
+		<GREATER public="1" get="inline" set="null" line="441" static="1"><x path="Int"/></GREATER>
+		<NOTEQUAL public="1" get="inline" set="null" line="442" static="1"><x path="Int"/></NOTEQUAL>
+		<GEQUAL public="1" get="inline" set="null" line="443" static="1"><x path="Int"/></GEQUAL>
+		<ALWAYS public="1" get="inline" set="null" line="444" static="1"><x path="Int"/></ALWAYS>
+		<KEEP public="1" get="inline" set="null" line="448" static="1"><x path="Int"/></KEEP>
+		<REPLACE public="1" get="inline" set="null" line="449" static="1"><x path="Int"/></REPLACE>
+		<INCR public="1" get="inline" set="null" line="450" static="1"><x path="Int"/></INCR>
+		<DECR public="1" get="inline" set="null" line="451" static="1"><x path="Int"/></DECR>
+		<INVERT public="1" get="inline" set="null" line="452" static="1"><x path="Int"/></INVERT>
+		<INCR_WRAP public="1" get="inline" set="null" line="453" static="1"><x path="Int"/></INCR_WRAP>
+		<DECR_WRAP public="1" get="inline" set="null" line="454" static="1"><x path="Int"/></DECR_WRAP>
+		<VENDOR public="1" get="inline" set="null" line="457" static="1"><x path="Int"/></VENDOR>
+		<RENDERER public="1" get="inline" set="null" line="458" static="1"><x path="Int"/></RENDERER>
+		<VERSION public="1" get="inline" set="null" line="459" static="1"><x path="Int"/></VERSION>
+		<NEAREST public="1" get="inline" set="null" line="462" static="1"><x path="Int"/></NEAREST>
+		<LINEAR public="1" get="inline" set="null" line="463" static="1"><x path="Int"/></LINEAR>
+		<NEAREST_MIPMAP_NEAREST public="1" get="inline" set="null" line="468" static="1"><x path="Int"/></NEAREST_MIPMAP_NEAREST>
+		<LINEAR_MIPMAP_NEAREST public="1" get="inline" set="null" line="469" static="1"><x path="Int"/></LINEAR_MIPMAP_NEAREST>
+		<NEAREST_MIPMAP_LINEAR public="1" get="inline" set="null" line="470" static="1"><x path="Int"/></NEAREST_MIPMAP_LINEAR>
+		<LINEAR_MIPMAP_LINEAR public="1" get="inline" set="null" line="471" static="1"><x path="Int"/></LINEAR_MIPMAP_LINEAR>
+		<TEXTURE_MAG_FILTER public="1" get="inline" set="null" line="474" static="1"><x path="Int"/></TEXTURE_MAG_FILTER>
+		<TEXTURE_MIN_FILTER public="1" get="inline" set="null" line="475" static="1"><x path="Int"/></TEXTURE_MIN_FILTER>
+		<TEXTURE_WRAP_S public="1" get="inline" set="null" line="476" static="1"><x path="Int"/></TEXTURE_WRAP_S>
+		<TEXTURE_WRAP_T public="1" get="inline" set="null" line="477" static="1"><x path="Int"/></TEXTURE_WRAP_T>
+		<TEXTURE_2D public="1" get="inline" set="null" line="480" static="1"><x path="Int"/></TEXTURE_2D>
+		<TEXTURE public="1" get="inline" set="null" line="481" static="1"><x path="Int"/></TEXTURE>
+		<TEXTURE_CUBE_MAP public="1" get="inline" set="null" line="483" static="1"><x path="Int"/></TEXTURE_CUBE_MAP>
+		<TEXTURE_BINDING_CUBE_MAP public="1" get="inline" set="null" line="484" static="1"><x path="Int"/></TEXTURE_BINDING_CUBE_MAP>
+		<TEXTURE_CUBE_MAP_POSITIVE_X public="1" get="inline" set="null" line="485" static="1"><x path="Int"/></TEXTURE_CUBE_MAP_POSITIVE_X>
+		<TEXTURE_CUBE_MAP_NEGATIVE_X public="1" get="inline" set="null" line="486" static="1"><x path="Int"/></TEXTURE_CUBE_MAP_NEGATIVE_X>
+		<TEXTURE_CUBE_MAP_POSITIVE_Y public="1" get="inline" set="null" line="487" static="1"><x path="Int"/></TEXTURE_CUBE_MAP_POSITIVE_Y>
+		<TEXTURE_CUBE_MAP_NEGATIVE_Y public="1" get="inline" set="null" line="488" static="1"><x path="Int"/></TEXTURE_CUBE_MAP_NEGATIVE_Y>
+		<TEXTURE_CUBE_MAP_POSITIVE_Z public="1" get="inline" set="null" line="489" static="1"><x path="Int"/></TEXTURE_CUBE_MAP_POSITIVE_Z>
+		<TEXTURE_CUBE_MAP_NEGATIVE_Z public="1" get="inline" set="null" line="490" static="1"><x path="Int"/></TEXTURE_CUBE_MAP_NEGATIVE_Z>
+		<MAX_CUBE_MAP_TEXTURE_SIZE public="1" get="inline" set="null" line="491" static="1"><x path="Int"/></MAX_CUBE_MAP_TEXTURE_SIZE>
+		<TEXTURE0 public="1" get="inline" set="null" line="494" static="1"><x path="Int"/></TEXTURE0>
+		<TEXTURE1 public="1" get="inline" set="null" line="495" static="1"><x path="Int"/></TEXTURE1>
+		<TEXTURE2 public="1" get="inline" set="null" line="496" static="1"><x path="Int"/></TEXTURE2>
+		<TEXTURE3 public="1" get="inline" set="null" line="497" static="1"><x path="Int"/></TEXTURE3>
+		<TEXTURE4 public="1" get="inline" set="null" line="498" static="1"><x path="Int"/></TEXTURE4>
+		<TEXTURE5 public="1" get="inline" set="null" line="499" static="1"><x path="Int"/></TEXTURE5>
+		<TEXTURE6 public="1" get="inline" set="null" line="500" static="1"><x path="Int"/></TEXTURE6>
+		<TEXTURE7 public="1" get="inline" set="null" line="501" static="1"><x path="Int"/></TEXTURE7>
+		<TEXTURE8 public="1" get="inline" set="null" line="502" static="1"><x path="Int"/></TEXTURE8>
+		<TEXTURE9 public="1" get="inline" set="null" line="503" static="1"><x path="Int"/></TEXTURE9>
+		<TEXTURE10 public="1" get="inline" set="null" line="504" static="1"><x path="Int"/></TEXTURE10>
+		<TEXTURE11 public="1" get="inline" set="null" line="505" static="1"><x path="Int"/></TEXTURE11>
+		<TEXTURE12 public="1" get="inline" set="null" line="506" static="1"><x path="Int"/></TEXTURE12>
+		<TEXTURE13 public="1" get="inline" set="null" line="507" static="1"><x path="Int"/></TEXTURE13>
+		<TEXTURE14 public="1" get="inline" set="null" line="508" static="1"><x path="Int"/></TEXTURE14>
+		<TEXTURE15 public="1" get="inline" set="null" line="509" static="1"><x path="Int"/></TEXTURE15>
+		<TEXTURE16 public="1" get="inline" set="null" line="510" static="1"><x path="Int"/></TEXTURE16>
+		<TEXTURE17 public="1" get="inline" set="null" line="511" static="1"><x path="Int"/></TEXTURE17>
+		<TEXTURE18 public="1" get="inline" set="null" line="512" static="1"><x path="Int"/></TEXTURE18>
+		<TEXTURE19 public="1" get="inline" set="null" line="513" static="1"><x path="Int"/></TEXTURE19>
+		<TEXTURE20 public="1" get="inline" set="null" line="514" static="1"><x path="Int"/></TEXTURE20>
+		<TEXTURE21 public="1" get="inline" set="null" line="515" static="1"><x path="Int"/></TEXTURE21>
+		<TEXTURE22 public="1" get="inline" set="null" line="516" static="1"><x path="Int"/></TEXTURE22>
+		<TEXTURE23 public="1" get="inline" set="null" line="517" static="1"><x path="Int"/></TEXTURE23>
+		<TEXTURE24 public="1" get="inline" set="null" line="518" static="1"><x path="Int"/></TEXTURE24>
+		<TEXTURE25 public="1" get="inline" set="null" line="519" static="1"><x path="Int"/></TEXTURE25>
+		<TEXTURE26 public="1" get="inline" set="null" line="520" static="1"><x path="Int"/></TEXTURE26>
+		<TEXTURE27 public="1" get="inline" set="null" line="521" static="1"><x path="Int"/></TEXTURE27>
+		<TEXTURE28 public="1" get="inline" set="null" line="522" static="1"><x path="Int"/></TEXTURE28>
+		<TEXTURE29 public="1" get="inline" set="null" line="523" static="1"><x path="Int"/></TEXTURE29>
+		<TEXTURE30 public="1" get="inline" set="null" line="524" static="1"><x path="Int"/></TEXTURE30>
+		<TEXTURE31 public="1" get="inline" set="null" line="525" static="1"><x path="Int"/></TEXTURE31>
+		<ACTIVE_TEXTURE public="1" get="inline" set="null" line="526" static="1"><x path="Int"/></ACTIVE_TEXTURE>
+		<REPEAT public="1" get="inline" set="null" line="529" static="1"><x path="Int"/></REPEAT>
+		<CLAMP_TO_EDGE public="1" get="inline" set="null" line="530" static="1"><x path="Int"/></CLAMP_TO_EDGE>
+		<MIRRORED_REPEAT public="1" get="inline" set="null" line="531" static="1"><x path="Int"/></MIRRORED_REPEAT>
+		<FLOAT_VEC2 public="1" get="inline" set="null" line="534" static="1"><x path="Int"/></FLOAT_VEC2>
+		<FLOAT_VEC3 public="1" get="inline" set="null" line="535" static="1"><x path="Int"/></FLOAT_VEC3>
+		<FLOAT_VEC4 public="1" get="inline" set="null" line="536" static="1"><x path="Int"/></FLOAT_VEC4>
+		<INT_VEC2 public="1" get="inline" set="null" line="537" static="1"><x path="Int"/></INT_VEC2>
+		<INT_VEC3 public="1" get="inline" set="null" line="538" static="1"><x path="Int"/></INT_VEC3>
+		<INT_VEC4 public="1" get="inline" set="null" line="539" static="1"><x path="Int"/></INT_VEC4>
+		<BOOL public="1" get="inline" set="null" line="540" static="1"><x path="Int"/></BOOL>
+		<BOOL_VEC2 public="1" get="inline" set="null" line="541" static="1"><x path="Int"/></BOOL_VEC2>
+		<BOOL_VEC3 public="1" get="inline" set="null" line="542" static="1"><x path="Int"/></BOOL_VEC3>
+		<BOOL_VEC4 public="1" get="inline" set="null" line="543" static="1"><x path="Int"/></BOOL_VEC4>
+		<FLOAT_MAT2 public="1" get="inline" set="null" line="544" static="1"><x path="Int"/></FLOAT_MAT2>
+		<FLOAT_MAT3 public="1" get="inline" set="null" line="545" static="1"><x path="Int"/></FLOAT_MAT3>
+		<FLOAT_MAT4 public="1" get="inline" set="null" line="546" static="1"><x path="Int"/></FLOAT_MAT4>
+		<SAMPLER_2D public="1" get="inline" set="null" line="547" static="1"><x path="Int"/></SAMPLER_2D>
+		<SAMPLER_CUBE public="1" get="inline" set="null" line="548" static="1"><x path="Int"/></SAMPLER_CUBE>
+		<VERTEX_ATTRIB_ARRAY_ENABLED public="1" get="inline" set="null" line="551" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_ENABLED>
+		<VERTEX_ATTRIB_ARRAY_SIZE public="1" get="inline" set="null" line="552" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_SIZE>
+		<VERTEX_ATTRIB_ARRAY_STRIDE public="1" get="inline" set="null" line="553" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_STRIDE>
+		<VERTEX_ATTRIB_ARRAY_TYPE public="1" get="inline" set="null" line="554" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_TYPE>
+		<VERTEX_ATTRIB_ARRAY_NORMALIZED public="1" get="inline" set="null" line="555" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_NORMALIZED>
+		<VERTEX_ATTRIB_ARRAY_POINTER public="1" get="inline" set="null" line="556" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_POINTER>
+		<VERTEX_ATTRIB_ARRAY_BUFFER_BINDING public="1" get="inline" set="null" line="557" static="1"><x path="Int"/></VERTEX_ATTRIB_ARRAY_BUFFER_BINDING>
+		<VERTEX_PROGRAM_POINT_SIZE public="1" get="inline" set="null" line="560" static="1"><x path="Int"/></VERTEX_PROGRAM_POINT_SIZE>
+		<POINT_SPRITE public="1" get="inline" set="null" line="561" static="1"><x path="Int"/></POINT_SPRITE>
+		<COMPILE_STATUS public="1" get="inline" set="null" line="564" static="1"><x path="Int"/></COMPILE_STATUS>
+		<LOW_FLOAT public="1" get="inline" set="null" line="567" static="1"><x path="Int"/></LOW_FLOAT>
+		<MEDIUM_FLOAT public="1" get="inline" set="null" line="568" static="1"><x path="Int"/></MEDIUM_FLOAT>
+		<HIGH_FLOAT public="1" get="inline" set="null" line="569" static="1"><x path="Int"/></HIGH_FLOAT>
+		<LOW_INT public="1" get="inline" set="null" line="570" static="1"><x path="Int"/></LOW_INT>
+		<MEDIUM_INT public="1" get="inline" set="null" line="571" static="1"><x path="Int"/></MEDIUM_INT>
+		<HIGH_INT public="1" get="inline" set="null" line="572" static="1"><x path="Int"/></HIGH_INT>
+		<FRAMEBUFFER public="1" get="inline" set="null" line="575" static="1"><x path="Int"/></FRAMEBUFFER>
+		<RENDERBUFFER public="1" get="inline" set="null" line="576" static="1"><x path="Int"/></RENDERBUFFER>
+		<RGBA4 public="1" get="inline" set="null" line="578" static="1"><x path="Int"/></RGBA4>
+		<RGB5_A1 public="1" get="inline" set="null" line="579" static="1"><x path="Int"/></RGB5_A1>
+		<RGB565 public="1" get="inline" set="null" line="580" static="1"><x path="Int"/></RGB565>
+		<DEPTH_COMPONENT16 public="1" get="inline" set="null" line="581" static="1"><x path="Int"/></DEPTH_COMPONENT16>
+		<STENCIL_INDEX public="1" get="inline" set="null" line="582" static="1"><x path="Int"/></STENCIL_INDEX>
+		<STENCIL_INDEX8 public="1" get="inline" set="null" line="583" static="1"><x path="Int"/></STENCIL_INDEX8>
+		<DEPTH_STENCIL public="1" get="inline" set="null" line="584" static="1"><x path="Int"/></DEPTH_STENCIL>
+		<RENDERBUFFER_WIDTH public="1" get="inline" set="null" line="586" static="1"><x path="Int"/></RENDERBUFFER_WIDTH>
+		<RENDERBUFFER_HEIGHT public="1" get="inline" set="null" line="587" static="1"><x path="Int"/></RENDERBUFFER_HEIGHT>
+		<RENDERBUFFER_INTERNAL_FORMAT public="1" get="inline" set="null" line="588" static="1"><x path="Int"/></RENDERBUFFER_INTERNAL_FORMAT>
+		<RENDERBUFFER_RED_SIZE public="1" get="inline" set="null" line="589" static="1"><x path="Int"/></RENDERBUFFER_RED_SIZE>
+		<RENDERBUFFER_GREEN_SIZE public="1" get="inline" set="null" line="590" static="1"><x path="Int"/></RENDERBUFFER_GREEN_SIZE>
+		<RENDERBUFFER_BLUE_SIZE public="1" get="inline" set="null" line="591" static="1"><x path="Int"/></RENDERBUFFER_BLUE_SIZE>
+		<RENDERBUFFER_ALPHA_SIZE public="1" get="inline" set="null" line="592" static="1"><x path="Int"/></RENDERBUFFER_ALPHA_SIZE>
+		<RENDERBUFFER_DEPTH_SIZE public="1" get="inline" set="null" line="593" static="1"><x path="Int"/></RENDERBUFFER_DEPTH_SIZE>
+		<RENDERBUFFER_STENCIL_SIZE public="1" get="inline" set="null" line="594" static="1"><x path="Int"/></RENDERBUFFER_STENCIL_SIZE>
+		<FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE public="1" get="inline" set="null" line="596" static="1"><x path="Int"/></FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE>
+		<FRAMEBUFFER_ATTACHMENT_OBJECT_NAME public="1" get="inline" set="null" line="597" static="1"><x path="Int"/></FRAMEBUFFER_ATTACHMENT_OBJECT_NAME>
+		<FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL public="1" get="inline" set="null" line="598" static="1"><x path="Int"/></FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL>
+		<FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE public="1" get="inline" set="null" line="599" static="1"><x path="Int"/></FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE>
+		<COLOR_ATTACHMENT0 public="1" get="inline" set="null" line="601" static="1"><x path="Int"/></COLOR_ATTACHMENT0>
+		<DEPTH_ATTACHMENT public="1" get="inline" set="null" line="602" static="1"><x path="Int"/></DEPTH_ATTACHMENT>
+		<STENCIL_ATTACHMENT public="1" get="inline" set="null" line="603" static="1"><x path="Int"/></STENCIL_ATTACHMENT>
+		<DEPTH_STENCIL_ATTACHMENT public="1" get="inline" set="null" line="604" static="1"><x path="Int"/></DEPTH_STENCIL_ATTACHMENT>
+		<NONE public="1" get="inline" set="null" line="606" static="1"><x path="Int"/></NONE>
+		<FRAMEBUFFER_COMPLETE public="1" get="inline" set="null" line="608" static="1"><x path="Int"/></FRAMEBUFFER_COMPLETE>
+		<FRAMEBUFFER_INCOMPLETE_ATTACHMENT public="1" get="inline" set="null" line="609" static="1"><x path="Int"/></FRAMEBUFFER_INCOMPLETE_ATTACHMENT>
+		<FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT public="1" get="inline" set="null" line="610" static="1"><x path="Int"/></FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT>
+		<FRAMEBUFFER_INCOMPLETE_DIMENSIONS public="1" get="inline" set="null" line="611" static="1"><x path="Int"/></FRAMEBUFFER_INCOMPLETE_DIMENSIONS>
+		<FRAMEBUFFER_UNSUPPORTED public="1" get="inline" set="null" line="612" static="1"><x path="Int"/></FRAMEBUFFER_UNSUPPORTED>
+		<FRAMEBUFFER_BINDING public="1" get="inline" set="null" line="614" static="1"><x path="Int"/></FRAMEBUFFER_BINDING>
+		<RENDERBUFFER_BINDING public="1" get="inline" set="null" line="615" static="1"><x path="Int"/></RENDERBUFFER_BINDING>
+		<MAX_RENDERBUFFER_SIZE public="1" get="inline" set="null" line="616" static="1"><x path="Int"/></MAX_RENDERBUFFER_SIZE>
+		<INVALID_FRAMEBUFFER_OPERATION public="1" get="inline" set="null" line="618" static="1"><x path="Int"/></INVALID_FRAMEBUFFER_OPERATION>
+		<UNPACK_FLIP_Y_WEBGL public="1" get="inline" set="null" line="621" static="1"><x path="Int"/></UNPACK_FLIP_Y_WEBGL>
+		<UNPACK_PREMULTIPLY_ALPHA_WEBGL public="1" get="inline" set="null" line="622" static="1"><x path="Int"/></UNPACK_PREMULTIPLY_ALPHA_WEBGL>
+		<CONTEXT_LOST_WEBGL public="1" get="inline" set="null" line="623" static="1"><x path="Int"/></CONTEXT_LOST_WEBGL>
+		<UNPACK_COLORSPACE_CONVERSION_WEBGL public="1" get="inline" set="null" line="624" static="1"><x path="Int"/></UNPACK_COLORSPACE_CONVERSION_WEBGL>
+		<BROWSER_DEFAULT_WEBGL public="1" get="inline" set="null" line="625" static="1"><x path="Int"/></BROWSER_DEFAULT_WEBGL>
+		<versionString public="1" set="method" line="627" static="1"><f a=""><c path="String"/></f></versionString>
+		<activeTexture public="1" set="method" line="631" static="1"><f a="texture">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></activeTexture>
-		<attachShader public="1" set="method" line="630" static="1"><f a="program:shader">
+		<attachShader public="1" set="method" line="636" static="1"><f a="program:shader">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<c path="snow.platform.native.render.opengl.GLShader"/>
 	<x path="Void"/>
 </f></attachShader>
-		<bindAttribLocation public="1" set="method" line="636" static="1"><f a="program:index:name">
+		<bindAttribLocation public="1" set="method" line="642" static="1"><f a="program:index:name">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<x path="Int"/>
 	<c path="String"/>
 	<x path="Void"/>
 </f></bindAttribLocation>
-		<bindBuffer public="1" set="method" line="641" static="1"><f a="target:buffer">
+		<bindBuffer public="1" set="method" line="647" static="1"><f a="target:buffer">
 	<x path="Int"/>
 	<c path="snow.platform.native.render.opengl.GLBuffer"/>
 	<x path="Void"/>
 </f></bindBuffer>
-		<bindFramebuffer public="1" set="method" line="646" static="1"><f a="target:framebuffer">
+		<bindFramebuffer public="1" set="method" line="652" static="1"><f a="target:framebuffer">
 	<x path="Int"/>
 	<x path="snow.platform.native.render.opengl.GLFramebuffer"/>
 	<x path="Void"/>
 </f></bindFramebuffer>
-		<bindRenderbuffer public="1" set="method" line="651" static="1"><f a="target:renderbuffer">
+		<bindRenderbuffer public="1" set="method" line="657" static="1"><f a="target:renderbuffer">
 	<x path="Int"/>
 	<x path="snow.platform.native.render.opengl.GLRenderbuffer"/>
 	<x path="Void"/>
 </f></bindRenderbuffer>
-		<bindTexture public="1" set="method" line="656" static="1"><f a="target:texture">
+		<bindTexture public="1" set="method" line="662" static="1"><f a="target:texture">
 	<x path="Int"/>
 	<c path="snow.platform.native.render.opengl.GLTexture"/>
 	<x path="Void"/>
 </f></bindTexture>
-		<blendColor public="1" set="method" line="661" static="1"><f a="red:green:blue:alpha">
+		<blendColor public="1" set="method" line="667" static="1"><f a="red:green:blue:alpha">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></blendColor>
-		<blendEquation public="1" set="method" line="666" static="1"><f a="mode">
+		<blendEquation public="1" set="method" line="672" static="1"><f a="mode">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></blendEquation>
-		<blendEquationSeparate public="1" set="method" line="671" static="1"><f a="modeRGB:modeAlpha">
+		<blendEquationSeparate public="1" set="method" line="677" static="1"><f a="modeRGB:modeAlpha">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></blendEquationSeparate>
-		<blendFunc public="1" set="method" line="676" static="1"><f a="sfactor:dfactor">
+		<blendFunc public="1" set="method" line="682" static="1"><f a="sfactor:dfactor">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></blendFunc>
-		<blendFuncSeparate public="1" set="method" line="681" static="1"><f a="srcRGB:dstRGB:srcAlpha:dstAlpha">
+		<blendFuncSeparate public="1" set="method" line="687" static="1"><f a="srcRGB:dstRGB:srcAlpha:dstAlpha">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></blendFuncSeparate>
-		<bufferData public="1" set="method" line="686" static="1"><f a="target:data:usage">
+		<bufferData public="1" set="method" line="692" static="1"><f a="target:data:usage">
 	<x path="Int"/>
 	<c path="snow.utils.IMemoryRange"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></bufferData>
-		<bufferSubData public="1" set="method" line="691" static="1"><f a="target:offset:data">
+		<bufferSubData public="1" set="method" line="697" static="1"><f a="target:offset:data">
 	<x path="Int"/>
 	<x path="Int"/>
 	<c path="snow.utils.IMemoryRange"/>
 	<x path="Void"/>
 </f></bufferSubData>
-		<checkFramebufferStatus public="1" set="method" line="696" static="1"><f a="target">
+		<checkFramebufferStatus public="1" set="method" line="702" static="1"><f a="target">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></checkFramebufferStatus>
-		<clear public="1" set="method" line="701" static="1"><f a="mask">
+		<clear public="1" set="method" line="707" static="1"><f a="mask">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></clear>
-		<clearColor public="1" set="method" line="706" static="1"><f a="red:green:blue:alpha">
+		<clearColor public="1" set="method" line="712" static="1"><f a="red:green:blue:alpha">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></clearColor>
-		<clearDepth public="1" set="method" line="711" static="1"><f a="depth">
+		<clearDepth public="1" set="method" line="717" static="1"><f a="depth">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></clearDepth>
-		<clearStencil public="1" set="method" line="716" static="1"><f a="s">
+		<clearStencil public="1" set="method" line="722" static="1"><f a="s">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></clearStencil>
-		<colorMask public="1" set="method" line="721" static="1"><f a="red:green:blue:alpha">
+		<colorMask public="1" set="method" line="727" static="1"><f a="red:green:blue:alpha">
 	<x path="Bool"/>
 	<x path="Bool"/>
 	<x path="Bool"/>
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></colorMask>
-		<compileShader public="1" set="method" line="726" static="1"><f a="shader">
+		<compileShader public="1" set="method" line="732" static="1"><f a="shader">
 	<c path="snow.platform.native.render.opengl.GLShader"/>
 	<x path="Void"/>
 </f></compileShader>
-		<compressedTexImage2D public="1" set="method" line="731" static="1"><f a="target:level:internalformat:width:height:border:data">
+		<compressedTexImage2D public="1" set="method" line="737" static="1"><f a="target:level:internalformat:width:height:border:data">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27263,7 +27327,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<c path="snow.utils.IMemoryRange"/>
 	<x path="Void"/>
 </f></compressedTexImage2D>
-		<compressedTexSubImage2D public="1" set="method" line="736" static="1"><f a="target:level:xoffset:yoffset:width:height:format:data">
+		<compressedTexSubImage2D public="1" set="method" line="742" static="1"><f a="target:level:xoffset:yoffset:width:height:format:data">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27274,7 +27338,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<c path="snow.utils.IMemoryRange"/>
 	<x path="Void"/>
 </f></compressedTexSubImage2D>
-		<copyTexImage2D public="1" set="method" line="741" static="1"><f a="target:level:internalformat:x:y:width:height:border">
+		<copyTexImage2D public="1" set="method" line="747" static="1"><f a="target:level:internalformat:x:y:width:height:border">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27285,7 +27349,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></copyTexImage2D>
-		<copyTexSubImage2D public="1" set="method" line="746" static="1"><f a="target:level:xoffset:yoffset:x:y:width:height">
+		<copyTexSubImage2D public="1" set="method" line="752" static="1"><f a="target:level:xoffset:yoffset:x:y:width:height">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27296,100 +27360,100 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></copyTexSubImage2D>
-		<createBuffer public="1" set="method" line="751" static="1"><f a=""><c path="snow.platform.native.render.opengl.GLBuffer"/></f></createBuffer>
-		<createFramebuffer public="1" set="method" line="756" static="1"><f a=""><x path="snow.platform.native.render.opengl.GLFramebuffer"/></f></createFramebuffer>
-		<createProgram public="1" set="method" line="761" static="1"><f a=""><c path="snow.platform.native.render.opengl.GLProgram"/></f></createProgram>
-		<createRenderbuffer public="1" set="method" line="766" static="1"><f a=""><x path="snow.platform.native.render.opengl.GLRenderbuffer"/></f></createRenderbuffer>
-		<createShader public="1" set="method" line="771" static="1"><f a="type">
+		<createBuffer public="1" set="method" line="757" static="1"><f a=""><c path="snow.platform.native.render.opengl.GLBuffer"/></f></createBuffer>
+		<createFramebuffer public="1" set="method" line="762" static="1"><f a=""><x path="snow.platform.native.render.opengl.GLFramebuffer"/></f></createFramebuffer>
+		<createProgram public="1" set="method" line="767" static="1"><f a=""><c path="snow.platform.native.render.opengl.GLProgram"/></f></createProgram>
+		<createRenderbuffer public="1" set="method" line="772" static="1"><f a=""><x path="snow.platform.native.render.opengl.GLRenderbuffer"/></f></createRenderbuffer>
+		<createShader public="1" set="method" line="777" static="1"><f a="type">
 	<x path="Int"/>
 	<c path="snow.platform.native.render.opengl.GLShader"/>
 </f></createShader>
-		<createTexture public="1" set="method" line="776" static="1"><f a=""><c path="snow.platform.native.render.opengl.GLTexture"/></f></createTexture>
-		<cullFace public="1" set="method" line="781" static="1"><f a="mode">
+		<createTexture public="1" set="method" line="782" static="1"><f a=""><c path="snow.platform.native.render.opengl.GLTexture"/></f></createTexture>
+		<cullFace public="1" set="method" line="787" static="1"><f a="mode">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></cullFace>
-		<deleteBuffer public="1" set="method" line="786" static="1"><f a="buffer">
+		<deleteBuffer public="1" set="method" line="792" static="1"><f a="buffer">
 	<c path="snow.platform.native.render.opengl.GLBuffer"/>
 	<x path="Void"/>
 </f></deleteBuffer>
-		<deleteFramebuffer public="1" set="method" line="792" static="1"><f a="framebuffer">
+		<deleteFramebuffer public="1" set="method" line="798" static="1"><f a="framebuffer">
 	<x path="snow.platform.native.render.opengl.GLFramebuffer"/>
 	<x path="Void"/>
 </f></deleteFramebuffer>
-		<deleteProgram public="1" set="method" line="798" static="1"><f a="program">
+		<deleteProgram public="1" set="method" line="804" static="1"><f a="program">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<x path="Void"/>
 </f></deleteProgram>
-		<deleteRenderbuffer public="1" set="method" line="804" static="1"><f a="renderbuffer">
+		<deleteRenderbuffer public="1" set="method" line="810" static="1"><f a="renderbuffer">
 	<x path="snow.platform.native.render.opengl.GLRenderbuffer"/>
 	<x path="Void"/>
 </f></deleteRenderbuffer>
-		<deleteShader public="1" set="method" line="810" static="1"><f a="shader">
+		<deleteShader public="1" set="method" line="816" static="1"><f a="shader">
 	<c path="snow.platform.native.render.opengl.GLShader"/>
 	<x path="Void"/>
 </f></deleteShader>
-		<deleteTexture public="1" set="method" line="816" static="1"><f a="texture">
+		<deleteTexture public="1" set="method" line="822" static="1"><f a="texture">
 	<c path="snow.platform.native.render.opengl.GLTexture"/>
 	<x path="Void"/>
 </f></deleteTexture>
-		<depthFunc public="1" set="method" line="822" static="1"><f a="func">
+		<depthFunc public="1" set="method" line="828" static="1"><f a="func">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></depthFunc>
-		<depthMask public="1" set="method" line="827" static="1"><f a="flag">
+		<depthMask public="1" set="method" line="833" static="1"><f a="flag">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></depthMask>
-		<depthRange public="1" set="method" line="832" static="1"><f a="zNear:zFar">
+		<depthRange public="1" set="method" line="838" static="1"><f a="zNear:zFar">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></depthRange>
-		<detachShader public="1" set="method" line="837" static="1"><f a="program:shader">
+		<detachShader public="1" set="method" line="843" static="1"><f a="program:shader">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<c path="snow.platform.native.render.opengl.GLShader"/>
 	<x path="Void"/>
 </f></detachShader>
-		<disable public="1" set="method" line="842" static="1"><f a="cap">
+		<disable public="1" set="method" line="848" static="1"><f a="cap">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></disable>
-		<disableVertexAttribArray public="1" set="method" line="847" static="1"><f a="index">
+		<disableVertexAttribArray public="1" set="method" line="853" static="1"><f a="index">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></disableVertexAttribArray>
-		<drawArrays public="1" set="method" line="852" static="1"><f a="mode:first:count">
+		<drawArrays public="1" set="method" line="858" static="1"><f a="mode:first:count">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></drawArrays>
-		<drawElements public="1" set="method" line="857" static="1"><f a="mode:count:type:offset">
+		<drawElements public="1" set="method" line="863" static="1"><f a="mode:count:type:offset">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></drawElements>
-		<enable public="1" set="method" line="862" static="1"><f a="cap">
+		<enable public="1" set="method" line="868" static="1"><f a="cap">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></enable>
-		<enableVertexAttribArray public="1" set="method" line="867" static="1"><f a="index">
+		<enableVertexAttribArray public="1" set="method" line="873" static="1"><f a="index">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></enableVertexAttribArray>
-		<finish public="1" set="method" line="872" static="1"><f a=""><x path="Void"/></f></finish>
-		<flush public="1" set="method" line="877" static="1"><f a=""><x path="Void"/></f></flush>
-		<framebufferRenderbuffer public="1" set="method" line="882" static="1"><f a="target:attachment:renderbuffertarget:renderbuffer">
+		<finish public="1" set="method" line="878" static="1"><f a=""><x path="Void"/></f></finish>
+		<flush public="1" set="method" line="883" static="1"><f a=""><x path="Void"/></f></flush>
+		<framebufferRenderbuffer public="1" set="method" line="888" static="1"><f a="target:attachment:renderbuffertarget:renderbuffer">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="snow.platform.native.render.opengl.GLRenderbuffer"/>
 	<x path="Void"/>
 </f></framebufferRenderbuffer>
-		<framebufferTexture2D public="1" set="method" line="887" static="1"><f a="target:attachment:textarget:texture:level">
+		<framebufferTexture2D public="1" set="method" line="893" static="1"><f a="target:attachment:textarget:texture:level">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27397,169 +27461,169 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></framebufferTexture2D>
-		<frontFace public="1" set="method" line="892" static="1"><f a="mode">
+		<frontFace public="1" set="method" line="898" static="1"><f a="mode">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></frontFace>
-		<generateMipmap public="1" set="method" line="897" static="1"><f a="target">
+		<generateMipmap public="1" set="method" line="903" static="1"><f a="target">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></generateMipmap>
-		<getActiveAttrib public="1" set="method" line="902" static="1"><f a="program:index">
+		<getActiveAttrib public="1" set="method" line="908" static="1"><f a="program:index">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<x path="Int"/>
 	<t path="snow.platform.native.render.opengl.GLActiveInfo"/>
 </f></getActiveAttrib>
-		<getActiveUniform public="1" set="method" line="907" static="1"><f a="program:index">
+		<getActiveUniform public="1" set="method" line="913" static="1"><f a="program:index">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<x path="Int"/>
 	<t path="snow.platform.native.render.opengl.GLActiveInfo"/>
 </f></getActiveUniform>
-		<getAttachedShaders public="1" set="method" line="912" static="1"><f a="program">
+		<getAttachedShaders public="1" set="method" line="918" static="1"><f a="program">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<c path="Array"><c path="snow.platform.native.render.opengl.GLShader"/></c>
 </f></getAttachedShaders>
-		<getAttribLocation public="1" set="method" line="917" static="1"><f a="program:name">
+		<getAttribLocation public="1" set="method" line="923" static="1"><f a="program:name">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<c path="String"/>
 	<x path="Int"/>
 </f></getAttribLocation>
-		<getBufferParameter public="1" set="method" line="922" static="1"><f a="target:pname">
+		<getBufferParameter public="1" set="method" line="928" static="1"><f a="target:pname">
 	<x path="Int"/>
 	<x path="Int"/>
 	<d/>
 </f></getBufferParameter>
-		<getContextAttributes public="1" set="method" line="927" static="1"><f a=""><t path="snow.platform.native.render.opengl.GLContextAttributes"/></f></getContextAttributes>
-		<getError public="1" set="method" line="934" static="1"><f a=""><x path="Int"/></f></getError>
-		<getExtension public="1" set="method" line="939" static="1"><f a="name">
+		<getContextAttributes public="1" set="method" line="933" static="1"><f a=""><t path="snow.platform.native.render.opengl.GLContextAttributes"/></f></getContextAttributes>
+		<getError public="1" set="method" line="940" static="1"><f a=""><x path="Int"/></f></getError>
+		<getExtension public="1" set="method" line="945" static="1"><f a="name">
 	<c path="String"/>
 	<d/>
 </f></getExtension>
-		<getFramebufferAttachmentParameter public="1" set="method" line="946" static="1"><f a="target:attachment:pname">
+		<getFramebufferAttachmentParameter public="1" set="method" line="952" static="1"><f a="target:attachment:pname">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<d/>
 </f></getFramebufferAttachmentParameter>
-		<getParameter public="1" set="method" line="951" static="1"><f a="pname">
+		<getParameter public="1" set="method" line="957" static="1"><f a="pname">
 	<x path="Int"/>
 	<d/>
 </f></getParameter>
-		<getProgramInfoLog public="1" set="method" line="956" static="1"><f a="program">
+		<getProgramInfoLog public="1" set="method" line="962" static="1"><f a="program">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<c path="String"/>
 </f></getProgramInfoLog>
-		<getProgramParameter public="1" set="method" line="961" static="1"><f a="program:pname">
+		<getProgramParameter public="1" set="method" line="967" static="1"><f a="program:pname">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<x path="Int"/>
 	<x path="Int"/>
 </f></getProgramParameter>
-		<getRenderbufferParameter public="1" set="method" line="966" static="1"><f a="target:pname">
+		<getRenderbufferParameter public="1" set="method" line="972" static="1"><f a="target:pname">
 	<x path="Int"/>
 	<x path="Int"/>
 	<d/>
 </f></getRenderbufferParameter>
-		<getShaderInfoLog public="1" set="method" line="971" static="1"><f a="shader">
+		<getShaderInfoLog public="1" set="method" line="977" static="1"><f a="shader">
 	<c path="snow.platform.native.render.opengl.GLShader"/>
 	<c path="String"/>
 </f></getShaderInfoLog>
-		<getShaderParameter public="1" set="method" line="976" static="1"><f a="shader:pname">
+		<getShaderParameter public="1" set="method" line="982" static="1"><f a="shader:pname">
 	<c path="snow.platform.native.render.opengl.GLShader"/>
 	<x path="Int"/>
 	<x path="Int"/>
 </f></getShaderParameter>
-		<getShaderPrecisionFormat public="1" set="method" line="981" static="1"><f a="shadertype:precisiontype">
+		<getShaderPrecisionFormat public="1" set="method" line="987" static="1"><f a="shadertype:precisiontype">
 	<x path="Int"/>
 	<x path="Int"/>
 	<t path="snow.platform.native.render.opengl.GLShaderPrecisionFormat"/>
 </f></getShaderPrecisionFormat>
-		<getShaderSource public="1" set="method" line="986" static="1"><f a="shader">
+		<getShaderSource public="1" set="method" line="992" static="1"><f a="shader">
 	<c path="snow.platform.native.render.opengl.GLShader"/>
 	<c path="String"/>
 </f></getShaderSource>
-		<getSupportedExtensions public="1" set="method" line="991" static="1"><f a=""><c path="Array"><c path="String"/></c></f></getSupportedExtensions>
-		<getTexParameter public="1" set="method" line="998" static="1"><f a="target:pname">
+		<getSupportedExtensions public="1" set="method" line="997" static="1"><f a=""><c path="Array"><c path="String"/></c></f></getSupportedExtensions>
+		<getTexParameter public="1" set="method" line="1004" static="1"><f a="target:pname">
 	<x path="Int"/>
 	<x path="Int"/>
 	<d/>
 </f></getTexParameter>
-		<getUniform public="1" set="method" line="1003" static="1"><f a="program:location">
+		<getUniform public="1" set="method" line="1009" static="1"><f a="program:location">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<d/>
 </f></getUniform>
-		<getUniformLocation public="1" set="method" line="1008" static="1"><f a="program:name">
+		<getUniformLocation public="1" set="method" line="1014" static="1"><f a="program:name">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<c path="String"/>
 	<d/>
 </f></getUniformLocation>
-		<getVertexAttrib public="1" set="method" line="1013" static="1"><f a="index:pname">
+		<getVertexAttrib public="1" set="method" line="1019" static="1"><f a="index:pname">
 	<x path="Int"/>
 	<x path="Int"/>
 	<d/>
 </f></getVertexAttrib>
-		<getVertexAttribOffset public="1" set="method" line="1018" static="1"><f a="index:pname">
+		<getVertexAttribOffset public="1" set="method" line="1024" static="1"><f a="index:pname">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 </f></getVertexAttribOffset>
-		<hint public="1" set="method" line="1023" static="1"><f a="target:mode">
+		<hint public="1" set="method" line="1029" static="1"><f a="target:mode">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></hint>
-		<isBuffer public="1" set="method" line="1028" static="1"><f a="buffer">
+		<isBuffer public="1" set="method" line="1034" static="1"><f a="buffer">
 	<c path="snow.platform.native.render.opengl.GLBuffer"/>
 	<x path="Bool"/>
 </f></isBuffer>
-		<isEnabled public="1" set="method" line="1035" static="1"><f a="cap">
+		<isEnabled public="1" set="method" line="1041" static="1"><f a="cap">
 	<x path="Int"/>
 	<x path="Bool"/>
 </f></isEnabled>
-		<isFramebuffer public="1" set="method" line="1040" static="1"><f a="framebuffer">
+		<isFramebuffer public="1" set="method" line="1046" static="1"><f a="framebuffer">
 	<x path="snow.platform.native.render.opengl.GLFramebuffer"/>
 	<x path="Bool"/>
 </f></isFramebuffer>
-		<isProgram public="1" set="method" line="1045" static="1"><f a="program">
+		<isProgram public="1" set="method" line="1051" static="1"><f a="program">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<x path="Bool"/>
 </f></isProgram>
-		<isRenderbuffer public="1" set="method" line="1050" static="1"><f a="renderbuffer">
+		<isRenderbuffer public="1" set="method" line="1056" static="1"><f a="renderbuffer">
 	<x path="snow.platform.native.render.opengl.GLRenderbuffer"/>
 	<x path="Bool"/>
 </f></isRenderbuffer>
-		<isShader public="1" set="method" line="1055" static="1"><f a="shader">
+		<isShader public="1" set="method" line="1061" static="1"><f a="shader">
 	<c path="snow.platform.native.render.opengl.GLShader"/>
 	<x path="Bool"/>
 </f></isShader>
-		<isTexture public="1" set="method" line="1060" static="1"><f a="texture">
+		<isTexture public="1" set="method" line="1066" static="1"><f a="texture">
 	<c path="snow.platform.native.render.opengl.GLTexture"/>
 	<x path="Bool"/>
 </f></isTexture>
-		<lineWidth public="1" set="method" line="1065" static="1"><f a="width">
+		<lineWidth public="1" set="method" line="1071" static="1"><f a="width">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></lineWidth>
-		<linkProgram public="1" set="method" line="1070" static="1"><f a="program">
+		<linkProgram public="1" set="method" line="1076" static="1"><f a="program">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<x path="Void"/>
 </f></linkProgram>
-		<load set="method" line="1075" static="1"><f a="inName:inArgCount">
+		<load set="method" line="1081" static="1"><f a="inName:inArgCount">
 	<c path="String"/>
 	<x path="Int"/>
 	<d/>
 </f></load>
-		<pixelStorei public="1" set="method" line="1085" static="1"><f a="pname:param">
+		<pixelStorei public="1" set="method" line="1091" static="1"><f a="pname:param">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></pixelStorei>
-		<polygonOffset public="1" set="method" line="1090" static="1"><f a="factor:units">
+		<polygonOffset public="1" set="method" line="1096" static="1"><f a="factor:units">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></polygonOffset>
-		<readPixels public="1" set="method" line="1095" static="1"><f a="x:y:width:height:format:type:pixels">
+		<readPixels public="1" set="method" line="1101" static="1"><f a="x:y:width:height:format:type:pixels">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27569,66 +27633,66 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<t path="snow.utils.ArrayBufferView"/>
 	<x path="Void"/>
 </f></readPixels>
-		<renderbufferStorage public="1" set="method" line="1100" static="1"><f a="target:internalformat:width:height">
+		<renderbufferStorage public="1" set="method" line="1106" static="1"><f a="target:internalformat:width:height">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></renderbufferStorage>
-		<sampleCoverage public="1" set="method" line="1105" static="1"><f a="value:invert">
+		<sampleCoverage public="1" set="method" line="1111" static="1"><f a="value:invert">
 	<x path="Float"/>
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></sampleCoverage>
-		<scissor public="1" set="method" line="1110" static="1"><f a="x:y:width:height">
+		<scissor public="1" set="method" line="1116" static="1"><f a="x:y:width:height">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></scissor>
-		<shaderSource public="1" set="method" line="1115" static="1"><f a="shader:source">
+		<shaderSource public="1" set="method" line="1121" static="1"><f a="shader:source">
 	<c path="snow.platform.native.render.opengl.GLShader"/>
 	<c path="String"/>
 	<x path="Void"/>
 </f></shaderSource>
-		<stencilFunc public="1" set="method" line="1120" static="1"><f a="func:ref:mask">
+		<stencilFunc public="1" set="method" line="1126" static="1"><f a="func:ref:mask">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></stencilFunc>
-		<stencilFuncSeparate public="1" set="method" line="1125" static="1"><f a="face:func:ref:mask">
+		<stencilFuncSeparate public="1" set="method" line="1131" static="1"><f a="face:func:ref:mask">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></stencilFuncSeparate>
-		<stencilMask public="1" set="method" line="1130" static="1"><f a="mask">
+		<stencilMask public="1" set="method" line="1136" static="1"><f a="mask">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></stencilMask>
-		<stencilMaskSeparate public="1" set="method" line="1135" static="1"><f a="face:mask">
+		<stencilMaskSeparate public="1" set="method" line="1141" static="1"><f a="face:mask">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></stencilMaskSeparate>
-		<stencilOp public="1" set="method" line="1140" static="1"><f a="fail:zfail:zpass">
+		<stencilOp public="1" set="method" line="1146" static="1"><f a="fail:zfail:zpass">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></stencilOp>
-		<stencilOpSeparate public="1" set="method" line="1145" static="1"><f a="face:fail:zfail:zpass">
+		<stencilOpSeparate public="1" set="method" line="1151" static="1"><f a="face:fail:zfail:zpass">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></stencilOpSeparate>
-		<texImage2D public="1" set="method" line="1150" static="1"><f a="target:level:internalformat:width:height:border:format:type:pixels">
+		<texImage2D public="1" set="method" line="1156" static="1"><f a="target:level:internalformat:width:height:border:format:type:pixels">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27640,19 +27704,19 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<t path="snow.utils.ArrayBufferView"/>
 	<x path="Void"/>
 </f></texImage2D>
-		<texParameterf public="1" set="method" line="1155" static="1"><f a="target:pname:param">
+		<texParameterf public="1" set="method" line="1161" static="1"><f a="target:pname:param">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></texParameterf>
-		<texParameteri public="1" set="method" line="1160" static="1"><f a="target:pname:param">
+		<texParameteri public="1" set="method" line="1166" static="1"><f a="target:pname:param">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></texParameteri>
-		<texSubImage2D public="1" set="method" line="1165" static="1"><f a="target:level:xoffset:yoffset:width:height:format:type:pixels">
+		<texSubImage2D public="1" set="method" line="1171" static="1"><f a="target:level:xoffset:yoffset:width:height:format:type:pixels">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27664,73 +27728,73 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<t path="snow.utils.ArrayBufferView"/>
 	<x path="Void"/>
 </f></texSubImage2D>
-		<uniform1f public="1" set="method" line="1170" static="1"><f a="location:x">
+		<uniform1f public="1" set="method" line="1176" static="1"><f a="location:x">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></uniform1f>
-		<uniform1fv public="1" set="method" line="1175" static="1"><f a="location:x">
+		<uniform1fv public="1" set="method" line="1181" static="1"><f a="location:x">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<t path="snow.utils.Float32Array"/>
 	<x path="Void"/>
 </f></uniform1fv>
-		<uniform1i public="1" set="method" line="1180" static="1"><f a="location:x">
+		<uniform1i public="1" set="method" line="1186" static="1"><f a="location:x">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></uniform1i>
-		<uniform1iv public="1" set="method" line="1185" static="1"><f a="location:v">
+		<uniform1iv public="1" set="method" line="1191" static="1"><f a="location:v">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<t path="snow.utils.Int32Array"/>
 	<x path="Void"/>
 </f></uniform1iv>
-		<uniform2f public="1" set="method" line="1190" static="1"><f a="location:x:y">
+		<uniform2f public="1" set="method" line="1196" static="1"><f a="location:x:y">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></uniform2f>
-		<uniform2fv public="1" set="method" line="1195" static="1"><f a="location:v">
+		<uniform2fv public="1" set="method" line="1201" static="1"><f a="location:v">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<t path="snow.utils.Float32Array"/>
 	<x path="Void"/>
 </f></uniform2fv>
-		<uniform2i public="1" set="method" line="1200" static="1"><f a="location:x:y">
+		<uniform2i public="1" set="method" line="1206" static="1"><f a="location:x:y">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></uniform2i>
-		<uniform2iv public="1" set="method" line="1205" static="1"><f a="location:v">
+		<uniform2iv public="1" set="method" line="1211" static="1"><f a="location:v">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<t path="snow.utils.Int32Array"/>
 	<x path="Void"/>
 </f></uniform2iv>
-		<uniform3f public="1" set="method" line="1210" static="1"><f a="location:x:y:z">
+		<uniform3f public="1" set="method" line="1216" static="1"><f a="location:x:y:z">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></uniform3f>
-		<uniform3fv public="1" set="method" line="1215" static="1"><f a="location:v">
+		<uniform3fv public="1" set="method" line="1221" static="1"><f a="location:v">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<t path="snow.utils.Float32Array"/>
 	<x path="Void"/>
 </f></uniform3fv>
-		<uniform3i public="1" set="method" line="1220" static="1"><f a="location:x:y:z">
+		<uniform3i public="1" set="method" line="1226" static="1"><f a="location:x:y:z">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></uniform3i>
-		<uniform3iv public="1" set="method" line="1225" static="1"><f a="location:v">
+		<uniform3iv public="1" set="method" line="1231" static="1"><f a="location:v">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<t path="snow.utils.Int32Array"/>
 	<x path="Void"/>
 </f></uniform3iv>
-		<uniform4f public="1" set="method" line="1230" static="1"><f a="location:x:y:z:w">
+		<uniform4f public="1" set="method" line="1236" static="1"><f a="location:x:y:z:w">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Float"/>
 	<x path="Float"/>
@@ -27738,12 +27802,12 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></uniform4f>
-		<uniform4fv public="1" set="method" line="1235" static="1"><f a="location:v">
+		<uniform4fv public="1" set="method" line="1241" static="1"><f a="location:v">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<t path="snow.utils.Float32Array"/>
 	<x path="Void"/>
 </f></uniform4fv>
-		<uniform4i public="1" set="method" line="1240" static="1"><f a="location:x:y:z:w">
+		<uniform4i public="1" set="method" line="1246" static="1"><f a="location:x:y:z:w">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27751,71 +27815,71 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></uniform4i>
-		<uniform4iv public="1" set="method" line="1245" static="1"><f a="location:v">
+		<uniform4iv public="1" set="method" line="1251" static="1"><f a="location:v">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<t path="snow.utils.Int32Array"/>
 	<x path="Void"/>
 </f></uniform4iv>
-		<uniformMatrix2fv public="1" set="method" line="1250" static="1"><f a="location:transpose:v">
+		<uniformMatrix2fv public="1" set="method" line="1256" static="1"><f a="location:transpose:v">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Bool"/>
 	<t path="snow.utils.Float32Array"/>
 	<x path="Void"/>
 </f></uniformMatrix2fv>
-		<uniformMatrix3fv public="1" set="method" line="1255" static="1"><f a="location:transpose:v">
+		<uniformMatrix3fv public="1" set="method" line="1261" static="1"><f a="location:transpose:v">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Bool"/>
 	<t path="snow.utils.Float32Array"/>
 	<x path="Void"/>
 </f></uniformMatrix3fv>
-		<uniformMatrix4fv public="1" set="method" line="1260" static="1"><f a="location:transpose:v">
+		<uniformMatrix4fv public="1" set="method" line="1266" static="1"><f a="location:transpose:v">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Bool"/>
 	<t path="snow.utils.Float32Array"/>
 	<x path="Void"/>
 </f></uniformMatrix4fv>
-		<useProgram public="1" set="method" line="1265" static="1"><f a="program">
+		<useProgram public="1" set="method" line="1271" static="1"><f a="program">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<x path="Void"/>
 </f></useProgram>
-		<validateProgram public="1" set="method" line="1270" static="1"><f a="program">
+		<validateProgram public="1" set="method" line="1276" static="1"><f a="program">
 	<c path="snow.platform.native.render.opengl.GLProgram"/>
 	<x path="Void"/>
 </f></validateProgram>
-		<vertexAttrib1f public="1" set="method" line="1275" static="1"><f a="indx:x">
+		<vertexAttrib1f public="1" set="method" line="1281" static="1"><f a="indx:x">
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></vertexAttrib1f>
-		<vertexAttrib1fv public="1" set="method" line="1280" static="1"><f a="indx:values">
+		<vertexAttrib1fv public="1" set="method" line="1286" static="1"><f a="indx:values">
 	<x path="Int"/>
 	<t path="snow.utils.Float32Array"/>
 	<x path="Void"/>
 </f></vertexAttrib1fv>
-		<vertexAttrib2f public="1" set="method" line="1285" static="1"><f a="indx:x:y">
+		<vertexAttrib2f public="1" set="method" line="1291" static="1"><f a="indx:x:y">
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></vertexAttrib2f>
-		<vertexAttrib2fv public="1" set="method" line="1290" static="1"><f a="indx:values">
+		<vertexAttrib2fv public="1" set="method" line="1296" static="1"><f a="indx:values">
 	<x path="Int"/>
 	<t path="snow.utils.Float32Array"/>
 	<x path="Void"/>
 </f></vertexAttrib2fv>
-		<vertexAttrib3f public="1" set="method" line="1295" static="1"><f a="indx:x:y:z">
+		<vertexAttrib3f public="1" set="method" line="1301" static="1"><f a="indx:x:y:z">
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></vertexAttrib3f>
-		<vertexAttrib3fv public="1" set="method" line="1300" static="1"><f a="indx:values">
+		<vertexAttrib3fv public="1" set="method" line="1306" static="1"><f a="indx:values">
 	<x path="Int"/>
 	<t path="snow.utils.Float32Array"/>
 	<x path="Void"/>
 </f></vertexAttrib3fv>
-		<vertexAttrib4f public="1" set="method" line="1305" static="1"><f a="indx:x:y:z:w">
+		<vertexAttrib4f public="1" set="method" line="1311" static="1"><f a="indx:x:y:z:w">
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Float"/>
@@ -27823,12 +27887,12 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></vertexAttrib4f>
-		<vertexAttrib4fv public="1" set="method" line="1310" static="1"><f a="indx:values">
+		<vertexAttrib4fv public="1" set="method" line="1316" static="1"><f a="indx:values">
 	<x path="Int"/>
 	<t path="snow.utils.Float32Array"/>
 	<x path="Void"/>
 </f></vertexAttrib4fv>
-		<vertexAttribPointer public="1" set="method" line="1315" static="1"><f a="indx:size:type:normalized:stride:offset">
+		<vertexAttribPointer public="1" set="method" line="1321" static="1"><f a="indx:size:type:normalized:stride:offset">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27837,78 +27901,78 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></vertexAttribPointer>
-		<viewport public="1" set="method" line="1320" static="1"><f a="x:y:width:height">
+		<viewport public="1" set="method" line="1326" static="1"><f a="x:y:width:height">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></viewport>
-		<get_version set="method" line="1333" static="1"><f a=""><x path="Int"/></f></get_version>
-		<snow_gl_active_texture line="1343" static="1"><f a="">
+		<get_version set="method" line="1339" static="1"><f a=""><x path="Int"/></f></get_version>
+		<snow_gl_active_texture line="1349" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_active_texture>
-		<snow_gl_attach_shader line="1344" static="1"><f a=":">
+		<snow_gl_attach_shader line="1350" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_attach_shader>
-		<snow_gl_bind_attrib_location line="1345" static="1"><f a="::">
+		<snow_gl_bind_attrib_location line="1351" static="1"><f a="::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<c path="String"/>
 	<unknown/>
 </f></snow_gl_bind_attrib_location>
-		<snow_gl_bind_buffer line="1346" static="1"><f a=":">
+		<snow_gl_bind_buffer line="1352" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_bind_buffer>
-		<snow_gl_bind_framebuffer line="1347" static="1"><f a=":">
+		<snow_gl_bind_framebuffer line="1353" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_bind_framebuffer>
-		<snow_gl_bind_renderbuffer line="1348" static="1"><f a=":">
+		<snow_gl_bind_renderbuffer line="1354" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_bind_renderbuffer>
-		<snow_gl_bind_texture line="1349" static="1"><f a=":">
+		<snow_gl_bind_texture line="1355" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_bind_texture>
-		<snow_gl_blend_color line="1350" static="1"><f a=":::">
+		<snow_gl_blend_color line="1356" static="1"><f a=":::">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_blend_color>
-		<snow_gl_blend_equation line="1351" static="1"><f a="">
+		<snow_gl_blend_equation line="1357" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_blend_equation>
-		<snow_gl_blend_equation_separate line="1352" static="1"><f a=":">
+		<snow_gl_blend_equation_separate line="1358" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_blend_equation_separate>
-		<snow_gl_blend_func line="1353" static="1"><f a=":">
+		<snow_gl_blend_func line="1359" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_blend_func>
-		<snow_gl_blend_func_separate line="1354" static="1"><f a=":::">
+		<snow_gl_blend_func_separate line="1360" static="1"><f a=":::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_blend_func_separate>
-		<snow_gl_buffer_data line="1355" static="1"><f a="::::">
+		<snow_gl_buffer_data line="1361" static="1"><f a="::::">
 	<x path="Int"/>
 	<t path="snow.utils.ByteArray"/>
 	<x path="Int"/>
@@ -27916,7 +27980,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_buffer_data>
-		<snow_gl_buffer_sub_data line="1356" static="1"><f a="::::">
+		<snow_gl_buffer_sub_data line="1362" static="1"><f a="::::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<t path="snow.utils.ByteArray"/>
@@ -27924,41 +27988,41 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_buffer_sub_data>
-		<snow_gl_check_framebuffer_status line="1357" static="1"><f a="">
+		<snow_gl_check_framebuffer_status line="1363" static="1"><f a="">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></snow_gl_check_framebuffer_status>
-		<snow_gl_clear line="1358" static="1"><f a="">
+		<snow_gl_clear line="1364" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_clear>
-		<snow_gl_clear_color line="1359" static="1"><f a=":::">
+		<snow_gl_clear_color line="1365" static="1"><f a=":::">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_clear_color>
-		<snow_gl_clear_depth line="1360" static="1"><f a="">
+		<snow_gl_clear_depth line="1366" static="1"><f a="">
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_clear_depth>
-		<snow_gl_clear_stencil line="1361" static="1"><f a="">
+		<snow_gl_clear_stencil line="1367" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_clear_stencil>
-		<snow_gl_color_mask line="1362" static="1"><f a=":::">
+		<snow_gl_color_mask line="1368" static="1"><f a=":::">
 	<x path="Bool"/>
 	<x path="Bool"/>
 	<x path="Bool"/>
 	<x path="Bool"/>
 	<unknown/>
 </f></snow_gl_color_mask>
-		<snow_gl_compile_shader line="1363" static="1"><f a="">
+		<snow_gl_compile_shader line="1369" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_compile_shader>
-		<snow_gl_compressed_tex_image_2d line="1364" static="1"><f a=":::::::">
+		<snow_gl_compressed_tex_image_2d line="1370" static="1"><f a=":::::::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27969,7 +28033,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<t path="Null"><x path="Int"/></t>
 	<unknown/>
 </f></snow_gl_compressed_tex_image_2d>
-		<snow_gl_compressed_tex_sub_image_2d line="1365" static="1"><f a="::::::::">
+		<snow_gl_compressed_tex_sub_image_2d line="1371" static="1"><f a="::::::::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27981,7 +28045,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<t path="Null"><x path="Int"/></t>
 	<unknown/>
 </f></snow_gl_compressed_tex_sub_image_2d>
-		<snow_gl_copy_tex_image_2d line="1366" static="1"><f a=":::::::">
+		<snow_gl_copy_tex_image_2d line="1372" static="1"><f a=":::::::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -27992,7 +28056,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_copy_tex_image_2d>
-		<snow_gl_copy_tex_sub_image_2d line="1367" static="1"><f a=":::::::">
+		<snow_gl_copy_tex_sub_image_2d line="1373" static="1"><f a=":::::::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -28003,100 +28067,100 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_copy_tex_sub_image_2d>
-		<snow_gl_create_buffer line="1368" static="1"><f a=""><x path="Int"/></f></snow_gl_create_buffer>
-		<snow_gl_create_framebuffer line="1369" static="1"><f a=""><x path="Int"/></f></snow_gl_create_framebuffer>
-		<snow_gl_create_program line="1370" static="1"><f a=""><x path="Int"/></f></snow_gl_create_program>
-		<snow_gl_create_render_buffer line="1371" static="1"><f a=""><x path="Int"/></f></snow_gl_create_render_buffer>
-		<snow_gl_create_shader line="1372" static="1"><f a="">
+		<snow_gl_create_buffer line="1374" static="1"><f a=""><x path="Int"/></f></snow_gl_create_buffer>
+		<snow_gl_create_framebuffer line="1375" static="1"><f a=""><x path="Int"/></f></snow_gl_create_framebuffer>
+		<snow_gl_create_program line="1376" static="1"><f a=""><x path="Int"/></f></snow_gl_create_program>
+		<snow_gl_create_render_buffer line="1377" static="1"><f a=""><x path="Int"/></f></snow_gl_create_render_buffer>
+		<snow_gl_create_shader line="1378" static="1"><f a="">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></snow_gl_create_shader>
-		<snow_gl_create_texture line="1373" static="1"><f a=""><x path="Int"/></f></snow_gl_create_texture>
-		<snow_gl_cull_face line="1374" static="1"><f a="">
+		<snow_gl_create_texture line="1379" static="1"><f a=""><x path="Int"/></f></snow_gl_create_texture>
+		<snow_gl_cull_face line="1380" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_cull_face>
-		<snow_gl_delete_buffer line="1375" static="1"><f a="">
+		<snow_gl_delete_buffer line="1381" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_delete_buffer>
-		<snow_gl_delete_framebuffer line="1376" static="1"><f a="">
+		<snow_gl_delete_framebuffer line="1382" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_delete_framebuffer>
-		<snow_gl_delete_program line="1377" static="1"><f a="">
+		<snow_gl_delete_program line="1383" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_delete_program>
-		<snow_gl_delete_render_buffer line="1378" static="1"><f a="">
+		<snow_gl_delete_render_buffer line="1384" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_delete_render_buffer>
-		<snow_gl_delete_shader line="1379" static="1"><f a="">
+		<snow_gl_delete_shader line="1385" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_delete_shader>
-		<snow_gl_delete_texture line="1380" static="1"><f a="">
+		<snow_gl_delete_texture line="1386" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_delete_texture>
-		<snow_gl_depth_func line="1381" static="1"><f a="">
+		<snow_gl_depth_func line="1387" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_depth_func>
-		<snow_gl_depth_mask line="1382" static="1"><f a="">
+		<snow_gl_depth_mask line="1388" static="1"><f a="">
 	<x path="Bool"/>
 	<unknown/>
 </f></snow_gl_depth_mask>
-		<snow_gl_depth_range line="1383" static="1"><f a=":">
+		<snow_gl_depth_range line="1389" static="1"><f a=":">
 	<x path="Float"/>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_depth_range>
-		<snow_gl_detach_shader line="1384" static="1"><f a=":">
+		<snow_gl_detach_shader line="1390" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_detach_shader>
-		<snow_gl_disable line="1385" static="1"><f a="">
+		<snow_gl_disable line="1391" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_disable>
-		<snow_gl_disable_vertex_attrib_array line="1386" static="1"><f a="">
+		<snow_gl_disable_vertex_attrib_array line="1392" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_disable_vertex_attrib_array>
-		<snow_gl_draw_arrays line="1387" static="1"><f a="::">
+		<snow_gl_draw_arrays line="1393" static="1"><f a="::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_draw_arrays>
-		<snow_gl_draw_elements line="1388" static="1"><f a=":::">
+		<snow_gl_draw_elements line="1394" static="1"><f a=":::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_draw_elements>
-		<snow_gl_enable line="1389" static="1"><f a="">
+		<snow_gl_enable line="1395" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_enable>
-		<snow_gl_enable_vertex_attrib_array line="1390" static="1"><f a="">
+		<snow_gl_enable_vertex_attrib_array line="1396" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_enable_vertex_attrib_array>
-		<snow_gl_finish line="1391" static="1"><f a=""><unknown/></f></snow_gl_finish>
-		<snow_gl_flush line="1392" static="1"><f a=""><unknown/></f></snow_gl_flush>
-		<snow_gl_framebuffer_renderbuffer line="1393" static="1"><f a=":::">
+		<snow_gl_finish line="1397" static="1"><f a=""><unknown/></f></snow_gl_finish>
+		<snow_gl_flush line="1398" static="1"><f a=""><unknown/></f></snow_gl_flush>
+		<snow_gl_framebuffer_renderbuffer line="1399" static="1"><f a=":::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_framebuffer_renderbuffer>
-		<snow_gl_framebuffer_texture2D line="1394" static="1"><f a="::::">
+		<snow_gl_framebuffer_texture2D line="1400" static="1"><f a="::::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -28104,159 +28168,159 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_framebuffer_texture2D>
-		<snow_gl_front_face line="1395" static="1"><f a="">
+		<snow_gl_front_face line="1401" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_front_face>
-		<snow_gl_generate_mipmap line="1396" static="1"><f a="">
+		<snow_gl_generate_mipmap line="1402" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_generate_mipmap>
-		<snow_gl_get_active_attrib line="1397" static="1"><f a=":">
+		<snow_gl_get_active_attrib line="1403" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<t path="snow.platform.native.render.opengl.GLActiveInfo"/>
 </f></snow_gl_get_active_attrib>
-		<snow_gl_get_active_uniform line="1398" static="1"><f a=":">
+		<snow_gl_get_active_uniform line="1404" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<t path="snow.platform.native.render.opengl.GLActiveInfo"/>
 </f></snow_gl_get_active_uniform>
-		<snow_gl_get_attrib_location line="1399" static="1"><f a=":">
+		<snow_gl_get_attrib_location line="1405" static="1"><f a=":">
 	<x path="Int"/>
 	<c path="String"/>
 	<x path="Int"/>
 </f></snow_gl_get_attrib_location>
-		<snow_gl_get_buffer_paramerter line="1400" static="1"><f a=":">
+		<snow_gl_get_buffer_paramerter line="1406" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_get_buffer_paramerter>
-		<snow_gl_get_context_attributes line="1401" static="1"><f a=""><t path="snow.platform.native.render.opengl.GLContextAttributes"/></f></snow_gl_get_context_attributes>
-		<snow_gl_get_error line="1402" static="1"><f a=""><x path="Int"/></f></snow_gl_get_error>
-		<snow_gl_get_framebuffer_attachment_parameter line="1403" static="1"><f a="::">
+		<snow_gl_get_context_attributes line="1407" static="1"><f a=""><t path="snow.platform.native.render.opengl.GLContextAttributes"/></f></snow_gl_get_context_attributes>
+		<snow_gl_get_error line="1408" static="1"><f a=""><x path="Int"/></f></snow_gl_get_error>
+		<snow_gl_get_framebuffer_attachment_parameter line="1409" static="1"><f a="::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_get_framebuffer_attachment_parameter>
-		<snow_gl_get_parameter line="1404" static="1"><f a="">
+		<snow_gl_get_parameter line="1410" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_get_parameter>
-		<snow_gl_get_program_info_log line="1406" static="1"><f a="">
+		<snow_gl_get_program_info_log line="1412" static="1"><f a="">
 	<x path="Int"/>
 	<c path="String"/>
 </f></snow_gl_get_program_info_log>
-		<snow_gl_get_program_parameter line="1407" static="1"><f a=":">
+		<snow_gl_get_program_parameter line="1413" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 </f></snow_gl_get_program_parameter>
-		<snow_gl_get_render_buffer_parameter line="1408" static="1"><f a=":">
+		<snow_gl_get_render_buffer_parameter line="1414" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_get_render_buffer_parameter>
-		<snow_gl_get_shader_info_log line="1409" static="1"><f a="">
+		<snow_gl_get_shader_info_log line="1415" static="1"><f a="">
 	<x path="Int"/>
 	<c path="String"/>
 </f></snow_gl_get_shader_info_log>
-		<snow_gl_get_shader_parameter line="1410" static="1"><f a=":">
+		<snow_gl_get_shader_parameter line="1416" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 </f></snow_gl_get_shader_parameter>
-		<snow_gl_get_shader_precision_format line="1411" static="1"><f a=":">
+		<snow_gl_get_shader_precision_format line="1417" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<t path="snow.platform.native.render.opengl.GLShaderPrecisionFormat"/>
 </f></snow_gl_get_shader_precision_format>
-		<snow_gl_get_shader_source line="1412" static="1"><f a="">
+		<snow_gl_get_shader_source line="1418" static="1"><f a="">
 	<x path="Int"/>
 	<c path="String"/>
 </f></snow_gl_get_shader_source>
-		<snow_gl_get_supported_extensions line="1413" static="1"><f a="">
+		<snow_gl_get_supported_extensions line="1419" static="1"><f a="">
 	<c path="Array"><c path="String"/></c>
 	<unknown/>
 </f></snow_gl_get_supported_extensions>
-		<snow_gl_get_tex_parameter line="1414" static="1"><f a=":">
+		<snow_gl_get_tex_parameter line="1420" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_get_tex_parameter>
-		<snow_gl_get_uniform line="1415" static="1"><f a=":">
+		<snow_gl_get_uniform line="1421" static="1"><f a=":">
 	<x path="Int"/>
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<unknown/>
 </f></snow_gl_get_uniform>
-		<snow_gl_get_uniform_location line="1416" static="1"><f a=":">
+		<snow_gl_get_uniform_location line="1422" static="1"><f a=":">
 	<x path="Int"/>
 	<c path="String"/>
 	<unknown/>
 </f></snow_gl_get_uniform_location>
-		<snow_gl_get_vertex_attrib line="1417" static="1"><f a=":">
+		<snow_gl_get_vertex_attrib line="1423" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_get_vertex_attrib>
-		<snow_gl_get_vertex_attrib_offset line="1418" static="1"><f a=":">
+		<snow_gl_get_vertex_attrib_offset line="1424" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 </f></snow_gl_get_vertex_attrib_offset>
-		<snow_gl_hint line="1419" static="1"><f a=":">
+		<snow_gl_hint line="1425" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_hint>
-		<snow_gl_is_buffer line="1420" static="1"><f a="">
+		<snow_gl_is_buffer line="1426" static="1"><f a="">
 	<x path="Int"/>
 	<x path="Bool"/>
 </f></snow_gl_is_buffer>
-		<snow_gl_is_enabled line="1421" static="1"><f a="">
+		<snow_gl_is_enabled line="1427" static="1"><f a="">
 	<x path="Int"/>
 	<x path="Bool"/>
 </f></snow_gl_is_enabled>
-		<snow_gl_is_framebuffer line="1422" static="1"><f a="">
+		<snow_gl_is_framebuffer line="1428" static="1"><f a="">
 	<x path="Int"/>
 	<x path="Bool"/>
 </f></snow_gl_is_framebuffer>
-		<snow_gl_is_program line="1423" static="1"><f a="">
+		<snow_gl_is_program line="1429" static="1"><f a="">
 	<x path="Int"/>
 	<x path="Bool"/>
 </f></snow_gl_is_program>
-		<snow_gl_is_renderbuffer line="1424" static="1"><f a="">
+		<snow_gl_is_renderbuffer line="1430" static="1"><f a="">
 	<x path="Int"/>
 	<x path="Bool"/>
 </f></snow_gl_is_renderbuffer>
-		<snow_gl_is_shader line="1425" static="1"><f a="">
+		<snow_gl_is_shader line="1431" static="1"><f a="">
 	<x path="Int"/>
 	<x path="Bool"/>
 </f></snow_gl_is_shader>
-		<snow_gl_is_texture line="1426" static="1"><f a="">
+		<snow_gl_is_texture line="1432" static="1"><f a="">
 	<x path="Int"/>
 	<x path="Bool"/>
 </f></snow_gl_is_texture>
-		<snow_gl_line_width line="1427" static="1"><f a="">
+		<snow_gl_line_width line="1433" static="1"><f a="">
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_line_width>
-		<snow_gl_link_program line="1428" static="1"><f a="">
+		<snow_gl_link_program line="1434" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_link_program>
-		<snow_gl_pixel_storei line="1429" static="1"><f a=":">
+		<snow_gl_pixel_storei line="1435" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_pixel_storei>
-		<snow_gl_polygon_offset line="1430" static="1"><f a=":">
+		<snow_gl_polygon_offset line="1436" static="1"><f a=":">
 	<x path="Float"/>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_polygon_offset>
-		<snow_gl_read_pixels line="1431" static="1"><f a=":::::::">
+		<snow_gl_read_pixels line="1437" static="1"><f a=":::::::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -28267,66 +28331,66 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<t path="Null"><x path="Int"/></t>
 	<unknown/>
 </f></snow_gl_read_pixels>
-		<snow_gl_renderbuffer_storage line="1432" static="1"><f a=":::">
+		<snow_gl_renderbuffer_storage line="1438" static="1"><f a=":::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_renderbuffer_storage>
-		<snow_gl_sample_coverage line="1433" static="1"><f a=":">
+		<snow_gl_sample_coverage line="1439" static="1"><f a=":">
 	<x path="Float"/>
 	<x path="Bool"/>
 	<unknown/>
 </f></snow_gl_sample_coverage>
-		<snow_gl_scissor line="1434" static="1"><f a=":::">
+		<snow_gl_scissor line="1440" static="1"><f a=":::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_scissor>
-		<snow_gl_shader_source line="1435" static="1"><f a=":">
+		<snow_gl_shader_source line="1441" static="1"><f a=":">
 	<x path="Int"/>
 	<c path="String"/>
 	<unknown/>
 </f></snow_gl_shader_source>
-		<snow_gl_stencil_func line="1436" static="1"><f a="::">
+		<snow_gl_stencil_func line="1442" static="1"><f a="::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_stencil_func>
-		<snow_gl_stencil_func_separate line="1437" static="1"><f a=":::">
+		<snow_gl_stencil_func_separate line="1443" static="1"><f a=":::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_stencil_func_separate>
-		<snow_gl_stencil_mask line="1438" static="1"><f a="">
+		<snow_gl_stencil_mask line="1444" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_stencil_mask>
-		<snow_gl_stencil_mask_separate line="1439" static="1"><f a=":">
+		<snow_gl_stencil_mask_separate line="1445" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_stencil_mask_separate>
-		<snow_gl_stencil_op line="1440" static="1"><f a="::">
+		<snow_gl_stencil_op line="1446" static="1"><f a="::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_stencil_op>
-		<snow_gl_stencil_op_separate line="1441" static="1"><f a=":::">
+		<snow_gl_stencil_op_separate line="1447" static="1"><f a=":::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_stencil_op_separate>
-		<snow_gl_tex_image_2d line="1442" static="1"><f a=":::::::::">
+		<snow_gl_tex_image_2d line="1448" static="1"><f a=":::::::::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -28339,19 +28403,19 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<t path="Null"><x path="Int"/></t>
 	<unknown/>
 </f></snow_gl_tex_image_2d>
-		<snow_gl_tex_parameterf line="1443" static="1"><f a="::">
+		<snow_gl_tex_parameterf line="1449" static="1"><f a="::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_tex_parameterf>
-		<snow_gl_tex_parameteri line="1444" static="1"><f a="::">
+		<snow_gl_tex_parameteri line="1450" static="1"><f a="::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_tex_parameteri>
-		<snow_gl_tex_sub_image_2d line="1445" static="1"><f a=":::::::::">
+		<snow_gl_tex_sub_image_2d line="1451" static="1"><f a=":::::::::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -28364,73 +28428,73 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<t path="Null"><x path="Int"/></t>
 	<unknown/>
 </f></snow_gl_tex_sub_image_2d>
-		<snow_gl_uniform1f line="1446" static="1"><f a=":">
+		<snow_gl_uniform1f line="1452" static="1"><f a=":">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_uniform1f>
-		<snow_gl_uniform1fv line="1447" static="1"><f a=":">
+		<snow_gl_uniform1fv line="1453" static="1"><f a=":">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<unknown/>
 </f></snow_gl_uniform1fv>
-		<snow_gl_uniform1i line="1448" static="1"><f a=":">
+		<snow_gl_uniform1i line="1454" static="1"><f a=":">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_uniform1i>
-		<snow_gl_uniform1iv line="1449" static="1"><f a=":">
+		<snow_gl_uniform1iv line="1455" static="1"><f a=":">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<unknown/>
 </f></snow_gl_uniform1iv>
-		<snow_gl_uniform2f line="1450" static="1"><f a="::">
+		<snow_gl_uniform2f line="1456" static="1"><f a="::">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_uniform2f>
-		<snow_gl_uniform2fv line="1451" static="1"><f a=":">
+		<snow_gl_uniform2fv line="1457" static="1"><f a=":">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<unknown/>
 </f></snow_gl_uniform2fv>
-		<snow_gl_uniform2i line="1452" static="1"><f a="::">
+		<snow_gl_uniform2i line="1458" static="1"><f a="::">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_uniform2i>
-		<snow_gl_uniform2iv line="1453" static="1"><f a=":">
+		<snow_gl_uniform2iv line="1459" static="1"><f a=":">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<unknown/>
 </f></snow_gl_uniform2iv>
-		<snow_gl_uniform3f line="1454" static="1"><f a=":::">
+		<snow_gl_uniform3f line="1460" static="1"><f a=":::">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_uniform3f>
-		<snow_gl_uniform3fv line="1455" static="1"><f a=":">
+		<snow_gl_uniform3fv line="1461" static="1"><f a=":">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<unknown/>
 </f></snow_gl_uniform3fv>
-		<snow_gl_uniform3i line="1456" static="1"><f a=":::">
+		<snow_gl_uniform3i line="1462" static="1"><f a=":::">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_uniform3i>
-		<snow_gl_uniform3iv line="1457" static="1"><f a=":">
+		<snow_gl_uniform3iv line="1463" static="1"><f a=":">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<unknown/>
 </f></snow_gl_uniform3iv>
-		<snow_gl_uniform4f line="1458" static="1"><f a="::::">
+		<snow_gl_uniform4f line="1464" static="1"><f a="::::">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Float"/>
 	<x path="Float"/>
@@ -28438,12 +28502,12 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_uniform4f>
-		<snow_gl_uniform4fv line="1459" static="1"><f a=":">
+		<snow_gl_uniform4fv line="1465" static="1"><f a=":">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<unknown/>
 </f></snow_gl_uniform4fv>
-		<snow_gl_uniform4i line="1460" static="1"><f a="::::">
+		<snow_gl_uniform4i line="1466" static="1"><f a="::::">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -28451,61 +28515,61 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_uniform4i>
-		<snow_gl_uniform4iv line="1461" static="1"><f a=":">
+		<snow_gl_uniform4iv line="1467" static="1"><f a=":">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<unknown/>
 </f></snow_gl_uniform4iv>
-		<snow_gl_uniform_matrix line="1462" static="1"><f a=":::">
+		<snow_gl_uniform_matrix line="1468" static="1"><f a=":::">
 	<t path="snow.platform.native.render.opengl.GLUniformLocation"/>
 	<x path="Bool"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_uniform_matrix>
-		<snow_gl_use_program line="1463" static="1"><f a="">
+		<snow_gl_use_program line="1469" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_use_program>
-		<snow_gl_validate_program line="1464" static="1"><f a="">
+		<snow_gl_validate_program line="1470" static="1"><f a="">
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_validate_program>
-		<snow_gl_version line="1465" static="1"><f a=""><c path="String"/></f></snow_gl_version>
-		<snow_gl_vertex_attrib1f line="1466" static="1"><f a=":">
+		<snow_gl_version line="1471" static="1"><f a=""><c path="String"/></f></snow_gl_version>
+		<snow_gl_vertex_attrib1f line="1472" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_vertex_attrib1f>
-		<snow_gl_vertex_attrib1fv line="1467" static="1"><f a=":">
+		<snow_gl_vertex_attrib1fv line="1473" static="1"><f a=":">
 	<x path="Int"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<unknown/>
 </f></snow_gl_vertex_attrib1fv>
-		<snow_gl_vertex_attrib2f line="1468" static="1"><f a="::">
+		<snow_gl_vertex_attrib2f line="1474" static="1"><f a="::">
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_vertex_attrib2f>
-		<snow_gl_vertex_attrib2fv line="1469" static="1"><f a=":">
+		<snow_gl_vertex_attrib2fv line="1475" static="1"><f a=":">
 	<x path="Int"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<unknown/>
 </f></snow_gl_vertex_attrib2fv>
-		<snow_gl_vertex_attrib3f line="1470" static="1"><f a=":::">
+		<snow_gl_vertex_attrib3f line="1476" static="1"><f a=":::">
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_vertex_attrib3f>
-		<snow_gl_vertex_attrib3fv line="1471" static="1"><f a=":">
+		<snow_gl_vertex_attrib3fv line="1477" static="1"><f a=":">
 	<x path="Int"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<unknown/>
 </f></snow_gl_vertex_attrib3fv>
-		<snow_gl_vertex_attrib4f line="1472" static="1"><f a="::::">
+		<snow_gl_vertex_attrib4f line="1478" static="1"><f a="::::">
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Float"/>
@@ -28513,12 +28577,12 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Float"/>
 	<unknown/>
 </f></snow_gl_vertex_attrib4f>
-		<snow_gl_vertex_attrib4fv line="1473" static="1"><f a=":">
+		<snow_gl_vertex_attrib4fv line="1479" static="1"><f a=":">
 	<x path="Int"/>
 	<c path="snow.platform.native.utils.ByteArray"/>
 	<unknown/>
 </f></snow_gl_vertex_attrib4fv>
-		<snow_gl_vertex_attrib_pointer line="1474" static="1"><f a=":::::">
+		<snow_gl_vertex_attrib_pointer line="1480" static="1"><f a=":::::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -28527,13 +28591,14 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_vertex_attrib_pointer>
-		<snow_gl_viewport line="1475" static="1"><f a=":::">
+		<snow_gl_viewport line="1481" static="1"><f a=":::">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></snow_gl_viewport>
+		<meta><m n=":buildXml"><e><![CDATA["<include name='${haxelib:snow}/GLN.xml'/>"]]></e></m></meta>
 	</class>
 	<typedef path="snow.platform.native.utils.ArrayBuffer" params="" file="/Users/sven/dev/snow/snow/platform/native/utils/ArrayBuffer.hx"><c path="snow.platform.native.utils.ByteArray"/></typedef>
 	<class path="snow.utils.IMemoryRange" params="" file="/Users/sven/dev/snow/snow/utils/IMemoryRange.hx" interface="1">

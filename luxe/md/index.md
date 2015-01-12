@@ -196,6 +196,17 @@ Either developed, or developing
 
 ---
 
+###SOIL
+
+[news page](http://soil.sudsdev.net/)   
+[twitter](https://twitter.com/JustSuds)   
+
+![soil_ingame](images/games/soil/soil_ingame.png)
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/wPttCM7-GRc" frameborder="0" allowfullscreen></iframe>
+
+---
+
 ###Untitled RTS exploration game
 [news page](https://twitter.com/___discovery)   
 [home page](http://notes.underscorediscovery.com/)
@@ -205,7 +216,8 @@ Either developed, or developing
 ---
 
 ###Equilibrium (working title)
-[news page](https://twitter.com/bennpowell)
+[news page](https://twitter.com/bennpowell)   
+[game post](http://snowkit.org/2014/10/02/equilibrium-created-using-luxe/)
 
 ![eq_menu](images/games/eq/eq_menu.png)
 

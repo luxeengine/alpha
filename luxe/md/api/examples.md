@@ -78,7 +78,7 @@ var geometry = Luxe.draw.circle({
 Luxe.draw.text({
     color : new Color(1,1,1,1),
     pos : Luxe.screen.mid,
-    size : 24,
+    point_size : 24,
     align : TextAlign.center,
     text : "some text \n indeed"
 });
