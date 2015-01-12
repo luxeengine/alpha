@@ -41,5 +41,16 @@ class Main extends luxe.Game {
 
     } //update
 
+    override function config( config:luxe.AppConfig ) {
+
+        #if luxe_doc_sample
+            config.window.width = 640;
+            config.window.height = 427;
+        #end
+
+        return config;
+
+    } //config
+
 
 } //Main
