@@ -25,8 +25,10 @@ class Main extends luxe.Game {
         config.window.title = 'alpha-1.0+parrott';
         config.window.resizable = false;
 
-        config.window.width = 700;
-        config.window.height = 467;
+        #if luxe_doc_sample
+            config.window.width = 700;
+            config.window.height = 467;
+        #end
 
         return config;
 
