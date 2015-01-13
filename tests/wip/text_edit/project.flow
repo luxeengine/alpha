@@ -1,0 +1,21 @@
+{
+
+  project : {
+    name : 'text_edit',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_text_edit',
+      package : 'com.luxeengine.text_edit'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    }
+
+  }
+
+}
