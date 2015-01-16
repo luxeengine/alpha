@@ -16,7 +16,7 @@ class Screen {
     @:noCompletion public var core : Core;
 
     @:allow(luxe.Core)
-    function new( ?_core:Core, _x:Int, _y:Int, _w:Int, _h:Int ) {
+    function new( ?_core:Core, _w:Int, _h:Int ) {
 
         core = _core;
         cursor = new Cursor(this);

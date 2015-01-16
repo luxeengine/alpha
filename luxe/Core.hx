@@ -247,7 +247,7 @@ class Core extends snow.App {
         }
 
             //store the size for access from API
-        screen = new luxe.Screen( this, 0, 0, _window_w, _window_h );
+        screen = new luxe.Screen( this, _window_w, _window_h );
 
             //Now make sure
             //they start up
@@ -456,21 +456,6 @@ class Core extends snow.App {
         debug.show_console(console_visible);
 
     } //show_console
-
-//window events
-//     public function onresize(e) {
-//             //update the screen sizes
-//         Luxe.screen.w = e.x;
-//         Luxe.screen.h = e.y;
-
-//             //update internal render views
-//         debug.onresize(e);
-//             //and the defaults
-//         renderer.onresize(e);
-//             //and then the game
-//         if(game.onresize != null) game.onresize(e);
-
-//     } // onresize
 
 //input events
 //keys
