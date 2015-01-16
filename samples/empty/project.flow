@@ -1,5 +1,16 @@
 {
 
+  luxe:{
+    window: {
+      width:960,
+      height:640,
+      title:'luxe empty project',
+      fullscreen:false,
+      resizable:true,
+      borderless:false
+    }
+  },
+
   project : {
     name : 'empty',
     version : '1.0.0',

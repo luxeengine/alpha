@@ -14,6 +14,7 @@ import luxe.Scene;
 import luxe.Debug;
 import luxe.Timer;
 import luxe.Physics;
+import luxe.AppConfig;
 import luxe.resource.ResourceManager;
 
 import luxe.debug.ProfilerDebugView;
@@ -64,6 +65,7 @@ class Core extends snow.App {
 
         //the game object running the core
     public var game : Game;
+    public var appconfig : AppConfig;
 
 #if (luxe_native && !luxe_threading_disabled)
 
@@ -99,10 +101,11 @@ class Core extends snow.App {
     public var has_shutdown : Bool = false;
     public var has_inited : Bool = false;
 
-    @:noCompletion public function new( _game:Game ) {
+    @:noCompletion public function new( _game:Game, _config:AppConfig ) {
 
         super();
 
+        appconfig = _config;
         game = _game;
 
             //Store the core for reference in the game
@@ -863,7 +866,12 @@ class Core extends snow.App {
         /** return what the game decides for runtime config */
     override function config( config:AppConfig ) : AppConfig {
 
-        config.window.title = 'luxe app';
+            config.window.width = appconfig.window.width;
+            config.window.height = appconfig.window.height;
+            config.window.fullscreen = appconfig.window.fullscreen;
+            config.window.borderless = appconfig.window.borderless;
+            config.window.resizable = appconfig.window.resizable;
+            config.window.title = appconfig.window.title;
 
        return game.config( config );
 

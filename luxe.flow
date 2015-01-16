@@ -33,7 +33,7 @@
         snow : '*'
       },
       files : {
-        boot : { path:'flow/boot/LuxeApp.hx => haxe/LuxeApp.hx', template:['project','snow'] },
+        boot : { path:'flow/boot/LuxeApp.hx => haxe/LuxeApp.hx', template:['project','snow', 'luxe'] },
       }
     }
 
