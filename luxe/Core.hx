@@ -92,17 +92,12 @@ class Core extends snow.App {
     public var screen    : luxe.Screen;
     public var physics   : Physics;
 
-//Mouse and fake mouse touch
-    var _mouse_pos : Vector;
-    var _touch_pos : Vector;
-
 //flags
 
        //if we have started a shutdown
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
     public var has_inited : Bool = false;
-
 
     @:noCompletion public function new( _game:Game ) {
 
@@ -120,10 +115,6 @@ class Core extends snow.App {
 
             //Create internal stuff
         emitter = new Emitter();
-
-        _mouse_pos = new Vector();
-        _touch_pos = new Vector();
-        Luxe.mouse = _mouse_pos;
 
             //Set external references
         Luxe.core = this;
@@ -597,8 +588,7 @@ class Core extends snow.App {
     override function onmousedown( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
 
             //this has to be a new value because if it's cached it sends in references that get kept by user code
-        _mouse_pos = new luxe.Vector( x, y );
-        Luxe.mouse = _mouse_pos;
+        screen.cursor.set_internal(new luxe.Vector( x, y ));
 
         var event : MouseEvent = {
             timestamp : timestamp,
@@ -609,7 +599,7 @@ class Core extends snow.App {
             y : y,
             xrel : x,
             yrel : y,
-            pos : _mouse_pos,
+            pos : screen.cursor.pos,
         }
 
         if(!shutting_down) {
@@ -624,8 +614,8 @@ class Core extends snow.App {
 
     override function onmouseup( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
 
-        _mouse_pos = new luxe.Vector( x, y );
-        Luxe.mouse = _mouse_pos;
+            //see notes on new in mousedown
+        screen.cursor.set_internal(new luxe.Vector( x, y ));
 
         var event : MouseEvent = {
             timestamp : timestamp,
@@ -636,7 +626,7 @@ class Core extends snow.App {
             y : y,
             xrel : x,
             yrel : y,
-            pos : _mouse_pos
+            pos : screen.cursor.pos
         }
 
         if(!shutting_down) {
@@ -651,8 +641,8 @@ class Core extends snow.App {
 
     override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
-        _mouse_pos = new luxe.Vector( x, y );
-        Luxe.mouse = _mouse_pos;
+            //see notes on new in mousedown
+        screen.cursor.set_internal(new luxe.Vector( x, y ));
 
         var event : MouseEvent = {
             timestamp : timestamp,
@@ -663,7 +653,7 @@ class Core extends snow.App {
             y : y,
             xrel : xrel,
             yrel : yrel,
-            pos : _mouse_pos,
+            pos : screen.cursor.pos
         }
 
         if(!shutting_down) {
@@ -686,7 +676,7 @@ class Core extends snow.App {
             y : y,
             xrel : x,
             yrel : y,
-            pos : _mouse_pos,
+            pos : screen.cursor.pos
         }
 
         if(!shutting_down) {
@@ -700,6 +690,8 @@ class Core extends snow.App {
     } //onmousewheel
 
 //touch
+        //cached touch pos
+    var _touch_pos : Vector;
 
     override function ontouchdown( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
 
