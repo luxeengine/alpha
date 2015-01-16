@@ -5,24 +5,22 @@ import luxe.Vector;
 @:allow(luxe.Core)
 class Screen {
 
-    public var x : Float;
-    public var y : Float;
-    public var w : Float;
-    public var h : Float;
-
-    public var cursor : Cursor;
-    public var core : Core;
-
+    @:isVar public var w (default,null) : Float;
+    @:isVar public var h (default,null) : Float;
     @:isVar public var mid (get,null) : Vector;
     @:isVar public var size (get,null) : Vector;
 
-    public function new( ?_core:Core, _x:Int, _y:Int, _w:Int, _h:Int ) {
+        /** Access to the mouse cursor, position, visibility, locking etc. */
+    public var cursor : Cursor;
+
+    @:noCompletion public var core : Core;
+
+    @:allow(luxe.Core)
+    function new( ?_core:Core, _x:Int, _y:Int, _w:Int, _h:Int ) {
 
         core = _core;
         cursor = new Cursor(this);
 
-        x = _x;
-        y = _y;
         w = _w;
         h = _h;
 
@@ -32,65 +30,115 @@ class Screen {
     } //new
 
     function toString() {
-        return 'luxe.Screen({ x:$x, y:$y, w:$w, h:$h })';
+        return 'luxe.Screen({ w:$w, h:$h })';
     }
 
+//Public API
 
-    function get_mid() : Vector {
+        /** Returns true if the given point falls within the bounds of the w/h of the screen. */
+    public function point_inside( _p:Vector ) {
 
-        return mid.clone();
-
-    } //get_mid
-
-    @:noCompletion function internal_resized(_w:Float, _h:Float) {
-
-        w = _w;
-        h = _h;
-        size.set_xy(w, h);
-        mid.set_xy(w/2, h/2);
-
-    } //set_size
-
-    function get_size() : Vector {
-
-        return size.clone();
-
-    } //get_size
-
-    public function point_inside(_p:Vector) {
-
-        if( _p.x < x )    return false;
-        if( _p.y < y )    return false;
-        if( _p.x > x+w )  return false;
-        if( _p.y > y+h )  return false;
+        if( _p.x < 0 )    return false;
+        if( _p.y < 0 )    return false;
+        if( _p.x > w )  return false;
+        if( _p.y > h )  return false;
 
         return true;
 
     } //point_inside
+
+        /** Returns true if the given point as floats fall within the bounds of the w/h of the screen. */
+    public function point_inside_xy( _x:Float, _y:Float ) {
+
+        if( _x < 0 )    return false;
+        if( _y < 0 )    return false;
+        if( _x > w )  return false;
+        if( _y > h )  return false;
+
+        return true;
+
+    } //point_inside_xy
+
+//Internal
+
+    var internal = false;
+    @:noCompletion function internal_resized(_w:Float, _h:Float) {
+
+        w = _w;
+        h = _h;
+
+        internal = true;
+
+            size.x = _w;
+            size.y = _h;
+            mid.x = _w/2;
+            mid.y = _h/2;
+
+        internal = false;
+
+    } //set_size
+
+
+//getters/setters
+
+    function get_mid() : Vector {
+
+        if(internal) return mid;
+        return mid.clone();
+
+    } //get_mid
+
+    function get_size() : Vector {
+
+        if(internal) return size;
+        return size.clone();
+
+    } //get_size
 
 
 } //Screen
 
 
 
+
+
+
 class Cursor {
 
-
-    var screen : Screen;
-
+        /** The visibility of the cursor. (get/set) */
     @:isVar public var visible (get,set): Bool = true;
+        /** Grabbing the cursor locks it to the window bounds. On web this is analogous to `lock`. (get/set) */
     @:isVar public var grab (get,set): Bool = false;
+        /** Locking the cursor hides it, and enables the `xrel`/`yrel`   
+            values on the mouse move events. This changes the mouse to   
+            allow movement without it stopping at the bounds.   
+            On `web`, this must come from a user initiated action, and asks their permission. (get/set) */
     @:isVar public var lock (get,set): Bool = false;
+        /** The current mouse position. Setting this has no effect on `web` (and cannot). */
     @:isVar public var pos (get,set): Vector;
 
+        /** The screen this cursor relates to. */
+    var screen : Screen;
+    var ignore : Bool = false;
 
-    public function new( _screen:Screen ) {
+    @:allow(luxe.Screen)
+    function new( _screen:Screen ) {
 
         screen = _screen;
         pos = new Vector();
 
     } //new
 
+    @:allow(luxe.Core)
+    function set_internal( _pos:Vector ) {
+
+        ignore = true;
+            pos = _pos;
+        ignore = false;
+
+    } //set_internal
+
+//getters/setters
 
     function get_visible() : Bool {
 
@@ -136,24 +184,19 @@ class Cursor {
 
     function get_pos() : Vector {
 
-        if(pos != null) {
-            pos.set_xy( Luxe.mouse.x, Luxe.mouse.y );
-        }
-
         return pos;
 
     } //get_pos
 
     function set_pos( _p:Vector ) : Vector {
 
-        if(pos != null) {
-
+        if(pos != null && _p != null && !ignore) {
             screen.core.app.window.set_cursor_position( Std.int(_p.x), Std.int(_p.y) );
-
         }
 
         return pos = _p;
 
     } //set_pos
+
 
 } //Cursor

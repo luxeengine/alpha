@@ -67,7 +67,7 @@ class Main extends luxe.Game {
 
     function update_text( ?pos:Vector ) {
         if(pos == null) {
-            pos = Luxe.mouse.clone().int();
+            pos = Luxe.screen.cursor.pos.int();
         }
 
         var world_coord = Luxe.camera.screen_point_to_world(pos);
