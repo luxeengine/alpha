@@ -28,6 +28,11 @@ class LuxeApp {
             }
         } //_conf
 
+        #if mobile
+            _conf.window.fullscreen = true;
+            _conf.window.borderless = true;
+        #end //mobile
+
         {{#luxe}}
         //Apply the values if they are set
           {{~#window}}
