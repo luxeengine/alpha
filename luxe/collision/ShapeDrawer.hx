@@ -24,13 +24,13 @@ class ShapeDrawer {
     } //drawLine
 
         /** Draw a `Shape`, it will determine the type and draw it for you. */
-    public function drawShape( shape:Shape ) {
+    public function drawShape( shape:Shape, ?color:Color, ?immediate:Bool = false ) {
 
         if(Std.is(shape, Polygon)) {
-            drawPolygon(cast(shape, Polygon));
+            drawPolygon(cast(shape, Polygon), color, immediate);
             return;
         } else { //circle
-            drawCircle(cast(shape, Circle));
+            drawCircle(cast(shape, Circle), color, immediate);
             return;
         }
 
