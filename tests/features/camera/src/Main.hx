@@ -37,10 +37,6 @@ class Main extends luxe.Game {
         } //level tex on load
 
 
-        //We now set the camera bounds, so you can't escape past them
-        var midx = Luxe.screen.w/4;
-        var midy = Luxe.screen.h/4;
-
         screen_mouse = new Vector();
         view_mouse = new Vector();
         world_mouse = new Vector();

@@ -242,22 +242,33 @@ class Camera extends Entity {
 
     } //world_point_to_screen
 
+    // var cnt = 0;
     override function set_pos_from_transform(_pos:Vector) {
 
-        var hvw = view.viewport.w/2;
-        var hvh = view.viewport.h/2;
+        var vw = view.viewport.w;
+        var vh = view.viewport.h;
+        var hvw = vw/2;
+        var hvh = vh/2;
+
+        var _px = _pos.x; var _py = _pos.y;
 
         if(bounds != null) {
-            if(_pos.x < bounds.x) _pos.x = bounds.x;
-            if(_pos.y < bounds.y) _pos.y = bounds.y;
-            if(_pos.x+hvw > bounds.w-view.viewport.w) _pos.x = bounds.w-view.viewport.w-hvw;
-            if(_pos.y+hvh > bounds.h-view.viewport.h) _pos.y = bounds.h-view.viewport.h-hvh;
+            if(_px < bounds.x)        _px = bounds.x;
+            if(_py < bounds.y)        _py = bounds.y;
+            if(_px+hvw > bounds.w-vw) _px = bounds.w-vw-hvw;
+            if(_py+hvh > bounds.h-vh) _py = bounds.h-vh-hvh;
         }
+
+        var prev = _pos.ignore_listeners;
+            _pos.ignore_listeners = true;
+        _pos.set_xy(_px, _py);
+            _pos.ignore_listeners = prev;
 
         super.set_pos_from_transform(_pos);
 
             //flag for update
         update_view_pos = _pos;
+
 
     } //set_pos_from_transform
 
