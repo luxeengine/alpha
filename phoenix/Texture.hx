@@ -276,12 +276,6 @@ class Texture extends Resource {
         _set_clamp( clamp );
 
     } //reset
-	
-	public function updateTexture():Void {
-		bind();
-		
-		GL.texSubImage2D(GL.TEXTURE_2D, 0, 0, 0, width_actual, height_actual, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.data);
-	}
 
     public function from_asset( _asset:AssetImage ) {
 
