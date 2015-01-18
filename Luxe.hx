@@ -16,9 +16,6 @@ import luxe.Screen;
 @:keep
 class Luxe {
 
-        /** The last known mouse position */
-    public static var mouse     : Vector;
-
         /** Direct access to the core engine */
     public static var core      : luxe.Core;
         /** Access to the core debug features */
