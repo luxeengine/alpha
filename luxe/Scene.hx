@@ -59,7 +59,7 @@ class Scene extends Objects {
         Luxe.core.on('gamepaddevice', gamepaddevice);
 
             //if we have already missed the internal init
-        if(Luxe.core.has_inited) {
+        if(Luxe.core.inited) {
             init(null);
         }
 

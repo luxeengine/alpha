@@ -99,7 +99,7 @@ class Core extends snow.App {
        //if we have started a shutdown
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
-    public var has_inited : Bool = false;
+    public var inited : Bool = false;
 
     @:noCompletion public function new( _game:Game, _config:AppConfig ) {
 
@@ -151,7 +151,7 @@ class Core extends snow.App {
                 //emit the init event
                 //so that scene and others can start up
             emitter.emit('init');
-            has_inited = true;
+            inited = true;
 
                 //Reset the physics (starts the timer etc)
             physics.reset();
