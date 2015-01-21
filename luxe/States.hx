@@ -15,6 +15,7 @@ class State extends ID {
     public var machine : States;
     public var active : Bool = false;
     public var enabled : Bool = false;
+    public var inited : Bool = false;
 
     public function new( _options:StateOptions ) {
 
@@ -84,6 +85,16 @@ class State extends ID {
     @:noCompletion public function ongamepadaxis( event:GamepadEvent ) {}
     @:noCompletion public function ongamepaddevice( event:GamepadEvent ) {}
 
+//internal
+
+    @:allow(luxe.States)
+    inline function _init() {
+        if(!inited) {
+            inited = true;
+            init();
+        }
+    } //_init
+
 
 } //State
 
@@ -146,6 +157,12 @@ class States extends Objects {
         _state.machine = this;
             //let them know
         _state.onadded();
+            //if this state is added
+            //after init has happened,
+            //it should init immediately
+        if(Luxe.core.inited) {
+            _state._init();
+        }
 
             //debug stuff
         _debug('$name / adding a state called ' + _state.name + ', now at ' + Lambda.count(_states) + ' states');
@@ -328,7 +345,7 @@ class States extends Objects {
     //entity router functions
     function init(_) {
         for (state in _states) {
-            state.init();
+            state._init();
         }
     } //init
 
