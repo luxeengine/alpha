@@ -82,6 +82,11 @@ class TextGeometry extends Geometry {
         public var line_offsets : Array< Array<Float> >;
         public var lines : Array<String>;
 
+    //access to change events
+
+        @:noCompletion
+        public var emitter : luxe.Emitter;
+
     //internal
 
         var cache : Array< Array<Vertex> >;
@@ -89,7 +94,7 @@ class TextGeometry extends Geometry {
 
         var text_h_w : Float = 0;
         var text_h_h : Float = 0;
-        var point_ratio : Float = 1;
+        public var point_ratio : Float = 1;
 
         var dirty_sizing (default,set) : Bool = true;
         var dirty_align: Bool = true;
@@ -101,6 +106,7 @@ class TextGeometry extends Geometry {
     public function new( _options:TextGeometryOptions ) {
 
         options = _options;
+        emitter = new luxe.Emitter();
 
         if(options == null) throw "TextGeometry: requires non-null options at the moment";
 
@@ -412,8 +418,10 @@ class TextGeometry extends Geometry {
                     }
                 }
 
+                _x_inc *= point_ratio;
+
                     //apply it with the point size ratio
-                _cur_x += _x_inc * point_ratio;
+                _cur_x += _x_inc;
 
                     //increment char index
                 _idx++;
@@ -437,6 +445,7 @@ class TextGeometry extends Geometry {
 
             //if it was true, it's false now
         dirty_align = false;
+        emitter.emit('update_text');
 
     } //update_text
 

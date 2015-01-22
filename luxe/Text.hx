@@ -84,6 +84,7 @@ class Text extends Visual {
 
             //store for later
         text_options = _options;
+        text_bounds = new Rectangle();
 
         var _batcher = (_options.batcher == null) ? Luxe.renderer.batcher : _options.batcher;
 
@@ -130,29 +131,96 @@ class Text extends Visual {
 
         });
 
+        geom.emitter.on('update_text', on_geom_text_update);
 
         _options.geometry = geom;
         _options.shader = geom.shader;
 
             //create the visual
         super(_options);
-
-        // trace(shader);
-        // trace(geom.shader);
+            //flush
+        _update_bounds();
 
     } //new
 
+//Public API
+
     public function point_inside( p:Vector ) {
 
-        return false;
+        _update_bounds();
+        return text_bounds.point_inside(p);
 
     } //point_inside
+
+//Internal
 
     override function set_pos_from_transform( _p:Vector ) {
 
         super.set_pos_from_transform(_p);
+        _update_bounds();
         text_options.pos = pos;
 
     } //set_pos_from_transform
+
+//
+
+        //:todo: This is being considered overall, for the best fit.
+        //for now, for basic behavior that was there before, it'll do.
+    @:noCompletion
+    public var text_bounds : Rectangle;
+
+    function on_geom_text_update(_) {
+        _update_bounds();
+    }
+
+    @:noCompletion
+    inline function _update_bounds() {
+
+        var _x = pos.x;
+        var _y = pos.y;
+        var _tw = geom.text_width;
+        var _th = geom.text_height;
+        var _bw = geom.text_width;
+        var _bh = geom.text_height;
+
+        if(bounds != null) {
+            _bh = bounds.h;
+            _bw = bounds.w;
+            _x = bounds.x;
+            _y = bounds.y;
+
+            _x += switch(align) {
+                case center: _tw/2;
+                case right: _tw;
+                case _: 0.0;
+            }
+
+            _y += switch(align_vertical) {
+                case center: (_bh/2)-(_th/2);
+                case bottom: _bh - _th;
+                case _: 0.0;
+            }
+
+        } else {
+
+            _x -= switch(align) {
+                case center: _tw/2;
+                case right: _tw;
+                case _: 0.0;
+            }
+
+            _y -= switch(align_vertical) {
+                case center: _th/2;
+                case bottom: _th;
+                case _: 0.0;
+            }
+
+        } //bounds based
+
+        text_bounds.set( _x, _y, _tw, _th );
+
+    } //_update_bounds
+
+
 
 } //Text

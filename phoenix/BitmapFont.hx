@@ -214,66 +214,67 @@ class BitmapFont extends Resource {
 
     } //wrap_string_to_bounds
 
-    public inline function width_of( _string:String, _point_size:Float = 1.0, _letter_spc:Float = 0.0, ?_line_widths:Array<Float> ) : Float {
+    public function width_of_line( _string:String, _point_size:Float=1.0, _letter_spc:Float=0.0 ) {
 
-            //current width counter
+            //current x pos
         var _cur_x = 0.0;
-            //maximum width found
-        var _max_w = 0.0;
+            //current w pos
+        var _cur_w = 0.0;
             //the size ratio between font and given size
         var _ratio = _point_size / info.point_size;
-            //if given an array to cache line widths into
-        var _push_widths = (_line_widths != null);
 
-            //Iterate over each character,
-            //acculumating the size
         var i = 0;
         var _len = _string.uLength();
+
         for( _uglyph in _string.uIterator() ) {
 
             var _index = _uglyph.toInt();
+            var _char = info.chars.get(_index);
+            if(_char == null) _char = space_char;
 
-                // 10 = \n
-            if( _index == 10 ) {
+                //some characters (like spaces) have no width but an advance
+                //which is relevant/needed
+            var _cw = (_char.xoffset + Math.max(_char.width, _char.xadvance)) * _ratio;
+            var _cx = _cur_x + (_char.xoffset * _ratio);
 
-                _max_w = Math.max( _max_w, _cur_x );
-                if(_push_widths) _line_widths.push(_cur_x);
-                _cur_x = 0;
-
-            } else {
-
-                var _char = info.chars.get(_index);
-                if(_char == null) {
-                    _char = space_char;
-                }
-
-                var _spacing = _char.xadvance;
-
-                    //insert kerning values, if any
-                if( i < _len - 1 ) {
-
-                    var _next_index = _string.uCharCodeAt(i+1);
-                    _spacing += kerning( _index, _next_index );
-
-                        //if not a new line, add the letter spacing
-                    if(_next_index >= 32) {
-                        _spacing += _letter_spc;
-                    }
-                }
-
-                _cur_x += _spacing * _ratio;
-
+            var _spacing = _char.xadvance;
+            if( i < _len-1 ) {
+                var _next_index = _string.uCharCodeAt(i+1);
+                _spacing += kerning( _index, _next_index );
+                if(_next_index >= 32) { _spacing += _letter_spc; }
             }
 
+            _cur_x += _spacing * _ratio;
+            _cur_w = Math.max(_cur_w, _cx+_cw);
+
             ++i;
+        } //each char
 
-        } //while char in string
+        return _cur_w;
 
-            //account for the remaining length
-        if(_push_widths) _line_widths.push(_cur_x);
+    } //width_of_line
+
+    public inline function width_of( _string:String, _point_size:Float = 1.0, _letter_spc:Float = 0.0, ?_line_widths:Array<Float> ) : Float {
+
+            //if given an array to cache line widths into
+        var _max_w = 0.0;
+        var _push_widths = (_line_widths != null);
+        var _lines = _string.uSplit('\n');
+
+        for(_line in _lines) {
+
+            var _cur_w = width_of_line(_line, _point_size, _letter_spc);
+
+            _max_w = Math.max( _max_w, _cur_w );
+
+            if(_push_widths) {
+                _line_widths.push(_cur_w);
+            }
+
+        } //each line
 
             //return the max width found
-        return Math.max( _max_w, _cur_x );
+        return _max_w;
 
     } //width_of
 
@@ -324,6 +325,7 @@ class BitmapFont extends Resource {
         public inline function height_of_lines( _lines:Array<String>, _point_size:Float, _line_spc:Float=0.0 ) : Float {
 
             var _ratio = _point_size / info.point_size;
+
             return _lines.length * ((info.line_height + _line_spc) * _ratio);
 
         } //height_of
