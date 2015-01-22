@@ -703,14 +703,14 @@ class Core extends snow.App {
             game.ontouchdown(event);
 
                 //3 finger tap when console opens will switch tabs
-            if(touch_id == 2) {
+            if(app.input.touch_count == 3) {
                 if(console_visible) {
                     debug.switch_view();
                 }
             }
 
                 //4 finger tap toggles console
-            if(touch_id == 3) {
+            if(app.input.touch_count == 4) {
                 show_console( !console_visible );
             }
 
