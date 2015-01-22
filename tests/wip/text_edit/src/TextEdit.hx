@@ -38,16 +38,15 @@ class TextEdit extends Component {
     } //ontextinput
 
     override function onkeydown( event:KeyEvent ) {
-        // trace(event.scancode);
-        switch(event.scancode) {
-            case Scan.backspace:
+        switch(event.keycode) {
+            case Key.backspace:
                 move(-1);
                 cut(index, 1);
-            case Scan.delete:
+            case Key.delete:
                 cut(index, 1);
-            case Scan.left: move(-1);
-            case Scan.right: move(1);
-            case Scan.enter:
+            case Key.left: move(-1);
+            case Key.right: move(1);
+            case Key.enter:
         }
     } //onkeydown
 
