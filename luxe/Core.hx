@@ -6,6 +6,7 @@ import snow.utils.ByteArray;
 import snow.window.Window;
 
 import Luxe;
+import luxe.IO;
 import luxe.Audio;
 import luxe.Events;
 import luxe.Emitter;
@@ -83,6 +84,7 @@ class Core extends snow.App {
 //Sub Systems, mostly in order of importance
     public var emitter   : Emitter;
     public var debug     : Debug;
+    public var io        : IO;
     public var draw      : Draw;
     public var timer     : Timer;
     public var events    : Events;
@@ -213,8 +215,8 @@ class Core extends snow.App {
 
             //Order is important here
 
-        debug = new Debug( this );
-        Luxe.debug = debug;
+        Luxe.debug = debug = new Debug( this );
+        Luxe.io = io = new IO( this );
 
         draw = new Draw( this );
         timer = new Timer( this );
@@ -256,6 +258,7 @@ class Core extends snow.App {
             //they start up
 
         debug.init();
+        io.init();
         timer.init();
         audio.init();
         input.init();

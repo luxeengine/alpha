@@ -20,6 +20,8 @@ class Luxe {
     public static var core      : luxe.Core;
         /** Access to the core debug features */
     public static var debug     : luxe.Debug;
+        /** Access to the io features */
+    public static var io        : luxe.IO;
         /** Access to the drawing features */
     public static var draw      : luxe.Draw;
         /** Access to the audio features */
@@ -88,13 +90,13 @@ class Luxe {
         return core.emitter.off(event, handler);
     }
 
-    static function get_screen() {
+    static inline function get_screen() {
 
         return core.screen;
 
     } //get_screen
 
-    static function get_time() : Float {
+    static inline function get_time() : Float {
 
         return core.app.time;
 
@@ -258,15 +260,6 @@ class Luxe {
         return Shader.load(_ps_id, _vs_id, _onload, _silent);
 
     } //loadShader
-
-//Utility features
-
-        /** Open the system default browser with the given URL */
-    public static function openURL( _url:String ) {
-
-        core.app.io.url_open( _url );
-
-    } //openURL
 
 //Internal
 
