@@ -227,27 +227,30 @@ class Entity extends Objects {
 
 
         /** attach a component to the entity */
-    public function add<T:Component>( _component:T ) : T {
+    var component_count : Int = 0;
+    public inline function add<T:Component>( _component:T ) : T {
+        component_count++;
         return _components.add( _component );
     } //add
 
         /** remove a component from the entity */
-    public function remove( _name:String ) : Bool {
+    public inline function remove( _name:String ) : Bool {
+        component_count--;
         return _components.remove( _name );
     } //remove
 
         /** get a component from the entity, by name */
-    public function get<T>(_name:String, ?_in_children:Bool = false ) : T {
+    public inline function get<T>(_name:String, ?_in_children:Bool = false ) : T {
         return _components.get( _name, _in_children );
     } //get
 
         /** get all component from the entity, by name */
-    public function get_any<T>(_name:String, ?_in_children:Bool = false, ?_first_only:Bool = true ) : Array<T> {
+    public inline function get_any<T>(_name:String, ?_in_children:Bool = false, ?_first_only:Bool = true ) : Array<T> {
         return _components.get_any( _name, _in_children, _first_only );
     } //get
 
         /** returns true if the entity has a component by the given name */
-    public function has( _name:String ) : Bool {
+    public inline function has( _name:String ) : Bool {
         return _components.has( _name );
     } //has
 
@@ -256,7 +259,7 @@ class Entity extends Objects {
 //internal
 
 
-    @:noCompletion public function _init() {
+    @:noCompletion public inline function _init() {
 
             //verbose debugging
         _verbose('${this} inside _init with options as $options' );
@@ -267,24 +270,28 @@ class Entity extends Objects {
             //as there is likely connections made during init
         emit('init');
 
+        if(component_count > 0) {
             //init all the components attached
-        for(_component in components) {
-            _verbose("          " + name + " calling init on component " + _component.name );
-            _component.init();
-        } //for each component
+            for(_component in components) {
+                _verbose("          " + name + " calling init on component " + _component.name );
+                _component.init();
+            } //for each component
+        } //component_count
 
             //now init our children, so they do the same
-        for(_child in children) {
-            _verbose("         parent " + name + " calling init on child " + _child.name );
-            _child._init();
-        } //for each child
+        if(children.length > 0) {
+            for(_child in children) {
+                _verbose("         parent " + name + " calling init on child " + _child.name );
+                _child._init();
+            } //for each child
+        }
 
             //flag internally
         inited = true;
 
     } //_init
 
-    @:noCompletion public function _reset(_) {
+    @:noCompletion public inline function _reset(_) {
 
         _debug('calling reset on ' + name);
 
@@ -293,16 +300,20 @@ class Entity extends Objects {
             //potential listeners
         emit('reset');
 
-        for(_component in components) {
-            _verbose("          " + name + " calling reset on component " + _component.name );
-            _component.onreset();
-        } //for each component
+        if(component_count > 0) {
+            for(_component in components) {
+                _verbose("          " + name + " calling reset on component " + _component.name );
+                _component.onreset();
+            } //for each component
+        }
 
             //now reset our children, so they do the same
-        for(_child in children) {
-            _child._reset(_);
-            _debug("         parent " + name + " calling reset on child " + _child.name );
-        } //for each child
+        if(children.length > 0) {
+            for(_child in children) {
+                _child._reset(_);
+                _debug("         parent " + name + " calling reset on child " + _child.name );
+            } //for each child
+        }
 
             //start the fixed rate timer
         _set_fixed_rate_timer( fixed_rate );
@@ -318,20 +329,24 @@ class Entity extends Objects {
         _debug('destroy ' + name + ' with ' + children.length + ' children and ' + Lambda.count(components) + " components / " + id);
 
             //first destroy children
-        for(_child in children) {
-            _verbose('     calling destroy on child ' + _child.name);
-            _child.destroy(true);
-        } //for each child
+        if(children.length > 0) {
+            for(_child in children) {
+                _verbose('     calling destroy on child ' + _child.name);
+                _child.destroy(true);
+            } //for each child
+        }
 
             //clear the list
         children = null;
         children = [];
 
-        for(_component in components) {
-            _verbose("          " + name + " calling destroy on component " + _component.name );
-            _component.onremoved();
-            _component.ondestroy();
-        } //for each component
+        if(component_count > 0) {
+            for(_component in components) {
+                _verbose("          " + name + " calling destroy on component " + _component.name );
+                _component.onremoved();
+                _component.ondestroy();
+            } //for each component
+        }
 
             //tell listeners
         emit('destroy');
@@ -368,7 +383,7 @@ class Entity extends Objects {
     } //destroy
 
 
-    @:noCompletion public function _update(dt:Float) {
+    @:noCompletion public inline function _update(dt:Float) {
 
         if(destroyed) {
             _debug(" calling update AFTER DESTROYED on " + name + " / " + id );
@@ -393,9 +408,11 @@ class Entity extends Objects {
         }
 
             //update all the components attached directly to us
-        for(_component in components) {
-            _component.update(dt);
-        } //for each component
+        if(component_count > 0) {
+            for(_component in components) {
+                _component.update(dt);
+            } //for each component
+        }
 
             //now update our children, so they do the same
         if(children.length > 0) {
@@ -424,12 +441,16 @@ class Entity extends Objects {
 
         onfixedupdate(fixed_rate);
 
-        for(_component in components) {
-            _component.onfixedupdate(fixed_rate);
+        if(component_count > 0) {
+            for(_component in components) {
+                _component.onfixedupdate(fixed_rate);
+            }
         }
 
-        for(_child in children) {
-            _child._fixed_update();
+        if(children.length > 0) {
+            for(_child in children) {
+                _child._fixed_update();
+            }
         }
 
     } //_fixed_update
@@ -748,13 +769,13 @@ class Entity extends Objects {
 
 //timing
 
-    function get_fixed_rate() : Float {
+    inline function get_fixed_rate() : Float {
 
         return fixed_rate;
 
     } //get_fixed_rate
 
-    function set_fixed_rate( _rate:Float ) : Float {
+    inline function set_fixed_rate( _rate:Float ) : Float {
 
         fixed_rate = _rate;
 
@@ -766,7 +787,7 @@ class Entity extends Objects {
 
     } //set_fixed_rate
 
-    function _stop_fixed_rate_timer() {
+    inline function _stop_fixed_rate_timer() {
 
         if(fixed_rate_timer != null) {
             fixed_rate_timer.stop();
@@ -775,7 +796,7 @@ class Entity extends Objects {
 
     } //_stop_fixed_rate_timer
 
-    function _set_fixed_rate_timer( _rate:Float, ?_pos:haxe.PosInfos ) {
+    inline function _set_fixed_rate_timer( _rate:Float, ?_pos:haxe.PosInfos ) {
 
         _stop_fixed_rate_timer();
 
@@ -791,7 +812,7 @@ class Entity extends Objects {
 
 //components
 
-    function get_components() {
+    inline function get_components() {
         return _components.components;
     } //get_components
 
@@ -825,45 +846,55 @@ class Entity extends Objects {
     function set_pos_from_transform( _pos:Vector ) {
 
             //and we have to propogate the values to the components
-        for(_component in components) {
-            _component.entity_pos_change( _pos );
-        } //for each _component
+        if(component_count > 0) {
+            for(_component in components) {
+                _component.entity_pos_change( _pos );
+            } //for each _component
+        }
 
     } //set_pos_from_transform
 
     function set_rotation_from_transform( _rotation:Quaternion ) {
 
             //and we have to propogate the values to the components
-        for(_component in components) {
-            _component.entity_rotation_change( _rotation );
-        } //for each _component
+        if(component_count > 0) {
+            for(_component in components) {
+                _component.entity_rotation_change( _rotation );
+            } //for each _component
+        }
 
     } //set_rotation_from_transform
 
     function set_scale_from_transform( _scale:Vector ) {
 
             //and we have to propogate the values to the components
-        for(_component in components) {
-            _component.entity_scale_change( _scale );
-        } //for each _component
+        if(component_count > 0) {
+            for(_component in components) {
+                _component.entity_scale_change( _scale );
+            } //for each _component
+        }
 
     } //set_scale_from_transform
 
     function set_origin_from_transform( _origin:Vector ) {
 
             //and we have to propogate the values to the components
-        for(_component in components) {
-            _component.entity_origin_change( _origin );
-        } //for each _component
+        if(component_count > 0) {
+            for(_component in components) {
+                _component.entity_origin_change( _origin );
+            } //for each _component
+        }
 
     } //set_origin_from_transform
 
     function set_parent_from_transform( _parent:Transform ) {
 
             //and we have to propogate the values to the components
-        for(_component in components) {
-            _component.entity_parent_change( _parent );
-        } //for each _component
+        if(component_count > 0) {
+            for(_component in components) {
+                _component.entity_parent_change( _parent );
+            } //for each _component
+        }
 
     } //set_parent_from_transform
 
