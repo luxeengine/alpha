@@ -11,6 +11,11 @@ class IO {
         core = _core;
     } //new
 
+//Path specifics
+
+    public var app_path (get,never) : String;
+    public var app_path_prefs (get,never) : String;
+
 //Utility features
 
         /** Open the system default browser with the given URL.
@@ -23,6 +28,18 @@ class IO {
     } //url_open
 
 //Internal
+
+    function get_app_path() {
+
+        return core.app.io.app_path();
+
+    } //get_app_path
+
+    function get_app_path_prefs() {
+
+        return core.app.io.app_path_prefs();
+
+    } //get_app_path
 
     @:allow(luxe.Core)
     function init() {
