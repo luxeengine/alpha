@@ -556,8 +556,11 @@ class SpriteAnimation extends Component {
                 animation_list.set( anim, _anim );
 
             } //anim in anims
-        } //anims.length > 0
-    }
+        } else { //anims.length > 0
+            trace('SpriteAnimation on ' + entity.name + ' was given a json object to add but it had no properties... This is probably an error.');
+        }
+
+    } //add_from_json_object
 
     public function add_from_json( _json_string : String ) {
 
