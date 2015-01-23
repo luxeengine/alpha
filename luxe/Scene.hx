@@ -23,7 +23,6 @@ class Scene extends Objects {
 
         super(_name);
 
-
         entities = new Map<String,Entity>();
 
         _delayed_init_entities = [];
@@ -66,6 +65,7 @@ class Scene extends Objects {
     } //new
 
         /** add given entity to this scene */
+    var entity_count : Int = 0;
     public function add( entity:Entity ) {
 
         if(entity == null) {
@@ -82,6 +82,7 @@ class Scene extends Objects {
 
         entity.scene = this;
         entities.set( entity.name, entity );
+        entity_count++;
 
 
             if(inited) {
@@ -106,6 +107,7 @@ class Scene extends Objects {
         if(entity.scene == this) {
 
             entity.scene = null;
+            entity_count--;
             return entities.remove( entity.name );
 
         } else {
@@ -122,15 +124,17 @@ class Scene extends Objects {
         /** destroy all entities in this scene, emptying it. */
     public function empty() {
 
-        for(entity in entities) {
-            if(entity != null) {
+        if(entity_count > 0) {
+            for(entity in entities) {
+                if(entity != null) {
 
-                remove( entity );
-                entity.destroy();
-                entity = null;
+                    remove( entity );
+                    entity.destroy();
+                    entity = null;
 
-            }
-        } //each entity
+                }
+            } //each entity
+        }
 
     } //empty
 
@@ -146,10 +150,12 @@ class Scene extends Objects {
         */
     public function get_named_like(_name:String, into:Array<Entity> ) {
 
-        var _filter : EReg = new EReg('^((?:' + _name + ')[.]{1})', 'g');
-        for(_entity in entities) {
-            if( _filter.match(_entity.name) ) {
-                into.push(_entity);
+        if(entity_count > 0) {
+            var _filter : EReg = new EReg('^((?:' + _name + ')[.]{1})', 'g');
+            for(_entity in entities) {
+                if( _filter.match(_entity.name) ) {
+                    into.push(_entity);
+                }
             }
         }
 
@@ -344,11 +350,13 @@ class Scene extends Objects {
 
         var _before_count = length;
 
-        for(entity in entities) {
-            if(entity != null) {
-                if(!entity.inited) {
-                    _verbose('calling init on an entity : ' + entity.name);
-                    entity._init();
+        if(entity_count > 0) {
+            for(entity in entities) {
+                if(entity != null) {
+                    if(!entity.inited) {
+                        _verbose('calling init on an entity : ' + entity.name);
+                        entity._init();
+                    }
                 }
             }
         }
@@ -397,11 +405,13 @@ class Scene extends Objects {
         emit('update', dt);
 
             //finally update them
-        for(entity in entities) {
-            if(entity != null) {
-                entity._update(dt);
-            }
-        } //for each entity
+        if(entity_count > 0) {
+            for(entity in entities) {
+                if(entity != null) {
+                    entity._update(dt);
+                }
+            } //for each entity
+        }
 
         Luxe.core.debug.end('scene.' + name);
 

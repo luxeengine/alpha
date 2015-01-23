@@ -105,6 +105,8 @@ class States extends Objects {
     public var active_states: Array<State>;
     public var current_state: State;
 
+    var active_count:Int = 0;
+
     public function new( ?_options:StatesOptions ) {
 
         var _name = '';
@@ -149,10 +151,12 @@ class States extends Objects {
 
     } //new
 
+    var _state_count:Int = 0;
     public function add<T:State>( _state:T ) : T {
 
             //store it in the state list
         _states.set( _state.name, _state );
+        _state_count++;
             //store reference of the owner
         _state.machine = this;
             //let them know
@@ -198,6 +202,8 @@ class States extends Objects {
                     //tell user
                 _state.onremoved();
 
+                _state_count--;
+
             } //state != null
 
             return _state;
@@ -210,16 +216,19 @@ class States extends Objects {
 
     public function kill( _name:String ) {
 
-        if( _states.exists(_name) ) {
-            var _state : State = remove( _name );
-            if(_state != null) {
-                _state.ondestroy();
+        if(_state_count > 0) {
+            if( _states.exists(_name) ) {
+                var _state : State = remove( _name );
+                if(_state != null) {
+                    _state.ondestroy();
+                }
             }
         }
 
     } //kill
 
     public function enabled( _name:String ) {
+        if(_state_count == 0) return false;
 
         var state = _states.get( _name );
 
@@ -232,6 +241,8 @@ class States extends Objects {
     } //enabled
 
     public function enable<T>( _name:String, ?_enable_with:T ) {
+        if(_state_count == 0) return;
+
         var state = _states.get( _name );
         if(state != null) {
             _debug('$name / enabling a state ' + _name );
@@ -239,11 +250,14 @@ class States extends Objects {
             state.active = true;
             state.enabled = true;
             active_states.push(state);
+            active_count++;
             _debug('$name / now at ${active_states.length} active states');
         }
     } //enable
 
     public function disable<T>( _name:String, ?_disable_with:T  ) {
+        if(_state_count == 0) return;
+
         var state = _states.get( _name );
         if(state != null) {
             _debug('$name / disabling a state ' + _name );
@@ -251,6 +265,7 @@ class States extends Objects {
             state.active = false;
             state.enabled = false;
             active_states.remove( state );
+            active_count--;
             _debug('$name / now at ${active_states.length} active states');
         }
     } //disable
@@ -260,6 +275,7 @@ class States extends Objects {
             //order matters
         _state.onenter( _enter_with );
         active_states.push( _state );
+        active_count++;
         _state.active = true;
 
     } //enter
@@ -269,6 +285,7 @@ class States extends Objects {
             //order matters
         _state.active = false;
         active_states.remove( _state );
+        active_count--;
         _state.onleave( _leave_with );
 
     } //leave
@@ -305,8 +322,10 @@ class States extends Objects {
 
     public function destroy() {
 
-        for (state in _states) {
-            state.destroy();
+        if(_state_count > 0) {
+            for (state in _states) {
+                state.destroy();
+            }
         }
 
         Luxe.core.off('init', init);
@@ -344,21 +363,27 @@ class States extends Objects {
 
     //entity router functions
     function init(_) {
-        for (state in _states) {
-            state._init();
+        if(_state_count > 0) {
+            for (state in _states) {
+                state._init();
+            }
         }
     } //init
 
     function reset(_) {
-        for (state in active_states) {
-            state.onreset();
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onreset();
+            }
         }
     } //reset
 
     function update(dt:Float) {
-        for (state in active_states) {
-            _verboser('${state.name} / update / $dt');
-            state.update(dt);
+        if(active_count > 0) {
+            for (state in active_states) {
+                _verboser('${state.name} / update / $dt');
+                state.update(dt);
+            }
         }
     } //update
 
@@ -369,126 +394,164 @@ class States extends Objects {
     } //ondestroy
 
     function render(_) {
-        for (state in active_states) {
-            state.onrender();
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onrender();
+            }
         }
     } //render
 
     function prerender(_) {
-        for (state in active_states) {
-            state.onprerender();
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onprerender();
+            }
         }
     } //prerender
 
     function postrender(_) {
-        for (state in active_states) {
-            state.onpostrender();
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onpostrender();
+            }
         }
     } //postrender
 
 //Internal helper functions
 
     function keydown( e:KeyEvent ) {
-        for (state in active_states) {
-            state.onkeydown(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onkeydown(e);
+            }
         }
     } //onkeydown
 
     function keyup( e:KeyEvent ) {
-        for (state in active_states) {
-            state.onkeyup(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onkeyup(e);
+            }
         }
     } //onkeyup
 
     function textinput( e:TextEvent ) {
-        for (state in active_states) {
-            state.ontextinput(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.ontextinput(e);
+            }
         }
     } //ontextinput
 
 //inputbindings
 
     function inputup( _event:{ name:String, event:InputEvent } ) {
-        for (state in active_states) {
-            state.oninputup( _event.name, _event.event );
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.oninputup( _event.name, _event.event );
+            }
         }
     } //oninputup
 
     function inputdown( _event:{ name:String, event:InputEvent } ) {
-        for (state in active_states) {
-            state.oninputdown( _event.name, _event.event );
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.oninputdown( _event.name, _event.event );
+            }
         }
     } //oninputdown
 
 //mouse
 
     function mousedown( e:MouseEvent ) {
-        for (state in active_states) {
-            state.onmousedown(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onmousedown(e);
+            }
         }
     } //onmousedown
 
     function mousewheel( e:MouseEvent ) {
-        for (state in active_states) {
-            state.onmousewheel(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onmousewheel(e);
+            }
         }
     } //onmousewheel
 
     function mouseup( e:MouseEvent ) {
-        for (state in active_states) {
-            state.onmouseup(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onmouseup(e);
+            }
         }
     } //onmouseup
 
     function mousemove( e:MouseEvent ) {
-        for (state in active_states) {
-            state.onmousemove(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onmousemove(e);
+            }
         }
     } //onmousemove
 
 //touch
 
     function touchdown( e:TouchEvent ) {
-        for (state in active_states) {
-            state.ontouchdown(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.ontouchdown(e);
+            }
         }
     } //ontouchdown
 
     function touchup( e:TouchEvent ) {
-        for (state in active_states) {
-            state.ontouchup(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.ontouchup(e);
+            }
         }
     } //ontouchup
 
     function touchmove( e:TouchEvent ) {
-        for (state in active_states) {
-            state.ontouchmove(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.ontouchmove(e);
+            }
         }
     } //ontouchmove
 
 //gamepad
 
     function gamepadaxis( e:GamepadEvent ) {
-        for (state in active_states) {
-            state.ongamepadaxis(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.ongamepadaxis(e);
+            }
         }
     } //ongamepadaxis
 
     function gamepadup( e:GamepadEvent ) {
-        for (state in active_states) {
-            state.ongamepadup(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.ongamepadup(e);
+            }
         }
     } //ongamepadup
 
     function gamepaddown( e:GamepadEvent ) {
-        for (state in active_states) {
-            state.ongamepaddown(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.ongamepaddown(e);
+            }
         }
     } //ongamepaddown
 
     function gamepaddevice( e:GamepadEvent ) {
-        for (state in active_states) {
-            state.ongamepaddevice(e);
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.ongamepaddevice(e);
+            }
         }
     } //ongamepaddevice
 
