@@ -202,6 +202,8 @@ class States extends Objects {
                     //tell user
                 _state.onremoved();
 
+                    //remove it
+                _states.remove(_name);
                 _state_count--;
 
             } //state != null
