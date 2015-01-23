@@ -1,6 +1,5 @@
 
 import luxe.Input;
-import luxe.physics.nape.DebugDraw;
 
 import nape.geom.Vec2;
 import nape.phys.Body;
