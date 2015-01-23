@@ -161,7 +161,7 @@ class Main extends luxe.Game {
     override function onmouseup( e:MouseEvent ) {
 
         if(textbounds.point_inside(e.pos)) {
-            Luxe.openURL('http://meetcartographer.com/carapace/');
+            Luxe.io.url_open('http://meetcartographer.com/carapace/');
         }
 
     } //onmouseup
