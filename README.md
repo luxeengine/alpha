@@ -13,9 +13,9 @@ http://snowkit.org/
 
 ## dev cycle
 
-####focus sheet : alpha-2.0+  -- currently being setup --
+####focus sheet : alpha-2.0+0010
 
-####[read focus sheet](#)   
+####[read focus sheet](http://snowkit.org/2015/01/12/luxe-alpha-2-0/)   
 
 [follow on github](https://github.com/underscorediscovery/luxe/milestones/alpha-2.0)   
 
