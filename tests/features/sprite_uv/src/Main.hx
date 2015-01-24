@@ -4,6 +4,7 @@ import luxe.Sprite;
 import luxe.Text;
 import luxe.Color;
 import luxe.Vector;
+import luxe.Rectangle;
 
 class Main extends luxe.Game {
 
@@ -39,7 +40,20 @@ class Main extends luxe.Game {
         stars.texture.filter = phoenix.Texture.FilterType.nearest;
         stars.texture.clamp = phoenix.Texture.ClampType.repeat;
 
+        Luxe.on('window.resized', on_resize);
+
     } //ready
+
+    function on_resize( _event: snow.types.Types.WindowEvent ) {
+
+        var w = _event.event.x;
+        var h = _event.event.y;
+        var ratio = w / h;
+
+        stars.size = sky.size = new Vector(w, w / ratio);
+        Luxe.camera.viewport = new Rectangle(0,0,w,h);
+
+    }
 
     override function onmousemove( e:MouseEvent ) {
 
@@ -48,6 +62,11 @@ class Main extends luxe.Game {
     } //onmousemove
 
     override function onkeyup( e:KeyEvent ) {
+
+        if( e.keycode == Key.enter && e.mod.alt ) {
+            app.app.window.fullscreen = !app.app.window.fullscreen;
+        }
+
 
         if(e.keycode == Key.escape) {
             Luxe.shutdown();
