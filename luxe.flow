@@ -19,11 +19,6 @@
           "-resource version@version",
           "-resource build@build",
 
-          "-resource luxe/defaults/ui/tiny.ui.png@tiny.ui.png",
-          "-resource luxe/defaults/ui/tiny.button.png@tiny.button.png",
-          "-resource luxe/defaults/fonts/default.png@default.png",
-          "-resource luxe/defaults/fonts/default.fnt@default.fnt",
-
           "-resource phoenix/defaults/shaders/vert.glsl@default.vert.glsl",
           "-resource phoenix/defaults/shaders/frag.glsl@default.frag.glsl",
           "-resource phoenix/defaults/shaders/frag.textured.glsl@default.frag.textured.glsl",
@@ -40,6 +35,17 @@
  },
 
  if : {
+
+    "!no_debug_console" : {
+      build:{
+        flags:[
+          "-resource luxe/defaults/ui/tiny.ui.png@tiny.ui.png",
+          "-resource luxe/defaults/ui/tiny.button.png@tiny.button.png",
+          "-resource luxe/defaults/fonts/default.png@default.png",
+          "-resource luxe/defaults/fonts/default.fnt@default.fnt"
+        ]
+      }
+    },
     profiler : {
       build : {
         defines : ['DHXCPP_STACK_TRACE', 'HXCPP_STACK_LINE', 'HXCPP_CHECK_POINTER']
