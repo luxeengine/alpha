@@ -1,0 +1,34 @@
+{
+
+  luxe: {
+    window:{
+      width: 700,
+      height: 467,
+      resizable: false,
+      title: 'alpha-2.0+0010'
+    }
+  },
+  project : {
+    name : 'alpha_2_0_0010',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'alpha_2_0_0010',
+      package : 'com.luxeengine.samples.0010'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/',
+      index : { path:'custom_index.html => index.html', template:'project', not_listed:true }
+    }
+
+  }
+
+}
