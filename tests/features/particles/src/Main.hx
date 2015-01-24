@@ -49,9 +49,8 @@ class Main extends luxe.Game {
         });
 
         ss = new Sprite({
-            texture : t1,
             pos : new Vector(),
-            size : new Vector(32,32)
+            size : new Vector(4,4)
         });
 
         particles.add_emitter({
@@ -106,11 +105,21 @@ class Main extends luxe.Game {
 
     override function onmousedown( e:MouseEvent ) {
         mouse.set_xy(e.x,e.y);
-        if(particles.enabled) {
-            particles.stop();
+
+            //pause particles with left click
+        if(e.button == MouseButton.left) {
+            particles.paused = !particles.paused;
         } else {
-            particles.start();
+
+                //stop emission with right click
+            if(particles.enabled) {
+                particles.stop();
+            } else {
+                particles.start();
+            }
+
         }
+
     } //onmousedown
 
     override function onmouseup( e:MouseEvent ) {

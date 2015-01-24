@@ -14,6 +14,7 @@ typedef ParticleEmitterOptions = {
 
     ? particle_image : Texture,
     ? emit_time : Float,
+    ? cache_wrap : Bool,
     ? cache_size : Int,
     ? emit_count : Int,
     ? direction : Float,
