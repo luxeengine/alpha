@@ -17,7 +17,7 @@ http://snowkit.org/
 
 ####[read focus sheet](http://snowkit.org/2015/01/12/luxe-alpha-2-0/)   
 
-[follow on github](https://github.com/underscorediscovery/luxe/milestones/alpha-2.0)   
+[follow on github](https://github.com/underscorediscovery/luxe/milestones/alpha-2.0+0010)   
 
 [follow on waffle](https://waffle.io/underscorediscovery/luxe)   
 
