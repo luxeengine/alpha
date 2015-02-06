@@ -30,35 +30,6 @@ import luxe.Log._debug;
 import luxe.Log.log;
 
 
-#if (!luxe_threading_disabled && luxe_native)
-
-    #if neko
-        import neko.vm.Thread;
-        import neko.vm.Mutex;
-    #else
-        import cpp.vm.Thread;
-        import cpp.vm.Mutex;
-    #end
-
-    private typedef LoadTextureInfo = {
-        onloaded : Texture->Void,
-        bytes : ByteArray,
-        id : String
-    }
-
-    private typedef LoadShaderInfo = {
-        onloaded:Shader->Void,
-        ps_id : String,
-        vs_id : String
-    }
-
-    private enum CoreThreadRequest {
-        load_texture;
-        load_shader;
-    }
-
-#end //!luxe_threading_disabled && luxe_native
-
 @:noCompletion
 @:keep
 @:log_as('luxe')
@@ -67,13 +38,6 @@ class Core extends snow.App {
         //the game object running the core
     public var game : Game;
     public var appconfig : AppConfig;
-
-#if (luxe_native && !luxe_threading_disabled)
-
-    public var core_thread : Thread;
-    public var thread_message : Dynamic;
-
-#end //luxe_native
 
         //if the console is displayed atm
     public var console_visible : Bool = false;
@@ -112,11 +76,6 @@ class Core extends snow.App {
 
             //Store the core for reference in the game
         game.app = this;
-
-            //make sure we know what thread we start in
-        #if (luxe_native && !luxe_threading_disabled)
-            core_thread = Thread.current();
-        #end //luxe_native
 
             //Create internal stuff
         emitter = new Emitter();
@@ -365,10 +324,6 @@ class Core extends snow.App {
 //Physics
             //note that this does not update the physics, simply processes the active engines
         physics.process();
-
-//Loading thread
-
-        process_loading_thread();
 
 //Run update callbacks
             debug.start(core_tag_updates);
@@ -883,33 +838,6 @@ class Core extends snow.App {
        return game.config( config );
 
     } //config
-
-    function process_loading_thread() {
-        #if (luxe_native && !luxe_threading_disabled)
-//Background threads sending requests our way
-
-            thread_message = Thread.readMessage(false);
-
-            if(thread_message != null) {
-
-                var type : CoreThreadRequest = thread_message.type;
-                switch( type ) {
-                    case CoreThreadRequest.load_texture: {
-                        var info : LoadTextureInfo = cast thread_message.info;
-                        Luxe.loadTexture( info.id, info.onloaded, false ); //, info.bytes :todo:snow:
-                    } //load_texture
-
-                    case CoreThreadRequest.load_shader: {
-                        var info : LoadShaderInfo = cast thread_message.info;
-                        Luxe.loadShader( info.ps_id, info.vs_id, info.onloaded );
-                    } //load_shader
-
-                } //switch type
-
-            } //thread_message
-
-        #end //(luxe_native && !luxe_threading_disabled)
-    } //process_loading_thread
 
 //Noisy stuff
 

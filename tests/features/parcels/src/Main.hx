@@ -60,7 +60,6 @@ class Main extends luxe.Game {
 
             parcel1.from_json( haxe.Json.parse(json_string) );
 
-            //show an animation to test background thread
         sprites = [];
 
         var barw : Float = Luxe.screen.w/60;

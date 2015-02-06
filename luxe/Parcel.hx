@@ -7,16 +7,6 @@ import luxe.Log._verbose;
 import luxe.Log._debug;
 import luxe.Log.log;
 
-#if (!parcel_thread_disabled && luxe_native)
-    #if neko
-        import neko.vm.Thread;
-        import neko.vm.Mutex;
-    #else
-        import cpp.vm.Thread;
-        import cpp.vm.Mutex;
-    #end
-#end //parcel_thread_disabled
-
 
 private typedef ShaderInfo = {
     ps_id : String,
@@ -66,7 +56,6 @@ class Parcel extends luxe.resource.ResourceManager {
         if( options.load_spacing == null ) { options.load_spacing = 0.1; }
         if( options.start_spacing == null ) { options.start_spacing = 0.4; }
         if( options.sequential == null ) { options.sequential = false; }
-        if( options.threaded == null ) { options.threaded = false; }
         if( options.silent == null ) { options.silent = false; }
 
         texture_list    = [];
@@ -116,29 +105,20 @@ class Parcel extends luxe.resource.ResourceManager {
 
             if(!options.silent) log("starting load");
 
-        #if (luxe_native && !parcel_thread_disabled)
-            Thread.create(function(){
-                // Sys.println('background thread loading ' + options);
-        #end
-                if( !options.sequential ) {
+            if( !options.sequential ) {
 
-                    start_textures_load();
-                    start_fonts_load();
-                    start_shaders_load();
-                    start_sounds_load();
-                    start_texts_load();
-                    start_datas_load();
+                start_textures_load();
+                start_fonts_load();
+                start_shaders_load();
+                start_sounds_load();
+                start_texts_load();
+                start_datas_load();
 
-                } else {
+            } else {
 
-                    start_textures_load();
+                start_textures_load();
 
-                }
-
-        #if (luxe_native && !parcel_thread_disabled)
-                // Sys.println('background thread end');
-            }); //Thread
-        #end
+            }
 
         }); //timer schedule
 
@@ -729,58 +709,18 @@ class Parcel extends luxe.resource.ResourceManager {
     function load_texture( _tex:String, _complete ) {
         #if luxe_parcel_logging log("    loading texture " + _tex ); #end
 
-        #if (luxe_native && !parcel_thread_disabled)
-
-            // Sys.println("loading from thread?");
-            var now = Luxe.time;
-
-                //:todo:
-            // var asset_bytes = Luxe.loadData( _tex );
-
-            // Sys.println('done in ' + (Luxe.time - now) + '  ' + asset_bytes.length);
-
-                //textures require being uploaded to GL on the main thread
-            Luxe.core.core_thread.sendMessage({
-                type : luxe.Core.CoreThreadRequest.load_texture,
-                info : {
-                    id : _tex,
-                    bytes : asset_bytes,
-                    onloaded : _complete
-                }
-            });
-
-        #else
-
-            Luxe.timer.schedule( options.load_spacing, function(){
-                Luxe.loadTexture( _tex, _complete, options.silent );
-            });
-
-        #end
+        Luxe.timer.schedule( options.load_spacing, function(){
+            Luxe.loadTexture( _tex, _complete, options.silent );
+        });
 
     } //load_texture
 
     function load_shader( _shader:ShaderInfo, _complete ) {
         #if luxe_parcel_logging log("    loading shader " + _shader.ps_id + _shader.vs_id ); #end
 
-        #if (luxe_native && !parcel_thread_disabled)
-
-                //textures require being uploaded to GL on the main thread
-            Luxe.core.core_thread.sendMessage({
-                type : luxe.Core.CoreThreadRequest.load_shader,
-                info : {
-                    ps_id : _shader.ps_id,
-                    vs_id : _shader.vs_id,
-                    onloaded : _complete
-                }
-            });
-
-        #else
-
-            Luxe.timer.schedule( options.load_spacing, function(){
-                Luxe.loadShader( _shader.ps_id, _shader.vs_id, _complete, options.silent );
-            });
-
-        #end //end
+        Luxe.timer.schedule( options.load_spacing, function(){
+            Luxe.loadShader( _shader.ps_id, _shader.vs_id, _complete, options.silent );
+        });
 
     } //load_shader
 
