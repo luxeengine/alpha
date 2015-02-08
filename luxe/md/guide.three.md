@@ -332,11 +332,11 @@ class Main extends luxe.Game {
         //here, we are going to bind A/left and D/right into a single named
         //input event, so that we can keep our movement code the same when changing keys
 
-        Luxe.input.add('left', Key.left);
-        Luxe.input.add('left', Key.key_a);
+        Luxe.input.bind_key('left', Key.left);
+        Luxe.input.bind_key('left', Key.key_a);
 
-        Luxe.input.add('right', Key.right);
-        Luxe.input.add('right', Key.key_d);
+        Luxe.input.bind_key('right', Key.right);
+        Luxe.input.bind_key('right', Key.key_d);
 
     } //connect_input
 
