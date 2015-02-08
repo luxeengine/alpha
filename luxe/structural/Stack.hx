@@ -28,8 +28,8 @@ class Stack<T> {
 
         /** Push a node onto the back of the queue. node cannot be null */
     public function push( node:T ) {
-
-        if(node == null) {
+		var n:Null<T> = node;
+        if(n == null) {
             throw "This Stack<T> class does not hold null nodes";
         }
 
@@ -45,7 +45,7 @@ class Stack<T> {
     } //push
 
         /** Pop the back item off the stack. If the queue is empty, returns null */
-    public function pop() : T {
+    public function pop() : Null<T> {
 
         if(length == 0) {
             return null;
@@ -61,7 +61,7 @@ class Stack<T> {
     } //pop
 
         /** Return the top item of the stack, or null if empty */
-    public function top() : T {
+    public function top() : Null<T> {
 
         if(length == 0) {
             return null;
@@ -104,7 +104,7 @@ class Stack<T> {
 class StackNode<T> {
 
         /** the node value */
-    public var value : T;
+    public var value : Null<T>;
         /** The next node in the linked list */
     public var next : StackNode<T>;
 
