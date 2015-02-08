@@ -86,14 +86,14 @@ class Text extends Visual {
         text_options = _options;
         text_bounds = new Rectangle();
 
-	var _batcher : Batcher = null;
-	if(_options.no_batcher_add == null || _options.no_batcher_add == false) {
-		if(_options.batcher != null) {
-			_batcher = _options.batcher;
-		} else {
-			_batcher = Luxe.renderer.batcher;
-		}
-	}
+    	var _batcher : Batcher = null;
+    	if(_options.no_batcher_add == null || _options.no_batcher_add == false) {
+    		if(_options.batcher != null) {
+    			_batcher = _options.batcher;
+    		} else {
+    			_batcher = Luxe.renderer.batcher;
+    		}
+    	}
 
             //create the text geometry
         geom = new TextGeometry({
