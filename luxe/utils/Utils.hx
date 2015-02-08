@@ -1,13 +1,13 @@
 package luxe.utils;
 
 import luxe.Core;
-import luxe.utils.Murmur3;
 
 import haxe.CallStack;
 
 class Utils {
 
     public var geometry : luxe.utils.GeometryUtils;
+    public var random : luxe.utils.Random;
 
     @:noCompletion public var core:Core;
 
@@ -19,7 +19,8 @@ class Utils {
             //store the reference
         core = _luxe;
             //initialise the helpers
-        geometry = new luxe.utils.GeometryUtils(core);
+        geometry = new luxe.utils.GeometryUtils();
+        random = new luxe.utils.Random(Std.int(Math.random()*0xFFFFFF));
             //initialize the byte text helpers
         _byte_levels = ['bytes', 'Kb', 'MB', 'GB', 'TB'];
 
@@ -59,14 +60,7 @@ class Utils {
     #if release inline #end
     public function hash( string:String ) : Int {
         return hashdjb2( string );
-        // return hashmurmur( haxe.io.Bytes.ofString(string) );
     } //hash
-
-        /** Generates an integer hash of a string using the murmur 3 algorithm */
-    #if release inline #end
-    public function hashmurmur( _bytes:haxe.io.Bytes, ?_seed:Int=0 ) : Int {
-        return Murmur3.hash( _bytes, _seed );
-    } //hashmurmur
 
         /** Generates an integer hash of a string using the djb2 algorithm */
     #if release inline #end
