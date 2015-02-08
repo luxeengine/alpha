@@ -81,12 +81,12 @@ class Luxe {
     public static var alpha (get,set) : Float;
 
         /** listen for core events */
-    public static function on<T>(event:String, handler:T->Void ) {
+    public static function on<T>(event:Int, handler:T->Void ) {
         core.emitter.on(event, handler);
     }
 
         /** stop listening for core events */
-    public static function off<T>(event:String, handler:T->Void ) {
+    public static function off<T>(event:Int, handler:T->Void ) {
         return core.emitter.off(event, handler);
     }
 

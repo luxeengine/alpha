@@ -16,6 +16,7 @@ import luxe.Debug;
 import luxe.Timer;
 import luxe.Physics;
 import luxe.AppConfig;
+import luxe.Cycle;
 import luxe.resource.ResourceManager;
 
 import luxe.debug.ProfilerDebugView;
@@ -111,7 +112,7 @@ class Core extends snow.App {
 
                 //emit the init event
                 //so that scene and others can start up
-            emitter.emit('init');
+            emitter.emit(Cycle.init);
             inited = true;
 
                 //Reset the physics (starts the timer etc)
@@ -137,7 +138,7 @@ class Core extends snow.App {
         game.ondestroy();
 
             //shutdown the default scene
-        emitter.emit('destroy');
+        emitter.emit(Cycle.destroy);
 
             //Order is imporant here too
         if(renderer != null) {
@@ -272,15 +273,15 @@ class Core extends snow.App {
 
     } //shutdown
 
-    public function on<T>(event:String, handler:T->Void ) {
+    public function on<T>(event:Int, handler:T->Void ) {
         emitter.on(event, handler);
     }
 
-    public function off<T>(event:String, handler:T->Void ) {
+    public function off<T>(event:Int, handler:T->Void ) {
         return emitter.off(event, handler);
     }
 
-    public function emit<T>(event:String, ?data:T) {
+    public function emit<T>(event:Int, ?data:T) {
         return emitter.emit(event, data);
     }
 
@@ -327,7 +328,7 @@ class Core extends snow.App {
 
 //Run update callbacks
             debug.start(core_tag_updates);
-        emitter.emit('update', dt);
+        emitter.emit(Cycle.update, dt);
             debug.end(core_tag_updates);
 
 //Update the game class for the game
@@ -348,32 +349,32 @@ class Core extends snow.App {
             return;
         }
 
-        emitter.emit('window.event', _event );
+        emitter.emit(Cycle.window, _event );
 
         switch(_event.type) {
 
             case WindowEventType.moved : {
-                emitter.emit('window.moved', _event );
+                emitter.emit(Cycle.windowmoved, _event );
             } //moved
 
             case WindowEventType.resized : {
                 screen.internal_resized(_event.event.x, _event.event.y);
                 renderer.internal_resized(_event.event.x, _event.event.y);
-                emitter.emit('window.resized', _event );
+                emitter.emit(Cycle.windowresized, _event );
             } //resized
 
             case WindowEventType.size_changed : {
                 screen.internal_resized(_event.event.x, _event.event.y);
                 renderer.internal_resized(_event.event.x, _event.event.y);
-                emitter.emit('window.size_changed', _event );
+                emitter.emit(Cycle.windowsized, _event );
             } //size_changed
 
             case WindowEventType.minimized : {
-                emitter.emit('window.minimized', _event );
+                emitter.emit(Cycle.windowminimized, _event );
             } //minimized
 
             case WindowEventType.restored : {
-                emitter.emit('window.restored', _event );
+                emitter.emit(Cycle.windowrestored, _event );
             } //restored
 
             default: {}
@@ -395,14 +396,14 @@ class Core extends snow.App {
 
             debug.start(core_tag_render);
 
-            emitter.emit('prerender');
+            emitter.emit(Cycle.prerender);
             game.onprerender();
 
-                emitter.emit('render');
+                emitter.emit(Cycle.render);
                 game.onrender();
                 renderer.process();
 
-            emitter.emit('postrender');
+            emitter.emit(Cycle.postrender);
             game.onpostrender();
 
             debug.end(core_tag_render);
@@ -436,7 +437,7 @@ class Core extends snow.App {
 
                 //check for named input
             input.check_named_keys(event, true);
-            emitter.emit('keydown', event);
+            emitter.emit(Cycle.keydown, event);
 
             game.onkeydown(event);
 
@@ -464,7 +465,7 @@ class Core extends snow.App {
 
                 //check for named input
             input.check_named_keys(event);
-            emitter.emit('keyup', event);
+            emitter.emit(Cycle.keyup, event);
 
             game.onkeyup(event);
 
@@ -495,7 +496,7 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit('textinput', event);
+            emitter.emit(Cycle.textinput, event);
 
             game.ontextinput(event);
 
@@ -509,7 +510,7 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit('inputdown', { name:name, event:event });
+            emitter.emit(Cycle.inputdown, { name:name, event:event });
 
             game.oninputdown( name, event );
 
@@ -521,7 +522,7 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit('inputup', { name:name, event:event });
+            emitter.emit(Cycle.inputup, { name:name, event:event });
 
             game.oninputup( name, event );
 
@@ -551,7 +552,7 @@ class Core extends snow.App {
         if(!shutting_down) {
 
             input.check_named_mouse(event, true);
-            emitter.emit('mousedown', event);
+            emitter.emit(Cycle.mousedown, event);
             game.onmousedown(event);
 
         } //!shutting_down
@@ -578,7 +579,7 @@ class Core extends snow.App {
         if(!shutting_down) {
 
             input.check_named_mouse(event);
-            emitter.emit('mouseup', event);
+            emitter.emit(Cycle.mouseup, event);
             game.onmouseup(event);
 
         } //!shutting_down
@@ -604,7 +605,7 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit('mousemove', event);
+            emitter.emit(Cycle.mousemove, event);
             game.onmousemove(event);
 
         } //!shutting_down
@@ -628,7 +629,7 @@ class Core extends snow.App {
         if(!shutting_down) {
 
             input.check_named_mouse(event, false);
-            emitter.emit('mousewheel', event);
+            emitter.emit(Cycle.mousewheel, event);
             game.onmousewheel(event);
 
         } //!shutting_down
@@ -656,7 +657,7 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit('touchdown', event);
+            emitter.emit(Cycle.touchdown, event);
 
             game.ontouchdown(event);
 
@@ -697,7 +698,7 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit('touchup', event);
+            emitter.emit(Cycle.touchup, event);
             game.ontouchup(event);
 
         } //!shutting_down
@@ -721,7 +722,7 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit('touchmove', event);
+            emitter.emit(Cycle.touchmove, event);
             game.ontouchmove(event);
 
         } //!shutting_down
@@ -744,7 +745,7 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit('gamepadaxis',event);
+            emitter.emit(Cycle.gamepadaxis,event);
             game.ongamepadaxis(event);
 
         } //!shutting_down
@@ -765,7 +766,7 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit('gamepaddown',event);
+            emitter.emit(Cycle.gamepaddown,event);
             game.ongamepaddown(event);
 
         } //!shutting_down
@@ -786,7 +787,7 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit('gamepadup', event);
+            emitter.emit(Cycle.gamepadup, event);
             game.ongamepadup(event);
 
         } //!shutting_down

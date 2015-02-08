@@ -14,6 +14,11 @@ import luxe.Log.log;
 
 using luxe.utils.unifill.Unifill;
 
+@:enum abstract TextGeometryEv(Int) from Int to Int {
+    var unknown = 0;
+    var update_text = 1;
+}
+
 typedef TextGeometryOptions = {
 
     > GeometryOptions,
@@ -445,7 +450,7 @@ class TextGeometry extends Geometry {
 
             //if it was true, it's false now
         dirty_align = false;
-        emitter.emit('update_text');
+        emitter.emit(TextGeometryEv.update_text);
 
     } //update_text
 

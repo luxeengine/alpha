@@ -131,7 +131,7 @@ class Text extends Visual {
 
         });
 
-        geom.emitter.on('update_text', on_geom_text_update);
+        geom.emitter.on(TextGeometryEv.update_text, on_geom_text_update);
 
         _options.geometry = geom;
         _options.shader = geom.shader;

@@ -9,11 +9,12 @@ import luxe.Log.log;
 
 @:noCompletion typedef EmitHandler = Dynamic->Void;
 
-@:noCompletion private typedef EmitNode = { event : String, handler:EmitHandler, ?pos:haxe.PosInfos }
+@:noCompletion private typedef EmitNode = { event : Int, handler:EmitHandler, ?pos:haxe.PosInfos }
 
+@:generic
 class Emitter {
 
-    @:noCompletion public var bindings : Map<String, Array<EmitHandler> >;
+    @:noCompletion public var bindings : Map<Int, Array<EmitHandler> >;
 
         //store connections loosely, to find connected locations
     var connected : List<EmitNode>;
@@ -31,17 +32,15 @@ class Emitter {
     } //new
 
         /** Emit a named event */
-    @:noCompletion public function emit<T>( event:String, ?data:T, ?pos:haxe.PosInfos  ) {
+    @:noCompletion public function emit<T>( event:Int, ?data:T, ?pos:haxe.PosInfos  ) {
 
         _check();
 
-        if(bindings.exists(event)) {
-            var list = bindings.get(event);
-            if(list.length > 0) {
-                for(handler in list) {
-                    _verboser('emit / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
-                    handler(data);
-                }
+        var list = bindings.get(event);
+        if(list != null && list.length > 0) {
+            for(handler in list) {
+                _verboser('emit / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
+                handler(data);
             }
         }
 
@@ -52,7 +51,7 @@ class Emitter {
     } //emit
 
         /** connect a named event to a handler */
-    @:noCompletion public function on<T>(event:String, handler: T->Void, ?pos:haxe.PosInfos ) {
+    @:noCompletion public function on<T>(event:Int, handler: T->Void, ?pos:haxe.PosInfos ) {
 
         _check();
 
@@ -74,7 +73,7 @@ class Emitter {
     } //on
 
         /** disconnect a named event and handler. returns true on success, or false if event or handler not found */
-    @:noCompletion public function off<T>(event:String, handler: T->Void, ?pos:haxe.PosInfos ) : Bool {
+    @:noCompletion public function off<T>(event:Int, handler: T->Void, ?pos:haxe.PosInfos ) : Bool {
 
         _check();
 

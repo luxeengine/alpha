@@ -4,6 +4,8 @@ import haxe.macro.Context;
 import haxe.macro.Expr;
 import haxe.macro.ExprTools;
 
+import luxe.Cycle;
+
 @:noCompletion class ComponentRules {
 
 #if macro
@@ -120,7 +122,7 @@ import haxe.macro.ExprTools;
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.push( Context.parse('entity._listen( "$_event_name", ${_field.name} )', _field.pos) );
+                            exprs.push( Context.parse('entity._listen( luxe.Cycle.${_event_name}, ${_field.name} )', _field.pos) );
                     } //switch exp
             } //switch kind
 
@@ -131,7 +133,7 @@ import haxe.macro.ExprTools;
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.push( Context.parse('entity._unlisten( "$_event_name", ${_field.name} )', _field.pos) );
+                            exprs.push( Context.parse('entity._unlisten( luxe.Cycle.${_event_name}, ${_field.name} )', _field.pos) );
                     } //switch exp
             } //switch kind
 
@@ -142,7 +144,7 @@ import haxe.macro.ExprTools;
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.push( Context.parse('entity._unlisten( "$_event_name", ${_field.name} )', _field.pos) );
+                            exprs.push( Context.parse('entity._unlisten( luxe.Cycle.${_event_name}, ${_field.name} )', _field.pos) );
                     } //switch exp
             } //switch kind
 
