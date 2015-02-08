@@ -4,19 +4,7 @@ package luxe.utils;
 
 class Maths {
 
-    @:noCompletion public var luxe:Core;
-
-    @:noCompletion public function new( _luxe:Core ) {
-
-        luxe = _luxe;
-
-    }
-
-        /** Used by `degrees()` and `radians()`, use those to convert, unless needed */
-    static inline public var _PI_OVER_180:Float = 3.14159265358979 / 180;
-        /** Used by `degrees()` and `radians()`, use those to convert, unless needed */
-    static inline public var _180_OVER_PI:Float = 180 / 3.14159265358979;
-
+    function new() {}
 
     static inline public function fixed( value:Float, precision:Int ) {
 
@@ -142,5 +130,12 @@ class Maths {
         return radians * _180_OVER_PI;
     } //degrees
 
+
+//Internal constants
+
+        /** Used by `degrees()` and `radians()`, use those to convert, unless needed */
+    static inline public var _PI_OVER_180:Float = 3.14159265358979 / 180;
+        /** Used by `degrees()` and `radians()`, use those to convert, unless needed */
+    static inline public var _180_OVER_PI:Float = 180 / 3.14159265358979;
 
 } //Maths

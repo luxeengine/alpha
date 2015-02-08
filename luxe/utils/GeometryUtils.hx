@@ -1,22 +1,15 @@
 package luxe.utils;
 
-import luxe.Core;
 import luxe.Vector;
 import phoenix.geometry.Geometry;
 
 
 class GeometryUtils {
 
-
-    @:noCompletion public var luxe:Core;
-
     static inline var two_pi : Float = 6.283185307179586;
 
-    @:noCompletion public function new(_luxe:Core) {
-
-        luxe = _luxe;
-
-    } //new
+    @:allow(luxe.utils.Utils)
+    function new() {}
 
     public function segments_for_smooth_circle( _radius:Float, _smooth:Float = 6 ) : Int {
 
