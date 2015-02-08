@@ -1,6 +1,7 @@
 package luxe.components;
 
 import luxe.Quaternion;
+import luxe.structural.OrderedMap;
 
 import luxe.Log._debug;
 import luxe.Log._verbose;
@@ -9,13 +10,14 @@ import luxe.Log._verbose;
 @:noCompletion class Components {
 
         //the list of attached components
-    public var components : Map<String, Component>;
+    public var components : OrderedMap<String, Component>;
         //the root entity
     public var entity : Entity;
 
     public function new( _entity:Entity ) {
 
-        components = new Map();
+        var _map = new Map<String,Component>();
+        components = new OrderedMap(_map);
         entity = _entity;
 
     } //new

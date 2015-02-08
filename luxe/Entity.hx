@@ -10,6 +10,7 @@ import luxe.Scene;
 import luxe.components.Components;
 import luxe.Component;
 import luxe.Emitter;
+import luxe.structural.OrderedMap;
 
 import luxe.options.EntityOptions;
 
@@ -22,7 +23,7 @@ import luxe.Log._verboser;
 class Entity extends Objects {
 
         /** The map of attached components, by name. use .get to find components in children and from other components instead of accessing this unless you need to */
-    public var components (get,never) : Map<String, Component>;
+    public var components (get,never) : OrderedMap<String, Component>;
         /** A local event system for sending and receiving named events through the entity. Helps communicate between components, and more. */
     public var events : luxe.Events;
         /** The list of children this entity is parenting. Use `child.parent = null;` to remove, or `child.parent = entity;` to assign. */
