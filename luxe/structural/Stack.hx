@@ -27,9 +27,9 @@ class Stack<T> {
     } //new
 
         /** Push a node onto the back of the queue. node cannot be null */
-    public function push( node:T ) {
-		var n:Null<T> = node;
-        if(n == null) {
+    public function push( node:Null<T> ) {
+
+        if(node == null) {
             throw "This Stack<T> class does not hold null nodes";
         }
 
