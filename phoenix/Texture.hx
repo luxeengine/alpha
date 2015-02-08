@@ -118,7 +118,7 @@ class Texture extends Resource {
 
         if(_exists != null) {
 
-            _verbose("texture loaded (cached) " + _exists.id ) ;
+            _verbose("loaded (cached) " + _exists.id ) ;
 
             if(_onloaded != null) {
                 _onloaded(_exists);
@@ -146,12 +146,12 @@ class Texture extends Resource {
                     texture.do_onload();
 
                     if(!_silent) {
-                        log("texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.width_actual + 'x' + texture.height_actual +')');
+                        log("loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.width_actual + 'x' + texture.height_actual +')');
                     }
 
                 } else { //asset != null
                     if(!_silent) {
-                        log("texture failed to load! " + _id);
+                        log("failed to load! " + _id);
                     }
                 }
             }

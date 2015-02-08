@@ -255,8 +255,8 @@ class Core extends snow.App {
             app.window.onrender = render;
 
                 //start here because end is called first below
-            debug.start(core_tag_update, 50);
-            debug.start(core_tag_renderdt, 50);
+            debug.start(Tag.update, 50);
+            debug.start(Tag.renderdt, 50);
 
         } //app.window != null && !headless
 
@@ -301,44 +301,44 @@ class Core extends snow.App {
 
         if(has_shutdown) return;
 
-        debug.end(core_tag_update);
-        debug.start(core_tag_update);
+        debug.end(Tag.update);
+        debug.start(Tag.update);
 
             //Update all the subsystems, again, order important
 //Timers first
-            #if luxe_fullprofile debug.start(core_tag_timer); #end
+            #if luxe_fullprofile debug.start(Tag.timer); #end
         timer.process();
-            #if luxe_fullprofile debug.end(core_tag_timer); #end
+            #if luxe_fullprofile debug.end(Tag.timer); #end
 //Input second
-            #if luxe_fullprofile debug.start(core_tag_input); #end
+            #if luxe_fullprofile debug.start(Tag.input); #end
         input.process();
-            #if luxe_fullprofile debug.end(core_tag_input); #end
+            #if luxe_fullprofile debug.end(Tag.input); #end
 //Audio
-            #if luxe_fullprofile debug.start(core_tag_audio); #end
+            #if luxe_fullprofile debug.start(Tag.audio); #end
         audio.process();
-            #if luxe_fullprofile debug.end(core_tag_audio); #end
+            #if luxe_fullprofile debug.end(Tag.audio); #end
 //Events
-            #if luxe_fullprofile debug.start(core_tag_events); #end
+            #if luxe_fullprofile debug.start(Tag.events); #end
         events.process();
-            #if luxe_fullprofile debug.end(core_tag_events); #end
+            #if luxe_fullprofile debug.end(Tag.events); #end
 //Physics
             //note that this does not update the physics, simply processes the active engines
         physics.process();
 
 //Run update callbacks
-            debug.start(core_tag_updates);
+            debug.start(Tag.updates);
         emitter.emit(Ev.update, dt);
-            debug.end(core_tag_updates);
+            debug.end(Tag.updates);
 
 //Update the game class for the game
-            debug.start( game_tag_update );
+            debug.start( Tag.game_update );
         game.update(dt);
-            debug.end( game_tag_update );
+            debug.end( Tag.game_update );
 
 //And finally the debug stuff
-            #if luxe_fullprofile debug.start(core_tag_debug); #end
+            #if luxe_fullprofile debug.start(Tag.debug); #end
         debug.process();
-            #if luxe_fullprofile debug.end(core_tag_debug); #end
+            #if luxe_fullprofile debug.end(Tag.debug); #end
 
     } //update
 
@@ -388,12 +388,12 @@ class Core extends snow.App {
             return;
         }
 
-        debug.end(core_tag_renderdt);
-        debug.start(core_tag_renderdt);
+        debug.end(Tag.renderdt);
+        debug.start(Tag.renderdt);
 
         if(!headless) {
 
-            debug.start(core_tag_render);
+            debug.start(Tag.render);
 
             emitter.emit(Ev.prerender);
             game.onprerender();
@@ -405,7 +405,7 @@ class Core extends snow.App {
             emitter.emit(Ev.postrender);
             game.onpostrender();
 
-            debug.end(core_tag_render);
+            debug.end(Tag.render);
 
         } //!headless
 
@@ -839,22 +839,29 @@ class Core extends snow.App {
 
     } //config
 
-//Noisy stuff
-
-    static var core_tag_update : String = 'real dt';
-    static var core_tag_renderdt : String = 'render dt';
-    static var game_tag_update : String = 'game.update';
-    static var core_tag_render : String = 'core.render';
-    static var core_tag_debug : String = 'core.debug';
-    static var core_tag_updates : String = 'core.updates';
-    static var core_tag_events : String = 'core.events';
-    static var core_tag_audio : String = 'core.audio';
-    static var core_tag_input : String = 'core.input';
-    static var core_tag_timer : String = 'core.timer';
-    static var core_tag_scene : String = 'core.scene';
-
-
 } //Core
+
+
+/**
+A tag class for the string based values in the core.
+Note that these values are not inline intentionally, they avoid
+allocating strings each frame.
+*/
+@:noCompletion
+@:allow(luxe.Core)
+class Tag {
+    static var update       = 'real dt';
+    static var renderdt     = 'render dt';
+    static var game_update  = 'game.update';
+    static var render       = 'core.render';
+    static var debug        = 'core.debug';
+    static var updates      = 'core.updates';
+    static var events       = 'core.events';
+    static var audio        = 'core.audio';
+    static var input        = 'core.input';
+    static var timer        = 'core.timer';
+    static var scene        = 'core.scene';
+}
 
 
 /** A core cycle event for the core Emitter  */
