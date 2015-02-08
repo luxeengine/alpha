@@ -1,7 +1,6 @@
 package luxe;
 
 import luxe.Core;
-import luxe.Cycle;
 import luxe.Vector;
 import snow.utils.Timer;
 
@@ -167,7 +166,7 @@ class PhysicsEngine {
     public function new() {
 
         gravity = new Vector(0, -9.8, 0);
-        Luxe.on(Cycle.render, _render);
+        Luxe.on(Ev.render, _render);
 
     } //new
 

@@ -14,7 +14,7 @@ import luxe.Log.log;
 
 using luxe.utils.unifill.Unifill;
 
-@:enum abstract TextGeometryEv(Int) from Int to Int {
+@:enum abstract EvTextGeometry(Int) from Int to Int {
     var unknown = 0;
     var update_text = 1;
 }
@@ -90,7 +90,7 @@ class TextGeometry extends Geometry {
     //access to change events
 
         @:noCompletion
-        public var emitter : luxe.Emitter;
+        public var emitter : luxe.Emitter<EvTextGeometry>;
 
     //internal
 
@@ -111,7 +111,7 @@ class TextGeometry extends Geometry {
     public function new( _options:TextGeometryOptions ) {
 
         options = _options;
-        emitter = new luxe.Emitter();
+        emitter = new luxe.Emitter<EvTextGeometry>();
 
         if(options == null) throw "TextGeometry: requires non-null options at the moment";
 
@@ -450,7 +450,7 @@ class TextGeometry extends Geometry {
 
             //if it was true, it's false now
         dirty_align = false;
-        emitter.emit(TextGeometryEv.update_text);
+        emitter.emit(EvTextGeometry.update_text);
 
     } //update_text
 

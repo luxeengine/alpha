@@ -1,25 +1,29 @@
 package luxe;
 
+import haxe.ds.IntMap;
 import luxe.Log._debug;
 import luxe.Log._verbose;
 import luxe.Log._verboser;
 import luxe.Log.log;
 
-/** A simple event emitter, used as a base class for systems that want to handle direct connections to named events */
 
 @:noCompletion typedef EmitHandler = Dynamic->Void;
+@:noCompletion typedef HandlerList = Array<EmitHandler>;
 
-@:noCompletion private typedef EmitNode = { event : Int, handler:EmitHandler, ?pos:haxe.PosInfos }
+@:noCompletion private typedef EmitNode<T> = { event : T, handler:EmitHandler, ?pos:haxe.PosInfos }
 
-@:generic
-class Emitter {
 
-    @:noCompletion public var bindings : Map<Int, Array<EmitHandler> >;
+/** A simple event emitter, used as a base class for systems that want to handle direct connections to named events */
+
+// @:generic
+class Emitter<ET:Int> {
+
+    @:noCompletion public var bindings : IntMap<HandlerList>;
 
         //store connections loosely, to find connected locations
-    var connected : List<EmitNode>;
+    var connected : List< EmitNode<ET> >;
         //store the items to remove
-    var _to_remove : List<EmitNode>;
+    var _to_remove : List< EmitNode<ET> >;
 
         /** create a new emitter instance, for binding functions easily to named events. similar to `Events` */
     public function new() {
@@ -27,12 +31,12 @@ class Emitter {
         _to_remove = new List();
         connected = new List();
 
-        bindings = new Map();
+        bindings = new IntMap<HandlerList>();
 
     } //new
 
         /** Emit a named event */
-    @:noCompletion public function emit<T>( event:Int, ?data:T, ?pos:haxe.PosInfos  ) {
+    @:noCompletion public function emit<T>( event:ET, ?data:T, ?pos:haxe.PosInfos  ) {
 
         _check();
 
@@ -51,7 +55,7 @@ class Emitter {
     } //emit
 
         /** connect a named event to a handler */
-    @:noCompletion public function on<T>(event:Int, handler: T->Void, ?pos:haxe.PosInfos ) {
+    @:noCompletion public function on<T>(event:ET, handler: T->Void, ?pos:haxe.PosInfos ) {
 
         _check();
 
@@ -73,7 +77,7 @@ class Emitter {
     } //on
 
         /** disconnect a named event and handler. returns true on success, or false if event or handler not found */
-    @:noCompletion public function off<T>(event:Int, handler: T->Void, ?pos:haxe.PosInfos ) : Bool {
+    @:noCompletion public function off<T>(event:ET, handler: T->Void, ?pos:haxe.PosInfos ) : Bool {
 
         _check();
 
@@ -102,7 +106,7 @@ class Emitter {
 
     @:noCompletion public function connections( handler:EmitHandler ) {
 
-        var list : Array<EmitNode> = [];
+        var list : Array<EmitNode<ET>> = [];
 
         for(_info in connected) {
             if(_info.handler == handler) {

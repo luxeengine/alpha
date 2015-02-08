@@ -18,7 +18,7 @@ class ID {
 
 
 /** A simple base object, event emitter, and ID. */
-class Objects extends Emitter {
+class Objects extends Emitter<Int> {
 
         /** the id */
     public var id : String = '';

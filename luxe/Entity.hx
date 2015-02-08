@@ -1,6 +1,6 @@
 package luxe;
 
-import luxe.Cycle;
+import luxe.Core;
 import luxe.Quaternion;
 import luxe.Transform;
 import luxe.Matrix;
@@ -270,7 +270,7 @@ class Entity extends Objects {
         init();
             //for any potential listeners, after the init() direct call
             //as there is likely connections made during init
-        emit(Cycle.init);
+        emit(Ev.init);
 
         if(component_count > 0) {
             //init all the components attached
@@ -300,7 +300,7 @@ class Entity extends Objects {
             //parent
         onreset();
             //potential listeners
-        emit(Cycle.reset);
+        emit(Ev.reset);
 
         if(component_count > 0) {
             for(_component in components) {
@@ -351,7 +351,7 @@ class Entity extends Objects {
         }
 
             //tell listeners
-        emit(Cycle.destroy);
+        emit(Ev.destroy);
             //then parent
         ondestroy();
 
@@ -439,7 +439,7 @@ class Entity extends Objects {
 
         _verboser('calling fixedupdate on ' + name);
 
-        emit(Cycle.fixedupdate);
+        emit(Ev.fixedupdate);
 
         onfixedupdate(fixed_rate);
 
@@ -475,26 +475,26 @@ class Entity extends Objects {
         if(scene != null) {
             switch(_event) {
 
-                case Cycle.keyup         : scene.on(_event, _keyup);
-                case Cycle.keydown       : scene.on(_event, _keydown);
-                case Cycle.textinput     : scene.on(_event, _textinput);
+                case Ev.keyup         : scene.on(_event, _keyup);
+                case Ev.keydown       : scene.on(_event, _keydown);
+                case Ev.textinput     : scene.on(_event, _textinput);
 
-                case Cycle.mousedown     : scene.on(_event, _mousedown);
-                case Cycle.mouseup       : scene.on(_event, _mouseup);
-                case Cycle.mousemove     : scene.on(_event, _mousemove);
-                case Cycle.mousewheel    : scene.on(_event, _mousewheel);
+                case Ev.mousedown     : scene.on(_event, _mousedown);
+                case Ev.mouseup       : scene.on(_event, _mouseup);
+                case Ev.mousemove     : scene.on(_event, _mousemove);
+                case Ev.mousewheel    : scene.on(_event, _mousewheel);
 
-                case Cycle.touchdown     : scene.on(_event, _touchdown);
-                case Cycle.touchup       : scene.on(_event, _touchup);
-                case Cycle.touchmove     : scene.on(_event, _touchmove);
+                case Ev.touchdown     : scene.on(_event, _touchdown);
+                case Ev.touchup       : scene.on(_event, _touchup);
+                case Ev.touchmove     : scene.on(_event, _touchmove);
 
-                case Cycle.inputup       : scene.on(_event, _inputup);
-                case Cycle.inputdown     : scene.on(_event, _inputdown);
+                case Ev.inputup       : scene.on(_event, _inputup);
+                case Ev.inputdown     : scene.on(_event, _inputdown);
 
-                case Cycle.gamepaddown   : scene.on(_event, _gamepaddown);
-                case Cycle.gamepadup     : scene.on(_event, _gamepadup);
-                case Cycle.gamepadaxis   : scene.on(_event, _gamepadaxis);
-                case Cycle.gamepaddevice : scene.on(_event, _gamepaddevice);
+                case Ev.gamepaddown   : scene.on(_event, _gamepaddown);
+                case Ev.gamepadup     : scene.on(_event, _gamepadup);
+                case Ev.gamepadaxis   : scene.on(_event, _gamepadaxis);
+                case Ev.gamepaddevice : scene.on(_event, _gamepaddevice);
 
             } //switch event
         }
@@ -516,26 +516,26 @@ class Entity extends Objects {
 
         if(scene != null) {
 
-            scene.off(Cycle.reset, _reset);
-            scene.off(Cycle.destroy, destroy);
+            scene.off(Ev.reset, _reset);
+            scene.off(Ev.destroy, destroy);
 
                 //precaution
-            scene.off(Cycle.keyup, _keyup);
-            scene.off(Cycle.keydown, _keydown);
-            scene.off(Cycle.textinput, _textinput);
-            scene.off(Cycle.mousedown, _mousedown);
-            scene.off(Cycle.mouseup, _mouseup);
-            scene.off(Cycle.mousemove, _mousemove);
-            scene.off(Cycle.mousewheel, _mousewheel);
-            scene.off(Cycle.touchdown, _touchdown);
-            scene.off(Cycle.touchup, _touchup);
-            scene.off(Cycle.touchmove, _touchmove);
-            scene.off(Cycle.inputup, _inputup);
-            scene.off(Cycle.inputdown, _inputdown);
-            scene.off(Cycle.gamepaddown, _gamepaddown);
-            scene.off(Cycle.gamepadup, _gamepadup);
-            scene.off(Cycle.gamepadaxis, _gamepadaxis);
-            scene.off(Cycle.gamepaddevice, _gamepaddevice);
+            scene.off(Ev.keyup, _keyup);
+            scene.off(Ev.keydown, _keydown);
+            scene.off(Ev.textinput, _textinput);
+            scene.off(Ev.mousedown, _mousedown);
+            scene.off(Ev.mouseup, _mouseup);
+            scene.off(Ev.mousemove, _mousemove);
+            scene.off(Ev.mousewheel, _mousewheel);
+            scene.off(Ev.touchdown, _touchdown);
+            scene.off(Ev.touchup, _touchup);
+            scene.off(Ev.touchmove, _touchmove);
+            scene.off(Ev.inputup, _inputup);
+            scene.off(Ev.inputdown, _inputdown);
+            scene.off(Ev.gamepaddown, _gamepaddown);
+            scene.off(Ev.gamepadup, _gamepadup);
+            scene.off(Ev.gamepadaxis, _gamepadaxis);
+            scene.off(Ev.gamepaddevice, _gamepaddevice);
 
         } //scene != null
 
@@ -544,8 +544,8 @@ class Entity extends Objects {
     function _attach_scene() {
 
         if(scene != null) {
-            scene.on(Cycle.reset, _reset);
-            scene.on(Cycle.destroy, destroy);
+            scene.on(Ev.reset, _reset);
+            scene.on(Ev.destroy, destroy);
         }
 
     } //attach_scene
@@ -561,7 +561,7 @@ class Entity extends Objects {
         _debug('calling _keyup on ' + name);
 
         onkeyup(_event);
-        emit(Cycle.keyup, _event);
+        emit(Ev.keyup, _event);
 
     } //_keyup
 
@@ -574,7 +574,7 @@ class Entity extends Objects {
         _debug('calling _keydown on ' + name);
 
         onkeydown(_event);
-        emit(Cycle.keydown, _event);
+        emit(Ev.keydown, _event);
 
     } //_keydown
 
@@ -587,7 +587,7 @@ class Entity extends Objects {
         _debug('calling _textinput on ' + name);
 
         ontextinput(_event);
-        emit(Cycle.textinput, _event);
+        emit(Ev.textinput, _event);
 
     } //_textinput
 
@@ -603,7 +603,7 @@ class Entity extends Objects {
         _debug('calling _mousedown on ' + name );
 
         onmousedown(_event);
-        emit(Cycle.mousedown, _event);
+        emit(Ev.mousedown, _event);
 
     } //_mousedown
 
@@ -617,7 +617,7 @@ class Entity extends Objects {
         _debug('calling _mouseup on ' + name);
 
         onmouseup(_event);
-        emit(Cycle.mouseup, _event);
+        emit(Ev.mouseup, _event);
 
     } //_mouseup
 
@@ -630,7 +630,7 @@ class Entity extends Objects {
         _debug('calling _mousewheel on ' + name);
 
         onmousewheel(_event);
-        emit(Cycle.mousewheel, _event);
+        emit(Ev.mousewheel, _event);
 
     } //_mousewheel
 
@@ -643,7 +643,7 @@ class Entity extends Objects {
         _debug('calling _mousemove on ' + name);
 
         onmousemove(_event);
-        emit(Cycle.mousemove, _event);
+        emit(Ev.mousemove, _event);
 
     } //_mousemove
 
@@ -657,7 +657,7 @@ class Entity extends Objects {
         _debug('calling _touchdown on ' + name);
 
         ontouchdown(_event);
-        emit(Cycle.touchdown, _event);
+        emit(Ev.touchdown, _event);
 
     } //_touchdown
 
@@ -670,7 +670,7 @@ class Entity extends Objects {
         _debug('calling _touchup on ' + name);
 
         ontouchup(_event);
-        emit(Cycle.touchup, _event);
+        emit(Ev.touchup, _event);
 
     } //_touchup
 
@@ -683,7 +683,7 @@ class Entity extends Objects {
         _debug('calling _touchmove on ' + name);
 
         ontouchmove(_event);
-        emit(Cycle.touchmove, _event);
+        emit(Ev.touchmove, _event);
 
     } //_touchmove
 
@@ -697,7 +697,7 @@ class Entity extends Objects {
         _debug('calling _gamepadaxis on ' + name);
 
         ongamepadaxis(_event);
-        emit(Cycle.gamepadaxis, _event);
+        emit(Ev.gamepadaxis, _event);
 
     } //_gamepadaxis
 
@@ -710,7 +710,7 @@ class Entity extends Objects {
         _debug('calling _gamepaddown on ' + name);
 
         ongamepaddown(_event);
-        emit(Cycle.gamepaddown, _event);
+        emit(Ev.gamepaddown, _event);
 
     } //_gamepaddown
 
@@ -723,7 +723,7 @@ class Entity extends Objects {
         _debug('calling _gamepadup on ' + name);
 
         ongamepadup(_event);
-        emit(Cycle.gamepadup, _event);
+        emit(Ev.gamepadup, _event);
 
     } //_gamepadup
 
@@ -736,7 +736,7 @@ class Entity extends Objects {
         _debug('calling _gamepaddevice on ' + name);
 
         ongamepaddevice(_event);
-        emit(Cycle.gamepaddevice, _event);
+        emit(Ev.gamepaddevice, _event);
 
     } //_gamepaddevice
 
@@ -751,7 +751,7 @@ class Entity extends Objects {
         _debug('calling _inputdown on ' + name);
 
         oninputdown(_event.name, _event.event);
-        emit(Cycle.inputdown, _event);
+        emit(Ev.inputdown, _event);
 
     } //_inputdown
 
@@ -764,7 +764,7 @@ class Entity extends Objects {
         _debug('calling _inputup on ' + name);
 
         oninputup(_event.name, _event.event);
-        emit(Cycle.inputup, _event );
+        emit(Ev.inputup, _event );
 
     } //_inputup
 

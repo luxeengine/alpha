@@ -2,7 +2,6 @@ package luxe;
 
 import luxe.Core;
 
-import luxe.Cycle;
 import luxe.debug.Inspector;
 import luxe.Input.KeyEvent;
 import luxe.Input;
@@ -155,12 +154,12 @@ class Debug {
 
         #if !no_debug_console
 
-            core.on(Cycle.keyup, keyup);
-            core.on(Cycle.keydown, keydown);
-            core.on(Cycle.mouseup, mouseup);
-            core.on(Cycle.mousedown, mousedown);
-            core.on(Cycle.mousemove, mousemove);
-            core.on(Cycle.mousewheel, mousewheel);
+            core.on(Ev.keyup, keyup);
+            core.on(Ev.keydown, keydown);
+            core.on(Ev.mouseup, mouseup);
+            core.on(Ev.mousedown, mousedown);
+            core.on(Ev.mousemove, mousemove);
+            core.on(Ev.mousewheel, mousewheel);
 
                 //create the debug renderer and view
             batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
@@ -195,7 +194,7 @@ class Debug {
             debug_inspector.onrefresh = refresh;
 
                 //:todo:wip: initial testing for alpha-2.0
-            core.on(Cycle.windowresized, function(_event:snow.types.Types.WindowEvent){
+            core.on(Ev.windowresized, function(_event:snow.types.Types.WindowEvent){
                 var _w = _event.event.x;
                 var _h = _event.event.y;
 
@@ -369,12 +368,12 @@ class Debug {
 
     @:noCompletion public function destroy() {
 
-        core.off(Cycle.keyup, keyup);
-        core.off(Cycle.keydown, keydown);
-        core.off(Cycle.mouseup, mouseup);
-        core.off(Cycle.mousedown, mousedown);
-        core.off(Cycle.mousemove, mousemove);
-        core.off(Cycle.mousewheel, mousewheel);
+        core.off(Ev.keyup, keyup);
+        core.off(Ev.keydown, keydown);
+        core.off(Ev.mouseup, mouseup);
+        core.off(Ev.mousedown, mousedown);
+        core.off(Ev.mousemove, mousemove);
+        core.off(Ev.mousewheel, mousewheel);
 
         _debug('\t debug shut down.');
         shut_down = true;

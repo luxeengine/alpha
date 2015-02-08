@@ -8,7 +8,7 @@ import luxe.AppConfig;
 
 @:noCompletion
 @:keepSub
-class Game extends Emitter {
+class Game extends Emitter<Int> {
 
     @:noCompletion public var app : Core;
 

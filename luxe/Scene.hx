@@ -1,6 +1,6 @@
 package luxe;
 
-import luxe.Cycle;
+import luxe.Core;
 import luxe.Input;
 import luxe.options.EntityOptions;
 
@@ -29,34 +29,34 @@ class Scene extends Objects {
         _delayed_init_entities = [];
         _delayed_reset_entities = [];
 
-        Luxe.core.on(Cycle.init, init);
-        Luxe.core.on(Cycle.destroy, _destroy);
-        Luxe.core.on(Cycle.update, update);
+        Luxe.core.on(Ev.init, init);
+        Luxe.core.on(Ev.destroy, _destroy);
+        Luxe.core.on(Ev.update, update);
 
-        Luxe.core.on(Cycle.prerender, prerender);
-        Luxe.core.on(Cycle.postrender, postrender);
-        Luxe.core.on(Cycle.render, render);
+        Luxe.core.on(Ev.prerender, prerender);
+        Luxe.core.on(Ev.postrender, postrender);
+        Luxe.core.on(Ev.render, render);
 
-        Luxe.core.on(Cycle.keydown, keydown);
-        Luxe.core.on(Cycle.keyup, keyup);
-        Luxe.core.on(Cycle.textinput, textinput);
+        Luxe.core.on(Ev.keydown, keydown);
+        Luxe.core.on(Ev.keyup, keyup);
+        Luxe.core.on(Ev.textinput, textinput);
 
-        Luxe.core.on(Cycle.inputup, inputup);
-        Luxe.core.on(Cycle.inputdown, inputdown);
+        Luxe.core.on(Ev.inputup, inputup);
+        Luxe.core.on(Ev.inputdown, inputdown);
 
-        Luxe.core.on(Cycle.mouseup, mouseup);
-        Luxe.core.on(Cycle.mousedown, mousedown);
-        Luxe.core.on(Cycle.mousemove, mousemove);
-        Luxe.core.on(Cycle.mousewheel, mousewheel);
+        Luxe.core.on(Ev.mouseup, mouseup);
+        Luxe.core.on(Ev.mousedown, mousedown);
+        Luxe.core.on(Ev.mousemove, mousemove);
+        Luxe.core.on(Ev.mousewheel, mousewheel);
 
-        Luxe.core.on(Cycle.touchup, touchup);
-        Luxe.core.on(Cycle.touchdown, touchdown);
-        Luxe.core.on(Cycle.touchmove, touchmove);
+        Luxe.core.on(Ev.touchup, touchup);
+        Luxe.core.on(Ev.touchdown, touchdown);
+        Luxe.core.on(Ev.touchmove, touchmove);
 
-        Luxe.core.on(Cycle.gamepadup, gamepadup);
-        Luxe.core.on(Cycle.gamepaddown, gamepaddown);
-        Luxe.core.on(Cycle.gamepadaxis, gamepadaxis);
-        Luxe.core.on(Cycle.gamepaddevice, gamepaddevice);
+        Luxe.core.on(Ev.gamepadup, gamepadup);
+        Luxe.core.on(Ev.gamepaddown, gamepaddown);
+        Luxe.core.on(Ev.gamepadaxis, gamepadaxis);
+        Luxe.core.on(Ev.gamepaddevice, gamepaddevice);
 
             //if we have already missed the internal init
         if(Luxe.core.inited) {
@@ -168,19 +168,19 @@ class Scene extends Objects {
 
     function render(_) {
 
-        emit(Cycle.render);
+        emit(Ev.render);
 
     } //render
 
     function prerender(_) {
 
-        emit(Cycle.prerender);
+        emit(Ev.prerender);
 
     } //prerender
 
     function postrender(_) {
 
-        emit(Cycle.postrender);
+        emit(Ev.postrender);
 
     } //postrender
 
@@ -190,7 +190,7 @@ class Scene extends Objects {
 
         _verboser('$name / key down / $e');
 
-        emit(Cycle.keydown, e);
+        emit(Ev.keydown, e);
 
     } //keydown
 
@@ -198,7 +198,7 @@ class Scene extends Objects {
 
         _verboser('$name / key up / $e');
 
-        emit(Cycle.keyup, e);
+        emit(Ev.keyup, e);
 
     } //keyup
 
@@ -206,7 +206,7 @@ class Scene extends Objects {
 
         _verboser('$name / text event / $e');
 
-        emit(Cycle.textinput, e);
+        emit(Ev.textinput, e);
 
     } //textinput
 
@@ -216,7 +216,7 @@ class Scene extends Objects {
 
         _verboser('$name / mousedown / $e');
 
-        emit(Cycle.mousedown, e);
+        emit(Ev.mousedown, e);
 
     } //onmousedown
 
@@ -224,7 +224,7 @@ class Scene extends Objects {
 
         _verboser('$name / mousewheel / $e');
 
-        emit(Cycle.mousewheel, e);
+        emit(Ev.mousewheel, e);
 
     } //onmousewheel
 
@@ -232,7 +232,7 @@ class Scene extends Objects {
 
         _verboser('$name / mouseup / $e');
 
-        emit(Cycle.mouseup, e);
+        emit(Ev.mouseup, e);
 
     } //onmouseup
 
@@ -240,7 +240,7 @@ class Scene extends Objects {
 
         _verboser('$name / mousemove / $e');
 
-        emit(Cycle.mousemove, e);
+        emit(Ev.mousemove, e);
 
     } //onmousemove
 
@@ -248,19 +248,19 @@ class Scene extends Objects {
 
     function touchdown( event : TouchEvent ) {
 
-        emit(Cycle.touchdown, event);
+        emit(Ev.touchdown, event);
 
     } //ontouchdown
 
     function touchup( event : TouchEvent ) {
 
-        emit(Cycle.touchup, event);
+        emit(Ev.touchup, event);
 
     } //ontouchup
 
     function touchmove( event : TouchEvent ) {
 
-        emit(Cycle.touchmove, event);
+        emit(Ev.touchmove, event);
 
     } //ontouchmove
 
@@ -268,25 +268,25 @@ class Scene extends Objects {
 
     function gamepadaxis( event:GamepadEvent ) {
 
-        emit(Cycle.gamepadaxis, event);
+        emit(Ev.gamepadaxis, event);
 
     } //gamepadaxis
 
     function gamepadup( event:GamepadEvent ) {
 
-        emit(Cycle.gamepadup, event);
+        emit(Ev.gamepadup, event);
 
     } //gamepadup
 
     function gamepaddown( event:GamepadEvent ) {
 
-        emit(Cycle.gamepaddown, event);
+        emit(Ev.gamepaddown, event);
 
     } //gamepaddown
 
     function gamepaddevice( event:GamepadEvent ) {
 
-        emit(Cycle.gamepaddevice, event);
+        emit(Ev.gamepaddevice, event);
 
     } //gamepaddown
 
@@ -294,13 +294,13 @@ class Scene extends Objects {
 
     function inputdown( event:{ _name:String, event:InputEvent } ) {
 
-        emit(Cycle.inputdown, event);
+        emit(Ev.inputdown, event);
 
     } //oninputdown
 
     function inputup( event:{ _name:String, event:InputEvent }) {
 
-        emit(Cycle.inputup, event);
+        emit(Ev.inputup, event);
 
     } //oninputup
 
@@ -314,36 +314,36 @@ class Scene extends Objects {
 
     public function destroy() {
 
-        Luxe.core.off(Cycle.init, init);
-        Luxe.core.off(Cycle.destroy, _destroy);
-        Luxe.core.off(Cycle.update, update);
+        Luxe.core.off(Ev.init, init);
+        Luxe.core.off(Ev.destroy, _destroy);
+        Luxe.core.off(Ev.update, update);
 
-        Luxe.core.off(Cycle.prerender, prerender);
-        Luxe.core.off(Cycle.postrender, postrender);
-        Luxe.core.off(Cycle.render, render);
+        Luxe.core.off(Ev.prerender, prerender);
+        Luxe.core.off(Ev.postrender, postrender);
+        Luxe.core.off(Ev.render, render);
 
-        Luxe.core.off(Cycle.keydown, keydown);
-        Luxe.core.off(Cycle.keyup, keyup);
-        Luxe.core.off(Cycle.textinput, textinput);
+        Luxe.core.off(Ev.keydown, keydown);
+        Luxe.core.off(Ev.keyup, keyup);
+        Luxe.core.off(Ev.textinput, textinput);
 
-        Luxe.core.off(Cycle.inputup, inputup);
-        Luxe.core.off(Cycle.inputdown, inputdown);
+        Luxe.core.off(Ev.inputup, inputup);
+        Luxe.core.off(Ev.inputdown, inputdown);
 
-        Luxe.core.off(Cycle.mouseup, mouseup);
-        Luxe.core.off(Cycle.mousedown, mousedown);
-        Luxe.core.off(Cycle.mousemove, mousemove);
-        Luxe.core.off(Cycle.mousewheel, mousewheel);
+        Luxe.core.off(Ev.mouseup, mouseup);
+        Luxe.core.off(Ev.mousedown, mousedown);
+        Luxe.core.off(Ev.mousemove, mousemove);
+        Luxe.core.off(Ev.mousewheel, mousewheel);
 
-        Luxe.core.off(Cycle.touchup, touchup);
-        Luxe.core.off(Cycle.touchdown, touchdown);
-        Luxe.core.off(Cycle.touchmove, touchmove);
+        Luxe.core.off(Ev.touchup, touchup);
+        Luxe.core.off(Ev.touchdown, touchdown);
+        Luxe.core.off(Ev.touchmove, touchmove);
 
-        Luxe.core.off(Cycle.gamepadup, gamepadup);
-        Luxe.core.off(Cycle.gamepaddown, gamepaddown);
-        Luxe.core.off(Cycle.gamepadaxis, gamepadaxis);
-        Luxe.core.off(Cycle.gamepaddevice, gamepaddevice);
+        Luxe.core.off(Ev.gamepadup, gamepadup);
+        Luxe.core.off(Ev.gamepaddown, gamepaddown);
+        Luxe.core.off(Ev.gamepadaxis, gamepadaxis);
+        Luxe.core.off(Ev.gamepaddevice, gamepaddevice);
 
-        emit(Cycle.destroy);
+        emit(Ev.destroy);
 
     } //destroy
 
@@ -379,7 +379,7 @@ class Scene extends Objects {
 
         inited = true;
 
-        emit(Cycle.init);
+        emit(Ev.init);
 
         reset();
 
@@ -390,7 +390,7 @@ class Scene extends Objects {
 
         started = false;
 
-            emit(Cycle.reset);
+            emit(Ev.reset);
 
         started = true;
 
@@ -403,7 +403,7 @@ class Scene extends Objects {
             //late scene additions get init'ed and start'ed
         handle_delayed_additions();
             //just in case, as the entities are called directly
-        emit(Cycle.update, dt);
+        emit(Ev.update, dt);
 
             //finally update them
         if(entity_count > 0) {
