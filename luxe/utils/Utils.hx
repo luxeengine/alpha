@@ -1,7 +1,6 @@
 package luxe.utils;
 
 import luxe.Core;
-import luxe.utils.UUID;
 import luxe.utils.Murmur3;
 
 import haxe.CallStack;
@@ -89,13 +88,6 @@ class Utils {
         return haxe.crypto.Md5.encode(Std.string(Luxe.time*Math.random()));
 
     } //uniqueid2
-
-    #if release inline #end
-    public function uuid() : String {
-
-    	return UUID.get();
-
-    } //uuid
 
     #if release inline #end
     public function stacktrace( ?_depth:Int = 100 ) : String {
