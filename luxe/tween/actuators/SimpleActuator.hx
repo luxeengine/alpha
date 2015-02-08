@@ -58,7 +58,7 @@ class SimpleActuator extends GenericActuator {
         if (!addedEvent) {
 
             addedEvent = true;
-            Luxe.on(luxe.Core.Ev.update, on_internal_update );
+            Luxe.on(Luxe.Ev.update, on_internal_update );
 
         }
 

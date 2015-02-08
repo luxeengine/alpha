@@ -1,5 +1,6 @@
 package luxe;
 
+import Luxe.Ev;
 import luxe.Input;
 import luxe.Objects;
 import luxe.options.StateOptions;
@@ -120,34 +121,34 @@ class States extends Objects {
         _states = new Map();
         active_states = new Array<State>();
 
-        Luxe.core.on('init', init);
-        Luxe.core.on('destroy', ondestroy);
-        Luxe.core.on('update', update);
+        Luxe.core.on(Ev.init, init);
+        Luxe.core.on(Ev.destroy, ondestroy);
+        Luxe.core.on(Ev.update, update);
 
-        Luxe.core.on('prerender', prerender);
-        Luxe.core.on('postrender', postrender);
-        Luxe.core.on('render', render);
+        Luxe.core.on(Ev.prerender, prerender);
+        Luxe.core.on(Ev.postrender, postrender);
+        Luxe.core.on(Ev.render, render);
 
-        Luxe.core.on('keydown', keydown);
-        Luxe.core.on('keyup', keyup);
-        Luxe.core.on('textinput', textinput);
+        Luxe.core.on(Ev.keydown, keydown);
+        Luxe.core.on(Ev.keyup, keyup);
+        Luxe.core.on(Ev.textinput, textinput);
 
-        Luxe.core.on('inputup', inputup);
-        Luxe.core.on('inputdown', inputdown);
+        Luxe.core.on(Ev.inputup, inputup);
+        Luxe.core.on(Ev.inputdown, inputdown);
 
-        Luxe.core.on('mouseup', mouseup);
-        Luxe.core.on('mousedown', mousedown);
-        Luxe.core.on('mousemove', mousemove);
-        Luxe.core.on('mousewheel', mousewheel);
+        Luxe.core.on(Ev.mouseup, mouseup);
+        Luxe.core.on(Ev.mousedown, mousedown);
+        Luxe.core.on(Ev.mousemove, mousemove);
+        Luxe.core.on(Ev.mousewheel, mousewheel);
 
-        Luxe.core.on('touchup', touchup);
-        Luxe.core.on('touchdown', touchdown);
-        Luxe.core.on('touchmove', touchmove);
+        Luxe.core.on(Ev.touchup, touchup);
+        Luxe.core.on(Ev.touchdown, touchdown);
+        Luxe.core.on(Ev.touchmove, touchmove);
 
-        Luxe.core.on('gamepadup', gamepadup);
-        Luxe.core.on('gamepaddown', gamepaddown);
-        Luxe.core.on('gamepadaxis', gamepadaxis);
-        Luxe.core.on('gamepaddevice', gamepaddevice);
+        Luxe.core.on(Ev.gamepadup, gamepadup);
+        Luxe.core.on(Ev.gamepaddown, gamepaddown);
+        Luxe.core.on(Ev.gamepadaxis, gamepadaxis);
+        Luxe.core.on(Ev.gamepaddevice, gamepaddevice);
 
     } //new
 
@@ -330,36 +331,36 @@ class States extends Objects {
             }
         }
 
-        Luxe.core.off('init', init);
-        Luxe.core.off('destroy', ondestroy);
-        Luxe.core.off('update', update);
+        Luxe.core.off(Ev.init, init);
+        Luxe.core.off(Ev.destroy, ondestroy);
+        Luxe.core.off(Ev.update, update);
 
-        Luxe.core.off('prerender', prerender);
-        Luxe.core.off('postrender', postrender);
-        Luxe.core.off('render', render);
+        Luxe.core.off(Ev.prerender, prerender);
+        Luxe.core.off(Ev.postrender, postrender);
+        Luxe.core.off(Ev.render, render);
 
-        Luxe.core.off('keydown', keydown);
-        Luxe.core.off('keyup', keyup);
-        Luxe.core.off('textinput', textinput);
+        Luxe.core.off(Ev.keydown, keydown);
+        Luxe.core.off(Ev.keyup, keyup);
+        Luxe.core.off(Ev.textinput, textinput);
 
-        Luxe.core.off('inputup', inputup);
-        Luxe.core.off('inputdown', inputdown);
+        Luxe.core.off(Ev.inputup, inputup);
+        Luxe.core.off(Ev.inputdown, inputdown);
 
-        Luxe.core.off('mouseup', mouseup);
-        Luxe.core.off('mousedown', mousedown);
-        Luxe.core.off('mousemove', mousemove);
-        Luxe.core.off('mousewheel', mousewheel);
+        Luxe.core.off(Ev.mouseup, mouseup);
+        Luxe.core.off(Ev.mousedown, mousedown);
+        Luxe.core.off(Ev.mousemove, mousemove);
+        Luxe.core.off(Ev.mousewheel, mousewheel);
 
-        Luxe.core.off('touchup', touchup);
-        Luxe.core.off('touchdown', touchdown);
-        Luxe.core.off('touchmove', touchmove);
+        Luxe.core.off(Ev.touchup, touchup);
+        Luxe.core.off(Ev.touchdown, touchdown);
+        Luxe.core.off(Ev.touchmove, touchmove);
 
-        Luxe.core.off('gamepadup', gamepadup);
-        Luxe.core.off('gamepaddown', gamepaddown);
-        Luxe.core.off('gamepadaxis', gamepadaxis);
-        Luxe.core.off('gamepaddevice', gamepaddevice);
+        Luxe.core.off(Ev.gamepadup, gamepadup);
+        Luxe.core.off(Ev.gamepaddown, gamepaddown);
+        Luxe.core.off(Ev.gamepadaxis, gamepadaxis);
+        Luxe.core.off(Ev.gamepaddevice, gamepaddevice);
 
-        emit('destroy');
+        emit(Ev.destroy);
 
     } //destroy
 

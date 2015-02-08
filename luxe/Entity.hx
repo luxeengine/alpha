@@ -1,6 +1,6 @@
 package luxe;
 
-import luxe.Core;
+import Luxe.Ev;
 import luxe.Quaternion;
 import luxe.Transform;
 import luxe.Matrix;

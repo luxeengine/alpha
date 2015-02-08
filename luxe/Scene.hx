@@ -1,6 +1,6 @@
 package luxe;
 
-import luxe.Core;
+import Luxe.Ev;
 import luxe.Input;
 import luxe.options.EntityOptions;
 

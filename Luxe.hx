@@ -81,12 +81,12 @@ class Luxe {
     public static var alpha (get,set) : Float;
 
         /** listen for core events */
-    public static function on<T>(event:Int, handler:T->Void ) {
+    public static function on<T>(event:Ev, handler:T->Void ) {
         core.emitter.on(event, handler);
     }
 
         /** stop listening for core events */
-    public static function off<T>(event:Int, handler:T->Void ) {
+    public static function off<T>(event:Ev, handler:T->Void ) {
         return core.emitter.off(event, handler);
     }
 
@@ -349,3 +349,48 @@ class Luxe {
 
 
 } //Luxe
+
+
+
+
+/** A core event enum for the core luxe events.
+    Used with `on` and `off` handlers, with strict types to Ev */
+@:keep
+@:enum abstract Ev(Int) from Int to Int {
+
+    var unknown         = 0;
+    var ready           = 1;
+    var init            = 2;
+    var reset           = 3;
+    var update          = 4;
+    var fixedupdate     = 5;
+    var destroy         = 6;
+    var prerender       = 7;
+    var render          = 8;
+    var postrender      = 9;
+    var keydown         = 10;
+    var keyup           = 11;
+    var textinput       = 12;
+    var inputdown       = 13;
+    var inputup         = 14;
+    var mousedown       = 15;
+    var mouseup         = 16;
+    var mousemove       = 17;
+    var mousewheel      = 18;
+    var touchdown       = 19;
+    var touchup         = 20;
+    var touchmove       = 21;
+    var gamepadaxis     = 22;
+    var gamepaddown     = 23;
+    var gamepadup       = 24;
+    var gamepaddevice   = 25;
+
+    var window          = 26;
+    var windowmoved     = 27;
+    var windowresized   = 28;
+    var windowsized     = 29;
+    var windowminimized = 30;
+    var windowrestored  = 31;
+    var last            = 31;
+
+} //Ev

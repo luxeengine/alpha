@@ -1,5 +1,6 @@
 
 import luxe.States;
+import luxe.Core.EV;
 
 class Parrott {
 
@@ -17,7 +18,7 @@ class Parrott {
             //This lets you wait until
             //the init functions are called,
             //allowing timing to make sense
-        Luxe.on('init', function(_) {
+        Luxe.on(Ev.init, function(_) {
 
                 //setting a state makes it an active base state,
                 //and calls onenter and onleave when the state is changed

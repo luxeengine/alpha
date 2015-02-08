@@ -98,7 +98,7 @@ import haxe.macro.ExprTools;
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.push( Context.parse('_listen( "$_event_name", ${_field.name}, true )', _field.pos) );
+                            exprs.push( Context.parse('_listen( Luxe.Ev.${_event_name}, ${_field.name}, true )', _field.pos) );
                     } //switch exp
             } //switch kind
 
@@ -109,7 +109,7 @@ import haxe.macro.ExprTools;
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.push( Context.parse('_unlisten( "$_event_name", ${_field.name}, true )', _field.pos) );
+                            exprs.push( Context.parse('_unlisten( Luxe.Ev.${_event_name}, ${_field.name}, true )', _field.pos) );
                     } //switch exp
             } //switch kind
 

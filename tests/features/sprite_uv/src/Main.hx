@@ -40,7 +40,7 @@ class Main extends luxe.Game {
         stars.texture.filter = phoenix.Texture.FilterType.nearest;
         stars.texture.clamp = phoenix.Texture.ClampType.repeat;
 
-        Luxe.on('window.resized', on_resize);
+        Luxe.on(Luxe.Ev.windowresized, on_resize);
 
     } //ready
 
