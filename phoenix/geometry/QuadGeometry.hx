@@ -27,6 +27,13 @@ class QuadGeometry extends Geometry {
         if(options.flipx != null) flipx = options.flipx;
         if(options.flipy != null) flipy = options.flipy;
 
+        if(options.rect != null) {
+            options.x = options.rect.x;
+            options.y = options.rect.y;
+            options.w = options.rect.w;
+            options.h = options.rect.h;
+        }
+
             //Init
         _uv_cache = new luxe.Rectangle(0,0,1,1);
 
