@@ -165,6 +165,16 @@ class Camera extends Entity {
 
     } //get_size
 
+    var _connected = false;
+    function _onwindowsized( _event:luxe.Screen.WindowEvent ) {
+        if(size != null) {
+                //:todo: set_xy handlers on viewport etc
+                //:todo: disconnect on destroy when destroy exists for camera
+            viewport = new Rectangle(viewport.x, viewport.y, _event.event.x, _event.event.y );
+            set_size(size);
+        }
+    }
+
     function set_size( _size:Vector ) : Vector {
 
             //disable size
@@ -173,7 +183,14 @@ class Camera extends Entity {
             size = _size;
             _size_factor.x = _size_factor.y = 1;
             set_zoom(zoom);
+            _connected = false;
+            Luxe.off(Luxe.Ev.windowsized, _onwindowsized);
             return size;
+        }
+
+        if(!_connected) {
+            Luxe.on(Luxe.Ev.windowsized, _onwindowsized);
+            _connected = true;
         }
 
             //setting the size is an explicit action,
