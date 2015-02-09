@@ -1,7 +1,7 @@
 package luxe.debug;
 
-import luxe.Input.KeyEvent;
 import luxe.Input;
+import luxe.Screen.WindowEvent;
 import luxe.resource.Resource;
 
 typedef RenderStats = {
@@ -120,6 +120,25 @@ class StatsDebugView extends luxe.debug.DebugView  {
         resource_stats_text.locked = true;
 
     }
+
+    override function onwindowsized(e:WindowEvent) {
+
+        var debug = Luxe.debug;
+
+        if(resource_list_text != null) {
+            resource_list_text.pos = new Vector(debug.padding.x*7,debug.padding.y*3);
+            resource_list_text.geometry.dirty = true;
+        }
+        if(resource_stats_text != null) {
+            resource_stats_text.pos = new Vector(debug.padding.x*2,debug.padding.y*7.5);
+            resource_stats_text.geometry.dirty = true;
+        }
+        if(render_stats_text != null) {
+            render_stats_text.pos = new Vector(debug.padding.x*2,debug.padding.y*3);
+            render_stats_text.geometry.dirty = true;
+        }
+
+    } //onwindowsized
 
     public override function refresh() {
 

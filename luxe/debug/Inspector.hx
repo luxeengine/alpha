@@ -18,7 +18,7 @@ typedef DebugInspectorOptions = {
 
     public var title:String;
     public var font : BitmapFont;
-    public var pos:Vector;
+    @:isVar public var pos (default,set): Vector;
     @:isVar public var size (default,set): Vector;
 
         //pieces
@@ -87,7 +87,28 @@ typedef DebugInspectorOptions = {
             _window.size = _size;
         }
 
+        if(_version_text != null) {
+            _version_text.pos = new Vector( pos.x+(_size.x-14), pos.y+6 );
+        }
+
         return size = _size;
+    }
+
+    function set_pos(_pos:Vector) {
+
+        if(pos != null && _window != null) {
+            _window.pos = _pos;
+        }
+
+        if(_title_text != null) {
+            _title_text.pos = new Vector( _pos.x+14, _pos.y+6 );
+        }
+
+        if(_version_text != null) {
+            _version_text.pos = new Vector( _pos.x+(size.x-14), _pos.y+6 );
+        }
+
+        return pos = _pos;
     }
 
     function _create_window() {

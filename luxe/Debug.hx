@@ -194,14 +194,23 @@ class Debug {
 
             debug_inspector.onrefresh = refresh;
 
-                //:todo:wip: initial testing for alpha-2.0
-            core.on(Ev.windowresized, function(_event:snow.types.Types.WindowEvent){
+                //:todo:wip: alpha-2.0 implementation
+            core.on(Ev.windowsized, function( _event:luxe.Screen.WindowEvent ){
+
                 var _w = _event.event.x;
                 var _h = _event.event.y;
+                var _v = new Vector(_w, _h);
 
-                overlay.resize(new Vector(_w, _h));
-                view.viewport = new Rectangle(0,0, _w, _h);
+                padding.set_xy(_w*0.05,_h*0.05);
+
+                overlay.resize(_v);
+                view.viewport = new Rectangle(0, 0, _w, _h);
                 debug_inspector.size = new Vector(_w-(padding.x*2), _h-(padding.y*2));
+                debug_inspector.pos = new Vector(padding.x, padding.y);
+
+                for(view in views) {
+                    view.onwindowsized(_event);
+                }
             });
 
                 //no need to process this while we are here.

@@ -1,5 +1,7 @@
 package luxe.debug;
 
+import luxe.Screen.WindowEvent;
+
 class TraceDebugView extends luxe.debug.DebugView {
 
         //log console
@@ -28,13 +30,14 @@ class TraceDebugView extends luxe.debug.DebugView {
     public override function create() {
 
         var debug = Luxe.debug;
+        var text_bounds = new luxe.Rectangle( debug.padding.x+20, debug.padding.y+40, Luxe.screen.w-(debug.padding.x*2)-20, Luxe.screen.h-(debug.padding.y*2)-40 );
 
         lines = new luxe.Text({
             name : 'debug.log.text',
             no_scene : true,
             depth : 999.3,
             color : new Color().rgb(0x888888),
-            bounds : new luxe.Rectangle( debug.padding.x+20, debug.padding.y+40, Luxe.screen.w-(debug.padding.x*2)-20, Luxe.screen.h-(debug.padding.y*2)-40 ),
+            bounds : text_bounds,
             bounds_wrap : true,
             font : Luxe.renderer.font,
             text : '',
@@ -45,7 +48,20 @@ class TraceDebugView extends luxe.debug.DebugView {
         });
 
         if(lines.geometry != null) {
+            lines.geometry.clip_rect = text_bounds;
             lines.geometry.locked = true;
+        }
+    }
+
+    override function onwindowsized(e:WindowEvent) {
+        var debug = Luxe.debug;
+        var text_bounds = new luxe.Rectangle( debug.padding.x+20, debug.padding.y+40, Luxe.screen.w-(debug.padding.x*2)-20, Luxe.screen.h-(debug.padding.y*2)-40 );
+        lines.bounds = text_bounds;
+        lines.clip_rect = text_bounds;
+            //flush the sizes
+        if(lines.geometry != null) {
+            lines.geometry.locked = true;
+            lines.geometry.dirty = true;
         }
     }
 
