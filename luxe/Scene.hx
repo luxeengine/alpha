@@ -2,6 +2,7 @@ package luxe;
 
 import Luxe.Ev;
 import luxe.Input;
+import luxe.Screen;
 import luxe.options.EntityOptions;
 
 import luxe.Log._verboser;
@@ -57,6 +58,12 @@ class Scene extends Objects {
         Luxe.core.on(Ev.gamepaddown, gamepaddown);
         Luxe.core.on(Ev.gamepadaxis, gamepadaxis);
         Luxe.core.on(Ev.gamepaddevice, gamepaddevice);
+
+        Luxe.core.on(Ev.windowmoved, windowmoved);
+        Luxe.core.on(Ev.windowresized, windowresized);
+        Luxe.core.on(Ev.windowsized, windowsized);
+        Luxe.core.on(Ev.windowminimized, windowminimized);
+        Luxe.core.on(Ev.windowrestored, windowrestored);
 
             //if we have already missed the internal init
         if(Luxe.core.inited) {
@@ -290,6 +297,39 @@ class Scene extends Objects {
 
     } //gamepaddown
 
+
+//windowing
+
+    function windowmoved( event:WindowEvent ) {
+
+        emit(Ev.windowmoved, event);
+
+    } //windowmoved
+
+    function windowresized( event:WindowEvent ) {
+
+        emit(Ev.windowresized, event);
+
+    } //windowresized
+
+    function windowsized( event:WindowEvent ) {
+
+        emit(Ev.windowsized, event);
+
+    } //windowsized
+
+    function windowminimized( event:WindowEvent ) {
+
+        emit(Ev.windowminimized, event);
+
+    } //windowminimized
+
+    function windowrestored( event:WindowEvent ) {
+
+        emit(Ev.windowrestored, event);
+
+    } //windowrestored
+
 //Input
 
     function inputdown( event:{ _name:String, event:InputEvent } ) {
@@ -342,6 +382,12 @@ class Scene extends Objects {
         Luxe.core.off(Ev.gamepaddown, gamepaddown);
         Luxe.core.off(Ev.gamepadaxis, gamepadaxis);
         Luxe.core.off(Ev.gamepaddevice, gamepaddevice);
+
+        Luxe.core.off(Ev.windowmoved, windowmoved);
+        Luxe.core.off(Ev.windowresized, windowresized);
+        Luxe.core.off(Ev.windowsized, windowsized);
+        Luxe.core.off(Ev.windowminimized, windowminimized);
+        Luxe.core.off(Ev.windowrestored, windowrestored);
 
         emit(Ev.destroy);
 
