@@ -73,7 +73,7 @@ class NineSlice extends luxe.Visual {
             _batcher = Luxe.renderer.batcher;
         }
 
-            //sprite options to parent
+            //visual options to parent
         super(_options);
 
             //now local options
@@ -376,9 +376,9 @@ class NineSlice extends luxe.Visual {
 
         } //each slice
 
-        _geometry.transform.pos = _pos;
         _geometry.id = 'NineSlice' + _geometry.id;
         geometry = _geometry;
+        pos = _pos;
 
         added = true;
         is_set = true;
