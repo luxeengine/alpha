@@ -1,6 +1,7 @@
 
 import luxe.Component;
 import luxe.Input;
+import luxe.Screen;
 import luxe.Scene;
 import luxe.Vector;
 import luxe.Sprite;
@@ -141,5 +142,11 @@ class RandomSlide extends Component {
         }
 
     } //update
+
+    override function onwindowmoved( e:WindowEvent ) trace('RandomSlide: window moved : ${e.event.x} / ${e.event.y}');
+    override function onwindowresized( e:WindowEvent ) trace('RandomSlide: window resized : ${e.event.x} / ${e.event.y}');
+    override function onwindowsized( e:WindowEvent ) trace('RandomSlide: window sized : ${e.event.x} / ${e.event.y}');
+    override function onwindowminimized( e:WindowEvent ) trace('RandomSlide: window minimized');
+    override function onwindowrestored( e:WindowEvent ) trace('RandomSlide: window restored');
 
 }

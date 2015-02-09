@@ -70,7 +70,12 @@ import haxe.macro.ExprTools;
                     'onkeyup',
                     'ontextinput',
                     'oninputdown',
-                    'oninputup' :
+                    'oninputup',
+                    'onwindowmoved',
+                    'onwindowresized',
+                    'onwindowsized',
+                    'onwindowminimized',
+                    'onwindowrestored' :
                 {
                     connect_event(_field);
                 }

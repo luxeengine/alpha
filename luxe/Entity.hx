@@ -6,6 +6,7 @@ import luxe.Transform;
 import luxe.Matrix;
 
 import luxe.Input;
+import luxe.Screen;
 import luxe.Vector;
 import luxe.Scene;
 import luxe.components.Components;
@@ -113,6 +114,17 @@ class Entity extends Objects {
     @:noCompletion public function ongamepadaxis( event:GamepadEvent ) {}
         /** override this to get notified when a gamepad device event happens. only called if overridden. */
     @:noCompletion public function ongamepaddevice( event:GamepadEvent ) {}
+
+       /** override this to get notified when a window is moved, with the data containing the new x/y position */
+   @:noCompletion public function onwindowmoved( event:WindowEvent ) {}
+       /** override this to get notified when a window is resized by the user, with the data containing the new x/y size */
+   @:noCompletion public function onwindowresized( event:WindowEvent ) {}
+       /** override this to get notified when a window is resized by the system or code or the user, with the data containing the new x/y size */
+   @:noCompletion public function onwindowsized( event:WindowEvent ) {}
+       /** override this to get notified when a window is minimized. */
+   @:noCompletion public function onwindowminimized( event:WindowEvent ) {}
+       /** override this to get notified when a window is restored. */
+   @:noCompletion public function onwindowrestored( event:WindowEvent ) {}
 
 
         /** Create a new entity with the given options */
@@ -459,6 +471,7 @@ class Entity extends Objects {
 
 //events
 
+        //:todo: switch to @:allow and remove public
     @:noCompletion public function _listen( _event:Int, _handler:EmitHandler, ? _self:Bool=false ) {
 
         //this function is called when a component, or a subclass tries to override the onmousedown handler,
@@ -495,6 +508,12 @@ class Entity extends Objects {
                 case Ev.gamepadup     : scene.on(_event, _gamepadup);
                 case Ev.gamepadaxis   : scene.on(_event, _gamepadaxis);
                 case Ev.gamepaddevice : scene.on(_event, _gamepaddevice);
+
+                case Ev.windowmoved     : scene.on(_event, _windowmoved);
+                case Ev.windowresized   : scene.on(_event, _windowresized);
+                case Ev.windowsized     : scene.on(_event, _windowsized);
+                case Ev.windowminimized : scene.on(_event, _windowminimized);
+                case Ev.windowrestored  : scene.on(_event, _windowrestored);
 
             } //switch event
         }
@@ -536,6 +555,11 @@ class Entity extends Objects {
             scene.off(Ev.gamepadup, _gamepadup);
             scene.off(Ev.gamepadaxis, _gamepadaxis);
             scene.off(Ev.gamepaddevice, _gamepaddevice);
+            scene.off(Ev.windowmoved, _windowmoved);
+            scene.off(Ev.windowresized, _windowresized);
+            scene.off(Ev.windowsized, _windowsized);
+            scene.off(Ev.windowminimized, _windowminimized);
+            scene.off(Ev.windowrestored, _windowrestored);
 
         } //scene != null
 
@@ -739,6 +763,73 @@ class Entity extends Objects {
         emit(Ev.gamepaddevice, _event);
 
     } //_gamepaddevice
+
+//Windowing
+
+    @:noCompletion public function _windowmoved( _event:WindowEvent ) {
+
+        if(!active || !inited || !started) {
+            return;
+        }
+
+        _debug('calling _windowmoved on ' + name);
+
+        onwindowmoved(_event);
+        emit(Ev.windowmoved, _event);
+
+    } //_windowmoved
+
+    @:noCompletion public function _windowresized( _event:WindowEvent ) {
+
+        if(!active || !inited || !started) {
+            return;
+        }
+
+        _debug('calling _windowresized on ' + name);
+
+        onwindowresized(_event);
+        emit(Ev.windowresized, _event);
+
+    } //_windowresized
+
+    @:noCompletion public function _windowsized( _event:WindowEvent ) {
+
+        if(!active || !inited || !started) {
+            return;
+        }
+
+        _debug('calling _windowsized on ' + name);
+
+        onwindowsized(_event);
+        emit(Ev.windowsized, _event);
+
+    } //_windowsized
+
+    @:noCompletion public function _windowminimized( _event:WindowEvent ) {
+
+        if(!active || !inited || !started) {
+            return;
+        }
+
+        _debug('calling _windowminimized on ' + name);
+
+        onwindowminimized(_event);
+        emit(Ev.windowminimized, _event);
+
+    } //_windowminimized
+
+    @:noCompletion public function _windowrestored( _event:WindowEvent ) {
+
+        if(!active || !inited || !started) {
+            return;
+        }
+
+        _debug('calling _windowrestored on ' + name);
+
+        onwindowrestored(_event);
+        emit(Ev.windowrestored, _event);
+
+    } //_windowrestored
 
 //Input
 

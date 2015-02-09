@@ -4,6 +4,7 @@ import luxe.Quaternion;
 import luxe.Vector;
 import luxe.Transform;
 import luxe.Input;
+import luxe.Screen;
 import luxe.Objects.ID;
 import luxe.options.ComponentOptions;
 
@@ -81,6 +82,17 @@ class Component extends ID {
     @:noCompletion public function ongamepadaxis( event:GamepadEvent ) {}
         /** override this to get notified when a gamepad device event happens. only called if overridden. */
     @:noCompletion public function ongamepaddevice( event:GamepadEvent ) {}
+
+       /** override this to get notified when a window is moved, with the data containing the new x/y position */
+   @:noCompletion public function onwindowmoved( event:WindowEvent ) {}
+       /** override this to get notified when a window is resized by the user, with the data containing the new x/y size */
+   @:noCompletion public function onwindowresized( event:WindowEvent ) {}
+       /** override this to get notified when a window is resized by the system or code or the user, with the data containing the new x/y size */
+   @:noCompletion public function onwindowsized( event:WindowEvent ) {}
+       /** override this to get notified when a window is minimized. */
+   @:noCompletion public function onwindowminimized( event:WindowEvent ) {}
+       /** override this to get notified when a window is restored. */
+   @:noCompletion public function onwindowrestored( event:WindowEvent ) {}
 
         /** Use this to pass instance specific data and values to the component. */
     public function new( ?_options:ComponentOptions ) {
