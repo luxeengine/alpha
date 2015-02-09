@@ -3,6 +3,7 @@ package luxe;
 import luxe.Core;
 import luxe.Objects;
 import luxe.Input;
+import luxe.Screen;
 import snow.App;
 import luxe.AppConfig;
 
@@ -74,5 +75,16 @@ class Game extends Emitter<Int> {
    public function ongamepadup( event:GamepadEvent ) {}
        /** Called for you when a gamepad is connected or disconnected, use `gamepad` to determine gamepad id */
    public function ongamepaddevice( event:GamepadEvent ) {}
+
+       /** Called for you when a window is moved, with the data containing the new x/y position */
+   public function onwindowmoved( event:WindowEvent ) {}
+       /** Called for you when a window is resized by the user, with the data containing the new x/y size */
+   public function onwindowresized( event:WindowEvent ) {}
+       /** Called for you when a window is resized by the system or code or the user, with the data containing the new x/y size */
+   public function onwindowsized( event:WindowEvent ) {}
+       /** Called for you when a window is minimized. */
+   public function onwindowminimized( event:WindowEvent ) {}
+       /** Called for you when a window is restored. */
+   public function onwindowrestored( event:WindowEvent ) {}
 
 } //Game

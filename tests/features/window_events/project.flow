@@ -1,0 +1,36 @@
+{
+
+  luxe:{
+    window: {
+      width:960,
+      height:640,
+      title:'luxe - window events',
+      fullscreen:false,
+      resizable:true,
+      borderless:false
+    }
+  },
+
+  project : {
+    name : 'windowevents',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_windowevents',
+      package : 'com.luxeengine.windowevents'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

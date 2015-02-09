@@ -2,6 +2,35 @@ package luxe;
 
 import luxe.Vector;
 
+
+typedef WindowEventType = snow.types.Types.WindowEventType;
+
+/** The data related to the specific window event. */
+typedef WindowEventData = {
+        /** The x data for the event, if applicable */
+    @:optional var x:Int;
+        /** The y data for the event, if applicable */
+    @:optional var y:Int;
+
+} //WindowEventData
+
+
+/** A window event */
+typedef WindowEvent = {
+
+        /** The type of window event this was. Use WindowEventType */
+    @:optional var type : WindowEventType;
+        /** The time in seconds that this event occured, useful for deltas */
+    @:optional var timestamp : Float;
+        /** The window id from which this event originated */
+    @:optional var window_id : Int;
+        /** The event data, where applicable. For example, with move, resized or sized events the data contains the new information as a result of the event. */
+    @:optional var event : WindowEventData;
+
+} //WindowEvent
+
+
+
 @:allow(luxe.Core)
 class Screen {
 

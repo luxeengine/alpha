@@ -391,6 +391,7 @@ class Luxe {
     var windowsized     = 29;
     var windowminimized = 30;
     var windowrestored  = 31;
+        //this is not a typo, it should match
     var last            = 31;
 
 } //Ev

@@ -354,26 +354,31 @@ class Core extends snow.App {
 
             case WindowEventType.moved : {
                 emitter.emit(Ev.windowmoved, _event );
+                game.onwindowmoved( _event );
             } //moved
 
             case WindowEventType.resized : {
                 screen.internal_resized(_event.event.x, _event.event.y);
                 renderer.internal_resized(_event.event.x, _event.event.y);
                 emitter.emit(Ev.windowresized, _event );
+                game.onwindowresized( _event );
             } //resized
 
             case WindowEventType.size_changed : {
                 screen.internal_resized(_event.event.x, _event.event.y);
                 renderer.internal_resized(_event.event.x, _event.event.y);
                 emitter.emit(Ev.windowsized, _event );
+                game.onwindowsized( _event );
             } //size_changed
 
             case WindowEventType.minimized : {
                 emitter.emit(Ev.windowminimized, _event );
+                game.onwindowminimized( _event );
             } //minimized
 
             case WindowEventType.restored : {
                 emitter.emit(Ev.windowrestored, _event );
+                game.onwindowrestored( _event );
             } //restored
 
             default: {}
