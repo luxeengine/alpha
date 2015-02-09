@@ -24,6 +24,7 @@ private typedef DataInfo = {
 }
 
 private typedef TextInfo = DataInfo;
+private typedef JSONInfo = DataInfo;
 
 private typedef SoundInfo = {
     id : String,
@@ -41,6 +42,7 @@ class Parcel extends luxe.resource.ResourceManager {
     var font_list : Array<FontInfo>;
     var sound_list : Array<SoundInfo>;
     var text_list : Array<TextInfo>;
+    var json_list : Array<JSONInfo>;
     var data_list : Array<DataInfo>;
 
     public var total_items : Int = 0;
@@ -63,6 +65,7 @@ class Parcel extends luxe.resource.ResourceManager {
         shader_list     = [];
         sound_list      = [];
         text_list       = [];
+        json_list       = [];
         data_list       = [];
 
     } //new
@@ -75,6 +78,7 @@ class Parcel extends luxe.resource.ResourceManager {
     var index_sounds    : Int = 0;
     var index_datas     : Int = 0;
     var index_texts     : Int = 0;
+    var index_jsons     : Int = 0;
 
     function refresh_total_items() {
 
@@ -84,6 +88,7 @@ class Parcel extends luxe.resource.ResourceManager {
             font_list.length    +
             sound_list.length   +
             text_list.length    +
+            json_list.length    +
             data_list.length;
     }
 
@@ -112,6 +117,7 @@ class Parcel extends luxe.resource.ResourceManager {
                 start_shaders_load();
                 start_sounds_load();
                 start_texts_load();
+                start_jsons_load();
                 start_datas_load();
 
             } else {
@@ -199,6 +205,21 @@ class Parcel extends luxe.resource.ResourceManager {
                     } //item != null
                 } //each text
             } //json object text
+
+            if(_json_object.json != null) {
+                var _jsons : Array<Dynamic> = cast _json_object.json;
+                for(item in _jsons) {
+                    if(item != null) {
+                        var id : String = item.id == null ? '' : cast item.id;
+                        var async : Bool = item.async == null ? false : cast item.async;
+                        if(id != '') {
+                            add_json( id, async );
+                        }  else {
+                            log("json not added due to incomplete info: " + item);
+                        }//id != ''
+                    } //item != null
+                } //each json
+            } //json object json
 
             if(_json_object.data != null) {
                 var _datas : Array<Dynamic> = cast _json_object.data;
@@ -346,6 +367,69 @@ class Parcel extends luxe.resource.ResourceManager {
 
     } //start_sounds_load
 
+//Texts
+
+    function start_texts_load() {
+
+        if(text_list.length > 0) {
+
+            index_texts = 0;
+
+            if(options.sequential) {
+
+                    //load recursive so that it is sequential
+                recursive_load_texts( null );
+
+            } else {
+
+                    //load all texts immediately
+                    //whether that's sequential or not
+                load_texts();
+
+            } //sequential
+
+        } else { //text_list > 0
+
+            if( options.sequential ) {
+                start_jsons_load();
+            }
+
+        }
+
+    } //start_texts_load
+
+
+//JSONs
+
+    function start_jsons_load() {
+
+        if(json_list.length > 0) {
+
+            index_jsons = 0;
+
+            if(options.sequential) {
+
+                    //load recursive so that it is sequential
+                recursive_load_jsons( null );
+
+            } else {
+
+                    //load all jsons immediately
+                    //whether that's sequential or not
+                load_jsons();
+
+            } //sequential
+
+        } else { //json_list > 0
+
+            if( options.sequential ) {
+                start_datas_load();
+            }
+
+        }
+
+    } //start_jsons_load
+
 //Data
 
     function start_datas_load() {
@@ -368,35 +452,10 @@ class Parcel extends luxe.resource.ResourceManager {
             } //sequential
 
         } else { //data_list > 0
-
+            //last in the list
         }
 
     } //start_datas_load
-
-//Texts
-
-    function start_texts_load() {
-
-        if(text_list.length > 0) {
-
-            index_texts = 0;
-
-            if(options.sequential) {
-
-                    //load recursive so that it is sequential
-                recursive_load_texts( null );
-
-            } else {
-
-                    //load all fonts immediately
-                    //whether that's sequential or not
-                load_texts();
-
-            } //sequential
-
-        } //text_list > 0
-
-    } //start_texts_load
 
 
 //Texture
@@ -444,6 +503,14 @@ class Parcel extends luxe.resource.ResourceManager {
     function load_texts() {
         for(text in text_list) {
             load_text( text, single_item_complete );
+        }
+    }
+
+//JSON
+
+    function load_jsons() {
+        for(json in json_list) {
+            load_json( json, single_item_complete );
         }
     }
 
@@ -606,7 +673,7 @@ class Parcel extends luxe.resource.ResourceManager {
             single_item_complete( item );
 
             if(index_texts == text_list.length && options.sequential) {
-                start_datas_load();
+                start_jsons_load();
             }
 
         }
@@ -627,6 +694,37 @@ class Parcel extends luxe.resource.ResourceManager {
         // });  //schedule closing brace
 
     } //recursive_load_texts
+
+//JSON
+
+    function recursive_load_jsons( item:Resource ) {
+
+        if(item != null) {
+
+            single_item_complete( item );
+
+            if(index_jsons == json_list.length && options.sequential) {
+                start_datas_load();
+            }
+
+        }
+
+            //if you are debugging progress, change this line and it's closing brace
+        // Luxe.timer.schedule(1, function(){
+
+            if( index_jsons < json_list.length ) {
+                    //hold current so we can skip
+                var current = index_jsons;
+                    //increase count for complete around
+                index_jsons++;
+                    //send off
+                load_json( json_list[current], recursive_load_jsons );
+
+            } //not past max length
+
+        // });  //schedule closing brace
+
+    } //recursive_load_jsons
 
 //Public api for preparing a parcel
 
@@ -690,11 +788,23 @@ class Parcel extends luxe.resource.ResourceManager {
         }
     } //add_texts
 
+//JSON
+
+    public function add_json( _id:String, ?_async:Bool=false ) {
+        json_list.push({ id:_id, async:_async });
+    } //add_json
+
+    public function add_jsons( list:Array<JSONInfo> ) {
+        for(json_info in list) {
+            json_list.push( json_info );
+        }
+    } //add_jsons
+
 //Data
 
     public function add_data( _id:String, ?_async:Bool=false ) {
         data_list.push({ id:_id, async:_async });
-    } //add_text
+    } //add_data
 
     public function add_datas( list:Array<DataInfo> ) {
         for(data in list) {
@@ -748,7 +858,16 @@ class Parcel extends luxe.resource.ResourceManager {
             Luxe.loadText( _text_info.id, _complete, _text_info.async );
         });
 
-    } //load_datafile
+    } //load_text
+
+    function load_json( _json_info:JSONInfo, _complete ) {
+        #if luxe_parcel_logging log('    loading json $_json_info' ); #end
+
+        Luxe.timer.schedule( options.load_spacing, function(){
+            Luxe.loadJSON( _json_info.id, _complete, _json_info.async );
+        });
+
+    } //load_json
 
     function load_sound( _sound:SoundInfo, _complete ) {
         #if luxe_parcel_logging log("    loading sound " + _sound.id + " (" + _sound.name + ")" ); #end
