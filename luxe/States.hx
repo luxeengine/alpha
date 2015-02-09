@@ -2,6 +2,7 @@ package luxe;
 
 import Luxe.Ev;
 import luxe.Input;
+import luxe.Screen;
 import luxe.Objects;
 import luxe.options.StateOptions;
 
@@ -86,6 +87,12 @@ class State extends ID {
     @:noCompletion public function ongamepadaxis( event:GamepadEvent ) {}
     @:noCompletion public function ongamepaddevice( event:GamepadEvent ) {}
 
+   @:noCompletion public function onwindowmoved( event:WindowEvent ) {}
+   @:noCompletion public function onwindowresized( event:WindowEvent ) {}
+   @:noCompletion public function onwindowsized( event:WindowEvent ) {}
+   @:noCompletion public function onwindowminimized( event:WindowEvent ) {}
+   @:noCompletion public function onwindowrestored( event:WindowEvent ) {}
+
 //internal
 
     @:allow(luxe.States)
@@ -149,6 +156,12 @@ class States extends Objects {
         Luxe.core.on(Ev.gamepaddown, gamepaddown);
         Luxe.core.on(Ev.gamepadaxis, gamepadaxis);
         Luxe.core.on(Ev.gamepaddevice, gamepaddevice);
+
+        Luxe.core.on(Ev.windowmoved, windowmoved);
+        Luxe.core.on(Ev.windowresized, windowresized);
+        Luxe.core.on(Ev.windowsized, windowsized);
+        Luxe.core.on(Ev.windowminimized, windowminimized);
+        Luxe.core.on(Ev.windowrestored, windowrestored);
 
     } //new
 
@@ -360,6 +373,12 @@ class States extends Objects {
         Luxe.core.off(Ev.gamepadaxis, gamepadaxis);
         Luxe.core.off(Ev.gamepaddevice, gamepaddevice);
 
+        Luxe.core.off(Ev.windowmoved, windowmoved);
+        Luxe.core.off(Ev.windowresized, windowresized);
+        Luxe.core.off(Ev.windowsized, windowsized);
+        Luxe.core.off(Ev.windowminimized, windowminimized);
+        Luxe.core.off(Ev.windowrestored, windowrestored);
+
         emit(Ev.destroy);
 
     } //destroy
@@ -557,6 +576,48 @@ class States extends Objects {
             }
         }
     } //ongamepaddevice
+
+//windowing
+
+    function windowmoved( e:WindowEvent ) {
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onwindowmoved(e);
+            }
+        }
+    } //windowmoved
+
+    function windowresized( e:WindowEvent ) {
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onwindowresized(e);
+            }
+        }
+    } //windowresized
+
+    function windowsized( e:WindowEvent ) {
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onwindowsized(e);
+            }
+        }
+    } //windowsized
+
+    function windowminimized( e:WindowEvent ) {
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onwindowminimized(e);
+            }
+        }
+    } //windowminimized
+
+    function windowrestored( e:WindowEvent ) {
+        if(active_count > 0) {
+            for (state in active_states) {
+                state.onwindowrestored(e);
+            }
+        }
+    } //windowrestored
 
 
 } //States
