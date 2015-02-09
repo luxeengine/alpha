@@ -248,9 +248,9 @@ class Luxe {
     } //loadTextures
 
         /** Load a font resource */
-    public static function loadFont( _id:String, ?_path:String, ?_onload : BitmapFont->Void, ?_silent:Bool=false ) : BitmapFont {
+    public static function loadFont( _id:String, ?_texture_path:String, ?_onload : BitmapFont->Void, ?_silent:Bool=false ) : BitmapFont {
 
-        return BitmapFont.load({ id:_id, path:_path, onload:_onload, silent:_silent });
+        return BitmapFont.load({ id:_id, texture_path:_texture_path, onload:_onload, silent:_silent });
 
     } //loadFont
 

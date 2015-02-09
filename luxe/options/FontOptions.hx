@@ -16,10 +16,13 @@ typedef BitmapFontOptions = {
 
     > FontOptions,
 
-        /** The file asset id of the font data to use/load, exluding paths/folder. Required if using load. */
+        /** The file asset id of the font data to use/load. Textures inside the fnt file are loaded relative to the fnt file
+            location, use `texture_path` to override this. Required if using load. */
     @:optional var id : String;
-        /** The path of the font textures. Textures are separate using embedded paths. default: 'assets/' */
-    @:optional var path : String;
+        /** An optional path for the font textures. This is to allow the .fnt file to be separate from the texture files.
+            Take note that the font fnt file specifies the pages with a path as well, which would become relative to this given path,
+            and if this is not specified the images will be relative to the .fnt file. */
+    @:optional var texture_path : String;
         /** The callback to call when the font finishes loading */
     @:optional var onload : BitmapFont->Void;
         /** Whether or not this and it's resources load without logging. default: false */

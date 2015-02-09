@@ -17,7 +17,7 @@ class Main extends luxe.Game {
 
             //simply wait for the font to load,
             //the rest will work out their delayed loads
-        font = Luxe.loadFont('proclamate.fnt', 'assets/font/', function(_){
+        font = Luxe.loadFont('assets/font/proclamate.fnt', function(_){
 
                 //add the states we will use
             state.add( new Menu() );

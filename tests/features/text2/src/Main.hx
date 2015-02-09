@@ -35,8 +35,8 @@ class Main extends luxe.Game {
         Luxe.draw.line({ p0:new Vector(0, Luxe.screen.mid.y), p1:new Vector(Luxe.screen.w, Luxe.screen.mid.y), color:col });
         Luxe.draw.line({ p0:new Vector(0, Luxe.screen.mid.y/2), p1:new Vector(Luxe.screen.w, Luxe.screen.mid.y/2), color:col2 });
 
-        var font = Luxe.loadFont('opensans.fnt', 'assets/opensans/');
-        var fontjp = Luxe.loadFont('jp.fnt', 'assets/jp/');
+        var font = Luxe.loadFont('assets/opensans/opensans.fnt');
+        var fontjp = Luxe.loadFont('assets/jp/jp.fnt');
 
         font.onload = function(_){
 

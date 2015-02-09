@@ -77,9 +77,14 @@ class BitmapFont extends Resource {
 
     public function new( ?_options:BitmapFontOptions ) {
 
-        id = 'font.${Luxe.utils.uniqueid()}';
+        options = if(_options == null) {
+                    { id:'font.${Luxe.utils.uniqueid()}' }
+                } else {
+                    _options;
+                }
 
-        options = (_options == null) ? { id:id } : _options;
+        id = options.id;
+
         default_options();
 
         super( options.resources, ResourceType.font );
@@ -90,13 +95,10 @@ class BitmapFont extends Resource {
 
     //Public api
 
-            /** Create this bitmap font from the given string data,
-                with path to search for textures, onload callback
-                and if textures are already loaded, a custom array of pages */
+            /** Create this bitmap font from the given string data, using the options given in the constructor. 
+                optional: onload callback and custom texture pages, if already loaded. */
         public function from_string(
-            _id : String,
             _bitmapfont_data : String,
-            ?_path: String = 'assets/',
             ?_onload: BitmapFont->Void ,
             ?_custom_pages: Array<Texture>,
             ?_silent: Bool = false )
@@ -109,25 +111,22 @@ class BitmapFont extends Resource {
 
                 //check validity of the font
             if( info.char_count == 0 || 
-                info.face == null || 
                 (info.pages.length == 0 && _custom_pages.length == 0)
             ) {
-                log('error / $_id / invalid font data specified for this font, cannot load. This font will not be valid.');
+                log('error / $id / invalid font data specified for this font, cannot load. This font will not be valid.');
                 do_onload( false );
                 return;
             }
 
-                //set the id to the face name
-            id = '${info.face}';
                 //store cached values
             space_char = info.chars.get(32);
                 //load any texture pages
-            load_pages(_path, _custom_pages);
+            load_pages(_custom_pages);
 
             if(generic_names.indexOf(id) != -1) {
                 var _warning = 'warning / font loaded with a generic or no name as "$id". ';
                     _warning += 'This could lead to bugs or confusion, or not being able to retrieve the font ';
-                    _warning += 'later from the resources. The font name is set in the "face" property inside the .fnt file.';
+                    _warning += 'later from the resources.';
                 log(_warning);
             }
 
@@ -301,17 +300,16 @@ class BitmapFont extends Resource {
         public static function load( ?_options:BitmapFontOptions ) : BitmapFont {
 
             if(_options == null || _options.id == null ) {
-                throw "BitmapFont: load cannot work without a file id to load from.";
+                throw "BitmapFont: `load` cannot work without a file id to load from.";
             }
 
             if(_options.silent == null) _options.silent = false;
 
             var font = new BitmapFont( _options );
-            var file_path = haxe.io.Path.join([font.options.path, font.options.id]);
 
-            Luxe.loadText( file_path, function( font_data:luxe.resource.TextResource ) {
+            Luxe.loadText( font.id, function( font_data:luxe.resource.TextResource ) {
 
-                font.from_string( _options.id, font_data.text, font.options.path, font.options.onload, null, font.options.silent );
+                font.from_string( font_data.text, font.options.onload, null, font.options.silent );
                 font.options.resources.cache(font);
 
             }, true);
@@ -334,10 +332,6 @@ class BitmapFont extends Resource {
 
             if(options.id == null) {
                 options.id = id;
-            }
-
-            if(options.path == null) {
-                options.path = 'assets/';
             }
 
             if(options.resources == null) {
@@ -386,15 +380,27 @@ class BitmapFont extends Resource {
 
         } //page_loaded
 
-        function load_pages( ?_path:String = 'assets/', ?_custom_pages:Array<Texture> ) {
+        function load_pages( ?_custom_pages:Array<Texture> ) {
+
+            var _path = if(options.texture_path == null) {
+                            haxe.io.Path.directory(id);
+                        } else {
+                            options.texture_path;
+                        }
 
             if(_custom_pages == null) {
+
+                _debug('loading texture pages from $_path');
 
                 items_total = Lambda.count(info.pages);
 
                 for(_page in info.pages) {
 
-                    var _t = Luxe.loadTexture( _path + _page.file, null, options.silent );
+                    var _page_path = haxe.io.Path.join([_path, _page.file]);
+
+                    _debug('\tpage : $_page_path');
+
+                    var _t = Luxe.loadTexture( _page_path, null, options.silent );
                     if(_t != null) {
                         _t.onload = function(_) {
 
@@ -413,7 +419,7 @@ class BitmapFont extends Resource {
 
                         } //onload
                     } else {
-                        throw 'BitmapFont: "${info.face}" specified a page "${_page.file}" with a missing texture at $_path';
+                        throw 'BitmapFont: "$id (${info.face})" specified a page "${_page.file}" with a missing texture at $_page_path';
                     }
 
                 } //each page

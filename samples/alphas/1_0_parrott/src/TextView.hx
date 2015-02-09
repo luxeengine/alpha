@@ -32,7 +32,7 @@ class TextView extends State {
 
         start = Luxe.screen.mid.x - ((string.length * 32)/2);
 
-        font = Luxe.loadFont('alpha.fnt', 'assets/font/', function(_){
+        font = Luxe.loadFont('assets/font/alpha.fnt', null, function(_){
 
             for(letter in string) {
 

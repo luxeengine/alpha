@@ -30,11 +30,11 @@ class Main extends luxe.Game {
                     { "ps_id":"assets/shader3.glsl" }
                 ],
                 "fonts" : [
-                    { "id" : "font1.fnt", "path" : "assets/fonts/" },
-                    { "id" : "font2.fnt", "path" : "assets/fonts/" },
-                    { "id" : "font3.fnt", "path" : "assets/fonts/" },
-                    { "id" : "font4.fnt", "path" : "assets/fonts/" },
-                    { "id" : "font5.fnt", "path" : "assets/fonts/" }
+                    { "id" : "assets/fonts/font1.fnt" },
+                    { "id" : "assets/fonts/font2.fnt" },
+                    { "id" : "assets/fonts/font3.fnt" },
+                    { "id" : "assets/fonts/font4.fnt" },
+                    { "id" : "assets/fonts/font5.fnt", "texture_path":"assets/fonts/font5tex/" }
                 ],
                 "sounds" : [
                     { "id" : "assets/sound1.ogg", "name" : "sound1", "is_stream" : true }

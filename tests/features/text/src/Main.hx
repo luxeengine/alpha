@@ -217,7 +217,7 @@ class Main extends luxe.Game {
 
             //This one wants to be in the scene, so that
             //it can update its components
-        var font = Luxe.loadFont('font.fnt', 'assets/fonts/');
+        var font = Luxe.loadFont('assets/fonts/font.fnt');
 
         font.onload = function(_){
 

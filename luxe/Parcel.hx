@@ -15,7 +15,7 @@ private typedef ShaderInfo = {
 
 private typedef FontInfo = {
     id : String,
-    path : String
+    texture_path : String
 }
 
 private typedef DataInfo = {
@@ -160,9 +160,8 @@ class Parcel extends luxe.resource.ResourceManager {
                 for(item in _fonts) {
                     if(item != null) {
                         var id : String = item.id == null ? '' : cast item.id;
-                        var path : String = item.path == null ? '' : cast item.path;
-                        if(id != '' && path != '') {
-                            add_font(id, path);
+                        if(id != '') {
+                            add_font(id, cast item.texture_path);
                         } else {
                             log("font not added due to incomplete info: " + item);
                         }
@@ -657,8 +656,8 @@ class Parcel extends luxe.resource.ResourceManager {
 
 //Font
 
-    public function add_font( _id:String, _path:String ) {
-        font_list.push( { id:_id, path:_path });
+    public function add_font( _id:String, ?_texture_path:String ) {
+        font_list.push( { id:_id, texture_path:_texture_path });
     } //add_font
 
     public function add_fonts( list:Array<FontInfo> ) {
@@ -701,7 +700,7 @@ class Parcel extends luxe.resource.ResourceManager {
         for(data in list) {
             data_list.push( data );
         }
-    } //add_fonts
+    } //add_datas
 
 
 //Per item handlers
@@ -725,10 +724,10 @@ class Parcel extends luxe.resource.ResourceManager {
     } //load_shader
 
     function load_font( _font:FontInfo, _complete ) {
-        #if luxe_parcel_logging log("    loading font " + _font.path + _font.id ); #end
+        #if luxe_parcel_logging log("    loading font " + _font.id + " with optional texture path = " + _font.texture_path ); #end
 
         Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadFont( _font.id, _font.path, _complete, options.silent );
+            Luxe.loadFont( _font.id, _font.texture_path, _complete, options.silent );
         });
 
     } //load_font

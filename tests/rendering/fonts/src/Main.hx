@@ -18,7 +18,7 @@ class Main extends luxe.Game {
 
     		//the reason the second option is a folder is because you keep the fonts, and their loose png files separate
     		//this allows you to specify sub folders etc easily.
-    	var font = Luxe.loadFont('font.fnt', 'assets/fonts/');
+    	var font = Luxe.loadFont('assets/fonts/font.fnt');
 
         font.onload = function(_) {
 

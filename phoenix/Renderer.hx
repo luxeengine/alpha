@@ -365,14 +365,14 @@ function get_target() : RenderTexture {
 
         _debug("creating the default font...");
 
-            font = new BitmapFont({ resources:core.resources });
+            font = new BitmapFont({ id:'default', resources:core.resources });
 
                 //create the font texture
             var _font_texture = Texture.load_from_resource('default.png');
                 _font_texture.filter_min = FilterType.linear;
 
                 //load the font string data
-            font.from_string( 'default.fnt', haxe.Resource.getString('default.fnt'), '', null, [_font_texture] );
+            font.from_string( haxe.Resource.getString('default.fnt'), null, [_font_texture] );
 
         _debug("done. " + _font_texture.width + 'x' + _font_texture.height );
 

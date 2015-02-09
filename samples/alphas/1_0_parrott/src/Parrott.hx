@@ -1,6 +1,6 @@
 
 import luxe.States;
-import luxe.Core.EV;
+import Luxe.Ev;
 
 class Parrott {
 
