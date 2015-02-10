@@ -225,9 +225,11 @@ class Input {
 #if neko
     var key_bindings : Map<String, haxe.ds.EnumValueMap<Int,Bool> >;
     var mouse_bindings : Map<String, haxe.ds.EnumValueMap<Int,Bool> >;
+    var gamepad_bindings : Map<String, haxe.ds.EnumValueMap<Int,Int> >;
 #else
     var key_bindings : Map<String, Map<Int,Bool> >;
     var mouse_bindings : Map<String, Map<Int,Bool> >;
+    var gamepad_bindings: Map<String, Map<Int, Int> >;
 #end
 
     var _named_input_released : Map<String, Bool>;
@@ -238,6 +240,7 @@ class Input {
 
         key_bindings = new Map();
         mouse_bindings = new Map();
+        gamepad_bindings = new Map();
 
         _named_input_down = new Map();
         _named_input_pressed = new Map();
@@ -397,6 +400,16 @@ class Input {
 
     } //bind_mouse
 
+    /** Bind a named input binding to a `Gamepad Key` */
+    public function bind_gamepad( _name:String, _gamepad_key:Int, _gamepad_id:Int = -1) {
+        if ( !gamepad_bindings.exists(_name) ) {
+            gamepad_bindings.set(_name, new Map<Int, Int>() );
+        }
+
+        var gp = gamepad_bindings.get(_name);
+        gp.set ( _gamepad_key, _gamepad_id);
+    } //bind_gamepad
+
     @:noCompletion public function check_named_keys( e:KeyEvent, _down:Bool=false ) {
 
         var _fired : Array<String> = [];
@@ -492,5 +505,53 @@ class Input {
         } //_f in _fired
 
     } //check_named_keys
+
+    @:noCompletion public function check_named_gamepad_keys( e:GamepadEvent, _down:Bool=false) {
+
+        var _fired : Array<String> = [];
+        for (_name in gamepad_bindings.keys()) {
+
+            var _b = gamepad_bindings.get(_name);
+            if (_b.exists(e.button)) {
+                var _kb = _b.get(e.button);
+                var _accepted_gamepad = _kb == -1 || e.gamepad == _kb;
+                if ( !Lambda.has(_fired, _name) && _accepted_gamepad) {
+                    _fired.push(_name);
+                }
+            } // if the key fired is stored in a named binding
+        }
+
+        for(_f in _fired) {
+            if (_down) {
+
+                //down but now yet processed
+                _named_input_pressed.set( _f, false);
+                // down is true immediate, because up removes it
+                _named_input_down.set( _f, true);
+
+                core.oninputdown( _f, {
+                    name: _f,
+                    type: InputType.mouse,
+                    state: InteractState.down,
+                    gamepad_event: e
+                });
+
+            } else {
+
+                // up but not yet processed
+                _named_input_released.set( _f, false);
+                // remove down state
+                _named_input_down.remove( _f );
+
+                core.oninputup( _f, {
+                    name: _f,
+                    type: InputType.mouse,
+                    state: InteractState.up,
+                    gamepad_event: e
+                });
+
+            }
+        } //_f in _fired
+    } //check_named_gamepad_keys
 
 } //Input

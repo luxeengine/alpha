@@ -1,6 +1,8 @@
 
 import luxe.Vector;
 import luxe.Input;
+import snow.input.gamepad.XBox360Buttons;
+import snow.input.gamepad.PS3Buttons;
 
 class Main extends luxe.Game {
 
@@ -13,6 +15,10 @@ class Main extends luxe.Game {
         Luxe.input.bind_key('fire', Key.space);
         Luxe.input.bind_key('fire', Key.key_z);
         Luxe.input.bind_mouse('fire', MouseButton.left);
+        Luxe.input.bind_gamepad('fire', XBox360Buttons.button_b);
+
+        //needs two gamepads connected for this to work
+        Luxe.input.bind_gamepad('jump', PS3Buttons.cross, 1);
 
     } //ready
 
@@ -22,6 +28,7 @@ class Main extends luxe.Game {
 
     override function oninputdown( _input:String, e:InputEvent ) {
         trace( 'named input down : ' + _input );
+
     } //oninputdown
 
     override function onkeyup( e:KeyEvent ) {
