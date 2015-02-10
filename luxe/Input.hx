@@ -225,11 +225,11 @@ class Input {
 #if neko
     var key_bindings : Map<String, haxe.ds.EnumValueMap<Int,Bool> >;
     var mouse_bindings : Map<String, haxe.ds.EnumValueMap<Int,Bool> >;
-    var gamepad_bindings : Map<String, haxe.ds.EnumValueMap<Int,Int> >;
+    var gamepad_bindings : Map<String, haxe.ds.EnumValueMap<Int, Null<Int>> >;
 #else
     var key_bindings : Map<String, Map<Int,Bool> >;
     var mouse_bindings : Map<String, Map<Int,Bool> >;
-    var gamepad_bindings: Map<String, Map<Int, Int> >;
+    var gamepad_bindings: Map<String, Map<Int, Null<Int>> >;
 #end
 
     var _named_input_released : Map<String, Bool>;
@@ -400,14 +400,14 @@ class Input {
 
     } //bind_mouse
 
-    /** Bind a named input binding to a `Gamepad Key` */
-    public function bind_gamepad( _name:String, _gamepad_key:Int, _gamepad_id:Int = -1) {
+    /** Bind a named input binding to a `Gamepad Button`. If no `Gamepad Id` is specified, any gamepad fires the named binding.*/
+    public function bind_gamepad( _name:String, _gamepad_button:Int, ?_gamepad_id:Null<Int> = null) {
         if ( !gamepad_bindings.exists(_name) ) {
-            gamepad_bindings.set(_name, new Map<Int, Int>() );
+            gamepad_bindings.set(_name, new Map<Int, Null<Int>>());
         }
 
         var gp = gamepad_bindings.get(_name);
-        gp.set ( _gamepad_key, _gamepad_id);
+        gp.set ( _gamepad_button, _gamepad_id);
     } //bind_gamepad
 
     @:noCompletion public function check_named_keys( e:KeyEvent, _down:Bool=false ) {
@@ -506,7 +506,7 @@ class Input {
 
     } //check_named_keys
 
-    @:noCompletion public function check_named_gamepad_keys( e:GamepadEvent, _down:Bool=false) {
+    @:noCompletion public function check_named_gamepad_buttons( e:GamepadEvent, _down:Bool=false) {
 
         var _fired : Array<String> = [];
         for (_name in gamepad_bindings.keys()) {
@@ -514,7 +514,7 @@ class Input {
             var _b = gamepad_bindings.get(_name);
             if (_b.exists(e.button)) {
                 var _kb = _b.get(e.button);
-                var _accepted_gamepad = _kb == -1 || e.gamepad == _kb;
+                var _accepted_gamepad = _kb == null || _kb == e.gamepad;
                 if ( !Lambda.has(_fired, _name) && _accepted_gamepad) {
                     _fired.push(_name);
                 }
@@ -531,7 +531,7 @@ class Input {
 
                 core.oninputdown( _f, {
                     name: _f,
-                    type: InputType.mouse,
+                    type: InputType.gamepad,
                     state: InteractState.down,
                     gamepad_event: e
                 });
@@ -545,13 +545,13 @@ class Input {
 
                 core.oninputup( _f, {
                     name: _f,
-                    type: InputType.mouse,
+                    type: InputType.gamepad,
                     state: InteractState.up,
                     gamepad_event: e
                 });
 
             }
         } //_f in _fired
-    } //check_named_gamepad_keys
+    } //check_named_gamepad_buttons
 
 } //Input
