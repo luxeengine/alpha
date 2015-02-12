@@ -5,7 +5,7 @@ import phoenix.Batcher;
 import phoenix.Texture;
 
 import luxe.resource.Resource;
-import luxe.resource.ResourceManager;
+import luxe.resource.Resources;
 
 
     //A render texture just extends texture so it can be assigned to meshes etc
@@ -14,7 +14,7 @@ class RenderTexture extends Texture {
     public var fbo : GLFramebuffer;
     public var renderbuffer : GLRenderbuffer;
 
-    public function new( _manager:ResourceManager, ?_size:Vector = null ) {
+    public function new( _manager:Resources, ?_size:Vector = null ) {
 
         super( _manager, ResourceType.render_texture );
 

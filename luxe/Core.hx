@@ -16,7 +16,7 @@ import luxe.Debug;
 import luxe.Timer;
 import luxe.Physics;
 import luxe.AppConfig;
-import luxe.resource.ResourceManager;
+import luxe.resource.Resources;
 
 import luxe.debug.ProfilerDebugView;
 
@@ -55,7 +55,7 @@ class Core extends snow.App {
     public var input     : Input;
     public var audio     : Audio;
     public var scene     : Scene;
-    public var resources : ResourceManager;
+    public var resources : Resources;
     public var renderer  : Renderer;
     public var screen    : luxe.Screen;
     public var physics   : Physics;
@@ -185,7 +185,7 @@ class Core extends snow.App {
         physics = new Physics( this );
 
             //should be up earlier
-        resources = new ResourceManager();
+        resources = new Resources();
         Luxe.resources = resources;
 
             //flag for later

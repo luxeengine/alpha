@@ -32,7 +32,7 @@ private typedef SoundInfo = {
     is_stream : Bool
 }
 
-class Parcel extends luxe.resource.ResourceManager {
+class Parcel extends luxe.resource.Resources {
 
     public var time_to_load : Float = 0;
     var time_start_load : Float = 0;

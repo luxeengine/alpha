@@ -41,7 +41,7 @@ class Luxe {
         /** Access to the default camera */
     public static var camera    : luxe.Camera;
         /** Access to the default resource manager  */
-    public static var resources : luxe.resource.ResourceManager;
+    public static var resources : luxe.resource.Resources;
         /** Access to the rendering system */
     public static var renderer  : phoenix.Renderer;
 

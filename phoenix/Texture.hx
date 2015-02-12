@@ -11,7 +11,7 @@ import phoenix.Color;
 import phoenix.Vector;
 
 import luxe.resource.Resource;
-import luxe.resource.ResourceManager;
+import luxe.resource.Resources;
 
 import luxe.Log._verbose;
 import luxe.Log.log;
@@ -54,7 +54,7 @@ class Texture extends Resource {
     @:isVar public var clamp(default,set) : ClampType;
 
 
-    public function new( _manager : ResourceManager, ?_type : ResourceType = null ) {
+    public function new( _manager : Resources, ?_type : ResourceType = null ) {
 
         if(_type == null) _type = ResourceType.texture;
 

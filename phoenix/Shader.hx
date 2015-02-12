@@ -2,7 +2,7 @@ package phoenix;
 
 
 import luxe.resource.Resource;
-import luxe.resource.ResourceManager;
+import luxe.resource.Resources;
 
 import luxe.Log.log;
 import luxe.Log._debug;
@@ -50,7 +50,7 @@ class Shader extends Resource {
 
     var uniform_textures : Map<String,Texture>;
 
-    public function new( _manager : ResourceManager ) {
+    public function new( _manager : Resources ) {
 
         super( _manager, ResourceType.shader );
         uniforms = new Map<String, Uniform<Dynamic> >();

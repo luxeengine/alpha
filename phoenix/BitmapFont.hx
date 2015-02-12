@@ -2,7 +2,7 @@ package phoenix;
 
 import luxe.Vector;
 import luxe.resource.Resource;
-import luxe.resource.ResourceManager;
+import luxe.resource.Resources;
 
 import luxe.options.FontOptions;
 import luxe.options.TextOptions;

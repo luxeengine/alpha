@@ -2,12 +2,12 @@ package luxe.options;
 
 import phoenix.Texture;
 import phoenix.BitmapFont;
-import luxe.resource.ResourceManager;
+import luxe.resource.Resources;
 
 private typedef FontOptions = {
 
         /** The resource manager to associate this font with. default: `Luxe.resources` */
-    @:optional var resources : ResourceManager;
+    @:optional var resources : Resources;
 
 } //FontOptions
 
