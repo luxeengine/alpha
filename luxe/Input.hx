@@ -506,7 +506,7 @@ class Input {
 
     } //check_named_keys
 
-    @:noCompletion public function check_named_gamepad_buttons( e:GamepadEvent, _down:Bool=false) {
+    @:noCompletion public function check_named_gamepad_buttons( e:GamepadEvent, _down:Bool=false ) {
 
         var _fired : Array<String> = [];
         for (_name in gamepad_bindings.keys()) {
@@ -518,7 +518,7 @@ class Input {
                 if ( !Lambda.has(_fired, _name) && _accepted_gamepad) {
                     _fired.push(_name);
                 }
-            } // if the key fired is stored in a named binding
+            } // if the button fired is stored in a named binding
         }
 
         for(_f in _fired) {

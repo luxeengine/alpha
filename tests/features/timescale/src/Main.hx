@@ -51,10 +51,11 @@ class Main extends luxe.Game {
             origin : new Vector( 10, 40 )
         });
 
-        Luxe.input.bind_key('jump', Key.key_w );
-        Luxe.input.bind_key('jump', Key.key_z );
-        Luxe.input.bind_key('jump', Key.space );
-        Luxe.input.bind_key('jump', Key.up );
+        Luxe.input.bind_key( 'jump', Key.key_w );
+        Luxe.input.bind_key( 'jump', Key.key_z );
+        Luxe.input.bind_key( 'jump', Key.space );
+        Luxe.input.bind_key( 'jump', Key.up );
+        Luxe.input.bind_gamepad( 'jump', 0 );
 
         vel = new Vector(0,0);
 
@@ -106,15 +107,6 @@ class Main extends luxe.Game {
         }
 
     } //ongamepadaxis
-
-    override function ongamepadup( e:GamepadEvent ) {
-        if(e.button == 0) {
-            jump();
-        }
-    } //ongamepadbuttonup
-
-    override function ongamepaddown( e:GamepadEvent ) {
-    } //ongamepadbuttondown
 
     override function onkeydown( e:KeyEvent ) {
 
