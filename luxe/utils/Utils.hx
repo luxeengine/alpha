@@ -52,19 +52,19 @@ class Utils {
         /** Generates and returns a uniqueid converted to a hashed integer for convenience.
             Uses the default `uniqueid` and `hash` implementation detail. */
     #if release inline #end
-    public function uniquehash() : Int {
+    public function uniquehash() : UInt {
         return hash( uniqueid() );
     } //uniquehash
 
         /** Generates a integer hash from a string using the default algorithm (murmur3) */
     #if release inline #end
-    public function hash( string:String ) : Int {
+    public function hash( string:String ) : UInt {
         return hashdjb2( string );
     } //hash
 
         /** Generates an integer hash of a string using the djb2 algorithm */
     #if release inline #end
-    public function hashdjb2(string:String) : Int {
+    public function hashdjb2(string:String) : UInt {
 
             //http://www.cse.yorku.ca/~oz/hash.html
         var _hash : Int = 5381;

@@ -14,7 +14,7 @@ import phoenix.Vector;
 import luxe.options.GeometryOptions;
 
 typedef PackedQuad = {
-    uid : Int,
+    uid : UInt,
     verts : Array<Vertex>,
     flipx : Bool,
     flipy : Bool,
