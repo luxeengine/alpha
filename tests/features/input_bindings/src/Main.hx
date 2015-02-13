@@ -14,6 +14,12 @@ class Main extends luxe.Game {
         Luxe.input.bind_key('fire', Key.key_z);
         Luxe.input.bind_mouse('fire', MouseButton.left);
 
+        // all gamepads fires this named binding when button 0 is pressed
+        Luxe.input.bind_gamepad('fire', 0);
+
+        //only the gamepad=1 fires this named binding when button 2 is pressed
+        Luxe.input.bind_gamepad('jump', 2, 1);
+
     } //ready
 
     override function oninputup( _input:String, e:InputEvent ) {
@@ -22,6 +28,7 @@ class Main extends luxe.Game {
 
     override function oninputdown( _input:String, e:InputEvent ) {
         trace( 'named input down : ' + _input );
+
     } //oninputdown
 
     override function onkeyup( e:KeyEvent ) {

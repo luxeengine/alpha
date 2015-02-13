@@ -770,6 +770,7 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
+            input.check_named_gamepad_buttons(event, true);
             emitter.emit(Ev.gamepaddown,event);
             game.ongamepaddown(event);
 
@@ -791,6 +792,7 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
+            input.check_named_gamepad_buttons(event, false);
             emitter.emit(Ev.gamepadup, event);
             game.ongamepadup(event);
 
