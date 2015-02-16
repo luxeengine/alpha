@@ -94,7 +94,7 @@ class Batcher {
     public var static_normal_floats  : Int = 0;
 
         //the current number of active buffers in the ring
-    public var buffer_count : Int = 6;
+    public var buffer_count : Int = 2;
 
         //the index we are on
     public var buffer_index : Int = 0;
@@ -149,8 +149,8 @@ class Batcher {
         geometry = new BalancedBST<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
 
-        max_verts = Std.int(Math.pow(2, 16));
-        max_floats = max_verts << 2;
+        max_verts = Std.int(Math.pow(2, 14));
+        max_floats = max_verts * 4;
 
             //these are expecting elements in floats, so each vert etc has 4 floats
         vertlist = new Float32Array( max_floats );
