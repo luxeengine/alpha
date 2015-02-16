@@ -26,6 +26,17 @@ class ParcelProgress {
 
     public function new( _options:ParcelProgressOptions ) {
 
+        var _view_width = Luxe.screen.w;
+        var _view_height = Luxe.screen.h;
+
+        if(Luxe.camera.size != null) {
+            _view_width = Luxe.camera.size.x;
+            _view_height = Luxe.camera.size.y;
+        }
+
+        var _view_mid_x = Math.floor(_view_width/2);
+        var _view_mid_y = Math.floor(_view_height/2);
+
         options = _options;
 
         if(options.bar == null) {
@@ -69,13 +80,15 @@ class ParcelProgress {
 
         } //fade in
 
-        width = Math.ceil(Luxe.screen.w * 0.75);
-        height = Math.ceil(Luxe.screen.h * 0.002);
-        var ypos = Math.ceil(Luxe.screen.h * 0.60);
+        width = Math.max(Math.floor(_view_width * 0.75), 2);
+        height = Math.max(Math.floor(_view_height * 0.002), 2);
+        var ypos = Math.floor(_view_height * 0.60);
+        var half_width = Math.floor(width/2);
+        var half_height = Math.floor(height/2);
 
         background = new Sprite({
             no_scene : true,
-            size : new Vector( Luxe.screen.w, Luxe.screen.h ),
+            size : new Vector( _view_width, _view_height ),
             centered : false,
             color : options.background,
             depth : 998,
@@ -83,7 +96,7 @@ class ParcelProgress {
         });
 
         progress_bar = new Sprite({
-            pos : new Vector(Luxe.screen.mid.x - (width/2), ypos - (height/2)),
+            pos : new Vector(_view_mid_x - half_width, ypos - half_height),
             size : new Vector( 2, height ),
             no_scene : true,
             centered : false,
@@ -94,10 +107,10 @@ class ParcelProgress {
         progress_border = new Visual({
             color : options.bar,
             no_scene : true,
-            pos : new Vector(Luxe.screen.mid.x - (width/2), ypos - (height/2)),
+            pos : new Vector(_view_mid_x - half_width, ypos - half_height),
             geometry : Luxe.draw.rectangle({
-                w : width + 1,
-                h : height + 1,
+                w : width,
+                h : height,
                 depth : 998.1
             }),
             depth : 998.1
