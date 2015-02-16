@@ -3,9 +3,10 @@ package phoenix;
 import snow.assets.AssetImage;
 import snow.render.opengl.GL;
 import snow.utils.ByteArray;
-import snow.utils.UInt8Array;
 import snow.utils.Libs;
-import snow.utils.ArrayBuffer;
+
+import snow.io.typedarray.Uint8Array;
+import snow.io.typedarray.ArrayBuffer;
 
 import phoenix.Color;
 import phoenix.Vector;
@@ -223,7 +224,7 @@ class Texture extends Resource {
 
     } //load_from_bytearray
 
-    public static function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels:snow.utils.UInt8Array, ?_cache:Bool = true ) {
+    public static function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels:snow.io.typedarray.Uint8Array, ?_cache:Bool = true ) {
 
         if(_pixels == null) {
             return null;

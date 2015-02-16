@@ -22,9 +22,6 @@ import phoenix.Camera;
 import phoenix.Texture;
 import phoenix.BitmapFont;
 
-import snow.utils.UInt8Array;
-import snow.utils.ArrayBuffer;
-
 typedef BatcherKey = {
     uuid : String,
     layer : Int

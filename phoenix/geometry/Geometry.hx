@@ -13,8 +13,7 @@ import phoenix.Batcher;
 import luxe.options.GeometryOptions;
 
 import snow.utils.ByteArray;
-import snow.utils.Float32Array;
-import snow.utils.IMemoryRange;
+import snow.io.typedarray.Float32Array;
 
 import snow.render.opengl.GL;
 
@@ -262,48 +261,48 @@ class Geometry {
 
                     //submit vertex positions
                     //:todo: ask hugh about hxcpp ArrayImpl not being inline
-            #if luxe_native
-                vertlist.__set_d((vert_index+0), _final_vert_position.x);
-                vertlist.__set_d((vert_index+1), _final_vert_position.y);
-                vertlist.__set_d((vert_index+2), _final_vert_position.z);
-                vertlist.__set_d((vert_index+3), _final_vert_position.w);
-            #else
+            // #if luxe_native
+            //     vertlist.__set_d((vert_index+0), _final_vert_position.x);
+            //     vertlist.__set_d((vert_index+1), _final_vert_position.y);
+            //     vertlist.__set_d((vert_index+2), _final_vert_position.z);
+            //     vertlist.__set_d((vert_index+3), _final_vert_position.w);
+            // #else
                 vertlist[(vert_index+0)] = _final_vert_position.x;
                 vertlist[(vert_index+1)] = _final_vert_position.y;
                 vertlist[(vert_index+2)] = _final_vert_position.z;
                 vertlist[(vert_index+3)] = _final_vert_position.w;
-            #end
+            // #end
 
             vert_index += 4;
 
-                    //texture coordinates :todo: multiple uv sets
-            #if luxe_native
-                tcoordlist.__set_d((tcoord_index+0), v.uv.uv0.u);
-                tcoordlist.__set_d((tcoord_index+1), v.uv.uv0.v);
-                tcoordlist.__set_d((tcoord_index+2), v.uv.uv0.w);
-                tcoordlist.__set_d((tcoord_index+3), v.uv.uv0.t);
-            #else
+            //         //texture coordinates :todo: multiple uv sets
+            // #if luxe_native
+            //     tcoordlist.__set_d((tcoord_index+0), v.uv.uv0.u);
+            //     tcoordlist.__set_d((tcoord_index+1), v.uv.uv0.v);
+            //     tcoordlist.__set_d((tcoord_index+2), v.uv.uv0.w);
+            //     tcoordlist.__set_d((tcoord_index+3), v.uv.uv0.t);
+            // #else
                 tcoordlist[(tcoord_index+0)] = v.uv.uv0.u;
                 tcoordlist[(tcoord_index+1)] = v.uv.uv0.v;
                 tcoordlist[(tcoord_index+2)] = v.uv.uv0.w;
                 tcoordlist[(tcoord_index+3)] = v.uv.uv0.t;
-            #end
+            // #end
 
             tcoord_index += 4;
 
                 //color values per vertex
 
-            #if luxe_native
-                colorlist.__set_d((color_index+0), v.color.r);
-                colorlist.__set_d((color_index+1), v.color.g);
-                colorlist.__set_d((color_index+2), v.color.b);
-                colorlist.__set_d((color_index+3), v.color.a);
-            #else
+            // #if luxe_native
+            //     colorlist.__set_d((color_index+0), v.color.r);
+            //     colorlist.__set_d((color_index+1), v.color.g);
+            //     colorlist.__set_d((color_index+2), v.color.b);
+            //     colorlist.__set_d((color_index+3), v.color.a);
+            // #else
                 colorlist[(color_index+0)] = v.color.r;
                 colorlist[(color_index+1)] = v.color.g;
                 colorlist[(color_index+2)] = v.color.b;
                 colorlist[(color_index+3)] = v.color.a;
-            #end
+            // #end
 
 
             color_index += 4;
