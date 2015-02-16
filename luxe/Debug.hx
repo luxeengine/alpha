@@ -302,10 +302,6 @@ class Debug {
 
     } //keydown
 
-    @:noCompletion public function onresize(e) {
-        view.viewport = new Rectangle(0,0,Luxe.screen.w, Luxe.screen.h);
-    } //onresize
-
     function refresh() {
         current_view.refresh();
     } //refresh
