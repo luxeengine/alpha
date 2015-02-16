@@ -24,6 +24,7 @@ class Timer {
 
     @:noCompletion public function destroy() {
 
+        reset();
         _debug('\t timer shut down.');
 
     } //destroy
