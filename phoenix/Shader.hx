@@ -396,14 +396,14 @@ class Shader extends Resource {
         vert_shader = compile( GL.VERTEX_SHADER, vertex_source, _verbose );
         frag_shader = compile( GL.FRAGMENT_SHADER, frag_source, _verbose );
 
+        inline function fail() {
+            luxe.Log.log("failed to create shader : " + id + "\n\n" + log + '\n' + errors);
+            throw ":( shader errors ";
+        }
+
             //Any errors? fail
         if( vert_shader == null || frag_shader == null ) {
-            if(_verbose) {
-                throw "SHADER : " + id + " \n\n " + log + '\n' + errors;
-            } else {
-                throw errors;
-            }
-            return false;
+            fail();
         }
 
             //Link shader
@@ -411,21 +411,15 @@ class Shader extends Resource {
 
             //Check compile status and throw errors if there are any
         if(program == null) {
-            if(_verbose) {
-                throw log + '\n' + errors;
-            } else {
-                throw errors;
-            }
+            fail();
         } else {
             if(_verbose && log.length > 0) {
-                trace(log);
+                luxe.Log.log(log);
             }
         }
 
             //if it fails return false
         if( program == null ) return false;
-
-
 
         return true;
     }
