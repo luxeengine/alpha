@@ -250,7 +250,7 @@ class Geometry {
         vertices.push( v );
 
         if(vertices.length > Luxe.renderer.batcher.max_verts) {
-            throw "$id / Currently a single geometry cannot exceed the maximum vert count of " + Luxe.renderer.batcher.max_verts;
+            throw '$id / Currently a single geometry cannot exceed the maximum vert count of ' + Luxe.renderer.batcher.max_verts;
         }
 
     } //add
