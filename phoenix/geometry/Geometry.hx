@@ -122,6 +122,7 @@ class Geometry {
             //this only applies if batcher is supplied, but is overriden with no_batcher_add
         var _do_add = true;
 
+
         if(options != null) {
 
             state.depth             = (options.depth == null)           ? state.depth           : options.depth;
@@ -129,7 +130,6 @@ class Geometry {
             state.texture           = (options.texture == null)         ? state.texture         : options.texture;
             state.clip_rect         = (options.clip_rect == null)       ? state.clip_rect       : options.clip_rect;
             state.primitive_type    = (options.primitive_type == null)  ? state.primitive_type  : options.primitive_type;
-            state.shader            = (options.shader == null)          ? state.shader          : options.shader;
 
             id                      = (options.id == null)              ? uuid                  : options.id;
 
@@ -144,10 +144,22 @@ class Geometry {
             color                   = (options.color == null)           ? new Color()           : options.color;
             _do_add                 = (options.no_batcher_add == null)  ? true                  : options.no_batcher_add;
 
+                //default shaders
+            if(options.shader == null) {
+                if(state.texture == null) {
+                    state.shader = Luxe.renderer.shaders.plain.shader;
+                } else {
+                    state.shader = Luxe.renderer.shaders.textured.shader;
+                }
+            } else {
+                state.shader = options.shader;
+            }
+
         } else { //options != null
 
                 //assign required
             color = new Color();
+            state.shader = Luxe.renderer.shaders.plain.shader;
 
         }
 
