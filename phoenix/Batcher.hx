@@ -17,7 +17,7 @@ import luxe.Log._debug;
 
 @:enum abstract PrimitiveType(Int) from Int to Int {
 
-    var none            = 0;
+    var unknown         = -1;
     var line_strip      = GL.LINE_STRIP;
     var line_loop       = GL.LINE_LOOP;
     var lines           = GL.LINES;
