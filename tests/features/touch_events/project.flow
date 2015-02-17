@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - touch',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_touch',
+      package : 'com.luxeengine.testtouch'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/',
+      index : { path:'custom_index.html => index.html', template:'project', not_listed:true }
+    }
+
+  }
+
+}
