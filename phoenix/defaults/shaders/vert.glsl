@@ -17,6 +17,6 @@ void main(void) {
         //hmm! I think shaders are compiled optimised, removing unused values which means
         //that the shaders getVertexNormal attribute returns invalid (-1) values!
     vec3 n = vertexNormal;
-    // gl_PointSize = 512.0;
+    gl_PointSize = 1.0;
 
 }
