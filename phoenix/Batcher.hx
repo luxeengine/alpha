@@ -149,7 +149,7 @@ class Batcher {
         geometry = new BalancedBST<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
 
-        max_verts = Std.int(Math.pow(2, 14));
+        max_verts = Std.int(Math.pow(2, 15));
             //4 floats per vert, i.e x y z w
         max_floats = max_verts * 4;
 
