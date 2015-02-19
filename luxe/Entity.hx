@@ -277,6 +277,7 @@ class Entity extends Objects {
 
             //verbose debugging
         _verbose('${this} inside _init with options as $options' );
+        _debug('calling init on ' + name);
 
 
         init();
@@ -471,6 +472,50 @@ class Entity extends Objects {
 
 //events
 
+    inline function _find_emit_source() : Emitter<Luxe.Ev> {
+
+        var source = null;
+
+        if(scene != null) {
+
+            source = scene;
+
+        } else if(parent != null) {
+
+            var looking = true;
+
+            while(looking) {
+
+                    //not a root item
+                if(parent.scene == null) {
+                        //no parent? this is not connected at all
+                    if(parent.parent == null) {
+                        log('entity has no parent or scene, currently no core events will reach it.');
+                        looking = false;
+                        break;
+                    } else {
+                        //still has a parent,
+                        //keep looking
+                    }
+
+                } else {
+
+                    source = parent.scene;
+                    looking = false;
+                    break;
+
+                } //no scene
+
+            } //while looking
+
+        } else {
+            log('entity has no parent or scene, currently no core events will reach it.');
+        }
+
+        return source;
+
+    } //_find_emit_source
+
         //:todo: switch to @:allow and remove public
     @:noCompletion public function _listen( _event:Int, _handler:EmitHandler, ? _self:Bool=false ) {
 
@@ -481,50 +526,92 @@ class Entity extends Objects {
         //the duplication of events&handler combo is handled internally by Emitter, so we don't have to worry
         //todo: potential consolidation to avoid the switch here
 
-        if( !_self){
+
+        if( !_self ){
             on(_event, _handler);
         }
 
-        if(scene != null) {
+        var source = _find_emit_source();
+
+        _debug('$name / listen to $_event sourced from $source');
+
+        if(source != null) {
             switch(_event) {
 
-                case Ev.keyup         : scene.on(_event, _keyup);
-                case Ev.keydown       : scene.on(_event, _keydown);
-                case Ev.textinput     : scene.on(_event, _textinput);
+                case Ev.keyup           : source.on(_event, _keyup);
+                case Ev.keydown         : source.on(_event, _keydown);
+                case Ev.textinput       : source.on(_event, _textinput);
 
-                case Ev.mousedown     : scene.on(_event, _mousedown);
-                case Ev.mouseup       : scene.on(_event, _mouseup);
-                case Ev.mousemove     : scene.on(_event, _mousemove);
-                case Ev.mousewheel    : scene.on(_event, _mousewheel);
+                case Ev.mousedown       : source.on(_event, _mousedown);
+                case Ev.mouseup         : source.on(_event, _mouseup);
+                case Ev.mousemove       : source.on(_event, _mousemove);
+                case Ev.mousewheel      : source.on(_event, _mousewheel);
 
-                case Ev.touchdown     : scene.on(_event, _touchdown);
-                case Ev.touchup       : scene.on(_event, _touchup);
-                case Ev.touchmove     : scene.on(_event, _touchmove);
+                case Ev.touchdown       : source.on(_event, _touchdown);
+                case Ev.touchup         : source.on(_event, _touchup);
+                case Ev.touchmove       : source.on(_event, _touchmove);
 
-                case Ev.inputup       : scene.on(_event, _inputup);
-                case Ev.inputdown     : scene.on(_event, _inputdown);
+                case Ev.inputup         : source.on(_event, _inputup);
+                case Ev.inputdown       : source.on(_event, _inputdown);
 
-                case Ev.gamepaddown   : scene.on(_event, _gamepaddown);
-                case Ev.gamepadup     : scene.on(_event, _gamepadup);
-                case Ev.gamepadaxis   : scene.on(_event, _gamepadaxis);
-                case Ev.gamepaddevice : scene.on(_event, _gamepaddevice);
+                case Ev.gamepaddown     : source.on(_event, _gamepaddown);
+                case Ev.gamepadup       : source.on(_event, _gamepadup);
+                case Ev.gamepadaxis     : source.on(_event, _gamepadaxis);
+                case Ev.gamepaddevice   : source.on(_event, _gamepaddevice);
 
-                case Ev.windowmoved     : scene.on(_event, _windowmoved);
-                case Ev.windowresized   : scene.on(_event, _windowresized);
-                case Ev.windowsized     : scene.on(_event, _windowsized);
-                case Ev.windowminimized : scene.on(_event, _windowminimized);
-                case Ev.windowrestored  : scene.on(_event, _windowrestored);
+                case Ev.windowmoved     : source.on(_event, _windowmoved);
+                case Ev.windowresized   : source.on(_event, _windowresized);
+                case Ev.windowsized     : source.on(_event, _windowsized);
+                case Ev.windowminimized : source.on(_event, _windowminimized);
+                case Ev.windowrestored  : source.on(_event, _windowrestored);
 
             } //switch event
-        }
+        } //source != null
 
     } //_listen
 
     @:noCompletion public function _unlisten( _event:Int, _handler:EmitHandler, ?_self:Bool=false ) {
 
+        var source = _find_emit_source();
+
+        _debug('$name / unlisten to $_event from $source');
+
         if(!_self) {
             off(_event, _handler);
         }
+
+        if(source != null) {
+            switch(_event) {
+
+                case Ev.keyup           : source.off(_event, _keyup);
+                case Ev.keydown         : source.off(_event, _keydown);
+                case Ev.textinput       : source.off(_event, _textinput);
+
+                case Ev.mousedown       : source.off(_event, _mousedown);
+                case Ev.mouseup         : source.off(_event, _mouseup);
+                case Ev.mousemove       : source.off(_event, _mousemove);
+                case Ev.mousewheel      : source.off(_event, _mousewheel);
+
+                case Ev.touchdown       : source.off(_event, _touchdown);
+                case Ev.touchup         : source.off(_event, _touchup);
+                case Ev.touchmove       : source.off(_event, _touchmove);
+
+                case Ev.inputup         : source.off(_event, _inputup);
+                case Ev.inputdown       : source.off(_event, _inputdown);
+
+                case Ev.gamepaddown     : source.off(_event, _gamepaddown);
+                case Ev.gamepadup       : source.off(_event, _gamepadup);
+                case Ev.gamepadaxis     : source.off(_event, _gamepadaxis);
+                case Ev.gamepaddevice   : source.off(_event, _gamepaddevice);
+
+                case Ev.windowmoved     : source.off(_event, _windowmoved);
+                case Ev.windowresized   : source.off(_event, _windowresized);
+                case Ev.windowsized     : source.off(_event, _windowsized);
+                case Ev.windowminimized : source.off(_event, _windowminimized);
+                case Ev.windowrestored  : source.off(_event, _windowrestored);
+
+            } //switch event
+        } //source != null
 
     } //_unlisten
 
