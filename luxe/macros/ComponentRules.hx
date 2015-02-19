@@ -35,7 +35,7 @@ import haxe.macro.ExprTools;
                 name: 'init',
                 doc: null, meta: [],
                 access: [AOverride],
-                kind: FFun({ params:[], args:[], ret:null, expr: macro { } }),
+                kind: FFun({ params:[], args:[], ret:null, expr: macro { super.init(); } }),
                 pos: Context.currentPos()
             };
             _fields.push(init_field);
