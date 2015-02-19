@@ -48,7 +48,7 @@ class Entity extends Objects {
     @:isVar public var active           (get,set) : Bool = true;
 
         /** The spatial transform of the entity. */
-    public var transform : Transform;
+    @:isVar public var transform        (get,set) : Transform;
         /** The local position of the spatial transform */
     public var pos              (get,set) : Vector;
         /** The local rotation of the spatial transform */
@@ -142,7 +142,12 @@ class Entity extends Objects {
         _components = new Components( this );
         children = new Array<Entity>();
         events = new luxe.Events();
-        transform = new Transform();
+
+        if(options.transform == null) {
+            transform = new Transform();
+        } else {
+            transform = options.transform;
+        }
 
             //listen for transform changes
         transform.listen_pos(set_pos_from_transform);
@@ -1134,6 +1139,21 @@ class Entity extends Objects {
         return transform.origin;
 
     } //get_origin
+
+//transform
+
+    function set_transform( _transform:Transform ) {
+
+        return transform = _transform;
+
+    } //set_transform
+
+
+    function get_transform() {
+
+        return transform;
+
+    } //get_transform
 
 //parent
 
