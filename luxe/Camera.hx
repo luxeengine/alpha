@@ -84,14 +84,15 @@ class Camera extends Entity {
             }
         }
 
+            //create or assign the underlying camera view
+        view = options.view == null ? new phoenix.Camera( options ) : options.view;
+
             //Init the entity part
         super({
-            name : _name,
-            no_scene : options.no_scene
+            name: _name,
+            no_scene: options.no_scene,
+            transform: view.transform
         });
-
-                //Apply options
-            view = options.view == null ? new phoenix.Camera( options ) : options.view;
 
             //Start with the transform
         _final_pos = view.pos;

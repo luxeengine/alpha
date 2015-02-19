@@ -33,10 +33,10 @@ class Camera {
     @:isVar public var near (default,set) : Float = 1000;
     @:isVar public var far (default,set) : Float = -1000;
         //specific to perspective
-    @:isVar public var fov (default, set) : Float = 60;
-    public var fov_type(default, set) : FOVType = FOVType.horizontal;
-    @:isVar public var aspect (default,set) : Float = 1.5;
-    @:isVar public var target (default,set) : Vector;
+    @:isVar public var fov      (default, set) : Float = 60;
+    @:isVar public var fov_type (default, set) : FOVType = FOVType.horizontal;
+    @:isVar public var aspect   (default,set) : Float = 1.5;
+    @:isVar public var target   (default,set) : Vector;
 
         //we keep a local pos variable as an unaltered position
         //to keep the center relative to the viewport, and allow setting position as 0,0 not center
