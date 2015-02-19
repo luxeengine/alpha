@@ -2,6 +2,7 @@ package luxe.options;
 
 import luxe.Vector;
 import luxe.Scene;
+import luxe.Transform;
 
 import luxe.options.TransformProperties;
 
@@ -24,5 +25,7 @@ typedef EntityOptions = {
     @:optional var parent : Entity;
         /** if true, do not add to any scene */
     @:optional var no_scene : Bool;
+        /** if set, this transform will be used as the transform reference on this entity */
+    @:optional var transform : Transform;
 
 } //EntityOptions
