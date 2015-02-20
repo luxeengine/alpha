@@ -1,6 +1,5 @@
 package ;
 
-import snow.utils.ByteArray;
 import phoenix.BitmapFont;
 import phoenix.geometry.Geometry;
 import phoenix.Texture;

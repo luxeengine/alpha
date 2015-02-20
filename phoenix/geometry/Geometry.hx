@@ -12,7 +12,6 @@ import phoenix.Batcher;
 
 import luxe.options.GeometryOptions;
 
-import snow.utils.ByteArray;
 import snow.io.typedarray.Float32Array;
 
 import snow.render.opengl.GL;

@@ -1,7 +1,6 @@
 package phoenix;
 
 import snow.render.opengl.GL;
-import snow.utils.ByteArray;
 import snow.utils.Libs;
 
 import luxe.Log.log;

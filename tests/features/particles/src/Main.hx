@@ -1,5 +1,4 @@
 
-import snow.utils.ByteArray;
 import snow.io.typedarray.Float32Array;
 
 import luxe.Vector;

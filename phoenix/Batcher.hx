@@ -1,6 +1,5 @@
 package phoenix;
 
-import snow.utils.ByteArray;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.GeometryState;
 import phoenix.geometry.Vertex;

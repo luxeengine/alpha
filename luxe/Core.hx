@@ -2,7 +2,6 @@ package luxe;
 
 import snow.Snow;
 import snow.types.Types;
-import snow.utils.ByteArray;
 import snow.window.Window;
 
 import Luxe;
