@@ -554,11 +554,15 @@ class Camera {
     } //set_viewport
 
     function set_rotation( _q:Quaternion ) : Quaternion {
+
         return transform.rotation = _q;
+
     } //set_rotation
 
     function set_scale( _s:Vector ) : Vector {
+
         return transform.scale = _s;
+
     } //set_scale
 
     function set_pos( _p:Vector ) : Vector {

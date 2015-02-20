@@ -89,9 +89,8 @@ class Camera extends Entity {
 
             //Init the entity part
         super({
-            name: _name,
-            no_scene: options.no_scene,
-            transform: view.transform
+            name : _name,
+            no_scene : options.no_scene
         });
 
             //Start with the transform
