@@ -135,18 +135,18 @@ class Entity extends Objects {
             //default to name.id
         name += '.$id';
 
-        _verbose('create new entity with options ' + options);
-
         options = _options;
+
+        _verbose('create new entity with options ' + options);
 
         _components = new Components( this );
         children = new Array<Entity>();
         events = new luxe.Events();
 
-        if(options.transform == null) {
-            transform = new Transform();
-        } else {
+        if(options != null && options.transform != null) {
             transform = options.transform;
+        } else {
+            transform = new Transform();
         }
 
             //listen for transform changes
