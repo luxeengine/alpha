@@ -324,7 +324,12 @@ class Shader extends Resource {
         if( program != null )     GL.deleteProgram( program );
     }
 
-    public static function load( _psid:String, ?_vsid:String, ?_onloaded:Shader->Void, ?_silent:Bool=false ) : Shader {
+    public static function load( _psid:String, ?_vsid:String, ?_onload:Shader->Void, ?_silent:Bool=false ) : Shader {
+
+            //:todo: which resource manager...
+        var _shader = new Shader( Luxe.resources );
+
+        log('loading $_psid / $_vsid');
 
         var _frag_shader = '';
         var _vert_shader = '';
@@ -332,8 +337,7 @@ class Shader extends Resource {
         if(_vsid == 'default' || _vsid == '') {
             _vsid = 'default vert';
             _vert_shader = Luxe.renderer.shaders.plain.source.vert;
-        } else {
-            _vert_shader = Luxe.loadText(_vsid).text;
+            log('\t using default vert');
         }
 
         if(_psid == 'default' || _psid == '') {
@@ -342,41 +346,55 @@ class Shader extends Resource {
         } else if(_psid == 'textured') {
             _psid = 'default textured';
             _frag_shader = Luxe.renderer.shaders.textured.source.frag;
-        } else {
-            _frag_shader = Luxe.loadText(_psid).text;
         }
 
-        var _shader : Shader = null;
+        inline function try_load() {
 
-        if( _frag_shader != null && _frag_shader.length > 0 &&
-            _vert_shader != null && _vert_shader.length > 0 ) {
+            if(_vert_shader.length == 0) { trace('wait for vs'); return; }
+            if(_frag_shader.length == 0) { trace('wait for ps'); return; }
 
-            var prefixes = '';
-            #if luxe_web
-                prefixes += "precision mediump float;\n";
-            #end //luxe_web
+            _shader.from_string( _vert_shader, _frag_shader, _vsid, _psid, false );
 
-                //:todo: which resource manager...
-            _shader = new Shader( Luxe.resources );
-            _shader.from_string( _vert_shader , prefixes + _frag_shader, _vsid, _psid, false );
-
-        } //
-
-        if(_shader != null) {
-
-            _shader.id = _psid + '|' + _vsid;
-
-            if(_onloaded != null) {
-                _onloaded( _shader );
+            if(_onload != null) {
+                _onload( _shader );
             }
 
             if(!_silent) log("shader loaded " + _shader.id );
 
-            return _shader;
+        } //finish_load
 
-        } else {
-            return null;
-        }
+        if(_vert_shader.length == 0) {
+
+            log('\t attempting to load $_vsid');
+            Luxe.loadText(_vsid, function(_vert_asset){
+
+                _vert_shader = _vert_asset.text;
+
+                try_load();
+
+            }); //load vert
+
+        } //no vert shader yet
+
+        if(_frag_shader.length == 0) {
+
+            log('\t attempting to load $_psid');
+            Luxe.loadText(_psid, function(_frag_asset) {
+
+                    //:todo:hxsw: this must go
+                var prefixes = #if luxe_web "precision mediump float;\n" #else '' #end;
+
+                _frag_shader = prefixes + _frag_asset.text;
+
+                try_load();
+
+            }); //load frag
+
+        } //no frag shader yet
+
+        _shader.id = _psid + '|' + _vsid;
+
+        return _shader;
 
     } //load_shader
 
