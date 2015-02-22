@@ -2,5 +2,8 @@
     "textures" : [
         { "id" : "assets/apartment.png" },
         { "id" : "assets/player.png" }
+    ],
+    "json" : [
+        { "id" : "assets/anim.json" }
     ]
 }

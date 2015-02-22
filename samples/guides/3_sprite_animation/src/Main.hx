@@ -26,22 +26,24 @@ class Main extends luxe.Game {
     override function ready() {
 
             //fetch a list of assets to load from the json file
-        var json_asset = Luxe.loadJSON('assets/parcel.json');
+        Luxe.loadJSON('assets/parcel.json', function(json_asset) {
 
-            //then create a parcel to load it for us
-        var preload = new Parcel();
-            preload.from_json(json_asset.json);
+                //then create a parcel to load it for us
+            var preload = new Parcel();
+                preload.from_json(json_asset.json);
 
-            //but, we also want a progress bar for the parcel,
-            //this is a default one, you can do your own
-        new ParcelProgress({
-            parcel      : preload,
-            background  : new Color(1,1,1,0.85),
-            oncomplete  : assets_loaded
+                //but, we also want a progress bar for the parcel,
+                //this is a default one, you can do your own
+            new ParcelProgress({
+                parcel      : preload,
+                background  : new Color(1,1,1,0.85),
+                oncomplete  : assets_loaded
+            });
+
+                //go!
+            preload.load();
+
         });
-
-            //go!
-        preload.load();
 
     } //ready
 
@@ -114,7 +116,7 @@ class Main extends luxe.Game {
             //create the animation from a simple json string,
             //the frameset structure allows us to specify things like
             //"animate frames 1-3 and then hold for 2 frames" etc.
-        var anim_object = Luxe.loadJSON('assets/anim.json');
+        var anim_object = Luxe.resources.find_json('assets/anim.json');
 
             //create the animation component and add it to the sprite
         anim = player.add( new SpriteAnimation({ name:'anim' }) );
