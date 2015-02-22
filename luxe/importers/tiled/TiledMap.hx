@@ -6,7 +6,7 @@ import luxe.importers.tiled.TiledMapData;
 import luxe.tilemaps.Tilemap;
 
 typedef TiledMapOptions = {
-    file : String,
+    tiled_file_data : String,
     ?pos : Vector,
     ?format : String,
     ?asset_path : String
@@ -23,21 +23,18 @@ class TiledMap extends Tilemap {
         if(options.asset_path == null)  { options.asset_path = 'assets/';   }
         if(options.pos == null)         { options.pos = new Vector();       }
 
+        if(options.tiled_file_data == null || options.tiled_file_data.length == 0) {
+            throw "TiledMap handed invalid file data, pass the text contents of the tmx/json file";
+        }
+
             //create the tiled map data
         tiledmap_data = new TiledMapData();
 
             //load the tiled map data from the file
         if(options.format == 'json') {
-            var text_data = Luxe.loadText(options.file);
-            tiledmap_data.parseFromJSON( haxe.Json.parse( text_data.text ) );
+            tiledmap_data.parseFromJSON( haxe.Json.parse( options.tiled_file_data ) );
         } else {
-            var map_data = Luxe.loadText(options.file);
-            var map_text = map_data.text;
-            if(map_text.length > 0) {
-                tiledmap_data.parseFromXML( Xml.parse( map_text ) );
-            } else {
-                throw(options.file + " file contains no data?" );
-            }
+            tiledmap_data.parseFromXML( Xml.parse( options.tiled_file_data ) );
         }
 
             //create the luxe tilemap
