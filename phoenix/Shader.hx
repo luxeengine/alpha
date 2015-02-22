@@ -329,7 +329,7 @@ class Shader extends Resource {
             //:todo: which resource manager...
         var _shader = new Shader( Luxe.resources );
 
-        log('loading $_psid / $_vsid');
+        _debug('loading $_psid / $_vsid');
 
         var _frag_shader = '';
         var _vert_shader = '';
@@ -337,21 +337,23 @@ class Shader extends Resource {
         if(_vsid == 'default' || _vsid == '') {
             _vsid = 'default vert';
             _vert_shader = Luxe.renderer.shaders.plain.source.vert;
-            log('\t using default vert');
+            _debug('\t using default vert');
         }
 
         if(_psid == 'default' || _psid == '') {
             _psid = 'default frag';
             _frag_shader = Luxe.renderer.shaders.plain.source.frag;
+            _debug('\t using default frag');
         } else if(_psid == 'textured') {
             _psid = 'default textured';
             _frag_shader = Luxe.renderer.shaders.textured.source.frag;
+            _debug('\t using default textured frag');
         }
 
         inline function try_load() {
 
-            if(_vert_shader.length == 0) { trace('wait for vs'); return; }
-            if(_frag_shader.length == 0) { trace('wait for ps'); return; }
+            if(_vert_shader.length == 0) { return; }
+            if(_frag_shader.length == 0) { return; }
 
             _shader.from_string( _vert_shader, _frag_shader, _vsid, _psid, false );
 
@@ -359,13 +361,13 @@ class Shader extends Resource {
                 _onload( _shader );
             }
 
-            if(!_silent) log("shader loaded " + _shader.id );
+            if(!_silent) _debug("shader loaded " + _shader.id );
 
         } //finish_load
 
         if(_vert_shader.length == 0) {
 
-            log('\t attempting to load $_vsid');
+            _debug('\t attempting to load $_vsid');
             Luxe.loadText(_vsid, function(_vert_asset){
 
                 _vert_shader = _vert_asset.text;
@@ -378,7 +380,7 @@ class Shader extends Resource {
 
         if(_frag_shader.length == 0) {
 
-            log('\t attempting to load $_psid');
+            _debug('\t attempting to load $_psid');
             Luxe.loadText(_psid, function(_frag_asset) {
 
                     //:todo:hxsw: this must go
