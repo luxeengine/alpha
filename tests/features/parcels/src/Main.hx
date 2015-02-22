@@ -44,7 +44,7 @@ class Main extends luxe.Game {
                     { "id" : "assets/text2.txt" },
                     { "id" : "assets/text3.txt" },
                     { "id" : "assets/text4.txt" },
-                    { "id" : "assets/text5.txt", "async":true }
+                    { "id" : "assets/text5.txt" }
                 ],
                 "json" : [
                     { "id" : "assets/json1.json" },
