@@ -5,12 +5,14 @@ import phoenix.Vector;
 import phoenix.Camera;
 
 class Ray {
-	public var screen_pos(default, set) : Vector;
-	var start_ndc : Vector;
-	var end_ndc : Vector;
 	public var origin : Vector;
 	public var end : Vector;
 	public var dir : Vector;
+	
+	public var screen_pos(default, set) : Vector;
+	
+	var start_ndc : Vector;
+	var end_ndc : Vector;
 	
 	var camera : Camera;
 	var viewport : Rectangle;
@@ -26,9 +28,33 @@ class Ray {
 		
 		camera = _camera;
 		viewport = _viewport;
-		start_ndc = new Vector(0,0,0,1);
+		start_ndc = new Vector(0, 0, 0, 1);
 		end_ndc = new Vector(0, 0, 1, 1);
 		screen_pos = _screen_pos;
+	}
+	
+		/** Refresh the ray */
+	public function refresh():Void {
+		origin = camera.unproject(start_ndc);
+		end = camera.unproject(end_ndc);
+		dir = Vector.Subtract(end, origin);
+	}
+	
+		/** Get a point along the ray */
+	public function get_point(distance:Float):Vector {
+		dir.length = distance;
+		return Vector.Add(origin, dir);
+	}
+		/** Refresh the ray and get a point along it */
+	public function refresh_and_get(distance:Float):Vector {
+		refresh();
+		return get_point(distance);
+	}
+	
+		/** Set a new screen pos, then get a point along the ray */
+	public function set_and_get(_screen_pos:Vector, distance:Float):Vector {
+		screen_pos = _screen_pos;
+		return get_point(distance);
 	}
 	
 	function set_screen_pos(_v:Vector):Vector {
@@ -36,26 +62,5 @@ class Ray {
 		start_ndc.y = end_ndc.y = ((viewport.h - _v.y) / viewport.h - 0.5) * 2;
 		refresh();
 		return screen_pos = _v;
-	}
-	
-	public function refresh():Void {
-		origin = camera.unproject(start_ndc);
-		end = camera.unproject(end_ndc);
-		dir = Vector.Subtract(end, origin);
-	}
-	
-	public function get_point(along:Float):Vector {
-		dir.length = along;
-		return Vector.Add(origin, dir);
-	}
-	
-	public function refresh_and_get(along:Float):Vector {
-		refresh();
-		return get_point(along);
-	}
-	
-	public function set_and_get(_screen_pos:Vector, along:Float):Vector {
-		screen_pos = _screen_pos;
-		return get_point(along);
 	}
 }
