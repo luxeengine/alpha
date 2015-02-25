@@ -330,17 +330,14 @@ class Shader extends Resource {
         var _vert_shader = '';
 
         if(_vsid == 'default' || _vsid == '') {
-            _vsid = 'default vert';
             _vert_shader = Luxe.renderer.shaders.plain.source.vert;
         } else {
             _vert_shader = Luxe.loadText(_vsid).text;
         }
 
         if(_psid == 'default' || _psid == '') {
-            _psid = 'default frag';
             _frag_shader = Luxe.renderer.shaders.plain.source.frag;
         } else if(_psid == 'textured') {
-            _psid = 'default textured';
             _frag_shader = Luxe.renderer.shaders.textured.source.frag;
         } else {
             _frag_shader = Luxe.loadText(_psid).text;
