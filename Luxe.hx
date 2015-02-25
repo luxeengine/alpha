@@ -116,8 +116,17 @@ class Luxe {
 
     } //showConsole
 
-        /** Load a text resource */
+        /** Load a JSON resource */
     public static function loadJSON( _id:String, ?_onload:JSONResource->Void, ?_async:Bool=false ) : JSONResource {
+
+            //first check if this is already loaded
+            //:todo: note that this is is changing in alpha-2.0
+        if( Luxe.resources.json.exists(_id) ) {
+            luxe.Log.log('loadJSON - return existing $_id');
+            var res = Luxe.resources.find_json(_id);
+            if(_onload != null) _onload( res );
+            return res;
+        }
 
         var res = new JSONResource( _id, null, Luxe.resources );
 
@@ -141,6 +150,15 @@ class Luxe {
     } //loadJSON
 
     public static function loadText( _id:String, ?_onload:TextResource->Void, ?_async:Bool=false ) : TextResource {
+
+            //first check if this is already loaded
+            //:todo: note that this is is changing in alpha-2.0
+        if( Luxe.resources.text.exists(_id) ) {
+            luxe.Log.log('loadText - return existing $_id');
+            var res = Luxe.resources.find_text(_id);
+            if(_onload != null) _onload( res );
+            return res;
+        }
 
         var res = new TextResource( _id, null, Luxe.resources );
 
@@ -166,6 +184,15 @@ class Luxe {
         /** Load a bytes/data resource */
     public static function loadData( _id:String, ?_onload:DataResource->Void, ?_async:Bool=false ) : DataResource {
 
+            //first check if this is already loaded
+            //:todo: note that this is is changing in alpha-2.0
+        if( Luxe.resources.data.exists(_id) ) {
+            luxe.Log.log('loadData - return existing $_id');
+            var res = Luxe.resources.find_data(_id);
+            if(_onload != null) _onload( res );
+            return res;
+        }
+
         var res = new DataResource( _id, null, Luxe.resources);
 
         core.app.assets.bytes(_id, {
@@ -190,16 +217,13 @@ class Luxe {
         /** Load a sound resource */
     public static function loadSound( _name:String, _id:String, ?_is_music:Bool = false, ?_onload:SoundResource->Void ) : SoundResource {
 
-        var existing = Luxe.resources.find_sound(_id);
-        if(existing != null) {
-
-            luxe.Log.log('sound at ${_id} was already a registered resource, returning existing instance');
-
-            if(_onload != null) {
-                _onload( existing );
-            } //_onload
-
-            return existing;
+            //first check if this is already loaded
+            //:todo: note that this is is changing in alpha-2.0
+        if( Luxe.resources.sounds.exists(_id) ) {
+            luxe.Log.log('loadSound - return existing $_id');
+            var res = Luxe.resources.find_sound(_id);
+            if(_onload != null) _onload( res );
+            return res;
         }
 
         Luxe.audio.create( _id, _name, _is_music );
@@ -250,12 +274,31 @@ class Luxe {
         /** Load a font resource */
     public static function loadFont( _id:String, ?_texture_path:String, ?_onload : BitmapFont->Void, ?_silent:Bool=false ) : BitmapFont {
 
+            //first check if this is already loaded
+            //:todo: note that this is is changing in alpha-2.0
+        if( Luxe.resources.fonts.exists(_id) ) {
+            luxe.Log.log('loadFont - return existing $_id');
+            var res = Luxe.resources.find_font(_id);
+            if(_onload != null) _onload( res );
+            return res;
+        }
+
         return BitmapFont.load({ id:_id, texture_path:_texture_path, onload:_onload, silent:_silent });
 
     } //loadFont
 
         /** Load a shader resource */
     public static function loadShader( ?_ps_id:String='default', ?_vs_id:String='default', ?_onload:Shader->Void, ?_silent:Bool=false ) : Shader {
+
+            //first check if this is already loaded
+            //:todo: note that this is is changing in alpha-2.0
+        var _id = '$_ps_id|$_vs_id';
+        if( Luxe.resources.shaders.exists(_id) ) {
+            luxe.Log.log('loadShader - return existing $_id');
+            var res = Luxe.resources.find_shader(_id);
+            if(_onload != null) _onload( res );
+            return res;
+        }
 
         return Shader.load(_ps_id, _vs_id, _onload, _silent);
 
