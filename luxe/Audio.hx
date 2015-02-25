@@ -33,6 +33,12 @@ class Audio {
         return core.app.audio.create( _id, _name, _streaming );
     } //create
 
+    // wip alpha-2.0
+    @:noCompletion
+    public function create_from_bytes( _id:String, ?_name:String = '', _bytes:snow.utils.ByteArray ) : luxe.Sound {
+        return core.app.audio.create_from_bytes( _id, _name, _bytes );
+    } //create_from_bytes
+
         /**
             Destroy a named audio reference.
             Use the reference directly with sound.destroy if you have an instance. */
