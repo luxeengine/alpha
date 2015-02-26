@@ -111,11 +111,11 @@ class Renderer {
         batcher.layer = 1;
         add_batch(batcher);
 
-        #if !no_debug_console
+        #if !no_default_font
 
             create_default_font();
 
-        #end //no_debug_console
+        #end //no_default_font
 
         if(Luxe.core.app.config.render.depth) {
                 // Enable z buffer use

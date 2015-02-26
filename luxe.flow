@@ -40,7 +40,13 @@
       build:{
         flags:[
           "-resource luxe/defaults/ui/tiny.ui.png@tiny.ui.png",
-          "-resource luxe/defaults/ui/tiny.button.png@tiny.button.png",
+          "-resource luxe/defaults/ui/tiny.button.png@tiny.button.png"
+        ]
+      }
+    },
+    "!no_default_font" : {
+      build:{
+        flags:[
           "-resource luxe/defaults/fonts/default.png@default.png",
           "-resource luxe/defaults/fonts/default.fnt@default.fnt"
         ]
