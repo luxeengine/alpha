@@ -218,10 +218,10 @@ class Transform extends ID {
                 //translate to origin
         local.matrix.makeTranslation( origin.x, origin.y, origin.z );
 
-                //scale up relative to origin
-            local.matrix.scale(local.scale);
                 //rotation relative to origin
             local.matrix.multiply(_rotation_matrix);
+                //scale up relative to origin
+            local.matrix.scale(local.scale);
                 //apply position
             local.matrix.setPosition( local.pos );
 
