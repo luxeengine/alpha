@@ -222,15 +222,9 @@ class Input {
     @:noCompletion public var core : Core;
     @:noCompletion public function new( _core:Core ) { core = _core; }
 
-#if neko
-    var key_bindings : Map<String, haxe.ds.EnumValueMap<Int,Bool> >;
-    var mouse_bindings : Map<String, haxe.ds.EnumValueMap<Int,Bool> >;
-    var gamepad_bindings : Map<String, haxe.ds.EnumValueMap<Int, Null<Int>> >;
-#else
     var key_bindings : Map<String, Map<Int,Bool> >;
     var mouse_bindings : Map<String, Map<Int,Bool> >;
     var gamepad_bindings: Map<String, Map<Int, Null<Int>> >;
-#end
 
     var _named_input_released : Map<String, Bool>;
     var _named_input_pressed : Map<String, Bool>;
