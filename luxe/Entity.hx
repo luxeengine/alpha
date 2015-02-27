@@ -128,7 +128,7 @@ class Entity extends Objects {
 
 
         /** Create a new entity with the given options */
-    public function new( ?_options:EntityOptions ) {
+    public function new( ?_options:EntityOptions, ?_pos_info:haxe.PosInfos ) {
 
         super('entity');
 
@@ -229,7 +229,7 @@ class Entity extends Objects {
 
             _verbose(" \tadding to scene " + scene.name);
 
-            scene.add( this );
+            scene.add( this, _pos_info );
 
                 //we also want to listen for scene events
 

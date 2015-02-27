@@ -55,7 +55,7 @@ class Visual extends Entity {
     var _has_custom_origin : Bool = false;
 
         /** Create a new visual based on the given options */
-    public function new( _options:VisualOptions ) {
+    public function new( _options:VisualOptions, ?_pos_info:haxe.PosInfos ) {
 
         //safe
         if(_options == null) {
@@ -68,7 +68,7 @@ class Visual extends Entity {
         _rotation_quat = new Quaternion();
 
             //call the entity constructor
-        super( _options );
+        super( _options, _pos_info );
 
             //create the position value so we can exploit it a bit
         color = new Color();

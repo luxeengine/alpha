@@ -111,33 +111,37 @@ class Debug {
     }
 
 
+    //Taken from haxe std lib
 #if cpp
-    static function default_native_trace( v : Dynamic, ?infos : haxe.PosInfos ) {
-
+    static function default_cpp_trace( v : Dynamic, ?infos : haxe.PosInfos ) {
         if (infos!=null && infos.customParams!=null) {
-
             var extra:String = "";
-
             for( v in infos.customParams ) { extra += "," + v; }
-
             untyped __trace(v + extra,infos);
-
         } else {
             untyped __trace(v,infos);
         }
-
     } //default_native_trace
 #end //cpp
+#if neko
+    static function default_neko_trace(v:Dynamic, ?infos:haxe.PosInfos) {
+        untyped {
+            $print(infos.fileName + ":" + infos.lineNumber + ": ", v);
+            if( infos.customParams != null ) for( v in infos.customParams ) $print(",", v);
+            $print("\n");
+        }
+    }
+#end //neko
 
     @:noCompletion public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos ) {
 
         var _line = StringTools.rpad(Std.string(inf.lineNumber), ' ', 4);
-        #if luxe_native
-            default_native_trace(v, inf);
+
+        #if neko default_neko_trace(v, inf);
+        #elseif cpp default_cpp_trace(v, inf);
         #end
 
-        #if luxe_web
-            untyped console.log('${inf.fileName}::$_line $v');
+        #if luxe_web untyped console.log('${inf.fileName}::$_line $v');
         #end
 
         if(shut_down) {

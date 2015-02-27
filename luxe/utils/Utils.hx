@@ -20,19 +20,28 @@ class Utils {
         core = _luxe;
             //initialise the helpers
         geometry = new luxe.utils.GeometryUtils();
-        random = new luxe.utils.Random(Std.int(Math.random()*0xFFFFFF));
+        random = new luxe.utils.Random(Std.int(Math.random()*0x3FFFFFFF));
             //initialize the byte text helpers
         _byte_levels = ['bytes', 'Kb', 'MB', 'GB', 'TB'];
 
     }  //new
 
+        /** Return a formatted string from a PosInfos */
+    public function pos_info( pos:haxe.PosInfos ) {
+        return '${pos.fileName}:${pos.lineNumber}:(${pos.className}:${pos.methodName})';
+    }
+
         /** Generate a short, unique string ID for use ("base62"). */
     #if release inline #end
-    public function uniqueid(?val:Int) : String {
+    public function uniqueid(?val:UInt) : String {
 
         // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
 
-        if(val == null) val = Std.random(0x7fffffff);
+        if(val == null) {
+            #if neko val = Std.random(0x3FFFFFFF);
+            #else val = Std.random(0xFFFFFFFF);
+            #end
+        }
 
         function to_char(value:Int) : String {
             if (value > 9) {

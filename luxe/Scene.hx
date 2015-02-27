@@ -74,7 +74,7 @@ class Scene extends Objects {
 
         /** add given entity to this scene */
     var entity_count : Int = 0;
-    public function add( entity:Entity ) {
+    public function add( entity:Entity, ?pos:haxe.PosInfos ) {
 
         if(entity == null) {
             throw "can't put entity in a scene if the entity is null.";
@@ -83,7 +83,7 @@ class Scene extends Objects {
             _debug('${name} / adding ${entity.name} with id : ${entity.id}');
 
         if(entities.exists(entity.name)) {
-            log('${name} / adding a second entity named ${entity.name}!
+            log('${name} / adding a second entity named ${entity.name}! ${Luxe.utils.pos_info(pos)}
                 This will replace the existing one, possibly leaving the previous one in limbo.
                 Use EntityOptions name_unique flag to automatically handle this for similar named entities.');
         }
