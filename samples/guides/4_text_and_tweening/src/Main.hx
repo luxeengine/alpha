@@ -126,7 +126,7 @@ class Main extends luxe.Game {
     function create_text() {
 
             //since the parcel has created the font, its in the resource manager
-        montez_font = Luxe.resources.find_font('montez');
+        montez_font = Luxe.resources.find_font('assets/montez/montez.fnt');
 
             //scale to fit the screen nicely, but max at the font default size of 48,
             //and the 12 is a ratio I made up based on the default window size
