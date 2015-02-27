@@ -33,7 +33,7 @@ class Utils {
 
         /** Generate a short, unique string ID for use ("base62"). */
     #if release inline #end
-    public function uniqueid(?val:Null<UInt>) : String {
+    public function uniqueid(?val:Null<Int>) : String {
 
         // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
 
