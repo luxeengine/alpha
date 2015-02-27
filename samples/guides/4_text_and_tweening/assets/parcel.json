@@ -2,8 +2,8 @@
     "textures" : [
         { "id" : "assets/apartment.png" }
     ],
-    "fonts" : [
-        { "id" : "montez.fnt", "path" : "assets/montez/" }
+    "fonts" : [        
+        { "id" : "assets/montez/montez.fnt" }
     ],
     "sounds" : [
         { "id" : "assets/sound/244053__lennyboy__thunder.ogg", "name" : "thunder", "is_stream" : false },
