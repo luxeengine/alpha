@@ -39,7 +39,7 @@ class Utils {
 
         if(val == null) {
             #if neko val = Std.random(0x3FFFFFFF);
-            #else val = Std.random(0xFFFFFFFF);
+            #else val = Std.random(0x7fffffff);
             #end
         }
 
