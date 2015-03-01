@@ -33,7 +33,15 @@ import luxe.Log.log;
 @:keep
 @:noCompletion
 @:log_as('luxe')
-class Core extends snow.App {
+
+class Core
+extends
+    #if luxe_appfixedtimestep
+        snow.App.AppFixedTimestep
+    #else
+        snow.App
+    #end
+{
 
         //the game object running the core
     public var game : Game;
