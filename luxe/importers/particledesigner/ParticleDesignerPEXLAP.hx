@@ -1,6 +1,5 @@
 package luxe.importers.particledesigner;
 
-import haxe.io.Path;
 import luxe.Vector;
 import luxe.Color;
 import luxe.options.ParticleOptions;
@@ -32,7 +31,7 @@ class ParticleDesignerPEXLAP {
         return {
             // common
             name: (opts != null && opts.name != null ? opts.name : id),
-            particle_image: Luxe.loadTexture(Path.directory(id) + "/" + parse_string_node(map["texture"])),
+            particle_image: ParticleDesigner._load_texture(parse_string_node(map["texture"], "data"), parse_string_node(map["texture"], "name"), id),
             emit_count: emit_count,
             cache_size: emit_count,
             emit_time: 1.0 / (emit_count / life),
@@ -77,12 +76,12 @@ class ParticleDesignerPEXLAP {
         };
     }
 
-    private static function parse_string_node(node:Xml):String {
+    private static function parse_string_node(node:Xml, att:String):String {
         if (node == null) {
             return "";
         }
 
-        var value = node.get("name");
+        var value = node.get(att);
         return (value == null ? "" : value);
     }
 

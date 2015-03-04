@@ -1,6 +1,5 @@
 package luxe.importers.particledesigner;
 
-import haxe.io.Path;
 import luxe.Vector;
 import luxe.Color;
 import luxe.options.ParticleOptions;
@@ -22,7 +21,7 @@ class ParticleDesignerJSON {
         return {
             // common
             name: (opts != null && opts.name != null ? opts.name : id),
-            particle_image: Luxe.loadTexture(Path.directory(id) + "/" + parse_string(json, "textureFileName")),
+            particle_image: ParticleDesigner._load_texture(parse_string(json, "textureImageData"), parse_string(json, "textureFileName"), id),
             emit_count: emit_count,
             cache_size: emit_count,
             emit_time: 1.0 / (emit_count / life),

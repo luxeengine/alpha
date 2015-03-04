@@ -714,7 +714,7 @@ class ParticleEmitter extends Component {
                 switch (emitter_type) {
                     case pd_gravity: {
                         p.pos.x -= p.initial_pos.x;
-                        p.pos.y -= p.initial_pos.y;
+                        p.pos.y = (p.pos.y - p.initial_pos.y) * y_multiplier;
                         _radial_dir.set_xy(p.pos.x, p.pos.y);
 
                         if (p.pos.x != 0 || p.pos.y != 0) {
@@ -730,7 +730,7 @@ class ParticleEmitter extends Component {
                         p.direction.y += (_radial_dir.y + _tangential_dir.y + gravity_y) * dt;
 
                         p.pos.x += p.direction.x * dt + p.initial_pos.x;
-                        p.pos.y += p.direction.y * dt * y_multiplier + p.initial_pos.y;
+                        p.pos.y = (p.pos.y + p.direction.y * dt) * y_multiplier + p.initial_pos.y;
                     }
 
                     case pd_radial: {

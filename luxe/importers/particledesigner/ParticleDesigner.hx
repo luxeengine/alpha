@@ -1,9 +1,13 @@
 package luxe.importers.particledesigner;
 
+import haxe.crypto.Base64;
+import haxe.io.BytesInput;
 import haxe.io.Path;
 import luxe.Vector;
 import luxe.options.ParticleOptions;
 import phoenix.Batcher;
+import phoenix.Texture;
+import luxe.importers.tiff.TiffDecoder;
 
 class ParticleDesigner {
     public static function parse(id:String, batcher_group:Int, ?opts:ParticleEmitterOptions):ParticleEmitterOptions {
@@ -42,5 +46,25 @@ class ParticleDesigner {
 
     public static function _make_vector(value:Float):Vector {
         return new Vector(value, value);
+    }
+
+    public static function _load_texture(texture_image_data:String, texture_file_name:String, id:String):Texture {
+        if (texture_image_data == null || texture_image_data.length == 0) {
+            return Luxe.loadTexture(Path.directory(id) + "/" + texture_file_name);
+        }
+
+        var data = Base64.decode(texture_image_data);
+
+        if (data.get(0) == 0x1f && data.get(1) == 0x8b) {
+            #if format
+                var reader = new format.gz.Reader(new BytesInput(data));
+                data = reader.read().data;
+            #else
+                throw "haxelib \"format\" is required for compressed embedded textures";
+            #end
+        }
+
+        var decoded = TiffDecoder.decode(data);
+        return Texture.load_from_pixels(id + ":texture", decoded.width, decoded.height, decoded.pixels);
     }
 }
