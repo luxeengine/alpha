@@ -22,7 +22,8 @@ float edge(float value, float amount, float t) {
 }
 
 float get(vec2 uv, float width) {
-    return smoothstep(0.5 - width, 0.5 + width, texture2D(tex0, uv).a);
+    float texa = texture2D(tex0, uv).a;
+    return smoothstep(0.5 - width, 0.5 + width, texa);
 }
 
 void main() {
