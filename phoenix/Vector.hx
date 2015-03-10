@@ -745,7 +745,7 @@ class Vector {
             _z = Math.asin(  Maths.clamp( 2 * ( q.z * q.w - q.x * q.y ), -1, 1 ) );
         } //order
 
-        set_xyz(x,y,z);
+        set_xyz(_x,_y,_z);
 
         return this;
 
