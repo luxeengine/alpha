@@ -363,6 +363,8 @@ class Shader extends Resource {
 
             _shader.id = _psid + '|' + _vsid;
 
+            Luxe.resources.cache( _shader );
+
             if(_onloaded != null) {
                 _onloaded( _shader );
             }
