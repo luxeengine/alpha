@@ -179,7 +179,7 @@ class Texture extends Resource {
 
         if(texture_bytes != null) {
 
-            var texture = load_from_bytes( _name, new Uint8Array(texture_bytes), _cache );
+            var texture = load_from_bytes( _name, Uint8Array.fromBytes(texture_bytes), _cache );
 
             texture_bytes = null;
 
