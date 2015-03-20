@@ -1,6 +1,8 @@
 package luxe.importers.tiled;
 
 import luxe.importers.tiled.TiledMapData;
+import luxe.importers.tiled.TiledUtil.valid_element;
+
 import phoenix.Texture;
 
 class TiledTileset {
@@ -24,9 +26,6 @@ class TiledTileset {
 
     } //new
 
-    function is_valid_xml_element( element:Xml ) {
-        return Std.string( element.nodeType ) == "element";
-    }
 
     public function from_xml( xml:Xml ) {
 
@@ -39,13 +38,13 @@ class TiledTileset {
         margin = Std.parseInt(root.get("margin"));
 
         for(child in root.elements()) {
-            if(is_valid_xml_element(child)) {
+            if(valid_element(child)) {
 
                 switch(child.nodeName) {
 
                     case "properties" : {
                         for( property in child ) {
-                            if( is_valid_xml_element(property) ) {
+                            if( valid_element(property) ) {
                                 properties.set( property.get("name"), property.get("value") );
                             }
                         } //for each property node
@@ -62,12 +61,12 @@ class TiledTileset {
                         var _tile_props:Map<String, String> = new Map<String, String>();
 
                             for (element in child) {
-                                if(is_valid_xml_element(element)) {
+                                if(valid_element(element)) {
                                     if (element.nodeName == "properties") {
 
                                         for (property in element) {
 
-                                            if (!is_valid_xml_element(property)) {
+                                            if (!valid_element(property)) {
                                                 continue;
                                             } //?not valid
 

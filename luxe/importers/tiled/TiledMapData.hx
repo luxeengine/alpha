@@ -5,6 +5,9 @@ import luxe.importers.tiled.TiledTileset;
 import luxe.importers.tiled.TiledLayer;
 import luxe.importers.tiled.TiledObjectGroup;
 
+import luxe.importers.tiled.TiledUtil.valid_element;
+import luxe.importers.tiled.TiledUtil.orientation_from_string;
+
 import luxe.tilemaps.Tilemap;
 
 
@@ -51,25 +54,6 @@ class TiledMapData {
         return "TiledMap : layers(" + layers.length + ") tilesets(" + tilesets.length + ")" + " tilew,tileh(" + tile_width + "," + tile_height + ")" ;
     }
 
-    function is_valid_xml_element( element:Xml ) {
-        return Std.string( element.nodeType ) == "element";
-    }
-
-    function orientation_from_string( _orientation_string:String ) : TilemapOrientation {
-
-        switch(_orientation_string) {
-            case "orthogonal":
-                return TilemapOrientation.ortho;
-            case "isometric":
-                return TilemapOrientation.isometric;
-            default:
-                return TilemapOrientation.none;
-        }
-
-        return TilemapOrientation.none;
-
-    } //orientation_from_string
-
     public function parseFromXML( xml:Xml ) {
 
         var root = xml.firstElement();
@@ -83,7 +67,7 @@ class TiledMapData {
         tile_height = Std.parseInt(root.get("tileheight"));
 
         for (child in root) {
-            if(is_valid_xml_element(child)) {
+            if(valid_element(child)) {
                 switch( child.nodeName ) {
 
                     case "tileset" : {
@@ -105,7 +89,7 @@ class TiledMapData {
                     case "properties" : {
                         for (property in child) {
 
-                            if (!is_valid_xml_element(property)) {
+                            if (!valid_element(property)) {
                                 continue;
                             } //!valid
 

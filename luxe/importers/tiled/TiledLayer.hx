@@ -2,6 +2,7 @@ package luxe.importers.tiled;
 
 import luxe.importers.tiled.TiledTile;
 import luxe.importers.tiled.TiledMapData;
+import luxe.importers.tiled.TiledUtil.valid_element;
 
 import snow.utils.ByteArray;
 
@@ -25,10 +26,6 @@ class TiledLayer {
         tiles = [];
     }
 
-    function is_valid_xml_element( element:Xml ) {
-        return element.nodeType == Xml.XmlType.Element;
-    } //is_valid_xml_element
-
     public function from_xml( xml:Xml ) {
 
         var tileGIDs:Array<Int> = new Array<Int>();
@@ -46,14 +43,14 @@ class TiledLayer {
 
         for (child in root) {
 
-            if(is_valid_xml_element(child)) {
+            if(valid_element(child)) {
 
                 switch(child.nodeName) {
 
                     case "properties" : {
                         for (property in child) {
 
-                            if (!is_valid_xml_element(property)) {
+                            if (!valid_element(property)) {
                                 continue;
                             } //!valid
 
@@ -88,7 +85,7 @@ class TiledLayer {
                             default: //default is xml
 
                                 for( tile in child ) {
-                                    if( is_valid_xml_element(tile) ) {
+                                    if( valid_element(tile) ) {
 
                                         var gid = Std.parseInt( tile.get("gid") );
                                             tileGIDs.push(gid);

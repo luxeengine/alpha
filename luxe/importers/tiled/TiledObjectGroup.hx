@@ -1,6 +1,8 @@
 package luxe.importers.tiled;
 
 import luxe.importers.tiled.TiledMapData;
+import luxe.importers.tiled.TiledUtil.valid_element;
+
 import luxe.Vector;
 
 enum TiledObjectType {
@@ -51,10 +53,6 @@ class TiledObject {
         pos = new Vector();
     }
 
-    function is_valid_xml_element( element:Xml ) {
-        return Std.string( element.nodeType ) == "element";
-    }
-
     function polyobject_from_xml( xml:Xml ) {
 
         var points:Array<Vector> = new Array<Vector>();
@@ -102,7 +100,7 @@ class TiledObject {
         object_type = TiledObjectType.rectangle;
 
         for(child in xml) {
-            if( is_valid_xml_element(child)) {
+            if( valid_element(child)) {
                 switch( child.nodeName ) {
 
                     case "polygon": {
@@ -128,7 +126,7 @@ class TiledObject {
 
                     case "properties" : {
                         for( property in child ) {
-                            if(is_valid_xml_element(property)) {
+                            if(valid_element(property)) {
                                 properties.set(property.get("name"), property.get("value"));
                             }
                         } //each property
@@ -224,10 +222,6 @@ class TiledObjectGroup {
 
     } //new
 
-    function is_valid_xml_element( element:Xml ) {
-        return Std.string( element.nodeType ) == "element";
-    } //is_valid_xml_element
-
     public function from_xml( xml:Xml ) {
 
         name = xml.get("name");
@@ -238,11 +232,11 @@ class TiledObjectGroup {
         height = Std.parseInt(xml.get("height"));
 
         for( child in xml ) {
-            if( is_valid_xml_element(child) ) {
+            if( valid_element(child) ) {
 
                 if( child.nodeName == "properties" ) {
                     for( property in child)  {
-                        if( is_valid_xml_element(property) ) {
+                        if( valid_element(property) ) {
                             properties.set(property.get("name"), property.get("value"));
                         } //is valid property node
                     } //for each property
