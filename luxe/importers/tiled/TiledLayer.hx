@@ -26,7 +26,8 @@ class TiledLayer {
     }
 
     function is_valid_xml_element( element:Xml ) {
-        return Std.string( element.nodeType ) == "element";
+        var el = Std.string( element.nodeType );
+        return el == "element" || el == "Element";
     } //is_valid_xml_element
 
     public function from_xml( xml:Xml ) {
