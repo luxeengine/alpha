@@ -1,6 +1,5 @@
 package ;
 
-import snow.utils.ByteArray;
 import phoenix.BitmapFont;
 import phoenix.geometry.Geometry;
 import phoenix.Texture;
@@ -116,8 +115,8 @@ class Luxe {
 
     } //showConsole
 
-        /** Load a JSON resource */
-    public static function loadJSON( _id:String, ?_onload:JSONResource->Void, ?_async:Bool=false ) : JSONResource {
+        /** Load a text resource */
+    public static function loadJSON( _id:String, ?_onload:JSONResource->Void ) : JSONResource {
 
             //first check if this is already loaded
             //:todo: note that this is is changing in alpha-2.0
@@ -131,7 +130,6 @@ class Luxe {
         var res = new JSONResource( _id, null, Luxe.resources );
 
         core.app.assets.text(_id, {
-            async:_async,
             onload : function( _asset:snow.assets.AssetText) {
 
                 res.json = haxe.Json.parse(_asset.text);
@@ -149,7 +147,7 @@ class Luxe {
 
     } //loadJSON
 
-    public static function loadText( _id:String, ?_onload:TextResource->Void, ?_async:Bool=false ) : TextResource {
+    public static function loadText( _id:String, ?_onload:TextResource->Void ) : TextResource {
 
             //first check if this is already loaded
             //:todo: note that this is is changing in alpha-2.0
@@ -163,7 +161,7 @@ class Luxe {
         var res = new TextResource( _id, null, Luxe.resources );
 
         core.app.assets.text(_id, {
-            async:_async,
+
             onload : function( _asset:snow.assets.AssetText) {
 
                 res.text = _asset.text;
@@ -182,7 +180,7 @@ class Luxe {
     } //loadText
 
         /** Load a bytes/data resource */
-    public static function loadData( _id:String, ?_onload:DataResource->Void, ?_async:Bool=false ) : DataResource {
+    public static function loadData( _id:String, ?_onload:DataResource->Void ) : DataResource {
 
             //first check if this is already loaded
             //:todo: note that this is is changing in alpha-2.0
@@ -196,7 +194,6 @@ class Luxe {
         var res = new DataResource( _id, null, Luxe.resources);
 
         core.app.assets.bytes(_id, {
-            async: _async,
             onload: function( _asset:snow.assets.AssetBytes ) {
 
                 res.data = _asset.bytes;

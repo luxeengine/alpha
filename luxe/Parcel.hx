@@ -19,8 +19,7 @@ private typedef FontInfo = {
 }
 
 private typedef DataInfo = {
-    id : String,
-    async : Bool
+    id : String
 }
 
 private typedef TextInfo = DataInfo;
@@ -196,9 +195,8 @@ class Parcel extends luxe.resource.Resources {
                 for(item in _texts) {
                     if(item != null) {
                         var id : String = item.id == null ? '' : cast item.id;
-                        var async : Bool = item.async == null ? false : cast item.async;
                         if(id != '') {
-                            add_text( id, async );
+                            add_text( id );
                         }  else {
                             log("text not added due to incomplete info: " + item);
                         }//id != ''
@@ -211,9 +209,8 @@ class Parcel extends luxe.resource.Resources {
                 for(item in _jsons) {
                     if(item != null) {
                         var id : String = item.id == null ? '' : cast item.id;
-                        var async : Bool = item.async == null ? false : cast item.async;
                         if(id != '') {
-                            add_json( id, async );
+                            add_json( id );
                         }  else {
                             log("json not added due to incomplete info: " + item);
                         }//id != ''
@@ -226,9 +223,8 @@ class Parcel extends luxe.resource.Resources {
                 for(item in _datas) {
                     if(item != null) {
                         var id : String = item.id == null ? '' : cast item.id;
-                        var async : Bool = item.async == null ? false : cast item.async;
                         if(id != '') {
-                            add_data( id, async );
+                            add_data( id );
                         } else {
                             log("data not added due to incomplete info: " + item);
                         }
@@ -778,8 +774,8 @@ class Parcel extends luxe.resource.Resources {
 
 //Text
 
-    public function add_text( _id:String, ?_async:Bool=false ) {
-        text_list.push({ id:_id, async:_async });
+    public function add_text( _id:String ) {
+        text_list.push({ id:_id });
     } //add_text
 
     public function add_texts( list:Array<TextInfo> ) {
@@ -790,8 +786,8 @@ class Parcel extends luxe.resource.Resources {
 
 //JSON
 
-    public function add_json( _id:String, ?_async:Bool=false ) {
-        json_list.push({ id:_id, async:_async });
+    public function add_json( _id:String ) {
+        json_list.push({ id:_id });
     } //add_json
 
     public function add_jsons( list:Array<JSONInfo> ) {
@@ -802,8 +798,8 @@ class Parcel extends luxe.resource.Resources {
 
 //Data
 
-    public function add_data( _id:String, ?_async:Bool=false ) {
-        data_list.push({ id:_id, async:_async });
+    public function add_data( _id:String ) {
+        data_list.push({ id:_id });
     } //add_data
 
     public function add_datas( list:Array<DataInfo> ) {
@@ -846,7 +842,7 @@ class Parcel extends luxe.resource.Resources {
         #if luxe_parcel_logging log("    loading data " + _data_info ); #end
 
         Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadData( _data_info.id, _complete, _data_info.async );
+            Luxe.loadData( _data_info.id, _complete );
         });
 
     } //load_data_path
@@ -855,7 +851,7 @@ class Parcel extends luxe.resource.Resources {
         #if luxe_parcel_logging log('    loading text $_text_info' ); #end
 
         Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadText( _text_info.id, _complete, _text_info.async );
+            Luxe.loadText( _text_info.id, _complete );
         });
 
     } //load_text
@@ -864,7 +860,7 @@ class Parcel extends luxe.resource.Resources {
         #if luxe_parcel_logging log('    loading json $_json_info' ); #end
 
         Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadJSON( _json_info.id, _complete, _json_info.async );
+            Luxe.loadJSON( _json_info.id, _complete );
         });
 
     } //load_json

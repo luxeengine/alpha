@@ -2,10 +2,10 @@ package phoenix;
 
 import snow.assets.AssetImage;
 import snow.render.opengl.GL;
-import snow.utils.ByteArray;
-import snow.utils.UInt8Array;
 import snow.utils.Libs;
-import snow.utils.ArrayBuffer;
+
+import snow.io.typedarray.Uint8Array;
+import snow.io.typedarray.ArrayBuffer;
 
 import phoenix.Color;
 import phoenix.Vector;
@@ -14,6 +14,7 @@ import luxe.resource.Resource;
 import luxe.resource.Resources;
 
 import luxe.Log._verbose;
+import luxe.Log._debug;
 import luxe.Log.log;
 
 enum FilterType {
@@ -178,7 +179,7 @@ class Texture extends Resource {
 
         if(texture_bytes != null) {
 
-            var texture = load_from_bytearray( _name, ByteArray.fromBytes(texture_bytes), _cache );
+            var texture = load_from_bytes( _name, Uint8Array.fromBytes(texture_bytes), _cache );
 
             texture_bytes = null;
 
@@ -191,8 +192,8 @@ class Texture extends Resource {
     } //load_texture_from_resource_bytes
 
 
-        /** create and load a texture from a ByteArray. Take note this accepts image formats, not raw pixels/bytes.  */
-    public static function load_from_bytearray( _name:String, _bytes:ByteArray, ?_cache:Bool = true ) {
+        /** create and load a texture from a Uint8Array. Take note this accepts encoded image formats, not decoded/raw pixels. Use load_from_pixels for that.  */
+    public static function load_from_bytes( _name:String, _bytes:Uint8Array, ?_cache:Bool = true ) {
 
         if(_bytes != null) {
 
@@ -221,9 +222,9 @@ class Texture extends Resource {
 
         return null;
 
-    } //load_from_bytearray
+    } //load_from_bytes
 
-    public static function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels:snow.utils.UInt8Array, ?_cache:Bool = true ) {
+    public static function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels:snow.io.typedarray.Uint8Array, ?_cache:Bool = true ) {
 
         if(_pixels == null) {
             return null;
@@ -285,6 +286,16 @@ class Texture extends Resource {
 
             //store the asset for later use
         asset = _asset;
+
+        _debug('image.id: ' + asset.image.id);
+        _debug('\t image.bpp: ' + asset.image.bpp);
+        _debug('\t image.bpp_source: ' + asset.image.bpp_source);
+        _debug('\t image.data.length: ' + asset.image.data.length);
+        _debug('\t image.height: ' + asset.image.height);
+        _debug('\t image.height_actual: ' + asset.image.height_actual);
+        _debug('\t image.width: ' + asset.image.width);
+        _debug('\t image.width_actual: ' + asset.image.width_actual);
+        _debug('\t components: ' + asset.components);
 
             //check for size limitations
         check_size();

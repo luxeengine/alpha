@@ -312,7 +312,7 @@ class BitmapFont extends Resource {
                 font.from_string( font_data.text, font.options.onload, null, font.options.silent );
                 font.options.resources.cache(font);
 
-            }, true);
+            });
 
             return font;
 

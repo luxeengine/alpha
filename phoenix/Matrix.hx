@@ -27,7 +27,7 @@ class MatrixTransform {
 class Matrix {
 
     public var elements:Array<Float>;
-    var _float32array : snow.utils.Float32Array;
+    var _float32array : snow.io.typedarray.Float32Array;
 
     @:isVar public var M11 (get,set) : Float = 1;
     @:isVar public var M21 (get,set) : Float = 0;
@@ -69,7 +69,7 @@ class Matrix {
             n41, n42, n43, n44
         );
 
-        _float32array = new snow.utils.Float32Array( elements );
+        _float32array = new snow.io.typedarray.Float32Array( elements );
 
     }
 
@@ -140,19 +140,9 @@ class Matrix {
     inline function set_M43( _value:Float ) : Float { elements[14] = _value; return _value; }
     inline function set_M44( _value:Float ) : Float { elements[15] = _value; return _value; }
 
-    public inline function float32array() : snow.utils.Float32Array {
+    public inline function float32array() : snow.io.typedarray.Float32Array {
 
-            //this is temporary, looks like a misnomer in the Float32Array js bindings
-        #if luxe_native
-
-            _float32array.set( elements );
-            return new snow.utils.Float32Array( _float32array );
-
-        #else
-
-            return new snow.utils.Float32Array( elements );
-
-        #end
+        return new snow.io.typedarray.Float32Array( elements );
 
     } //float32array
 

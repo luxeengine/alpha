@@ -1,6 +1,6 @@
 package luxe.resource;
 
-import snow.utils.ByteArray;
+import snow.io.typedarray.Uint8Array;
 
 import luxe.resource.Resources;
 
@@ -94,10 +94,10 @@ class JSONResource extends Resource {
 class DataResource extends Resource {
 
 
-    public var data : ByteArray;
+    public var data : Uint8Array;
 
 
-    public function new( _id:String, _data:ByteArray, _manager:Resources ) {
+    public function new( _id:String, _data:Uint8Array, _manager:Resources ) {
 
         id = _id;
 

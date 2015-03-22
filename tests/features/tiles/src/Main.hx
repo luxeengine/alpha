@@ -63,34 +63,43 @@ class Main extends luxe.Game {
 
     function load_isometric_tiledmap() {
 
-        tiled_iso = new TiledMap( { file:'assets/isotiles.tmx', pos : new Vector(256,128) } );
-        tiled_iso.display({ scale:1, grid:true});
+        Luxe.loadText('assets/isotiles.tmx', function(res){
 
-            //change a tile id post display, to show "14" with grass
-        tiled_iso.tile_at('Tile Layer 2', 0, 0).id = 4;
-        tiled_iso.tile_at('Tile Layer 2', 0, 1).id = 0;
-            //try remove first
-        tiled_iso.tile_at('Tile Layer 2', 0, 2).id = 0;
-            //then readd, to test it works
-        tiled_iso.tile_at('Tile Layer 2', 0, 2).id = 4;
+            tiled_iso = new TiledMap( { tiled_file_data:res.text, pos : new Vector(256,128) } );
+            tiled_iso.display({ scale:1, grid:true});
+
+                //change a tile id post display, to show "14" with grass
+            tiled_iso.tile_at('Tile Layer 2', 0, 0).id = 4;
+            tiled_iso.tile_at('Tile Layer 2', 0, 1).id = 0;
+                //try remove first
+            tiled_iso.tile_at('Tile Layer 2', 0, 2).id = 0;
+                //then readd, to test it works
+            tiled_iso.tile_at('Tile Layer 2', 0, 2).id = 4;
+
+        }); //loadText
 
     } //load_isometric_tiledmap
 
     function load_ortho_tiledmap() {
 
-            //create from xml file, with various encodings, or from JSON
-        tiled_ortho = new TiledMap( { file:'assets/tiles.json', format:'json', pos : new Vector(512,0) } );
-        // tiled_ortho = new TiledMap( { file:'assets/tiles_base64_zlib.tmx', pos : new Vector(512,0) } );
-        // tiled_ortho = new TiledMap( { file:'assets/tiles_base64.tmx', pos : new Vector(512,0) } );
-        // tiled_ortho = new TiledMap( { file:'assets/tiles_csv.tmx', pos : new Vector(512,0) } );
+        //try these, but remove the format:'json' or set to format:'xml'
+        //'assets/tiles_base64_zlib.tmx'
+        //'assets/tiles_base64.tmx'
+        //'assets/tiles_csv.tmx'
+        Luxe.loadText('assets/tiles.json', function(res){
 
-        var scale = 2;
+            var scale = 2;
 
-            //tell the map to display
-        tiled_ortho.display({ scale:scale, grid:true, filter:FilterType.nearest });
+                //create from xml file, with various encodings, or from JSON
+            tiled_ortho = new TiledMap( { tiled_file_data:res.text, format:'json', pos : new Vector(512,0) } );
 
-            //draw the additional objects
-        draw_tiled_object_groups( scale );
+                //tell the map to display
+            tiled_ortho.display({ scale:scale, grid:true, filter:FilterType.nearest });
+
+                //draw the additional objects
+            draw_tiled_object_groups( scale );
+
+        });
 
     } //load_ortho_tiledmap
 
@@ -223,13 +232,15 @@ class Main extends luxe.Game {
 
     override function onmousemove( e:MouseEvent ) {
 
+        if(tiled_iso == null || tiled_ortho == null) return;
+
             // Get the tile position that the mouse is hovering.
         var mouse_pos = Luxe.camera.screen_point_to_world( e.pos );
 
         var _scale = tiled_ortho.visual.options.scale;
         var tile = tiled_ortho.tile_at_pos('walls', mouse_pos, _scale );
         var world = tiled_ortho.worldpos_to_map( mouse_pos, _scale );
-        
+
         if ( tile != null )
         {
                 //  Translate the mouse position so that it is relative to the tiled map.
@@ -240,27 +251,22 @@ class Main extends luxe.Game {
             mouse_pos_relative.x -= tile_pos.x;
             mouse_pos_relative.y -= tile_pos.y;
 
-                //  Find out by how many percent of the tiles total width and height that the mouse has penetrated the bounds of the tile. 
+                //  Find out by how many percent of the tiles total width and height that the mouse has penetrated the bounds of the tile.
             var in_tile_percent = new Vector(mouse_pos_relative.x / (tile.size.x * _scale), mouse_pos_relative.y / (tile.size.y * _scale));
 
-                //  Create the offset depending on which corner is closest to the mouse position. 
+                //  Create the offset depending on which corner is closest to the mouse position.
             var offset_x = TileOffset.right;
             var offset_y = TileOffset.bottom;
-            if (in_tile_percent.x <= 0.33)
-            {
+
+            if (in_tile_percent.x <= 0.33) {
                 offset_x = TileOffset.left;
-            }
-            else if (in_tile_percent.x <= 0.66)
-            {
+            } else if (in_tile_percent.x <= 0.66) {
                 offset_x = TileOffset.center;
             }
 
-            if (in_tile_percent.y <= 0.33)
-            {
+            if (in_tile_percent.y <= 0.33) {
                 offset_y = TileOffset.top;
-            }
-            else if (in_tile_percent.y <= 0.66)
-            {
+            } else if (in_tile_percent.y <= 0.66) {
                 offset_y = TileOffset.center;
             }
 
@@ -273,53 +279,48 @@ class Main extends luxe.Game {
                 //  Move the circle to the corner of the tile that is closest to the mouse.
             tile_offset_circle.transform.pos.x = tile_pos.x;
             tile_offset_circle.transform.pos.y = tile_pos.y;
-            
+
         }
 
         tile_text.text = world + "\n" + tile;
-		
+
 		_scale = tiled_iso.visual.options.scale;
         tile = tiled_iso.tile_at_pos('Tile Layer 2', mouse_pos, _scale );
         if( tile != null ) {
+
 				//  Translate the mouse position so that it is relative to the tiled map.
             var mouse_pos_relative = new Vector(mouse_pos.x - tiled_iso.pos.x, mouse_pos.y - tiled_iso.pos.y);
-			
+
 				//	Get the position in world coords of the tile that is being hovered.
 			var tile_pos = Isometric.tile_coord_to_worldpos(tile.x, tile.y, tiled_iso.tile_width, tiled_iso.tile_height, _scale);
-			
-			
-			
+
 				//	Find position of the mouse relative to the tile that is being hovered.
 			mouse_pos_relative.x -= tile_pos.x;
 			mouse_pos_relative.y -= tile_pos.y;
-			
+
 			mouse_pos_relative = Isometric.worldpos_to_tile_coord(mouse_pos_relative.x, mouse_pos_relative.y, tiled_iso.tile_width, tiled_iso.tile_height, _scale);
-			
-				//  Create the offset depending on which corner is closest to the mouse position. 
+
+				//  Create the offset depending on which corner is closest to the mouse position.
             var offset_x = TileOffset.right;
             var offset_y = TileOffset.bottom;
-            if (mouse_pos_relative.x <= 0.33)
-            {
+            if (mouse_pos_relative.x <= 0.33) {
                 offset_x = TileOffset.left;
             }
-            else if (mouse_pos_relative.x <= 0.66)
-            {
+            else if (mouse_pos_relative.x <= 0.66) {
                 offset_x = TileOffset.center;
             }
 
-            if (mouse_pos_relative.y <= 0.33)
-            {
+            if (mouse_pos_relative.y <= 0.33) {
                 offset_y = TileOffset.top;
             }
-            else if (mouse_pos_relative.y <= 0.66)
-            {
+            else if (mouse_pos_relative.y <= 0.66) {
                 offset_y = TileOffset.center;
             }
-			
+
 			tile_pos = Isometric.tile_coord_to_worldpos(tile.x, tile.y, tiled_iso.tile_width, tiled_iso.tile_height, _scale, offset_x, offset_y);
 			tile_pos.x += tiled_iso.pos.x;
 			tile_pos.y += tiled_iso.pos.y;
-			
+
 			tile_offset_circle.transform.pos.x = tile_pos.x;
             tile_offset_circle.transform.pos.y = tile_pos.y;
         }

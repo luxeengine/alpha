@@ -38,22 +38,24 @@ class Main extends luxe.Game {
     override function ready() {
 
            //fetch a list of assets to load from the json file
-        var json_asset = Luxe.loadJSON('assets/parcel.json');
+        Luxe.loadJSON('assets/parcel.json', function(json_asset){
 
-            //then create a parcel to load it for us
-        var preload = new Parcel();
-            preload.from_json(json_asset.json);
+                //then create a parcel to load it for us
+            var preload = new Parcel();
+                preload.from_json(json_asset.json);
 
-            //but, we also want a progress bar for the parcel,
-            //this is a default one, you can do your own
-        new ParcelProgress({
-            parcel      : preload,
-            background  : new Color(1,1,1,0.85),
-            oncomplete  : assets_loaded
-        });
+                //but, we also want a progress bar for the parcel,
+                //this is a default one, you can do your own
+            new ParcelProgress({
+                parcel      : preload,
+                background  : new Color(1,1,1,0.85),
+                oncomplete  : assets_loaded
+            });
 
-            //go!
-        preload.load();
+                //go!
+            preload.load();
+
+        }); //loadJSON
 
     } //ready
 

@@ -1,7 +1,5 @@
 package luxe.resource;
 
-import snow.utils.ByteArray;
-
 import phoenix.BitmapFont;
 import phoenix.Shader;
 import phoenix.Texture;

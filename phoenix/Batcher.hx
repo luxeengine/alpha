@@ -1,6 +1,5 @@
 package phoenix;
 
-import snow.utils.ByteArray;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.GeometryState;
 import phoenix.geometry.Vertex;
@@ -8,7 +7,7 @@ import phoenix.Renderer;
 import phoenix.BatchState;
 
 import snow.render.opengl.GL;
-import snow.utils.Float32Array;
+import snow.io.typedarray.Float32Array;
 
 import luxe.structural.BalancedBST;
 
@@ -150,6 +149,7 @@ class Batcher {
         groups = new Map();
 
         max_verts = Std.int(Math.pow(2, 15));
+            //4 floats per vert, i.e x y z w
         max_floats = max_verts * 4;
 
             //these are expecting elements in floats, so each vert etc has 4 floats

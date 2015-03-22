@@ -1,7 +1,6 @@
 package phoenix;
 
 import snow.render.opengl.GL;
-import snow.utils.ByteArray;
 import snow.utils.Libs;
 
 import luxe.Log.log;
@@ -21,9 +20,6 @@ import phoenix.Color;
 import phoenix.Camera;
 import phoenix.Texture;
 import phoenix.BitmapFont;
-
-import snow.utils.UInt8Array;
-import snow.utils.ArrayBuffer;
 
 typedef BatcherKey = {
     uuid : String,

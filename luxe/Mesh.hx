@@ -203,7 +203,7 @@ class Mesh {
 
         Luxe.loadText(asset_id, function(t){
             from_string(t.text, texture, _scale, _batcher);
-        }, true);
+        });
 
     } // from obj file
 

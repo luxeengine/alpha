@@ -11,16 +11,27 @@ import luxe.importers.texturepacker.TexturePackerSpriteAnimation;
 
 class Main extends luxe.Game {
 
+    var json_1 : Dynamic;
+    var json_2 : Dynamic;
 
     override function ready() {
 
         Luxe.renderer.clear_color = new Color().rgb(0xf0f0f0);
 
-        var json_source_1 : Dynamic = Luxe.loadJSON('assets/player1.json').json;
-        var json_source_2 : Dynamic = Luxe.loadJSON('assets/player2.json').json;
+        Luxe.loadJSON('assets/player1.json', function(res1){
+            json_1 = res1.json;
+            Luxe.loadJSON('assets/player2.json', function(res2) {
+                json_2 = res2.json;
+                create();
+            });
+        });
 
-        var data1 : TexturePackerData = TexturePackerJSON.parse( json_source_1 );
-        var data2 : TexturePackerData = TexturePackerJSON.parse( json_source_2 );
+    } //ready
+
+    function create() {
+
+        var data1 : TexturePackerData = TexturePackerJSON.parse( json_1 );
+        var data2 : TexturePackerData = TexturePackerJSON.parse( json_2 );
 
         trace("data1 : from " + data1.meta);
         trace("data2 : from " + data2.meta);
@@ -28,9 +39,7 @@ class Main extends luxe.Game {
         var json_sprite_1 = TexturePackerSpriteAnimation.parse( data1, 'all' );
         var json_sprite_2 = TexturePackerSpriteAnimation.parse( data2, 'all' );
 
-        var texture = Luxe.loadTexture('assets/playertest.png');
-
-        texture.onload = function(t) {
+        Luxe.loadTexture('assets/playertest.png', function(texture){
 
             //create 2 sprites with the 2 diff importer types
 
@@ -67,9 +76,9 @@ class Main extends luxe.Game {
             sprite1_anim.play();
             sprite2_anim.play();
 
-        } //texture.onload
+        }); //loadTexture
 
-    } //ready
+    } //create
 
     override function onkeyup( e:KeyEvent ) {
 
