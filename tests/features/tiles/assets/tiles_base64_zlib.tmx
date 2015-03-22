@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="tileset1" tilewidth="16" tileheight="16">
   <image source="tileset.png" width="224" height="80"/>
  </tileset>
- <layer name="Tile Layer 1" width="20" height="10">
+ <layer name="walls" width="20" height="10">
   <properties>
    <property name="layer1" value="prop1"/>
   </properties>
@@ -11,7 +11,7 @@
    eJxjYMAExkCsggUro/G1sejFBqxwmIcNKxJppgwJmJaADYqZkdicUFoXSusgyaFjQyA2AmJ+KmFiw3kkYPT0Sg4GAIaFEoY=
   </data>
  </layer>
- <layer name="Tile Layer 2" width="20" height="10">
+ <layer name="details" width="20" height="10">
   <properties>
    <property name="layer2" value="prop2"/>
   </properties>

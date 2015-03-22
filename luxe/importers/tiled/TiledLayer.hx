@@ -4,8 +4,6 @@ import luxe.importers.tiled.TiledTile;
 import luxe.importers.tiled.TiledMapData;
 import luxe.importers.tiled.TiledUtil.valid_element;
 
-import snow.utils.ByteArray;
-
 // Parts adapted from https://github.com/kasoki/openfl-tiled by Christopher "Kasoki" Kaster
 
 class TiledLayer {
@@ -62,25 +60,15 @@ class TiledLayer {
                     case "data": {
 
                         var encoding:String = (child.exists("encoding")) ? child.get("encoding") : "";
+                        var node_value:String = child.firstChild().nodeValue;
 
                         switch(encoding){
 
                             case "base64":
 
-                                var base64_data : String = child.firstChild().nodeValue;
-                                var compression : String = 'none';
+                                tileGIDs = base64_to_array(node_value, child.get("compression"));
 
-                                if (child.exists("compression")){
-                                    compression = child.get("compression");
-                                }
-
-                                tileGIDs = tiled_base64_to_IntArray(base64_data, width, compression);
-
-                            case "csv":
-
-                                var csv_data : String = child.firstChild().nodeValue;
-
-                                tileGIDs = csv_to_IntArray( csv_data );
+                            case "csv": tileGIDs = csv_to_array( node_value );
 
                             default: //default is xml
 
@@ -143,7 +131,7 @@ class TiledLayer {
 
     } //from_json
 
-    function csv_to_IntArray( input:String ) : Array<Int> {
+    function csv_to_array( input:String ) : Array<Int> {
 
         var result:Array<Int> = new Array<Int>();
         var rows:Array<String> = StringTools.trim(input).split("\n");
@@ -166,91 +154,80 @@ class TiledLayer {
 
     } //csv_to_array
 
-    static function tiled_base64_to_IntArray( base64_data:String, lineWidth:Int, compression:String ):Array<Int> {
 
-        var result:Array<Int> = new Array<Int>();
-        var data:ByteArray = tiled_base64_to_ByteArray(base64_data);
+    /** Convert the base64 encoded data to a regular array of int's,
+        Note that Tiled base64 doesn't encode base64 in the same way as
+        what haxe.crypto.base64 would expect so it must manually be decomposed */
 
-            //handle zip compression
-        if(compression != 'none') {
-            #if js
-                throw "No support for compressed maps in web target";
-            #else
-                switch(compression) {
+    static var base_chars:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    static var base_lookup:Array<Int> = [];
+    static function base64_to_array( input:String, ?compression:Null<String> ):Array<Int> {
 
-                    case "zlib" : {
-                        data.uncompress();
-                    } //zlib
-
-                    case "gzip" : {
-                        throw "gzip compression is not currently supported from a base64 Tiled Map. try zlib/zip compression instead.";
-
-                      //       //First we have to convert to haxe.io.bytes for use with format.gz
-                      //   var data_bytes = haxe.io.Bytes.ofData( data.getData() );
-                      //       //Then we need it to be a BytesInput haxe.io.Input
-                      //   var byte_input = new haxe.io.BytesInput( data_bytes, 0, data_bytes.length );
-                      //    //The we feed it to the format gz Reader
-                      //   var gz_reader = new format.gz.Reader( byte_input );
-                      //    //The output reader
-                      //   var out_bytes : haxe.io.BytesOutput = new haxe.io.BytesOutput();
-                      //    //the bytes can be fed into the output but
-                      //   var read_bytes = gz_reader.readData( out_bytes );
-                    } //gzip
-
-                } //switch compression type
-            #end
+            //:todo:  well, this isn't ideal but it's better than before
+        if(base_lookup.length == 0) {
+            for(c in 0...base_chars.length)
+                base_lookup[base_chars.charCodeAt(c)] = c;
         }
 
-            //tiled is always little endian
-        data.endian = ByteArray.LITTLE_ENDIAN;
-            //read back into the array
-        while(data.position < data.length){
-            result.push(data.readInt());
+        var result:Array<Int> = [];
+            //the n/4*3 is the max length the input decoded data can be
+        var bytes = haxe.io.Bytes.alloc(Std.int(input.length / 4 * 3));
+            //the position in the bytes at which we're writing
+        var byte_pos:Int = 0;
+
+        var i:Int = 0;
+
+        while(i < input.length - 3) {
+
+            var input_ch = input.charAt(i);
+
+            if(input_ch == " " || input_ch == "\n"){
+                i++;
+                continue;
+            }
+
+                //read 4 bytes and look them up in the table
+            var a0:Int = base_lookup[input.charCodeAt(i)];
+            var a1:Int = base_lookup[input.charCodeAt(i + 1)];
+            var a2:Int = base_lookup[input.charCodeAt(i + 2)];
+            var a3:Int = base_lookup[input.charCodeAt(i + 3)];
+
+            inline function write_byte(b:Int) {
+                bytes.set(byte_pos++, b);
+            }
+
+            if(a1 < 64) write_byte(((a0 << 2))        + ((a1 & 0x30) >> 4));
+            if(a2 < 64) write_byte(((a1 & 0x0f) << 4) + ((a2 & 0x3c) >> 2));
+            if(a3 < 64) write_byte(((a2 & 0x03) << 6) + ((a3)));
+
+            i += 4;
+
+        } //
+
+        //now our bytes should be filled with the decoded base64,
+        //so we check if it's compressed and decompressed it if need be
+
+        trace(compression);
+        if(compression != null) {
+            switch(compression) {
+                case 'gzip': throw "TiledMap: gzip compression is not currently supported. Try zlib/zip compression instead.";
+                case 'zlib': bytes = haxe.zip.Uncompress.run(bytes);
+            }
         }
+
+        var byte_len = bytes.length;
+            //reuse/reset the byte_pos for reading
+        byte_pos = 0;
+
+        while(byte_pos < byte_len) {
+            result.push( bytes.getInt32(byte_pos) );
+            byte_pos += 4; //int32 is 4 bytes
+        }
+
+        bytes = null;
 
         return result;
 
-    } //tiled_base64_to_IntArray
+    } //base64_to_array
 
-    static inline var BASE64_CHARS:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    static function tiled_base64_to_ByteArray(data:String):ByteArray {
-
-        var output:ByteArray = new ByteArray();
-        var lookup:Array<Int> = new Array<Int>();
-        var c:Int;
-
-            for (c in 0...BASE64_CHARS.length){
-                lookup[BASE64_CHARS.charCodeAt(c)] = c;
-            }
-
-            var i:Int = 0;
-            while (i < data.length - 3) {
-                // Ignore whitespace
-                if (data.charAt(i) == " " || data.charAt(i) == "\n"){
-                    i++; continue;
-                }
-
-                //read 4 bytes and look them up in the table
-                var a0:Int = lookup[data.charCodeAt(i)];
-                var a1:Int = lookup[data.charCodeAt(i + 1)];
-                var a2:Int = lookup[data.charCodeAt(i + 2)];
-                var a3:Int = lookup[data.charCodeAt(i + 3)];
-
-                // convert to and write 3 bytes
-                if(a1 < 64)
-                    output.writeByte((a0 << 2) + ((a1 & 0x30) >> 4));
-                if(a2 < 64)
-                    output.writeByte(((a1 & 0x0f) << 4) + ((a2 & 0x3c) >> 2));
-                if(a3 < 64)
-                    output.writeByte(((a2 & 0x03) << 6) + a3);
-
-                i += 4;
-            }
-
-                //Rewind & return decoded data
-            output.position = 0;
-
-        return output;
-    } //tiled_base64_to_ByteArray
-
-}
+} //TiledLayer
