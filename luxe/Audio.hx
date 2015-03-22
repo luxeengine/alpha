@@ -35,7 +35,7 @@ class Audio {
 
     // wip alpha-2.0
     @:noCompletion
-    public function create_from_bytes( _id:String, ?_name:String = '', _bytes:snow.utils.ByteArray ) : luxe.Sound {
+    public function create_from_bytes( _id:String, ?_name:String = '', _bytes:snow.io.typedarray.Uint8Array ) : luxe.Sound {
         return core.app.audio.create_from_bytes( _id, _name, _bytes );
     } //create_from_bytes
 
