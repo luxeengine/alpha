@@ -140,41 +140,41 @@ Read the design links for more info.
 
 **gameplay**
 
-- `Scene` - simple auto scene state management <small> [design](#), [guide](#) </small>
-- `Collision` - SAT collision query for shapes/rays <small> [design](#), [guide](#) </small>
-- `Physics` - third party framework hooks, i.e [nape](http://napephys.com/).  <small> [design](#), [guide](#) </small>
-- `Transforms` - stackable transforms for positioning/rendering <small> [design](#), [guide](#) </small>
-- `Timing` - control over time scale, per entity fixed rates and more <small> [design](#), [guide](#) </small>
-- `Timer` - schedule functions and events into the timeline <small> [design](#), [guide](#) </small>
-- `Audio` - simple to use but flexible audio api <small> [design](#), [guide](#) </small>
+- `Scene` - simple auto scene state management <small> [design](#), ~~[guide](#)~~ </small>
+- `Collision` - SAT collision query for shapes/rays <small> [design](#), ~~[guide](#)~~ </small>
+- `Physics` - third party framework hooks, i.e [nape](http://napephys.com/).  <small> [design](#), ~~[guide](#)~~ </small>
+- `Transforms` - stackable transforms for positioning/rendering <small> [design](#), ~~[guide](#)~~ </small>
+- `Timing` - control over time scale, per entity fixed rates and more <small> [design](#), ~~[guide](#)~~ </small>
+- `Timer` - schedule functions and events into the timeline <small> [design](#), [guide](guide.timers.html) </small>
+- `Audio` - simple to use but flexible audio api <small> [design](#), ~~[guide](guide.audio.html)~~ </small>
 
 **Rendering**
 
-- `Sprite` - visual backed class with animation, flipping etc <small> [design](#), [guide](#sprite) </small>
-- `Color` - handle HSV, HSL, RGB interchangeably <small> [design](#), [guide](#color) </small>
-- `Render` - automatic or self managed batching of geometry <small> [design](#), [guide](#rendering) </small>
-- `Render control` - flexible depth, blending and group rendering <small> [design](#), [guide](#render_control) </small>
-- `OpenGL` - direct or indirect access to WebGL spec API <small> [design](#), [guide](#opengl) </small>
-- `Shaders` - first class citizen, built into the core of rendering <small> [design](#), [guide](#) </small>
-- `Camera` - split views, focus, rotation, shake, etc built in <small> [design](#), [guide](#) </small>
-- `Tilemaps` - isometric, ortho support, with import from [Tiled](http://mapeditor.org) <small> [design](#), [guide](#) </small>
-- `Drawing` - easy style shape/geometry drawing API <small> [design](#), [guide](#) </small>
-- `Nineslice` - for scaling of assets like UI elements <small> [design](#), [guide](#) </small>
-- `Particles` - simple particle support for quick effects <small> [design](#), [guide](#) </small>
-- `Textures` - easy to use texture api, fully supports render to texture <small> [design](#), [guide](#) </small>
-- `Fonts` - BMFont based bitmap font rendering <small> [design](#), [guide](#) </small>
+- `Sprite` - visual backed class with animation, flipping etc <small> [design](#), [guide](guide.sprite.html)</small>
+- `Color` - handle HSV, HSL, RGB interchangeably <small> [design](#), [guide](guide.color.html) </small>
+- `Render` - automatic or self managed batching of geometry <small> [design](#), ~~[guide](#rendering)~~ </small>
+- `Render control` - flexible depth, blending and group rendering <small> [design](#), [guide](guide.rendercontrol.html) </small>
+- `OpenGL` - direct or indirect access to WebGL spec API <small> [design](#), ~~[guide](#opengl)~~ </small>
+- `Shaders` - first class citizen, built into the core of rendering <small> [design](#), [guide](guide.shaders.html) </small>
+- `Camera` - split views, focus, rotation, shake, etc built in <small> [design](#), ~~[guide](guide.camera.html)~~ </small>
+- `Tilemaps` - isometric, ortho support, with import from [Tiled](http://mapeditor.org) <small> [design](#), ~~[guide](#)~~ </small>
+- `Drawing` - easy style shape/geometry drawing API <small> [design](#), [guide](guide.drawing.html) </small>
+- `Nineslice` - for scaling of assets like UI elements <small> [design](#), ~~[guide](#)~~ </small>
+- `Particles` - simple particle support for quick effects <small> [design](#), ~~[guide](guide.particles.html)~~ </small>
+- `Textures` - easy to use texture api, fully supports render to texture <small> [design](#), ~~[guide](guide.textures.html)~~ </small>
+- `Fonts` - BMFont based bitmap font rendering <small> [design](#), [guide](guide.fonts.html) </small>
 
 **systemic**
 
-- `Assets` - cross platform access to assets <small> [design](#), [guide](#) </small>
-- `Maths` - support for Vector, Matrix and Quaternion based maths <small> [design](#), [guide](#) </small>
-- `States` - modal, transient and stacked state machine <small> [design](#), [guide](#events) </small>
-- `Events` - expressive filterable local or global event system <small> [design](#), [guide](#states) </small>
-- `Components` - modular code behavior composition <small> [design](#), [guide](#components) </small>
+- `Assets` - cross platform access to assets <small> [design](#), [guide](guide.assets.html) </small>
+- `Maths` - support for Vector, Matrix and Quaternion based maths <small> [design](#), ~~[guide](#)~~ </small>
+- `States` - modal, transient and stacked state machine <small> [design](#), ~~[guide](#states)~~ </small>
+- `Events` - expressive filterable local or global event system <small> [design](#), [guide](guide.events.html) </small>
+- `Components` - modular code behavior composition <small> [design](#), [guide](guide.basiccomponents.html) </small>
 - `Structural` - common data structures [link](https://github.com/underscorediscovery/structural)
-- `Tweening` - customized Actuate built in <small> [design](#), [guide](#tweening) </small>
+- `Tweening` - customized Actuate built in <small> [design](#), [guide](guide.tween.html) </small>
 - `Utils` - many geometrical and game related utilities <small> [api](api/index.html#luxe.utils) </small>
-- `Parcel` - control preloading, loading/unloading parcels of assets <small> [design](#), [guide](#parcels) </small>
+- `Parcel` - control preloading, loading/unloading parcels of assets <small> [design](#), ~~[guide](#parcels)~~ </small>
 
 
 &nbsp;
