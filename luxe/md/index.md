@@ -45,6 +45,23 @@ luxe is built on top of open source technologies, and proudly powered by [Haxe](
 
 ---
 
+###Community
+
+#### Home
+Join the community on http://snowkit.org   
+and share your projects, ask questions and   
+view additional setup guides and tutorials. 
+
+All news regarding luxe is posted on snowkit.org,   
+plus you get to see what others are making.
+
+#### Chat
+You can also also join the [community chat](http://snowkit.org/chat) for realtime discussion and help.
+
+[![snowkit](./images/snowkit.png)](http://snowkit.org)
+
+---
+
 ###Alpha
 
 <small>
@@ -97,19 +114,27 @@ For more concrete examples of this in practice. Click the diagram below for a fu
 
 ---
 
+<style> img {max-width:32em;} </style>
 
-##Editor support
+## Editor support
 
 Where possible, full code completion and building from the editor is supplied.
 
-[Sublime Text](https://underscorediscovery.github.io/flow/guide/sublimetext.html) (mac/windows/linux) <br/><br/>
-[![](images/plugins/1.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
+#### [Sublime Text](https://underscorediscovery.github.io/flow/guide/sublimetext.html) (mac/windows/linux)
+[![](images/plugins/sublime.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
 
-[FlashDevelop](https://underscorediscovery.github.io/flow/guide/flashdevelop.html) (windows only)<br/><br/>
+---
 
-template is in `setup/`, but here is a [Download link](https://github.com/underscorediscovery/luxe/blob/master/setup/luxe_FlashDevelopTemplate.fdz?raw=true)   
+#### [Atom](https://atom.io/packages/flow) (mac/windows/linux)
+[![](images/plugins/atom.png)](https://atom.io/packages/flow)
 
-[![](images/plugins/5.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
+---
+
+#### [FlashDevelop](https://underscorediscovery.github.io/flow/guide/flashdevelop.html) (windows only)
+
+template is at [snowkit-fd](https://github.com/Chman/Snowkit-FD), and here is a [Download link](https://github.com/Chman/Snowkit-FD/blob/master/SnowkitTemplate.fdz?raw=true)   
+
+[![](images/plugins/fd.png)](https://underscorediscovery.github.io/flow/guide/flashdevelop.html)
 
 ---
 
@@ -140,41 +165,41 @@ Read the design links for more info.
 
 **gameplay**
 
-- `Scene` - simple auto scene state management <small> [design](#), ~~[guide](#)~~ </small>
-- `Collision` - SAT collision query for shapes/rays <small> [design](#), ~~[guide](#)~~ </small>
-- `Physics` - third party framework hooks, i.e [nape](http://napephys.com/).  <small> [design](#), ~~[guide](#)~~ </small>
-- `Transforms` - stackable transforms for positioning/rendering <small> [design](#), ~~[guide](#)~~ </small>
-- `Timing` - control over time scale, per entity fixed rates and more <small> [design](#), ~~[guide](#)~~ </small>
-- `Timer` - schedule functions and events into the timeline <small> [design](#), [guide](guide.timers.html) </small>
-- `Audio` - simple to use but flexible audio api <small> [design](#), ~~[guide](guide.audio.html)~~ </small>
+- `Scene` - simple auto scene state management <small> ~~[guide](#)~~ </small>
+- `Collision` - SAT collision query for shapes/rays <small> ~~[guide](#)~~ </small>
+- `Physics` - third party framework hooks, i.e [nape](http://napephys.com/).  <small> ~~[guide](#)~~ </small>
+- `Transforms` - stackable transforms for positioning/rendering <small> ~~[guide](#)~~ </small>
+- `Timing` - control over time scale, per entity fixed rates and more <small> ~~[guide](#)~~ </small>
+- `Timer` - schedule functions and events into the timeline <small> [guide](guide.timers.html) </small>
+- `Audio` - simple to use but flexible audio api <small> ~~[guide](guide.audio.html)~~ </small>
 
 **Rendering**
 
-- `Sprite` - visual backed class with animation, flipping etc <small> [design](#), [guide](guide.sprite.html)</small>
-- `Color` - handle HSV, HSL, RGB interchangeably <small> [design](#), [guide](guide.color.html) </small>
-- `Render` - automatic or self managed batching of geometry <small> [design](#), ~~[guide](#rendering)~~ </small>
-- `Render control` - flexible depth, blending and group rendering <small> [design](#), [guide](guide.rendercontrol.html) </small>
-- `OpenGL` - direct or indirect access to WebGL spec API <small> [design](#), ~~[guide](#opengl)~~ </small>
-- `Shaders` - first class citizen, built into the core of rendering <small> [design](#), [guide](guide.shaders.html) </small>
-- `Camera` - split views, focus, rotation, shake, etc built in <small> [design](#), ~~[guide](guide.camera.html)~~ </small>
-- `Tilemaps` - isometric, ortho support, with import from [Tiled](http://mapeditor.org) <small> [design](#), ~~[guide](#)~~ </small>
-- `Drawing` - easy style shape/geometry drawing API <small> [design](#), [guide](guide.drawing.html) </small>
-- `Nineslice` - for scaling of assets like UI elements <small> [design](#), ~~[guide](#)~~ </small>
-- `Particles` - simple particle support for quick effects <small> [design](#), ~~[guide](guide.particles.html)~~ </small>
-- `Textures` - easy to use texture api, fully supports render to texture <small> [design](#), ~~[guide](guide.textures.html)~~ </small>
-- `Fonts` - BMFont based bitmap font rendering <small> [design](#), [guide](guide.fonts.html) </small>
+- `Sprite` - visual backed class with animation, flipping etc <small> [guide](guide.sprite.html)</small>
+- `Color` - handle HSV, HSL, RGB interchangeably <small> [guide](guide.color.html) </small>
+- `Render` - automatic or self managed batching of geometry <small> ~~[guide](#rendering)~~ </small>
+- `Render control` - flexible depth, blending and group rendering <small> [guide](guide.rendercontrol.html) </small>
+- `OpenGL` - direct or indirect access to WebGL spec API <small> ~~[guide](#opengl)~~ </small>
+- `Shaders` - first class citizen, built into the core of rendering <small> [guide](guide.shaders.html) </small>
+- `Camera` - split views, focus, rotation, shake, etc built in <small> ~~[guide](guide.camera.html)~~ </small>
+- `Tilemaps` - isometric, ortho support, with import from [Tiled](http://mapeditor.org) <small> ~~[guide](#)~~ </small>
+- `Drawing` - easy style shape/geometry drawing API <small> [guide](guide.drawing.html) </small>
+- `Nineslice` - for scaling of assets like UI elements <small> ~~[guide](#)~~ </small>
+- `Particles` - simple particle support for quick effects <small> ~~[guide](guide.particles.html)~~ </small>
+- `Textures` - easy to use texture api, fully supports render to texture <small> ~~[guide](guide.textures.html)~~ </small>
+- `Fonts` - BMFont based bitmap font rendering <small> [guide](guide.fonts.html) </small>
 
 **systemic**
 
-- `Assets` - cross platform access to assets <small> [design](#), [guide](guide.assets.html) </small>
-- `Maths` - support for Vector, Matrix and Quaternion based maths <small> [design](#), ~~[guide](#)~~ </small>
-- `States` - modal, transient and stacked state machine <small> [design](#), ~~[guide](#states)~~ </small>
-- `Events` - expressive filterable local or global event system <small> [design](#), [guide](guide.events.html) </small>
-- `Components` - modular code behavior composition <small> [design](#), [guide](guide.basiccomponents.html) </small>
+- `Assets` - cross platform access to assets <small> [guide](guide.assets.html) </small>
+- `Maths` - support for Vector, Matrix and Quaternion based maths <small> ~~[guide](#)~~ </small>
+- `States` - modal, transient and stacked state machine <small> ~~[guide](#states)~~ </small>
+- `Events` - expressive filterable local or global event system <small> [guide](guide.events.html) </small>
+- `Components` - modular code behavior composition <small> [guide](guide.basiccomponents.html) </small>
 - `Structural` - common data structures [link](https://github.com/underscorediscovery/structural)
-- `Tweening` - customized Actuate built in <small> [design](#), [guide](guide.tween.html) </small>
+- `Tweening` - customized Actuate built in <small> [guide](guide.tween.html) </small>
 - `Utils` - many geometrical and game related utilities <small> [api](api/index.html#luxe.utils) </small>
-- `Parcel` - control preloading, loading/unloading parcels of assets <small> [design](#), ~~[guide](#parcels)~~ </small>
+- `Parcel` - control preloading, loading/unloading parcels of assets <small> ~~[guide](#parcels)~~ </small>
 
 
 &nbsp;
@@ -196,6 +221,15 @@ Either developed, or developing
 
 ---
 
+###-Heavier than Air-
+
+[dev log](http://forums.tigsource.com/index.php?topic=47030.0)   
+[game post](http://snowkit.org/2015/01/21/heavier-than-air-wip/)
+
+![htamenu](images/games/hta/1.png)
+![htagif](images/games/hta/2.gif)
+
+
 ###SOIL
 
 [news page](http://soil.sudsdev.net/)   
@@ -204,14 +238,6 @@ Either developed, or developing
 ![soil_ingame](images/games/soil/soil_ingame.png)
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/wPttCM7-GRc" frameborder="0" allowfullscreen></iframe>
-
----
-
-###Untitled RTS exploration game
-[news page](https://twitter.com/___discovery)   
-[home page](http://notes.underscorediscovery.com/)
-
-<iframe src="http://gfycat.com/ifr/HeartySilverBorderterrier" frameborder="0" scrolling="no" width="600" height="500" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
 
 ---
 

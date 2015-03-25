@@ -21,7 +21,19 @@ $(document).ready(function() {
             }
         } //close_omnibar
 
-        var focus_omnibar = function() {
+        var focus_omnibar = function(e) {
+
+            if(e && e.keyCode) {
+                switch(e.keyCode) {
+                    case 32:
+                    case 37:
+                    case 38:
+                    case 39:
+                    case 40:
+                    return;
+                    break;
+                }
+            }
 
             if(!omnibar_visible) {
                 omnibar_visible = true;
