@@ -5,34 +5,9 @@
 ----
 
 ## Setting up
-SKIP AHEAD FOR NOW
-
-
-<div style="opacity:0.1">
-### ~~luxe setup helper~~
----
-
-Download and run the setup helper for your platform.    
-**Currently** this does not install anything, simply ensures you are correctly setup.   
-You continue to test the setup at each stage of installation.
-
-It also includes some samples and a link to the documentation.
-In future, it will check for updates, and install as many requirements as feasible.
-
-<br/>
-
-<a href=""> <img title="Mac" alt="Mac" src="images/mac64.png" class="platform-icon-64"/> mac </a> <br/>
-<a href=""> <img title="Linux" alt="Linux" src="images/linux64.png" class="platform-icon-64"/> linux </a> <br/>
-<a href=""> <img title="Windows" alt="Windows" src="images/windows64.png" class="platform-icon-64"/> windows </a>
-
-</div>
-
-###Manual setup
 
 ---
 
-&nbsp;   
-&nbsp;   
 ####Make sure haxe is installed
 
 <a id="find-haxe" name="find-haxe">
@@ -40,8 +15,10 @@ In future, it will check for updates, and install as many requirements as feasib
 &nbsp;   
 [ ![haxe](images/haxe.png) ](http://haxe.org)
 
----
+Alternatively, [you can help test the new Haxe 3.2.0 release](http://snowkit.org/2015/03/16/haxe-3-2-0/).
 &nbsp;   
+
+---
 &nbsp;   
 ####Make sure git is correctly installed
 
@@ -82,7 +59,11 @@ For example, on ubuntu 12+ you could use `sudo apt-get install git-core`.
 
 [ ![deps](images/deps.png) ](http://luxeengine.com/)
 
-[flow](https://github.com/underscorediscovery/flow) | [snow] (https://github.com/underscorediscovery/snow) | [luxe] (https://github.com/underscorediscovery/luxe)
+&nbsp;   
+
+[flow](https://github.com/underscorediscovery/flow) | [snow](https://github.com/underscorediscovery/snow) | [luxe](https://github.com/underscorediscovery/luxe)
+
+&nbsp;   
 
 This process is the same for all 3 libraries.   
 This process is easiest using the github app for Windows/Mac.
@@ -151,12 +132,30 @@ You should see something similar to this open in your browser
 
 To build windows/mac/linux builds, you need to have c++ installed.
 
-Windows : Visual C++ (express is fine)
-Linux : gcc/g++
-Mac : Xcode (+command line tools)
+- Windows : Visual C++ 2013 ([free](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx))
+- Linux : gcc/g++   
+- Mac : Xcode (and command line tools)   
+
+
+**Additionally,**   
+You need to download the latest prebuilt binaries and drop them in your ndll/ folder.
+
+[Read this blog post](http://snowkit.org/2015/03/23/snowkit-dev-log-2-history/#buildkitestatusanddownloads) for more details.
+
+Download the prebuilt files for your target platforms here:
+
+#### http://build.luxeengine.com/snow
 
 &nbsp;
 &nbsp;
+
+## Additional help and information
+
+Please visit http://snowkit.org for all the latest updates and news, as all news is posted here.
+
+You can also follow on http://twitter.com/snowkitorg, or join http://snowkit.org/chat
+
+
 
 ##Editor setup
 
@@ -166,10 +165,23 @@ Mac : Xcode (+command line tools)
 
 When using the sublime text plugin provided by the build tools, you get project management, building and running, and full code completion within sublime text.
 
-![](images/sublime.png)
-
 [Read the sublime text setup](https://underscorediscovery.github.io/flow/guide/sublimetext.html) docs.
 
+![](images/plugins/sublime.png)
+
+###Atom
+
+Building, code completion, error linting, go to definition and more.
+
+http://atom.io support is hosted by atom package manager.
+
+For details and instructions, visit the links below.
+You need both flow and haxe packages for using luxe.
+
+http://atom.io/packages/haxe
+http://atom.io/packages/flow
+
+![](images/plugins/atom.png)
 
 ###Flash develop
 

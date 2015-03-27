@@ -52,6 +52,8 @@ Join the community on http://snowkit.org
 and share your projects, ask questions and   
 view additional setup guides and tutorials. 
 
+**Please visit http://snowkit.org for the latest news and changes that are happening!**
+
 All news regarding luxe is posted on snowkit.org,   
 plus you get to see what others are making.
 
@@ -227,7 +229,9 @@ Either developed, or developing
 [game post](http://snowkit.org/2015/01/21/heavier-than-air-wip/)
 
 ![htamenu](images/games/hta/1.png)
-![htagif](images/games/hta/2.gif)
+
+
+<iframe src="http://gfycat.com/ifr/JauntySpiffyHeifer" frameborder="0" scrolling="no" width="532" height="167" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
 
 
 ###SOIL
