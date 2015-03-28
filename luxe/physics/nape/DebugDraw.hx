@@ -41,7 +41,7 @@ import luxe.options.RenderProperties;
 
         public var options : RenderProperties;
 		
-		var bodiesGeometry:ObjectMap<Body, Geometry>;
+		var bodiesGeometry:Map<Body, Geometry>;
 
         public function new( ?_options : RenderProperties) {
 
@@ -52,13 +52,13 @@ import luxe.options.RenderProperties;
 			
             if (options.batcher == null) options.batcher = Luxe.renderer.batcher;
 			
-			bodiesGeometry = new ObjectMap<Body, Geometry>();
+			bodiesGeometry = new Map();
 
         } //new
 
     //Public API
 		
-		public function add_body(_body:Body) {
+		public function add(_body:Body) {
 			if (options.immediate) return;
 			
 			var draw_color = new Color().rgb(0xCC0000);
@@ -85,7 +85,7 @@ import luxe.options.RenderProperties;
 			bodiesGeometry.set(_body, bodyGeom);
 		}
 		
-		public function remove_body(_body:Body) {
+		public function remove(_body:Body) {
 			if (options.immediate) return;
 			var geom = bodiesGeometry.get(_body);
 			if (geom == null) return;
@@ -159,7 +159,7 @@ import luxe.options.RenderProperties;
             clear();
 			
 			for (key in bodiesGeometry.keys()) {
-				remove_body(key);
+				remove(key);
 			}
 
         } //destroy
