@@ -1,6 +1,5 @@
 package luxe.physics.nape;
 
-import haxe.ds.ObjectMap;
 import nape.geom.Vec2List;
 import phoenix.Color;
 import phoenix.geometry.Geometry;
