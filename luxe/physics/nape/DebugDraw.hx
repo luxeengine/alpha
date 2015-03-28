@@ -41,16 +41,14 @@ import luxe.options.RenderProperties;
 
         public var options : RenderProperties;
 		
-		var draw_immediate : Bool;
-		
 		var bodiesGeometry:ObjectMap<Body, Geometry>;
 
-        public function new( ?_options : RenderProperties, _draw_immediate:Bool = true) {
+        public function new( ?_options : RenderProperties) {
 
             geometry = [];
-            options = (_options == null) ? {} : _options;
-
-			draw_immediate = _draw_immediate;
+            options = (_options == null) ? { } : _options;
+			
+			if (options.immediate == null) options.immediate = false;
 			
             if (options.batcher == null) options.batcher = Luxe.renderer.batcher;
 			
@@ -61,12 +59,12 @@ import luxe.options.RenderProperties;
     //Public API
 		
 		public function add_body(_body:Body) {
-			if (draw_immediate) return;
+			if (options.immediate) return;
 			
 			var draw_color = new Color().rgb(0xCC0000);
 			var bodyGeom = new Geometry({
                 primitive_type : phoenix.Batcher.PrimitiveType.lines,
-                immediate: false,
+                immediate: options.immediate,
                 depth: options.depth,
                 group: options.group,
                 visible: options.visible,
@@ -88,7 +86,7 @@ import luxe.options.RenderProperties;
 		}
 		
 		public function remove_body(_body:Body) {
-			if (draw_immediate) return;
+			if (options.immediate) return;
 			var geom = bodiesGeometry.get(_body);
 			if (geom == null) return;
 			geom.drop();
@@ -97,7 +95,7 @@ import luxe.options.RenderProperties;
 		}
 		
         public function clear() {
-			if (draw_immediate) {
+			if (options.immediate) {
 				for(g in geometry) {
 					geometry.remove(g);
 					if(!g.immediate) {
@@ -111,7 +109,7 @@ import luxe.options.RenderProperties;
         } //clear
 
         public function draw(object:Dynamic) {
-			if (draw_immediate) {
+			if (options.immediate) {
 				if(Std.is(object, Space)) {
 					draw_space( cast object );
 				} else
@@ -217,7 +215,7 @@ import luxe.options.RenderProperties;
 			
 			var geom = new Geometry( {
 				primitive_type: phoenix.Batcher.PrimitiveType.lines,
-				immediate: true,
+				immediate: options.immediate,
 				depth: options.depth,
 				group: options.group,
 				visible: options.visible,
@@ -272,7 +270,7 @@ import luxe.options.RenderProperties;
                     y: _p.y,
                     r: 2,
                     color: color,
-                    immediate: true,
+                    immediate: options.immediate,
                     depth: options.depth,
                     group: options.group,
                     visible: options.visible,
