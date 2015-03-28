@@ -41,18 +41,17 @@ import luxe.options.RenderProperties;
 
         public var options : RenderProperties;
 		
-		public var drawImmediate : Bool = false;
+		var draw_immediate : Bool;
 		
 		var bodiesGeometry:ObjectMap<Body, Geometry>;
 
-        public function new( ?_options : RenderProperties ) {
+        public function new( ?_options : RenderProperties, _draw_immediate:Bool = true) {
 
             geometry = [];
             options = (_options == null) ? {} : _options;
 
-                //force immediate for now
-
-            options.immediate = true;
+			draw_immediate = _draw_immediate;
+			
             if (options.batcher == null) options.batcher = Luxe.renderer.batcher;
 			
 			bodiesGeometry = new ObjectMap<Body, Geometry>();
@@ -62,6 +61,8 @@ import luxe.options.RenderProperties;
     //Public API
 		
 		public function add_body(_body:Body) {
+			if (draw_immediate) return;
+			
 			var draw_color = new Color().rgb(0xCC0000);
 			var bodyGeom = new Geometry({
                 primitive_type : phoenix.Batcher.PrimitiveType.lines,
@@ -87,14 +88,16 @@ import luxe.options.RenderProperties;
 		}
 		
 		public function remove_body(_body:Body) {
+			if (draw_immediate) return;
 			var geom = bodiesGeometry.get(_body);
 			if (geom == null) return;
 			geom.drop();
+			geom = null;
 			bodiesGeometry.remove(_body);
 		}
 		
         public function clear() {
-			if (drawImmediate) {
+			if (draw_immediate) {
 				for(g in geometry) {
 					geometry.remove(g);
 					if(!g.immediate) {
@@ -108,7 +111,7 @@ import luxe.options.RenderProperties;
         } //clear
 
         public function draw(object:Dynamic) {
-			if (drawImmediate) {
+			if (draw_immediate) {
 				if(Std.is(object, Space)) {
 					draw_space( cast object );
 				} else
@@ -133,17 +136,22 @@ import luxe.options.RenderProperties;
 				var geom:Geometry;
 				var euler:Vector = new Vector();
 				for (body in bodiesGeometry.keys()) {
+					
 					geom = bodiesGeometry.get(body);
+					
 					geom.transform.pos.x = body.position.x;
 					geom.transform.pos.y = body.position.y;
+					
 					euler.set_xyz(0, 0, body.rotation);
 					geom.transform.rotation.setFromEuler(euler);
+					
 					if (body.isSleeping) {
 						geom.color.a = 0.3;
 					}
 					else {
 						geom.color.a = 1;
 					}
+					
 				} //for all bodies
 			}
         } //draw
@@ -160,28 +168,28 @@ import luxe.options.RenderProperties;
 
     //Internal API
 
-        function draw_space( _space:Space, _immediate:Bool = true ) {
+        function draw_space( _space:Space) {
             if(drawBodies) {
                 for(_b in _space.bodies) {
-                    draw_body(_b, _immediate);
+                    draw_body(_b);
                 }
             }
         } //space
 
-        function draw_compound( _space:Compound, _immediate:Bool = true ) {
+        function draw_compound( _space:Compound) {
 
             //:todo :
 
         } //draw_compound
 
-        function draw_body( _body:Body, _color:Int = 0xCC0000, _immediate:Bool = true ) {
+        function draw_body( _body:Body, _color:Int = 0xCC0000) {
 
             var _draw_color = new Color(1,1,1,1).rgb(_color);
 
             if(_body.debugDraw) {
 
                 for(_shape in _body.shapes) {
-                    draw_shape(_shape, _color, _immediate);
+                    draw_shape(_shape, _color);
                 }
 
                 if(drawBodyDetail) {
@@ -190,16 +198,16 @@ import luxe.options.RenderProperties;
                         //always draw lesser details less visible
                     _draw_color.a = 0.1;
                         //center point
-                    draw_point(_body.position, _draw_color, _immediate);
+                    draw_point(_body.position, _draw_color);
                         //bounds
-                    draw_AABB(_body.bounds, _draw_color, _immediate);
+                    draw_AABB(_body.bounds, _draw_color);
                 }
 
             } //_body.debugDraw
 
         } //draw_body
 
-        function draw_shape( _shape:Shape, _color:Int = 0xCC0000, _immediate:Bool = true ) {
+        function draw_shape( _shape:Shape, _color:Int = 0xCC0000) {
 
             var _draw_color = new Color(1,1,1,1).rgb(_color);
 
@@ -209,7 +217,7 @@ import luxe.options.RenderProperties;
 			
 			var geom = new Geometry( {
 				primitive_type: phoenix.Batcher.PrimitiveType.lines,
-				immediate: _immediate,
+				immediate: true,
 				depth: options.depth,
 				group: options.group,
 				visible: options.visible,
@@ -231,7 +239,7 @@ import luxe.options.RenderProperties;
 
         } //draw_shape
 
-        function draw_constraint( _constraint:Constraint, _immediate:Bool = true ) {
+        function draw_constraint( _constraint:Constraint) {
 
             //:todo : I wanted to look at how nape default draws things to match if possible
 
@@ -256,7 +264,7 @@ import luxe.options.RenderProperties;
 			return verts;
 		}
 
-        function draw_point( _p:nape.geom.Vec2, color:Color, _immediate:Bool = true ) {
+        function draw_point( _p:nape.geom.Vec2, color:Color) {
 
             geometry.push(
                 Luxe.draw.ring({
@@ -264,7 +272,7 @@ import luxe.options.RenderProperties;
                     y: _p.y,
                     r: 2,
                     color: color,
-                    immediate: _immediate,
+                    immediate: true,
                     depth: options.depth,
                     group: options.group,
                     visible: options.visible,
@@ -274,7 +282,7 @@ import luxe.options.RenderProperties;
 
         } //draw_point
 
-        function draw_AABB( _bounds:nape.geom.AABB, color:Color, _immediate:Bool = true ) {
+        function draw_AABB( _bounds:nape.geom.AABB, color:Color) {
 
             geometry.push(
                 Luxe.draw.rectangle({
@@ -283,7 +291,7 @@ import luxe.options.RenderProperties;
                     w: _bounds.width,
                     h: _bounds.height,
                     color: color,
-                    immediate: _immediate,
+                    immediate: true,
                     depth: options.depth,
                     group: options.group,
                     visible: options.visible,

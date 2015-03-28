@@ -20,8 +20,6 @@ package luxe.physics.nape;
 
             space = new Space();
 
-            debugdraw = new DebugDraw();
-
             gravity = new Vector(0, 980);
 
         } //init
@@ -32,7 +30,7 @@ package luxe.physics.nape;
 
             super.render();
 
-            if(draw) {
+            if(draw && debugdraw != null) {
                 debugdraw.clear();
                 debugdraw.draw( space );
             }
@@ -52,7 +50,6 @@ package luxe.physics.nape;
 
         public override function destroy() {
 
-            debugdraw.destroy();
             space.clear();
             space = null;
 
