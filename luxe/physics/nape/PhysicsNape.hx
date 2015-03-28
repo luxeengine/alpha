@@ -31,7 +31,6 @@ package luxe.physics.nape;
             super.render();
 
             if(draw && debugdraw != null) {
-                debugdraw.clear();
                 debugdraw.draw( space );
             }
 

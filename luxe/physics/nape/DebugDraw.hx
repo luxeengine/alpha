@@ -36,22 +36,19 @@ import luxe.options.RenderProperties;
          // If true, then representations of the active constraints will be drawn.
         public var drawConstraints:Bool = false;
 
-        public var geometry : Array<Geometry>;
-
         public var options : RenderProperties;
 		
-		var bodiesGeometry:Map<Body, Geometry>;
+		var geometry:Map<Body, Geometry>;
 
         public function new( ?_options : RenderProperties) {
-
-            geometry = [];
+			
             options = (_options == null) ? { } : _options;
 			
 			if (options.immediate == null) options.immediate = false;
 			
             if (options.batcher == null) options.batcher = Luxe.renderer.batcher;
 			
-			bodiesGeometry = new Map();
+			geometry = new Map();
 
         } //new
 
@@ -81,32 +78,19 @@ import luxe.options.RenderProperties;
 				
 				bodyGeom.vertices = bodyGeom.vertices.concat(shapeVerts);
 			}
-			bodiesGeometry.set(_body, bodyGeom);
+			
+			geometry.set(_body, bodyGeom);
 		}
 		
 		public function remove(_body:Body) {
 			if (options.immediate) return;
-			var geom = bodiesGeometry.get(_body);
+			var geom = geometry.get(_body);
 			if (geom == null) return;
 			geom.drop();
 			geom = null;
-			bodiesGeometry.remove(_body);
+			geometry.remove(_body);
 		}
 		
-        public function clear() {
-			if (options.immediate) {
-				for(g in geometry) {
-					geometry.remove(g);
-					if(!g.immediate) {
-						g.drop();
-					}
-					g = null;
-				}
-
-				geometry = [];
-			}
-        } //clear
-
         public function draw(object:Dynamic) {
 			if (options.immediate) {
 				if(Std.is(object, Space)) {
@@ -132,9 +116,9 @@ import luxe.options.RenderProperties;
 			else {
 				var geom:Geometry;
 				var euler:Vector = new Vector();
-				for (body in bodiesGeometry.keys()) {
+				for (body in geometry.keys()) {
 					
-					geom = bodiesGeometry.get(body);
+					geom = geometry.get(body);
 					
 					geom.transform.pos.x = body.position.x;
 					geom.transform.pos.y = body.position.y;
@@ -154,10 +138,8 @@ import luxe.options.RenderProperties;
         } //draw
 
         public function destroy() {
-
-            clear();
 			
-			for (key in bodiesGeometry.keys()) {
+			for (key in geometry.keys()) {
 				remove(key);
 			}
 
@@ -231,8 +213,6 @@ import luxe.options.RenderProperties;
 				var poly = _shape.castPolygon;
 				geom.vertices = make_polygon_verts(poly.worldVerts, _draw_color);
 			}
-			
-			geometry.push(geom);
 
         } //draw_shape
 
@@ -244,6 +224,39 @@ import luxe.options.RenderProperties;
 
     //Internal helpers
 	
+        function draw_point( _p:nape.geom.Vec2, color:Color) {
+
+			Luxe.draw.ring({
+				x: _p.x,
+				y: _p.y,
+				r: 2,
+				color: color,
+				immediate: options.immediate,
+				depth: options.depth,
+				group: options.group,
+				visible: options.visible,
+				batcher: options.batcher
+			});
+
+        } //draw_point
+
+        function draw_AABB( _bounds:nape.geom.AABB, color:Color) {
+
+			Luxe.draw.rectangle({
+				x: _bounds.x,
+				y: _bounds.y,
+				w: _bounds.width,
+				h: _bounds.height,
+				color: color,
+				immediate: true,
+				depth: options.depth,
+				group: options.group,
+				visible: options.visible,
+				batcher: options.batcher
+			});
+
+        } //draw_AABB
+		
 		function make_circle_verts(radius:Float, color:Color):Array<Vertex> {
 			
 			var verts = Luxe.draw.ring( {
@@ -260,43 +273,6 @@ import luxe.options.RenderProperties;
 			
 			return verts;
 		}
-
-        function draw_point( _p:nape.geom.Vec2, color:Color) {
-
-            geometry.push(
-                Luxe.draw.ring({
-                    x: _p.x,
-                    y: _p.y,
-                    r: 2,
-                    color: color,
-                    immediate: options.immediate,
-                    depth: options.depth,
-                    group: options.group,
-                    visible: options.visible,
-                    batcher: options.batcher
-                })
-            );
-
-        } //draw_point
-
-        function draw_AABB( _bounds:nape.geom.AABB, color:Color) {
-
-            geometry.push(
-                Luxe.draw.rectangle({
-                    x: _bounds.x,
-                    y: _bounds.y,
-                    w: _bounds.width,
-                    h: _bounds.height,
-                    color: color,
-                    immediate: true,
-                    depth: options.depth,
-                    group: options.group,
-                    visible: options.visible,
-                    batcher: options.batcher
-                })
-            );
-
-        } //draw_AABB
 		
 		function make_polygon_verts( vertexList:Vec2List, color:Color):Array<Vertex> {
 			var verts = new Array<Vertex>();
