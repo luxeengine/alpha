@@ -24,25 +24,16 @@ package luxe.physics.nape;
 
         } //init
 
-            //called from the core to update during main loop
-            //mainly used to render outside of the fixed loop
-        public override function render() {
-
-            super.render();
-
-            if(draw && debugdraw != null) {
-                debugdraw.draw( space );
-            }
-
-        } //render
-
             //update the actual physics
         public override function update() {
 
             if(!paused) {
 
                 space.step( Luxe.physics.step_delta * Luxe.timescale, velocity_iterations, position_iterations );
-
+				
+				if (draw && debugdraw != null) {
+					debugdraw.update();
+				}
             } //paused
 
         } //update
@@ -65,6 +56,13 @@ package luxe.physics.nape;
             return super.set_gravity(_gravity);
 
         } //set_gravity
+		
+		override public function set_draw(_draw:Bool):Bool {
+			if (debugdraw != null) {
+				debugdraw.visible = _draw;
+			}
+			return draw = _draw;
+		}
 
     } //PhysicsNape
 

@@ -38,13 +38,14 @@ import luxe.options.RenderProperties;
 
         public var options : RenderProperties;
 		
-		var geometry:Map<Body, Geometry>;
-
+		public var geometry:Map<Body, CachedGeometry>;
+		
+		@:allow(luxe.physics.nape.PhysicsNape)
+		var visible(default, set):Bool = true;
+		
         public function new( ?_options : RenderProperties) {
 			
             options = (_options == null) ? { } : _options;
-			
-			if (options.immediate == null) options.immediate = false;
 			
             if (options.batcher == null) options.batcher = Luxe.renderer.batcher;
 			
@@ -54,146 +55,131 @@ import luxe.options.RenderProperties;
 
     //Public API
 		
-		public function add(_body:Body) {
-			if (options.immediate) return;
-			
-			var draw_color = new Color().rgb(0xCC0000);
+		public function add(_body:Body, _active_color:Color, ?_inactive_color:Color) {
 			var bodyGeom = new Geometry({
-                primitive_type : phoenix.Batcher.PrimitiveType.lines,
-                immediate: options.immediate,
-                depth: options.depth,
-                group: options.group,
-                visible: options.visible,
-                batcher: options.batcher,
-				color:draw_color
-            });
+				primitive_type : phoenix.Batcher.PrimitiveType.lines,
+				immediate: options.immediate,
+				depth: options.depth,
+				group: options.group,
+				visible: options.visible,
+				batcher: options.batcher
+			});
 			
 			var shapeVerts:Array<Vertex>;
 			for (_shape in _body.shapes) {
 				if (_shape.isCircle()) {
-					shapeVerts = make_circle_verts(_shape.castCircle.radius, draw_color);
+					shapeVerts = make_circle_verts(_shape.castCircle.radius);
 				} else {
-					shapeVerts = make_polygon_verts(_shape.castPolygon.localVerts, draw_color);
+					shapeVerts = make_polygon_verts(_shape.castPolygon.localVerts);
 				}
 				
 				bodyGeom.vertices = bodyGeom.vertices.concat(shapeVerts);
 			}
 			
-			geometry.set(_body, bodyGeom);
+			bodyGeom.color = _active_color;
+			
+			if (_inactive_color == null) {
+				_inactive_color = _active_color.clone();
+				_inactive_color.a = _active_color.a * 0.3;
+			}
+			
+			geometry.set(_body, {geometry: bodyGeom, active_color: _active_color, inactive_color: _inactive_color});
 		}
 		
 		public function remove(_body:Body) {
-			if (options.immediate) return;
-			var geom = geometry.get(_body);
-			if (geom == null) return;
-			geom.drop();
-			geom = null;
+			var cache = geometry.get(_body);
+			if (cache == null) return;
+			cache.geometry.drop();
+			cache.active_color = null;
+			cache.inactive_color = null;
+			cache = null;
 			geometry.remove(_body);
 		}
 		
-        public function draw(object:Dynamic) {
-			if (options.immediate) {
-				if(Std.is(object, Space)) {
-					draw_space( cast object );
-				} else
-
-				if(Std.is(object, Compound)) {
-					draw_compound( cast object );
-				} else
-
-				if(Std.is(object, Body)) {
-					draw_body( cast object );
-				} else
-
-				if(Std.is(object, Shape)) {
-					draw_shape( cast object );
-				} else
-
-				if(Std.is(object, Constraint)) {
-					draw_constraint( cast object );
+		public function update() {
+			if (!visible) return;
+			
+			var cache:CachedGeometry;
+			var euler:Vector = new Vector();
+			for (body in geometry.keys()) {
+				
+				cache = geometry.get(body);
+				
+				cache.geometry.transform.pos.x = body.position.x;
+				cache.geometry.transform.pos.y = body.position.y;
+				
+				euler.set_xyz(0, 0, body.rotation);
+				cache.geometry.transform.rotation.setFromEuler(euler);
+				
+				if (body.isSleeping) {
+					cache.geometry.color = cache.inactive_color;
 				}
-			}
-			else {
-				var geom:Geometry;
-				var euler:Vector = new Vector();
-				for (body in geometry.keys()) {
+				else {
+					cache.geometry.color = cache.active_color;
+				}
 					
-					geom = geometry.get(body);
-					
-					geom.transform.pos.x = body.position.x;
-					geom.transform.pos.y = body.position.y;
-					
-					euler.set_xyz(0, 0, body.rotation);
-					geom.transform.rotation.setFromEuler(euler);
-					
-					if (body.isSleeping) {
-						geom.color.a = 0.3;
-					}
-					else {
-						geom.color.a = 1;
-					}
-					
-				} //for all bodies
-			}
-        } //draw
+			} //for all bodies
+		} //update
 
+		public function draw_immediate(?_options:RenderProperties) {
+			var previous_options = options;
+			options = _options;
+			var cache:CachedGeometry;
+			for (body in geometry.keys()) {
+				cache = geometry.get(body);
+				draw_body(body, cache.active_color, cache.inactive_color);
+			}
+			options = previous_options;
+		}
+		
         public function destroy() {
 			
+			//Handle cached geometry
 			for (key in geometry.keys()) {
 				remove(key);
 			}
+			
+			geometry = null;
 
         } //destroy
 
     //Internal API
-
-        function draw_space( _space:Space) {
-            if(drawBodies) {
-                for(_b in _space.bodies) {
-                    draw_body(_b);
-                }
-            }
-        } //space
-
-        function draw_compound( _space:Compound) {
-
-            //:todo :
-
-        } //draw_compound
-
-        function draw_body( _body:Body, _color:Int = 0xCC0000) {
-
-            var _draw_color = new Color(1,1,1,1).rgb(_color);
-
+		
+		
+		function set_visible(state:Bool) {
+			if (visible == state) return visible;
+			
+			for (cache in geometry.iterator()) {
+				cache.geometry.visible = state;
+			}
+			return visible = state;
+		}
+		
+        function draw_body( _body:Body, _active_color:Color, _inactive_color:Color) {
+			
             if(_body.debugDraw) {
 
                 for(_shape in _body.shapes) {
-                    draw_shape(_shape, _color);
+                    draw_shape(_shape, _active_color, _inactive_color);
                 }
 
                 if(drawBodyDetail) {
                         //details are white for now
-                    _draw_color.rgb(0xffffff);
+                    var detail_color = new Color().rgb(0xffffff);
                         //always draw lesser details less visible
-                    _draw_color.a = 0.1;
+                   detail_color.a = 0.1;
                         //center point
-                    draw_point(_body.position, _draw_color);
+                    draw_point(_body.position, detail_color);
                         //bounds
-                    draw_AABB(_body.bounds, _draw_color);
+                    draw_AABB(_body.bounds, detail_color);
                 }
 
             } //_body.debugDraw
 
         } //draw_body
 
-        function draw_shape( _shape:Shape, _color:Int = 0xCC0000) {
+        function draw_shape( _shape:Shape, _active_color:Color, _inactive_color:Color) {
 
-            var _draw_color = new Color(1,1,1,1).rgb(_color);
-
-            if(_shape.body.isSleeping) {
-                _draw_color.a = 0.3;
-            }
-			
 			var geom = new Geometry( {
 				primitive_type: phoenix.Batcher.PrimitiveType.lines,
 				immediate: options.immediate,
@@ -205,14 +191,16 @@ import luxe.options.RenderProperties;
 			
 			if (_shape.isCircle()) {
 				var circle = _shape.castCircle;
-				geom.vertices = make_circle_verts(circle.radius, _draw_color);
+				geom.vertices = make_circle_verts(circle.radius);
 				geom.transform.rotation.setFromEuler(new Vector(0, 0, _shape.body.rotation));
 				geom.transform.pos.set_xy(_shape.body.position.x, _shape.body.position.y);
 			}
 			else {
 				var poly = _shape.castPolygon;
-				geom.vertices = make_polygon_verts(poly.worldVerts, _draw_color);
+				geom.vertices = make_polygon_verts(poly.worldVerts);
 			}
+			
+			geom.color = _shape.body.isSleeping ? _inactive_color : _active_color;
 
         } //draw_shape
 
@@ -221,6 +209,12 @@ import luxe.options.RenderProperties;
             //:todo : I wanted to look at how nape default draws things to match if possible
 
         } //draw_constraint
+		
+		function draw_compound( _space:Compound) {
+
+            //:todo :
+
+        } //draw_compound
 
     //Internal helpers
 	
@@ -257,33 +251,32 @@ import luxe.options.RenderProperties;
 
         } //draw_AABB
 		
-		function make_circle_verts(radius:Float, color:Color):Array<Vertex> {
+		function make_circle_verts(radius:Float):Array<Vertex> {
 			
 			var verts = Luxe.draw.ring( {
 				x: 0,
 				y: 0,
 				r: radius,
-				color: color,
 				no_batcher_add: true
 			}).vertices;
 			
 			//add a center point
-            verts.insert( 0, new Vertex( new Vector(0, 0), color ) );
+            verts.insert( 0, new Vertex( new Vector(0, 0)) );
             verts.insert( 0, verts[1].clone() );
 			
 			return verts;
 		}
 		
-		function make_polygon_verts( vertexList:Vec2List, color:Color):Array<Vertex> {
+		function make_polygon_verts( vertexList:Vec2List):Array<Vertex> {
 			var verts = new Array<Vertex>();
 			
             var i = 0;
             for(v in vertexList) {
 
-                verts.push( new Vertex( new Vector(v.x, v.y), color ) );
+                verts.push( new Vertex( new Vector(v.x, v.y)) );
 				
 				if (i != 0) {
-					verts.push(new Vertex(new Vector(v.x, v.y), color));
+					verts.push(new Vertex(new Vector(v.x, v.y)));
 				}
 
                 i++;
@@ -291,11 +284,16 @@ import luxe.options.RenderProperties;
 
             var last = vertexList.at(0);
 
-			verts.push( new Vertex( new Vector(last.x, last.y), color ) );
+			verts.push( new Vertex( new Vector(last.x, last.y)) );
 			
 			return verts;
 		}
 
     } //DebugDraw
-
+	
+	typedef CachedGeometry = {
+		var geometry:Geometry;
+		var active_color:Color;
+		var inactive_color:Color;
+	}
 #end //nape
