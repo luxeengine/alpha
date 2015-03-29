@@ -40,6 +40,7 @@ import luxe.options.RenderProperties;
 		
 		public var geometry:Map<Body, CachedGeometry>;
 		
+		//Use our own visible instead of options.visible for the accessor
 		@:allow(luxe.physics.nape.PhysicsNape)
 		var visible(default, set):Bool = true;
 		
@@ -61,7 +62,7 @@ import luxe.options.RenderProperties;
 				immediate: options.immediate,
 				depth: options.depth,
 				group: options.group,
-				visible: options.visible,
+				visible: visible,
 				batcher: options.batcher
 			});
 			
@@ -123,13 +124,23 @@ import luxe.options.RenderProperties;
 
 		public function draw_immediate(?_options:RenderProperties) {
 			var previous_options = options;
-			options = _options;
+			
+			var previous_immediate = options.immediate;
+			
+			if (_options != null) {
+				options = _options;
+			}
+			
+			options.immediate = true;
+			
 			var cache:CachedGeometry;
 			for (body in geometry.keys()) {
 				cache = geometry.get(body);
 				draw_body(body, cache.active_color, cache.inactive_color);
 			}
+			
 			options = previous_options;
+			options.immediate = previous_immediate;
 		}
 		
         public function destroy() {
