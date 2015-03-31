@@ -39,12 +39,21 @@ class Audio {
         return core.app.audio.create_from_bytes( _id, _name, _bytes );
     } //create_from_bytes
 
+
         /**
             Destroy a named audio reference.
             Use the reference directly with sound.destroy if you have an instance. */
     public function uncreate( _name:String ) {
         return core.app.audio.uncreate( _name );
     } //uncreate
+
+        /** Add a manually created sound instance to the audio system.
+            Once added the regular named api should apply.
+            Do not add sounds returned from `create` calls. */
+    @:noCompletion public function add( sound:luxe.Sound ) {
+        return core.app.audio.add( sound );
+    }
+
 
         /** Listen for an event on a named sound. `load` and `end` are valid */
     public function on(_name:String, _event:String, _handler:luxe.Sound->Void) {
