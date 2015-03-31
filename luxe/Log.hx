@@ -4,21 +4,29 @@ import haxe.io.Path;
 import haxe.macro.Context;
 import haxe.macro.Expr;
 
-/** A macro based logging class. See the logging guide for full details. */
+private enum LogError {
+    RequireString(detail:String);
+}
+
 class Log {
 
-        //default to log
-    @:noCompletion public static var _level : Int = 1;
-    @:noCompletion public static var _filter : Array<String>;
-    @:noCompletion public static var _exclude : Array<String>;
+        //default to `log`
+    static var _level : Int = 1;
+    static var _filter : Array<String>;
+    static var _exclude : Array<String>;
+    static var _log_width : Int = 16;
 
-    @:noCompletion public static var _log_width : Int = 16;
+    macro public static function get_level() : haxe.macro.Expr {
+        return macro $v{ ${luxe.Log._level} };
+    }
+    macro public static function get_filter() : haxe.macro.Expr {
+        return macro $v{ ${luxe.Log._filter} };
+    }
+    macro public static function get_exclude() : haxe.macro.Expr {
+        return macro $v{ ${luxe.Log._exclude} };
+    }
 
-    macro public static function level( __level:Int ) : haxe.macro.Expr {
-
-        #if !display
-            trace("/ luxe / set log level to " + __level );
-        #end
+    macro static function level( __level:Int ) : haxe.macro.Expr {
 
         _level = __level;
 
@@ -26,11 +34,7 @@ class Log {
 
     } //level
 
-    macro public static function filter( __filter:String ) : haxe.macro.Expr {
-
-        #if !display
-            trace("/ luxe / setting filter : " + __filter );
-        #end
+    macro static function filter( __filter:String ) : haxe.macro.Expr {
 
         _filter = __filter.split(',');
 
@@ -44,9 +48,7 @@ class Log {
 
     } //filter
 
-    macro public static function exclude( __exclude:String ) : haxe.macro.Expr {
-
-        trace("/ luxe / setting exclude : " + __exclude );
+    macro static function exclude( __exclude:String ) : haxe.macro.Expr {
 
         _exclude = __exclude.split(',');
 
@@ -60,9 +62,7 @@ class Log {
 
     } //exclude
 
-    macro public static function width( _width:Int ) : haxe.macro.Expr {
-
-        trace("/ luxe / set log width to " + _width );
+    macro static function width( _width:Int ) : haxe.macro.Expr {
 
         _log_width = _width;
 
@@ -83,7 +83,7 @@ class Log {
             if(meta.name == ':log_as') {
                 var _str = switch(meta.params[0].expr) {
                     case EConst(CString(str)): _context = str;
-                    default: throw 'type should be string constant like "name" for log_as meta flag';
+                    default: throw LogError.RequireString('log_as meta requires a string constant like "name"');
                 }
             }
         } //for each meta
@@ -116,7 +116,7 @@ class Log {
             if(meta.name == ':log_as') {
                 var _str = switch(meta.params[0].expr) {
                     case EConst(CString(str)): _context = str;
-                    default: throw 'type should be string constant like "name" for log_as meta flag';
+                    default: throw LogError.RequireString('log_as meta requires a string constant like "name"');
                 }
             }
         } //for each meta
@@ -149,7 +149,7 @@ class Log {
             if(meta.name == ':log_as') {
                 var _str = switch(meta.params[0].expr) {
                     case EConst(CString(str)): _context = str;
-                    default: throw 'type should be string constant like "name" for log_as meta flag';
+                    default: throw LogError.RequireString('log_as meta requires a string constant like "name"');
                 }
             }
         } //for each meta
@@ -182,7 +182,7 @@ class Log {
             if(meta.name == ':log_as') {
                 var _str = switch(meta.params[0].expr) {
                     case EConst(CString(str)): _context = str;
-                    default: throw 'type should be string constant like "name" for log_as meta flag';
+                    default: throw LogError.RequireString('log_as meta requires a string constant like "name"');
                 }
             }
         } //for each meta
@@ -204,6 +204,27 @@ class Log {
         return macro null;
 
     } //_verboser
+
+    macro public static function assert(expr:Expr) {
+        #if (debug || luxe_assert)
+            var str = haxe.macro.ExprTools.toString(expr);
+            return macro @:pos(Context.currentPos()) {
+                if(!$expr) throw luxe.Log.DebugError.assertion('$str');
+            }
+        #end
+        return macro null;
+    } //assert
+
+
+    macro public static function assertnull(value:Expr) {
+        #if (debug || luxe_assert)
+            var str = haxe.macro.ExprTools.toString(value);
+            return macro @:pos(Context.currentPos()) {
+                if($value == null) throw luxe.Log.DebugError.null_assertion('$str == null');
+            }
+        #end
+        return macro null;
+    } //assert
 
 
 //Internal Helpers
@@ -230,4 +251,9 @@ class Log {
         return macro Context.getPosInfos(Context.currentPos()).file;
     } //get_log_context
 
-} // Log
+} // Debug
+
+enum DebugError {
+    assertion(expr:String);
+    null_assertion(expr:String);
+}

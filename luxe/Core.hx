@@ -2,7 +2,7 @@ package luxe;
 
 import snow.Snow;
 import snow.types.Types;
-import snow.window.Window;
+import snow.system.window.Window;
 
 import Luxe;
 import luxe.IO;
@@ -96,6 +96,12 @@ extends
 
         //This gets called once snow has booted us - this is
     override function ready() {
+
+        if(luxe.Log.get_level() > 1) {
+            log('log / level to ${luxe.Log.get_level()}' );
+            log('log / filter : ${luxe.Log.get_filter()}');
+            log('log / exclude : ${luxe.Log.get_exclude()}');
+        }
 
         Luxe.version = haxe.Resource.getString('version');
             //Don't change this, it matches semantic versioning http://semver.org/
@@ -852,6 +858,7 @@ extends
        return game.config( config );
 
     } //config
+
 
 } //Core
 
