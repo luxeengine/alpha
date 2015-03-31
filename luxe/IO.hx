@@ -2,19 +2,20 @@ package luxe;
 
 import luxe.Core;
 
+@:allow(luxe.Core)
 class IO {
 
     public var core : Core;
 
-    @:allow(luxe.Core)
     function new( _core:Core ) {
         core = _core;
     } //new
 
 //Path specifics
-
+#if luxe_native
     public var app_path (get,never) : String;
     public var app_path_prefs (get,never) : String;
+#end
 
 //Utility features
 
@@ -29,19 +30,22 @@ class IO {
 
 //Internal
 
+#if luxe_native
+
     function get_app_path() {
 
-        return core.app.io.app_path();
+        return core.app.io.module.app_path();
 
     } //get_app_path
 
     function get_app_path_prefs() {
 
-        return core.app.io.app_path_prefs();
+        return core.app.io.module.app_path_prefs();
 
     } //get_app_path
 
-    @:allow(luxe.Core)
+#end
+
     function init() {
 
     } //init

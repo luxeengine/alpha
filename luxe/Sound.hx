@@ -1,3 +1,3 @@
 package luxe;
 
-typedef Sound = snow.audio.Sound;
+typedef Sound = snow.system.audio.Sound;

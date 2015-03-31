@@ -1,6 +1,6 @@
 package phoenix;
 
-import snow.render.opengl.GL;
+import snow.modules.opengl.GL;
 import snow.utils.Libs;
 
 import luxe.Log.log;
@@ -317,7 +317,7 @@ function get_target() : RenderTexture {
         var frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.glsl');
 
         #if luxe_web
-            var ext = snow.platform.web.render.opengl.GL.current_context.getExtension('OES_standard_derivatives');
+            var ext = snow.modules.opengl.GL.current_context.getExtension('OES_standard_derivatives');
         #end
 
             //for web + mobile, these are required

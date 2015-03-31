@@ -14,7 +14,7 @@ import luxe.options.GeometryOptions;
 
 import snow.io.typedarray.Float32Array;
 
-import snow.render.opengl.GL;
+import snow.modules.opengl.GL;
 
 class GeometryKey {
 

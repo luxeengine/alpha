@@ -1,6 +1,6 @@
 package phoenix;
 
-import snow.render.opengl.GL;
+import snow.modules.opengl.GL;
 import phoenix.Renderer;
 import phoenix.Batcher;
 

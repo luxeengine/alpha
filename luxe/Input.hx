@@ -7,9 +7,9 @@ import snow.types.Types;
     /** A modifier state for key events */
 typedef ModState        =   snow.types.Types.ModState;
     /** A named list of keycodes. Use to compare against key event `keycode` values */
-typedef Key             =   snow.input.Keycodes.Keycodes;
+typedef Key             =   snow.system.input.Keycodes.Keycodes;
     /** A named list of scancodes. Use to compare against key event `scancode` values */
-typedef Scan            =   snow.input.Keycodes.Scancodes;
+typedef Scan            =   snow.system.input.Keycodes.Scancodes;
 
 /** A typed mouse button id */
 @:enum abstract MouseButton(Int) from Int to Int {

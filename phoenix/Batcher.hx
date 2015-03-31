@@ -6,7 +6,7 @@ import phoenix.geometry.Vertex;
 import phoenix.Renderer;
 import phoenix.BatchState;
 
-import snow.render.opengl.GL;
+import snow.modules.opengl.GL;
 import snow.io.typedarray.Float32Array;
 
 import luxe.structural.BalancedBST;

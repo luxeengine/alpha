@@ -1,7 +1,7 @@
 package phoenix;
 
-import snow.assets.AssetImage;
-import snow.render.opengl.GL;
+import snow.system.assets.Asset;
+import snow.modules.opengl.GL;
 import snow.utils.Libs;
 
 import snow.io.typedarray.Uint8Array;
@@ -234,7 +234,7 @@ class Texture extends Resource {
         var texture = new Texture(resources);
 
         var _asset_info = Luxe.core.app.assets.info_from_id(_id, 'image');
-        var _asset = new snow.assets.AssetImage( Luxe.core.app.assets, _asset_info );
+        var _asset = new snow.system.assets.Asset.AssetImage( Luxe.core.app.assets, _asset_info );
 
         _asset.load_from_pixels(_id, _width, _height, _pixels);
 

@@ -1,6 +1,6 @@
 package phoenix;
 
-import snow.render.opengl.GL;
+import snow.modules.opengl.GL;
 
 class RenderState {
 

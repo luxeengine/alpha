@@ -1,6 +1,6 @@
 package phoenix.utils;
 
-import snow.render.opengl.GL;
+import snow.modules.opengl.GL;
 import phoenix.Batcher.PrimitiveType;
 import phoenix.Batcher.BlendMode;
 

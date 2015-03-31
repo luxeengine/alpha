@@ -11,7 +11,7 @@ import luxe.Log._verbose;
 import phoenix.Vector;
 import phoenix.Texture;
 
-import snow.render.opengl.GL;
+import snow.modules.opengl.GL;
 
 private typedef Location = GLUniformLocation;
 
