@@ -207,7 +207,6 @@ class TiledLayer {
         //now our bytes should be filled with the decoded base64,
         //so we check if it's compressed and decompressed it if need be
 
-        trace(compression);
         if(compression != null) {
             switch(compression) {
                 case 'gzip': throw "TiledMap: gzip compression is not currently supported. Try zlib/zip compression instead.";
