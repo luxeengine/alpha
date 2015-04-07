@@ -119,8 +119,8 @@ class Luxe {
 
         var res = new JSONResource( _id, null, Luxe.resources );
 
-        core.app.assets.text(_id, {
-            onload : function( _asset:snow.system.assets.Asset.AssetText) {
+        core.app.assets.text(_id)
+            .then(function( _asset:snow.system.assets.Asset.AssetText) {
 
                 res.json = haxe.Json.parse(_asset.text);
 
@@ -130,8 +130,7 @@ class Luxe {
 
                 Luxe.resources.cache(res);
 
-            } //onload
-        }); //app.assets.text
+            }); //then
 
         return res;
 
@@ -150,9 +149,8 @@ class Luxe {
 
         var res = new TextResource( _id, null, Luxe.resources );
 
-        core.app.assets.text(_id, {
-
-            onload : function( _asset:snow.system.assets.Asset.AssetText) {
+        core.app.assets.text(_id)
+            .then(function( _asset:snow.system.assets.Asset.AssetText ) {
 
                 res.text = _asset.text;
 
@@ -162,8 +160,7 @@ class Luxe {
 
                 Luxe.resources.cache(res);
 
-            } //onload
-        }); //app.assets.text
+            }); //then
 
         return res;
 
@@ -183,8 +180,8 @@ class Luxe {
 
         var res = new DataResource( _id, null, Luxe.resources);
 
-        core.app.assets.bytes(_id, {
-            onload: function( _asset:snow.system.assets.Asset.AssetBytes ) {
+        core.app.assets.bytes(_id)
+            .then(function( _asset:snow.system.assets.Asset.AssetBytes ) {
 
                 res.data = _asset.bytes;
 
@@ -194,8 +191,7 @@ class Luxe {
 
                 Luxe.resources.cache(res);
 
-            } //onload
-        }); //app.assets.bytes
+            }); //app.assets.bytes
 
         return res;
 

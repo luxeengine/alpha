@@ -5,7 +5,7 @@ import luxe.Objects;
 import phoenix.Vector;
 import phoenix.Quaternion;
 import phoenix.Matrix;
-import snow.io.typedarray.Float32Array;
+import snow.api.buffers.Float32Array;
 
 
 class Transform extends ID {

@@ -201,7 +201,7 @@ class Main extends luxe.Game {
                 case right: center;
                 case center: left;
                 case left: right;
-                case _:
+                case _: text.align;
             }
 
             var _a = switch(text.align) {
@@ -219,7 +219,7 @@ class Main extends luxe.Game {
                 case center: bottom;
                 case bottom: top;
                 case top: center;
-                case _:
+                case _: text.align_vertical;
             }
 
             var _a = switch(text.align_vertical) {

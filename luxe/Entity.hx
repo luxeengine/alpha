@@ -61,7 +61,7 @@ class Entity extends Objects {
         /** the system for the entity */
     var _components : Components;
         /** the timer for the fixed update */
-    var fixed_rate_timer : snow.utils.Timer;
+    var fixed_rate_timer : snow.api.Timer;
         /** the options passed in for giving to the init function */
     var options : Dynamic;
 
@@ -989,7 +989,7 @@ class Entity extends Objects {
             //all their children are fixed under the parent rate
             //for now, that is.
         if(_rate != 0 && parent == null && !destroyed) {
-            fixed_rate_timer = new snow.utils.Timer( _rate );
+            fixed_rate_timer = new snow.api.Timer( _rate );
             fixed_rate_timer.run = _fixed_update;
         } //_rate
 

@@ -1,7 +1,7 @@
 package phoenix;
 
 import snow.modules.opengl.GL;
-import snow.utils.Libs;
+import snow.api.Libs;
 
 import luxe.Log.log;
 import luxe.Log._debug;

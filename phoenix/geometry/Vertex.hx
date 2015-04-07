@@ -4,7 +4,7 @@ import phoenix.geometry.TextureCoord;
 import phoenix.Vector;
 import phoenix.Color;
 
-import snow.io.typedarray.Float32Array;
+import snow.api.buffers.Float32Array;
 
 class Vertex {
 

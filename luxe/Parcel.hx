@@ -2,10 +2,7 @@ package luxe;
 
 import luxe.resource.Resource;
 import luxe.options.ParcelOptions;
-
-import luxe.Log._verbose;
-import luxe.Log._debug;
-import luxe.Log.log;
+import luxe.Log.*;
 
 
 private typedef ShaderInfo = {
@@ -99,6 +96,7 @@ class Parcel extends luxe.resource.Resources {
         refresh_total_items();
 
         if( total_items == 0 ) {
+            _debug('parcel has 0 items, completing');
             do_complete();
             return;
         }
@@ -131,108 +129,106 @@ class Parcel extends luxe.resource.Resources {
 
     public function from_json( _json_object:Dynamic ) {
 
-        if(_json_object != null) {
+        assertnull(_json_object);
 
-            if(_json_object.textures != null) {
-                var _textures : Array<Dynamic> = cast _json_object.textures;
-                for(item in _textures) {
-                    if(item != null) {
-                        var id : String = item.id == null ? '' : cast item.id;
-                        if(id != '') {
-                            add_texture( id );
-                        } else {
-                            log("texture not added due to incomplete info: " + item);
-                        }
-                    } //item != null
-                } //item in textures
-            } //json object textures
+        if(_json_object.textures != null) {
+            var _textures : Array<Dynamic> = cast _json_object.textures;
+            for(item in _textures) {
+                if(item != null) {
+                    var id : String = item.id == null ? '' : cast item.id;
+                    if(id != '') {
+                        add_texture( id );
+                    } else {
+                        log("texture not added due to incomplete info: " + item);
+                    }
+                } //item != null
+            } //item in textures
+        } //json object textures
 
-            if(_json_object.shaders != null) {
-                var _shaders : Array<Dynamic> = cast _json_object.shaders;
-                for(item in _shaders) {
-                    if(item != null) {
-                        var ps_id : String = item.ps_id == null ? 'default' : cast item.ps_id;
-                        var vs_id : String = item.vs_id == null ? 'default' : cast item.vs_id;
+        if(_json_object.shaders != null) {
+            var _shaders : Array<Dynamic> = cast _json_object.shaders;
+            for(item in _shaders) {
+                if(item != null) {
+                    var ps_id : String = item.ps_id == null ? 'default' : cast item.ps_id;
+                    var vs_id : String = item.vs_id == null ? 'default' : cast item.vs_id;
 
-                        add_shader(ps_id, vs_id);
+                    add_shader(ps_id, vs_id);
 
-                    } //item != null
-                } //item in shaders
-            } //json object shaders
+                } //item != null
+            } //item in shaders
+        } //json object shaders
 
-            if(_json_object.fonts != null) {
-                var _fonts : Array<Dynamic> = cast _json_object.fonts;
-                for(item in _fonts) {
-                    if(item != null) {
-                        var id : String = item.id == null ? '' : cast item.id;
-                        if(id != '') {
-                            add_font(id, cast item.texture_path);
-                        } else {
-                            log("font not added due to incomplete info: " + item);
-                        }
-                    } //item != null
-                } //item in fonts
-            } //json object fonts
+        if(_json_object.fonts != null) {
+            var _fonts : Array<Dynamic> = cast _json_object.fonts;
+            for(item in _fonts) {
+                if(item != null) {
+                    var id : String = item.id == null ? '' : cast item.id;
+                    if(id != '') {
+                        add_font(id, cast item.texture_path);
+                    } else {
+                        log("font not added due to incomplete info: " + item);
+                    }
+                } //item != null
+            } //item in fonts
+        } //json object fonts
 
-            if(_json_object.sounds != null) {
-                var _sounds : Array<Dynamic> = cast _json_object.sounds;
-                for(item in _sounds) {
-                    if(item != null) {
-                        var id : String = item.id == null ? '' : cast item.id;
-                        var name : String = item.name == null ? '' : cast item.name;
-                        var is_stream : Bool = item.is_stream == null ? false : cast item.is_stream;
-                        if(id != '' && name != '') {
-                            add_sound( id, name, is_stream);
-                        } else {
-                            log("sounds not added due to incomplete info: " + item);
-                        }
-                    } //item != null
-                } //each sounds
-            } //json object sounds
+        if(_json_object.sounds != null) {
+            var _sounds : Array<Dynamic> = cast _json_object.sounds;
+            for(item in _sounds) {
+                if(item != null) {
+                    var id : String = item.id == null ? '' : cast item.id;
+                    var name : String = item.name == null ? '' : cast item.name;
+                    var is_stream : Bool = item.is_stream == null ? false : cast item.is_stream;
+                    if(id != '' && name != '') {
+                        add_sound( id, name, is_stream);
+                    } else {
+                        log("sounds not added due to incomplete info: " + item);
+                    }
+                } //item != null
+            } //each sounds
+        } //json object sounds
 
-            if(_json_object.text != null) {
-                var _texts : Array<Dynamic> = cast _json_object.text;
-                for(item in _texts) {
-                    if(item != null) {
-                        var id : String = item.id == null ? '' : cast item.id;
-                        if(id != '') {
-                            add_text( id );
-                        }  else {
-                            log("text not added due to incomplete info: " + item);
-                        }//id != ''
-                    } //item != null
-                } //each text
-            } //json object text
+        if(_json_object.text != null) {
+            var _texts : Array<Dynamic> = cast _json_object.text;
+            for(item in _texts) {
+                if(item != null) {
+                    var id : String = item.id == null ? '' : cast item.id;
+                    if(id != '') {
+                        add_text( id );
+                    }  else {
+                        log("text not added due to incomplete info: " + item);
+                    }//id != ''
+                } //item != null
+            } //each text
+        } //json object text
 
-            if(_json_object.json != null) {
-                var _jsons : Array<Dynamic> = cast _json_object.json;
-                for(item in _jsons) {
-                    if(item != null) {
-                        var id : String = item.id == null ? '' : cast item.id;
-                        if(id != '') {
-                            add_json( id );
-                        }  else {
-                            log("json not added due to incomplete info: " + item);
-                        }//id != ''
-                    } //item != null
-                } //each json
-            } //json object json
+        if(_json_object.json != null) {
+            var _jsons : Array<Dynamic> = cast _json_object.json;
+            for(item in _jsons) {
+                if(item != null) {
+                    var id : String = item.id == null ? '' : cast item.id;
+                    if(id != '') {
+                        add_json( id );
+                    }  else {
+                        log("json not added due to incomplete info: " + item);
+                    }//id != ''
+                } //item != null
+            } //each json
+        } //json object json
 
-            if(_json_object.data != null) {
-                var _datas : Array<Dynamic> = cast _json_object.data;
-                for(item in _datas) {
-                    if(item != null) {
-                        var id : String = item.id == null ? '' : cast item.id;
-                        if(id != '') {
-                            add_data( id );
-                        } else {
-                            log("data not added due to incomplete info: " + item);
-                        }
+        if(_json_object.data != null) {
+            var _datas : Array<Dynamic> = cast _json_object.data;
+            for(item in _datas) {
+                if(item != null) {
+                    var id : String = item.id == null ? '' : cast item.id;
+                    if(id != '') {
+                        add_data( id );
+                    } else {
+                        log("data not added due to incomplete info: " + item);
                     }
                 }
-            } //json object data
-
-        } //json_object
+            }
+        } //json object data
 
         refresh_total_items();
 

@@ -8,7 +8,7 @@ class Timer {
 
 
     @:noCompletion public var core : Core;
-    @:noCompletion public var timers : Array<snow.utils.Timer>;
+    @:noCompletion public var timers : Array<snow.api.Timer>;
 
 
     @:noCompletion public function new( _core:Core ) {
@@ -46,9 +46,9 @@ class Timer {
 
     } //reset
 
-    public function schedule( _time_in_seconds:Float, _on_time:Void->Void, ?repeat:Bool = false ) : snow.utils.Timer {
+    public function schedule( _time_in_seconds:Float, _on_time:Void->Void, ?repeat:Bool = false ) : snow.api.Timer {
 
-        var t = new snow.utils.Timer( _time_in_seconds );
+        var t = new snow.api.Timer( _time_in_seconds );
 
         t.run = function () {
             if(!repeat) {

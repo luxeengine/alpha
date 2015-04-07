@@ -171,8 +171,8 @@ class Utils {
         if(_sequence_type != '') {
             for(_asset in core.app.assets.list) {
                 //check for continuations of the sequence, matching by pattern rather than just brute force, so we can catch missing frames etc
-                if(_pattern_regex.match(_asset.id)) {
-                    _final.push( _asset.id );
+                if(_pattern_regex.match(_asset)) {
+                    _final.push( _asset );
                 }
             }
 

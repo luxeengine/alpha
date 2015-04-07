@@ -3,7 +3,7 @@ package luxe;
 import Luxe.Ev;
 import luxe.Core;
 import luxe.Vector;
-import snow.utils.Timer;
+import snow.api.Timer;
 
 #if deflect
     import luxe.physics.deflect.PhysicsDeflect;

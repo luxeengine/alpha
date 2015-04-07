@@ -29,14 +29,14 @@ class Audio {
             **streaming** Whether or not to stream the audio, default `false`   
             **returns** The `Sound` instance, if needed. can be manipulated through named api as well.
         */
-    public function create( _id:String, ?_name:String = '', ?_streaming:Bool = false ) : luxe.Sound {
+    public function create( _id:String, ?_name:String = '', ?_streaming:Bool = false ) : snow.api.Promise {
         return core.app.audio.create( _id, _name, _streaming );
     } //create
 
     // wip alpha-2.0
     @:noCompletion
-    public function create_from_bytes( _id:String, ?_name:String = '', _bytes:snow.io.typedarray.Uint8Array ) : luxe.Sound {
-        return core.app.audio.create_from_bytes( _id, _name, _bytes );
+    public function create_from_bytes( ?_name:String = '', _bytes:snow.api.buffers.Uint8Array, _format:snow.types.Types.AudioFormatType ) : luxe.Sound {
+        return core.app.audio.create_from_bytes( _name, _bytes, _format);
     } //create_from_bytes
 
 

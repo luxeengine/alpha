@@ -1,6 +1,6 @@
 package luxe.resource;
 
-import snow.io.typedarray.Uint8Array;
+import snow.api.buffers.Uint8Array;
 
 import luxe.resource.Resources;
 

@@ -2,10 +2,10 @@ package phoenix;
 
 import snow.system.assets.Asset;
 import snow.modules.opengl.GL;
-import snow.utils.Libs;
+import snow.api.Libs;
 
-import snow.io.typedarray.Uint8Array;
-import snow.io.typedarray.ArrayBuffer;
+import snow.api.buffers.Uint8Array;
+import snow.api.buffers.ArrayBuffer;
 
 import phoenix.Color;
 import phoenix.Vector;
@@ -138,8 +138,8 @@ class Texture extends Resource {
             texture.onload = _onloaded;
         }
 
-        var _asset = Luxe.core.app.assets.image(_id, {
-            onload : function( asset:AssetImage ) {
+        Luxe.core.app.assets.image(_id)
+            .then(function( asset:AssetImage ) {
                 if(asset != null && asset.image != null) {
 
                     texture.from_asset(asset);
@@ -155,20 +155,12 @@ class Texture extends Resource {
                         log("failed to load! " + _id);
                     }
                 }
-            }
-        });
 
-        if(_asset != null) {
+            }); //then
 
-            texture.id = _id;
-
-            resources.cache(texture);
-
-            return texture;
-
-        } //_asset != null
-
-        return null;
+        texture.id = _id;
+        resources.cache(texture);
+        return texture;
 
     } //load
 
@@ -193,7 +185,7 @@ class Texture extends Resource {
 
 
         /** create and load a texture from a Uint8Array. Take note this accepts encoded image formats, not decoded/raw pixels. Use load_from_pixels for that.  */
-    public static function load_from_bytes( _name:String, _bytes:Uint8Array, ?_cache:Bool = true ) {
+    public static function load_from_bytes( _id:String, _bytes:Uint8Array, ?_cache:Bool = true ) {
 
         if(_bytes != null) {
 
@@ -201,7 +193,7 @@ class Texture extends Resource {
             var resources = Luxe.resources;
             var texture = new Texture(resources);
 
-            var _asset = Luxe.core.app.assets.image(_name, { bytes:_bytes });
+            var _asset = Luxe.core.app.assets.image_from_bytes(_id, _bytes);
 
             if(_asset != null) {
 
@@ -224,7 +216,7 @@ class Texture extends Resource {
 
     } //load_from_bytes
 
-    public static function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels:snow.io.typedarray.Uint8Array, ?_cache:Bool = true ) {
+    public static function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels:snow.api.buffers.Uint8Array, ?_cache:Bool = true ) {
 
         if(_pixels == null) {
             return null;
@@ -233,11 +225,7 @@ class Texture extends Resource {
         var resources = Luxe.resources;
         var texture = new Texture(resources);
 
-        var _asset_info = Luxe.core.app.assets.info_from_id(_id, 'image');
-        var _asset = new snow.system.assets.Asset.AssetImage( Luxe.core.app.assets, _asset_info );
-
-        _asset.load_from_pixels(_id, _width, _height, _pixels);
-
+        var _asset = Luxe.core.app.assets.image_from_pixels(_id, _width, _height, _pixels);
 
             texture.from_asset(_asset);
 
@@ -270,7 +258,7 @@ class Texture extends Resource {
             //Now we can bind it,
         bind();
             //And send GL the data
-        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width_actual, height_actual, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.data );
+        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width_actual, height_actual, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.pixels );
 
             //Set the existing properties on the new texture
         _set_filter( filter );
@@ -290,12 +278,11 @@ class Texture extends Resource {
         _debug('image.id: ' + asset.image.id);
         _debug('\t image.bpp: ' + asset.image.bpp);
         _debug('\t image.bpp_source: ' + asset.image.bpp_source);
-        _debug('\t image.data.length: ' + asset.image.data.length);
+        _debug('\t image.pixels.length: ' + asset.image.pixels.length);
         _debug('\t image.height: ' + asset.image.height);
         _debug('\t image.height_actual: ' + asset.image.height_actual);
         _debug('\t image.width: ' + asset.image.width);
         _debug('\t image.width_actual: ' + asset.image.width_actual);
-        _debug('\t components: ' + asset.components);
 
             //check for size limitations
         check_size();
@@ -329,31 +316,31 @@ class Texture extends Resource {
 
     public function get_pixel( _pos : Vector ) {
 
-        if(asset.image.data == null) return null;
+        if(asset.image.pixels == null) return null;
 
         var x : Int = Std.int(_pos.x);
         var y : Int = Std.int(_pos.y);
 
         return {
-            r: asset.image.data[ (((y*width)+x)*4)  ]/255.0,
-            g: asset.image.data[ (((y*width)+x)*4)+1]/255.0,
-            b: asset.image.data[ (((y*width)+x)*4)+2]/255.0,
-            a: asset.image.data[ (((y*width)+x)*4)+3]/255.0
+            r: asset.image.pixels[ (((y*width)+x)*4)  ]/255.0,
+            g: asset.image.pixels[ (((y*width)+x)*4)+1]/255.0,
+            b: asset.image.pixels[ (((y*width)+x)*4)+2]/255.0,
+            a: asset.image.pixels[ (((y*width)+x)*4)+3]/255.0
         };
 
     } //get_pixel
 
     public function set_pixel( _pos:Vector, _color:Color ) {
 
-        if(asset.image.data == null) return;
+        if(asset.image.pixels == null) return;
 
         var x : Int = Std.int(_pos.x);
         var y : Int = Std.int(_pos.y);
 
-        asset.image.data[ (((y*width)+x)*4)  ] = Std.int(_color.r*255);
-        asset.image.data[ (((y*width)+x)*4)+1] = Std.int(_color.g*255);
-        asset.image.data[ (((y*width)+x)*4)+2] = Std.int(_color.b*255);
-        asset.image.data[ (((y*width)+x)*4)+3] = Std.int(_color.a*255);
+        asset.image.pixels[ (((y*width)+x)*4)  ] = Std.int(_color.r*255);
+        asset.image.pixels[ (((y*width)+x)*4)+1] = Std.int(_color.g*255);
+        asset.image.pixels[ (((y*width)+x)*4)+2] = Std.int(_color.b*255);
+        asset.image.pixels[ (((y*width)+x)*4)+3] = Std.int(_color.a*255);
 
     } //set_pixel
 
@@ -371,12 +358,12 @@ class Texture extends Resource {
 
     public function unlock() {
 
-        if (asset.image.data != null) {
+        if (asset.image.pixels != null) {
 
             Luxe.renderer.state.bindTexture2D(texture);
-            GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.data);
+            GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.pixels);
 
-            asset.image.data = null;
+            asset.image.pixels = null;
 
         }
 

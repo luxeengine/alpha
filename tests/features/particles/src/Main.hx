@@ -1,6 +1,4 @@
 
-import snow.io.typedarray.Float32Array;
-
 import luxe.Vector;
 import luxe.Color;
 import luxe.Input;

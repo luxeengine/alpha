@@ -3,7 +3,7 @@ package phoenix;
 
 import phoenix.utils.Rendering;
 import snow.modules.opengl.GL;
-import snow.io.typedarray.Float32Array;
+import snow.api.buffers.Float32Array;
 
 import phoenix.Matrix;
 
