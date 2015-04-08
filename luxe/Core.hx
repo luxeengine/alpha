@@ -3,6 +3,8 @@ package luxe;
 import snow.Snow;
 import snow.types.Types;
 import snow.system.window.Window;
+import snow.system.assets.Asset;
+import snow.api.buffers.Uint8Array;
 
 import Luxe;
 import luxe.IO;
@@ -94,7 +96,7 @@ extends
     } //new
 
 
-        //This gets called once snow has booted us - this is
+        //This gets called once snow has booted us
     override function ready() {
 
         if(luxe.Log.get_level() > 1) {
@@ -109,39 +111,41 @@ extends
 
         log('version ${Luxe.build}');
 
-            //Create the subsystems
-        init();
+            //flag for later
+        headless = (app.window == null);
 
-            //
-        _debug('ready.');
+            //:todo: I'm not happy about this but for now it will do
+        #if no_default_font
 
-            //Call the main ready function
-            //and send the ready event to the game
-        game.ready();
+            init(null);
 
-            //shutdown can come from the ready function
-        if(!shutting_down) {
+        #else
 
-                //emit the init event
-                //so that scene and others can start up
-            emitter.emit(Ev.init);
-            inited = true;
+            if(!headless) {
 
-                //Reset the physics (starts the timer etc)
-            physics.reset();
+                var _font_name = 'default.png';
+                var _font_image = Uint8Array.fromBytes(haxe.Resource.getBytes(_font_name));
+                var _font_load = app.assets.image_from_bytes(_font_name, _font_image);
 
-                //Now, if no main loop is requested we should immediately shutdown
-            if(!app.snow_config.has_loop) {
-                shutdown();
+                _font_load.then(function(asset:AssetImage) {
+                    init(asset);
+                }).error(function(error) {
+                    log("failed to load default font, things will probably not look right... $error");
+                    init(null);
+                });
+
+            } else {
+
+                init(null);
+
             }
 
-        } //!shutting down
+        #end //no_default_font
 
     } //ready
 
     override function ondestroy() {
 
-            //Make sure all systems know we are going down
         shutting_down = true;
 
         log('shutting down...');
@@ -180,9 +184,8 @@ extends
 
     }
 
-    public function init() {
+    public function init( asset:AssetImage ) {
 
-            //Create the subsystems
         _debug('creating subsystems...');
 
             //Order is important here
@@ -201,14 +204,11 @@ extends
         resources = new Resources();
         Luxe.resources = resources;
 
-            //flag for later
-        headless = (app.window == null);
-
         if(!headless) {
                 //listen for window events
             app.window.onevent = window_event;
                 //create the renderer
-            renderer = new Renderer( this );
+            renderer = new Renderer( this, asset );
                 //assign the globals
             Luxe.renderer = renderer;
         }
@@ -273,7 +273,39 @@ extends
 
         } //app.window != null && !headless
 
+            //
+        internal_ready();
+
     } //init
+
+    function internal_ready() {
+
+        _debug('ready.');
+
+            //Call the main ready function
+            //and send the ready event to the game
+        game.ready();
+
+            //shutdown can come from the ready function
+        if(!shutting_down) {
+
+                //emit the init event
+                //so that scene and others can start up
+            emitter.emit(Ev.init);
+            inited = true;
+
+                //Reset the physics (starts the timer etc)
+            physics.reset();
+
+                //Now, if no main loop is requested we should immediately shutdown
+            if(!app.snow_config.has_loop) {
+                shutdown();
+            }
+
+        } //!shutting down
+
+    } //internal_ready
+
 
     public function shutdown() {
 
@@ -300,6 +332,8 @@ extends
         //called by snow
     override function onevent( event:snow.types.Types.SystemEvent ) {
 
+        if(!inited) return;
+
             //forward to game class
         game.onevent( event );
 
@@ -313,6 +347,7 @@ extends
         #end //luxe_fullprofile
 
         if(has_shutdown) return;
+        if(!inited) return;
 
         debug.end(Tag.update);
         debug.start(Tag.update);
@@ -357,9 +392,8 @@ extends
 
     function window_event( _event:snow.types.Types.WindowEvent ) {
 
-        if(shutting_down) {
-            return;
-        }
+        if(shutting_down) return;
+        if(!inited) return;
 
         emitter.emit(Ev.window, _event );
 
@@ -402,9 +436,8 @@ extends
 
     function render( window:Window ) {
 
-        if(shutting_down) {
-            return;
-        }
+        if(shutting_down) return;
+        if(!inited) return;
 
         debug.end(Tag.renderdt);
         debug.start(Tag.renderdt);
@@ -440,6 +473,8 @@ extends
 //keys
     override function onkeydown( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
 
+        if(!inited) return;
+
         var event : KeyEvent = {
             scancode : scancode,
             keycode : keycode,
@@ -468,6 +503,8 @@ extends
 
     override function onkeyup( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
 
+        if(!inited) return;
+
         var event : KeyEvent = {
             scancode : scancode,
             keycode : keycode,
@@ -491,6 +528,8 @@ extends
     } //onkeyup
 
     override function ontextinput( text:String, start:Int, length:Int, type:snow.types.TextEventType, timestamp:Float, window_id:Int ) {
+
+        if(!inited) return;
 
         var _type : TextEventType = TextEventType.unknown;
 
@@ -525,6 +564,8 @@ extends
 
     public function oninputdown( name:String, event:InputEvent ) {
 
+        if(!inited) return;
+
         if(!shutting_down) {
 
             emitter.emit(Ev.inputdown, { name:name, event:event });
@@ -536,6 +577,8 @@ extends
     } //oninputdown
 
     public function oninputup( name:String, event:InputEvent ) {
+
+        if(!inited) return;
 
         if(!shutting_down) {
 
@@ -550,6 +593,8 @@ extends
 //mouse
 
     override function onmousedown( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
+
+        if(!inited) return;
 
             //this has to be a new value because if it's cached it sends in references that get kept by user code
         screen.cursor.set_internal(new luxe.Vector( x, y ));
@@ -578,6 +623,8 @@ extends
 
     override function onmouseup( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
 
+        if(!inited) return;
+
             //see notes on new in mousedown
         screen.cursor.set_internal(new luxe.Vector( x, y ));
 
@@ -605,6 +652,8 @@ extends
 
     override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
+        if(!inited) return;
+
             //see notes on new in mousedown
         screen.cursor.set_internal(new luxe.Vector( x, y ));
 
@@ -630,6 +679,8 @@ extends
     } //onmousemove
 
     override function onmousewheel( x:Int, y:Int, timestamp:Float, window_id:Int ) {
+
+        if(!inited) return;
 
         var event : MouseEvent = {
             timestamp : timestamp,
@@ -658,6 +709,8 @@ extends
     var _touch_pos : Vector;
 
     override function ontouchdown( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
+
+        if(!inited) return;
 
          _touch_pos = new luxe.Vector( x, y );
 
@@ -700,6 +753,8 @@ extends
 
     override function ontouchup( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
 
+        if(!inited) return;
+
          _touch_pos = new luxe.Vector( x, y );
 
         var event : TouchEvent = {
@@ -723,6 +778,8 @@ extends
     } //ontouchup
 
     override function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
+
+        if(!inited) return;
 
         _touch_pos = new luxe.Vector( x, y );
 
@@ -750,6 +807,8 @@ extends
 
     override function ongamepadaxis( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
 
+        if(!inited) return;
+
         var event : GamepadEvent = {
             timestamp : timestamp,
             type : GamepadEventType.axis,
@@ -770,6 +829,8 @@ extends
     } //ongamepadaxis
 
     override function ongamepaddown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
+
+        if(!inited) return;
 
         var event : GamepadEvent = {
             timestamp : timestamp,
@@ -793,6 +854,8 @@ extends
 
     override function ongamepadup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
 
+        if(!inited) return;
+
         var event : GamepadEvent = {
             timestamp : timestamp,
             type : GamepadEventType.button,
@@ -814,6 +877,8 @@ extends
     } //ongamepadup
 
     override function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
+
+        if(!inited) return;
 
         var _event_type : GamepadEventType = GamepadEventType.unknown;
 
