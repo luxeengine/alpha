@@ -363,27 +363,27 @@ function get_target() : RenderTexture {
 
     function create_default_font() {
 
+        if(font_asset == null)
+            throw snow.types.Types.Error.error('failed to create the default font... font_asset was null.');
+
         _debug("creating the default font...");
 
             font = new BitmapFont({ id:'default', resources:core.resources });
 
                 //create the font texture
             var _font_texture =
-                switch(font_asset) {
-                    case null: null;
-                    case _:
-                        Texture.load_from_pixels(
-                            font_asset.id,
-                            font_asset.image.width_actual,
-                            font_asset.image.height_actual,
-                            font_asset.image.pixels,
-                            true
-                        );
-                }
+                Texture.load_from_pixels(
+                    font_asset.id,
+                    font_asset.image.width_actual,
+                    font_asset.image.height_actual,
+                    font_asset.image.pixels,
+                    true
+                );
 
-                if(_font_texture != null) {
-                    _font_texture.filter_min = FilterType.linear;
-                }
+            if(_font_texture == null)
+                throw snow.types.Types.Error.error('failed to create the default font... _font_texture was null.');
+
+            _font_texture.filter_min = FilterType.linear;
 
                 //load the font string data
             font.from_string( haxe.Resource.getString('default.fnt'), null, [_font_texture] );
