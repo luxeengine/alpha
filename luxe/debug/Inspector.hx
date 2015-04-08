@@ -25,10 +25,7 @@ typedef DebugInspectorOptions = {
     public var _title_text : Text;
     public var _version_text : Text;
 
-    public var uitexture : Texture;
-    public var uibutton : Texture;
-
-    public var _window : NineSlice;
+    public var _window : Sprite;
     public var onrefresh : Void->Void;
 
     var _batcher : Batcher;
@@ -39,10 +36,6 @@ typedef DebugInspectorOptions = {
         font = Luxe.renderer.font;
         size = new Vector( Std.int(Luxe.screen.w*0.2), Std.int(Luxe.screen.h*0.6) );
         pos = new Vector((Luxe.screen.w/2) - (size.x/2), (Luxe.screen.h/2) - (size.y/2));
-
-            //load the images
-        uitexture = Texture.load_from_resource('tiny.ui.png');
-        uibutton =  Texture.load_from_resource('tiny.button.png');
 
             //default to the internal batcher
         _batcher = Luxe.renderer.batcher;
@@ -118,17 +111,19 @@ typedef DebugInspectorOptions = {
             _window.destroy();
         }
 
-        _window = new NineSlice({
+        _window = new Sprite({
+            centered : false,
             depth : 999.1,
-            texture : uitexture,
+            color : new Color().rgb(0x161619),
+            size : size,
+            pos : pos,
             batcher : _batcher
         });
 
-        _window.create( pos, size.x, size.y );
-        _window._geometry.id = 'debug.Inspector';
+        _window.geometry.id = 'debug.Inspector';
 
             //static batch
-        _window.lock();
+        _window.locked = true;
 
         _title_text = new Text({
             name : 'debug.title',
