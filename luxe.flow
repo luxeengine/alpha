@@ -36,14 +36,6 @@
 
  if : {
 
-    "!no_debug_console" : {
-      build:{
-        flags:[
-          "-resource luxe/defaults/ui/tiny.ui.png@tiny.ui.png",
-          "-resource luxe/defaults/ui/tiny.button.png@tiny.button.png"
-        ]
-      }
-    },
     "!no_default_font" : {
       build:{
         flags:[
@@ -52,6 +44,11 @@
         ]
       }
     },
+
+    "no_default_font" : {
+      build: { defines:['no_debug_console'] }
+    },
+
     profiler : {
       build : {
         defines : ['DHXCPP_STACK_TRACE', 'HXCPP_STACK_LINE', 'HXCPP_CHECK_POINTER']
