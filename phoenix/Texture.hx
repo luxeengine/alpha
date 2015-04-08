@@ -139,10 +139,10 @@ class Texture extends Resource {
         }
 
         Luxe.core.app.assets.image(_id)
-            .then(function( asset:AssetImage ) {
-                if(asset != null && asset.image != null) {
+            .then(function( _asset:AssetImage ) {
+                if(_asset != null && _asset.image != null) {
 
-                    texture.from_asset(asset);
+                    texture.from_asset(_asset);
                     texture.reset();
                     texture.do_onload();
 
@@ -184,7 +184,7 @@ class Texture extends Resource {
     } //load_texture_from_resource_bytes
 
 
-        /** create and load a texture from a Uint8Array. Take note this accepts encoded image formats, not decoded/raw pixels. Use load_from_pixels for that.  */
+        /** Create and load a texture from a Uint8Array. Take note this accepts encoded image formats, not decoded/raw pixels. Use load_from_pixels for that.  */
     public static function load_from_bytes( _id:String, _bytes:Uint8Array, ?_cache:Bool = true ) {
 
         if(_bytes != null) {
@@ -195,7 +195,7 @@ class Texture extends Resource {
 
                 var _load = Luxe.core.app.assets.image_from_bytes(_id, _bytes);
 
-                _load.then(function(_asset) {
+                _load.then(function(_asset:AssetImage) {
 
                     texture.from_asset(_asset);
 
