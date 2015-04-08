@@ -193,22 +193,22 @@ class Texture extends Resource {
             var resources = Luxe.resources;
             var texture = new Texture(resources);
 
-            var _asset = Luxe.core.app.assets.image_from_bytes(_id, _bytes);
+                var _load = Luxe.core.app.assets.image_from_bytes(_id, _bytes);
 
-            if(_asset != null) {
+                _load.then(function(_asset) {
 
-                texture.from_asset(_asset);
+                    texture.from_asset(_asset);
 
-                texture.reset();
-                texture.do_onload();
+                    texture.reset();
+                    texture.do_onload();
 
-                if(_cache) {
-                    resources.cache(texture);
-                }
+                    if(_cache) {
+                        resources.cache(texture);
+                    }
 
-                return texture;
+                });
 
-            } //_asset != null
+            return texture;
 
         } //texture_bytes != null
 
