@@ -2,6 +2,7 @@ package phoenix;
 
 import snow.modules.opengl.GL;
 import snow.api.Libs;
+import snow.system.assets.Asset;
 
 import luxe.Log.log;
 import luxe.Log._debug;
@@ -52,6 +53,8 @@ class Renderer {
     public var camera : Camera;
         //Default font for debug stuff etc
     public var font : BitmapFont;
+        //This will be null if there's no default font
+    public var font_asset : AssetImage;
         //Default render path is a forward renderer, and acts as a fallback for deferred
         //render path is the active render path, can replace it to render in a different manner
         //It will pass all batchers to be processed etc for you to do whatever with
@@ -69,9 +72,10 @@ class Renderer {
 
     public var stats : RendererStats;
 
-    public function new( _core:luxe.Core ) {
+    public function new( _core:luxe.Core, _asset:AssetImage ) {
 
         core = _core;
+        font_asset = _asset;
 
             //store the default FBO as on some platforms
             //it is not the same as 0
@@ -364,8 +368,22 @@ function get_target() : RenderTexture {
             font = new BitmapFont({ id:'default', resources:core.resources });
 
                 //create the font texture
-            var _font_texture = Texture.load_from_resource('default.png');
-                _font_texture.filter_min = FilterType.linear;
+            var _font_texture =
+                switch(font_asset) {
+                    case null: null;
+                    case _:
+                        Texture.load_from_pixels(
+                            font_asset.id,
+                            font_asset.image.width_actual,
+                            font_asset.image.height_actual,
+                            font_asset.image.pixels,
+                            true
+                        );
+                }
+
+                if(_font_texture != null) {
+                    _font_texture.filter_min = FilterType.linear;
+                }
 
                 //load the font string data
             font.from_string( haxe.Resource.getString('default.fnt'), null, [_font_texture] );
