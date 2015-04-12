@@ -20,24 +20,9 @@ package luxe.physics.nape;
 
             space = new Space();
 
-            debugdraw = new DebugDraw();
-
             gravity = new Vector(0, 980);
 
         } //init
-
-            //called from the core to update during main loop
-            //mainly used to render outside of the fixed loop
-        public override function render() {
-
-            super.render();
-
-            if(draw) {
-                debugdraw.clear();
-                debugdraw.draw( space );
-            }
-
-        } //render
 
             //update the actual physics
         public override function update() {
@@ -46,13 +31,16 @@ package luxe.physics.nape;
 
                 space.step( Luxe.physics.step_delta * Luxe.timescale, velocity_iterations, position_iterations );
 
+                if (draw && debugdraw != null) {
+                    debugdraw.update();
+                }
+
             } //paused
 
         } //update
 
         public override function destroy() {
 
-            debugdraw.destroy();
             space.clear();
             space = null;
 
@@ -69,6 +57,16 @@ package luxe.physics.nape;
             return super.set_gravity(_gravity);
 
         } //set_gravity
+
+        override public function set_draw(_draw:Bool):Bool {
+
+            if (debugdraw != null) {
+                debugdraw.visible = _draw;
+            }
+
+            return draw = _draw;
+
+        } //set_draw
 
     } //PhysicsNape
 

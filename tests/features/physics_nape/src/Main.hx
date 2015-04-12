@@ -9,6 +9,7 @@ import nape.shape.Circle;
 import nape.constraint.PivotJoint;
 
 import luxe.AppConfig;
+import luxe.physics.nape.DebugDraw;
 
 class Main extends luxe.Game {
 
@@ -16,6 +17,8 @@ class Main extends luxe.Game {
     var ball : Body;
         //for attaching to the mouse when dragging
     var mouseJoint : PivotJoint;
+        //the debug drawer
+    var drawer : DebugDraw;
 
         //the impulse to apply when pressing arrows
     var impulse = 900;
@@ -23,7 +26,13 @@ class Main extends luxe.Game {
     var end : Float = 0;
     override function ready() {
 
-        Luxe.renderer.state.lineWidth(2);
+        Luxe.renderer.batcher.add_group(0,
+            function(_) {
+                Luxe.renderer.state.lineWidth(2);
+            },
+            function(_) {
+                Luxe.renderer.state.lineWidth(1);
+            });
 
         reset_world();
 
@@ -42,13 +51,22 @@ class Main extends luxe.Game {
         }
 
         config.window.title = "nape physics sample";
-        // config.window.antialiasing = 2;
+        config.render.antialiasing = 8;
 
         return config;
 
     } //config
 
     function reset_world() {
+
+        if(drawer != null) {
+            drawer.destroy();
+            drawer = null;
+        }
+
+            //create the drawer, and assign it to the nape debug drawer
+        drawer = new DebugDraw();
+        Luxe.physics.nape.debugdraw = drawer;
 
         var w = Luxe.screen.w;
         var h = Luxe.screen.h;
@@ -66,6 +84,8 @@ class Main extends luxe.Game {
             border.shapes.add(new Polygon(Polygon.rect(w, 0, 1, h)));
             border.space = Luxe.physics.nape.space;
 
+            drawer.add(border);
+
             for (i in 0...16) {
 
                 var box = new Body(BodyType.DYNAMIC);
@@ -73,6 +93,8 @@ class Main extends luxe.Game {
                     box.shapes.add(new Polygon(Polygon.box(16, 32)));
                     box.position.setxy((w / 2), ((h - 50) - 32 * (i + 0.5)));
                     box.space = Luxe.physics.nape.space;
+
+                drawer.add(box);
 
             } //for
 
@@ -82,6 +104,8 @@ class Main extends luxe.Game {
             ball.position.setxy(50, h / 2);
             ball.angularVel = 10;
             ball.space = Luxe.physics.nape.space;
+
+            drawer.add(ball);
 
     } //reset_world
 
