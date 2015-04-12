@@ -11,7 +11,7 @@ class GeometryUtils {
     @:allow(luxe.utils.Utils)
     function new() {}
 
-    public function segments_for_smooth_circle( _radius:Float, _smooth:Float = 6 ) : Int {
+    public function segments_for_smooth_circle( _radius:Float, _smooth:Float = 5 ) : Int {
 
         return Std.int(_smooth * Math.sqrt( _radius ));
 
