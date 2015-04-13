@@ -219,7 +219,7 @@ class TiledLayer {
         byte_pos = 0;
 
         while(byte_pos < byte_len) {
-            result.push( bytes.getInt32(byte_pos) );
+            result.push( bytes.get(byte_pos) );
             byte_pos += 4; //int32 is 4 bytes
         }
 
