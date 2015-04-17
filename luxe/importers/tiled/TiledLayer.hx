@@ -159,6 +159,18 @@ class TiledLayer {
         Note that Tiled base64 doesn't encode base64 in the same way as
         what haxe.crypto.base64 would expect so it must manually be decomposed */
 
+        /** :todo: This is taken from haxe 3.2 std lib, to support 3.1.3 short term. */
+    static inline function bytes_get_int32( bytes:haxe.io.Bytes, pos : Int ) : Int {
+        #if neko_v21
+            return untyped $sget32(bytes.b, pos, false);
+        #elseif (php || python)
+            var v = bytes.get(pos) | (bytes.get(pos + 1) << 8) | (bytes.get(pos + 2) << 16) | (bytes.get(pos+3) << 24);
+            return if( v & 0x80000000 != 0 ) v | 0x80000000 else v;
+        #else
+            return bytes.get(pos) | (bytes.get(pos + 1) << 8) | (bytes.get(pos + 2) << 16) | (bytes.get(pos+3) << 24);
+        #end
+    } //bytes_get_int32
+
     static var base_chars:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     static var base_lookup:Array<Int> = [];
     static function base64_to_array( input:String, ?compression:Null<String> ):Array<Int> {
@@ -219,7 +231,7 @@ class TiledLayer {
         byte_pos = 0;
 
         while(byte_pos < byte_len) {
-            result.push( bytes.getInt32(byte_pos) );
+            result.push( bytes_get_int32(bytes, byte_pos) );
             byte_pos += 4; //int32 is 4 bytes
         }
 
