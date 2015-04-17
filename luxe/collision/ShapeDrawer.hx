@@ -1,10 +1,7 @@
 package luxe.collision;
 
-import luxe.collision.shapes.Circle;
-import luxe.collision.shapes.Polygon;
-import luxe.collision.shapes.Shape;
-
-import luxe.Color;
+import luxe.collision.shapes.*;
+import luxe.collision.data.*;
 import luxe.Vector;
 
 /** To implement your own debug drawing class, you only need to override drawLine function and implement it
@@ -13,47 +10,46 @@ class ShapeDrawer {
 
 //Public API
 
-        /** empty constructor */
     public function new() {
 
     } //new
 
         /** Draw a line between p0 and p1. Implement this function at minimum in custom drawing handlers */
-    public function drawLine( p0:Vector, p1:Vector, ?color:Color, ?immediate:Bool = false ) {
+    public function drawLine( p0:Vector, p1:Vector, ?startPoint:Bool = true ) {
 
     } //drawLine
 
         /** Draw a `Shape`, it will determine the type and draw it for you. */
-    public function drawShape( shape:Shape, ?color:Color, ?immediate:Bool = false ) {
+    public function drawShape( shape:Shape ) {
 
         if(Std.is(shape, Polygon)) {
-            drawPolygon(cast(shape, Polygon), color, immediate);
+            drawPolygon(cast(shape, Polygon));
             return;
         } else { //circle
-            drawCircle(cast(shape, Circle), color, immediate);
+            drawCircle(cast(shape, Circle));
             return;
         }
 
     } //drawShape
 
         /** Draw a `Polygon` */
-    public function drawPolygon( poly:Polygon, ?color:Color, ?immediate:Bool = false ) {
+    public function drawPolygon( poly:Polygon ) {
 
         var v : Array<Vector> = poly.transformedVertices.copy();
 
-        drawVertList( v, color, immediate );
+        drawVertList( v );
 
     } //drawPolygon
 
         /** Draw a `Vector` (with magnitude) */
-    public function drawVector( v:Vector, start:Vector, ?color:Color, ?immediate:Bool = false  ) {
+    public function drawVector( v:Vector, start:Vector, ?startPoint:Bool = true ) {
 
-        drawLine( start, v, color, immediate );
+        drawLine( start, v );
 
     } //drawVector
 
         /** Draw a circle `Shape` */
-    public function drawCircle( circle:Circle, ?color:Color, ?immediate:Bool = false ) {
+    public function drawCircle( circle:Circle ) {
             //from :
         //http://slabode.exofire.net/circle_draw.shtml
 
@@ -90,29 +86,72 @@ class ShapeDrawer {
         } //for
 
             //now draw it
-        drawVertList( _verts, color, immediate );
+        drawVertList( _verts );
 
     } //drawCircle
+
+    public function drawPoint( point:Vector, size:Float = 4 ) {
+
+        var xs = point.x - size;
+        var xe = point.x + size;
+        var ys = point.y;
+        var ye = point.y;
+
+        drawLine( new Vector(xs, ys), new Vector(xe, ye) );
+
+        xs = xe = point.x;
+        ys = point.y - size;
+        ye = point.y + size;
+
+        drawLine( new Vector(xs, ys), new Vector(xe, ye) );
+
+    } //drawPoint
+
+    public function drawShapeCollision( data:ShapeCollision, ?length:Float = 30 ) {
+
+        var shape1_o = new Vector(data.shape1.position.x, data.shape1.position.y);
+        var shape2_o = new Vector(data.shape2.position.x, data.shape2.position.y);
+
+        //origins
+
+        drawPoint(shape1_o);
+        drawPoint(shape2_o);
+
+        //unit vectors
+
+        var unit_line_end = new Vector( shape1_o.x + (data.unitVector.x * length), shape1_o.y + (data.unitVector.y * length) );
+
+        drawLine( shape1_o, unit_line_end );
+
+        //ghosts
+
+        var shape1p = shape1_o.clone().add(data.separation);
+
+        drawPoint(shape1p);
+
+    } //drawShapeCollision
 
 
 //Internal API
 
 
         /** Draw a list of points as lines */
-    function drawVertList( _verts : Array<Vector>, ?color:Color, ?immediate:Bool = false ) {
+    function drawVertList( _verts : Array<Vector> ) {
 
         var _count : Int = _verts.length;
         if(_count < 3) {
             throw "cannot draw polygon with < 3 verts as this is a line or a point.";
         }
 
-            //start at one, and draw from 1 to 0 (backward)
-        for(i in 1 ... _count) {
-            drawLine( _verts[i], _verts[i-1], color, immediate );
-        }
+            //start the polygon by drawing this start point
+        drawLine( _verts[0], _verts[1], true );
 
-            //finish the polygon by drawing the final point to the first point
-        drawLine( _verts[_count-1], _verts[0], color, immediate );
+            //draw the rest of the points
+        for(i in 1 ... _count-1) {
+            drawLine( _verts[i], _verts[i+1], false );
+        }
+            //join last point to first point
+        drawLine( _verts[_count-1], _verts[0], false );
 
     } //drawVertList
 

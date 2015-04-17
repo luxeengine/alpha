@@ -1,10 +1,11 @@
 package luxe.collision.shapes;
 
-import luxe.Quaternion;
 import luxe.Vector;
-import luxe.Matrix;
+import luxe.Quaternion;
+import luxe.collision.shapes.*;
+import luxe.collision.data.*;
 
-/** A base collision class shape */
+/** A base collision shape */
 class Shape {
 
 
@@ -28,11 +29,6 @@ class Shape {
     public var scaleX ( get, set ) : Float;
         /** The scale in the y direction of this shape */
     public var scaleY ( get, set ) : Float;
-        /** The transformed (rotated/scale) vertices cache */
-    public var transformedVertices ( get, never ) : Array<Vector>;
-        /** The vertices of this shape */
-    public var vertices ( get, never ) : Array<Vector>;
-
 
     var _position : Vector;
     var _rotation : Float = 0;
@@ -46,14 +42,11 @@ class Shape {
     var _transformed : Bool = false;
     var _transformMatrix : Matrix;
 
-    var _transformedVertices : Array<Vector>;
-    var _vertices : Array<Vector>;
-
 
 //Public API
 
 
-        /** Create a new shape at give position x,y */
+       /** Create a new shape at give position x,y */
     public function new( _x:Float, _y:Float ) {
 
         tags = new Map();
@@ -69,23 +62,29 @@ class Shape {
         _transformMatrix = new Matrix();
         _transformMatrix.makeTranslation( _position.x, _position.y, 0 );
 
-        _transformedVertices = new Array<Vector>();
-        _vertices = new Array<Vector>();
-
     } //new
+
+//Implemented in subclasses
+
+        /** Test this shape against another shape. */
+    public function test( shape:Shape ) : ShapeCollision return null;
+        /** Test this shape against a circle. */
+    public function testCircle( circle:Circle, flip:Bool = false ) : ShapeCollision return null;
+        /** Test this shape against a polygon. */
+    public function testPolygon( polygon:Polygon, flip:Bool = false ) : ShapeCollision return null;
+        /** Test this shape against a ray. */
+    public function testRay( ray:Ray ) : RayCollision return null;
 
         /** clean up and destroy this shape */
     public function destroy():Void {
-    
+
         _position = null;
         _scale = null;
         _transformMatrix = null;
-        _transformedVertices = null;
-        _vertices = null;
-        // _rotation_quat = null;
+        _rotation_quat = null;
 
     } //destroy
-    
+
 //Getters/Setters
 
     function refresh_transform() {
@@ -109,52 +108,52 @@ class Shape {
         return _position;
     }
 
-//.x 
+//.x
 
     function get_x() : Float {
         return _position.x;
     }
-    
+
     function set_x(x : Float) : Float {
         _position.x = x;
         refresh_transform();
         return _position.x;
     }
-    
+
 //.y
 
     function get_y() : Float {
         return _position.y;
     }
-    
+
     function set_y(y : Float) : Float {
         _position.y = y;
         refresh_transform();
         return _position.y;
-    }    
+    }
 
-//.rotation 
+//.rotation
 
     function get_rotation() : Float {
         return _rotation;
     }
 
     function set_rotation( v : Float ) : Float {
-        
+
         _rotation_radians = v * (Math.PI / 180);
 
         refresh_transform();
 
         return _rotation = v;
-    
+
     } //set_rotation
 
-//.scaleX 
+//.scaleX
 
     function get_scaleX():Float {
         return _scaleX;
     }
-    
+
     function set_scaleX( scale : Float ) : Float {
         _scaleX = scale;
         _scale.x = _scaleX;
@@ -167,36 +166,12 @@ class Shape {
     function get_scaleY():Float {
         return _scaleY;
     }
-    
+
     function set_scaleY(scale:Float) : Float {
         _scaleY = scale;
         _scale.y = _scaleY;
         refresh_transform();
         return _scaleY;
-    }    
-
-//.transformedVertices
-
-    function get_transformedVertices() : Array<Vector> {
-
-        if(!_transformed) {
-            _transformedVertices = new Array<Vector>();
-            _transformed = true;
-
-            var _count : Int = _vertices.length;
-
-            for(i in 0..._count) {
-                _transformedVertices.push( _vertices[i].clone().transform( _transformMatrix ) );
-            }
-        }
-
-        return _transformedVertices;
-    }
-
-//.vertices 
-
-    function get_vertices() : Array<Vector> {
-        return _vertices;
     }
 
 }

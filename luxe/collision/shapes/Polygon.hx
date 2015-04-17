@@ -1,37 +1,83 @@
 package luxe.collision.shapes;
 
-import luxe.collision.shapes.Shape;
 import luxe.Vector;
+import luxe.collision.shapes.*;
+import luxe.collision.data.*;
+import luxe.collision.sat.*;
 
 /** A polygon collision shape */
 class Polygon extends Shape {
-    
+
+
+        /** The transformed (rotated/scale) vertices cache */
+    public var transformedVertices ( get, never ) : Array<Vector>;
+        /** The vertices of this shape */
+    public var vertices ( get, never ) : Array<Vector>;
+
+    var _transformedVertices : Array<Vector>;
+    var _vertices : Array<Vector>;
+
+
         /** Create a new polygon with a given set of vertices at position x,y. */
     public function new( x:Float, y:Float, vertices:Array<Vector> ) {
 
         super( x,y );
-        
-        name = vertices.length + 'polygon';
 
-        _vertices = vertices;           
-    
+        name = 'polygon(sides:${vertices.length})';
+
+        _transformedVertices = new Array<Vector>();
+        _vertices = vertices;
+
     } //new
-        
+
+        /** Test for a collision with a shape. */
+    override public function test( shape:Shape ) : ShapeCollision {
+
+        return shape.testPolygon(this, true);
+
+    } //test
+
+        /** Test for a collision with a circle. */
+    override public function testCircle( circle:Circle, flip:Bool = false ) : ShapeCollision {
+
+        return SAT2D.testCircleVsPolygon( circle, this, flip );
+
+    } //testCircle
+
+        /** Test for a collision with a polygon. */
+    override public function testPolygon( polygon:Polygon, flip:Bool = false ) : ShapeCollision {
+
+        return SAT2D.testPolygonVsPolygon( this, polygon, flip );
+
+    } //testPolygon
+
+        /** Test for a collision with a ray. */
+    override public function testRay( ray:Ray ) : RayCollision {
+
+        return SAT2D.testRayVsPolygon(ray, this);
+
+    } //testRay
+
         /** Destroy this polygon and clean up. */
     override public function destroy() : Void {
 
         var _count : Int = _vertices.length;
+
         for(i in 0 ... _count) {
             _vertices[i] = null;
         }
 
+        _transformedVertices = null;
         _vertices = null;
+
         super.destroy();
 
     } //destroy
 
+//Public static API
+
         /** Helper to create an Ngon at x,y with given number of sides, and radius.
-            A default radius of 100 if unspecified. Returns a ready made `Polygon` collision `Shape` */    
+            A default radius of 100 if unspecified. Returns a ready made `Polygon` collision `Shape` */
     public static function create( x:Float, y:Float, sides:Int, radius:Float=100):Polygon {
 
         if(sides < 3) {
@@ -50,15 +96,15 @@ class Polygon extends Shape {
             vector.y = Math.sin(angle) * radius;
             vertices.push(vector);
         }
-        
+
         return new Polygon(x,y,vertices);
 
     } //create
 
         /** Helper generate a rectangle at x,y with a given width/height and centered state.
-            Centered by default. Returns a ready made `Polygon` collision `Shape` */    
+            Centered by default. Returns a ready made `Polygon` collision `Shape` */
     public static function rectangle(x:Float, y:Float, width:Float, height:Float, centered:Bool = true):Polygon {
-        
+
         var vertices:Array<Vector> = new Array<Vector>();
 
         if(centered) {
@@ -78,20 +124,45 @@ class Polygon extends Shape {
         }
 
         return new Polygon(x,y,vertices);
-    
+
     } //rectangle
-    
+
         /** Helper generate a square at x,y with a given width/height with given centered state.
             Centered by default. Returns a ready made `Polygon` collision `Shape` */
-    public static function square(x:Float, y:Float, width:Float, centered:Bool = true):Polygon {
+    public static inline function square(x:Float, y:Float, width:Float, centered:Bool = true) : Polygon {
+
         return rectangle(x, y, width, width, centered);
+
     } //square
 
-        /** Helper generate a triangle at x,y with a given radius. 
+        /** Helper generate a triangle at x,y with a given radius.
             Returns a ready made `Polygon` collision `Shape` */
-    public static function triangle(x:Float, y:Float, radius:Float):Polygon {
+    public static function triangle(x:Float, y:Float, radius:Float) : Polygon {
+
         return create(x, y, 3, radius);
+
     } //triangle
 
-} //Polygon
+//Internal
 
+    function get_transformedVertices() : Array<Vector> {
+
+        if(!_transformed) {
+            _transformedVertices = new Array<Vector>();
+            _transformed = true;
+
+            var _count : Int = _vertices.length;
+
+            for(i in 0..._count) {
+                _transformedVertices.push( _vertices[i].clone().transform( _transformMatrix ) );
+            }
+        }
+
+        return _transformedVertices;
+    }
+
+    function get_vertices() : Array<Vector> {
+        return _vertices;
+    }
+
+} //Polygon

@@ -1,13 +1,22 @@
 {
 
+  luxe:{
+    window: {
+      width:960,
+      height:640,
+      title:'differ - usage 0',
+      resizable:false
+    }
+  },
+
   project : {
-    name : 'luxe - test - collision',
+    name : 'collision0',
     version : '1.0.0',
     author : 'luxeengine',
 
     app : {
-      name : 'luxe_test_collision',
-      package : 'com.luxeengine.testcollision'
+      name : 'collision0',
+      package : 'com.underscorediscovery.differ0'
     },
 
     build : {
