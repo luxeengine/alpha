@@ -70,6 +70,20 @@ class Main extends luxe.Game {
 
     } //test_get
 
+    function test_256() {
+
+        var max : Float = 0;
+        for ( i in 0...1000 ){
+            var t = Luxe.utils.random.float( 0, 1 );
+            if ( t > max ) max = t;
+        }
+
+        trace( 'count:1000, max:$max' );
+
+        assert(max <= 1);
+
+    }
+
     override function onkeyup( e:KeyEvent ) {
 
         var count = 1000000;
@@ -77,6 +91,7 @@ class Main extends luxe.Game {
         if(e.keycode == Key.key_i) test_int(count);
         if(e.keycode == Key.key_f) test_float(count);
         if(e.keycode == Key.key_g) test_get(count);
+        if(e.keycode == Key.key_d) test_256();
 
         if(e.keycode == Key.escape) {
             Luxe.shutdown();
