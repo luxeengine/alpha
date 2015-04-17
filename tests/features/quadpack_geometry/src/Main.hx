@@ -92,7 +92,7 @@ class Main extends luxe.Game {
 
         map_tiles = new Array< Array<MapTile> >();
 
-        var tilew = 8;
+        var tilew = 16;
         var tilecx : Int = Std.int(Luxe.screen.w / tilew);
         var tilecy : Int = Std.int(Luxe.screen.h / tilew);
 
