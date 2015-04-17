@@ -1,6 +1,5 @@
 package luxe.physics.nape;
 
-import nape.geom.Vec2List;
 import phoenix.Color;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.Vertex;
@@ -9,6 +8,7 @@ import luxe.options.RenderProperties;
 
 #if nape
 
+    import nape.geom.Vec2List;
     import nape.shape.Circle;
     import nape.shape.Polygon;
     import nape.shape.Shape;
