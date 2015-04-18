@@ -5,9 +5,24 @@ import luxe.collision.shapes.Circle;
 import luxe.Vector;
 import luxe.Log.*;
 
+import luxe.options.RenderProperties;
+
 class ShapeDrawerLuxe extends ShapeDrawer {
 
     static var color = new luxe.Color().rgb(0xf6007b); //0xff4b03
+
+    var options : RenderProperties;
+
+    public function new( ?_options:RenderProperties ) {
+
+        super();
+        options = _options;
+
+        if(options == null) options = {};
+        if(options.immediate == null) options.immediate = true;
+        if(options.depth == null) options.depth = 100;
+
+    }
 
     override public function drawCircle( circle:Circle ) {
 
@@ -18,8 +33,9 @@ class ShapeDrawerLuxe extends ShapeDrawer {
             y: circle.position.y,
             r: circle.transformedRadius,
             color: color,
-            depth: 20,
-            immediate: true
+            depth: options.depth,
+            group: options.group,
+            immediate: options.immediate
         });
 
     }
@@ -33,8 +49,9 @@ class ShapeDrawerLuxe extends ShapeDrawer {
             p0 : new luxe.Vector(p0.x, p0.y),
             p1 : new luxe.Vector(p1.x, p1.y),
             color : color,
-            depth : 20,
-            immediate : true
+            depth: options.depth,
+            group: options.group,
+            immediate: options.immediate
         });
 
     } //drawLine
