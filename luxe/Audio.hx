@@ -98,7 +98,7 @@ class Audio {
             **name** The audio reference name to loop   
             **returns** nothing
         */
-    public function loop( _name:String )  : Void{
+    public function loop( _name:String ) : Void {
         return core.app.audio.loop(_name);
     } //loop
 
@@ -152,7 +152,7 @@ class Audio {
             **pan** A new pan value
         */
     public function pan( _name:String, ?_pan:Float ) : Float  {
-        return core.app.audio.pan(_name,_pan);
+        return core.app.audio.pan(_name, _pan);
     } //pan
 
         /**
