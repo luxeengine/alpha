@@ -126,6 +126,37 @@ You should see something similar to this open in your browser
 &nbsp;
 &nbsp;
 
+---
+
+##What's next?
+
+If everything is set up so far, you might have one or two more steps to do.
+
+- You should set up to build native applications (mac/windows/linux/ios/android),
+- You should set up IDE/editor support.
+
+Both of those continue below this section.
+
+** Once everything is setup **   
+You should visit the user guide, you can find a tutorial on getting started,
+how luxe apps fit together, and how to create your own project.
+
+####[Jump to the user guides](guide.html)
+####[Continue to setup native targets](#native)
+####[Continue to setup editor support](#editors)
+
+---
+
+## Additional help and info, after setup
+
+Additional setup help and information : [here](http://snowkit.org/2014/10/29/quick-setup-guides-and-help/)
+
+Please visit http://snowkit.org for all the latest updates and news, as all news is posted here.
+
+You can also follow on http://twitter.com/snowkitorg, or join http://snowkit.org/chat
+
+---
+
 <a name="native"></a>
 
 ##Native targets
@@ -149,17 +180,13 @@ Download the prebuilt files for your target platforms here:
 &nbsp;
 &nbsp;
 
-## Additional help and information
 
-Please visit http://snowkit.org for all the latest updates and news, as all news is posted here.
-
-You can also follow on http://twitter.com/snowkitorg, or join http://snowkit.org/chat
-
-
+<a name="editors"></a>
 
 ##Editor setup
 
 ---
+
 
 ###Sublime text
 

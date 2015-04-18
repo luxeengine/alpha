@@ -28,7 +28,31 @@ Move the mouse around
 
 ---
 
+### An empty project
+
+For now, as luxe is in development, you can **copy the `luxe/samples/empty` folder as a starting point**.
+
+_This will be automated in future, and in some editors (FlashDevelop) a new project template is already included._
+
 ###Basic Anatomy 
+
+#### A flow file?!
+
+When you build a luxe app, it's built by flow, a build tool that reads your project file.
+Your **project file is called a flow file**, and has the extension `.flow`.
+
+To build your game, you run flow (discussed further below) and it does all the work.
+
+If you copied the project template, or look inside `samples/empty` you'll see a `project.flow`  file.
+Open that up, and you'll find the information specific to that project.
+
+Here's is an example of what that looks like:
+
+![flow-file](images/flow-file.png)
+
+#### Your game in code
+
+The second place to look, is the `src/Main.hx` file, which is where your game begins.
 
 A luxe app in it's very basic form is a single haxe class that extends the `luxe.Game` class. If you override the `ready` function from the luxe game class, you will have the start of a project. If you ran this as is, you would see a blank window with default properties!
 
@@ -40,14 +64,14 @@ class Main extends luxe.Game {
 	   //your game starts here
 	}
 
-} 
+}
 ```
 
 Aside from the `ready` function, there are quite a few that you can override in order to handle luxe system events - like `onkeyup(event:KeyEvent)` or `update(dt:Float)`. The first being when a key is released, and update is called every frame for you, so you can update your game logic.
 
-###The empty project template
+### The empty Game class
 
-If you start from the empty project template, it would look like this: 
+If you start from the empty project template, it would look similar to this: 
 
 ```
 
@@ -56,13 +80,13 @@ import luxe.Input;
 class Main extends luxe.Game {
 
     override function ready() {
-    
+
 	    //called by luxe for you when you can start coding
 
     } //ready
 
     override function onkeyup( e:KeyEvent ) {
-    
+
 	    //called by luxe for you, when a key is released
 
         if(e.keycode == Key.escape) {
@@ -72,7 +96,7 @@ class Main extends luxe.Game {
     } //onkeyup
 
     override function update(dt:Float) {
-    
+
     	//called by luxe for you, each frame, and passes in the
         //delta time (the length in seconds of the last frame).
 
