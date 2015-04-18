@@ -35,7 +35,8 @@ class ShapeDrawerLuxe extends ShapeDrawer {
             color: color,
             depth: options.depth,
             group: options.group,
-            immediate: options.immediate
+            immediate: options.immediate,
+            batcher: options.batcher
         });
 
     }
@@ -51,7 +52,8 @@ class ShapeDrawerLuxe extends ShapeDrawer {
             color : color,
             depth: options.depth,
             group: options.group,
-            immediate: options.immediate
+            immediate: options.immediate,
+            batcher: options.batcher
         });
 
     } //drawLine
