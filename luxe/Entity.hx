@@ -516,7 +516,9 @@ class Entity extends Objects {
             } //while looking
 
         } else {
-            log('entity has no parent or scene, currently no core events will reach it.');
+            if(!_from_unlisten) {
+                log('entity has no parent or scene, currently no core events will reach it.');
+            }
         }
 
         return source;
