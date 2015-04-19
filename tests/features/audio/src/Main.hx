@@ -155,6 +155,7 @@ class Main extends luxe.Game {
                     pan_handle.pos.x = amount;
 
                     Luxe.audio.pan('music', pan_amount);
+                    Luxe.audio.pan('sound', pan_amount);
 
                 } else if(dragging == pitch_handle) {
 
@@ -167,6 +168,7 @@ class Main extends luxe.Game {
                     pitch_handle.pos.x = amount;
 
                     Luxe.audio.pitch('music', pitch_amount);
+                    Luxe.audio.pitch('sound', pitch_amount);
 
                 }
 
@@ -183,6 +185,7 @@ class Main extends luxe.Game {
                 volume_text.text = 'volume: $volume_amount';
 
                 Luxe.audio.volume('music', volume_amount);
+                Luxe.audio.volume('sound', volume_amount);
 
                 volume_handle.pos.y = amount;
 
