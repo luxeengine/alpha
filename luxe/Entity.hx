@@ -477,7 +477,7 @@ class Entity extends Objects {
 
 //events
 
-    inline function _find_emit_source() : Emitter<Luxe.Ev> {
+    inline function _find_emit_source(?_from_unlisten:Bool=false) : Emitter<Luxe.Ev> {
 
         var source = null;
 
@@ -495,7 +495,9 @@ class Entity extends Objects {
                 if(parent.scene == null) {
                         //no parent? this is not connected at all
                     if(parent.parent == null) {
-                        log('entity has no parent or scene, currently no core events will reach it.');
+                        if(!_from_unlisten) {
+                            log('entity has no parent or scene, currently no core events will reach it.');
+                        }
                         looking = false;
                         break;
                     } else {
@@ -577,7 +579,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _unlisten( _event:Int, _handler:EmitHandler, ?_self:Bool=false ) {
 
-        var source = _find_emit_source();
+        var source = _find_emit_source(true);
 
         _debug('$name / unlisten to $_event from $source');
 
