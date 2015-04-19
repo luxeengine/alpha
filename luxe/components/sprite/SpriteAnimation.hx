@@ -680,7 +680,7 @@ class SpriteAnimation extends Component {
 
         }
 
-        trace('SpriteAnimation on ' + entity.name + ' was asked for ' + animation + ' but it is not found in the component. ');
+        trace('SpriteAnimation on ${entity.name} asked for $_name but it is not found in the component.');
 
         return animation;
 
