@@ -380,7 +380,9 @@ class Texture extends Resource {
 
     public function destroy() {
 
-        GL.deleteTexture(texture);
+        if(texture != null) {
+            GL.deleteTexture(texture);
+        }
         // asset.destroy(); :todo:
 
     } //destroy
