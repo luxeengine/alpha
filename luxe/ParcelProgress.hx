@@ -11,8 +11,9 @@ class ParcelProgress {
 
     var parcel : Parcel;
 
-        //Parcle progress will create a fullscreen overlay
+        //Parcel progress will create a fullscreen overlay
         //color background, logo image, and a progress bar
+        //unless no_visuals option was provided as true. if so these are null
     var progress_bar        : Sprite;
     var progress_border     : Visual;
     var background          : Sprite;
@@ -37,38 +38,18 @@ class ParcelProgress {
         var _view_mid_x = Math.floor(_view_width/2);
         var _view_mid_y = Math.floor(_view_height/2);
 
+        width = Math.max(Math.floor(_view_width * 0.75), 2);
+        height = Math.max(Math.floor(_view_height * 0.002), 2);
+
         options = _options;
 
-        if(options.bar == null) {
-            options.bar = new Color().rgb(0x343434);
-        }
-
-        if(options.bar_border == null) {
-            options.bar_border = new Color().rgb(0x161616);
-        }
-
-        if(options.background == null) {
-            options.background = new Color().rgb(0x090909);
-        }
-
-        if(options.fade_in == null) {
-            options.fade_in = true;
-        }
-
-        if(options.fade_out == null) {
-            options.fade_out = true;
-        }
-
-        if(options.fade_time == null) {
-            options.fade_time = 0.3;
-        }
-
-        // if(options.texture != null) {
-        //     image_logo = new Sprite({
-        //         texture : options.texture,
-        //         pos : Luxe.screen.mid
-        //     });
-        // }
+        if(options.no_visuals == null)  options.no_visuals = false;
+        if(options.bar == null)         options.bar = new Color().rgb(0x343434);
+        if(options.bar_border == null)  options.bar_border = new Color().rgb(0x161616);
+        if(options.background == null)  options.background = new Color().rgb(0x090909);
+        if(options.fade_in == null)     options.fade_in = true;
+        if(options.fade_out == null)    options.fade_out = true;
+        if(options.fade_time == null)   options.fade_time = 0.3;
 
         var fade_alpha : Float = options.background.a;
 
@@ -80,54 +61,56 @@ class ParcelProgress {
 
         } //fade in
 
-        width = Math.max(Math.floor(_view_width * 0.75), 2);
-        height = Math.max(Math.floor(_view_height * 0.002), 2);
-        var ypos = Math.floor(_view_height * 0.60);
-        var half_width = Math.floor(width/2);
-        var half_height = Math.floor(height/2);
+        if(!options.no_visuals) {
 
-        background = new Sprite({
-            no_scene : true,
-            size : new Vector( _view_width, _view_height ),
-            centered : false,
-            color : options.background,
-            depth : 998,
-            visible: true,
-        });
+            var ypos = Math.floor(_view_height * 0.60);
+            var half_width = Math.floor(width/2);
+            var half_height = Math.floor(height/2);
 
-        progress_bar = new Sprite({
-            pos : new Vector(_view_mid_x - half_width, ypos - half_height),
-            size : new Vector( 2, height ),
-            no_scene : true,
-            centered : false,
-            color : options.bar,
-            depth : 998
-        });
+            background = new Sprite({
+                no_scene : true,
+                size : new Vector( _view_width, _view_height ),
+                centered : false,
+                color : options.background,
+                depth : 998,
+                visible: true,
+            });
 
-        progress_border = new Visual({
-            color : options.bar,
-            no_scene : true,
-            pos : new Vector(_view_mid_x - half_width, ypos - half_height),
-            geometry : Luxe.draw.rectangle({
-                w : width,
-                h : height,
+            progress_bar = new Sprite({
+                pos : new Vector(_view_mid_x - half_width, ypos - half_height),
+                size : new Vector( 2, height ),
+                no_scene : true,
+                centered : false,
+                color : options.bar,
+                depth : 998
+            });
+
+            progress_border = new Visual({
+                color : options.bar,
+                no_scene : true,
+                pos : new Vector(_view_mid_x - half_width, ypos - half_height),
+                geometry : Luxe.draw.rectangle({
+                    w : width,
+                    h : height,
+                    depth : 998.1
+                }),
                 depth : 998.1
-            }),
-            depth : 998.1
-        });
+            });
+
+            if(options.fade_in) {
+
+                    //fade in the progress bar
+                background.color.tween(options.fade_time,{a:fade_alpha},true);
+                progress_bar.color.tween(options.fade_time,{a:1},true);
+                progress_border.color.tween(options.fade_time,{a:1},true);
+
+            } //fade_in
+
+        } //no visuals?
 
             //we intercept the onprogress and oncomplete of the parcel
         options.parcel.options.oncomplete = oncomplete;
         options.parcel.options.onprogress = onprogress;
-
-        if(options.fade_in) {
-
-                //fade in the progress bar
-            background.color.tween(options.fade_time,{a:fade_alpha},true);
-            progress_bar.color.tween(options.fade_time,{a:1},true);
-            progress_border.color.tween(options.fade_time,{a:1},true);
-
-        } //fade_in
 
     } //new
 
@@ -152,7 +135,7 @@ class ParcelProgress {
 
     public function oncomplete( p:Parcel ) {
 
-        if(options.fade_out) {
+        if(!options.no_visuals && options.fade_out) {
 
             background.color.tween( options.fade_time, {a:0}, true);
             progress_bar.color.tween( options.fade_time, {a:0}, true);
@@ -168,9 +151,11 @@ class ParcelProgress {
     } //oncomplete
 
     function do_complete() {
+
         if(options.oncomplete != null) {
             options.oncomplete( options.parcel );
         }
+
     } //do_complete
 
 } //Parcel Progress
