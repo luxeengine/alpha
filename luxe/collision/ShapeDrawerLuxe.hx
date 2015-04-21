@@ -28,11 +28,6 @@ class ShapeDrawerLuxe extends ShapeDrawer {
 
         assertnull(circle);
 
-        var smoothVal = 10.0;
-        if (circle.transformedRadius < 2.0 ) {
-            smoothVal = 20.0;
-        }
-
         Luxe.draw.ring({
             x: circle.position.x,
             y: circle.position.y,
@@ -42,7 +37,6 @@ class ShapeDrawerLuxe extends ShapeDrawer {
             group: options.group,
             immediate: options.immediate,
             batcher: options.batcher,
-            smooth: smoothVal
         });
 
     }
