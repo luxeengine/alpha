@@ -239,7 +239,7 @@ class SAT2D {
             var t1:Float = (-b - d) / (2 * a);
             var t2:Float = (-b + d) / (2 * a);
 
-            if (ray.infinite || t1 <= 1.0) {
+            if (ray.infinite || ((t1 <= 1.0)&&(t1 >=0.0)) ) {
                 return new RayCollision(circle, ray, t1, t2);
             }
 
@@ -284,7 +284,7 @@ class SAT2D {
 
             } //each vert
 
-            if(ray.infinite || min_u <= 1.0) {
+            if(ray.infinite || ((min_u <= 1.0) && (min_u >= 0.0)) ) {
                 return new RayCollision(polygon, ray, min_u, max_u);
             }
 

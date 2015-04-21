@@ -24,10 +24,13 @@ class RayAndShape extends luxe.States.State {
 
         Main.display('pink = ray\ngreen = before hit\nwhite = intersection\npurple = after hit');
 
-        beam = new Ray( new Vector(10,300), new Vector(400,100), false );
+        beam = new Ray( new Vector(450,300), new Vector(400,100), false );
 
         Main.rays.push(beam);
-        Main.shapes.push(new Circle(300,300,50));
+        Main.shapes.push(new Circle(600,400,50));
+        Main.shapes.push(new Circle(200,400,50));
+        Main.shapes.push( Polygon.rectangle(600,200,50,50));
+        Main.shapes.push( Polygon.rectangle(200,200,50,50));
 
         intersect = Luxe.draw.line({ depth:100, group:3, p0:new Vector(), p1:new Vector(), color:new Color().rgb(0xffffff) });
         before = Luxe.draw.line({ depth:100, group:2, p0:new Vector(), p1:new Vector(), color:new Color().rgb(0x00f67b) });
@@ -59,31 +62,43 @@ class RayAndShape extends luxe.States.State {
 
         if(Main.shapes.length <= 0) return;
 
-        var c = Collision.rayWithShape(beam, Main.shapes[0]);
+        var colls = Collision.rayWithShapes(beam, Main.shapes);
 
-        if(c != null) {
+        Luxe.draw.text({
+            point_size:15,
+            pos:new Vector(Luxe.screen.w - 10,10),
+            align: right,
+            text: 'Hit ${colls.length} shapes',
+            immediate:true,
+        });
 
-            var hitstart = c.hitStart();
-            var hitend = c.hitEnd();
-            var raystart = c.ray.start;
-            var rayend = c.ray.end;
+        var textYval = 30;
+        if(colls.length > 0) {
 
-            intersect.p0 = hitstart;
-            intersect.p1 = hitend;
+            for (c in colls) {
+                var hitstart = c.hitStart();
+                var hitend = c.hitEnd();
+                var raystart = c.ray.start;
+                var rayend = c.ray.end;
 
-            before.p0 = raystart;
-            before.p1 = hitstart;
+                intersect.p0 = hitstart;
+                intersect.p1 = hitend;
 
-            after.p0 = hitend;
-            after.p1 = rayend;
+                before.p0 = raystart;
+                before.p1 = hitstart;
 
-            Luxe.draw.text({
-                point_size:13,
-                pos:new Vector(Luxe.screen.w - 10,10),
-                align: right,
-                text: 'hit start %: ${c.start}\n end %: ${c.end}',
-                immediate:true,
-            });
+                after.p0 = hitend;
+                after.p1 = rayend;
+
+                Luxe.draw.text({
+                    point_size:13,
+                    pos:new Vector(Luxe.screen.w - 10,textYval),
+                    align: right,
+                    text: 'hit start %: ${c.start}\n end %: ${c.end}',
+                    immediate:true,
+                });
+                textYval += 30;
+            }
 
         }
 
