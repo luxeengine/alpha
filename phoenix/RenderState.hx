@@ -52,7 +52,7 @@ class RenderState {
 
     var depth_func : Int = -1;
     public function depth_function( what:Int ) {
-        if(depth_func != depth_func) {
+        if(depth_func != what) {
             GL.depthFunc( what );
             depth_func = what;
         }
