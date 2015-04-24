@@ -492,6 +492,8 @@ class Camera {
                         pos.x = _p.x - (viewport.w/2);
                         pos.y = _p.y - (viewport.h/2);
                     pos.ignore_listeners = false;
+					
+					transform.pos.copy_from(_p);
 
                 } //!_refresh_pos && !_setup
 
