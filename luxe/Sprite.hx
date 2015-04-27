@@ -4,7 +4,7 @@ import luxe.Visual;
 import luxe.Vector;
 import luxe.Rectangle;
 
-import luxe.resource.Resource;
+import luxe.Resources;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 
@@ -55,28 +55,18 @@ class Sprite extends Visual {
 
         if(texture != null) {
 
-            texture.onload = function(t) {
+                //because the default is 0,0,1,1 uv for the quad, we don't want that when
+                //textures are padded (like on web)
+            if(options.uv == null) {
+                uv = new Rectangle(0,0,texture.width,texture.height);
+            } else {
+                uv = options.uv;
+            }
 
-                    //because the default is 0,0,1,1 uv for the quad, we don't want that when
-                    //textures are padded (like on web)
-                if(options.uv == null) {
-
-                    // if(texture.width_actual != texture.width || texture.height_actual != texture.height) {
-                        uv = new Rectangle(0,0,texture.width,texture.height);
-                    // }
-
-                } else {
-
-                    uv = options.uv;
-
-                }
-
-                    //if texture is render target, flipy
-                if(texture.type == ResourceType.render_texture) {
-                    flipy = true;
-                }
-
-            } //onload
+                //if texture is render target, flipy
+            if(texture.resource_type == ResourceType.render_texture) {
+                flipy = true;
+            }
 
         } //texture !null
 
@@ -97,7 +87,8 @@ class Sprite extends Visual {
 
 //Helper functions
 
-        //:todo: this function is utilitarian and should be flagged for dirty state if used extensively
+        /** Returns true if a point is inside the sprite, takes into account the sprite transform,
+            which includes more cost than simple AABB like `point_inside_AABB` */
     public function point_inside( _p:Vector ) : Bool {
 
         if(geometry == null) {
@@ -202,7 +193,7 @@ class Sprite extends Visual {
                 }
             }
 
-        } //if geometry != null
+        }
 
             //done
         return super.set_size(_v);
