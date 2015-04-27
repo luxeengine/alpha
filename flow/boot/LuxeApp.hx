@@ -11,7 +11,7 @@ class LuxeApp {
     public static var _game : {{project.app.main}};
     public static var _core : Core;
     public static var _snow : Snow;
-    public static var _conf : AppConfig;
+    public static var _conf : luxe.AppConfig;
 
     public static function main () {
 
