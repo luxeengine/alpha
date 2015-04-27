@@ -78,6 +78,7 @@ typedef DebugInspectorOptions = {
 
         if(size != null && _window != null) {
             _window.size = _size;
+            _window.geometry.dirty = true;
         }
 
         if(_version_text != null) {
@@ -91,6 +92,7 @@ typedef DebugInspectorOptions = {
 
         if(pos != null && _window != null) {
             _window.pos = _pos;
+            _window.geometry.dirty = true;
         }
 
         if(_title_text != null) {
@@ -117,6 +119,7 @@ typedef DebugInspectorOptions = {
             color : new Color().rgb(0x161619),
             size : size,
             pos : pos,
+            no_scene : true,
             batcher : _batcher
         });
 
