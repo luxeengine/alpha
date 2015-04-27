@@ -5,6 +5,7 @@ import luxe.Rectangle;
 import luxe.Log.log;
 
 import phoenix.geometry.QuadPackGeometry;
+import phoenix.Texture.FilterType;
 
 typedef MapTile = {
     quad : Int,
@@ -35,16 +36,14 @@ class TileView extends State {
         log('onenter tileview');
 
         geom = new phoenix.geometry.QuadPackGeometry({
-            texture : Luxe.loadTexture('assets/tileset.png'),
+            texture : Luxe.resources.texture('assets/tileset.png'),
             batcher : Luxe.renderer.batcher
         });
 
-        geom.texture.filter = phoenix.Texture.FilterType.nearest;
+        geom.texture.filter_min = geom.texture.filter_mag = FilterType.nearest;
         geom.locked = true;
 
-        geom.texture.onload = function(t) {
-            create_map();
-        }
+        create_map();
 
     } //onenter
 

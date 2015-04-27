@@ -13,12 +13,25 @@ class Main extends luxe.Game {
 	var rotator : Rotate;
     var delta_time_text : Text;
 
+    override function config( config:luxe.AppConfig ) {
+
+        config.preload.textures.push({ id:'assets/luxelogo.png' });
+
+        #if luxe_doc_sample
+            config.window.width = 640;
+            config.window.height = 427;
+        #end
+
+        return config;
+
+    } //config
+
 
     override function ready() {
 
     	logo = new Sprite({
             pos : new Vector(Luxe.screen.w/2, Luxe.screen.h/2),
-            texture : Luxe.loadTexture('assets/luxelogo.png'),
+            texture : Luxe.resources.texture('assets/luxelogo.png'),
         });
 
         rotator = new Rotate({ name:'rotator' });
@@ -58,17 +71,6 @@ class Main extends luxe.Game {
         }
 
     } //onkeyup
-
-    override function config( config:luxe.AppConfig ) {
-
-        #if luxe_doc_sample
-            config.window.width = 640;
-            config.window.height = 427;
-        #end
-
-        return config;
-
-    } //config
 
 
 } //Main

@@ -49,9 +49,9 @@ class Menu extends luxe.State {
             //shader will refuse effects set on it via text objects because
             //it directly affects the shared shader for the debug console etc
             //so, for unique items, you want a unique shader for each effect.
-        title_shader = Luxe.renderer.shaders.bitmapfont.shader.clone();
-        items_shader = Luxe.renderer.shaders.bitmapfont.shader.clone();
-        active_items_shader = Luxe.renderer.shaders.bitmapfont.shader.clone();
+        title_shader = Luxe.renderer.shaders.bitmapfont.shader.clone('title-shader');
+        items_shader = Luxe.renderer.shaders.bitmapfont.shader.clone('items-shader');
+        active_items_shader = Luxe.renderer.shaders.bitmapfont.shader.clone('active-items-shader');
 
 
         inline function create_sound() {
@@ -66,9 +66,9 @@ class Menu extends luxe.State {
             idx++;
             trace('creating particles.$idx');
 
-            var t1 = Luxe.loadTexture('assets/particles/flame.png');
-            var t2 = Luxe.loadTexture('assets/particles/smoke.png');
-            var t3 = Luxe.loadTexture('assets/particles/embers.png');
+            var t1 = Luxe.resources.texture('assets/particles/flame.png');
+            var t2 = Luxe.resources.texture('assets/particles/smoke.png');
+            var t3 = Luxe.resources.texture('assets/particles/embers.png');
 
             particles = new ParticleSystem({name:'particles.$idx' });
             particles.pos = pos;
@@ -130,7 +130,7 @@ class Menu extends luxe.State {
         inline function create_title() {
 
             detail_top = new Sprite({
-                texture: Luxe.loadTexture('assets/detail_top.png'),
+                texture: Luxe.resources.texture('assets/detail_top.png'),
                 pos: new Vector(Luxe.screen.mid.x, -171),
                 depth: 1
             });
@@ -157,12 +157,12 @@ class Menu extends luxe.State {
         inline function create_background() {
 
             stones_top = new Sprite({
-                texture: Luxe.loadTexture('assets/stones_top.png'),
+                texture: Luxe.resources.texture('assets/stones_top.png'),
                 pos: new Vector(Luxe.screen.mid.x, (151/2)),
             });
 
             stones_bottom = new Sprite({
-                texture: Luxe.loadTexture('assets/stones_bottom.png'),
+                texture: Luxe.resources.texture('assets/stones_bottom.png'),
                 pos: new Vector(Luxe.screen.mid.x, Luxe.screen.h - (54/2)),
             });
 

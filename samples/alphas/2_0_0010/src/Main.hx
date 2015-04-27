@@ -10,6 +10,26 @@ class Main extends luxe.Game {
     public static var state: States;
     public static var font: phoenix.BitmapFont;
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures = [
+            { id:'assets/particles/snowflake.png' },
+            { id:'assets/particles/flame.png' },
+            { id:'assets/particles/smoke.png' },
+            { id:'assets/particles/embers.png' },
+            { id:'assets/detail_top.png' },
+            { id:'assets/stones_top.png' },
+            { id:'assets/stones_bottom.png'}
+        ];
+
+        config.preload.fonts.push({
+            id:'assets/font/proclamate.fnt'
+        });
+
+        return config;
+
+    } //config
+
     override function ready() {
 
             //create the state machine
@@ -17,17 +37,15 @@ class Main extends luxe.Game {
 
             //simply wait for the font to load,
             //the rest will work out their delayed loads
-        font = Luxe.loadFont('assets/font/proclamate.fnt', function(_){
+        font = Luxe.resources.font('assets/font/proclamate.fnt');
 
-                //add the states we will use
-            state.add( new Menu() );
-            state.add( new Game() );
-            state.add( new Pause() );
+            //add the states we will use
+        state.add( new Menu() );
+        state.add( new Game() );
+        state.add( new Pause() );
 
-                //set the initial state to menu
-            state.set('menu');
-
-        });
+            //set the initial state to menu
+        state.set('menu');
 
     } //ready
 

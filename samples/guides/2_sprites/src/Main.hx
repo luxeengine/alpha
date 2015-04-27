@@ -16,6 +16,20 @@ class Main extends luxe.Game {
         //set by the screen size later
     var move_speed : Float = 0;
 
+    override function config( config:luxe.AppConfig ) {
+
+        config.preload.textures.push({ id:'assets/stand.png' });
+
+        #if luxe_doc_sample
+            config.window.width = 640;
+            config.window.height = 427;
+        #end
+
+        return config;
+
+    } //config
+
+
     override function ready() {
 
         //it's important that if you want to build
@@ -26,17 +40,17 @@ class Main extends luxe.Game {
         //In the next tutorial this is shown using a built in progress bar,
         //for multiple assets, but for now we just use the onloaded argument of load texture
 
-        image = Luxe.loadTexture('assets/stand.png');
+        image = Luxe.resources.texture('assets/stand.png');
 
-        image.onload = create_player;
+        create_player();
 
     } //ready
 
-    function create_player(_) {
+    function create_player() {
 
             //now that the image is loaded
             //keep pixels crisp
-        image.filter = FilterType.nearest;
+        image.filter_min = image.filter_mag = FilterType.nearest;
 
             //work out the correct size based on a ratio
         var height = Luxe.screen.h/1.75;
@@ -90,15 +104,5 @@ class Main extends luxe.Game {
 
     } //onkeyup
 
-    override function config( config:luxe.AppConfig ) {
-
-        #if luxe_doc_sample
-            config.window.width = 640;
-            config.window.height = 427;
-        #end
-
-        return config;
-
-    } //config
 
 } //Main

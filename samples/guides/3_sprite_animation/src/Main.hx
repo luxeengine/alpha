@@ -25,25 +25,32 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-            //fetch a list of assets to load from the json file
-        Luxe.loadJSON('assets/parcel.json', function(json_asset) {
+            //A parcel is a group of resources,
+            //which allows us to conveniently load
+            //them all at and keep track. We add
+            //the list of resources we want to the
+            //parcel when creating it, and then
+            //tell it to load.
 
-                //then create a parcel to load it for us
-            var preload = new Parcel();
-                preload.from_json(json_asset.json);
-
-                //but, we also want a progress bar for the parcel,
-                //this is a default one, you can do your own
-            new ParcelProgress({
-                parcel      : preload,
-                background  : new Color(1,1,1,0.85),
-                oncomplete  : assets_loaded
-            });
-
-                //go!
-            preload.load();
-
+        var parcel = new Parcel({
+            jsons:[ { id:'assets/anim.json' } ],
+            textures : [
+                { id: 'assets/apartment.png' },
+                { id: 'assets/player.png' }
+            ],
         });
+
+            //but, before we load it, we also want to
+            //display a simple progress bar for the parcel,
+            //this is a default one, you can create your own
+        new ParcelProgress({
+            parcel      : parcel,
+            background  : new Color(1,1,1,0.85),
+            oncomplete  : assets_loaded
+        });
+
+            //go!
+        parcel.load();
 
     } //ready
 
@@ -59,11 +66,12 @@ class Main extends luxe.Game {
 
     function create_apartment() {
 
-            //load the image up
-        var apartment = Luxe.loadTexture('assets/apartment.png');
+            //fetch the previously loaded image
+        var apartment = Luxe.resources.texture('assets/apartment.png');
 
-            //this makes sure the pixels stay crisp when scaling
-        apartment.filter = FilterType.nearest;
+            //this makes sure the pixels stay crisp when scaling,
+            //we set both at once, since they both are needed.
+        apartment.filter_min = apartment.filter_mag = FilterType.nearest;
 
             //this calculates how wide the image should be on screen,
             //if we make the image as high as the view itself
@@ -82,11 +90,11 @@ class Main extends luxe.Game {
 
     function create_player() {
 
-            //load the image
-        image = Luxe.loadTexture('assets/player.png');
+            //fetch the player image
+        image = Luxe.resources.texture('assets/player.png');
 
-            //keep pixels crisp
-        image.filter = FilterType.nearest;
+            //keep pixels crisp, same as create_apartment
+        image.filter_min = image.filter_mag = FilterType.nearest;
 
             //work out the correct size based on a ratio with the screen size
         var frame_width = 32;
@@ -113,16 +121,16 @@ class Main extends luxe.Game {
 
     function create_player_animation() {
 
-            //create the animation from a simple json string,
+            //create the animation from the previously loaded json,
             //the frameset structure allows us to specify things like
             //"animate frames 1-3 and then hold for 2 frames" etc.
-        var anim_object = Luxe.resources.find_json('assets/anim.json');
+        var anim_object = Luxe.resources.json('assets/anim.json');
 
             //create the animation component and add it to the sprite
         anim = player.add( new SpriteAnimation({ name:'anim' }) );
 
             //create the animations from the json
-        anim.add_from_json_object( anim_object.json );
+        anim.add_from_json_object( anim_object.asset.json );
 
             //set the idle animation to active
         anim.animation = 'idle';

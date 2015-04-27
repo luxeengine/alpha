@@ -32,24 +32,21 @@ class TextView extends State {
 
         start = Luxe.screen.mid.x - ((string.length * 32)/2);
 
-        font = Luxe.loadFont('assets/font/alpha.fnt', null, function(_){
+        font = Luxe.resources.font('assets/font/alpha.fnt');
 
-            for(letter in string) {
+        for(letter in string) {
 
-                var _text = new Text({
-                    text : letter,
-                    font : font,    //use the custom font
-                    depth : 3,      //make sure its above the tiles
-                    pos : new Vector(start + (letters.length*32), Luxe.screen.mid.y ),
-                    point_size:72
-                });
+            var _text = new Text({
+                text : letter,
+                font : font,    //use the custom font
+                depth : 3,      //make sure its above the tiles
+                pos : new Vector(start + (letters.length*32), Luxe.screen.mid.y ),
+                point_size:72
+            });
 
-                letters.push(_text);
+            letters.push(_text);
 
-            } //each letter
-
-        }); //font onload
-
+        } //each letter
 
     } //new
 

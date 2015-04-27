@@ -64,10 +64,10 @@ class Game extends State {
     function create_wind() {
 
             //a streaming wind sound
-        var wind = Luxe.audio.create('assets/69509__zixem__ruin-wind.ogg', 'wind', true);
+        var load = Luxe.audio.create('assets/69509__zixem__ruin-wind.ogg', 'wind', true);
 
             //wait for it to load, then loop it
-        wind.on('load', function(_){
+        load.then(function(wind){
             wind.loop();
         });
 
@@ -89,7 +89,7 @@ class Game extends State {
             emitter.cache_wrap = false;
             emitter.pos_random = new Vector(Luxe.screen.w, 0);
             emitter.cache_size = 512;
-            emitter.particle_image = Luxe.loadTexture('assets/particles/snowflake.png');
+            emitter.particle_image = Luxe.resources.texture('assets/particles/snowflake.png');
             emitter.start_color = new Color();
             emitter.end_color = new Color(1,1,1,0);
             emitter.start_size = new Vector(16,16);

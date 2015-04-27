@@ -37,25 +37,27 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-           //fetch a list of assets to load from the json file
-        Luxe.loadJSON('assets/parcel.json', function(json_asset){
+            //as with guide 3, we just create a list of assets to load
 
-                //then create a parcel to load it for us
-            var preload = new Parcel();
-                preload.from_json(json_asset.json);
+        var parcel = new Parcel({
+            textures : [{ id : 'assets/apartment.png' }],
+            fonts : [{ id : 'assets/montez/montez.fnt' }],
+            sounds : [
+                { id : 'assets/sound/244053__lennyboy__thunder.ogg', name : 'thunder', is_stream : false },
+                { id : 'assets/sound/244028__lennyboy__rain001.ogg', name : 'rain', is_stream : false },
+                { id : 'assets/sound/189175__triangelx__emotional-piano.ogg', name : 'music', is_stream : false }
+            ]
+        });
 
-                //but, we also want a progress bar for the parcel,
-                //this is a default one, you can do your own
-            new ParcelProgress({
-                parcel      : preload,
-                background  : new Color(1,1,1,0.85),
-                oncomplete  : assets_loaded
-            });
+            //and a simpe progress bar
+        new ParcelProgress({
+            parcel      : parcel,
+            background  : new Color(1,1,1,0.85),
+            oncomplete  : assets_loaded
+        });
 
-                //go!
-            preload.load();
-
-        }); //loadJSON
+            //go!
+        parcel.load();
 
     } //ready
 
@@ -128,7 +130,7 @@ class Main extends luxe.Game {
     function create_text() {
 
             //since the parcel has created the font, its in the resource manager
-        montez_font = Luxe.resources.find_font('assets/montez/montez.fnt');
+        montez_font = Luxe.resources.font('assets/montez/montez.fnt');
 
             //scale to fit the screen nicely, but max at the font default size of 48,
             //and the 12 is a ratio I made up based on the default window size
@@ -157,11 +159,11 @@ class Main extends luxe.Game {
 
     function create_apartment() {
 
-            //load the image up
-        var image = Luxe.loadTexture('assets/apartment.png');
+            //fetch the previously loaded texture
+        var image = Luxe.resources.texture('assets/apartment.png');
 
-            //this makes sure the pixels stay crisp when scaling
-        image.filter = FilterType.nearest;
+            //this makes sure the pixels stay crisp when scaling, like in guide 3
+        image.filter_min = image.filter_mag = FilterType.nearest;
 
             //this calculates how wide the image should be on screen,
             //if we make the image as high as the view itself

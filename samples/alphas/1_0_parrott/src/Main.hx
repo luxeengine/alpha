@@ -25,6 +25,14 @@ class Main extends luxe.Game {
         config.window.title = 'alpha-1.0+parrott';
         config.window.resizable = false;
 
+        config.preload.textures.push({ id:'assets/tileset.png' });
+        config.preload.fonts.push({ id:'assets/font/alpha.fnt' });
+        config.preload.shaders.push({
+            id:'low-res',
+            frag_id:'assets/lowres.glsl',
+            vert_id:'default'
+        });
+
         #if luxe_doc_sample
             config.window.width = 700;
             config.window.height = 467;
@@ -36,13 +44,13 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-            /** This is where we will draw to, the render texture */
-        final_output = new RenderTexture(Luxe.resources, Luxe.screen.size);
+            /** This is where we will draw to, the render texture, the default is screen size, but explicit for example */
+        final_output = new RenderTexture({ id:'sample-rtt', width:Luxe.screen.w, height:Luxe.screen.h  });
             /** This is a batcher separate from the default rendering so we can control when it draws */
         final_batch = Luxe.renderer.create_batcher({ no_add:true });
 
             /** This is the shader we will apply to the overall drawing */
-        final_shader = Luxe.loadShader('assets/lowres.glsl');
+        final_shader = Luxe.resources.shader('low-res');
             //set the default shader grid size so it shows something at least
         final_shader.set_float('grid_size', Luxe.screen.size.x*0.2 );
 
