@@ -387,11 +387,7 @@ class NineSlice extends luxe.Visual {
 
     public function create( _pos:Vector, _w:Float, _h:Float, ?_reset:Bool = false ) {
 
-        if(!texture.loaded) {
-            texture.onload = function(texture){
-                _create(_pos,_w,_h,_reset);
-            }
-        } else {
+        if(texture != null) {
             _create(_pos,_w,_h,_reset);
         }
 
