@@ -23,6 +23,4 @@ typedef MeshOptions = {
         /** */
     @:optional var geometry : Geometry;
 
-    @:optional var onload:luxe.Mesh->Void;
-
 } //MeshOptions
