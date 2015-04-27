@@ -1,26 +1,24 @@
 package phoenix;
 
-import luxe.Vector;
 import luxe.resource.Resource;
-import luxe.resource.Resources;
+import luxe.Resources;
 
-import luxe.options.FontOptions;
+// import luxe.options.FontOptions;
+import luxe.options.ResourceOptions;
 import luxe.options.TextOptions;
+import luxe.importers.bitmapfont.BitmapFontData;
+import luxe.importers.bitmapfont.BitmapFontParser;
 
 import phoenix.Batcher;
-import phoenix.BitmapFont.TextAlign;
-import phoenix.geometry.CompositeGeometry;
-import phoenix.geometry.Geometry;
-import phoenix.geometry.QuadGeometry;
-import phoenix.geometry.TextureCoord;
-import phoenix.geometry.Vertex;
 import phoenix.geometry.TextGeometry;
 import phoenix.Rectangle;
+import phoenix.Vector;
 import phoenix.Texture;
+import snow.api.Promise;
+import snow.types.Types.Error;
+import snow.system.assets.Asset;
 
-import luxe.Log.log;
-import luxe.Log._debug;
-import luxe.Log._verbose;
+import luxe.Log.*;
 
 using luxe.utils.unifill.Unifill;
 
@@ -32,121 +30,66 @@ using luxe.utils.unifill.Unifill;
     var bottom = 4;
 } //TextAlign
 
-typedef Character = {
-    var id: Int;
-    var x: Float;
-    var y: Float;
-    var width: Float;
-    var height: Float;
-    var xoffset: Float;
-    var yoffset: Float;
-    var xadvance: Float;
-    var page: Int;
-}
-
-
-typedef FontInfo = {
-    var face: String;
-    var point_size: Float;
-    var base_size: Float;
-    var chars: Map<Int, Character>;
-    var char_count: Int;
-    var pages: Array<{ id : Int, file : String }>;
-    var line_height: Float;
-    var kernings: Map< Int, Map<Int, Float> >;
-}
-
 
 class BitmapFont extends Resource {
 
-    public var pages : Map<Int, Texture>;
-    public var info : FontInfo;
-    public var options : BitmapFontOptions;
-
-    public var onload : BitmapFont -> Void;
-    public var loaded : Bool = false;
-
-        //cached refrence of the ' '(32)
-        //character for sizing on tabs/spaces
+        /** The map of font texture pages to their id. */
+    public var pages: Map<Int, Texture>;
+        /** The bitmap font data */
+    public var info (default, set): BitmapFontData;
+        /** Cached reference of the ' '(32) character, for sizing on tabs/spaces */
     public var space_char: Character;
-        //for loading pages and reporting done
-    var items_loaded: Int = 0;
-    var items_total: Int = 0;
 
-    static var generic_names : Array<String> = ['font','', ' '];
+        /** Optional texture path. */
+    var texture_path: String;
 
-    public function new( ?_options:BitmapFontOptions ) {
+    public function new( _options:BitmapFontOptions ) {
 
-        options = if(_options == null) {
-                    { id:'font.${Luxe.utils.uniqueid()}' }
-                } else {
-                    _options;
-                }
+        assertnull(_options);
 
-        id = options.id;
+        _options.resource_type = ResourceType.font;
 
-        default_options();
+        super( _options );
 
-        super( options.resources, ResourceType.font );
+        if(_options.texture_path != null) {
+            texture_path = _options.texture_path;
+        } else {
+            texture_path = haxe.io.Path.directory(id);
+        }
 
         pages = new Map();
 
+        if(_options.pages != null) assertnull(_options.font_data, 'BitmapFont create from pages + font_data requires both of those options');
+        if(_options.font_data != null) {
+
+            assertnull(_options.pages, 'BitmapFont create from pages + font_data requires both of those options');
+
+            info = BitmapFontParser.parse(_options.font_data);
+            apply_pages(_options.pages);
+
+        } //font_data
+
     } //new
 
-    //Public api
+//Public api
+    //
 
-            /** Create this bitmap font from the given string data, using the options given in the constructor. 
-                optional: onload callback and custom texture pages, if already loaded. */
-        public function from_string(
-            _bitmapfont_data : String,
-            ?_onload: BitmapFont->Void ,
-            ?_custom_pages: Array<Texture>,
-            ?_silent: Bool = false )
-        {
+        /** Returns the kerning between two glyphs, or 0 if none.
+            A glyph int id is the value from 'c'.charCodeAt(0) */
+    public inline function kerning(_first:Int, _second:Int) {
 
-                //store the listener
-            if(_onload != null) onload = _onload;
-                //parse the file
-            info = Parser.parse(_bitmapfont_data);
+        var _map = info.kernings.get(_first);
 
-                //check validity of the font
-            if( info.char_count == 0 || 
-                (info.pages.length == 0 && _custom_pages.length == 0)
-            ) {
-                log('error / $id / invalid font data specified for this font, cannot load. This font will not be valid.');
-                do_onload( false );
-                return;
-            }
+        if(_map != null && _map.exists(_second)) {
+            return _map.get(_second);
+        }
 
-                //store cached values
-            space_char = info.chars.get(32);
-                //load any texture pages
-            load_pages(_custom_pages);
+        return 0;
 
-            if(generic_names.indexOf(id) != -1) {
-                var _warning = 'warning / font loaded with a generic or no name as "$id". ';
-                    _warning += 'This could lead to bugs or confusion, or not being able to retrieve the font ';
-                    _warning += 'later from the resources.';
-                log(_warning);
-            }
+    } //kerning
 
-        } //from_string
-
-
-            /** Get the kerning between two glyphs, 0 if none.
-                A glyph int id is the value from 'c'.charCodeAt(0) */
-        public inline function kerning(_first:Int, _second:Int) {
-
-            var _map = info.kernings.get(_first);
-
-            if(_map != null && _map.exists(_second)) {
-                return _map.get(_second);
-            }
-
-            return 0;
-
-        } //kerning
-
+        /** Wrap the given string to the given rectangle, using the given metrics.
+            Returns a new array, with each line of the string split across the bounds. */
     public function wrap_string_to_bounds( _string:String, _bounds:Rectangle, _point_size:Float=1.0, _letter_spc:Float=0.0 ) : String {
 
         if(_bounds == null) {
@@ -213,8 +156,9 @@ class BitmapFont extends Resource {
 
     } //wrap_string_to_bounds
 
+        /** Returns the width of the given line, which assumes the line is already split up (does not split the string), using the given metrics. */
     public function width_of_line( _string:String, _point_size:Float=1.0, _letter_spc:Float=0.0 ) {
-
+        //
             //current x pos
         var _cur_x = 0.0;
             //current w pos
@@ -253,8 +197,10 @@ class BitmapFont extends Resource {
 
     } //width_of_line
 
+        /** Returns the width of the given string, using the given metrics.
+            This will split the string and populate the optional _line_widths array with each line width of the string */
     public inline function width_of( _string:String, _point_size:Float = 1.0, _letter_spc:Float = 0.0, ?_line_widths:Array<Float> ) : Float {
-
+        //
             //if given an array to cache line widths into
         var _max_w = 0.0;
         var _push_widths = (_line_widths != null);
@@ -277,12 +223,12 @@ class BitmapFont extends Resource {
 
     } //width_of
 
+        /** Returns the height of a string, using the given metrics. */
     public inline function height_of( _string:String, _point_size:Float, _line_spc:Float=0.0 ) : Float {
 
         return height_of_lines(_string.split('\n'), _point_size, _line_spc);
 
     } //height_of
-
 
         /** Return the dimensions of a given string, at the specified point size.
             You can also use width_of or height_of, this is a convenience for those */
@@ -295,299 +241,110 @@ class BitmapFont extends Resource {
 
     } //dimensions
 
-    //Public static api
+        /** Get the height of the given lines with the given metrics. */
+    public inline function height_of_lines( _lines:Array<String>, _point_size:Float, _line_spc:Float=0.0 ) : Float {
 
-        public static function load( ?_options:BitmapFontOptions ) : BitmapFont {
+        var _ratio = _point_size / info.point_size;
 
-            if(_options == null || _options.id == null ) {
-                throw "BitmapFont: `load` cannot work without a file id to load from.";
-            }
+        return _lines.length * ((info.line_height + _line_spc) * _ratio);
 
-            if(_options.silent == null) _options.silent = false;
+    } //height_of
 
-            var font = new BitmapFont( _options );
+//Resource api
 
-            Luxe.loadText( font.id, function( font_data:luxe.resource.TextResource ) {
+    override function clear() {
 
-                font.from_string( font_data.text, font.options.onload, null, font.options.silent );
-                font.options.resources.cache(font);
+        info = null;
+        var _i = 0;
+        for(_pageid in pages.keys()) {
+            var _page = pages.get(_pageid);
+            _page.destroy();
+            pages.remove(_pageid);
+            _page = null;
+        }
 
-            });
+    } //clear
 
-            return font;
+    override function reload() {
 
-        } //load
+        assert(state != ResourceState.destroyed);
 
-    //internal
+        clear();
 
-        public inline function height_of_lines( _lines:Array<String>, _point_size:Float, _line_spc:Float=0.0 ) : Float {
+        return new Promise(function(resolve, reject) {
 
-            var _ratio = _point_size / info.point_size;
+            state = ResourceState.loading;
 
-            return _lines.length * ((info.line_height + _line_spc) * _ratio);
+                //fetch the bitmap font data
+            var _font_get = Luxe.snow.assets.text(id);
 
-        } //height_of
+            _font_get.then(function(_asset:AssetText){
 
-        function default_options() {
+                    //parse the data
+                info = BitmapFontParser.parse( _asset.text );
 
-            if(options.id == null) {
-                options.id = id;
-            }
+                assertnull(info);
 
-            if(options.resources == null) {
-                options.resources = Luxe.resources;
-            }
-
-            if(options.mipmaps == null) {
-                options.mipmaps = false;
-            }
-
-            if(options.filter == null) {
-                options.filter = FilterType.linear;
-            }
-
-            if(options.filter_min == null) {
-                options.filter_min = FilterType.linear;
-            }
-
-            if(options.filter_mag == null) {
-                options.filter_mag = FilterType.linear;
-            }
-
-        } //default_options
-
-    //internal load handlers
-
-        function do_onload(success:Bool=true) {
-
-            loaded = success;
-
-            if(onload != null) {
-                onload( this );
-            }
-
-        } //do_onload
-
-        function page_loaded(t:Texture) {
-
-                //increment the current count
-            items_loaded++;
-
-                //if completely done
-            if(items_loaded == items_total) {
-                do_onload();
-            }
-
-        } //page_loaded
-
-        function load_pages( ?_custom_pages:Array<Texture> ) {
-
-            var _path = if(options.texture_path == null) {
-                            haxe.io.Path.directory(id);
-                        } else {
-                            options.texture_path;
-                        }
-
-            if(_custom_pages == null) {
-
-                _debug('loading texture pages from $_path');
-
-                items_total = Lambda.count(info.pages);
+                var _tex_get = [];
 
                 for(_page in info.pages) {
 
-                    var _page_path = haxe.io.Path.join([_path, _page.file]);
+                    var _path = haxe.io.Path.join([ texture_path, _page.file ]);
+                    var _prior = system.texture(_path);
 
-                    _debug('\tpage : $_page_path');
-
-                    var _t = Luxe.loadTexture( _page_path, null, options.silent );
-                    if(_t != null) {
-                        _t.onload = function(_) {
-
-                            pages.set(_page.id, _t);
-
-                            _t.slot = _page.id;
-                            _t.filter = options.filter;
-                            _t.filter_min = options.filter_min;
-                            _t.filter_mag = options.filter_mag;
-
-                            if(options.mipmaps) {
-                                _t.generate_mipmaps();
-                            }
-
-                            page_loaded(_t);
-
-                        } //onload
+                    if(_prior != null) {
+                        _tex_get.push( _prior.reload() );
                     } else {
-                        throw 'BitmapFont: "$id (${info.face})" specified a page "${_page.file}" with a missing texture at $_page_path';
+                        _tex_get.push( system.load_texture(_path) );
                     }
 
-                } //each page
+                }  //each page
 
-            } else {
+                Promise.all(_tex_get).then(function(_pages:Array<Texture>){
 
-                items_total = _custom_pages.length;
+                    apply_pages(_pages);
 
-                var _id : Int = 0;
-                for(_page in _custom_pages) {
-                    _page.slot = _id;
-                    pages.set(_id, _page);
-                    ++_id;
-                }
+                    state = ResourceState.loaded;
+                    resolve(this);
 
-                    //still need the callback for explicit textures
-                do_onload();
+                }).error(reject);
 
-            } //if custom pages
+            }).error(reject);
 
-        } //load_pages
+        }); //promise
 
-            //Wip refactoring, see #98
-    public function draw_text( opt : TextGeometryOptions ) {
+    } //reload
 
-        if(opt.batcher == null) opt.batcher = Luxe.renderer.batcher;
+//Internal
 
-            opt.font = this;
+    function apply_pages(_pages:Array<Texture>) {
 
-        return new TextGeometry(opt);
+        var _pageid : Int = 0;
 
-    } //draw_text
+        for(_page in _pages) {
+            _page.slot = _pageid;
+            pages.set(_pageid, _page);
+            ++_pageid;
+        } //each page
 
-    function toString() {
+    } //apply_pages
+
+    function set_info(_info:BitmapFontData) {
+
+        info = _info;
+
+        if(info != null) {
+            space_char = info.chars.get(32);
+        }
+
+        return info;
+
+    } //_info
+
+    override function toString() {
         return "BitmapFont(" + id + ")";
     }
 
 } //BitmapFont
 
-
-private class Parser {
-
-    //public api
-
-        public static function parse( _font_data:String ) : FontInfo {
-
-            if(_font_data.length == 0) {
-                throw "BitmapFont:Parser: _font_data is 0 length";
-            }
-
-            var _info : FontInfo = {
-                face : null,
-                chars : new Map(),
-                point_size : 0, base_size : 0,
-                char_count : 0, line_height : 0,
-                pages : [], kernings : new Map()
-            };
-
-            var _lines : Array<String> = _font_data.split("\n");
-
-            if(_lines.length == 0) throw "BitmapFont; invalid font data specified for parser.";
-
-            var _first = _lines[0];
-            if( StringTools.ltrim(_first).substr(0, 4) != 'info') {
-                throw "BitmapFont; invalid font data specified for parser. Format should be plain ascii text .fnt file only currently.";
-            }
-
-            for(_line in _lines) {
-                var _tokens = _line.split(" ");
-                for(_current in _tokens) {
-                    parse_token(_current, _tokens, _info);
-                }
-            }
-
-            return _info;
-
-        } //parse
-
-    //internal
-
-        static function parse_token( _token:String, _tokens:Array<String>, _info:FontInfo ) {
-
-                //remove the first token
-            _tokens.shift();
-                //fetch the items from the line
-            var _items = tokenize_line(_tokens);
-
-            switch (_token) {
-
-                case 'info': {
-                    _info.face = unquote(_items['face']);
-                    _info.point_size = Std.parseFloat(_items['size']);
-                }
-
-                case 'common': {
-                    _info.line_height = Std.parseFloat(_items['lineHeight']);
-                    _info.base_size = Std.parseFloat(_items['base']);
-                }
-
-                case 'page': {
-                    _info.pages.push({
-                        id : Std.parseInt(_items['id']),
-                        file : trim(unquote(_items['file']))
-                    });
-                }
-
-                case 'chars': {
-                    _info.char_count = Std.parseInt(_items["count"]);
-                }
-
-                case 'char': {
-
-                    var _char : Character = {
-                        id : Std.parseInt(_items["id"]),
-                        x : Std.parseFloat(_items["x"]),
-                        y : Std.parseFloat(_items["y"]),
-                        width : Std.parseFloat(_items["width"]),
-                        height : Std.parseFloat(_items["height"]),
-                        xoffset : Std.parseFloat(_items["xoffset"]),
-                        yoffset : Std.parseFloat(_items["yoffset"]),
-                        xadvance : Std.parseFloat(_items["xadvance"]),
-                        page : Std.parseInt(_items["page"])
-                    }
-
-                    _info.chars.set(_char.id, _char);
-
-                }
-
-                case 'kerning': {
-
-                    var _first = Std.parseInt(_items["first"]);
-                    var _second = Std.parseInt(_items["second"]);
-                    var _amount = Std.parseFloat(_items["amount"]);
-
-                    var _map = _info.kernings.get(_first);
-                    if(_map == null) {
-                        _map = new Map();
-                        _info.kernings.set(_first, _map);
-                    }
-
-                    _map.set(_second, _amount);
-
-                }
-
-                default:
-            }
-
-        } //parse_token
-
-        static function tokenize_line( _tokens:Array<String> ) {
-
-            var _item_map : Map<String, String> = new Map();
-
-                for(_token in _tokens) {
-                    var _items = _token.split("=");
-                    _item_map.set( _items[0], _items[1] );
-                }
-
-            return _item_map;
-
-        } //tokenize_line
-
-        inline static function trim(_s:String) { return StringTools.trim(_s); }
-        inline static function unquote(_s:String) {
-            if(_s.indexOf('"') != -1) {
-                _s = StringTools.replace(_s,'"', '');
-            } return _s;
-        } //unquote
-
-} //BitmapFontParser
 
