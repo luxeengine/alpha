@@ -24,13 +24,13 @@ class Main extends luxe.Game {
             var rand = Luxe.utils.random.int(0, 10);
             min = Std.int(Math.min(min, rand));
             max = Std.int(Math.max(max, rand));
+            // Sys.println(rand);
         }
 
         trace( 'count:$count, min:$min, max: $max' );
 
         assert(max <= 10);
         assert(min >= 0);
-
 
     } //test_int
 
@@ -43,6 +43,7 @@ class Main extends luxe.Game {
             var rand = Luxe.utils.random.float(0, 10);
             min = Math.min(min, rand);
             max = Math.max(max, rand);
+            // Sys.println(rand);
         }
 
         trace( 'count:$count, min:$min, max: $max' );
@@ -61,6 +62,7 @@ class Main extends luxe.Game {
             var rand = Luxe.utils.random.get();
             min = Math.min(min, rand);
             max = Math.max(max, rand);
+            // Sys.println(rand);
         }
 
         trace( 'count:$count, min:$min, max: $max' );
@@ -76,6 +78,7 @@ class Main extends luxe.Game {
         for ( i in 0...1000 ){
             var t = Luxe.utils.random.float( 0, 1 );
             if ( t > max ) max = t;
+            // Sys.println(t);
         }
 
         trace( 'count:1000, max:$max' );

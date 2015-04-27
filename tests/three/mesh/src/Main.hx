@@ -12,14 +12,18 @@ class Main extends luxe.Game {
 	var mesh2 : Mesh;
 
 
-    override function config( config:luxe.AppConfig ) {
+     override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/tower.jpg' });
+        config.preload.texts.push({ id:'assets/tower.obj' });
 
         config.render.depth_bits = 24;
         config.render.depth = true;
 
         return config;
 
-    }
+    } //config
+
 
     override function ready() {
 
@@ -33,14 +37,10 @@ class Main extends luxe.Game {
     		//move up and back a bit
     	Luxe.camera.pos.set_xyz(0,1,2);
             //load a texture
-        var tex = Luxe.loadTexture('assets/tower.jpg');
+        var tex = Luxe.resources.texture('assets/tower.jpg');
     		//create the mesh
-    	mesh = new Mesh({ file:'assets/tower.obj', texture:tex, onload:meshloaded });
+    	mesh = new Mesh({ file:'assets/tower.obj', texture:tex });
 
-
-    } //ready
-
-    function meshloaded(_) {
             //create a second mesh based on the first one
         mesh2 = new Mesh({
             geometry : new Geometry({ primitive_type: PrimitiveType.triangles, batcher:Luxe.renderer.batcher }),
@@ -49,7 +49,8 @@ class Main extends luxe.Game {
 
         mesh2.geometry.vertices = [].concat(mesh.geometry.vertices);
         mesh2.transform.pos.set_xy(1,0);
-    }
+
+    } //ready
 
     override function onkeyup( e:KeyEvent ) {
 

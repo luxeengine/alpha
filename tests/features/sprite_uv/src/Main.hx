@@ -5,6 +5,9 @@ import luxe.Text;
 import luxe.Color;
 import luxe.Vector;
 import luxe.Rectangle;
+import phoenix.Texture;
+import phoenix.Texture.ClampType;
+import phoenix.Texture.FilterType;
 
 class Main extends luxe.Game {
 
@@ -13,6 +16,14 @@ class Main extends luxe.Game {
     var sky : Sprite;
     var mousetext : Text;
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/bg_sky.png' });
+        config.preload.textures.push({ id:'assets/bg_stars.png' });
+
+        return config;
+
+    } //config
 
     override function ready() {
 
@@ -21,13 +32,13 @@ class Main extends luxe.Game {
         sky = new Sprite({
             size : new Vector(Luxe.screen.w, Luxe.screen.w / ratio),
             centered : false,
-            texture: Luxe.loadTexture('assets/bg_sky.png')
+            texture: Luxe.resources.texture('assets/bg_sky.png')
         });
 
         stars = new Sprite({
             size : new Vector(Luxe.screen.w, Luxe.screen.w / ratio),
             centered : false,
-            texture: Luxe.loadTexture('assets/bg_stars.png')
+            texture: Luxe.resources.texture('assets/bg_stars.png')
         });
 
         mousetext = new Text({
@@ -37,8 +48,8 @@ class Main extends luxe.Game {
             text : "mouse pos :"
         });
 
-        stars.texture.filter = phoenix.Texture.FilterType.nearest;
-        stars.texture.clamp = phoenix.Texture.ClampType.repeat;
+        stars.texture.filter_min = stars.texture.filter_mag = FilterType.nearest;
+        stars.texture.clamp_s = stars.texture.clamp_t = ClampType.repeat;
 
         Luxe.on(Luxe.Ev.windowresized, on_resize);
 

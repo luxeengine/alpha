@@ -23,6 +23,14 @@ class Main extends luxe.Game {
     var hud : Scene;
     var bg : Sprite;
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/circle.png' });
+
+        return config;
+
+    } //config
+
     override function ready() {
 
         create_hud();
@@ -32,7 +40,7 @@ class Main extends luxe.Game {
             size : new Vector(256,256),
             pos : Luxe.screen.mid,
             color : new Color(1,1,1,0.1),
-            texture : Luxe.loadTexture('assets/circle.png')
+            texture : Luxe.resources.texture('assets/circle.png')
         });
 
         log(Luxe.scene);
@@ -55,7 +63,7 @@ class Main extends luxe.Game {
 
         var ui = new Sprite({
             name : 'ui',
-            texture : Luxe.loadTexture('assets/circle.png'),
+            texture : Luxe.resources.texture('assets/circle.png'),
             pos : new Vector(0, Luxe.screen.h),
             scene : hud
         });

@@ -23,6 +23,8 @@ class Main extends luxe.Game {
 
     override function ready() {
 
+        Luxe.showConsole(true);
+
             //Global events connections
         Luxe.events.listen( 'global event' , function(e){
             trace("Global Event Fired");

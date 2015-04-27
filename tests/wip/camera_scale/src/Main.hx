@@ -17,31 +17,25 @@ class Main extends luxe.Game {
         config.window.width = 720;
         config.window.height = 420;
 
+        config.preload.textures.push({ id:'assets/apartment.png', filter_min:FilterType.nearest, filter_mag:FilterType.nearest });
+
         return config;
 
     } //config
 
     override function ready() {
 
-
             //load the image up
-        var apartment = Luxe.loadTexture('assets/apartment.png');
+        var apartment = Luxe.resources.texture('assets/apartment.png');
 
-        apartment.onload = function(_){
+            //set the sprite at 0,0 (centered false)
+        new Sprite({
+            name: 'apartment',
+            texture: apartment,
+            centered: false
+        });
 
-                //this makes sure the pixels stay crisp when scaling
-            apartment.filter = FilterType.nearest;
-
-                //set the sprite at 0,0 (centered false)
-            new Sprite({
-                name: 'apartment',
-                texture: apartment,
-                centered: false
-            });
-
-            Luxe.camera.size = new Vector(apartment.width, apartment.height);
-
-        } //onload
+        Luxe.camera.size = new Vector(apartment.width, apartment.height);
 
         text = new Text({
             pos:new Vector(3,100),

@@ -18,10 +18,17 @@ class Main extends luxe.Game {
     var line_one : LineGeometry;
     var line_two : LineGeometry;
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/level.png' });
+
+        return config;
+
+    } //config
 
     override function ready() {
 
-    	var level_texture = Luxe.loadTexture('assets/level.png');
+    	var level_texture = Luxe.resources.texture('assets/level.png');
 
     	var level_sprite = new Sprite({
             texture : level_texture,
@@ -29,13 +36,8 @@ class Main extends luxe.Game {
             centered : false
         });
 
-        level_texture.onload = function(tt) {
-
-            level_texture.filter = phoenix.Texture.FilterType.nearest;
-            level_sprite.scale = new Vector(Luxe.screen.w/240,Luxe.screen.h/160);
-
-        } //level tex on load
-
+        level_texture.filter_min = level_texture.filter_mag = phoenix.Texture.FilterType.nearest;
+        level_sprite.scale = new Vector(Luxe.screen.w/240,Luxe.screen.h/160);
 
         screen_mouse = new Vector();
         view_mouse = new Vector();

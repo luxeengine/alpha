@@ -7,6 +7,7 @@ import luxe.Vector;
 
 import luxe.Parcel;
 import luxe.ParcelProgress;
+import luxe.Log.def;
 
 class Main extends luxe.Game {
 
@@ -18,16 +19,16 @@ class Main extends luxe.Game {
         var json_string : String = '
             {
                 "textures" : [
-                    { "id" : "assets/texture1.png" },
+                    { "id" : "assets/texture1.png", "filter_min":"nearest", "filter_mag":"nearest" },
                     { "id" : "assets/texture2.png" },
-                    { "id" : "assets/texture3.png" },
+                    { "id" : "assets/texture3.png", "clamp_s":"repeat", "clamp_t":"repeat" },
                     { "id" : "assets/texture4.jpg" },
                     { "id" : "assets/texture5.png" }
                 ],
                 "shaders" : [
-                    { "ps_id":"assets/shader1.glsl" },
-                    { "ps_id":"assets/shader2.glsl" },
-                    { "ps_id":"assets/shader3.glsl" }
+                    { "id":"test1", "frag_id":"assets/shader1.glsl", "vert_id":"default" },
+                    { "id":"test2", "frag_id":"assets/shader2.glsl", "vert_id":"default" },
+                    { "id":"test3", "frag_id":"assets/shader3.glsl", "vert_id":"default" }
                 ],
                 "fonts" : [
                     { "id" : "assets/fonts/font1.fnt" },
@@ -60,9 +61,8 @@ class Main extends luxe.Game {
             }
         ';
 
-        var parcel1 = new Parcel({ silent:false });
-
-            parcel1.from_json( haxe.Json.parse(json_string) );
+        parcel = new Parcel();
+        parcel.from_json( haxe.Json.parse(json_string) );
 
         sprites = [];
 
@@ -83,24 +83,36 @@ class Main extends luxe.Game {
         }
 
         var progress = new ParcelProgress({
-            parcel      : parcel1,
+            parcel      : parcel,
             background  : new Color(1,1,1,0.85),
             oncomplete  : onloaded
         });
 
-        parcel1.load();
+        parcel.load();
 
     } //ready
 
+    var parcel: Parcel;
     var sprites : Array<Sprite>;
 
     var s : Float = 0;
 
     function onloaded( p:Parcel ) {
         trace("All complete :  Total time took " + p.time_to_load);
+
+        trace(Luxe.resources.texture('assets/texture1.png'));
+        trace(Luxe.resources.texture('assets/texture3.png'));
     } //onloaded
 
     override function onkeyup( e:KeyEvent ) {
+
+        if(e.keycode == Key.key_d) {
+            parcel.unload();
+        }
+
+        if(e.keycode == Key.key_r) {
+            parcel.load();
+        }
 
         if(e.keycode == Key.escape) {
             Luxe.shutdown();

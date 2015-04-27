@@ -12,6 +12,7 @@ import luxe.tilemaps.Ortho;
 
 import luxe.importers.tiled.TiledMap;
 import luxe.importers.tiled.TiledObjectGroup;
+import luxe.Log.*;
 
 class Main extends luxe.Game {
 
@@ -28,6 +29,19 @@ class Main extends luxe.Game {
     var batcher : phoenix.Batcher;
 
     var tile_offset_circle : CircleGeometry;
+
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/isotiles.png' });
+        config.preload.textures.push({ id:'assets/tileset.png' });
+        config.preload.textures.push({ id:'assets/tiles_padded.png' });
+
+        config.preload.texts.push({ id:'assets/isotiles.tmx' });
+        config.preload.texts.push({ id:'assets/tiles.json' });
+
+        return config;
+
+    } //config
 
     override function ready() {
 
@@ -63,43 +77,44 @@ class Main extends luxe.Game {
 
     function load_isometric_tiledmap() {
 
-        Luxe.loadText('assets/isotiles.tmx', function(res){
+        var res = Luxe.resources.text('assets/isotiles.tmx');
 
-            tiled_iso = new TiledMap( { tiled_file_data:res.text, pos : new Vector(256,128) } );
-            tiled_iso.display({ scale:1, grid:true});
+        assertnull(res, 'Resource not found!');
 
-                //change a tile id post display, to show "14" with grass
-            tiled_iso.tile_at('Tile Layer 2', 0, 0).id = 4;
-            tiled_iso.tile_at('Tile Layer 2', 0, 1).id = 0;
-                //try remove first
-            tiled_iso.tile_at('Tile Layer 2', 0, 2).id = 0;
-                //then readd, to test it works
-            tiled_iso.tile_at('Tile Layer 2', 0, 2).id = 4;
+        tiled_iso = new TiledMap({ tiled_file_data:res.asset.text, pos : new Vector(256,128) });
+        tiled_iso.display({ scale:1, grid:true});
 
-        }); //loadText
+            //change a tile id post display, to show "14" with grass
+        tiled_iso.tile_at('Tile Layer 2', 0, 0).id = 4;
+        tiled_iso.tile_at('Tile Layer 2', 0, 1).id = 0;
+            //try remove first
+        tiled_iso.tile_at('Tile Layer 2', 0, 2).id = 0;
+            //then readd, to test it works
+        tiled_iso.tile_at('Tile Layer 2', 0, 2).id = 4;
 
     } //load_isometric_tiledmap
 
     function load_ortho_tiledmap() {
 
-        //try these, but remove the format:'json' or set to format:'xml'
+        //try these, but remove the format:'json' or set to format:'xml',
+        //but make sure to adjust the config preload part as well, or it won't find them
         //'assets/tiles_base64_zlib.tmx'
         //'assets/tiles_base64.tmx'
         //'assets/tiles_csv.tmx'
-        Luxe.loadText('assets/tiles.json', function(res){
+        var res = Luxe.resources.text('assets/tiles.json');
 
-            var scale = 2;
+        assertnull(res, 'Resource not found!');
 
-                //create from xml file, with various encodings, or from JSON
-            tiled_ortho = new TiledMap( { tiled_file_data:res.text, format:'json', pos : new Vector(512,0) } );
+        var scale = 2;
 
-                //tell the map to display
-            tiled_ortho.display({ scale:scale, grid:true, filter:FilterType.nearest });
+            //create from xml file, with various encodings, or from JSON
+        tiled_ortho = new TiledMap( { tiled_file_data:res.asset.text, format:'json', pos : new Vector(512,0) } );
 
-                //draw the additional objects
-            draw_tiled_object_groups( scale );
+            //tell the map to display
+        tiled_ortho.display({ scale:scale, grid:true, filter:FilterType.nearest });
 
-        });
+            //draw the additional objects
+        draw_tiled_object_groups( scale );
 
     } //load_ortho_tiledmap
 
@@ -133,7 +148,7 @@ class Main extends luxe.Game {
             //create a tileset for the map
         small_tiles.add_tileset({
             name:'tiles',
-            texture:Luxe.loadTexture('assets/tileset.png'),
+            texture:Luxe.resources.texture('assets/tileset.png'),
             tile_width: 16, tile_height: 16
         });
 

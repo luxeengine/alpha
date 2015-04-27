@@ -11,7 +11,7 @@
     },
 
     build : {
-      flags:['--macro luxe.Log.level(2)'],
+      flags:['--macro luxe.Log.level(1)'],
       defines:['luxe_parcel_logging'],
       dependencies : {
         luxe : '*',

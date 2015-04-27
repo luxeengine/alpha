@@ -28,10 +28,17 @@ class Main extends luxe.Game {
         //for mouse based control of the current view
     var current_camera : Camera;
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/level.png' });
+
+        return config;
+
+    } //config
 
     override function ready() {
 
-    	var level_texture = Luxe.loadTexture('assets/level.png');
+    	var level_texture = Luxe.resources.texture('assets/level.png');
 
         var midx = Luxe.screen.w/2;
         var midy = Luxe.screen.h/2;
@@ -93,17 +100,14 @@ class Main extends luxe.Game {
         camera_3.zoom = 0.2;
         camera_4.zoom = 0.5;
 
-        level_texture.onload = function(tt) {
-                //set it
-            level_texture.filter = phoenix.Texture.FilterType.nearest;
-            level_sprite.scale = new Vector((midx)/240,(midy)/160);
+            //set it
+        level_texture.filter_min = level_texture.filter_mag = phoenix.Texture.FilterType.nearest;
+        level_sprite.scale = new Vector((midx)/240,(midy)/160);
 
-                //and then to the rest
-            batcher_2.add( level_sprite.geometry );
-            batcher_3.add( level_sprite.geometry );
-            batcher_4.add( level_sprite.geometry );
-
-        } //level tex on load
+            //and then to the rest
+        batcher_2.add( level_sprite.geometry );
+        batcher_3.add( level_sprite.geometry );
+        batcher_4.add( level_sprite.geometry );
 
         for(b in Luxe.renderer.batchers) {
             trace(b.name + ' / ' + b.layer);

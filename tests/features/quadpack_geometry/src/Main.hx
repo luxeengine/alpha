@@ -25,60 +25,60 @@ class Main extends luxe.Game {
     var anim_delay : Float = 1;
     var mapw : Int = 60;
     var maph : Int = 40;
-    var loaded : Bool = false;
 
     var map_tiles : Array< Array<MapTile> >;
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/tileset.png' });
+
+        return config;
+
+    } //config
 
     override function ready() {
 
         geom = new phoenix.geometry.QuadPackGeometry({
-            texture : Luxe.loadTexture('assets/tileset.png'),
+            texture : Luxe.resources.texture('assets/tileset.png'),
             batcher : Luxe.renderer.batcher
         });
 
-        geom.texture.filter = phoenix.Texture.FilterType.nearest;
+        geom.texture.filter_min = geom.texture.filter_mag = phoenix.Texture.FilterType.nearest;
 
-        geom.texture.onload = function(t) {
+        create_map();
 
-            create_map();
+        var quad1 = geom.quad_add({
+            x: 100, y:100,
+            w: 64,  h:64
+        });
 
-            var quad1 = geom.quad_add({
-                x: 100, y:100,
-                w: 64,  h:64
-            });
+        mouse_quad = geom.quad_add({
+            x: 100, y:100,
+            w: 64,  h:64
+        });
 
-            mouse_quad = geom.quad_add({
-                x: 100, y:100,
-                w: 64,  h:64
-            });
+        big_quad = geom.quad_add({
+            x: 100, y:100,
+            w: 64,  h:64
+        });
 
-            big_quad = geom.quad_add({
-                x: 100, y:100,
-                w: 64,  h:64
-            });
+            //move it over
+        geom.quad_pos( quad1, new Vector(960 - 64,200) );
+            //color it
+        geom.quad_color( quad1, new Color(0,0,0,1).rgb(0xf6007b) );
+            //but just the alpha
+        geom.quad_alpha( quad1, 0.5 );
+            //add second quad
+        geom.quad_color( mouse_quad, new Color(0.5,0.8,1,1) );
+        geom.quad_pos( mouse_quad, new Vector(128, 0) );
 
-                //move it over
-            geom.quad_pos( quad1, new Vector(960 - 64,200) );
-                //color it
-            geom.quad_color( quad1, new Color(0,0,0,1).rgb(0xf6007b) );
-                //but just the alpha
-            geom.quad_alpha( quad1, 0.5 );
-                //add second quad
-            geom.quad_color( mouse_quad, new Color(0.5,0.8,1,1) );
-            geom.quad_pos( mouse_quad, new Vector(128, 0) );
+        geom.quad_resize( big_quad, new Rectangle(64,64,64,64) );
+        geom.quad_uv( big_quad, new Rectangle(112, 48, 16, 16));
+        geom.quad_uv(mouse_quad, new Rectangle(64, 32, 16, 16));
 
-            geom.quad_resize( big_quad, new Rectangle(64,64,64,64) );
-            geom.quad_uv( big_quad, new Rectangle(112, 48, 16, 16));
-            geom.quad_uv(mouse_quad, new Rectangle(64, 32, 16, 16));
+        next_anim = Luxe.time + anim_delay;
 
-            next_anim = Luxe.time + anim_delay;
-
-            geom.locked = true;
-
-            loaded = true;
-
-        } //texture onload
+        geom.locked = true;
 
     } //ready
 
@@ -128,8 +128,6 @@ class Main extends luxe.Game {
     } //onkeyup
 
     override function update(dt:Float) {
-
-        if(!loaded) return;
 
             //animate the tile
         if(Luxe.time > next_anim) {

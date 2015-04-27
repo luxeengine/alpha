@@ -5,6 +5,15 @@ import phoenix.Camera;
 
 class Main extends luxe.Game {
 
+     override function config(config:luxe.AppConfig) {
+
+        config.render.depth_bits = 24;
+        config.render.depth = true;
+
+        return config;
+
+    } //config
+
     override function ready() {
 
         Luxe.camera.view.set_perspective( {

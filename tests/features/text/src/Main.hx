@@ -19,10 +19,15 @@ class Main extends luxe.Game {
     var batcher : Batcher;
 
 
-    override function config(c:luxe.AppConfig) {
-        // c.window.antialiasing = 2;
-        return c;
-    }
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.fonts.push({ id:'assets/fonts/font.fnt' });
+
+        // config.window.antialiasing = 2;
+
+        return config;
+
+    } //config
 
     override function ready() {
 
@@ -217,23 +222,19 @@ class Main extends luxe.Game {
 
             //This one wants to be in the scene, so that
             //it can update its components
-        var font = Luxe.loadFont('assets/fonts/font.fnt');
+        var font = Luxe.resources.font('assets/fonts/font.fnt');
 
-        font.onload = function(_){
+        text_with_component = new Text({
+            name : 'enginetext',
+            color : orange,
+            font : font,
+            text : "luxeengine.com",
+            pos : new Vector(Luxe.screen.mid.x, 10),
+            align : center,
+            point_size : 25
+        });
 
-            text_with_component = new Text({
-                name : 'enginetext',
-                color : orange,
-                font : font,
-                text : "luxeengine.com",
-                pos : new Vector(Luxe.screen.mid.x, 10),
-                align : center,
-                point_size : 25
-            });
-
-            text_with_component.add(new BounceTest({ name:'bounce' }));
-
-        }
+        text_with_component.add(new BounceTest({ name:'bounce' }));
 
 
     } //ready

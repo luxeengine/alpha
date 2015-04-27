@@ -9,12 +9,20 @@ class Main extends luxe.Game {
 
     var test_sprite1 : Sprite;
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/luxe.png' });
+
+        return config;
+
+    } //config
+
 
     override function ready() {
 
         test_sprite1 = new Sprite({
             name:'example',
-            texture : Luxe.loadTexture('assets/luxe.png'),
+            texture : Luxe.resources.texture('assets/luxe.png'),
             pos : Luxe.screen.mid,
             centered : false,
             flipx:true,

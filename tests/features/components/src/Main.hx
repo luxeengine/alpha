@@ -13,6 +13,14 @@ class Main extends luxe.Game {
     public var sprite2:Sprite;
 
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/dev.png' });
+
+        return config;
+
+    } //config
+
     override function ready() {
 
             //game object is a fake class below just for testing
@@ -27,13 +35,13 @@ class Main extends luxe.Game {
             //Actual entity classes (Sprite, Camera atm)
         sprite = new Sprite({
             name : 'test_sprite',
-            texture:Luxe.loadTexture('assets/dev.png'),
+            texture:Luxe.resources.texture('assets/dev.png'),
             pos : new Vector(480,320)
         });
             //Actual entity classes (Sprite, Camera atm)
         sprite2 = new Sprite({
             name : 'test_sprite2',
-            texture:Luxe.loadTexture('assets/dev.png'),
+            texture:Luxe.resources.texture('assets/dev.png'),
             pos : new Vector(480,320),
             scale : new Vector(0.5,0.5)
         });

@@ -14,22 +14,26 @@ class Main extends luxe.Game {
     var sx : Int = 500;
     var sy : Int = 260;
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/tiny.ui.png' });
+
+        return config;
+
+    } //config
+
 
     override function ready() {
 
         Luxe.renderer.clear_color = new Color().rgb(0xefefef);
 
-        Luxe.loadTexture('assets/tiny.ui.png', function(tex){
-
-            geom = new NineSlice({
-                texture : tex,
-                top : 32, left : 32, right : 32, bottom : 32,
-                color : new Color(1,1,1,0.4)
-            });
-
-            geom.create( new Vector(100, 200), 500, 260 );
-
+        geom = new NineSlice({
+            texture : Luxe.resources.texture('assets/tiny.ui.png'),
+            top : 32, left : 32, right : 32, bottom : 32,
+            color : new Color(1,1,1,0.4)
         });
+
+        geom.create( new Vector(100, 200), 500, 260 );
 
     } //ready
 

@@ -23,6 +23,14 @@ class Main extends luxe.Game {
     public var ring     : RingGeometry;
 
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/logo.png' });
+
+        return config;
+
+    } //config
+
     override function ready() {
 
         mouse = new Vector();
@@ -148,15 +156,11 @@ class Main extends luxe.Game {
 
         });
 
-        var _texture : Texture = Luxe.loadTexture('assets/logo.png');
-
-        _texture.onload = function(t){
-            Luxe.draw.texture({
-                pos : Luxe.screen.mid.subtract(new Vector(30,30)),
-                texture : _texture,
-                size : new Vector(60,60)
-            });
-        }
+        Luxe.draw.texture({
+            pos : Luxe.screen.mid.subtract(new Vector(30,30)),
+            texture : Luxe.resources.texture('assets/logo.png'),
+            size : new Vector(60,60)
+        });
 
     } //ready
 

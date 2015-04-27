@@ -9,6 +9,18 @@ import luxe.components.render.MeshComponent;
 
 class Main extends luxe.Game {
 
+     override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/tower.jpg' });
+        config.preload.texts.push({ id:'assets/tower.obj' });
+
+        config.render.depth_bits = 24;
+        config.render.depth = true;
+
+        return config;
+
+    } //config
+
     override function ready() {
 
         Luxe.camera.view.set_perspective({
@@ -24,7 +36,7 @@ class Main extends luxe.Game {
             //create a mesh component
         var mesh = new MeshComponent({
             file : 'assets/tower.obj',
-            texture : Luxe.loadTexture('assets/tower.jpg')
+            texture : Luxe.resources.texture('assets/tower.jpg')
         });
 
             //add to tower entity
@@ -42,12 +54,6 @@ class Main extends luxe.Game {
         }
 
     } //onkeyup
-
-    override function config( config:luxe.AppConfig ) {
-        config.render.depth_bits = 24;
-        config.render.depth = true;
-        return config;
-    }
 
 } //Main
 

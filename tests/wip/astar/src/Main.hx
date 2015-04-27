@@ -7,6 +7,9 @@ import pathing.finders.AStarFinder;
 import pathing.Pathing;
 import phoenix.geometry.QuadPackGeometry;
 
+//This test is not supposed to work!
+//http://notes.underscorediscovery.com/pathing-excursions/
+
 class Main extends luxe.Game {
 
 

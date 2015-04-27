@@ -21,6 +21,13 @@ class Main extends luxe.Game {
 
     var bar_color : ColorHSV;
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/test.png' });
+
+        return config;
+
+    } //config
 
     override function ready() {
 
@@ -66,7 +73,7 @@ class Main extends luxe.Game {
         sprite_test_pad = new Sprite({
             centered : false,
             pos : new Vector(60,100),
-            texture : Luxe.loadTexture('assets/test.png'),
+            texture : Luxe.resources.texture('assets/test.png'),
             depth : 1
         });
 

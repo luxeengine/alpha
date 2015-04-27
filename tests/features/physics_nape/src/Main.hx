@@ -51,7 +51,7 @@ class Main extends luxe.Game {
         }
 
         config.window.title = "nape physics sample";
-        config.render.antialiasing = 8;
+        config.render.antialiasing = 4;
 
         return config;
 
@@ -153,13 +153,15 @@ class Main extends luxe.Game {
         }
     }
 
-    override function ontouchmove( e:TouchEvent ) {
+    #if mobile
+        override function ontouchmove( e:TouchEvent ) {
 
-        if (mouseJoint.active) {
-            mouseJoint.anchor1.setxy(e.pos.x, e.pos.y);
-        }
+            if (mouseJoint.active) {
+                mouseJoint.anchor1.setxy(e.pos.x, e.pos.y);
+            }
 
-    } //ontouchmove
+        } //ontouchmove
+    #end //mobile
 
     var ramp = false;
     override function onkeyup( e:KeyEvent ) {

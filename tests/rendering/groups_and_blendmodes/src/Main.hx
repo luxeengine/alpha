@@ -13,23 +13,29 @@ class Main extends luxe.Game {
     var luxe_sprite2 : Sprite;
     var luxe_sprite3 : Sprite;
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/level.png' });
+        config.preload.textures.push({ id:'assets/luxe.png' });
+
+        return config;
+
+    } //config
+
 
     override function ready() {
 
-        var level_texture = Luxe.loadTexture('assets/level.png');
-    	var luxe_texture = Luxe.loadTexture('assets/luxe.png');
+        var level_texture = Luxe.resources.texture('assets/level.png');
+    	var luxe_texture = Luxe.resources.texture('assets/luxe.png');
 
         level_sprite = new Sprite({
             texture : level_texture,
             pos : new Vector(Luxe.screen.w/2,Luxe.screen.h/2)
         });
 
-        level_texture.onload = function(tt) {
 
-            level_texture.filter = phoenix.Texture.FilterType.nearest;
-            level_sprite.scale = new Vector(Luxe.screen.w/240,Luxe.screen.h/160);
-
-        } //level tex on load
+        level_texture.filter_min = level_texture.filter_mag = phoenix.Texture.FilterType.nearest;
+        level_sprite.scale = new Vector(Luxe.screen.w/240,Luxe.screen.h/160);
 
             //We will create 3 sprites, each with a different group
         var a_third = Luxe.screen.w/4;

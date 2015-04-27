@@ -20,14 +20,25 @@ class Main extends luxe.Game {
     var ss : Sprite;
 
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/flame.png' });
+        config.preload.textures.push({ id:'assets/smoke.png' });
+        config.preload.textures.push({ id:'assets/embers.png' });
+
+        return config;
+
+    } //config
+
+
     override function ready() {
 
         mouse = new Vector();
 
 
-        var t1 = Luxe.loadTexture('assets/flame.png');
-        var t2 = Luxe.loadTexture('assets/smoke.png');
-        var t3 = Luxe.loadTexture('assets/embers.png');
+        var t1 = Luxe.resources.texture('assets/flame.png');
+        var t2 = Luxe.resources.texture('assets/smoke.png');
+        var t3 = Luxe.resources.texture('assets/embers.png');
 
         particles = new ParticleSystem({name:'particles'});
 

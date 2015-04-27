@@ -7,6 +7,7 @@ import luxe.Color;
 
 import phoenix.Batcher;
 import phoenix.Camera;
+import phoenix.Texture;
 import phoenix.RenderTexture;
 
 class Main extends luxe.Game {
@@ -24,8 +25,17 @@ class Main extends luxe.Game {
 
     override function ready() {
 
+        var _get = Luxe.resources.load_texture('assets/image.jpg');
+
+        _get.then(onloaded);
+
+    } //ready
+
+    function onloaded(image:Texture) {
+
             //create a render target of a fixed size
-        target_texture = new RenderTexture( Luxe.resources, new Vector( 512, 512 ) );
+        target_texture = new RenderTexture({ id:'rtt', width:512, height:512 });
+
             //create a new batcher to draw from, but don't add to the main rendering
         batcher = Luxe.renderer.create_batcher({
             name:'target_batcher',
@@ -38,7 +48,7 @@ class Main extends luxe.Game {
             //Create a sprite, but don't add it to the default batcher,
             //add it to our custom batcher here instead.
         example = new Sprite({
-            texture : Luxe.loadTexture('assets/image.jpg'),
+            texture : image,
             pos : new Vector(256,256),
             size : new Vector(512,512),
             batcher : batcher
@@ -51,17 +61,13 @@ class Main extends luxe.Game {
 
             //using onload like this lets you work with web late loading textures,
             //on desktop it will always call this, so it will work across all targets
-        example.texture.onload = function(t) {
+        display_sprite = new Sprite({
+            texture : target_texture,
+            size : new Vector(512,512),
+            pos : Luxe.screen.mid
+        });
 
-            display_sprite = new Sprite({
-                texture : target_texture,
-                size : new Vector(512,512),
-                pos : Luxe.screen.mid
-            });
-
-        } //onload
-
-    } //ready
+    } //onloaded
 
     override function onkeyup( e:KeyEvent ) {
 
@@ -88,9 +94,13 @@ class Main extends luxe.Game {
 
     override function update( dt:Float ) {
 
-            //we can rotate the example sprite,
-            // it would be "inside" the texture rotating
-        example.rotation_z += 40 * dt;
+        if(example != null) {
+
+                //we can rotate the example sprite,
+                // it would be "inside" the texture rotating
+            example.rotation_z += 40 * dt;
+
+        }
 
     } //update
 
