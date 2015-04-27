@@ -147,6 +147,7 @@ class Utils {
             var _sequence_type = '';
             var _pattern_regex : EReg = null;
 
+                //these are not using string interpolation to prevent confusing the regex
             var _type0 = _name + _start + _ext;
             var _type0_re : EReg = new EReg('('+_name+')(\\d\\b)', 'gi');
             var _type1 = _name + '_' + _start + _ext;
@@ -155,13 +156,13 @@ class Utils {
             var _type2_re : EReg  = new EReg('('+_name+')(-\\d\\b)', 'gi');
 
                 //check name0 ->
-            if(core.app.assets.listed(_type0)) {
+            if(Luxe.resources.has(_type0)) {
                 _sequence_type = _type0;
                 _pattern_regex = _type0_re;
-            } else if(core.app.assets.listed(_type1)) {
+            } else if(Luxe.resources.has(_type1)) {
                 _sequence_type = _type1;
                 _pattern_regex = _type1_re;
-            } else if(core.app.assets.listed(_type2)) {
+            } else if(Luxe.resources.has(_type2)) {
                 _sequence_type = _type2;
                 _pattern_regex = _type2_re;
             } else {
