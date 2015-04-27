@@ -1,5 +1,6 @@
 package luxe;
 
+import luxe.Rectangle;
 import luxe.Vector;
 
 
@@ -32,17 +33,29 @@ typedef WindowEvent = {
 
 
 @:allow(luxe.Core)
+@:allow(luxe.Cursor)
 class Screen {
 
-    @:isVar public var w (default,null) : Float;
-    @:isVar public var h (default,null) : Float;
-    @:isVar public var mid (get,null) : Vector;
-    @:isVar public var size (get,null) : Vector;
+        /** Convenience: Returns *a new vector*, the middle of the screen, rounded as (w/2, h/2) */
+    public var mid (get,null) : Vector;
+        /** Convenience: Returns *a new vector*, the size of the screen */
+    public var size (get,null) : Vector;
+        /** Convenience: Returns *a new rectangle*, the bounds of the screen (0, 0, w, h) */
+    public var bounds (get,null) : Rectangle;
+
+        /** Returns the screen width as an Int */
+    public var w (get,null) : Int;
+        /** Returns the screen height as an Int */
+    public var h (get,null) : Int;
+        /** Convenience: Returns the screen width as a Float */
+    @:isVar public var width (default,null) : Float;
+        /** Convenience: Returns the screen height as a Float */
+    @:isVar public var height (default,null) : Float;
 
         /** Access to the mouse cursor, position, visibility, locking etc. */
     public var cursor : Cursor;
 
-    @:noCompletion public var core : Core;
+    var core : Core;
 
     @:allow(luxe.Core)
     function new( ?_core:Core, _w:Int, _h:Int ) {
@@ -50,11 +63,8 @@ class Screen {
         core = _core;
         cursor = new Cursor(this);
 
-        w = _w;
-        h = _h;
-
-        mid = new Vector( Math.round(w/2), Math.round(h/2) );
-        size = new Vector(w, h);
+        width = _w;
+        height = _h;
 
     } //new
 
@@ -67,10 +77,10 @@ class Screen {
         /** Returns true if the given point falls within the bounds of the w/h of the screen. */
     public function point_inside( _p:Vector ) {
 
-        if( _p.x < 0 )    return false;
-        if( _p.y < 0 )    return false;
-        if( _p.x > w )  return false;
-        if( _p.y > h )  return false;
+        if( _p.x < 0 )  return false;
+        if( _p.y < 0 )  return false;
+        if( _p.x > width )  return false;
+        if( _p.y > height )  return false;
 
         return true;
 
@@ -79,10 +89,10 @@ class Screen {
         /** Returns true if the given point as floats fall within the bounds of the w/h of the screen. */
     public function point_inside_xy( _x:Float, _y:Float ) {
 
-        if( _x < 0 )    return false;
-        if( _y < 0 )    return false;
-        if( _x > w )  return false;
-        if( _y > h )  return false;
+        if( _x < 0 )  return false;
+        if( _y < 0 )  return false;
+        if( _x > width )  return false;
+        if( _y > height )  return false;
 
         return true;
 
@@ -90,40 +100,22 @@ class Screen {
 
 //Internal
 
-    var internal = false;
-    @:noCompletion function internal_resized(_w:Float, _h:Float) {
+    function internal_resized(_w:Float, _h:Float) {
 
-        w = _w;
-        h = _h;
-
-        internal = true;
-
-            size.x = _w;
-            size.y = _h;
-            mid.x = _w/2;
-            mid.y = _h/2;
-
-        internal = false;
+        width = _w;
+        height = _h;
 
     } //set_size
 
-
 //getters/setters
 
-    function get_mid() : Vector {
+        //:todo:immutable: create immutable types, that way these can be cached instead of new
 
-        if(internal) return mid;
-        return mid.clone();
-
-    } //get_mid
-
-    function get_size() : Vector {
-
-        if(internal) return size;
-        return size.clone();
-
-    } //get_size
-
+    function get_mid() : Vector return new Vector( Math.round(w/2), Math.round(h/2) );
+    function get_size() : Vector return new Vector( w, h );
+    function get_bounds() : Rectangle return new Rectangle( 0, 0, w, h );
+    function get_w() : Int return Std.int(width);
+    function get_h() : Int return Std.int(height);
 
 } //Screen
 
