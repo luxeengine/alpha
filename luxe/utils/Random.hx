@@ -11,7 +11,7 @@ package luxe.utils;
 */
 class Random {
 
-    public function new( _initial_seed:UInt ) {
+    public function new( _initial_seed:Float ) {
         seed = initial = _initial_seed;
     }
 
@@ -61,11 +61,11 @@ class Random {
     }
 
         /** get the current seed (read only, change via `initial`)*/
-    @:isVar public var seed (default,null): UInt;
+    @:isVar public var seed (default,null): Float;
         /** get/set the initial base seed */
-    @:isVar public var initial (default,set): UInt;
+    @:isVar public var initial (default,set): Float;
 
-        inline function set_initial( _initial : UInt ) {
+        inline function set_initial( _initial : Float ) {
             initial = seed = _initial;
             return initial;
         }
