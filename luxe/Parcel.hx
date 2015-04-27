@@ -1,913 +1,614 @@
 package luxe;
 
+import luxe.Emitter;
+import luxe.Resources;
 import luxe.resource.Resource;
-import luxe.options.ParcelOptions;
+import luxe.options.ResourceOptions;
+import snow.api.Promise;
+import phoenix.Texture;
 import luxe.Log.*;
 
+typedef ParcelOptions = {
+    ? id: String,
+    ? system: Resources,
+    ? oncomplete: Parcel->Void,
+    ? onprogress: ParcelChange->Void,
+    ? onfailed: ParcelChange->Void,
 
-private typedef ShaderInfo = {
-    ps_id : String,
-    vs_id : String
+    ? load_time_spacing: Float,
+    ? load_start_delay: Float,
+
+    ? bytes: Array<BytesInfo>,
+    ? texts: Array<TextInfo>,
+    ? jsons: Array<JSONInfo>,
+    ? textures: Array<TextureInfo>,
+    ? fonts: Array<BitmapFontInfo>,
+    ? shaders: Array<ShaderInfo>,
+    ? sounds: Array<SoundInfo>
 }
 
-private typedef FontInfo = {
-    id : String,
-    texture_path : String
+@:enum abstract ParcelEvent(Int) from Int to Int {
+    var unknown = 0;
+    var progress = 1;
+    var complete = 2;
+    var failed = 3;
 }
 
-private typedef DataInfo = {
-    id : String
+typedef ParcelChange = {
+    load_id: String,
+    index: Int,
+    total: Int,
+    ? error: Dynamic,
+    ? resource: Resource,
 }
 
-private typedef TextInfo = DataInfo;
-private typedef JSONInfo = DataInfo;
-
-private typedef SoundInfo = {
-    id : String,
-    name : String,
-    is_stream : Bool
+typedef ItemInfo = {
+    id: String
 }
 
-class Parcel extends luxe.resource.Resources {
+typedef BytesInfo = ItemInfo;
+typedef TextInfo = ItemInfo;
+typedef JSONInfo = ItemInfo;
 
-    public var time_to_load : Float = 0;
-    var time_start_load : Float = 0;
+typedef TextureInfo = {
+    > ItemInfo,
+    > LoadTextureOptions,
+}
 
-    var texture_list : Array<String>;
-    var shader_list : Array<ShaderInfo>;
-    var font_list : Array<FontInfo>;
-    var sound_list : Array<SoundInfo>;
-    var text_list : Array<TextInfo>;
-    var json_list : Array<JSONInfo>;
-    var data_list : Array<DataInfo>;
+typedef ShaderInfo = {
+    > ItemInfo,
+    > LoadShaderOptions,
+}
 
-    public var total_items : Int = 0;
-    public var current_count : Int = 0;
-    public var options : ParcelOptions;
+typedef SoundInfo = {
+    > ItemInfo,
+    name: String,
+    is_stream: Bool
+}
+
+typedef BitmapFontInfo = {
+    > ItemInfo,
+    > LoadFontOptions,
+}
+
+typedef ParcelList = {
+    bytes: Array<BytesInfo>,
+    texts: Array<TextInfo>,
+    jsons: Array<JSONInfo>,
+    textures: Array<TextureInfo>,
+    fonts: Array<BitmapFontInfo>,
+    shaders: Array<ShaderInfo>,
+    sounds: Array<SoundInfo>,
+}
+
+@:enum abstract ParcelState(Int) from Int to Int {
+    var unloaded = 0;
+    var loading = 1;
+    var loaded = 2;
+}
+
+class Parcel {
+
+        /** The parent Resources system this Parcel is contained by. */
+    public var system: Resources;
+        /** The id of this `Parcel`. */
+    public var id : String;
+        /** The list of the resource infos within this parcel, used at load/unload time. */
+    public var list: ParcelList;
+        /** A list of resource ids that are loaded in this parcel, i.e that have a reference to the resource id */
+    public var loaded: Array<String>;
+        /** A list of resource ids that are known to this parcel */
+    public var listed (get, never): Array<String>;
+        /** Return the number of resources listed in this Parcel */
+    public var length (get, never) : Int;
+        /** The time in seconds the last load took */
+    public var time_to_load : Float = 0.0;
+        /** The current parcel state.
+            Set to unloaded by default,
+            changed to loading when calling `load`,
+            changed to loaded when complete,
+            changed to unloaded when `unload` completes */
+    public var state : ParcelState;
+
+    var emitter: Emitter<ParcelEvent>;
+    var oncomplete: Parcel->Void;
+    var onprogress: ParcelChange->Void;
+    var onfailed: ParcelChange->Void;
+    var start_load: Float = 0.0;
+    var load_time_spacing: Float = 1/20;
+    var load_start_delay: Float = 0.2;
 
     public function new( ?_options:ParcelOptions ) {
 
-        super();
+        if(_options == null)        _options = {};
+        if(_options.system == null) _options.system = Luxe.resources;
+        if(_options.id == null)     _options.id = Luxe.utils.uniqueid();
 
-        options = _options != null ? _options : {};
+        if(_options.oncomplete != null)         oncomplete = _options.oncomplete;
+        if(_options.onprogress != null)         onprogress = _options.onprogress;
+        if(_options.onfailed != null)           onfailed = _options.onfailed;
 
-        if( options.load_spacing == null ) { options.load_spacing = 0.1; }
-        if( options.start_spacing == null ) { options.start_spacing = 0.4; }
-        if( options.sequential == null ) { options.sequential = false; }
-        if( options.silent == null ) { options.silent = false; }
+        if(_options.load_time_spacing != null)  load_time_spacing = _options.load_time_spacing;
+        if(_options.load_start_delay != null)   load_start_delay = _options.load_start_delay;
 
-        texture_list    = [];
-        font_list       = [];
-        shader_list     = [];
-        sound_list      = [];
-        text_list       = [];
-        json_list       = [];
-        data_list       = [];
+        state = ParcelState.unloaded;
+        loaded = [];
+        emitter = new Emitter();
+        system = _options.system;
+        id = _options.id;
+        list = empty_list();
+
+            if(_options.bytes    != null) list.bytes    = _options.bytes;
+            if(_options.texts    != null) list.texts    = _options.texts;
+            if(_options.jsons    != null) list.jsons    = _options.jsons;
+            if(_options.textures != null) list.textures = _options.textures;
+            if(_options.fonts    != null) list.fonts    = _options.fonts;
+            if(_options.shaders  != null) list.shaders  = _options.shaders;
+            if(_options.sounds   != null) list.sounds   = _options.sounds;
+
+        system.track(this);
 
     } //new
 
-//Load the parcel up
+//Public event handling
 
-    var index_textures  : Int = 0;
-    var index_fonts     : Int = 0;
-    var index_shaders   : Int = 0;
-    var index_sounds    : Int = 0;
-    var index_datas     : Int = 0;
-    var index_texts     : Int = 0;
-    var index_jsons     : Int = 0;
+    public function on<T>( ev:ParcelEvent, handler:T->Void ) emitter.on(ev, handler);
+    public function off<T>( ev:ParcelEvent, handler:T->Void ) emitter.off(ev, handler);
+    public function emit<T>( ev:ParcelEvent, data:T ) emitter.emit(ev, data);
 
-    function refresh_total_items() {
+//Public load API
 
-        total_items =
-            texture_list.length +
-            shader_list.length  +
-            font_list.length    +
-            sound_list.length   +
-            text_list.length    +
-            json_list.length    +
-            data_list.length;
-    }
+    public inline function is_loaded( _id:String ) return loaded.indexOf(_id) != -1;
 
-    public function load() {
+        /** Load this parcel contents with the optional load id, which is added to events. */
+    public function load( ?_load_id:String ) {
 
-        time_start_load = Luxe.time;
-        current_count = 0;
+        state = ParcelState.loading;
 
-        refresh_total_items();
+        Luxe.timer.schedule(load_start_delay, function() {
 
-        if( total_items == 0 ) {
-            _debug('parcel has 0 items, completing');
-            do_complete();
-            return;
-        }
+            start_load = Luxe.time;
 
-        _debug('loading parcel ${options.start_spacing}s from now');
+            if(_load_id == null) _load_id = id;
 
-        Luxe.timer.schedule(options.start_spacing, function(){
+            _debug('$id / $_load_id / loading $length items');
+            _debug('   bytes: ${list.bytes.length}');
+            _debug('   texts: ${list.texts.length}');
+            _debug('   jsons: ${list.jsons.length}');
+            _debug('   textures: ${list.textures.length}');
+            _debug('   fonts: ${list.fonts.length}');
+            _debug('   shaders: ${list.shaders.length}');
+            _debug('   sounds: ${list.sounds.length}');
 
-            if(!options.silent) log("starting load");
-
-            if( !options.sequential ) {
-
-                start_textures_load();
-                start_fonts_load();
-                start_shaders_load();
-                start_sounds_load();
-                start_texts_load();
-                start_jsons_load();
-                start_datas_load();
-
-            } else {
-
-                start_textures_load();
-
+            if(length == 0) {
+                do_complete(_load_id);
+                return;
             }
 
-        }); //timer schedule
+            var _index = 0;
+
+            inline function _handle(_load:Promise) {
+                _load.then(function(_res) {
+                    one_loaded(_load_id, _res, ++_index, length);
+                }, function(_err:Dynamic){
+                    one_failed(_load_id, _err, ++_index, length);
+                });
+            }
+
+            //bytes
+
+                for(_bytes in list.bytes) {
+
+                    if(!is_loaded(_bytes.id)) {
+
+                        loaded.push(_bytes.id);
+                        Luxe.timer.schedule(load_time_spacing, function() {
+
+                            _handle( system.load_bytes( _bytes.id ) );
+
+                        }); //timer
+
+                    } else { //!loaded
+                        log('$id / already had ${_bytes.id} loaded, skipped');
+                        one_loaded(_load_id, system.get(_bytes.id), ++_index, length);
+                    }
+
+                } //each bytes
+
+            //text
+
+                for(_text in list.texts) {
+
+                    if(!is_loaded(_text.id)) {
+
+                        loaded.push(_text.id);
+                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+
+                            _handle( system.load_text( _text.id ) );
+
+                        }); //timer
+
+                    } else { //!loaded
+                        log('$id / already had ${_text.id} loaded, skipped');
+                        one_loaded(_load_id, system.get(_text.id), ++_index, length);
+                    }
+
+                } //each texts
+
+            //json
+
+                for(_json in list.jsons) {
+
+                    if(!is_loaded(_json.id)) {
+
+                        loaded.push(_json.id);
+                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+
+                            _handle( system.load_json( _json.id ) );
+
+                        });
+
+                    } else { //!loaded
+                        log('$id / already had ${_json.id} loaded, skipped');
+                        one_loaded(_load_id, system.get(_json.id), ++_index, length);
+                    }
+
+                } //each jsons
+
+            //texture
+
+                for(_texture in list.textures) {
+
+                    if(!is_loaded(_texture.id)) {
+
+                        loaded.push(_texture.id);
+                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+
+                            var _load = system.load_texture( _texture.id, {
+                                filter_min:_texture.filter_min,
+                                filter_mag:_texture.filter_mag,
+                                clamp_s:_texture.clamp_s,
+                                clamp_t:_texture.clamp_t
+                            });
+
+                            _handle(_load);
+
+                        }); //timer
+
+                    } else { //!loaded
+                        log('$id / already had ${_texture.id} loaded, skipped');
+                        one_loaded(_load_id, system.get(_texture.id), ++_index, length);
+                    }
+
+                } //each textures
+
+            //font
+
+                for(_font in list.fonts) {
+
+                    if(!is_loaded(_font.id)) {
+
+                        loaded.push(_font.id);
+                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+
+                            var _load = system.load_font( _font.id, {
+                                texture_path:_font.texture_path
+                            });
+
+                            _handle(_load);
+
+                        }); //timer
+
+                    } else { //!loaded
+                        log('$id / already had ${_font.id} loaded, skipped');
+                        one_loaded(_load_id, system.get(_font.id), ++_index, length);
+                    }
+
+                } //each fonts
+
+            //shader
+
+                for(_shader in list.shaders) {
+
+                    if(!is_loaded(_shader.id)) {
+
+                        loaded.push(_shader.id);
+                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+
+                            var _load = system.load_shader( _shader.id, {
+                                frag_id: _shader.frag_id,
+                                vert_id: _shader.vert_id
+                            });
+
+                            _handle(_load);
+
+                        }); //timer
+
+                    } else { //!loaded
+                        log('$id / already had ${_shader.id} loaded, skipped');
+                        one_loaded(_load_id, system.get(_shader.id), ++_index, length);
+                    }
+
+                } //each shaders
+
+            //sound
+
+                for(_sound in list.sounds) {
+
+                    if(!Luxe.audio.exists(_sound.name)) {
+
+                        // loaded.push(_sound.id); //:todo: this is not a resource, so it gets weird
+                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+
+                            var _load = Luxe.audio.create(
+                                _sound.id,
+                                _sound.name,
+                                _sound.is_stream
+                            );
+
+                            _load.then(function(_) {
+                                one_loaded(_load_id, null, ++_index, length);
+                            }, function(_err:Dynamic){
+                                one_failed(_load_id, _err, ++_index, length);
+                            });
+
+                        }); //timer
+
+                    } else { //!loaded
+                        log('$id / already had ${_sound.id} (${_sound.name}) loaded, skipped');
+                        one_loaded(_load_id, null, ++_index, length);
+                    }
+
+                } //each sounds
+
+        }); //start delay timer
 
     } //load
+
+        /** Unload this parcel contents, telling the system to remove the reference we have to them.
+            Optionally the list can be emptied out, but will be kept around for reloading the parcel again. */
+    public function unload( ?_empty_list:Bool = false ) {
+
+        inline function _remove(_id) {
+            system.destroy(_id);
+            loaded.remove(_id);
+        }
+
+        for(item in list.bytes)     _remove(item.id);
+        for(item in list.texts)     _remove(item.id);
+        for(item in list.jsons)     _remove(item.id);
+        for(item in list.textures)  _remove(item.id);
+        for(item in list.fonts)     _remove(item.id);
+        for(item in list.shaders)   _remove(item.id);
+        for(item in list.sounds)    Luxe.audio.uncreate(item.name);
+
+        if(_empty_list) {
+            list = null;
+            list = empty_list();
+        }
+
+        state = ParcelState.unloaded;
+
+    } //unload
 
     public function from_json( _json_object:Dynamic ) {
 
         assertnull(_json_object);
 
-        if(_json_object.textures != null) {
-            var _textures : Array<Dynamic> = cast _json_object.textures;
-            for(item in _textures) {
+        if(_json_object.bytes != null) {
+            var _bytes : Array<BytesInfo> = cast _json_object.bytes;
+            for(item in _bytes) {
                 if(item != null) {
-                    var id : String = item.id == null ? '' : cast item.id;
-                    if(id != '') {
-                        add_texture( id );
-                    } else {
-                        log("texture not added due to incomplete info: " + item);
-                    }
+                    assertnull(item);
+                    assertnull(item.id);
+
+                    list.bytes.push(item);
                 } //item != null
-            } //item in textures
-        } //json object textures
-
-        if(_json_object.shaders != null) {
-            var _shaders : Array<Dynamic> = cast _json_object.shaders;
-            for(item in _shaders) {
-                if(item != null) {
-                    var ps_id : String = item.ps_id == null ? 'default' : cast item.ps_id;
-                    var vs_id : String = item.vs_id == null ? 'default' : cast item.vs_id;
-
-                    add_shader(ps_id, vs_id);
-
-                } //item != null
-            } //item in shaders
-        } //json object shaders
-
-        if(_json_object.fonts != null) {
-            var _fonts : Array<Dynamic> = cast _json_object.fonts;
-            for(item in _fonts) {
-                if(item != null) {
-                    var id : String = item.id == null ? '' : cast item.id;
-                    if(id != '') {
-                        add_font(id, cast item.texture_path);
-                    } else {
-                        log("font not added due to incomplete info: " + item);
-                    }
-                } //item != null
-            } //item in fonts
-        } //json object fonts
-
-        if(_json_object.sounds != null) {
-            var _sounds : Array<Dynamic> = cast _json_object.sounds;
-            for(item in _sounds) {
-                if(item != null) {
-                    var id : String = item.id == null ? '' : cast item.id;
-                    var name : String = item.name == null ? '' : cast item.name;
-                    var is_stream : Bool = item.is_stream == null ? false : cast item.is_stream;
-                    if(id != '' && name != '') {
-                        add_sound( id, name, is_stream);
-                    } else {
-                        log("sounds not added due to incomplete info: " + item);
-                    }
-                } //item != null
-            } //each sounds
-        } //json object sounds
+            } //each bytes
+        } //json object bytes
 
         if(_json_object.text != null) {
-            var _texts : Array<Dynamic> = cast _json_object.text;
+            var _texts : Array<TextInfo> = cast _json_object.text;
             for(item in _texts) {
                 if(item != null) {
-                    var id : String = item.id == null ? '' : cast item.id;
-                    if(id != '') {
-                        add_text( id );
-                    }  else {
-                        log("text not added due to incomplete info: " + item);
-                    }//id != ''
+                    assertnull(item);
+                    assertnull(item.id);
+
+                    list.texts.push(item);
                 } //item != null
             } //each text
         } //json object text
 
         if(_json_object.json != null) {
-            var _jsons : Array<Dynamic> = cast _json_object.json;
+            var _jsons : Array<JSONInfo> = cast _json_object.json;
             for(item in _jsons) {
                 if(item != null) {
-                    var id : String = item.id == null ? '' : cast item.id;
-                    if(id != '') {
-                        add_json( id );
-                    }  else {
-                        log("json not added due to incomplete info: " + item);
-                    }//id != ''
+                    assertnull(item);
+                    assertnull(item.id);
+
+                    list.jsons.push(item);
                 } //item != null
             } //each json
         } //json object json
 
-        if(_json_object.data != null) {
-            var _datas : Array<Dynamic> = cast _json_object.data;
-            for(item in _datas) {
-                if(item != null) {
-                    var id : String = item.id == null ? '' : cast item.id;
-                    if(id != '') {
-                        add_data( id );
-                    } else {
-                        log("data not added due to incomplete info: " + item);
+        if(_json_object.textures != null) {
+            var _textures : Array<Dynamic> = cast _json_object.textures;
+            for(item in _textures) {
+                assertnull(item);
+                assertnull(item.id);
+
+                inline function _get_filter(_filter_type:String) : Null<FilterType> {
+                    if(_filter_type == null) return null;
+                    assert(_filter_type == 'nearest' || _filter_type == 'linear');
+                    return switch(_filter_type) {
+                        case 'nearest': FilterType.nearest;
+                        case 'linear': FilterType.linear;
+                        default: null;
                     }
                 }
-            }
-        } //json object data
 
-        refresh_total_items();
+                inline function _get_clamp(_clamp_type:String) : Null<ClampType> {
+                    if(_clamp_type == null) return null;
+                    assert(_clamp_type == 'edge' || _clamp_type == 'repeat' || _clamp_type == 'mirror');
+                    return switch(_clamp_type) {
+                        case 'edge':    ClampType.edge;
+                        case 'mirror':  ClampType.mirror;
+                        case 'repeat':  ClampType.repeat;
+                        default: null;
+                    }
+                }
+
+                list.textures.push({
+                    id: item.id,
+                    filter_min: _get_filter(item.filter_min),
+                    filter_mag: _get_filter(item.filter_mag),
+                    clamp_s: _get_clamp(item.clamp_s),
+                    clamp_t: _get_clamp(item.clamp_t),
+                });
+
+            } //item in textures
+        } //json object textures
+
+        if(_json_object.fonts != null) {
+            var _fonts : Array<BitmapFontInfo> = cast _json_object.fonts;
+            for(item in _fonts) {
+                if(item != null) {
+                    assertnull(item);
+                    assertnull(item.id);
+
+                    list.fonts.push(item);
+                } //item != null
+            } //item in fonts
+        } //json object fonts
+
+        if(_json_object.shaders != null) {
+            var _shaders : Array<ShaderInfo> = cast _json_object.shaders;
+            for(item in _shaders) {
+                if(item != null) {
+                    assertnull(item);
+                    assertnull(item.id);
+                    assertnull(item.frag_id);
+                    assertnull(item.vert_id);
+
+                    list.shaders.push(item);
+                } //item != null
+            } //item in shaders
+        } //json object shaders
+
+        if(_json_object.sounds != null) {
+            var _sounds : Array<SoundInfo> = cast _json_object.sounds;
+            for(item in _sounds) {
+                if(item != null) {
+                    assertnull(item);
+                    assertnull(item.id);
+                    assertnull(item.name);
+
+                    // if(item.is_stream == null) item.is_stream = false;
+
+                    list.sounds.push(item);
+                } //item != null
+            } //each sounds
+        } //json object sounds
 
     } //from_json
 
-//Texture
+//Internal
 
-    function start_textures_load() {
+    function one_loaded( _load_id:String, _resource:Resource, _index:Int, _total:Int ) {
 
-        if(texture_list.length > 0) {
+        _debug('loaded $_index / $_total for $_load_id / ' + (_resource == null ? 'sound' : _resource.id) );
 
-            index_textures = 0;
+        var _state : ParcelChange = {
+            load_id: _load_id,
+            resource: _resource,
+            index: _index,
+            total: _total
+        };
 
-            if(options.sequential) {
+        emitter.emit(ParcelEvent.progress, _state);
 
-                    //load recursive so that it is sequential
-                recursive_load_textures( null );
-
-            } else {
-
-                    //load all fonts immediately
-                    //whether that's sequential or not
-                load_textures();
-
-
-            } //sequential
-
-        } else { //texture_list
-
-            if( options.sequential ) {
-                start_fonts_load();
-            }
-
+        if(onprogress != null) {
+            onprogress(_state);
         }
 
-    } //start_texture_load
-
-//Font
-
-    function start_fonts_load() {
-
-        if(font_list.length > 0) {
-
-            index_fonts = 0;
-
-            if(options.sequential) {
-
-                    //load recursive so that it is sequential
-                recursive_load_fonts( null );
-
-            } else {
-
-                    //load all fonts immediately
-                    //whether that's sequential or not
-                load_fonts();
-
-            } //sequential
-
-        } else { //font_list > 0
-
-            if( options.sequential ) {
-                start_shaders_load();
-            }
-
+        if(_index == _total) {
+            do_complete(_load_id);
         }
 
-    } //start_fonts_load
+    } //one_loaded
 
-//Shader
+    function one_failed( _load_id:String, _error:Dynamic, _index:Int, _total:Int ) {
 
-    function start_shaders_load() {
+        _debug('failed $_index / $_total for $_load_id / ${_error}');
 
-        if(shader_list.length > 0) {
+        var _state : ParcelChange = {
+            load_id: _load_id,
+            error: _error,
+            index: _index,
+            total: _total
+        };
 
-            index_shaders = 0;
+        emitter.emit(ParcelEvent.failed, _state);
 
-            if(options.sequential) {
-
-                    //load recursive so that it is sequential
-                recursive_load_shaders( null );
-
-            } else {
-
-                    //load all fonts immediately
-                    //whether that's sequential or not
-                load_shaders();
-
-            } //sequential
-
-        } else { //shader_list > 0
-
-            if( options.sequential ) {
-                start_sounds_load();
-            }
-
+        if(onfailed != null) {
+            onfailed(_state);
         }
 
-    } //start_shaders_load
+    } //one_failed
 
-//Sound
+        //
+    inline function get_listed() : Array<String> {
+        var _result = [];
 
-    function start_sounds_load() {
+        for(item in list.bytes)     _result.push(item.id);
+        for(item in list.texts)     _result.push(item.id);
+        for(item in list.jsons)     _result.push(item.id);
+        for(item in list.textures)  _result.push(item.id);
+        for(item in list.fonts)     _result.push(item.id);
+        for(item in list.shaders)   _result.push(item.id);
+            //:todo: this is a list of resources, sounds aren't resources...
+        // for(item in list.sounds)    _result.push(item.id);
 
-        if(sound_list.length > 0) {
-
-            index_sounds = 0;
-
-            if(options.sequential) {
-
-                    //load recursive so that it is sequential
-                recursive_load_sounds( null );
-
-            } else {
-
-                    //load all fonts immediately
-                    //whether that's sequential or not
-                load_sounds();
-
-            } //sequential
-
-        } else { //sound_list > 0
-
-            if( options.sequential ) {
-                start_texts_load();
-            }
-
-        }
-
-    } //start_sounds_load
-
-//Texts
-
-    function start_texts_load() {
-
-        if(text_list.length > 0) {
-
-            index_texts = 0;
-
-            if(options.sequential) {
-
-                    //load recursive so that it is sequential
-                recursive_load_texts( null );
-
-            } else {
-
-                    //load all texts immediately
-                    //whether that's sequential or not
-                load_texts();
-
-            } //sequential
-
-        } else { //text_list > 0
-
-            if( options.sequential ) {
-                start_jsons_load();
-            }
-
-        }
-
-    } //start_texts_load
-
-
-//JSONs
-
-    function start_jsons_load() {
-
-        if(json_list.length > 0) {
-
-            index_jsons = 0;
-
-            if(options.sequential) {
-
-                    //load recursive so that it is sequential
-                recursive_load_jsons( null );
-
-            } else {
-
-                    //load all jsons immediately
-                    //whether that's sequential or not
-                load_jsons();
-
-            } //sequential
-
-        } else { //json_list > 0
-
-            if( options.sequential ) {
-                start_datas_load();
-            }
-
-        }
-
-    } //start_jsons_load
-
-//Data
-
-    function start_datas_load() {
-
-        if(data_list.length > 0) {
-
-            index_datas = 0;
-
-            if(options.sequential) {
-
-                    //load recursive so that it is sequential
-                recursive_load_datas( null );
-
-            } else {
-
-                    //load all datas immediately
-                    //whether that's sequential or not
-                load_datas();
-
-            } //sequential
-
-        } else { //data_list > 0
-            //last in the list
-        }
-
-    } //start_datas_load
-
-
-//Texture
-
-    function load_textures() {
-        for(tex in texture_list) {
-            load_texture( tex, single_item_complete );
-        }
+        return _result;
     }
 
-//Font
-
-    function load_fonts() {
-        for(fnt in font_list) {
-            load_font( fnt, single_item_complete );
-        }
+    inline function get_length() {
+        return
+            list.bytes.length +
+            list.texts.length +
+            list.jsons.length +
+            list.textures.length +
+            list.shaders.length +
+            list.fonts.length +
+            list.sounds.length;
     }
 
-//Shader
+        //do_complete
+    inline function do_complete( _load_id:String ) {
 
-    function load_shaders() {
-        for(shader in shader_list) {
-            load_shader( shader, single_item_complete );
-        }
-    }
+        state = ParcelState.loaded;
+        time_to_load = Luxe.time - start_load;
 
-//Sound
+        _debug('completed load $_load_id in $time_to_load');
 
-    function load_sounds() {
-        for(sound in sound_list) {
-            load_sound( sound, single_item_complete );
-        }
-    }
+        emitter.emit(ParcelEvent.complete, this);
 
-//Data
-
-    function load_datas() {
-        for(data in data_list) {
-            load_data( data, single_item_complete );
-        }
-    }
-
-//Text
-
-    function load_texts() {
-        for(text in text_list) {
-            load_text( text, single_item_complete );
-        }
-    }
-
-//JSON
-
-    function load_jsons() {
-        for(json in json_list) {
-            load_json( json, single_item_complete );
-        }
-    }
-
-
-//Texture
-
-    function recursive_load_textures( item:Resource ) {
-
-        if(item != null) {
-
-            single_item_complete( item );
-
-            if(index_textures == texture_list.length && options.sequential) {
-                start_fonts_load();
-            }
-
-        }
-
-            //if you are debugging progress, change this line and it's closing brace
-        // Luxe.timer.schedule(1, function(){
-
-            if( index_textures < texture_list.length ) {
-                    //hold current so we can skip
-                var current = index_textures;
-                    //increase count for complete around
-                index_textures++;
-                    //send off
-                load_texture( texture_list[current], recursive_load_textures );
-
-            } //not past max length
-
-        // });  //schedule closing brace
-
-    } //recursive_load_textures
-
-//Shader
-
-    function recursive_load_shaders( item:Resource ) {
-
-        if(item != null) {
-
-            single_item_complete( item );
-
-            if(index_shaders == shader_list.length && options.sequential) {
-                start_sounds_load();
-            }
-
-        }
-
-            //if you are debugging progress, change this line and it's closing brace
-        // Luxe.timer.schedule(1, function(){
-
-            if( index_shaders < shader_list.length ) {
-                    //hold current so we can skip
-                var current = index_shaders;
-                    //increase count for complete around
-                index_shaders++;
-                    //send off
-                load_shader( shader_list[current], recursive_load_shaders );
-
-            } //not past max length
-
-        // });  //schedule closing brace
-
-    } //recursive_load_shaders
-
-//Font
-
-    function recursive_load_fonts( item:Resource ) {
-
-        if(item != null) {
-
-            single_item_complete( item );
-
-            if(index_fonts == font_list.length && options.sequential) {
-                start_shaders_load();
-            }
-
-        }
-
-            //if you are debugging progress, change this line and it's closing brace
-        // Luxe.timer.schedule(1, function(){
-
-            if( index_fonts < font_list.length ) {
-                    //hold current so we can skip
-                var current = index_fonts;
-                    //increase count for complete around
-                index_fonts++;
-                    //send off
-                load_font( font_list[current], recursive_load_fonts );
-
-            } //not past max length
-
-        // });  //schedule closing brace
-
-    } //recursive_load_fonts
-
-//Sound
-
-    function recursive_load_sounds( item:Resource ) {
-
-        if(item != null) {
-
-            single_item_complete( item );
-
-            if(index_sounds == sound_list.length && options.sequential) {
-                start_texts_load();
-            }
-
-        }
-
-            //if you are debugging progress, change this line and it's closing brace
-        // Luxe.timer.schedule(1, function(){
-
-            if( index_sounds < sound_list.length ) {
-                    //hold current so we can skip
-                var current = index_sounds;
-                    //increase count for complete around
-                index_sounds++;
-                    //send off
-                load_sound( sound_list[current], recursive_load_sounds );
-
-            } //not past max length
-
-        // });  //schedule closing brace
-
-    } //recursive_load_sounds
-
-//Data
-
-    function recursive_load_datas( item:Resource ) {
-
-        if(item != null) {
-            single_item_complete( item );
-        }
-
-            //if you are debugging progress, change this line and it's closing brace
-        // Luxe.timer.schedule(1, function(){
-
-            if( index_datas < data_list.length ) {
-                    //hold current so we can skip
-                var current = index_datas;
-                    //increase count for complete around
-                index_datas++;
-                    //send off
-                load_data( data_list[current], recursive_load_datas );
-
-            } //not past max length
-
-        // });  //schedule closing brace
-
-    } //recursive_load_datas
-
-//Text
-
-    function recursive_load_texts( item:Resource ) {
-
-        if(item != null) {
-
-            single_item_complete( item );
-
-            if(index_texts == text_list.length && options.sequential) {
-                start_jsons_load();
-            }
-
-        }
-
-            //if you are debugging progress, change this line and it's closing brace
-        // Luxe.timer.schedule(1, function(){
-
-            if( index_texts < text_list.length ) {
-                    //hold current so we can skip
-                var current = index_texts;
-                    //increase count for complete around
-                index_texts++;
-                    //send off
-                load_text( text_list[current], recursive_load_texts );
-
-            } //not past max length
-
-        // });  //schedule closing brace
-
-    } //recursive_load_texts
-
-//JSON
-
-    function recursive_load_jsons( item:Resource ) {
-
-        if(item != null) {
-
-            single_item_complete( item );
-
-            if(index_jsons == json_list.length && options.sequential) {
-                start_datas_load();
-            }
-
-        }
-
-            //if you are debugging progress, change this line and it's closing brace
-        // Luxe.timer.schedule(1, function(){
-
-            if( index_jsons < json_list.length ) {
-                    //hold current so we can skip
-                var current = index_jsons;
-                    //increase count for complete around
-                index_jsons++;
-                    //send off
-                load_json( json_list[current], recursive_load_jsons );
-
-            } //not past max length
-
-        // });  //schedule closing brace
-
-    } //recursive_load_jsons
-
-//Public api for preparing a parcel
-
-//Texture
-
-    public function add_texture( _id:String ) {
-        texture_list.push(_id);
-    } //add_texture
-
-    public function add_textures( list:Array<String> ) {
-        for(texture in list) {
-            texture_list.push(texture);
-        }
-    } //add_textures
-
-//Shader
-
-    public function add_shader( ps_id:String='default', vs_id:String='default' ) {
-        shader_list.push({ ps_id:ps_id, vs_id:vs_id });
-    } //add_shader
-
-    public function add_shaders( list:Array<ShaderInfo> ) {
-        for(shader_info in list) {
-            shader_list.push( shader_info );
-        }
-    } //add_shaders
-
-//Font
-
-    public function add_font( _id:String, ?_texture_path:String ) {
-        font_list.push( { id:_id, texture_path:_texture_path });
-    } //add_font
-
-    public function add_fonts( list:Array<FontInfo> ) {
-        for(font_info in list) {
-            font_list.push( font_info );
-        }
-    } //add_fonts
-
-//Sound
-
-    public function add_sound( _id:String, _name:String, _is_stream:Bool = false ) {
-        sound_list.push( { id:_id, name:_name, is_stream:_is_stream });
-    } //add_sound
-
-    public function add_sounds( list:Array<SoundInfo> ) {
-        for(sound_info in list) {
-            sound_list.push( sound_info );
-        }
-    } //add_sounds
-
-//Text
-
-    public function add_text( _id:String ) {
-        text_list.push({ id:_id });
-    } //add_text
-
-    public function add_texts( list:Array<TextInfo> ) {
-        for(text_info in list) {
-            text_list.push( text_info );
-        }
-    } //add_texts
-
-//JSON
-
-    public function add_json( _id:String ) {
-        json_list.push({ id:_id });
-    } //add_json
-
-    public function add_jsons( list:Array<JSONInfo> ) {
-        for(json_info in list) {
-            json_list.push( json_info );
-        }
-    } //add_jsons
-
-//Data
-
-    public function add_data( _id:String ) {
-        data_list.push({ id:_id });
-    } //add_data
-
-    public function add_datas( list:Array<DataInfo> ) {
-        for(data in list) {
-            data_list.push( data );
-        }
-    } //add_datas
-
-
-//Per item handlers
-
-    function load_texture( _tex:String, _complete ) {
-        #if luxe_parcel_logging log("    loading texture " + _tex ); #end
-
-        Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadTexture( _tex, _complete, options.silent );
-        });
-
-    } //load_texture
-
-    function load_shader( _shader:ShaderInfo, _complete ) {
-        #if luxe_parcel_logging log("    loading shader " + _shader.ps_id + _shader.vs_id ); #end
-
-        Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadShader( _shader.ps_id, _shader.vs_id, _complete, options.silent );
-        });
-
-    } //load_shader
-
-    function load_font( _font:FontInfo, _complete ) {
-        #if luxe_parcel_logging log("    loading font " + _font.id + " with optional texture path = " + _font.texture_path ); #end
-
-        Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadFont( _font.id, _font.texture_path, _complete, options.silent );
-        });
-
-    } //load_font
-
-    function load_data( _data_info:DataInfo, _complete ) {
-        #if luxe_parcel_logging log("    loading data " + _data_info ); #end
-
-        Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadData( _data_info.id, _complete );
-        });
-
-    } //load_data_path
-
-    function load_text( _text_info:TextInfo, _complete ) {
-        #if luxe_parcel_logging log('    loading text $_text_info' ); #end
-
-        Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadText( _text_info.id, _complete );
-        });
-
-    } //load_text
-
-    function load_json( _json_info:JSONInfo, _complete ) {
-        #if luxe_parcel_logging log('    loading json $_json_info' ); #end
-
-        Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadJSON( _json_info.id, _complete );
-        });
-
-    } //load_json
-
-    function load_sound( _sound:SoundInfo, _complete ) {
-        #if luxe_parcel_logging log("    loading sound " + _sound.id + " (" + _sound.name + ")" ); #end
-
-        Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadSound( _sound.name, _sound.id, _sound.is_stream, _complete );
-        });
-
-    } //load_sound
-
-//Complete internal handler
-
-    function do_complete() {
-
-            //figure out how long
-        time_to_load = Luxe.time - time_start_load;
-
-            //tell the creator
-        if( options.oncomplete != null ) {
-            options.oncomplete( this );
+        if(oncomplete != null) {
+            oncomplete(this);
         }
 
     } //do_complete
 
-//Per item complete handler
+    function empty_list() : ParcelList {
+        return {
+            bytes:[],
+            texts:[],
+            jsons:[],
+            textures:[],
+            fonts:[],
+            shaders:[],
+            sounds:[],
+        };
+    }
 
-    function single_item_complete( item:Resource ) {
-
-        item.time_to_load = Luxe.time - item.time_created;
-
-        current_count++;
-
-        #if luxe_parcel_logging
-            log( "    parcel: item finished " + item.id + "( " + current_count + "/" + total_items + " )");
-        #end //luxe_parcel_logging
-
-        if(options.onprogress != null) {
-            options.onprogress( item );
-        }
-
-            //There will always be a 0.1 second delay before
-            //oncomplete to allow for progress bar renders to complete
-        if(current_count >= total_items) {
-            Luxe.timer.schedule(0.1, function(){
-                do_complete();
-            });
-        }
-
-    } //single_item_complete
-
-}
+} //Parcel
