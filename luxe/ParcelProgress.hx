@@ -27,8 +27,8 @@ class ParcelProgress {
 
     public function new( _options:ParcelProgressOptions ) {
 
-        var _view_width = Luxe.screen.w;
-        var _view_height = Luxe.screen.h;
+        var _view_width:Float = Luxe.screen.w;
+        var _view_height:Float = Luxe.screen.h;
 
         if(Luxe.camera.size != null) {
             _view_width = Luxe.camera.size.x;
@@ -109,8 +109,8 @@ class ParcelProgress {
         } //no visuals?
 
             //we intercept the onprogress and oncomplete of the parcel
-        options.parcel.options.oncomplete = oncomplete;
-        options.parcel.options.onprogress = onprogress;
+        options.parcel.on(ParcelEvent.progress, onprogress);
+        options.parcel.on(ParcelEvent.complete, oncomplete);
 
     } //new
 
@@ -123,10 +123,10 @@ class ParcelProgress {
 
     } //set_progress
 
-    public function onprogress( r:Resource ) {
+    public function onprogress( _state:ParcelChange ) {
 
             //work out where we are out
-        var amount = options.parcel.current_count / options.parcel.total_items;
+        var amount = _state.index / _state.total;
 
             //update the progress bar
         set_progress( amount );
@@ -137,10 +137,11 @@ class ParcelProgress {
 
         if(!options.no_visuals && options.fade_out) {
 
+            do_complete();
+
             background.color.tween( options.fade_time, {a:0}, true);
             progress_bar.color.tween( options.fade_time, {a:0}, true);
-            progress_border.color.tween( options.fade_time, {a:0}, true)
-                .onComplete( do_complete );
+            progress_border.color.tween( options.fade_time, {a:0}, true);
 
         } else {
 
