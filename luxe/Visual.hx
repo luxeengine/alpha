@@ -112,23 +112,14 @@ class Visual extends Entity {
 
                 //if the texture isn't invalid entirely
             if(texture != null) {
-                if(texture.loaded) {
 
-                    size = new Vector(texture.width, texture.height);
-                    _create_geometry();
-
-                } else {
-
-                    texture.onload = function(_texture) {
-                        size = new Vector(_texture.width, _texture.height);
-                        _create_geometry();
-                    }
-                } //texture is not loaded
+                size = new Vector(texture.width, texture.height);
+                _create_geometry();
 
             } else {
+
                     //default to a value big enough to see
                 size = new Vector(64,64);
-                // trace('\t\tWarning : no texture, or size, handed to visual constructor so going with a default size.');
                 _create_geometry();
 
             } //texture !=null
