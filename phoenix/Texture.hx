@@ -1,535 +1,324 @@
 package phoenix;
 
+import snow.api.Promise;
 import snow.system.assets.Asset;
 import snow.modules.opengl.GL;
 import snow.api.Libs;
 
 import snow.api.buffers.Uint8Array;
+import snow.api.buffers.ArrayBufferView;
 import snow.api.buffers.ArrayBuffer;
 
 import phoenix.Color;
 import phoenix.Vector;
 
+import luxe.Resources;
 import luxe.resource.Resource;
-import luxe.resource.Resources;
+import luxe.options.ResourceOptions;
+import snow.types.Types.Error;
 
-import luxe.Log._verbose;
-import luxe.Log._debug;
-import luxe.Log.log;
-
-enum FilterType {
-    nearest;
-    linear;
-    mip_nearest_nearest;  //The texel filter, and then the mip filter
-    mip_linear_nearest;
-    mip_nearest_linear;
-    mip_linear_linear;
-}
-
-enum ClampType {
-    edge;
-    repeat;
-    mirror;
-}
-
+import luxe.Log.*;
 
 class Texture extends Resource {
 
-    public var texture : GLTexture;
-    public var asset : AssetImage;
+//Static flags
 
-    public var width_actual : Int = -1;
-    public var height_actual : Int = -1;
-    public var width : Int = -1;
-    public var height : Int = -1;
-    public var loaded : Bool = false;
+    public static var default_filter: FilterType = FilterType.linear;
+    public static var default_clamp: ClampType = ClampType.edge;
 
+//Members
+
+        /** Which texture slot this texture would be assigned to when bound. */
     public var slot : Int = 0;
+        /** Only used when submitting to the GPU, where supported. */
+    public var border : Int = 0;
+        /** The GPU texture ID */
+    public var texture : TextureID;
+        /** The GPU texture format, i.e `GL.RGBA` or similar. */
+    public var format : TextureFormat;
+        /** The GPU texture type, i.e `GL.TEXTURE_2D` or similar. */
+    public var type : TextureType;
+        /** The GPU data type, i.e `GL.UNSIGNED_BYTE` or similar. */
+    public var data_type : TextureDataType;
+        /** If true, the pixels buffer should store compressed image format data that the GPU understands. */
+    public var compressed : Bool = false;
 
-    public var _onload_handlers : Array<Texture -> Void>;
+        /** The width of the actual texture, used for example when the texture may be padded to POT sizes. */
+    public var width_actual : Int = -1;
+        /** The height of the actual texture, used for example when the texture may be padded to POT sizes. */
+    public var height_actual : Int = -1;
+        /** The width of the texture */
+    public var width : Int = -1;
+        /** The height of the texture */
+    public var height : Int = -1;
 
-    public var onload(never,set) : Texture -> Void;
-    @:isVar public var filter(default,set) : FilterType;
-    @:isVar public var filter_min(default,set) : FilterType;
-    @:isVar public var filter_mag(default,set) : FilterType;
-    @:isVar public var clamp(default,set) : ClampType;
+        /** Set the minification filter type */
+    @:isVar public var filter_min   (default,set) : FilterType;
+        /** Set the magnification filter type */
+    @:isVar public var filter_mag   (default,set) : FilterType;
+        /** Sets the S (horizontal) clamp type */
+    @:isVar public var clamp_s      (default,set) : ClampType;
+        /** Sets the T (vertical) clamp type */
+    @:isVar public var clamp_t      (default,set) : ClampType;
 
 
-    public function new( _manager : Resources, ?_type : ResourceType = null ) {
+    public function new( _options:TextureOptions ) {
 
-        if(_type == null) _type = ResourceType.texture;
+        assertnull(_options, 'Texture create requires non-null options');
 
-        super( _manager, _type );
-        _onload_handlers = new Array<Texture -> Void>();
+            //only clobbed it if unknown
+        if(_options.resource_type == ResourceType.unknown) {
+            _options.resource_type = ResourceType.texture;
+        }
 
-        id = Luxe.utils.uniqueid();
-        filter = FilterType.linear;
-        clamp = ClampType.edge;
+        super( _options );
+
+        //texture id must be first, followed by bind
+
+        if(_options.texture == null) {
+            _options.texture = create_texture_id();
+        }
+
+        texture = _options.texture;
+
+        bind();
+
+        apply_default_options(_options);
+
+            //pixels require width and height
+        if(_options.pixels != null) {
+            assertnull(_options.width, 'Texture create with pixels requires both width and height');
+            assertnull(_options.height, 'Texture create with pixels requires both width and height');
+        }
+
+        if(_options.width != null || _options.height != null) {
+
+                //width requires height and vice versa
+            assertnull(_options.height, 'Texture requires both width and height, only width was given in construct options');
+            assertnull(_options.width, 'Texture requires both width and height, only height was given in construct options');
+
+            width = width_actual = _options.width;
+            height = height_actual = _options.height;
+
+            if(_options.pixels != null) {
+                submit(_options.pixels);
+            }
+
+        } //width/height not null
+
 
     } //new
 
-    public function set_onload( f: Texture -> Void ) {
-            //if already loaded when adding an onloaded handler,
-            //just call the handler now
-        if(loaded) {
-            f(this);
-            return f;
-        } else {
-            //otherwise we store it in the list for calling later
-            _onload_handlers.push(f);
-        }
+        /** Returns the estimated memory usage of this Texture, in bytes. */
+    override public function memory_use() {
 
-        return f;
+            //:todo: not force 4 bpp
+        return (width_actual * height_actual * 4);
 
-    } //set_onload
+    } //memory_use
 
-    public function do_onload() {
 
-        loaded = true;
+        /** Fetch the pixels from the texture id, storing them in the provided array buffer view.
+            Returns image pixels in RGBA format, as unsigned byte (0-255) values only.
+            This means that the view must be w * h * 4 in length, minimum.
+            By default, x and y are 0, 0, and the texture `width` and `height`
+            are used (not width_actual/height_actual) */
+    public function fetch( _into:Uint8Array, ?_x:Int = 0, ?_y:Int = 0, ?_w:Int, ?_h:Int ) : Uint8Array {
 
-        for(f in _onload_handlers) {
-            if(f != null) {
-                f(this);
-            }
-        }
+        assertnull(_into, 'Texture fetch requires a valid buffer to store the pixels.');
 
-        _onload_handlers.splice(0,_onload_handlers.length);
+        def(_x, 0);
+        def(_y, 0);
+        def(_w, width);
+        def(_h, height);
 
-    } //do_onload
+        var _required = _w * _h * 4;
 
-    function toString() {
-        return 'Texture (' + texture + ') ('+ width + 'x' + height +') real size('+ width_actual + 'x' + height_actual +') ' + filter + ' filtering. ' + clamp + ' clamp. id: ' + id;
-    } //toString
+        assert( _into.length >= _required, 'Texture fetch requires at least $_required (w * h * 4) bytes for the pixels, you have ${_into.length}!' );
 
-    public function estimated_memory() {
+        GL.readPixels(_x, _y, _w, _h, GL.RGBA, GL.UNSIGNED_BYTE, _into);
 
-        var _bytes = (width_actual * height_actual * 4);
+        return _into;
 
-        return Luxe.utils.bytes_to_string(_bytes);
+    } //fetch
 
-    } //estimated_memory
+        /** Submit a pixels array to the texture id. Must match the type and format accordingly. */
+    public function submit( _pixels:ArrayBufferView, ?_target:TextureSubmitTarget, ?_level:Int = 0 ) {
 
-    public static function load( _id:String, ?_onloaded:Texture->Void, ?_silent:Bool=false ) {
+        assert(_level >= 0, 'Texture submit level cannot be negative');
 
-            //:todo:which resources
-        var resources = Luxe.resources;
+        var _max = max_size();
 
-            //Check for existing texture in resource manager
-        var _exists = resources.find_texture(_id);
+        assert(width_actual <= _max, 'Texture actual width bigger than maximum hardware size (width:$width_actual, max:$_max)');
+        assert(height_actual <= _max, 'Texture actual height bigger than maximum hardware size (height:$height_actual, max:$_max)');
 
-        if(_exists != null) {
-
-            _verbose("loaded (cached) " + _exists.id ) ;
-
-            if(_onloaded != null) {
-                _onloaded(_exists);
-            }
-
-            return _exists;
-
-        } //_exists != null
-
-        //if not found already, create a new Texture
-
-        var texture : Texture = new Texture( resources );
-
-            //append the onload handler
-        if(_onloaded != null) {
-            texture.onload = _onloaded;
-        }
-
-        Luxe.core.app.assets.image(_id)
-            .then(function( _asset:AssetImage ) {
-                if(_asset != null && _asset.image != null) {
-
-                    texture.from_asset(_asset);
-                    texture.reset();
-                    texture.do_onload();
-
-                    if(!_silent) {
-                        log("loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.width_actual + 'x' + texture.height_actual +')');
-                    }
-
-                } else { //asset != null
-                    if(!_silent) {
-                        log("failed to load! " + _id);
-                    }
-                }
-
-            }); //then
-
-        texture.id = _id;
-        resources.cache(texture);
-        return texture;
-
-    } //load
-
-
-    public static function load_from_resource( _name:String, ?_cache:Bool = true ) {
-
-        var texture_bytes : haxe.io.Bytes = haxe.Resource.getBytes(_name);
-
-        if(texture_bytes != null) {
-
-            var texture = load_from_bytes( _name, Uint8Array.fromBytes(texture_bytes), _cache );
-
-            texture_bytes = null;
-
-            return texture;
-
-        } //texture_bytes != null
-
-        return null;
-
-    } //load_texture_from_resource_bytes
-
-
-        /** Create and load a texture from a Uint8Array. Take note this accepts encoded image formats, not decoded/raw pixels. Use load_from_pixels for that.  */
-    public static function load_from_bytes( _id:String, _bytes:Uint8Array, ?_cache:Bool = true ) {
-
-        if(_bytes != null) {
-
-                //:todo: which resource manager...
-            var resources = Luxe.resources;
-            var texture = new Texture(resources);
-
-                var _load = Luxe.core.app.assets.image_from_bytes(_id, _bytes);
-
-                _load.then(function(_asset:AssetImage) {
-
-                    texture.from_asset(_asset);
-
-                    texture.reset();
-                    texture.do_onload();
-
-                    if(_cache) {
-                        resources.cache(texture);
-                    }
-
-                });
-
-            return texture;
-
-        } //texture_bytes != null
-
-        return null;
-
-    } //load_from_bytes
-
-    public static function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels:snow.api.buffers.Uint8Array, ?_cache:Bool = true ) {
-
-        if(_pixels == null) {
-            return null;
-        }
-
-        var resources = Luxe.resources;
-        var texture = new Texture(resources);
-
-        var _asset = Luxe.core.app.assets.image_from_pixels(_id, _width, _height, _pixels);
-
-            texture.from_asset(_asset);
-
-            texture.reset();
-            texture.do_onload();
-
-            if(_cache) {
-                resources.cache(texture);
-            }
-
-        return texture;
-
-    } //load_from_pixels
-
-    function check_size() {
-
-        var max_size = GL.getParameter(GL.MAX_TEXTURE_SIZE);
-
-        if(asset.image.width_actual > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + asset.id;
-        if(asset.image.height_actual > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + asset.id;
-
-    } //check_size
-
-        //create and submit the asset information to GL,
-        //generating a valid id as well
-    public function reset() {
-
-            //Create the GL id
-        texture = GL.createTexture();
-            //Now we can bind it,
         bind();
-            //And send GL the data
-        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width_actual, height_actual, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.pixels );
 
-            //Set the existing properties on the new texture
-        _set_filter( filter );
-        _set_clamp( clamp );
-
-    } //reset
-
-    public function from_asset( _asset:AssetImage ) {
-
-        if(_asset == null) {
-            throw "null asset passed to Texture.from_asset";
+        if(type == TextureType.tex_2D) {
+            def(_target, TextureSubmitTarget.tex_2D);
+        } else {
+            assertnull(_target, 'Texture submit to a non 2D texture requires the _target to be specified');
         }
 
-            //store the asset for later use
-        asset = _asset;
+        if(compressed) {
+            GL.compressedTexImage2D(_target, _level, format, width_actual, height_actual, border, _pixels);
+        } else {
+            GL.texImage2D(_target, _level, format, width_actual, height_actual, border, format, data_type, _pixels );
+        }
 
-        _debug('image.id: ' + asset.image.id);
-        _debug('\t image.bpp: ' + asset.image.bpp);
-        _debug('\t image.bpp_source: ' + asset.image.bpp_source);
-        _debug('\t image.pixels.length: ' + asset.image.pixels.length);
-        _debug('\t image.height: ' + asset.image.height);
-        _debug('\t image.height_actual: ' + asset.image.height_actual);
-        _debug('\t image.width: ' + asset.image.width);
-        _debug('\t image.width_actual: ' + asset.image.width_actual);
+    } //submit
 
-            //check for size limitations
-        check_size();
-
-            //Store the asset id as our resource id
-        id = asset.id;
-
-            //assign sizes
-        width = asset.image.width;
-        height = asset.image.height;
-        width_actual = asset.image.width_actual;
-        height_actual = asset.image.height_actual;
-
-    } //from_asset
-
+        /** Generates mipmaps for this texture. */
     public function generate_mipmaps() {
 
-        onload = function(t) {
-            //make it active
-            bind();
-            //Generate mipmaps
-            GL.generateMipmap(GL.TEXTURE_2D);
-        }
+        bind();
+        GL.generateMipmap(type);
 
     } //generate_mipmaps
 
+        /** Bind this texture to the it's active texture slot,
+            and it's texture id to the texture type. Calling this
+            repeatedly is fine, as the state is tracked by
+            the RenderState. */
     public function bind() {
+
         Luxe.renderer.state.activeTexture( GL.TEXTURE0+slot );
-        Luxe.renderer.state.bindTexture2D( texture );
-    }
+        Luxe.renderer.state.bindTexture( type, texture );
 
-    public function get_pixel( _pos : Vector ) {
+    } //bind
 
-        if(asset.image.pixels == null) return null;
+//Resource overrides
 
-        var x : Int = Std.int(_pos.x);
-        var y : Int = Std.int(_pos.y);
+        /** Reloads this texture from it's id - only a valid call if the id is a image asset resource. */
+    override function reload() : Promise {
 
-        return {
-            r: asset.image.pixels[ (((y*width)+x)*4)  ]/255.0,
-            g: asset.image.pixels[ (((y*width)+x)*4)+1]/255.0,
-            b: asset.image.pixels[ (((y*width)+x)*4)+2]/255.0,
-            a: asset.image.pixels[ (((y*width)+x)*4)+3]/255.0
-        };
+        assert(state != ResourceState.destroyed, 'Resource cannot reload when already destroyed');
 
-    } //get_pixel
+        clear();
 
-    public function set_pixel( _pos:Vector, _color:Color ) {
+        return new Promise(function(resolve, reject) {
 
-        if(asset.image.pixels == null) return;
+            state = ResourceState.loading;
 
-        var x : Int = Std.int(_pos.x);
-        var y : Int = Std.int(_pos.y);
+            var get = Luxe.snow.assets.image(id);
 
-        asset.image.pixels[ (((y*width)+x)*4)  ] = Std.int(_color.r*255);
-        asset.image.pixels[ (((y*width)+x)*4)+1] = Std.int(_color.g*255);
-        asset.image.pixels[ (((y*width)+x)*4)+2] = Std.int(_color.b*255);
-        asset.image.pixels[ (((y*width)+x)*4)+3] = Std.int(_color.a*255);
+            get.then(function(_asset:AssetImage) {
 
-    } //set_pixel
+                dump_asset_info( _asset );
 
-    public function lock() {
+                width = _asset.image.width;
+                height = _asset.image.height;
+                width_actual = _asset.image.width_actual;
+                height_actual = _asset.image.height_actual;
 
-        //:todo : this is related to glGetTexImage not in WebGL
+                texture = create_texture_id();
 
-        // data = new UInt8Array(new ArrayBuffer( width * height * 4));
+                submit( _asset.image.pixels );
 
-        // glBindTexture(GL_TEXTURE_2D, texture);
-        // glGetTexImage( GL_TEXTURE_2D , 0 , GL_RGBA , GL_UNSIGNED_BYTE, data );
+                apply_props();
 
-        return true;
-    }
+                state = ResourceState.loaded;
+                resolve(this);
 
-    public function unlock() {
+            }); //then
 
-        if (asset.image.pixels != null) {
+            get.error(reject);
 
-            Luxe.renderer.state.bindTexture2D(texture);
-            GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.pixels);
+        }); //promise
 
-            asset.image.pixels = null;
+    } //reload
 
-        }
-
-    } //unlock
-
-    public override function drop() {
-
-        super.drop();
-        destroy();
-
-    } //drop
-
-    public function activate(att) { }
-
-    public function destroy() {
+    override function clear() {
 
         if(texture != null) {
             GL.deleteTexture(texture);
         }
-        // asset.destroy(); :todo:
 
-    } //destroy
+    } //clear
+
+//Internal
+
+        //:todo:
+    function create_texture_id() {
+
+        return GL.createTexture();
+
+    } //create_texture_id
+
+    inline function apply_props() {
+
+        apply_filter(filter_min, FilterSlot.min_filter);
+        apply_filter(filter_mag, FilterSlot.mag_filter);
+        apply_clamp(clamp_s, ClampSlot.wrap_s);
+        apply_clamp(clamp_t, ClampSlot.wrap_t);
+
+    } //apply_props
+
+    function apply_default_options( _options:TextureOptions ) {
+
+        //texture properties
+
+            format = def(_options.format, GL.RGBA);
+            type = def(_options.type, GL.TEXTURE_2D);
+            data_type = def(_options.data_type, GL.UNSIGNED_BYTE);
+
+        //properties
+
+            //filter
+                filter_min = def(_options.filter_min, default_filter);
+                filter_mag = def(_options.filter_mag, default_filter);
+
+            //clamp
+                clamp_s = def(_options.clamp_s, default_clamp);
+                clamp_t = def(_options.clamp_t, default_clamp);
+
+    } //apply_default_options
 
 
-    function _set_clamp( _clamp : ClampType ) {
+        /** Return the maximum size of a texture from the hardware */
+    public static function max_size() : Int return GL.getParameter(GL.MAX_TEXTURE_SIZE);
 
-        switch (_clamp) {
-            case ClampType.edge:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE );
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE );
-            case ClampType.repeat:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.REPEAT );
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.REPEAT );
-           case ClampType.mirror:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.MIRRORED_REPEAT );
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.MIRRORED_REPEAT );
-        }
+        //:todo: not be a weird static function
+    static inline function dump_asset_info(_asset:AssetImage) {
 
-    } //_set_clamp
+        _debug('Texture Asset id: '         + _asset.image.id);
+        _debug('\t image.bpp: '             + _asset.image.bpp);
+        _debug('\t image.bpp_source: '      + _asset.image.bpp_source);
+        _debug('\t image.pixels.length: '   + _asset.image.pixels.length);
+        _debug('\t image.height: '          + _asset.image.height);
+        _debug('\t image.height_actual: '   + _asset.image.height_actual);
+        _debug('\t image.width: '           + _asset.image.width);
+        _debug('\t image.width_actual: '    + _asset.image.width_actual);
 
-    function set_clamp( _clamp : ClampType ) {
+    } //dump_asset_info
 
-        if(clamp == null) {
-            return clamp = _clamp;
-        }
+//Properties
 
-        if(loaded == false) {
-            onload = function(t) {
-                bind();
-                _set_clamp(_clamp);
-            }
-        } else {
-            bind();
-            _set_clamp(_clamp);
-        }
+    function set_clamp_s( _clamp:ClampType ) {
 
-        return _clamp;
+        bind();
 
-    } //set_clamp
+        apply_clamp(_clamp, ClampSlot.wrap_s);
 
-    function _set_filter( _filter : FilterType ) {
+        return clamp_s = _clamp;
 
-        switch(_filter) {
+    } //set_clamp_s
 
-            case FilterType.linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR);
+    function set_clamp_t( _clamp:ClampType ) {
 
-            case FilterType.nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
+        bind();
 
-        //mip filters
-            case FilterType.mip_nearest_nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_NEAREST);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_NEAREST);
-            case FilterType.mip_linear_nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_NEAREST);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_NEAREST);
-            case FilterType.mip_nearest_linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_LINEAR);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_LINEAR);
-            case FilterType.mip_linear_linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_LINEAR);
+        apply_clamp(_clamp, ClampSlot.wrap_t);
 
-        } //switch _filter
+        return clamp_t = _clamp;
 
-    } //set_filter
-
-    function _set_filter_min( _filter : FilterType ) {
-
-        switch(_filter) {
-
-            case FilterType.linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR);
-            case FilterType.nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
-
-        //mip filters
-            case FilterType.mip_nearest_nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_NEAREST);
-            case FilterType.mip_linear_nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_NEAREST);
-            case FilterType.mip_nearest_linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_LINEAR);
-            case FilterType.mip_linear_linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
-
-        } //switch _filter
-
-    } //set_filter_min
-
-    function _set_filter_mag( _filter : FilterType ) {
-
-        switch(_filter) {
-
-            case FilterType.linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR);
-            case FilterType.nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
-
-        //mip filters
-            case FilterType.mip_nearest_nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_NEAREST);
-            case FilterType.mip_linear_nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_NEAREST);
-            case FilterType.mip_nearest_linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_LINEAR);
-            case FilterType.mip_linear_linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_LINEAR);
-        } //switch _filter
-
-    } //set_filter_min
-
-    function set_filter( _filter : FilterType ) {
-
-        if(filter == null) {
-            return filter = _filter;
-        }
-
-        if(loaded == false) {
-            onload = function(t) {
-                bind();
-                _set_filter(_filter);
-            }
-        } else {
-            bind();
-            _set_filter(_filter);
-        }
-
-        return filter = _filter;
-
-    } //set_filter
+    } //set_clamp_t
 
     function set_filter_min( _filter : FilterType ) {
 
-        if(loaded == false) {
-            onload = function(t) {
-                bind();
-                _set_filter_min(_filter);
-            }
-        } else {
-            bind();
-            _set_filter_min(_filter);
-        }
+        bind();
+
+        apply_filter(_filter, FilterSlot.min_filter);
 
         return filter_min = _filter;
 
@@ -537,18 +326,132 @@ class Texture extends Resource {
 
     function set_filter_mag( _filter : FilterType ) {
 
-        if(loaded == false) {
-            onload = function(t) {
-                bind();
-                _set_filter_mag(_filter);
-            }
-        } else {
-            bind();
-            _set_filter_mag(_filter);
-        }
+        bind();
+
+        apply_filter(_filter, FilterSlot.mag_filter);
 
         return filter_mag = _filter;
 
     } //set_filter_mag
 
+//Internal helpers, :todo:refactor:gl:
+
+    inline function apply_clamp( _clamp:ClampType, _type:ClampSlot ) {
+
+        GL.texParameteri(type, _type, _clamp);
+
+    } //apply_clamp
+
+    inline function apply_filter( _filter:FilterType, _type:FilterSlot ) {
+
+        GL.texParameteri(type, _type, _filter);
+
+    } //apply_filter
+
+    override function toString() {
+
+        var _type = type_name(type);
+        var _filter_min = filter_name(filter_min);
+        var _filter_mag = filter_name(filter_mag);
+        var _clamp_s = clamp_name(clamp_s);
+        var _clamp_t = clamp_name(clamp_t);
+
+        var _filter = 'filter(min: $_filter_min, mag:$_filter_mag)';
+        var _clamp = 'clamp(s: $_clamp_t, t: $_clamp_t)';
+        var _width = 'size(size: ${width}x${height}, actual: ${width_actual}x${height_actual})';
+
+        return 'Texture(id: $id, tex: $texture, type:$_type, $_width $_filter $_clamp )';
+
+    } //toString
+
+    static function type_name(_type:TextureType) {
+        return switch(_type) {
+            case TextureType.tex_2D: 'tex_2D';
+            case TextureType.tex_cube: 'tex_cube';
+        }
+    }
+
+    static function filter_name(_filter:FilterType) {
+        return switch(_filter) {
+            case FilterType.linear:              'linear';
+            case FilterType.nearest:             'nearest';
+            case FilterType.mip_linear_linear:   'mip_linear_linear';
+            case FilterType.mip_linear_nearest:  'mip_linear_nearest';
+            case FilterType.mip_nearest_linear:  'mip_nearest_linear';
+            case FilterType.mip_nearest_nearest: 'mip_nearest_nearest';
+        }
+    } //filter_name
+
+    static function clamp_name(_clamp:ClampType) {
+        return switch(_clamp) {
+            case ClampType.edge:    'edge';
+            case ClampType.repeat:  'repeat';
+            case ClampType.mirror:  'mirror';
+        }
+    } //clamp_name
+
 } //Texture
+
+
+//General Texture specific types,
+//initial abstraction out GL specifics
+
+
+    typedef TextureID = GLTexture;
+    typedef TextureFormat = Int;
+    typedef TextureDataType = Int;
+
+    @:enum abstract TextureType(Int) from Int to Int {
+
+        var tex_2D = GL.TEXTURE_2D;
+        var tex_cube = GL.TEXTURE_CUBE_MAP;
+        //:future: var tex_3D = 0x806F; //GL.TEXTURE_3D;
+
+    } //TextureType
+
+    @:enum abstract TextureSubmitTarget(Int) from Int to Int {
+
+        var tex_2D          = GL.TEXTURE_2D;
+
+        var cube_plus_x     = GL.TEXTURE_CUBE_MAP_POSITIVE_X;
+        var cube_plus_y     = GL.TEXTURE_CUBE_MAP_POSITIVE_Y;
+        var cube_plus_z     = GL.TEXTURE_CUBE_MAP_POSITIVE_Z;
+
+        var cube_minus_x    = GL.TEXTURE_CUBE_MAP_NEGATIVE_X;
+        var cube_minus_y    = GL.TEXTURE_CUBE_MAP_NEGATIVE_Y;
+        var cube_minus_z    = GL.TEXTURE_CUBE_MAP_NEGATIVE_Z;
+
+    } //TextureSubmitTarget
+
+    @:enum abstract FilterType(Int) from Int to Int {
+
+        var nearest = GL.NEAREST;
+        var linear = GL.LINEAR;
+        var mip_nearest_nearest = GL.NEAREST_MIPMAP_NEAREST;
+        var mip_linear_nearest = GL.LINEAR_MIPMAP_NEAREST;
+        var mip_nearest_linear = GL.NEAREST_MIPMAP_LINEAR;
+        var mip_linear_linear = GL.LINEAR_MIPMAP_LINEAR;
+
+    } //FilterType
+
+    @:enum abstract ClampType(Int) from Int to Int {
+
+        var edge = GL.CLAMP_TO_EDGE;
+        var repeat = GL.REPEAT;
+        var mirror = GL.MIRRORED_REPEAT;
+
+    } //ClampType
+
+
+//Private Texture types
+
+    @:enum private abstract ClampSlot(Int) from Int to Int {
+        var wrap_s = GL.TEXTURE_WRAP_S;
+        var wrap_t = GL.TEXTURE_WRAP_T;
+        //:future: var wrap_r = GL.TEXTURE_WRAP_R;
+    }
+
+    @:enum private abstract FilterSlot(Int) from Int to Int {
+        var min_filter = GL.TEXTURE_MIN_FILTER;
+        var mag_filter = GL.TEXTURE_MAG_FILTER;
+    }
