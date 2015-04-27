@@ -1,6 +1,7 @@
 package phoenix;
 
 import snow.modules.opengl.GL;
+import phoenix.Texture;
 
 class RenderState {
 
@@ -131,11 +132,28 @@ class RenderState {
         }
     } //activeTexture
 
-    var _bound_texture_2D : GLTexture = null;
-    public function bindTexture2D( tex:GLTexture ) {
-        if(_bound_texture_2D != tex) {
-            _bound_texture_2D = tex;
+    public inline function bindTexture( type:TextureType, tex:TextureID ) {
+        switch(type) {
+            case TextureType.tex_2D:
+                bindTexture2D(tex);
+            case TextureType.tex_cube:
+                bindTextureCube(tex);
+        }
+    }
+
+    public static var bound_texture_2D : TextureID = null;
+    public function bindTexture2D( tex:TextureID ) {
+        if(bound_texture_2D != tex) {
+            bound_texture_2D = tex;
             GL.bindTexture(GL.TEXTURE_2D, tex);
+        }
+    }
+
+    public static var bound_texture_cube : TextureID = null;
+    public function bindTextureCube( tex:TextureID ) {
+        if(bound_texture_cube != tex) {
+            bound_texture_cube = tex;
+            GL.bindTexture(GL.TEXTURE_CUBE_MAP, tex);
         }
     }
 
