@@ -525,8 +525,8 @@ class Entity extends Objects {
 
     } //_find_emit_source
 
-        //:todo: switch to @:allow and remove public
-    @:noCompletion public function _listen( _event:Int, _handler:EmitHandler, ? _self:Bool=false ) {
+    @:allow(luxe.Component)
+    function _listen( _event:Int, _handler:EmitHandler, ? _self:Bool=false ) {
 
         //this function is called when a component, or a subclass tries to override the onmousedown handler,
         //at which point it makes sure this entity is connected to the scene handlers, and then makes sure

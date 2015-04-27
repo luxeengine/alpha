@@ -1,29 +1,28 @@
 package phoenix;
 
-
+import luxe.options.ResourceOptions;
 import luxe.resource.Resource;
-import luxe.resource.Resources;
+import luxe.Resources;
 
-import luxe.Log.log;
-import luxe.Log._debug;
-import luxe.Log._verbose;
+import luxe.Log.*;
 
 import phoenix.Vector;
 import phoenix.Texture;
 
+import snow.api.Promise;
 import snow.modules.opengl.GL;
+import snow.types.Types.Error;
+import snow.system.assets.Asset;
 
-private typedef Location = GLUniformLocation;
 
 class Shader extends Resource {
 
-    public var errors : String = '';
     public var log : String = '';
 
-    public var vertex_source : String = '';
-    public var frag_source : String = '';
-    public var vertex_source_name : String = '';
-    public var frag_source_name : String = '';
+    public var vert_source : String;
+    public var frag_source : String;
+    public var vert_id : String = '';
+    public var frag_id : String = '';
 
     public var vert_shader : GLShader;
     public var frag_shader : GLShader;
@@ -50,31 +49,46 @@ class Shader extends Resource {
 
     var uniform_textures : Map<String,Texture>;
 
-    public function new( _manager : Resources ) {
+    public function new( _options:ShaderOptions ) {
 
-        super( _manager, ResourceType.shader );
+        assertnull(_options);
+
+        _options.resource_type = ResourceType.shader;
+
+        super( _options );
+
+        frag_id = _options.frag_id;
+        vert_id = _options.vert_id;
+
         uniforms = new Map<String, Uniform<Dynamic> >();
         uniform_textures = new Map();
 
     } //new
 
     public function activate() {
+
         if(program != null) {
             Luxe.renderer.state.useProgram( program );
         }
+
     } //activate
 
     public function deactivate() {
+
         Luxe.renderer.state.useProgram( null );
+
     } //deactivate
 
         /** Create a new shader based on the source of this shader. */
-    public function clone() {
+    public function clone( _id:String ) {
 
-        var _clone = new Shader( manager );
+        var _clone = new Shader({
+            id: _id,
+            frag_id: frag_id,
+            vert_id: vert_id
+        });
 
-            _clone.id = id + '.clone.' + Luxe.utils.uniqueid();
-            _clone.from_string( vertex_source, frag_source, vertex_source_name, frag_source_name, false );
+        _clone.from_string( vert_source, frag_source );
 
         return _clone;
 
@@ -219,44 +233,39 @@ class Shader extends Resource {
         }
     } //set_texture
 
+    inline function format_log(_log:String) {
+        var _items = _log.split('\n');
+        _items = _items.filter(function(s) { return StringTools.trim(s) != ''; });
+        _items = _items.map(function(s) { return '\t\t' + StringTools.trim(s); });
+        return _items.join('\n');
+    }
 
-    public function compile( _type : Int, _source:String, _verbose:Bool = false ) : GLShader {
+    public function compile( _type : Int, _source:String ) : GLShader {
 
         var _shader = GL.createShader( _type );
 
             GL.shaderSource( _shader,  _source);
             GL.compileShader(_shader);
 
-        var shader_log = '';
+        var _compile_log = GL.getShaderInfoLog(_shader);
+        var _log = '';
 
-        if(_verbose) {
-            shader_log = GL.getShaderInfoLog(_shader);
+        if(_compile_log.length > 0) {
 
-            if(shader_log.length > 0) {
+            var _is_frag = (_type == GL.FRAGMENT_SHADER);
+            var _type_name = (_is_frag) ? 'frag' : 'vert';
+            var _type_id = (_is_frag) ? frag_id : vert_id;
 
-                add_log("\n\t :: start -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id + '\n');
+            _log += '\n\t// start -- ($_type_name / $_type_id) compile log -- \n';
+            _log +=  format_log(_compile_log);
+            _log += '\n\t// end --\n';
 
-                add_log("\t\t" + shader_log + '\n');
+        } //_log.length
 
-                add_log("\t :: end -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id);
+        if(GL.getShaderParameter(_shader, GL.COMPILE_STATUS) == 0) {
 
-            } //shader_log.length
-
-        } //_verbose
-
-        if (GL.getShaderParameter(_shader, GL.COMPILE_STATUS) == 0) {
-
-            var _info = ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" );
-                _info += ((_type == GL.FRAGMENT_SHADER) ? '($frag_source_name)' : '($vertex_source_name)' );
-
-            add_error("\tFailed to compile shader (" + _info + ") : \n");
-
-                //only fetch if we haven't already above
-            if(!_verbose) {
-                shader_log = GL.getShaderInfoLog(_shader);
-            }
-
-            add_error( "\t\t"+ shader_log );
+            add_log('\tFailed to compile shader `$id`:\n');
+            add_log( _log.length == 0 ? format_log(GL.getShaderInfoLog(_shader)) : _log );
 
             GL.deleteShader(_shader);
             _shader = null;
@@ -284,8 +293,8 @@ class Shader extends Resource {
         GL.linkProgram(program);
 
         if( GL.getProgramParameter(program, GL.LINK_STATUS) == 0) {
-            add_error("\tFailed to link shader program:");
-            add_error( "\t\t"+ GL.getProgramInfoLog(program) );
+            add_log("\tFailed to link shader program:");
+            add_log( format_log(GL.getProgramInfoLog(program)) );
             GL.deleteProgram(program);
             program = null;
             return;
@@ -313,150 +322,130 @@ class Shader extends Resource {
 
     }
 
-    public override function drop() {
-        super.drop();
-        destroy();
-    }
+//Resource
 
-    public function destroy() {
+    override function clear() {
+
         if( vert_shader != null ) GL.deleteShader( vert_shader );
         if( frag_shader != null ) GL.deleteShader( frag_shader );
         if( program != null )     GL.deleteProgram( program );
-    }
 
-    public static function load( _psid:String, ?_vsid:String, ?_onload:Shader->Void, ?_silent:Bool=false ) : Shader {
+        vert_source = null;
+        frag_source = null;
 
-            //:todo: which resource manager...
-        var _shader = new Shader( Luxe.resources );
+    } //clear
 
-        _debug('loading $_psid / $_vsid');
+    override function reload() {
 
-        var _frag_shader = '';
-        var _vert_shader = '';
+        assert(state != ResourceState.destroyed);
 
-        if(_vsid == 'default' || _vsid == '') {
-            _vert_shader = Luxe.renderer.shaders.plain.source.vert;
-            _debug('\t using default vert');
-        }
+        clear();
 
-        if(_psid == 'default' || _psid == '') {
-            _frag_shader = Luxe.renderer.shaders.plain.source.frag;
-            _debug('\t using default frag');
-        } else if(_psid == 'textured') {
-            _frag_shader = Luxe.renderer.shaders.textured.source.frag;
-            _debug('\t using default textured frag');
-        }
+        return new Promise(function(resolve, reject) {
 
-        inline function try_load() {
+            state = ResourceState.loading;
 
-            if(_vert_shader.length == 0) { return; }
-            if(_frag_shader.length == 0) { return; }
-
-            _shader.from_string( _vert_shader, _frag_shader, _vsid, _psid, false );
-
-            Luxe.resources.cache( _shader );
-
-            if(_onload != null) {
-                _onload( _shader );
+            switch(frag_id) {
+                case 'default':  frag_source = Luxe.renderer.shaders.plain.source.frag;
+                case 'textured': frag_source = Luxe.renderer.shaders.textured.source.frag;
             }
 
-            if(!_silent) _debug("shader loaded " + _shader.id );
+            switch(vert_id) {
+                case 'default': vert_source = Luxe.renderer.shaders.plain.source.vert;
+            }
 
-        } //finish_load
+            function _onfail(_err:Dynamic) {
+                state = ResourceState.failed;
+                reject(_err);
+            }
 
-        if(_vert_shader.length == 0) {
+                //one for the default shaders, already resolved
+            var _wait = [ Promise.resolve() ];
 
-            _debug('\t attempting to load $_vsid');
-            Luxe.loadText(_vsid, function(_vert_asset){
+            if(frag_source == null) {
 
-                _vert_shader = _vert_asset.text;
+                var _frag = Luxe.snow.assets.text(frag_id);
 
-                try_load();
+                _frag.then(function(_asset:AssetText) {
+                    frag_source = _asset.text;
+                });
 
-            }); //load vert
+                _wait.push(_frag);
 
-        } //no vert shader yet
+            } //frag_source == null
 
-        if(_frag_shader.length == 0) {
+            if(vert_source == null) {
 
-            _debug('\t attempting to load $_psid');
-            Luxe.loadText(_psid, function(_frag_asset) {
+                var _vert = Luxe.snow.assets.text(vert_id);
 
-                    //:todo:hxsw: this must go
-                var prefixes = #if luxe_web "precision mediump float;\n" #else '' #end;
+                _vert.then(function(_asset:AssetText) {
+                    vert_source = _asset.text;
+                });
 
-                _frag_shader = prefixes + _frag_asset.text;
+                _wait.push(_vert);
 
-                try_load();
+            } //vert_source
 
-            }); //load frag
+            Promise.all(_wait).then(function(){
 
-        } //no frag shader yet
+                #if luxe_no_shader_prefix
+                        //:todo:hxsw: this must go
+                    var prefixes = #if luxe_web "precision mediump float;\n" #else '' #end;
+                    frag_source = prefixes + frag_source;
+                #end //luxe_no_shader_prefix
 
-        _shader.id = _psid + '|' + _vsid;
+                if(from_string(vert_source, frag_source)) {
+                    state = ResourceState.loaded;
+                    resolve(this);
+                } else {
+                    _onfail(Error.error('`$id` failed to create :\n\n$log'));
+                }
 
-        return _shader;
+            }).error(function(err) {
+                _onfail(Error.error('`$id` failed to create :\n\t\t$err\n'));
+            });
 
-    } //load_shader
+        }); //promise
+
+    } //reload
 
         /** Loads shaders from a string, compiles, and links them */
-    public function from_string( _vertex_source:String, _fragment_source:String, _vertex_name:String='', _frag_name:String='', _verbose:Bool = false ) {
+    public function from_string( _vert_source:String, _fragment_source:String ) {
 
-            //First clean up
-        destroy();
+        clear();
 
-            //store the names
         frag_source = _fragment_source;
-        vertex_source = _vertex_source;
-        frag_source_name = _frag_name;
-        vertex_source_name = _vertex_name;
+        vert_source = _vert_source;
 
             //compile the sources
-        vert_shader = compile( GL.VERTEX_SHADER, vertex_source, _verbose );
-        frag_shader = compile( GL.FRAGMENT_SHADER, frag_source, _verbose );
+        vert_shader = compile( GL.VERTEX_SHADER, vert_source );
+        frag_shader = compile( GL.FRAGMENT_SHADER, frag_source );
 
-        inline function fail() {
-            luxe.Log.log("failed to create shader : " + id + "\n\n" + log + '\n' + errors);
-            throw ":( shader errors ";
-        }
-
-            //Any errors? fail
         if( vert_shader == null || frag_shader == null ) {
-            fail();
+            return false;
         }
 
             //Link shader
         link();
 
-            //Check compile status and throw errors if there are any
-        if(program == null) {
-            fail();
-        } else {
-            if(_verbose && log.length > 0) {
-                luxe.Log.log(log);
-            }
+        if(log.length > 0) {
+            luxe.Log.log(log);
         }
 
-            //if it fails return false
-        if( program == null ) return false;
+        return program != null;
 
-        return true;
-    }
-
-    function toString() {
-        return 'Shader($id) vert:$vertex_source_name / frag: $frag_source_name';
-    }
+    } //
 
     @:noCompletion public function apply_uniforms() {
 
-        GL.uniform1i( tex0_attribute, 0 );
-        GL.uniform1i( tex1_attribute, 1 );
-        GL.uniform1i( tex2_attribute, 2 );
-        GL.uniform1i( tex3_attribute, 3 );
-        GL.uniform1i( tex4_attribute, 4 );
-        GL.uniform1i( tex5_attribute, 5 );
-        GL.uniform1i( tex6_attribute, 6 );
-        GL.uniform1i( tex7_attribute, 7 );
+        if(tex0_attribute != null) GL.uniform1i( tex0_attribute, 0 );
+        if(tex1_attribute != null) GL.uniform1i( tex1_attribute, 1 );
+        if(tex2_attribute != null) GL.uniform1i( tex2_attribute, 2 );
+        if(tex3_attribute != null) GL.uniform1i( tex3_attribute, 3 );
+        if(tex4_attribute != null) GL.uniform1i( tex4_attribute, 4 );
+        if(tex5_attribute != null) GL.uniform1i( tex5_attribute, 5 );
+        if(tex6_attribute != null) GL.uniform1i( tex6_attribute, 6 );
+        if(tex7_attribute != null) GL.uniform1i( tex7_attribute, 7 );
 
         for(uniform in uniforms) {
 
@@ -472,6 +461,7 @@ class Shader extends Resource {
             } //switch type
 
         } //for each uniform
+
     }
 
     inline function location( _name : String ) : Location {
@@ -511,8 +501,8 @@ class Shader extends Resource {
         log += _log;
     }
 
-    inline function add_error( _error:String ) {
-        errors += _error;
+    override function toString() {
+        return 'Shader($id) vert:$vert_id / frag: $frag_id';
     }
 
 } //Shader
@@ -538,5 +528,6 @@ typedef Uniform<T> = {
 
 } //Uniform
 
+private typedef Location = GLUniformLocation;
 
 

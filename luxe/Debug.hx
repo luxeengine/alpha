@@ -198,7 +198,6 @@ class Debug {
 
             debug_inspector.onrefresh = refresh;
 
-                //:todo:wip: alpha-2.0 implementation
             core.on(Ev.windowsized, function( _event:luxe.Screen.WindowEvent ){
 
                 var _w = _event.event.x;

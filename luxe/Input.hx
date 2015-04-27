@@ -340,7 +340,7 @@ class Input {
         return core.app.input.mousereleased( _button );
     } //mousereleased
 
-        /** immediate query of the down state of a mouse button. only true while the button is down. :todo: use `MouseButton` like it should be. */
+        /** immediate query of the down state of a mouse button. only true while the button is down. */
     public function mousedown( _button:MouseButton ) : Bool{
         return core.app.input.mousedown( _button );
     } //mousedown
