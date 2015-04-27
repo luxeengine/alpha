@@ -4,9 +4,7 @@ import snow.modules.opengl.GL;
 import snow.api.Libs;
 import snow.system.assets.Asset;
 
-import luxe.Log.log;
-import luxe.Log._debug;
-import luxe.Log._verbose;
+import luxe.Log.*;
 
 import luxe.Core;
 import luxe.Rectangle;
@@ -21,6 +19,7 @@ import phoenix.Color;
 import phoenix.Camera;
 import phoenix.Texture;
 import phoenix.BitmapFont;
+import snow.types.Types.Error;
 
 typedef BatcherKey = {
     uuid : String,
@@ -331,23 +330,15 @@ function get_target() : RenderTexture {
             frag_bitmapfont = "#extension GL_OES_standard_derivatives : enable\n#extension OES_standard_derivatives : enable\nprecision mediump float;\n" + frag_bitmapfont;
         #end
 
-        var _plain = new Shader( core.resources );
-        var _textured = new Shader( core.resources );
-        var _font = new Shader( core.resources );
-
-        //set the id's
-
-            var _dvs = 'default vertex shader';
-
-            _plain.id = 'default_shader';
-            _textured.id = 'default_shader_textured';
-            _font.id = 'default_shader_bitmapfont';
+        var _plain = new Shader({ id:'luxe.shader', frag_id:'default', vert_id:'default' });
+        var _textured = new Shader({ id:'luxe.shader_textured', frag_id:'textured', vert_id:'default' });
+        var _font = new Shader({ id:'luxe.shader_bitmapfont', frag_id:'bitmapfont', vert_id:'default' });
 
         //create compile and link the shaders
 
-            _plain.from_string( vert, frag, _dvs, 'default fragment shader', false );
-            _textured.from_string( vert, frag_textured, _dvs, 'default textured shader', false );
-            _font.from_string( vert, frag_bitmapfont, _dvs, 'default bitmapfont shader', false );
+            _plain.from_string( vert, frag );
+            _textured.from_string( vert, frag_textured );
+            _font.from_string( vert, frag_bitmapfont );
 
         //store for use
 
@@ -363,30 +354,27 @@ function get_target() : RenderTexture {
 
     function create_default_font() {
 
-        if(font_asset == null)
-            throw snow.types.Types.Error.error('failed to create the default font... font_asset was null.');
+        assertnull(font_asset, 'Renderer / failed to create the default font');
 
         _debug("creating the default font...");
 
-            font = new BitmapFont({ id:'default', resources:core.resources });
+                //Create the font texture
+            var _font_texture = new Texture({
+                id:'luxe.font.png',
+                width: font_asset.image.width_actual,
+                height: font_asset.image.height_actual,
+                pixels: font_asset.image.pixels
+            });
 
-                //create the font texture
-            var _font_texture =
-                Texture.load_from_pixels(
-                    font_asset.id,
-                    font_asset.image.width_actual,
-                    font_asset.image.height_actual,
-                    font_asset.image.pixels,
-                    true
-                );
+            assertnull(_font_texture, 'Renderer / failed to create the default font... font_texture was null.');
 
-            if(_font_texture == null)
-                throw snow.types.Types.Error.error('failed to create the default font... _font_texture was null.');
+            var _font_data = haxe.Resource.getString('default.fnt');
 
-            _font_texture.filter_min = FilterType.linear;
-
-                //load the font string data
-            font.from_string( haxe.Resource.getString('default.fnt'), null, [_font_texture] );
+            font = new BitmapFont({
+                id: 'luxe.font',
+                font_data: _font_data,
+                pages: [ _font_texture ]
+            });
 
         _debug("done. " + _font_texture.width + 'x' + _font_texture.height );
 
