@@ -205,9 +205,10 @@ class Log {
 
     } //_verboser
 
-    macro public static function assert(expr:Expr) {
+    macro public static function assert(expr:Expr, ?reason:String='') {
         #if (debug || luxe_assert)
             var str = haxe.macro.ExprTools.toString(expr);
+                if(reason != '') str += ' ($reason)';
             return macro @:pos(Context.currentPos()) {
                 if(!$expr) throw luxe.Log.DebugError.assertion('$str');
             }
@@ -216,15 +217,23 @@ class Log {
     } //assert
 
 
-    macro public static function assertnull(value:Expr) {
+    macro public static function assertnull(value:Expr, ?reason:String='') {
         #if (debug || luxe_assert)
             var str = haxe.macro.ExprTools.toString(value);
+            if(reason != '') reason = ' ($reason)';
             return macro @:pos(Context.currentPos()) {
-                if($value == null) throw luxe.Log.DebugError.null_assertion('$str == null');
+                if($value == null) throw luxe.Log.DebugError.null_assertion('$str was null$reason');
             }
         #end
         return macro null;
     } //assert
+
+    macro public static function def(value:Expr, def:Expr):Expr {
+        return macro @:pos(Context.currentPos()) {
+            if($value == null) $value = $def;
+            $value;
+        }
+    }
 
 
 //Internal Helpers
