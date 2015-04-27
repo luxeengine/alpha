@@ -17,7 +17,7 @@ import luxe.Debug;
 import luxe.Timer;
 import luxe.Physics;
 import luxe.AppConfig;
-import luxe.resource.Resources;
+import luxe.Resources;
 
 import luxe.debug.ProfilerDebugView;
 
@@ -26,9 +26,7 @@ import phoenix.Texture;
 import phoenix.Shader;
 
 import luxe.Game;
-import luxe.Log._verbose;
-import luxe.Log._debug;
-import luxe.Log.log;
+import luxe.Log.*;
 
 
 @:keep
@@ -76,11 +74,13 @@ extends
     public var has_shutdown : Bool = false;
     public var inited : Bool = false;
 
-    @:noCompletion public function new( _game:Game, _config:AppConfig ) {
+    var init_config: luxe.AppConfig;
+
+    @:noCompletion public function new( _game:Game, _config:luxe.AppConfig ) {
 
         super();
 
-        appconfig = _config;
+        init_config = _config;
         game = _game;
 
             //Store the core for reference in the game
@@ -261,6 +261,52 @@ extends
             debug.create_debug_console();
         }
 
+            //
+        internal_pre_ready();
+
+    } //init
+
+    function internal_pre_ready() {
+
+        if(!headless) {
+                //Don't remove this, :todo:
+                //it's a catch for crashing because
+                //we don't have a valid GL context, until the query
+                //is finalized on snow side
+            log('opengl /');
+            log(snow.modules.opengl.GL.versionString());
+
+            _debug('ready. loading default parcel ' + appconfig.preload);
+
+                //pre load config parcel
+            var default_parcel = new Parcel({
+                id:         'default_parcel',
+                system:     resources,
+                bytes:      appconfig.preload.bytes,
+                texts:      appconfig.preload.texts,
+                jsons:      appconfig.preload.jsons,
+                textures:   appconfig.preload.textures,
+                fonts:      appconfig.preload.fonts,
+                shaders:    appconfig.preload.shaders,
+                sounds:     appconfig.preload.sounds,
+                oncomplete: internal_ready,
+                onfailed: function(_error:Dynamic) {
+                    throw Error.error(_error);
+                }
+            });
+
+            default_parcel.load();
+
+        } else {
+
+            internal_ready(null);
+
+        }
+
+    } //internal_pre_ready
+
+    function internal_ready(_) {
+
             //and even more finally, tell snow we want to
             //know when it's rendering the window so we can draw
         if(app.window != null && !headless) {
@@ -272,15 +318,6 @@ extends
             debug.start(Tag.renderdt, 50);
 
         } //app.window != null && !headless
-
-            //
-        internal_ready();
-
-    } //init
-
-    function internal_ready() {
-
-        _debug('ready.');
 
             //Call the main ready function
             //and send the ready event to the game
@@ -305,7 +342,6 @@ extends
         } //!shutting down
 
     } //internal_ready
-
 
     public function shutdown() {
 
@@ -597,6 +633,7 @@ extends
         if(!inited) return;
 
             //this has to be a new value because if it's cached it sends in references that get kept by user code
+            //until :todo:immutable: Vector types
         screen.cursor.set_internal(new luxe.Vector( x, y ));
 
         var event : MouseEvent = {
@@ -911,16 +948,34 @@ extends
     } //ongamepaddevice
 
         /** return what the game decides for runtime config */
-    override function config( config:AppConfig ) : AppConfig {
+    override function config( config: snow.types.Types.AppConfig ) : snow.types.Types.AppConfig {
 
-            config.window.width = appconfig.window.width;
-            config.window.height = appconfig.window.height;
-            config.window.fullscreen = appconfig.window.fullscreen;
-            config.window.borderless = appconfig.window.borderless;
-            config.window.resizable = appconfig.window.resizable;
-            config.window.title = appconfig.window.title;
+            //start with the snow default config
+        appconfig = cast config;
 
-       return game.config( config );
+            //assign the override values from the boot/flow config
+        appconfig.window.width =      init_config.window.width;
+        appconfig.window.height =     init_config.window.height;
+        appconfig.window.fullscreen = init_config.window.fullscreen;
+        appconfig.window.borderless = init_config.window.borderless;
+        appconfig.window.resizable =  init_config.window.resizable;
+        appconfig.window.title =      init_config.window.title;
+
+        appconfig.preload = {
+            bytes:      [],
+            texts:      [],
+            jsons:      [],
+            textures:   [],
+            fonts:      [],
+            shaders:    [],
+            sounds:     []
+        };
+
+            //fetch the user updates to the config
+        appconfig = game.config( appconfig );
+
+            //return the snow config
+        return cast appconfig;
 
     } //config
 
