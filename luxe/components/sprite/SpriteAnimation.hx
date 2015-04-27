@@ -7,8 +7,7 @@ import luxe.Sprite;
 
 import phoenix.Texture;
 
-import luxe.Log.log;
-import luxe.Log._debug;
+import luxe.Log.*;
 
 typedef SpriteAnimationEventData = {
     animation : String,
@@ -54,7 +53,7 @@ class SpriteAnimationData {
 
     public var name : String;
     public var type : SpriteAnimationType;
-    public var filter_type : FilterType;
+    public var filter_type : Null<FilterType>;
     public var frameset : Array<SpriteAnimationFrame>;
     public var image_set_list : Array<String>;
     public var image_set : Array<Texture>;
@@ -79,22 +78,6 @@ class SpriteAnimationData {
         frame_sources = [];
         frame_size = new Vector();
     }
-
-    function on_image_sequence_loaded( _textures:Array<Texture> ) {
-
-        image_set = _textures;
-
-            //run over the frame sets, store their texture in the frame
-        for(_frame in frameset) {
-            if(_frame.image_frame <= image_set.length) {
-                _frame.image_source = image_set[_frame.image_frame-1];
-                if(filter_type != null) {
-                    _frame.image_source.filter = filter_type;
-                }
-            }
-        }
-
-    } //on_image_sequence_loaded
 
     public function from_json( _animdata:Dynamic ) {
 
@@ -210,10 +193,29 @@ class SpriteAnimationData {
             type = SpriteAnimationType.animated_texture;
             image_set = [];
 
+            var _textures = [];
+
             if(_images_list.length > 0) {
+
                 image_set_list = _images_list;
-                Luxe.loadTextures( _images_list, on_image_sequence_loaded, true);
-            }
+
+                for(_image in _images_list) {
+                    var _texture = Luxe.resources.texture(_image);
+                    assertnull(_texture, 'SpriteAnimation texture id was not found : $_image');
+                    image_set.push(_texture);
+                }
+
+                    //run over the frame sets, store their texture in the frame
+                for(_frame in frameset) {
+                    if(_frame.image_frame <= image_set.length) {
+                        _frame.image_source = image_set[_frame.image_frame-1];
+                        if(filter_type != null) {
+                            _frame.image_source.filter_min = _frame.image_source.filter_mag = filter_type;
+                        } //if filter type is set
+                    } //if within the frame image set
+                } //each frameset
+
+            } //_images_list
 
         } //_json_image_sequence
 
@@ -292,16 +294,12 @@ class SpriteAnimationData {
 
                     case SpriteAnimationType.animated_uv: {
 
-                        sprite.texture.onload = function(t) {
+                        var frames_per_row = ( sprite.texture.width - (sprite.texture.width % frame_size.x) ) / frame_size.x;
+                        var image_row = Math.ceil( _frame / frames_per_row );
+                        var image_x = ((_frame-1) * frame_size.x) % sprite.texture.width;
+                        var image_y = ((image_row-1) * frame_size.y);
 
-                            var frames_per_row = ( sprite.texture.width - (sprite.texture.width % frame_size.x) ) / frame_size.x;
-                            var image_row = Math.ceil( _frame / frames_per_row );
-                            var image_x = ((_frame-1) * frame_size.x) % sprite.texture.width;
-                            var image_y = ((image_row-1) * frame_size.y);
-
-                            result = new Rectangle( image_x, image_y, frame_size.x, frame_size.y );
-
-                        } //onload
+                        result = new Rectangle( image_x, image_y, frame_size.x, frame_size.y );
 
                     } //animated_uv
 
@@ -701,12 +699,14 @@ class SpriteAnimation extends Component {
 
     public function set_frame( _frame:Int ) {
 
+            //:todo: what..
         if(sprite == null) return;
         if(current == null) return;
         if(current_frame == null) return;
+
         if(current.type == SpriteAnimationType.animated_uv) {
 
-            if(sprite.texture == null) return;
+            assertnull(sprite.texture, 'SpriteAnimation with animated_uv type requires a texture that is not null');
 
             var frames_per_row = ( sprite.texture.width - (sprite.texture.width % current.frame_size.x) ) / current.frame_size.x;
             var image_row = Math.ceil( _frame / frames_per_row );
@@ -753,7 +753,7 @@ class SpriteAnimation extends Component {
         if(current_frame == null) { return; }
         if(current.type == SpriteAnimationType.animated_uv) {
 
-            if(sprite.texture == null) { return; }
+                assertnull(sprite.texture, 'SpriteAnimation with animated_uv type requires a texture that is not null');
 
                     //cache the uv so we don't allocate for no good reason
                 uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
