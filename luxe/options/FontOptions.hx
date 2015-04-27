@@ -2,7 +2,7 @@ package luxe.options;
 
 import phoenix.Texture;
 import phoenix.BitmapFont;
-import luxe.resource.Resources;
+import luxe.Resources;
 
 private typedef FontOptions = {
 
