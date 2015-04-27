@@ -7,6 +7,7 @@ import phoenix.Texture.FilterType;
 import luxe.tilemaps.Tilemap;
 
 import luxe.Vector;
+import luxe.Log.*;
 
 import phoenix.geometry.Geometry;
 
@@ -160,6 +161,8 @@ class OrthoVisual extends TilemapVisual {
 
         var tileset = map.tileset_from_id( tile.id );
 
+        assertnull(tileset, 'Tilemap Ortho cannot find tileset for tile id ${tile.id}');
+
         var _scaled_tilewidth = tileset.tile_width*options.scale;
         var _scaled_tileheight = tileset.tile_height*options.scale;
 
@@ -180,25 +183,23 @@ class OrthoVisual extends TilemapVisual {
             batcher : options.batcher
         });
 
-        if(tileset != null) {
-            if(tileset.texture != null) {
-                tileset.texture.onload = function(t) {
 
-                    var image_coord = tileset.pos_in_texture( tile.id );
+        if(tileset.texture != null) {
 
-                    _tile_geom.uv(
-                        new Rectangle(
-                            tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
-                            tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
-                            tileset.tile_width,
-                            tileset.tile_height
-                        ) //Rectangle
-                    ); //uv
+            var image_coord = tileset.pos_in_texture( tile.id );
 
-                    tileset.texture.filter = options.filter;
-                }
-            }
-        } //tileset != null
+            _tile_geom.uv(
+                new Rectangle(
+                    tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
+                    tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
+                    tileset.tile_width,
+                    tileset.tile_height
+                ) //Rectangle
+            ); //uv
+
+            tileset.texture.filter_min = tileset.texture.filter_mag = options.filter;
+
+        } //texture != null
 
         return _tile_geom;
 

@@ -6,6 +6,7 @@ import luxe.Vector;
 
 import luxe.tilemaps.Tilemap;
 import luxe.tilemaps.Isometric;
+import luxe.Log.*;
 
 import phoenix.geometry.QuadGeometry;
 import phoenix.Texture.FilterType;
@@ -34,39 +35,39 @@ class Isometric {
                                                    ?scale:Float=1.0, ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
         var world_pos = new Vector();
 
-		var _scaled_tw = tile_width * scale;
-		var _scaled_th = tile_height * scale;
-		
-		
+        var _scaled_tw = tile_width * scale;
+        var _scaled_th = tile_height * scale;
 
-		var tile_width_half = _scaled_tw / 2;
-		var tile_height_half = _scaled_th / 2;
-		
-			//	Top left by default
-		if(offset_x == null) { offset_x = TileOffset.left; };
-		if (offset_y == null) { offset_y = TileOffset.top; };
-		
-		var tile_offset_x : Float = 0;
-		var tile_offset_y : Float = 0;
 
-			switch(offset_x) {
-				case TileOffset.center:    { tile_offset_x += (_scaled_tw / 2); tile_offset_x /= tile_width; }
-				case TileOffset.right:     { tile_offset_x += _scaled_tw; tile_offset_x /= tile_width; }
-				default:
-			}
 
-			switch(offset_y) {
-				case TileOffset.center:    { tile_offset_y += (_scaled_th/2); tile_offset_y /= tile_height; }
-				case TileOffset.bottom:    { tile_offset_y += _scaled_th; tile_offset_y /= tile_height; }
-				default:
-			}
-		
-		tile_offset_x += tile_x;
-		tile_offset_y += tile_y;
+        var tile_width_half = _scaled_tw / 2;
+        var tile_height_half = _scaled_th / 2;
 
-		world_pos.x = (tile_offset_x - tile_offset_y) * tile_width_half;
-		world_pos.y = (tile_offset_x + tile_offset_y) * tile_height_half;
-		
+            //  Top left by default
+        if(offset_x == null) { offset_x = TileOffset.left; };
+        if (offset_y == null) { offset_y = TileOffset.top; };
+
+        var tile_offset_x : Float = 0;
+        var tile_offset_y : Float = 0;
+
+            switch(offset_x) {
+                case TileOffset.center:    { tile_offset_x += (_scaled_tw / 2); tile_offset_x /= tile_width; }
+                case TileOffset.right:     { tile_offset_x += _scaled_tw; tile_offset_x /= tile_width; }
+                default:
+            }
+
+            switch(offset_y) {
+                case TileOffset.center:    { tile_offset_y += (_scaled_th/2); tile_offset_y /= tile_height; }
+                case TileOffset.bottom:    { tile_offset_y += _scaled_th; tile_offset_y /= tile_height; }
+                default:
+            }
+
+        tile_offset_x += tile_x;
+        tile_offset_y += tile_y;
+
+        world_pos.x = (tile_offset_x - tile_offset_y) * tile_width_half;
+        world_pos.y = (tile_offset_x + tile_offset_y) * tile_height_half;
+
         return world_pos;
 
     } //tile_coord_to_worldpos
@@ -180,6 +181,8 @@ class IsometricVisual extends TilemapVisual {
 
         var tileset = map.tileset_from_id( tile.id );
 
+        assertnull(tileset, 'Tilemap Iso cannot find tileset for tile id ${tile.id}');
+
             //specific to each tileset
         var _scaled_tileset_tilewidth = tileset.tile_width*options.scale;
         var _scaled_tileset_tileheight = tileset.tile_height*options.scale;
@@ -204,25 +207,22 @@ class IsometricVisual extends TilemapVisual {
             batcher : options.batcher
         });
 
-        if(tileset != null) {
-            if(tileset.texture != null) {
-                tileset.texture.onload = function(t) {
+        if(tileset.texture != null) {
 
-                    var image_coord = tileset.pos_in_texture( tile.id );
+            var image_coord = tileset.pos_in_texture( tile.id );
 
-                    _tile_geom.uv(
-                        new Rectangle(
-                            tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
-                            tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
-                            tileset.tile_width,
-                            tileset.tile_height
-                        ) //Rectangle
-                    ); //uv
+            _tile_geom.uv(
+                new Rectangle(
+                    tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
+                    tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
+                    tileset.tile_width,
+                    tileset.tile_height
+                ) //Rectangle
+            ); //uv
 
-                    tileset.texture.filter = options.filter;
-                }
-            }
-        } //tileset != null
+            tileset.texture.filter_min = tileset.texture.filter_mag = options.filter;
+
+        } //texture != null
 
         return _tile_geom;
 
