@@ -4,8 +4,9 @@ import snow.modules.opengl.GL;
 import phoenix.Batcher;
 import phoenix.Texture;
 
+import luxe.options.ResourceOptions;
 import luxe.resource.Resource;
-import luxe.resource.Resources;
+import luxe.Resources;
 
 
     //A render texture just extends texture so it can be assigned to meshes etc
@@ -14,25 +15,27 @@ class RenderTexture extends Texture {
     public var fbo : GLFramebuffer;
     public var renderbuffer : GLRenderbuffer;
 
-    public function new( _manager:Resources, ?_size:Vector = null ) {
+    public function new( _options:RenderTextureOptions ) {
 
-        super( _manager, ResourceType.render_texture );
+        _options.resource_type = ResourceType.render_texture;
 
-            //Set it to the buffer
-        _size == null ? new Vector( Luxe.screen.w, Luxe.screen.h ) : _size ;
+        super( _options );
+
+        if( _options.width == null ) _options.width = Std.int(Luxe.screen.w);
+        if( _options.height == null ) _options.height = Std.int(Luxe.screen.h);
+
             //Width and height of this texture item
-        width = width_actual = Std.int(_size.x);
-        height = height_actual = Std.int(_size.y);
+        width = width_actual = _options.width;
+        height = height_actual = _options.height;
 
             //Create the render texture for the fbo
-        texture = GL.createTexture();
+        texture = create_texture_id();
             //Bind the texture
         bind();
             //Create the actual texture in memory
-        GL.texImage2D( GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, null );
+        submit(null);
             //these must be set to be texture complete
-        _set_filter(phoenix.FilterType.linear);
-        _set_clamp(phoenix.ClampType.edge);
+        apply_props();
 
             //Create the FBO
         fbo = GL.createFramebuffer();
@@ -43,7 +46,6 @@ class RenderTexture extends Texture {
         renderbuffer = GL.createRenderbuffer();
             //Bind it so we can attach stuff
         bindRenderBuffer();
-
 
             //Create storage for the depth buffer :todo: optionize
         GL.renderbufferStorage(GL.RENDERBUFFER, GL.DEPTH_COMPONENT16, width, height);
@@ -79,18 +81,24 @@ class RenderTexture extends Texture {
         unbindBuffer();
         unbindRenderBuffer();
 
-        loaded = true;
+            //add to the resource system
+        system.add(this);
 
     } //new
 
-    public override function destroy() {
+    override function clear() {
 
-        GL.deleteFramebuffer( fbo );
-        GL.deleteRenderbuffer( renderbuffer );
+        super.clear();
 
-        super.destroy();
+        if(fbo != null) {
+            GL.deleteFramebuffer( fbo );
+        }
 
-    } //destroy
+        if(renderbuffer != null) {
+            GL.deleteRenderbuffer( renderbuffer );
+        }
+
+    } //clear
 
     @:noCompletion public function bindBuffer() {
 
