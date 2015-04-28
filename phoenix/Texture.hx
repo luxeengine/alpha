@@ -258,6 +258,7 @@ class Texture extends Resource {
 
         //texture properties
 
+            compressed = def(_options.compressed, false);
             format = def(_options.format, GL.RGBA);
             type = def(_options.type, GL.TEXTURE_2D);
             data_type = def(_options.data_type, GL.UNSIGNED_BYTE);

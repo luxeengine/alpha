@@ -74,6 +74,8 @@ typedef TextureOptions = {
     @:optional var data_type: TextureDataType;
         /** Advanced: Specify a pre-created renderer specific TextureID for this Texture. */
     @:optional var texture: TextureID;
+        /** Advanced: Specify if this is a compressed pixel format */
+    @:optional var compressed: Bool;
 
 
 } //TextureOptions
