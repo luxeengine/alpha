@@ -1,12 +1,12 @@
 {
   project : {
-    name : 'empty',
+    name : 'luxe.splines',
     version : '1.0.0',
     author : 'luxeengine',
 
     app : {
-      name : 'luxe_empty',
-      package : 'com.luxeengine.empty',
+      name : 'luxe_splines',
+      package : 'com.luxeengine.splines',
       main : 'Main'
     },
 

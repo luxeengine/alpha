@@ -1,7 +1,7 @@
 {
 
   project : {
-    name : 'luxe - test - mesh component',
+    name : 'luxe.mesh component',
     version : '1.0.0',
     author : 'luxeengine',
 

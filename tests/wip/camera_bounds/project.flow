@@ -1,7 +1,7 @@
 {
 
   project : {
-    name : 'luxe - test - camera bounds',
+    name : 'luxe.camera bounds',
     version : '1.0.0',
     author : 'luxeengine',
 

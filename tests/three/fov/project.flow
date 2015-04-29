@@ -1,6 +1,6 @@
 {
   project : {
-    name : 'fov_test',
+    name : 'luxe.fov',
     version : '1.0.0',
     author : 'luxeengine',
 

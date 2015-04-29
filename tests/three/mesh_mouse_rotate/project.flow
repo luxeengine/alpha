@@ -1,7 +1,7 @@
 {
 
   project : {
-    name : 'luxe - test - mesh mouse rotate',
+    name : 'luxe.mesh mouse rotate',
     version : '1.0.0',
     author : 'luxeengine',
 

@@ -1,7 +1,7 @@
 {
 
   project : {
-    name : 'luxe - test - colors',
+    name : 'luxe.colors',
     version : '1.0.0',
     author : 'luxeengine',
 

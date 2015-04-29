@@ -1,7 +1,7 @@
 {
 
   project : {
-    name : 'camera_scale',
+    name : 'luxe.camera scale',
     version : '1.0.0',
     author : 'luxeengine',
 

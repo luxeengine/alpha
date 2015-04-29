@@ -1,7 +1,7 @@
 {
 
   project : {
-    name : 'luxe - test - nineslice',
+    name : 'luxe.nineslice',
     version : '1.0.0',
     author : 'luxeengine',
 

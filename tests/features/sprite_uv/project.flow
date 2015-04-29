@@ -1,7 +1,7 @@
 {
 
   project : {
-    name : 'luxe - test - spriteuv',
+    name : 'luxe.spriteuv',
     version : '1.0.0',
     author : 'luxeengine',
 

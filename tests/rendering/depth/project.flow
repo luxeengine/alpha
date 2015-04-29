@@ -1,7 +1,7 @@
 {
 
   project : {
-    name : 'luxe - test - depth',
+    name : 'luxe.depth',
     version : '1.0.0',
     author : 'luxeengine',
 

@@ -1,7 +1,7 @@
 {
 
   project : {
-    name : 'composite_geometry',
+    name : 'luxe.composite_geometry',
     version : '1.0.0',
     author : 'luxeengine',
 

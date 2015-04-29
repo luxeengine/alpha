@@ -1,7 +1,7 @@
 {
 
   project : {
-    name : 'luxe - test - astar',
+    name : 'luxe.astar',
     version : '1.0.0',
     author : 'luxeengine',
 

@@ -1,7 +1,7 @@
 {
 
   project : {
-    name : 'luxe - test - rtt',
+    name : 'luxe.rtt',
     version : '1.0.0',
     author : 'luxeengine',
 

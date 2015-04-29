@@ -1,7 +1,7 @@
 {
 
   project : {
-    name : 'luxe - test - states',
+    name : 'luxe.states',
     version : '1.0.0',
     author : 'luxeengine',
 

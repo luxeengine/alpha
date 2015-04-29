@@ -7,7 +7,7 @@
   },
 
   project : {
-    name : 'luxe - test - unit tests',
+    name : 'luxe.unit tests',
     version : '1.0.0',
     author : 'luxeengine',
 

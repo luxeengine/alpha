@@ -10,7 +10,7 @@
   },
 
   project : {
-    name : 'collision0',
+    name : 'luxe.collision',
     version : '1.0.0',
     author : 'luxeengine',
 
