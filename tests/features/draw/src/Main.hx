@@ -1,6 +1,7 @@
 
 import luxe.Rectangle;
 import luxe.Text;
+import luxe.utils.Maths;
 import luxe.Vector;
 import luxe.Color;
 import luxe.Input;
@@ -11,6 +12,13 @@ import phoenix.geometry.LineGeometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.RectangleGeometry;
 import phoenix.Texture;
+import snow.types.Types;
+
+typedef AccelEvent = {
+    timestamp:Float,
+    value:Float,
+    axis:Int
+}
 
 class Main extends luxe.Game {
 
@@ -31,7 +39,29 @@ class Main extends luxe.Game {
 
     } //config
 
+    var accel_x: Float = 0.5;
+    var accel_y: Float = 0.5;
+    var accel_z: Float = 0.5;
+
+    override function onevent( ev:SystemEvent ) {
+
+        if(ev.type == SystemEventType.input) {
+            if(ev.input.type == InputEventType.joystick) {
+
+                var event : AccelEvent = ev.input.event;
+                switch(event.axis) {
+                    case 0: accel_x = event.value;
+                    case 1: accel_y = event.value;
+                    case 2: accel_z = event.value;
+                }
+
+            } //if joystick
+        } //if input
+
+    } //onevent
+
     override function ready() {
+
 
         mouse = new Vector();
 
@@ -184,23 +214,49 @@ class Main extends luxe.Game {
 
     override function onrender() {
 
-        Luxe.draw.rectangle({
-                //this line is important, as each frame it will create new geometry!
-            immediate : true,
-            x : mouse.x-85, y : mouse.y,
-            w : 170,
-            h : 32,
-            color : new Color(Math.random(),Math.random(),Math.random(),0.5)
-        });
+        //accel
 
-        Luxe.draw.text({
-                //this line is important, as each frame it will create new geometry!
-            immediate:true,
-            align : TextAlign.center,
-            color : new Color(Math.random(),Math.random(),Math.random(),0.5),
-            pos : mouse,
-            text : Std.string(luxe.utils.Maths.fixed(Luxe.dt, 6))
-        });
+            var apos = new Vector(accel_x * Luxe.screen.w, accel_y * Luxe.screen.h);
+
+            Luxe.draw.ring({
+                    //this line is important, as each frame it will create new geometry!
+                immediate : true,
+                x : apos.x,
+                y : apos.y,
+                rx : Luxe.screen.h*0.02,
+                ry : Luxe.screen.h*0.02,
+                color : new Color(1,1,1,1).rgb(0xf6007b)
+            });
+
+            Luxe.draw.text({
+                    //this line is important, as each frame it will create new geometry!
+                immediate:true,
+                align : TextAlign.center,
+                color : new Color().rgb(0xf6007b),
+                pos : apos,
+                point_size : 12,
+                text : 'accel: ${Maths.fixed(accel_x, 3)} ${Maths.fixed(accel_y, 3)} ${Maths.fixed(accel_z, 3)}'
+            });
+
+        //mouse
+
+            Luxe.draw.rectangle({
+                    //this line is important, as each frame it will create new geometry!
+                immediate : true,
+                x : mouse.x-85, y : mouse.y,
+                w : 170,
+                h : 32,
+                color : new Color(Math.random(),Math.random(),Math.random(),0.5)
+            });
+
+            Luxe.draw.text({
+                    //this line is important, as each frame it will create new geometry!
+                immediate:true,
+                align : TextAlign.center,
+                color : new Color(Math.random(),Math.random(),Math.random(),0.5),
+                pos : mouse,
+                text : Std.string(luxe.utils.Maths.fixed(Luxe.dt, 6))
+            });
 
     } //onrender
 
