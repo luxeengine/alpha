@@ -8,6 +8,7 @@ import luxe.Log.*;
 
 import phoenix.Vector;
 import phoenix.Texture;
+import phoenix.Matrix;
 
 import snow.api.Promise;
 import snow.modules.opengl.GL;
@@ -190,6 +191,28 @@ class Shader extends Resource {
         } //if exists
 
     } //set_vector4
+
+    public function set_matrix4( _name:String, _value:Matrix ) : Void {
+
+        if(uniforms.exists(_name)) {
+
+            var _uniform : Uniform<Matrix> = uniforms.get(_name);
+                _uniform.value = _value;
+
+        } else {
+
+            var _uniform = {
+                name : _name,
+                value : _value,
+                type : UniformType.matrix4,
+                location : location( _name )
+            }
+
+            uniforms.set(_name, _uniform);
+
+        } //if exists
+
+    } //set_matrix4
 
     public function set_color( _name:String, _value:Color ) : Void {
 
@@ -455,6 +478,7 @@ class Shader extends Resource {
                 case vector2:   apply_vec2( uniform.location, uniform.value );
                 case vector3:   apply_vec3( uniform.location, uniform.value );
                 case vector4:   apply_vec4( uniform.location, uniform.value );
+                case matrix4:   apply_mat4( uniform.location, uniform.value );
                 case color:     apply_color( uniform.location, uniform.value );
                 case texture:   apply_texture( uniform.location, uniform.value );
                 case unknown:
@@ -488,6 +512,10 @@ class Shader extends Resource {
         GL.uniform4f( _location, _vec.x, _vec.y, _vec.z, _vec.w );
     }
 
+    inline function apply_mat4( _location:Location, _mat:Matrix ) {
+        GL.uniformMatrix4fv( _location, false, _mat.float32array() );
+    }
+
     inline function apply_color( _location:Location, _color:Color ) {
         GL.uniform4f( _location, _color.r, _color.g, _color.b, _color.a );
     }
@@ -510,13 +538,16 @@ class Shader extends Resource {
 
 @:enum abstract UniformType(Int) from Int to Int {
     var unknown = 0;
-    var int = 1;
-    var float = 2;
+    var int     = 1;
+    var float   = 2;
     var vector2 = 3;
     var vector3 = 4;
     var vector4 = 5;
-    var color = 6;
-    var texture = 7;
+    // var matrix2 = 6;
+    // var matrix3 = 7;
+    var matrix4 = 8;
+    var color   = 9;
+    var texture = 10;
 }
 
 typedef Uniform<T> = {
