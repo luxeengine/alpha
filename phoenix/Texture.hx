@@ -66,10 +66,7 @@ class Texture extends Resource {
 
         assertnull(_options, 'Texture create requires non-null options');
 
-            //only clobbed it if unknown
-        if(_options.resource_type == ResourceType.unknown) {
-            _options.resource_type = ResourceType.texture;
-        }
+        def(_options.resource_type, ResourceType.texture);
 
         super( _options );
 
