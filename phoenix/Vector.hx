@@ -128,6 +128,19 @@ class Vector {
 
     } //lerp_xyz
 
+        //_t is between 0 and 1
+    public inline function lerp( _other:Vector, _t: Float ) {
+
+        set_xyz(
+            Maths.lerp(x, _other.x, _t),
+            Maths.lerp(y, _other.y, _t),
+            Maths.lerp(z, _other.z, _t)
+        );
+
+        return this;
+
+    } //lerp
+
     public inline function weighted_average_xy( _dest_x:Float, _dest_y:Float, _slowness:Float ) {
 
         set_xy(
