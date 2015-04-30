@@ -38,7 +38,7 @@ _Please note: alpha-3.0 is currently being set up, visit_ [http://snowkit.org](h
 
 ##### alpha-2.0+0010
 
-**~~read recap~~ (wip)**   
+**[read recap](http://snowkit.org/2015/04/30/alpha-2-0010-recap/)**   
 [read focus sheet](http://snowkit.org/2015/01/12/luxe-alpha-2-0/)   
 [milestone on github](https://github.com/underscorediscovery/luxe/milestones/alpha-2.0+0010)   
 
