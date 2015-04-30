@@ -180,7 +180,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
             lists += 'Bytes (${Luxe.resources.stats.bytes})\n';
                 lists += orblank(bytes_lists);
-            lists += '\nText (${Luxe.resources.stats.bytes})\n';
+            lists += '\nText (${Luxe.resources.stats.texts})\n';
                 lists += orblank(text_lists);
             lists += '\nJSON (${Luxe.resources.stats.jsons})\n';
                 lists += orblank(json_lists);
