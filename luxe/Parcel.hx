@@ -4,28 +4,10 @@ import luxe.Emitter;
 import luxe.Resources;
 import luxe.resource.Resource;
 import luxe.options.ResourceOptions;
+import luxe.options.ParcelOptions;
 import snow.api.Promise;
 import phoenix.Texture;
 import luxe.Log.*;
-
-typedef ParcelOptions = {
-    ? id: String,
-    ? system: Resources,
-    ? oncomplete: Parcel->Void,
-    ? onprogress: ParcelChange->Void,
-    ? onfailed: ParcelChange->Void,
-
-    ? load_time_spacing: Float,
-    ? load_start_delay: Float,
-
-    ? bytes: Array<BytesInfo>,
-    ? texts: Array<TextInfo>,
-    ? jsons: Array<JSONInfo>,
-    ? textures: Array<TextureInfo>,
-    ? fonts: Array<BitmapFontInfo>,
-    ? shaders: Array<ShaderInfo>,
-    ? sounds: Array<SoundInfo>
-}
 
 @:enum abstract ParcelEvent(Int) from Int to Int {
     var unknown = 0;
@@ -265,6 +247,7 @@ class Parcel {
                         Luxe.timer.schedule(load_time_spacing*_index, function() {
 
                             var _load = system.load_texture( _texture.id, {
+                                load_premultiply_alpha:_texture.load_premultiply_alpha,
                                 filter_min:_texture.filter_min,
                                 filter_mag:_texture.filter_mag,
                                 clamp_s:_texture.clamp_s,
@@ -464,6 +447,7 @@ class Parcel {
                     filter_mag: _get_filter(item.filter_mag),
                     clamp_s: _get_clamp(item.clamp_s),
                     clamp_t: _get_clamp(item.clamp_t),
+                    load_premultiply_alpha: item.load_premultiply_alpha
                 });
 
             } //item in textures
