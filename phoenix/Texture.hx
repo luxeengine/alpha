@@ -133,7 +133,31 @@ class Texture extends Resource {
 
         assert( _into.length >= _required, 'Texture fetch requires at least $_required (w * h * 4) bytes for the pixels, you have ${_into.length}!' );
 
+            //GL ES/WebGL spec doesn't include `glGetTexImage`,
+            //but we can read the pixels from a temporary frame buffer (render texture) instead
+            //This way works on all targets the same.
+
+        var rt = new RenderTexture({
+            width: _w,
+            height: _h,
+            texture: texture,
+            id:'temp_fbo / $id'
+        });
+
+            //activate it and read the pixels out
+
+        rt.bindBuffer();
+
         GL.readPixels(_x, _y, _w, _h, GL.RGBA, GL.UNSIGNED_BYTE, _into);
+
+        rt.unbindBuffer();
+
+            //now, make sure that it's texture id is null,
+            //otherwise destroy will nuke our texture id
+
+        rt.texture = null;
+        rt.destroy();
+        rt = null;
 
         return _into;
 
