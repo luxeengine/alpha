@@ -28,11 +28,10 @@ class RenderTexture extends Texture {
         width = width_actual = _options.width;
         height = height_actual = _options.height;
 
-            //Create the render texture for the fbo
-        texture = create_texture_id();
-            //Bind the texture
-        bind();
-            //Create the actual texture in memory
+            //super creates the texture id
+            //and binds the texture id for us
+
+            //Create the actual texture storage in gpu memory
         submit(null);
             //these must be set to be texture complete
         apply_props();
