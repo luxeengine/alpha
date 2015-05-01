@@ -79,6 +79,9 @@ class Main extends luxe.Game {
 
     override function onprerender() {
 
+            //wait for onloaded
+        if(display_sprite == null) return;
+
             //Set the current rendering target
         Luxe.renderer.target = target_texture;
 
