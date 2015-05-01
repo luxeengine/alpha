@@ -234,12 +234,14 @@ class Resources {
             var _filter_mag = null;
             var _clamp_s = null;
             var _clamp_t = null;
+            var _premultiply = null;
 
             if(_options != null) {
-                _filter_min = _options.filter_min;
-                _filter_mag = _options.filter_mag;
-                _clamp_s = _options.clamp_s;
-                _clamp_t = _options.clamp_t;
+                _filter_min  = _options.filter_min;
+                _filter_mag  = _options.filter_mag;
+                _clamp_s     = _options.clamp_s;
+                _clamp_t     = _options.clamp_t;
+                _premultiply = _options.load_premultiply_alpha;
             }
 
         _resource = new Texture({
@@ -248,7 +250,8 @@ class Resources {
             filter_min: _filter_min,
             filter_mag: _filter_mag,
             clamp_s: _clamp_s,
-            clamp_t: _clamp_t
+            clamp_t: _clamp_t,
+            load_premultiply_alpha: _premultiply
         });
 
         add(_resource);

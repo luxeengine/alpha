@@ -77,7 +77,6 @@ typedef TextureOptions = {
         /** Advanced: Specify if this is a compressed pixel format */
     @:optional var compressed: Bool;
 
-
 } //TextureOptions
 
     /** Options for creating a RenderTexture instance.
@@ -120,6 +119,11 @@ typedef ShaderOptions = {
         @:optional var clamp_s: ClampType;
             /** Sets the T (vertical) clamp type */
         @:optional var clamp_t: ClampType;
+            /** Advanced: When reloading from an asset id, the pixels will be
+                premultiplied with their alpha value before `submit`.
+                Only applies to asset based load calls. Subsequent `submit` calls
+                should use Luxe.utils.premultiply_alpha if needed. `default: false` */
+        @:optional var load_premultiply_alpha: Bool;
     }
 
     typedef LoadFontOptions = {

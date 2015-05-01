@@ -61,6 +61,10 @@ class Texture extends Resource {
         /** Sets the T (vertical) clamp type */
     @:isVar public var clamp_t      (default,set) : ClampType;
 
+        /** If true, only when (re)loading from an asset id,
+            the pixels will be premultiplied by their alpha before
+            submit is called.  */
+    var load_premultiply_alpha : Bool = false;
 
     public function new( _options:TextureOptions ) {
 
@@ -234,7 +238,14 @@ class Texture extends Resource {
 
                 texture = create_texture_id();
 
+                if(load_premultiply_alpha) {
+                    Luxe.utils.premultiply_alpha(_asset.image.pixels);
+                }
+
                 submit( _asset.image.pixels );
+
+                _asset.image.pixels = null;
+                _asset = null;
 
                 apply_props();
 
@@ -279,6 +290,7 @@ class Texture extends Resource {
 
         //texture properties
 
+            load_premultiply_alpha = def(_options.load_premultiply_alpha, false);
             compressed = def(_options.compressed, false);
             format = def(_options.format, GL.RGBA);
             type = def(_options.type, GL.TEXTURE_2D);
