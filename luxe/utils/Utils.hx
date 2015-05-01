@@ -3,6 +3,7 @@ package luxe.utils;
 import luxe.Core;
 
 import haxe.CallStack;
+import snow.api.buffers.Uint8Array;
 
 class Utils {
 
@@ -288,5 +289,62 @@ class Utils {
         return bytes;
 
     } //array_to_bytes
+
+        /** Multiply the pixels in the array by their alpha value.
+            This means the format of the pixels is RGBA, with values  [0...255].
+            Modifies the given array and returns it.  */
+    public function premultiply_alpha( _pixels:Uint8Array ) : Uint8Array {
+
+        var count = _pixels.length;
+        var read = _pixels[0];
+        var index = 0;
+
+        while(index < count) {
+
+            var r = _pixels[index+0];
+            var g = _pixels[index+1];
+            var b = _pixels[index+2];
+            var a = _pixels[index+3] / 255.0;
+
+            _pixels[index+0] = Std.int(r*a);
+            _pixels[index+1] = Std.int(g*a);
+            _pixels[index+2] = Std.int(b*a);
+
+            index += 4;
+
+        } // while
+
+        return _pixels;
+
+    } //premultiply_alpha
+
+        /** Multiply the pixels in the array by their alpha value.
+            This means the format of the pixels is RGBA with values  [0...1].
+            Modifies the given array and returns it.  */
+    public function premultiply_alpha_normalized( _pixels:Uint8Array ) : Uint8Array {
+
+        var count = _pixels.length;
+        var read = _pixels[0];
+        var index = 0;
+
+        while(index < count) {
+
+            var r = _pixels[index+0];
+            var g = _pixels[index+1];
+            var b = _pixels[index+2];
+            var a = _pixels[index+3];
+
+            _pixels[index+0] = r * a;
+            _pixels[index+1] = g * a;
+            _pixels[index+2] = b * a;
+
+            index += 4;
+
+        } // while
+
+        return _pixels;
+
+    } //premultiply_alpha_normalized
+
 
 } //Utils
