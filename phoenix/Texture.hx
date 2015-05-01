@@ -141,27 +141,18 @@ class Texture extends Resource {
             //but we can read the pixels from a temporary frame buffer (render texture) instead
             //This way works on all targets the same.
 
-        var rt = new RenderTexture({
-            width: _w,
-            height: _h,
-            texture: texture,
-            id:'temp_fbo / $id'
-        });
+        var fb = GL.createFramebuffer();
 
-            //activate it and read the pixels out
+        GL.bindFramebuffer(GL.FRAMEBUFFER, fb);
+        GL.framebufferTexture2D(GL.FRAMEBUFFER, GL.COLOR_ATTACHMENT0, GL.TEXTURE_2D, texture, 0);
 
-        rt.bindBuffer();
+        assert(GL.checkFramebufferStatus(GL.FRAMEBUFFER) == GL.FRAMEBUFFER_COMPLETE);
 
-        GL.readPixels(_x, _y, _w, _h, GL.RGBA, GL.UNSIGNED_BYTE, _into);
+            GL.readPixels(_x, _y, _w, _h, GL.RGBA, GL.UNSIGNED_BYTE, _into);
 
-        rt.unbindBuffer();
-
-            //now, make sure that it's texture id is null,
-            //otherwise destroy will nuke our texture id
-
-        rt.texture = null;
-        rt.destroy();
-        rt = null;
+        GL.bindFramebuffer(GL.FRAMEBUFFER, null);
+        GL.deleteFramebuffer(fb);
+        fb = null;
 
         return _into;
 
