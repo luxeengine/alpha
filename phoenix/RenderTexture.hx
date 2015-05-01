@@ -32,7 +32,9 @@ class RenderTexture extends Texture {
             //and binds the texture id for us
 
             //Create the actual texture storage in gpu memory
-        submit(null);
+        if(_options.texture != null) {
+            submit(null);
+        }
             //these must be set to be texture complete
         apply_props();
 
