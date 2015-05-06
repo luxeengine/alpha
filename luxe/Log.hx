@@ -206,7 +206,7 @@ class Log {
     } //_verboser
 
     macro public static function assert(expr:Expr, ?reason:String='') {
-        #if (debug || luxe_assert)
+        #if !luxe_no_assertions
             var str = haxe.macro.ExprTools.toString(expr);
                 if(reason != '') str += ' ($reason)';
             return macro @:pos(Context.currentPos()) {
@@ -218,7 +218,7 @@ class Log {
 
 
     macro public static function assertnull(value:Expr, ?reason:String='') {
-        #if (debug || luxe_assert)
+        #if !luxe_no_assertions
             var str = haxe.macro.ExprTools.toString(value);
             if(reason != '') reason = ' ($reason)';
             return macro @:pos(Context.currentPos()) {
