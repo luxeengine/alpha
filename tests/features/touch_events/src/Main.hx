@@ -5,7 +5,8 @@ import luxe.Screen;
 
 class Main extends luxe.Game {
 
-    var colors:Array<Color>;
+    var colors: Array<Color>;
+    var touches: Map<Int, Int>;
 
     override function config(config:luxe.AppConfig) {
 
@@ -26,6 +27,8 @@ class Main extends luxe.Game {
         Luxe.renderer.clear_color.rgb(0x121212);
         r = Luxe.screen.h * 0.01;
 
+        touches = new Map();
+
         colors = [
             new Color().rgb(0xf6007b),
             new Color().rgb(0x007bf6),
@@ -45,11 +48,14 @@ class Main extends luxe.Game {
 
     override function ontouchdown(e:TouchEvent) {
 
+        var index = Lambda.count(touches);
+        touches.set(e.touch_id, index);
+
         Luxe.renderer.clear_color.tween(0.5, {r:0.1, g:0.1, b:0.1});
 
         var g = Luxe.draw.ring({
             r:r,
-            color:colors[e.touch_id].clone(),
+            color:colors[index].clone(),
             x:e.x * Luxe.screen.w,
             y:e.y * Luxe.screen.h,
         });
@@ -60,11 +66,14 @@ class Main extends luxe.Game {
 
     override function ontouchup(e:TouchEvent) {
 
+        var index = touches.get(e.touch_id);
+        touches.remove(e.touch_id);
+
         Luxe.renderer.clear_color.tween(0.5, {r:0.05, g:0.05, b:0.05});
 
         var g = Luxe.draw.ring({
             r:r,
-            color: colors[e.touch_id].clone(),
+            color: colors[index].clone(),
             x:e.x * Luxe.screen.w,
             y:e.y * Luxe.screen.h,
         });
@@ -75,9 +84,11 @@ class Main extends luxe.Game {
 
     override function ontouchmove(e:TouchEvent) {
 
+        var index = touches.get(e.touch_id);
+
         var g = Luxe.draw.ring({
             r:r/2,
-            color: colors[e.touch_id].clone(),
+            color: colors[index].clone(),
             x:e.x * Luxe.screen.w,
             y:e.y * Luxe.screen.h,
         });
