@@ -1,3 +1,7 @@
+#ifdef GL_ES
+precision mediump float;
+#endif
+
 varying vec4 color;
 varying vec2 tcoord;
 
