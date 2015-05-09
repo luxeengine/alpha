@@ -57,7 +57,11 @@ class SceneDebugView extends luxe.debug.DebugView  {
             //maybe this isn't as handy
         assert(scenes.indexOf(_scene) != -1);
 
-        return scenes.remove(_scene);
+        var _result = scenes.remove(_scene);
+
+        refresh();
+
+        return _result;
 
     } //remove_scene
 
@@ -128,33 +132,30 @@ class SceneDebugView extends luxe.debug.DebugView  {
 
     } //get_list
 
-    var last_count = 0;
-    inline function count() {
-        var _count = scenes.length;
-
-        for(_scene in scenes) {
-            _count += _scene.length;
-        }
-
-        return _count;
-    }
-
     public override function refresh() {
 
         items_list.text = get_list();
-        last_count = count();
 
-    }
+    } //refresh
 
     public override function process() {
 
         if(!visible) return;
 
-        var _current_count = count();
+        var _has_changed = false;
 
-        if(last_count != _current_count) {
+        for(_scene in scenes) {
+            if(_scene._has_changed) {
+                _has_changed = true;
+                _scene._has_changed = false;
+            }
+        } //each scene
+
+        if(_has_changed) {
+
             refresh();
-        } //
+
+        } //_has_changed
 
     } //process
 
