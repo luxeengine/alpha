@@ -17,6 +17,7 @@ import luxe.utils.Maths;
 import luxe.debug.DebugView;
 import luxe.debug.TraceDebugView;
 import luxe.debug.ProfilerDebugView;
+import luxe.debug.SceneDebugView;
 import luxe.debug.StatsDebugView;
 import luxe.debug.BatcherDebugView;
 
@@ -63,25 +64,40 @@ class Debug {
     @:noCompletion public function init() {
 
         trace_callbacks = new Map();
+        views = [];
 
         #if !no_debug_console
-            views = [
-                new TraceDebugView(),
-                new StatsDebugView(),
-                // new BatcherDebugView(),
-                new ProfilerDebugView()
-            ];
-        #else
-            views = [];
-        #end
 
-        current_view = views[0];
+            views.push(new TraceDebugView());
+            views.push(new StatsDebugView());
+            //views.push(new BatcherDebugView());
+            views.push(new ProfilerDebugView());
+            views.push(new SceneDebugView());
+
+            current_view = views[0];
+
+        #end
 
         haxe.Log.trace = internal_trace;
 
         _debug('\t debug initialized.');
 
     } //init
+
+        /** Fetch the instance of the debug view for manipulation by name */
+    public function get_view<T>(_name:String) : T {
+
+        for(view in views) {
+
+            if(view.name == _name) {
+                return cast view;
+            }
+
+        } //view
+
+        return null;
+
+    } //get_view
 
         /** start a profiling section for the profiler debug view */
     public function start(_name:String, ?_max:Float=0.0) {
@@ -306,7 +322,11 @@ class Debug {
     } //keydown
 
     function refresh() {
-        current_view.refresh();
+
+        if(current_view != null) {
+            current_view.refresh();
+        }
+
     } //refresh
 
         /** programmatically switch the debug console view. currently cycles the view. */
@@ -407,11 +427,9 @@ class Debug {
             //update the title
         debug_inspector._title_text.text = "[ " + current_view.name + " ] " + Maths.fixed(Luxe.dt,5) + ' / ' + Maths.fixed(dt_average,5);
 
-        // #if !luxe_native
-            for(view in views) {
-                view.process();
-            }
-        // #end
+        for(view in views) {
+            view.process();
+        }
 
     } //process
 

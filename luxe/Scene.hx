@@ -70,6 +70,11 @@ class Scene extends Objects {
             init(null);
         }
 
+        var _view:luxe.debug.SceneDebugView = Luxe.core.debug.get_view('Scenes');
+        if(_view != null) {
+            _view.add_scene(this);
+        }
+
     } //new
 
         /** add given entity to this scene */
@@ -390,6 +395,11 @@ class Scene extends Objects {
         Luxe.core.off(Ev.windowrestored, windowrestored);
 
         emit(Ev.destroy);
+
+        var _view : luxe.debug.SceneDebugView = Luxe.core.debug.get_view('Scenes');
+        if(_view != null) {
+            _view.remove_scene(this);
+        }
 
     } //destroy
 
