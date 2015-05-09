@@ -2,8 +2,14 @@ package luxe;
 
 import luxe.Core;
 
-class Events {
 
+/** An event system that handles queued, immediate or
+    scheduled event id's to be fired and listened for.
+    Multiple listeners can be connected to a single event id,
+    and when fired all listeners are informed. Events are not
+    retroactive, only listeners that are attached at the time
+    will recieve the event notifications. Don't forget to disconnect events. */
+class Events {
 
     @:noCompletion public var event_queue : Map< String, EventObject>;
     @:noCompletion public var event_connections : Map< String, EventConnection>; //event id, connect
@@ -11,7 +17,7 @@ class Events {
     @:noCompletion public var event_filters : Map< String, Array<EventConnection> >; //event name, array of connections
     @:noCompletion public var event_schedules : Map< String, snow.api.Timer >; //event id, timer
 
-        /** create a new instance for sending/receiving events */
+        /** Create a new instance for sending/receiving events. */
     public function new( ) {
 
             //create the queue, lists and map
@@ -23,14 +29,14 @@ class Events {
 
     } //new
 
-        /** destroy this `Events` instance */
+        /** Destroy this `Events` instance */
     public function destroy() {
 
         clear();
 
     } //destroy
 
-        /** clear any scheduled or bound events. called on destroy. */
+        /** Clear any scheduled or bound events. Called on destroy. */
     public function clear() {
 
         for(schedule in event_schedules) {
@@ -56,7 +62,7 @@ class Events {
 
     }
 
-        /** helper. Exposed for learning/testing api. */
+        /** Convenience. Exposed for learning/testing the filtering API. */
     public function does_filter_event( _filter:String, _event:String ) {
 
         var _replace_stars : EReg = ~/\*/gi;
@@ -68,9 +74,9 @@ class Events {
     } //does_filter_event
 
 
-        /**Bind a signal (listener) to a slot (event_name)   
+        /** Bind a signal (listener) to a slot (event_name)   
             event_name : The event id   
-            listener : A function handler that should get called on event firing*/
+            listener : A function handler that should get called on event firing */
     public function listen<T>( _event_name : String, _listener : T -> Void ):String {
 
             //we need an ID and a connection to store
@@ -89,7 +95,7 @@ class Events {
                 //also store the listener inside the slots
             if(!event_filters.exists(_event_name)) {
                     //no slot exists yet? make one!
-                event_filters.set(_event_name, new Array<EventConnection>() );
+                event_filters.set(_event_name, [] );
             }
 
                 //it should exist by now, lets store the connection by event name
@@ -100,7 +106,7 @@ class Events {
                 //also store the listener inside the slots
             if(!event_slots.exists(_event_name)) {
                     //no slot exists yet? make one!
-                event_slots.set(_event_name, new Array<EventConnection>() );
+                event_slots.set(_event_name, [] );
             }
 
                 //it should exist by now, lets store the connection by event name
@@ -108,15 +114,15 @@ class Events {
 
         }
 
-            //return the id for disconnecting
+            //return the id for unlistening
         return id;
 
     } //listen
 
-        /**Disconnect a vound signal   
-            event connection id, returned from connect()   
-            returns true if the event existed and was removed */
-    public function disconnect( event_id : String ) : Bool {
+        /**Disconnect a bound signal   
+            The event connection id is returned from listen()   
+            and returns true if the event existed and was removed. */
+    public function unlisten( event_id : String ) : Bool {
 
         if(event_connections.exists(event_id)) {
 
@@ -142,10 +148,10 @@ class Events {
             return false;
         }
 
-    } //disconnect
+    } //unlisten
 
         /*Queue an event in the next update loop   
-            event_name : The event (register listeners with connect())   
+            event_name : The event (register listeners with listen())   
             properties : A dynamic pass-through value to hand off data   
             returns : a String, the unique ID of the event */
     public function queue<T>( event_name : String, ?properties : T ) : String {
@@ -160,6 +166,7 @@ class Events {
 
             //return the user the id
         return id;
+
     } //queue
 
         /** Remove an event from the queue by id returned from queue. */
@@ -168,16 +175,20 @@ class Events {
         if(event_queue.exists(event_id)) {
 
             var event = event_queue.get(event_id);
-            event = null;
+                event = null;
+
             event_queue.remove( event_id );
+
             return true;
-        }
+
+        } //if exists in the queue
 
         return false;
 
     } //dequeue
 
-        /** Process/update the events, firing any events in the queue. if you create a custom instance, call this when you want to process. */
+        /** Process/update the events, firing any events in the queue.
+            if you create a custom instance, call this when you want to process. */
     public function process() {
 
             //fire each event in the queue
@@ -194,11 +205,12 @@ class Events {
 
     } //update
 
-        //Fire an event immediately, bypassing the queue.
-            //event_name : The event (register listeners with connect())
-            //properties : A dynamic pass-through value to hand off data
-            //  -- Returns a Bool, true if event existed, false otherwise
-    public function fire<T>( _event_name : String, ?_properties : T ) : Bool {
+        /** Fire an event immediately, calling all listeners.
+            properties : An optional pass-through value to hand to the listener.
+            Returns true if event existed, false otherwise.
+            If the optional tag flag is set (default:false), the properties object will be modified
+            with some debug information, like _event_name_ and _event_connection_count_ */
+    public function fire<T>( _event_name : String, ?_properties : T, ?_tag:Bool=false ) : Bool {
 
         var _fired = false;
 
@@ -209,11 +221,13 @@ class Events {
 
                 var _filter_name = _filter[0].event_name;
                 if(does_filter_event(_filter_name, _event_name)) {
-                        //ok, it hits so call each of it's listeners
-                    _properties = tag_properties(_properties, _event_name, _filter.length);
+
+                    if(_tag) {
+                        _properties = tag_properties(_properties, _event_name, _filter.length);
+                    }
 
                     for(_connection in _filter) {
-                        _connection.listener( _properties );
+                        _connection.listener( cast _properties );
                     } //each connection to this filter
 
                     _fired = true;
@@ -228,9 +242,9 @@ class Events {
                 //we have an event by this name
             var connections:Array<EventConnection> = event_slots.get(_event_name);
 
-                //store additional info about the events
-                //:todo : is this needed anymore?
-            // _properties = tag_properties(_properties, _event_name, connections.length);
+            if(_tag) {
+                _properties = tag_properties(_properties, _event_name, connections.length);
+            }
 
                 //call each listener
             for(connection in connections) {
@@ -245,17 +259,15 @@ class Events {
 
     } //fire
 
-        //Schedule and event in the future
-            //event_name : The event (register listeners with connect())
-            //properties : A dynamic pass-through value to hand off data
-            //  -- Returns a String, the ID of the schedule (see unschedule)
+        /** Schedule and event in the future
+            event_name : The event (register listeners with listen())
+            properties : An optional pass-through value to hand to the listeners
+            Returns the ID of the schedule (for unschedule) */
     public function schedule<T>( time:Float, event_name : String, ?properties : T ) : String {
 
         var id : String = Luxe.utils.uniqueid();
 
-            var _timer = Luxe.timer.schedule(time, function(){
-                fire( event_name, properties );
-            });
+            var _timer = Luxe.timer.schedule(time, fire.bind(event_name, properties));
 
             event_schedules.set( id, _timer );
 
@@ -263,9 +275,9 @@ class Events {
 
     } //schedule
 
-        //Unschedule a previously scheduled event
-            //schedule_id : The id of the schedule (returned from schedule)
-            // -- Returns false if fails, or event doesn't exist
+        /** Unschedule a previously scheduled event
+            schedule_id : The id of the schedule (returned from schedule)
+            Returns false if fails, or event doesn't exist */
     public function unschedule( schedule_id : String ) : Bool {
 
         if(event_schedules.exists(schedule_id)) {
@@ -283,6 +295,8 @@ class Events {
 
     } //unschedule
 
+//Internal
+
     function tag_properties(_properties:Dynamic, _name:String,_count:Int) {
 
         if(_properties == null) {
@@ -295,7 +309,8 @@ class Events {
         Reflect.setField(_properties,'_event_connection_count_', _count);
 
         return _properties;
-    }
+
+    } //tag_properties
 
 } // Events
 

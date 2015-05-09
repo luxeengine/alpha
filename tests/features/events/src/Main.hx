@@ -87,12 +87,12 @@ class Main extends luxe.Game {
             Luxe.events.fire( 'global event' );
             entity.events.fire( 'local event' );
 
-            entity.events.fire('player.health.gain', {amount:10});
-            entity.events.fire('player.health.gain', {amount:23});
-            entity.events.fire('player.health.loss', {amount:60});
-            entity.events.fire('player.died', {attacker:'xKillerx'});
-            entity.events.fire('player.spawn', {spawn_node:'spawn12'});
-            entity.events.fire('player.health.gain', {amount:'100'});
+            entity.events.fire('player.health.gain', {amount:10}, true);
+            entity.events.fire('player.health.gain', {amount:23}, true);
+            entity.events.fire('player.health.loss', {amount:60}, true);
+            entity.events.fire('player.died', {attacker:'xKillerx'}, true);
+            entity.events.fire('player.spawn', {spawn_node:'spawn12'}, true);
+            entity.events.fire('player.health.gain', {amount:'100'}, true);
 
         } //space
 
