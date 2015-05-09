@@ -5,21 +5,28 @@ import luxe.Input;
 import luxe.Screen;
 import luxe.options.EntityOptions;
 
-import luxe.Log._verboser;
-import luxe.Log._verbose;
-import luxe.Log._debug;
-import luxe.Log.log;
+import luxe.Log.*;
 
 class Scene extends Objects {
 
+        /** The list of entities within this `Scene` */
     public var entities : Map<String,Entity>;
+        /** Whether or not the `Scene` has called init */
     public var inited : Bool = false;
+        /** Whether or not the `Scene` has called reset */
     public var started : Bool = false;
+        /** The number of entities in this `Scene` */
+    public var length(get, null) : Int = 0;
+
+//internal
 
     var _delayed_init_entities : Array<Entity>;
     var _delayed_reset_entities : Array<Entity>;
 
-    public var length(get, null) : Int = 0;
+    @:allow(luxe.debug.SceneDebugView)
+    var _has_changed: Bool = false;
+
+//
 
     public function new( ?_name:String='untitled scene' ) {
 
@@ -108,6 +115,8 @@ class Scene extends Objects {
                 _delayed_reset_entities.push(entity);
             } //started
 
+        _has_changed = true;
+
     } //add
 
         /** removes given entity from this scene */
@@ -116,6 +125,8 @@ class Scene extends Objects {
         if(entity == null) {
             throw "can't remove entity from a scene if the entity is null.";
         }
+
+        _has_changed = true;
 
         if(entity.scene == this) {
 
@@ -134,6 +145,12 @@ class Scene extends Objects {
 
     } //remove
 
+    public inline function get<T:(Entity)>(_name:String) : T {
+
+        return cast entities.get(_name);
+
+    } //get
+
         /** destroy all entities in this scene, emptying it. */
     public function empty() {
 
@@ -147,7 +164,7 @@ class Scene extends Objects {
 
                 }
             } //each entity
-        }
+        } //entity_count > 0
 
     } //empty
 
