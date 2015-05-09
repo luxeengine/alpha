@@ -80,6 +80,24 @@ class Main extends luxe.Game {
             Luxe.shutdown();
         }
 
+        if(e.keycode == Key.key_n) {
+            if(hud != null) {
+                var ui:Sprite = hud.get('ui');
+                if(ui != null) {
+                    ui.name = 'ui_renamed';
+                }
+            }
+        }
+
+        if(e.keycode == Key.key_m) {
+            if(hud != null) {
+                var ui:Sprite = hud.get('ui_renamed');
+                if(ui != null) {
+                    ui.name = 'ui';
+                }
+            }
+        }
+
         if(e.keycode == Key.key_r) {
             if(hud != null) {
                 log('resetting hud');

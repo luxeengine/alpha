@@ -16,10 +16,7 @@ import luxe.structural.OrderedMap;
 
 import luxe.options.EntityOptions;
 
-import luxe.Log.log;
-import luxe.Log._debug;
-import luxe.Log._verbose;
-import luxe.Log._verboser;
+import luxe.Log.*;
 
 @:autoBuild(luxe.macros.EntityRules.apply())
 class Entity extends Objects {
@@ -1212,6 +1209,25 @@ class Entity extends Objects {
         return scene;
 
     } //get_scene
+
+//name
+
+    override function set_name(_name:String) : String {
+
+        assertnull(_name);
+
+        var _scene = scene;
+
+        if(_scene != null) {
+            _scene.entities.remove(name);
+            _scene.entities.set(_name, this);
+            _scene.handle_duplicate_warning(_name);
+            _scene._has_changed = true;
+        }
+
+        return name = _name;
+
+    } //set_name
 
 //active
 

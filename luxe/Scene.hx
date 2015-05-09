@@ -23,6 +23,7 @@ class Scene extends Objects {
     var _delayed_init_entities : Array<Entity>;
     var _delayed_reset_entities : Array<Entity>;
 
+    @:allow(luxe.Entity)
     @:allow(luxe.debug.SceneDebugView)
     var _has_changed: Bool = false;
 
@@ -84,6 +85,14 @@ class Scene extends Objects {
 
     } //new
 
+    @:allow(luxe.Entity)
+    inline function handle_duplicate_warning(_name:String) {
+        if(entities.exists(_name)) {
+            log('${name} / adding a second entity named $_name!
+                This will replace the existing one, possibly leaving the previous one in limbo.');
+        }
+    }
+
         /** add given entity to this scene */
     var entity_count : Int = 0;
     public function add( entity:Entity, ?pos:haxe.PosInfos ) {
@@ -94,11 +103,7 @@ class Scene extends Objects {
 
             _debug('${name} / adding ${entity.name} with id : ${entity.id}');
 
-        if(entities.exists(entity.name)) {
-            log('${name} / adding a second entity named ${entity.name}! ${Luxe.utils.pos_info(pos)}
-                This will replace the existing one, possibly leaving the previous one in limbo.
-                Use EntityOptions name_unique flag to automatically handle this for similar named entities.');
-        }
+        handle_duplicate_warning(entity.name);
 
         entity.scene = this;
         entities.set( entity.name, entity );
