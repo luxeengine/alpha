@@ -34,6 +34,10 @@ class Maths {
         return ( value < a ) ? a : ( ( value > b ) ? b : value );
     } //clamp
 
+    static inline public function clampi( value:Int, a:Int, b:Int ) : Int {
+        return ( value < a ) ? a : ( ( value > b ) ? b : value );
+    } //clamp
+
     static inline public function clamp_bottom(value:Float, a:Float) : Float {
         return value < a ? a : value;
     } //clamp_bottom
