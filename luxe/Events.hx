@@ -200,6 +200,8 @@ class Events {
             //  -- Returns a Bool, true if event existed, false otherwise
     public function fire<T>( _event_name : String, ?_properties : T ) : Bool {
 
+        var _fired = false;
+
         //we have to check against our filters if this event matches anything
         for(_filter in event_filters) {
 
@@ -213,6 +215,8 @@ class Events {
                     for(_connection in _filter) {
                         _connection.listener( _properties );
                     } //each connection to this filter
+
+                    _fired = true;
 
                 } //if it actually fits this event filter
             } //if there are any connections
@@ -233,12 +237,11 @@ class Events {
                 connection.listener( cast _properties );
             }
 
-        } else {
-                //event not found
-            return false;
+            _fired = true;
+
         }
 
-        return false;
+        return _fired;
 
     } //fire
 
