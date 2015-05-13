@@ -9,6 +9,451 @@ import phoenix.Texture;
 
 import luxe.Log.*;
 
+/** A component for : luxe.Sprite
+    Once attached to a sprite, the animation component can play animations,
+    fire events on specific frames, and handles both UV (spritesheet/atlas)
+    animation types or image sequences.
+*/
+class SpriteAnimation extends Component {
+
+        /** The current animation data for this animation */
+    public var current          : SpriteAnimationData;
+        /** The current animation frame information */
+    public var current_frame    : SpriteAnimationFrame;
+        /** The list of animations added to this component */
+    public var animations       : Map<String, SpriteAnimationData>;
+        /** The image frame of the current animation frame */
+    public var image_frame      : Int = 0;
+        /** Whether or not the animation is playing.
+            Currently read only (in concept), manipulated by play() and stop().
+            This will be clarified in alpha-3.0 */
+    public var playing          : Bool = false;
+        /** Whether or not the animation will loop at reaching an end point. */
+    public var loop             : Bool = false;
+        /** Whether or not the animation is run in reverse when reaching an end point. */
+    public var pingpong         : Bool = false;
+        /** Whether or not the animation is run in reverse. */
+    public var reverse          : Bool = false;
+
+        /** The current active animation.
+            Will set the new animation frame to 1,
+            change the frame property if requiring a specific frame. */
+    @:isVar public var animation (get,set) : String;
+        /** The speed at which the animation plays.
+            This is in frames per second. */
+    @:isVar public var speed (get,set) : Float = 30.0;
+        /** The current animation frame (index into the frame set).
+            Setting this will update the sprite frame at any time. */
+    @:isVar public var frame (get,set) : Int = 1;
+
+    var time            : Float = 0;
+    var next_frame_time : Float = 0;
+    var sprite          : Sprite;
+    var uv_cache        : Rectangle;
+
+        /** Create a new `SpriteAnimation` */
+    public function new( options:luxe.options.ComponentOptions ) {
+
+        super(options);
+
+        animations = new Map();
+        uv_cache = new Rectangle();
+
+    } //new
+
+//component
+
+    override function onadded() {
+
+        sprite = cast entity;
+        assertnull(sprite, 'SpriteAnimation belongs on a Sprite instance');
+
+    }
+
+    override function init() {
+
+        frame = 1;
+
+    } //init
+
+//public playback API :todo: these are a bit odd.
+
+        /** Reset the frame to 1 and `play`. */
+    public function restart() : Void {
+
+        frame = 1;
+        play();
+
+    } //restart
+
+        /** Play/resume playback. */
+    public function play() : Void {
+
+        playing = true;
+
+    } //play
+
+        /** Stop/pause playback. Does not (currently) reset the animation to frame 1. */
+    public function stop() : Void {
+
+        playing = false;
+
+    } //stop
+
+
+//public animation data API
+
+        /** Add an animation object from a raw `SpriteAnimationData` object. */
+    public function add_from_anim_data( _data:SpriteAnimationData ) {
+
+        animations.set(_data.name, _data);
+
+    } //add_from_anim_data
+
+        /** Add an animation object from a string containing JSON data. */
+    public function add_from_json_object( _json_object : Dynamic ) : Void {
+
+        var anim_items = _json_object;
+        var anims = Reflect.fields(anim_items);
+
+        if(anims.length > 0) {
+
+            for(anim in anims) {
+
+                var animdata : Dynamic = Reflect.field(anim_items, anim);
+                var _anim = new SpriteAnimationData( cast entity, anim );
+
+                    _anim.from_json( animdata );
+
+                animations.set( anim, _anim );
+
+            } //anim in anims
+
+        } else { //anims.length > 0
+
+            log('${entity.name} / add_from_json_object given an empty json object... This is probably an error.');
+
+        }
+
+    } //add_from_json_object
+
+        /** Add an animation object from a string containing JSON data. */
+    public function add_from_json( _json_string : String ) : Void {
+        //
+
+            //parse json first
+        var _json_object = haxe.Json.parse(_json_string);
+            //and add directly
+        add_from_json_object( _json_object );
+
+    } //add_from_json
+
+//public event api
+
+        /** Remove a specific event from a frame */
+    public function remove_event( _animation:String, _image_frame:Int, _event:String='' ) : Void {
+
+        if( animations.exists(_animation) ) {
+
+            var _anim = animations.get(_animation);
+
+            for(_anim_frame in _anim.frameset) {
+
+                if( _anim_frame.image_frame != _image_frame ) continue;
+
+                for(_frame_event in _anim_frame.events) {
+
+                    if(_frame_event.frame != _image_frame) continue;
+                    if(_frame_event.event != _event) continue;
+
+                    _anim_frame.events.remove(_frame_event);
+                    _debug("anim event being removed " + _image_frame + ":" + _event + " to " + _animation);
+
+
+                } //each event
+
+            } //each frame in the set
+
+        } else {
+            log('${entity.name} / $animation requested an event to be added, but that animation is not found in the `$name` component');
+        }
+
+    } //remove_event
+
+        /** Remove all events from a frame */
+    public function remove_events( _animation:String, _image_frame:Int) : Void {
+
+        if( animations.exists(_animation) ) {
+            var _anim = animations.get(_animation);
+            for(_anim_frame in _anim.frameset) {
+                if( _anim_frame.image_frame == _image_frame ) {
+                        //clear the events
+                    _anim_frame.events = [];
+                } //matched frame index
+            } //each frame in the set
+        } else {
+            log('${entity.name} / $animation requested an event to be removed, but that animation is not found in the `$name` component');
+        }
+
+    } //remove_events
+
+    public function add_event( _animation:String, _image_frame:Int, _event:String='' ) : Void {
+
+        _debug("\n adding event to animation : " + _animation + " " + _image_frame + ":" + _event);
+
+        if( animations.exists(_animation) ) {
+
+            var _anim = animations.get(_animation);
+
+            _debug("animation: found anim " + _animation + ", looking for event duplicates ");
+
+            for(_anim_frame in _anim.frameset) {
+                if( _anim_frame.image_frame == _image_frame ) {
+
+                        //matched image frame, now check if there isn't already an event named this way in the list
+                        //so that we don't have multiples causing issues
+                    var _add_event : Bool = true;
+                    for(_frame_event in _anim_frame.events) {
+                            //found an event for this frame, is it the same one?
+                        if(_frame_event.frame == _image_frame && _frame_event.event == _event) {
+                            _add_event = false;
+                            _debug("anim event duplicate, not adding " + _image_frame + ":" + _event + " to " + _animation);
+                        }
+                    }
+
+                        //still?
+                    if(_add_event) {
+                        _anim_frame.events.push({ frame:_image_frame, event:_event });
+                        _debug("anim event added : " + _image_frame + ":" + _event + " to " + _animation);
+                    }
+
+                } //if the frame matches
+            } //for the frameset in
+
+        } else {
+
+            log('${entity.name} / $animation requested an event to be added, but that animation is not found in the `$name` component');
+
+        } //
+
+    } //add_event
+
+//Internal
+
+    @:noCompletion override function update( dt:Float ) : Void {
+
+        if(current == null) {
+            // trace('SpriteAnimation: ignoring update when current is null');
+            return;
+        }
+
+        if(!playing) return;
+
+            //flag if we reached an end state
+        var end = false;
+        var _frame = frame;
+
+            //update the local time
+        time += dt;
+
+            //time for a frame update?
+        if(time >= next_frame_time) {
+
+            next_frame_time = time + current.frame_time;
+
+                //advance the frame
+            if(!reverse) {
+                _frame += 1;
+            } else {
+                _frame -= 1;
+            }
+
+                //check the logic for syncing
+            if( !reverse ) {
+                if( _frame > current.frame_count ) {
+                    end = true;
+                    if(!loop) {
+                        _frame = current.frame_count;
+                    }
+                } //if at the end
+            } else {
+                if( _frame < 1 ) {
+                    end = true;
+                    if(!loop) {
+                        _frame = 1;
+                    }
+                } //frame < 1
+            } //!reverse
+
+                //check the end status
+            if(end) {
+
+                if(loop) {
+
+                    if(pingpong) {
+                        reverse = !reverse;
+                    }
+
+                    if(!reverse) {
+                        _frame = 1;
+                    } else {
+                        _frame = current.frame_count;
+                    }
+
+                } else {
+                    stop();
+                }
+
+            } //if end
+
+                //sync up the actual frame with the updated value
+            frame = _frame;
+
+        } //time?
+
+    } //update
+
+        //sync the state to the sprite itself
+    function refresh_sprite() : Void {
+
+        assertnull(sprite, 'SpriteAnimation requires non-null sprite instance');
+
+        if(current.type == SpriteAnimationType.animated_uv) {
+
+                assertnull(sprite.texture, 'SpriteAnimation with animated_uv type requires a texture that is not null');
+
+                    //cache the uv so we don't allocate for no good reason
+                uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
+                    //ratio of scale between sprite size and frame size
+                var _ratio_x = current_frame.frame_size.x / sprite.size.x;
+                var _ratio_y = current_frame.frame_size.y / sprite.size.y;
+                    //resize the sprite non destructively, to fit the new frame size
+                sprite.geometry.transform.scale.x = (current_frame.frame_source.w / (current_frame.frame_size.x)) * sprite.scale.x;
+                sprite.geometry.transform.scale.y = (current_frame.frame_source.h / (current_frame.frame_size.y)) * sprite.scale.y;
+
+                    //realign the sprite to match the new frame size, but also adjust for the new scale! otherwise it won't match
+                sprite.geometry.transform.origin.x = -((current_frame.frame_pos.x / _ratio_x) * sprite.scale.x) / sprite.geometry.transform.scale.x;
+                sprite.geometry.transform.origin.y = -((current_frame.frame_pos.y / _ratio_y) * sprite.scale.y) / sprite.geometry.transform.scale.y;
+
+                    //and finally assign it to the sprite
+                sprite.uv = uv_cache;
+
+        } else if(current.type == SpriteAnimationType.animated_texture) {
+
+            if( image_frame <= current.image_set.length ) {
+
+                sprite.texture = current.image_set[image_frame-1];
+
+                uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
+
+                sprite.uv = uv_cache;
+
+            } //image_frame inside image set
+
+        }
+
+    } //refresh_sprite
+
+//properties
+
+    function get_frame() : Int {
+
+        return frame;
+
+    } //get_frame
+
+    function set_frame( _frame:Int ) : Int {
+
+        frame = _frame;
+
+            current_frame = current.frameset[ frame - 1 ];
+            image_frame = current_frame.image_frame;
+            emit_frame_events();
+            refresh_sprite();
+
+        return frame;
+
+    } //set_frame
+
+    inline function get_speed() : Float {
+
+        return speed;
+
+    } //get_speed
+
+    function set_speed( _speed:Float ) : Float {
+
+            //:todo: it may make more sense to scale this in the updates
+            //rather than modify the frame time like this
+        if(current != null) {
+            current.frame_time = 1 / _speed;
+        }
+
+        return speed = _speed;
+
+    } //set_speed
+
+    inline function get_animation() : String {
+
+        return animation;
+
+    } //get_animation
+
+    function set_animation( _name:String ) : String {
+
+        if(!animations.exists(_name)) {
+            log('${entity.name} / set animation `$_name`, but that animation is not found in the `$name` component');
+            return animation;
+        }
+
+            current = animations.get(_name);
+            loop = current.loop;
+            pingpong = current.pingpong;
+            reverse = current.reverse;
+            next_frame_time = time;
+
+            //set to the first frame of this animation
+        frame = 1;
+
+        return animation = _name;
+
+    } //set_animation
+
+//internal
+
+    inline function emit_frame_events() : Void {
+        //
+
+            //handle any frame events
+        for(_event in current_frame.events) {
+
+            var _event_emit_name : String = _event.event;
+
+                //default to animation.event.image_frame
+            if(_event_emit_name == '') {
+                _event_emit_name = animation + '.event.' + current_frame.image_frame;
+            }
+
+                //fire the event into the holding entity
+            entity.events.fire( _event_emit_name, {
+                animation : animation,
+                event: _event_emit_name,
+                frame_event : _event,
+                frame: current_frame,
+                image_frame : current_frame.image_frame
+            });
+
+        } //each event
+
+    } //emit_frame_events
+
+
+} //SpriteAnimation
+
+
+
+
+
 typedef SpriteAnimationEventData = {
     animation : String,
     event: String,
@@ -81,7 +526,7 @@ class SpriteAnimationData {
 
     public function from_json( _animdata:Dynamic ) {
 
-        if(_animdata == null) throw "Null animation object passed to from_json in SpriteAnimation";
+        assertnull(_animdata, 'Null animation object passed to from_json in SpriteAnimation');
 
         var _json_frameset : Array<String> = cast _animdata.frameset;
         var _json_frame_size : Dynamic = _animdata.frame_size;
@@ -95,7 +540,7 @@ class SpriteAnimationData {
         var _json_framesource_list : Array<Dynamic> = cast _animdata.frame_sources;
 
         //frameset
-        if(_json_frameset == null) { throw "SpriteAnimation passed invalid json, anim data requires frameset as an array of strings. In anim : " + name; }
+        assertnull(_json_frameset, 'SpriteAnimation passed invalid json, anim data requires frameset as an array of strings.');
 
         var _frameset : Array<Int> = parse_frameset( _json_frameset );
 
@@ -104,10 +549,8 @@ class SpriteAnimationData {
         //filter type
         if(_json_filter_type != null) {
             switch (_json_filter_type) {
-                case 'nearest':
-                    filter_type = FilterType.nearest;
-                case 'linear':
-                    filter_type = FilterType.linear;
+                case 'nearest': filter_type = FilterType.nearest;
+                case 'linear':  filter_type = FilterType.linear;
             }
         }
 
@@ -434,9 +877,7 @@ class SpriteAnimationData {
 
     function parse_frameset_prev_hold( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
 
-        if(_frameset.length < 1) {
-            throw " Animation frames given a hold with no prior frame, if you want to do that you can use '1 hold 10` where 1 is the frame index, 10 is the amount. ";
-        }
+        assert(_frameset.length > 0, 'Animation frames given a hold with no prior frame, if you want to do that you can use `1 hold 10` where 1 is the frame index, 10 is the amount.');
 
         var _frame : Int = _frameset[ _frameset.length - 1 ];
         var _amount : Int = Std.parseInt( regex.matched(2) );
@@ -486,402 +927,4 @@ class SpriteAnimationData {
     }
 
 } //SpriteAnimationData
-
-class SpriteAnimation extends Component {
-
-    var sprite : Sprite;
-
-    public var animation_list : Map<String,SpriteAnimationData>;
-    public var current : SpriteAnimationData;
-    public var current_frame : SpriteAnimationFrame;
-
-    @:isVar public var animation (get,set) : String;
-    @:isVar public var speed (get,set) : Float;
-
-    public var frame : Int = 1;
-    public var image_frame : Int = 0;
-
-    var time : Float = 0;
-
-        //the length of a frame for the current frameset
-    public var frame_time : Float = 0;
-    @:noCompletion public var next_frame_time : Float = 0;
-
-    public var loop : Bool = false;
-    public var pingpong : Bool = false;
-    public var reverse : Bool = false;
-
-    public var playing : Bool = false;
-
-    var uv_cache : Rectangle;
-
-    override function init() {
-
-        uv_cache = new Rectangle();
-
-        if(animation_list == null) {
-            animation_list = new Map();
-        }
-
-        sprite = cast entity;
-
-        set_frame(frame);
-        refresh_sprite();
-
-        if(sprite == null) {
-            throw "SpriteAnimation belongs on a Sprite instance";
-        } //sprite test
-
-    } //init
-
-    public function add_from_json_object( _json_object : Dynamic ) {
-
-        if(animation_list == null) {
-            animation_list = new Map();
-        }
-
-        var anim_items = _json_object;
-        var anims = Reflect.fields(anim_items);
-
-        if(anims.length > 0) {
-            for(anim in anims) {
-
-                var animdata : Dynamic = Reflect.field(anim_items, anim);
-                var _anim = new SpriteAnimationData( cast entity, anim );
-
-                    _anim.from_json( animdata );
-
-                animation_list.set( anim, _anim );
-
-            } //anim in anims
-        } else { //anims.length > 0
-            trace('SpriteAnimation on ' + entity.name + ' was given a json object to add but it had no properties... This is probably an error.');
-        }
-
-    } //add_from_json_object
-
-    public function add_from_json( _json_string : String ) {
-
-            //parse json first
-        var _json_object = haxe.Json.parse(_json_string);
-            //and add directly
-        add_from_json_object( _json_object );
-
-    } //add_from_json
-
-        //remove specific event from frame
-    public function remove_event( _animation:String, _image_frame:Int, _event:String='' ) {
-
-        if( animation_list.exists(_animation) ) {
-            var _anim = animation_list.get(_animation);
-            for(_anim_frame in _anim.frameset) {
-                if( _anim_frame.image_frame == _image_frame ) {
-                    for(_frame_event in _anim_frame.events) {
-                            //found an event for this frame, is it the same one?
-                        if(_frame_event.frame == _image_frame && _frame_event.event == _event) {
-                            _anim_frame.events.remove(_frame_event);
-                            _debug("anim event being removed " + _image_frame + ":" + _event + " to " + _animation);
-                        } //matched frame and event match
-                    } //each event
-                } //matched frame number
-            } //each frame in the set
-        } else {
-            trace('SpriteAnimation on ' + entity.name + ' was asked for ' + animation + ' to add an event but it is not found in the component. ');
-        }
-
-    } //remove_event
-
-        //remove all events from a frame
-    public function remove_events( _animation:String, _image_frame:Int) {
-
-        if( animation_list.exists(_animation) ) {
-            var _anim = animation_list.get(_animation);
-            for(_anim_frame in _anim.frameset) {
-                if( _anim_frame.image_frame == _image_frame ) {
-                        //clear the events
-                    _anim_frame.events = [];
-                } //matched frame index
-            } //each frame in the set
-        } else {
-            trace('SpriteAnimation on ' + entity.name + ' was asked for ' + animation + ' to add an event but it is not found in the component. ');
-        }
-
-    } //remove_events
-
-    public function add_event( _animation:String, _image_frame:Int, _event:String='' ) {
-
-        _debug("\n adding event to animation : " + _animation + " " + _image_frame + ":" + _event);
-
-        if( animation_list.exists(_animation) ) {
-
-            var _anim = animation_list.get(_animation);
-
-            _debug("animation: found anim " + _animation + ", looking for event duplicates ");
-
-            for(_anim_frame in _anim.frameset) {
-                if( _anim_frame.image_frame == _image_frame ) {
-
-                        //matched image frame, now check if there isn't already an event named this way in the list
-                        //so that we don't have multiples causing issues
-                    var _add_event : Bool = true;
-                    for(_frame_event in _anim_frame.events) {
-                            //found an event for this frame, is it the same one?
-                        if(_frame_event.frame == _image_frame && _frame_event.event == _event) {
-                            _add_event = false;
-                            _debug("anim event duplicate, not adding " + _image_frame + ":" + _event + " to " + _animation);
-                        }
-                    }
-
-                        //still?
-                    if(_add_event) {
-                        _anim_frame.events.push({ frame:_image_frame, event:_event });
-                        _debug("anim event added : " + _image_frame + ":" + _event + " to " + _animation);
-                    }
-
-                } //if the frame matches
-            } //for the frameset in
-
-        } else {
-            trace('SpriteAnimation on ' + entity.name + ' was asked for ' + animation + ' to add an event but it is not found in the component. ');
-        }
-
-    } //add_event
-
-    function get_speed() {
-        return speed;
-    }
-
-    function set_speed( _speed:Float ) {
-        if(current != null) {
-            current.frame_time = 1 / _speed;
-        }
-
-        return speed = _speed;
-    }
-
-    function get_animation() {
-        return animation;
-    }
-
-    function set_animation( _name:String ) {
-
-        if(animation_list.exists(_name)) {
-
-            current = animation_list.get(_name);
-            loop = current.loop;
-            pingpong = current.pingpong;
-            reverse = current.reverse;
-            frame_time = current.frame_time;
-            next_frame_time = time;
-
-            return animation = _name;
-
-        }
-
-        trace('SpriteAnimation on ${entity.name} asked for $_name but it is not found in the component.');
-
-        return animation;
-
-    } //set_animation
-
-    public function restart() {
-        frame = 1;
-        play();
-    }
-
-    public function play() {
-        playing = true;
-    }
-
-    public function stop() {
-        playing = false;
-    }
-
-    public function set_frame( _frame:Int ) {
-
-            //:todo: what..
-        if(sprite == null) return;
-        if(current == null) return;
-        if(current_frame == null) return;
-
-        if(current.type == SpriteAnimationType.animated_uv) {
-
-            assertnull(sprite.texture, 'SpriteAnimation with animated_uv type requires a texture that is not null');
-
-            var frames_per_row = ( sprite.texture.width - (sprite.texture.width % current.frame_size.x) ) / current.frame_size.x;
-            var image_row = Math.ceil( _frame / frames_per_row );
-            var image_x = ((_frame-1) * current.frame_size.x) % sprite.texture.width;
-            var image_y = ((image_row-1) * current.frame_size.y);
-
-            uv_cache.set( image_x, image_y, current.frame_size.x, current.frame_size.y );
-
-            sprite.uv = uv_cache;
-
-        } else if(current.type == SpriteAnimationType.animated_texture) {
-
-            if(_frame <= current.image_set.length-1 ) {
-
-                sprite.texture = current.image_set[_frame-1];
-
-                uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
-
-                sprite.uv = uv_cache;
-
-            } //inside image set
-
-        } //SpriteAnimationType.animated_texture
-
-            //the current animation frame
-        var _anim_frame = current.frameset[_frame-1];
-
-            //set the image frame from the current frameset
-        image_frame = _anim_frame.image_frame;
-
-            //set the current frame frame
-        current_frame = _anim_frame;
-
-            //keep the frame
-        frame = _frame;
-
-    } //set_frame
-
-        //sync the state to the sprite itself
-    function refresh_sprite() {
-
-        if(sprite == null) { return; }
-        if(current == null) { return; }
-        if(current_frame == null) { return; }
-        if(current.type == SpriteAnimationType.animated_uv) {
-
-                assertnull(sprite.texture, 'SpriteAnimation with animated_uv type requires a texture that is not null');
-
-                    //cache the uv so we don't allocate for no good reason
-                uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
-                    //ratio of scale between sprite size and frame size
-                var _ratio_x = current_frame.frame_size.x / sprite.size.x;
-                var _ratio_y = current_frame.frame_size.y / sprite.size.y;
-                    //resize the sprite non destructively, to fit the new frame size
-                sprite.geometry.transform.scale.x = (current_frame.frame_source.w / (current_frame.frame_size.x)) * sprite.scale.x;
-                sprite.geometry.transform.scale.y = (current_frame.frame_source.h / (current_frame.frame_size.y)) * sprite.scale.y;
-
-                    //realign the sprite to match the new frame size, but also adjust for the new scale! otherwise it won't match
-                sprite.geometry.transform.origin.x = -((current_frame.frame_pos.x / _ratio_x) * sprite.scale.x) / sprite.geometry.transform.scale.x;
-                sprite.geometry.transform.origin.y = -((current_frame.frame_pos.y / _ratio_y) * sprite.scale.y) / sprite.geometry.transform.scale.y;
-
-                    //and finally assign it to the sprite
-                sprite.uv = uv_cache;
-
-        } else if(current.type == SpriteAnimationType.animated_texture) {
-
-            if( image_frame <= current.image_set.length ) {
-
-                sprite.texture = current.image_set[image_frame-1];
-
-                uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
-
-                sprite.uv = uv_cache;
-
-            } //image_frame inside image set
-
-        }
-
-    } //refresh_sprite
-
-    @:noCompletion override function update( dt:Float ) {
-
-        if(current == null) return;
-        if(!playing) return;
-
-            //flag if we reached an end state
-        var end = false;
-
-            //update the local time
-        time += dt;
-
-            //time for a frame update?
-        if(time >= next_frame_time) {
-
-            next_frame_time = time + current.frame_time;
-
-                //advance the frame
-            if(!reverse) {
-                frame += 1;
-            } else {
-                frame -= 1;
-            }
-
-                //check the logic for syncing
-            if( !reverse ) {
-                if( frame > current.frame_count ) {
-                    end = true;
-                    if(!loop) {
-                        frame = current.frame_count;
-                    }
-                } //if at the end
-            } else {
-                if( frame < 1 ) {
-                    end = true;
-                    if(!loop) {
-                        frame = 1;
-                    }
-                } //frame < 1
-            } //!reverse
-
-                //check the end status
-            if(end) {
-                if(loop) {
-                    if(pingpong) {
-                        reverse = !reverse;
-                    }
-
-                    if(!reverse) {
-                        frame = 1;
-                    } else {
-                        frame = current.frame_count;
-                    }
-
-                } else {
-                    stop();
-                }
-            } //if end
-
-                //the current animation frame
-            var _anim_frame = current.frameset[frame-1];
-
-                //set the image frame from the current frameset
-            image_frame = _anim_frame.image_frame;
-
-                //set the current frame frame
-            current_frame = _anim_frame;
-
-                //handle any frame events
-            for(_event in _anim_frame.events) {
-                var _event_emit_name : String = _event.event;
-
-                    //default to animation.event.image_frame
-                if(_event_emit_name == '') {
-                    _event_emit_name = animation + '.event.' + _anim_frame.image_frame;
-                }
-
-                    //fire the event into the holding entity
-                entity.events.fire( _event_emit_name, {
-                    animation : animation,
-                    event: _event_emit_name,
-                    frame_event : _event,
-                    frame: _anim_frame,
-                    image_frame : _anim_frame.image_frame
-                });
-            }
-
-                //finally, update the sprite
-            refresh_sprite();
-
-        } //time
-
-    } //update
-
-} //SpriteAnimation
-
-
-
 
