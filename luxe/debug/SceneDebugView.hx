@@ -97,13 +97,10 @@ class SceneDebugView extends luxe.debug.DebugView  {
 
         _list += '${_pre}$_id ${e.name} $_childs $_comp $_active\n';
 
-        var _comp_i = 0;
         for(_name in e.components.keys()) {
             var comp = e.components.get(_name);
             var _comp_id = hide_ids ? '' : ' '+comp.id;
-            _list += tabs(_depth+1) + '•$_comp_id ${comp.name}';
-            if(_comp_i < _comp_count-1) _list += ', ';
-            _comp_i++;
+            _list += tabs(_depth+1) + '•$_comp_id ${comp.name}\n';
         }
 
         for(_child in e.children) {
