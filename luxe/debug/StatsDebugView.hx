@@ -193,6 +193,26 @@ class StatsDebugView extends luxe.debug.DebugView  {
             lists += '\nShader (${Luxe.resources.stats.shaders})\n';
                 lists += orblank(shader_lists);
 
+        //add the sounds, those are not resources in the same manner, but for now
+
+        var sound_list = '';
+        var _sounds:Array<String> = [];
+
+            for(sound in Luxe.snow.audio.sound_list) _sounds.push(sound.name);
+            _sounds.sort(function(a:String,b:String) {
+                if(a == b) return 0;
+                if(a < b) return -1;
+                return 1;
+            });
+            for(sound in _sounds) {
+                sound_list += '$sound •\n';
+            }
+
+
+
+            lists += '\n\n---\nAudio list (${Lambda.count(Luxe.snow.audio.sound_list)})\n\n';
+                lists += orblank(sound_list);
+
         resource_list_text.text = lists;
 
         if(resource_list_text.geometry != null) {
