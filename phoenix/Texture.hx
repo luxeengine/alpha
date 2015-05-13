@@ -220,25 +220,9 @@ class Texture extends Resource {
 
             get.then(function(_asset:AssetImage) {
 
-                dump_asset_info( _asset );
-
-                width = _asset.image.width;
-                height = _asset.image.height;
-                width_actual = _asset.image.width_actual;
-                height_actual = _asset.image.height_actual;
-
                 texture = create_texture_id();
 
-                if(load_premultiply_alpha) {
-                    Luxe.utils.premultiply_alpha(_asset.image.pixels);
-                }
-
-                submit( _asset.image.pixels );
-
-                _asset.image.pixels = null;
-                _asset = null;
-
-                apply_props();
+                from_asset(_asset);
 
                 state = ResourceState.loaded;
                 resolve(this);
@@ -250,6 +234,30 @@ class Texture extends Resource {
         }); //promise
 
     } //reload
+
+    function from_asset(_asset:AssetImage, _clear_asset:Bool=true) {
+
+        dump_asset_info( _asset );
+
+        width = _asset.image.width;
+        height = _asset.image.height;
+        width_actual = _asset.image.width_actual;
+        height_actual = _asset.image.height_actual;
+
+        if(load_premultiply_alpha) {
+            Luxe.utils.premultiply_alpha(_asset.image.pixels);
+        }
+
+        submit( _asset.image.pixels );
+
+        if(_clear_asset) {
+            _asset.image.pixels = null;
+            _asset = null;
+        }
+
+        apply_props();
+
+    } //from_asset
 
     override function clear() {
 
