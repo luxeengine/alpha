@@ -176,8 +176,10 @@ class PhysicsEngine {
     } //init
 
     function _render(_) {
+
         render();
-    }
+
+    } //_render
 
     public function process() {
 
@@ -191,44 +193,46 @@ class PhysicsEngine {
 
     } //render
 
-    public function get_paused() : Bool {
+    public function destroy() {
+
+    } //destroy
+
+//Properties
+
+    function get_paused() : Bool {
 
         return paused;
 
     } //get_paused
 
-    public function set_paused( ?_pause:Bool ) {
+    function set_paused( ?_pause:Bool ) {
 
         return paused = _pause;
 
     } //set_paused
 
-    public function get_draw() : Bool {
+    function get_draw() : Bool {
 
         return draw;
 
     } //get_draw
 
-    public function set_draw( _draw:Bool ) : Bool {
+    function set_draw( _draw:Bool ) : Bool {
 
         return draw = _draw;
 
     } //set_draw
 
-    public function get_gravity() : Vector {
+    function get_gravity() : Vector {
 
         return gravity;
 
     } //get_gravity
 
-    public function set_gravity( _gravity:Vector ) {
+    function set_gravity( _gravity:Vector ) {
 
         return gravity = _gravity;
 
     } //set_gravity
-
-    public function destroy() {
-
-    }
 
 } //PhysicsEngine

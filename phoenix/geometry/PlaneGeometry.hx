@@ -171,7 +171,9 @@ class PlaneGeometry extends Geometry {
 
  	} //set
 
-    public function set_flipx(_val:Bool) {
+//properties
+
+    function set_flipx(_val:Bool) {
             //set before calling uv_space
         flipx = _val;
 
@@ -182,7 +184,7 @@ class PlaneGeometry extends Geometry {
         return flipx;
     } //set_flipx
 
-    public function set_flipy(_val:Bool) {
+    function set_flipy(_val:Bool) {
 
             //set before calling uv_space
         flipy = _val;

@@ -214,7 +214,7 @@ class Batcher {
 
     }
 
-    public function set_layer( _layer:Int ) : Int {
+    function set_layer( _layer:Int ) : Int {
 
             //set the value
         layer = _layer;

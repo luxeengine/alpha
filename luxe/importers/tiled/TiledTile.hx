@@ -15,11 +15,13 @@ class TiledTile {
         id = _id;
     } //new
 
-    public function get_width() : Int {
+//properties
+
+    function get_width() : Int {
         return layer.map.tile_width;
     }
 
-    public function get_height() : Int {
+    function get_height() : Int {
         return layer.map.tile_height;
     }
 

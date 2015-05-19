@@ -58,7 +58,7 @@ package luxe.physics.nape;
 
         } //set_gravity
 
-        override public function set_draw(_draw:Bool):Bool {
+        override function set_draw(_draw:Bool):Bool {
 
             if (debugdraw != null) {
                 debugdraw.visible = _draw;

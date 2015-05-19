@@ -106,36 +106,36 @@ class GeometryState {
     } //update
 
 //Primitive Type
-    public function set_primitive_type(val : PrimitiveType) : PrimitiveType {
+    function set_primitive_type(val : PrimitiveType) : PrimitiveType {
         dirty = true;
         return primitive_type = val;
     }
 //Texture
-    public function set_texture(val : Texture) : Texture {
+    function set_texture(val : Texture) : Texture {
         dirty = true;
         return texture = val;
     }
 //Shader
-    public function set_shader(val : Shader) : Shader {
+    function set_shader(val : Shader) : Shader {
         dirty = true;
         return shader = val;
     }
 //Depth
-    public function set_depth(val : Float) : Float {
+    function set_depth(val : Float) : Float {
         return depth = val;
     }
 //Group
-    public function set_group(val : Int) : Int {
+    function set_group(val : Int) : Int {
         dirty = true;
         return group = val;
     }
 //Clip
-    public function set_clip(val : Bool) : Bool {
+    function set_clip(val : Bool) : Bool {
         dirty = true;
         return clip = val;
     }
 //Clip rect
-    public function set_clip_rect(val : Rectangle) : Rectangle {
+    function set_clip_rect(val : Rectangle) : Rectangle {
         dirty = true;
         return clip_rect = val;
     }
