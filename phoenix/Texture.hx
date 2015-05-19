@@ -206,7 +206,7 @@ class Texture extends Resource {
 //Resource overrides
 
         /** Reloads this texture from it's id - only a valid call if the id is a image asset resource. */
-    override function reload() : Promise {
+    override public function reload() : Promise {
 
         assert(state != ResourceState.destroyed, 'Resource cannot reload when already destroyed');
 
