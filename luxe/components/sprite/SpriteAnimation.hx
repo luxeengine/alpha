@@ -72,8 +72,6 @@ class SpriteAnimation extends Component {
 
     override function init() {
 
-        frame = 1;
-
     } //init
 
 //public playback API :todo: these are a bit odd.
@@ -365,6 +363,10 @@ class SpriteAnimation extends Component {
     function set_frame( _frame:Int ) : Int {
 
         frame = _frame;
+
+        if(current == null) {
+            return frame;
+        }
 
             current_frame = current.frameset[ frame - 1 ];
             image_frame = current_frame.image_frame;
