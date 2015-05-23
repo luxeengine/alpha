@@ -35,11 +35,14 @@ class Main extends luxe.Game {
 
     override function update( delta:Float ) {
 
-            //if we add 40 each frame, and scale it by the delta,
-            //it becomes 40 degrees per second!
+             //if we add 40° each frame, and scale it by the delta,
+            //it becomes 40° per second instead of 40° per update.
+
         block.rotation_z += 40 * delta;
 
     } //update
+
+//This is housekeeping stuff for the guide
 
     override function config( config:luxe.AppConfig ) {
 

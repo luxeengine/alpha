@@ -1,23 +1,23 @@
 
 import luxe.Input;
-import luxe.Color;
-import luxe.Parcel;
-import luxe.ParcelProgress;
 import luxe.Sprite;
 import luxe.Vector;
 import phoenix.Texture;
 
-
 class Main extends luxe.Game {
 
     var player : Sprite;
-    var image : Texture;
-
         //set by the screen size later
     var move_speed : Float = 0;
 
+        //The config function is simple: It hands us a default config,
+        //we modify the values that we want to change, and then we
+        //return it with the modifications.
     override function config( config:luxe.AppConfig ) {
 
+            //This time, we are going to modify the preload parcel texture list,
+            //and add our texture for the sprite, so that it will exist when we
+            //try to use it during `ready`
         config.preload.textures.push({ id:'assets/stand.png' });
 
         #if luxe_doc_sample
@@ -32,24 +32,10 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-        //it's important that if you want to build
-        //for platforms where loading can take time
-        //like on a web page, you must wait for your assets
-        //to load before using them.
+            //fetch the previously loaded texture!
+        var image = Luxe.resources.texture('assets/stand.png');
 
-        //In the next tutorial this is shown using a built in progress bar,
-        //for multiple assets, but for now we just use the onloaded argument of load texture
-
-        image = Luxe.resources.texture('assets/stand.png');
-
-        create_player();
-
-    } //ready
-
-    function create_player() {
-
-            //now that the image is loaded
-            //keep pixels crisp
+            //keep pixels crisp when scaling them, for pixel art
         image.filter_min = image.filter_mag = FilterType.nearest;
 
             //work out the correct size based on a ratio
@@ -59,6 +45,7 @@ class Main extends luxe.Game {
             //this is an arbitrary ratio I made up :)
         move_speed = width*3;
 
+            //create the actual visible player, give it the texture
         player = new Sprite({
             name: 'player',
             texture: image,
@@ -68,7 +55,7 @@ class Main extends luxe.Game {
 
         connect_input();
 
-    } //create_static_player
+    } //ready
 
 
     function connect_input() {
@@ -86,12 +73,19 @@ class Main extends luxe.Game {
 
     override function update( delta:Float ) {
 
+            //This is using the "immediate query" api
+            //there is also oninputdown like onkeydown and onmousedown
+
         if(Luxe.input.inputdown('left')) {
+
             player.pos.x -= move_speed * delta;
             player.flipx = true;
+
         } else if(Luxe.input.inputdown('right')) {
+
             player.pos.x += move_speed * delta;
             player.flipx = false;
+
         }
 
     } //update

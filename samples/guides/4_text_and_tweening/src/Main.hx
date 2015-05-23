@@ -43,9 +43,21 @@ class Main extends luxe.Game {
             textures : [{ id : 'assets/apartment.png' }],
             fonts : [{ id : 'assets/montez/montez.fnt' }],
             sounds : [
-                { id : 'assets/sound/244053__lennyboy__thunder.ogg', name : 'thunder', is_stream : false },
-                { id : 'assets/sound/244028__lennyboy__rain001.ogg', name : 'rain', is_stream : false },
-                { id : 'assets/sound/189175__triangelx__emotional-piano.ogg', name : 'music', is_stream : false }
+                {
+                    id : 'assets/sound/244053__lennyboy__thunder.ogg',
+                    name : 'thunder',
+                    is_stream : false
+                },
+                {
+                    id : 'assets/sound/244028__lennyboy__rain001.ogg',
+                    name : 'rain',
+                    is_stream : false
+                },
+                {
+                    id : 'assets/sound/189175__triangelx__emotional-piano.ogg',
+                    name : 'music',
+                    is_stream : false
+                }
             ]
         });
 

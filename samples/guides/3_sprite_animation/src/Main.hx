@@ -27,7 +27,7 @@ class Main extends luxe.Game {
 
             //A parcel is a group of resources,
             //which allows us to conveniently load
-            //them all at and keep track. We add
+            //them all at once and keep track. We add
             //the list of resources we want to the
             //parcel when creating it, and then
             //tell it to load.
