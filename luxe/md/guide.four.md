@@ -12,16 +12,16 @@
 
 ## Text and tweening (and more!)
 
-_This tutorial follows on the previous guide. Read that one first._
+_This tutorial follows on the previous guides. Read those first._
 
 Below is a list of what we will cover, and a demo:
 
 - tweening
-- text
+- text and fonts
 - timers and schedules
 - depth control
 - global events
-- audio
+- playing audio
 
 ###Live demo
 
@@ -32,6 +32,10 @@ Press R to reset the demo at any time
 <div data-content="samples/4_text_and_tweening/index.html" class="sample"> <p>Click to run example</p> </div>
 
 [code listing](#code)
+
+`:todo:`
+
+_Note that this will be explained properly in this guide in the near future._
 
 ---
 
@@ -84,25 +88,42 @@ class Main extends luxe.Game {
         //a list of messages to show
     var messages : Array<Message>;
 
+
     override function ready() {
 
-           //fetch a list of assets to load from the json file
-        var json_asset = Luxe.loadJSON('assets/parcel.json');
+            //as with guide 3, we just create a list of assets to load
 
-            //then create a parcel to load it for us
-        var preload = new Parcel();
-            preload.from_json(json_asset.json);
+        var parcel = new Parcel({
+            textures : [{ id : 'assets/apartment.png' }],
+            fonts : [{ id : 'assets/montez/montez.fnt' }],
+            sounds : [
+                {
+                    id : 'assets/sound/244053__lennyboy__thunder.ogg',
+                    name : 'thunder',
+                    is_stream : false
+                },
+                {
+                    id : 'assets/sound/244028__lennyboy__rain001.ogg',
+                    name : 'rain',
+                    is_stream : false
+                },
+                {
+                    id : 'assets/sound/189175__triangelx__emotional-piano.ogg',
+                    name : 'music',
+                    is_stream : false
+                }
+            ]
+        });
 
-            //but, we also want a progress bar for the parcel,
-            //this is a default one, you can do your own
+            //and a simpe progress bar
         new ParcelProgress({
-            parcel      : preload,
+            parcel      : parcel,
             background  : new Color(1,1,1,0.85),
             oncomplete  : assets_loaded
         });
 
             //go!
-        preload.load();
+        parcel.load();
 
     } //ready
 
@@ -175,7 +196,7 @@ class Main extends luxe.Game {
     function create_text() {
 
             //since the parcel has created the font, its in the resource manager
-        montez_font = Luxe.resources.find_font('montez');
+        montez_font = Luxe.resources.font('assets/montez/montez.fnt');
 
             //scale to fit the screen nicely, but max at the font default size of 48,
             //and the 12 is a ratio I made up based on the default window size
@@ -184,7 +205,7 @@ class Main extends luxe.Game {
             //again, depth 3 > 2, so its above everything
         text = new Text({
             pos : Luxe.screen.mid,
-            size : text_size, //pt
+            point_size : text_size,
             depth : 3,
             align : TextAlign.center,
             font : montez_font,
@@ -204,11 +225,11 @@ class Main extends luxe.Game {
 
     function create_apartment() {
 
-            //load the image up
-        var image = Luxe.loadTexture('assets/apartment.png');
+            //fetch the previously loaded texture
+        var image = Luxe.resources.texture('assets/apartment.png');
 
-            //this makes sure the pixels stay crisp when scaling
-        image.filter = FilterType.nearest;
+            //this makes sure the pixels stay crisp when scaling, like in guide 3
+        image.filter_min = image.filter_mag = FilterType.nearest;
 
             //this calculates how wide the image should be on screen,
             //if we make the image as high as the view itself
@@ -324,7 +345,6 @@ class Main extends luxe.Game {
         }
 
     } //onkeyup
-
 
 } //Main
 

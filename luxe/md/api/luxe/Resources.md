@@ -1,0 +1,199 @@
+
+[![Logo](../../images/logo.png)](../../api/index.html)
+
+<hr/>
+<a href="#" id="search_bar" onclick="return;"><div> search API <em>(or start typing anywhere)</em> </div></a>
+<hr/>
+
+<script src="../../js/omnibar.js"> </script>
+<link rel="stylesheet" type="text/css" href="../../css/omnibar.css" media="all">
+
+<div id="omnibar"> <a href="#" onclick="return" id="omnibar_close"></a> <input id="omnibar_text" type="text" placeholder="search types..."></input></div>
+<script  id="typelist" data-relpath="../../" data-types="Luxe,luxe.AppConfig,luxe.Audio,luxe.BitmapFontInfo,luxe.BytesInfo,luxe.Camera,luxe.Circle,luxe.Color,luxe.ColorHSL,luxe.ColorHSV,luxe.Component,luxe.Core,luxe.Cursor,luxe.Debug,luxe.DebugError,luxe.Draw,luxe.EmitHandler,luxe.Emitter,luxe.Entity,luxe.Events,luxe.Game,luxe.GamepadEvent,luxe.GamepadEventType,luxe.HandlerList,luxe.ID,luxe.IO,luxe.Input,luxe.InputEvent,luxe.InputType,luxe.InteractState,luxe.ItemInfo,luxe.JSONInfo,luxe.Key,luxe.KeyEvent,luxe.Log,luxe.Matrix,luxe.Mesh,luxe.ModState,luxe.MouseButton,luxe.MouseEvent,luxe.NineSlice,luxe.Objects,luxe.Parcel,luxe.ParcelChange,luxe.ParcelEvent,luxe.ParcelList,luxe.ParcelProgress,luxe.ParcelState,luxe.Particle,luxe.ParticleEmitter,luxe.ParticleEmitterInitData,luxe.ParticleSystem,luxe.Physics,luxe.PhysicsEngine,luxe.ProjectionType,luxe.Quaternion,luxe.Rectangle,luxe.ResourceEvent,luxe.ResourceState,luxe.ResourceStats,luxe.ResourceType,luxe.Resources,luxe.Scan,luxe.Scene,luxe.Screen,luxe.ShaderInfo,luxe.SizeMode,luxe.Sound,luxe.SoundInfo,luxe.Sprite,luxe.State,luxe.States,luxe.Tag,luxe.Text,luxe.TextAlign,luxe.TextEvent,luxe.TextEventType,luxe.TextInfo,luxe.TextureInfo,luxe.Timer,luxe.TouchEvent,luxe.Transform,luxe.Vec,luxe.Vector,luxe.Visual,luxe.WindowEvent,luxe.WindowEventData,luxe.WindowEventType,luxe._Emitter.EmitNode,luxe._Events.EventConnection,luxe._Events.EventObject,luxe._Input.MouseButton_Impl_,luxe._Log.LogError,luxe._NineSlice.Slice,luxe._Parcel.ParcelEvent_Impl_,luxe._Parcel.ParcelState_Impl_,luxe._Resources.ResourceEvent_Impl_,luxe._Resources.ResourceState_Impl_,luxe._Resources.ResourceType_Impl_,luxe.collision.Collision,luxe.collision.ShapeDrawer,luxe.collision.ShapeDrawerLuxe,luxe.collision.data.RayCollision,luxe.collision.data.RayCollisionHelper,luxe.collision.data.RayIntersection,luxe.collision.data.ShapeCollision,luxe.collision.sat.Common,luxe.collision.sat.SAT2D,luxe.collision.shapes.Circle,luxe.collision.shapes.Polygon,luxe.collision.shapes.Ray,luxe.collision.shapes.Shape,luxe.components.Components,luxe.components.cameras.FlyCamera,luxe.components.render.MeshComponent,luxe.components.sprite.SpriteAnimation,luxe.components.sprite.SpriteAnimationData,luxe.components.sprite.SpriteAnimationEventData,luxe.components.sprite.SpriteAnimationFrame,luxe.components.sprite.SpriteAnimationFrameEvent,luxe.components.sprite.SpriteAnimationFrameSource,luxe.components.sprite.SpriteAnimationType,luxe.debug.BatcherDebugView,luxe.debug.DebugInspectorOptions,luxe.debug.DebugView,luxe.debug.Inspector,luxe.debug.ProfilerDebugView,luxe.debug.RenderStats,luxe.debug.SceneDebugView,luxe.debug.StatsDebugView,luxe.debug.TraceDebugView,luxe.debug._ProfilerDebugView.ProfilerBar,luxe.debug._ProfilerDebugView.ProfilerValue,luxe.importers.bitmapfont.BitmapFontData,luxe.importers.bitmapfont.BitmapFontParser,luxe.importers.bitmapfont.Character,luxe.importers.obj.Data,luxe.importers.obj.Normal,luxe.importers.obj.Reader,luxe.importers.obj.UV,luxe.importers.obj.Vector,luxe.importers.obj.Vertex,luxe.importers.texturepacker.TexturePackerData,luxe.importers.texturepacker.TexturePackerFrame,luxe.importers.texturepacker.TexturePackerJSON,luxe.importers.texturepacker.TexturePackerJSONType,luxe.importers.texturepacker.TexturePackerMeta,luxe.importers.texturepacker.TexturePackerRect,luxe.importers.texturepacker.TexturePackerSize,luxe.importers.texturepacker.TexturePackerSpriteAnimation,luxe.importers.tiled.TiledLayer,luxe.importers.tiled.TiledMap,luxe.importers.tiled.TiledMapData,luxe.importers.tiled.TiledMapOptions,luxe.importers.tiled.TiledObject,luxe.importers.tiled.TiledObjectGroup,luxe.importers.tiled.TiledObjectType,luxe.importers.tiled.TiledPolyObject,luxe.importers.tiled.TiledPropertyTile,luxe.importers.tiled.TiledTile,luxe.importers.tiled.TiledTileset,luxe.importers.tiled.TiledUtil,luxe.macros.BuildVersion,luxe.macros.ComponentRules,luxe.macros.EntityRules,luxe.options.BatcherOptions,luxe.options.BitmapFontOptions,luxe.options.BytesResourceOptions,luxe.options.CameraOptions,luxe.options.CircleGeometryOptions,luxe.options.ColorOptions,luxe.options.ComponentOptions,luxe.options.DrawArcOptions,luxe.options.DrawBoxOptions,luxe.options.DrawCircleOptions,luxe.options.DrawLineOptions,luxe.options.DrawNgonOptions,luxe.options.DrawPlaneOptions,luxe.options.DrawRectangleOptions,luxe.options.DrawRingOptions,luxe.options.DrawTextureOptions,luxe.options.EntityOptions,luxe.options.GeometryOptions,luxe.options.JSONResourceOptions,luxe.options.LineGeometryOptions,luxe.options.LoadFontOptions,luxe.options.LoadShaderOptions,luxe.options.LoadTextureOptions,luxe.options.LuxeCameraOptions,luxe.options.MeshOptions,luxe.options.NineSliceOptions,luxe.options.ParcelOptions,luxe.options.ParcelProgressOptions,luxe.options.ParticleEmitterOptions,luxe.options.ParticleOptions,luxe.options.PlaneGeometryOptions,luxe.options.QuadGeometryOptions,luxe.options.RectangleGeometryOptions,luxe.options.RenderProperties,luxe.options.RenderTextureOptions,luxe.options.ResourceOptions,luxe.options.ShaderOptions,luxe.options.SpriteOptions,luxe.options.StateOptions,luxe.options.StatesOptions,luxe.options.TextOptions,luxe.options.TextResourceOptions,luxe.options.TextureOptions,luxe.options.TileLayerOptions,luxe.options.TileOptions,luxe.options.TilemapOptions,luxe.options.TilemapVisualOptions,luxe.options.TilesetOptions,luxe.options.TransformProperties,luxe.options.VisualOptions,luxe.options._DrawOptions.DrawOptions,luxe.resource.BytesResource,luxe.resource.JSONResource,luxe.resource.Resource,luxe.resource.TextResource,luxe.structural.BST,luxe.structural.BSTNode,luxe.structural.BSTTraverseMethod,luxe.structural.Bag,luxe.structural.BalancedBST,luxe.structural.BalancedBSTNode,luxe.structural.BalancedBSTTraverseMethod,luxe.structural.Heap,luxe.structural.OrderedMap,luxe.structural.OrderedMapIterator,luxe.structural.Pool,luxe.structural.Stack,luxe.structural.StackNode,luxe.structural._Bag.BagNode,luxe.structural._BalancedBST.NodeColor,luxe.tilemaps.Isometric,luxe.tilemaps.IsometricVisual,luxe.tilemaps.Ortho,luxe.tilemaps.OrthoVisual,luxe.tilemaps.Tile,luxe.tilemaps.TileArray,luxe.tilemaps.TileLayer,luxe.tilemaps.TileOffset,luxe.tilemaps.Tilemap,luxe.tilemaps.TilemapOrientation,luxe.tilemaps.TilemapVisual,luxe.tilemaps.TilemapVisualLayerGeometry,luxe.tilemaps.Tileset,luxe.tween.Actuate,luxe.tween.BezierPath,luxe.tween.ComponentPath,luxe.tween.IComponentPath,luxe.tween.LinearPath,luxe.tween.MotionPath,luxe.tween.ObjectHash,luxe.tween.RotationPath,luxe.tween._Actuate.TweenTimer,luxe.tween.actuators.GenericActuator,luxe.tween.actuators.IGenericActuator,luxe.tween.actuators.MethodActuator,luxe.tween.actuators.MotionPathActuator,luxe.tween.actuators.PropertyDetails,luxe.tween.actuators.PropertyPathDetails,luxe.tween.actuators.SimpleActuator,luxe.tween.easing.Back,luxe.tween.easing.BackEaseIn,luxe.tween.easing.BackEaseInOut,luxe.tween.easing.BackEaseOut,luxe.tween.easing.Bounce,luxe.tween.easing.BounceEaseIn,luxe.tween.easing.BounceEaseInOut,luxe.tween.easing.BounceEaseOut,luxe.tween.easing.Cubic,luxe.tween.easing.CubicEaseIn,luxe.tween.easing.CubicEaseInOut,luxe.tween.easing.CubicEaseOut,luxe.tween.easing.Elastic,luxe.tween.easing.ElasticEaseIn,luxe.tween.easing.ElasticEaseInOut,luxe.tween.easing.ElasticEaseOut,luxe.tween.easing.Expo,luxe.tween.easing.ExpoEaseIn,luxe.tween.easing.ExpoEaseInOut,luxe.tween.easing.ExpoEaseOut,luxe.tween.easing.IEasing,luxe.tween.easing.Linear,luxe.tween.easing.LinearEaseNone,luxe.tween.easing.Quad,luxe.tween.easing.QuadEaseIn,luxe.tween.easing.QuadEaseInOut,luxe.tween.easing.QuadEaseOut,luxe.tween.easing.Quart,luxe.tween.easing.QuartEaseIn,luxe.tween.easing.QuartEaseInOut,luxe.tween.easing.QuartEaseOut,luxe.tween.easing.Quint,luxe.tween.easing.QuintEaseIn,luxe.tween.easing.QuintEaseInOut,luxe.tween.easing.QuintEaseOut,luxe.tween.easing.Sine,luxe.tween.easing.SineEaseIn,luxe.tween.easing.SineEaseInOut,luxe.tween.easing.SineEaseOut,luxe.utils.GeometryUtils,luxe.utils.Maths,luxe.utils.Random,luxe.utils.Utils,luxe.utils.unifill.CodePoint,luxe.utils.unifill.CodePointIter,luxe.utils.unifill.Exception,luxe.utils.unifill.InternalEncoding,luxe.utils.unifill.InternalEncodingBackwardIter,luxe.utils.unifill.InternalEncodingIter,luxe.utils.unifill.Unicode,luxe.utils.unifill.Unifill,luxe.utils.unifill.Utf,luxe.utils.unifill.Utf16,luxe.utils.unifill.Utf32,luxe.utils.unifill.Utf8,luxe.utils.unifill.UtfIter,luxe.utils.unifill.UtfTools,luxe.utils.unifill._CodePoint.CodePoint_Impl_,luxe.utils.unifill._InternalEncoding.UtfX,luxe.utils.unifill._Utf16.StringU16,luxe.utils.unifill._Utf16.StringU16Buffer,luxe.utils.unifill._Utf16.StringU16Buffer_Impl_,luxe.utils.unifill._Utf16.StringU16_Impl_,luxe.utils.unifill._Utf16.Utf16Impl,luxe.utils.unifill._Utf8.StringU8,luxe.utils.unifill._Utf8.StringU8_Impl_,luxe.utils.unifill._Utf8.Utf8Impl,phoenix.BatchGroup,phoenix.BatchState,phoenix.Batcher,phoenix.BatcherKey,phoenix.BitmapFont,phoenix.BlendEquation,phoenix.BlendMode,phoenix.Camera,phoenix.Circle,phoenix.ClampType,phoenix.Color,phoenix.ColorHSL,phoenix.ColorHSV,phoenix.ComponentOrder,phoenix.DualQuaternion,phoenix.FOVType,phoenix.FilterType,phoenix.Matrix,phoenix.MatrixTransform,phoenix.PrimitiveType,phoenix.ProjectionType,phoenix.Quaternion,phoenix.Ray,phoenix.Rectangle,phoenix.RenderPass,phoenix.RenderPath,phoenix.RenderState,phoenix.RenderTexture,phoenix.Renderer,phoenix.RendererStats,phoenix.Shader,phoenix.Spatial,phoenix.TextAlign,phoenix.Texture,phoenix.TextureDataType,phoenix.TextureFormat,phoenix.TextureID,phoenix.TextureSubmitTarget,phoenix.TextureType,phoenix.Transform,phoenix.Uniform,phoenix.UniformType,phoenix.Vec,phoenix.Vector,phoenix._Batcher.BlendEquation_Impl_,phoenix._Batcher.BlendMode_Impl_,phoenix._Batcher.PrimitiveType_Impl_,phoenix._BitmapFont.TextAlign_Impl_,phoenix._Renderer.DefaultShader,phoenix._Renderer.DefaultShaders,phoenix._Shader.Location,phoenix._Shader.UniformType_Impl_,phoenix._Texture.ClampSlot,phoenix._Texture.ClampSlot_Impl_,phoenix._Texture.ClampType_Impl_,phoenix._Texture.FilterSlot,phoenix._Texture.FilterSlot_Impl_,phoenix._Texture.FilterType_Impl_,phoenix._Texture.TextureSubmitTarget_Impl_,phoenix._Texture.TextureType_Impl_,phoenix._Vector.ComponentOrder_Impl_,phoenix._Vector.Vec_Impl_,phoenix.geometry.ArcGeometry,phoenix.geometry.CircleGeometry,phoenix.geometry.CompositeGeometry,phoenix.geometry.EvTextGeometry,phoenix.geometry.Geometry,phoenix.geometry.GeometryKey,phoenix.geometry.GeometryState,phoenix.geometry.LineGeometry,phoenix.geometry.PackedQuad,phoenix.geometry.PackedQuadOptions,phoenix.geometry.PlaneGeometry,phoenix.geometry.QuadGeometry,phoenix.geometry.QuadPackGeometry,phoenix.geometry.RectangleGeometry,phoenix.geometry.RingGeometry,phoenix.geometry.TextGeometry,phoenix.geometry.TextGeometryOptions,phoenix.geometry.TextureCoord,phoenix.geometry.TextureCoordSet,phoenix.geometry.Vertex,phoenix.geometry._TextGeometry.EvTextGeometry_Impl_,phoenix.utils.Rendering"></script>
+
+
+<h1>Resources</h1>
+<small>`luxe.Resources`</small>
+
+
+
+<hr/>
+
+`class`<br/><span class="meta">
+meta: @:directlyUsed</span>
+
+<hr/>
+
+
+&nbsp;
+&nbsp;
+
+
+
+
+<h3>Members</h3> <hr/><span class="member apipage">
+                <a name="cache"><a class="lift" href="#cache">cache</a></a><div class="clear"></div>
+                <code class="signature apipage">cache : [Map](http://api.haxe.org/Map.html)&lt;[String](http://api.haxe.org/String.html), [luxe.resource.Resource](../../api/luxe/resource/Resource.html)&gt;</code><br/></span>
+            <span class="small_desc_flat">The resource cache, stored by `Resource` id.
+            All resources in a `Parcel` contained by this system, will be here.</span><br/><span class="member apipage">
+                <a name="parcels"><a class="lift" href="#parcels">parcels</a></a><div class="clear"></div>
+                <code class="signature apipage">parcels : [Array](http://api.haxe.org/Array.html)&lt;[luxe.Parcel](../../api/luxe/Parcel.html)&gt;</code><br/></span>
+            <span class="small_desc_flat">The Parcel set that this system contains.</span><br/><span class="member apipage">
+                <a name="stats"><a class="lift" href="#stats">stats</a></a><div class="clear"></div>
+                <code class="signature apipage">stats : [luxe.ResourceStats](../../api/luxe/ResourceStats.html)</code><br/></span>
+            <span class="small_desc_flat">General statistics about this system.</span><br/>
+
+
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="add"><a class="lift" href="#add">add</a></a><div class="clear"></div>
+            <code class="signature apipage">add(resource:[luxe.resource.Resource](../../api/luxe/resource/Resource.html)<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Add a resource to be tracked by this system.</span>
+
+
+</span>
+<span class="method apipage">
+            <a name="bytes"><a class="lift" href="#bytes">bytes</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <code class="signature apipage">bytes(\_id:[String](http://api.haxe.org/String.html)<span></span>) : [luxe.resource.BytesResource](../../api/luxe/resource/BytesResource.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><div class="clear"></div>
+            <code class="signature apipage">destroy(\_id:[String](http://api.haxe.org/String.html)<span></span>, \_force:[Bool](http://api.haxe.org/Bool.html)<span></span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat">Destroy a resource by id. Returns false if the resource wasn't found.</span>
+
+
+</span>
+<span class="method apipage">
+            <a name="emit"><a class="lift" href="#emit">emit</a></a><div class="clear"></div>
+            <code class="signature apipage">emit&lt;T&gt;(ev:[luxe.ResourceEvent](../../api/luxe/ResourceEvent.html)<span></span>, data:[emit.T](#)<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="font"><a class="lift" href="#font">font</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <code class="signature apipage">font(\_id:[String](http://api.haxe.org/String.html)<span></span>) : [phoenix.BitmapFont](../../api/phoenix/BitmapFont.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="get"><a class="lift" href="#get">get</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <code class="signature apipage">get(\_id:[String](http://api.haxe.org/String.html)<span></span>) : [luxe.resource.Resource](../../api/luxe/resource/Resource.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="has"><a class="lift" href="#has">has</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <code class="signature apipage">has(\_id:[String](http://api.haxe.org/String.html)<span></span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="invalidate"><a class="lift" href="#invalidate">invalidate</a></a><div class="clear"></div>
+            <code class="signature apipage">invalidate(\_id:[String](http://api.haxe.org/String.html)<span></span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat">Invalidate a resource by id. Returns false if the resource wasn't found.</span>
+
+
+</span>
+<span class="method apipage">
+            <a name="json"><a class="lift" href="#json">json</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <code class="signature apipage">json(\_id:[String](http://api.haxe.org/String.html)<span></span>) : [luxe.resource.JSONResource](../../api/luxe/resource/JSONResource.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="load_bytes"><a class="lift" href="#load_bytes">load\_bytes</a></a><div class="clear"></div>
+            <code class="signature apipage">load\_bytes(\_id:[String](http://api.haxe.org/String.html)<span></span>) : [snow.api.Promise](#)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="load_font"><a class="lift" href="#load_font">load\_font</a></a><div class="clear"></div>
+            <code class="signature apipage">load\_font(\_id:[String](http://api.haxe.org/String.html)<span></span>, \_options:[luxe.options.LoadFontOptions](../../api/luxe/options/LoadFontOptions.html)<span></span>) : [snow.api.Promise](#)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="load_json"><a class="lift" href="#load_json">load\_json</a></a><div class="clear"></div>
+            <code class="signature apipage">load\_json(\_id:[String](http://api.haxe.org/String.html)<span></span>) : [snow.api.Promise](#)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="load_shader"><a class="lift" href="#load_shader">load\_shader</a></a><div class="clear"></div>
+            <code class="signature apipage">load\_shader(\_id:[String](http://api.haxe.org/String.html)<span></span>, \_options:[luxe.options.LoadShaderOptions](../../api/luxe/options/LoadShaderOptions.html)<span></span>) : [snow.api.Promise](#)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="load_text"><a class="lift" href="#load_text">load\_text</a></a><div class="clear"></div>
+            <code class="signature apipage">load\_text(\_id:[String](http://api.haxe.org/String.html)<span></span>) : [snow.api.Promise](#)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="load_texture"><a class="lift" href="#load_texture">load\_texture</a></a><div class="clear"></div>
+            <code class="signature apipage">load\_texture(\_id:[String](http://api.haxe.org/String.html)<span></span>, \_options:[luxe.options.LoadTextureOptions](../../api/luxe/options/LoadTextureOptions.html)<span></span>) : [snow.api.Promise](#)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
+            <code class="signature apipage">new() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="off"><a class="lift" href="#off">off</a></a><div class="clear"></div>
+            <code class="signature apipage">off&lt;T&gt;(ev:[luxe.ResourceEvent](../../api/luxe/ResourceEvent.html)<span></span>, handler:[off.T](#)&nbsp;-&gt; [Void](http://api.haxe.org/Void.html)<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="on"><a class="lift" href="#on">on</a></a><div class="clear"></div>
+            <code class="signature apipage">on&lt;T&gt;(ev:[luxe.ResourceEvent](../../api/luxe/ResourceEvent.html)<span></span>, handler:[on.T](#)&nbsp;-&gt; [Void](http://api.haxe.org/Void.html)<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="remove"><a class="lift" href="#remove">remove</a></a><div class="clear"></div>
+            <code class="signature apipage">remove(resource:[luxe.resource.Resource](../../api/luxe/resource/Resource.html)<span></span>, \_pos:[haxe.PosInfos](http://api.haxe.org/haxe/PosInfos.html)<span></span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat">Remove a resource being tracked by this system.</span>
+
+
+</span>
+<span class="method apipage">
+            <a name="shader"><a class="lift" href="#shader">shader</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <code class="signature apipage">shader(\_id:[String](http://api.haxe.org/String.html)<span></span>) : [phoenix.Shader](../../api/phoenix/Shader.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="text"><a class="lift" href="#text">text</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <code class="signature apipage">text(\_id:[String](http://api.haxe.org/String.html)<span></span>) : [luxe.resource.TextResource](../../api/luxe/resource/TextResource.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="texture"><a class="lift" href="#texture">texture</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <code class="signature apipage">texture(\_id:[String](http://api.haxe.org/String.html)<span></span>) : [phoenix.Texture](../../api/phoenix/Texture.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="track"><a class="lift" href="#track">track</a></a><div class="clear"></div>
+            <code class="signature apipage">track(\_cache:[luxe.Parcel](../../api/luxe/Parcel.html)<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
+            <a name="untrack"><a class="lift" href="#untrack">untrack</a></a><div class="clear"></div>
+            <code class="signature apipage">untrack(\_cache:[luxe.Parcel](../../api/luxe/Parcel.html)<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+
+
+
+<hr/>
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;

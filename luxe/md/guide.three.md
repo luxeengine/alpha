@@ -18,7 +18,7 @@ Especially, this tutorial uses the code from the previous tutorial as a baseline
 
 Below is a list of what we will cover, and a demo:
 
-- preloading
+- preloading with a progress bar
 - sprite animation
 
 ###Live demo
@@ -35,41 +35,45 @@ Press D/right to move right
 ---
 
 
-### Loading multiple assets
+### Preloading with a progress bar
 
-When you are working in games, there are commonly sections that have specific assets, and sections that share assets. In luxe, this concept is represented by a **Parcel**. This parcel is a list of assets that can be loaded in a group, and tell you when they are done. They can also be unloaded from the parcel, and loaded directly from a json file, making resource management easy to maintain across menus, UI and the game. 
+When you are working in games, there are often sections that have specific assets, and sections that share assets. In luxe, this concept is represented by a **Parcel**. This parcel is a list of assets that are loaded in a group, and removed in a group.
 
-We will use a Parcel here to avoid worrying about "is this texture ready yet?". If the parcel has completed, we can assume the asset has loaded (unless there is an error state, which is not covered in this guide).
+To show a progress bar while our Parcel is loading, we import _luxe.Parcel_ and _luxe.ParcelProgress_, the default progress bar. You can extend from this class, and customize the progress bar however you want. You can also listen for the events from the parcel instead.
 
-We import _luxe.Parcel_ and _luxe.ParcelProgress_, one is the asset manager, and one is a preloader progress bar graphic that we can use to quickly show a loading bar.
-
-Inside of the ready function, we create them both, like this :
+Inside of the ready function, we create them both like this :
 
 &nbsp;
 
 ```
     override function ready() {
 
-            //fetch a list of assets to load from the json file,
-            //but wait for it to finish so we can use the data!
-        Luxe.loadJSON('assets/parcel.json', function(json_asset) {
+            //A parcel is a group of resources,
+            //which allows us to conveniently load
+            //them all at once and keep track. We add
+            //the list of resources we want to the
+            //parcel when creating it, and then
+            //tell it to load.
 
-                //then create a parcel to load it for us
-            var preload = new Parcel();
-                preload.from_json(json_asset.json);
-
-                //but, we also want a progress bar for the parcel,
-                //this is a default one, you can do your own
-            new ParcelProgress({
-                parcel      : preload,
-                background  : new Color(1,1,1,0.85),
-                oncomplete  : assets_loaded
-            });
-
-                //go!
-            preload.load();
-
+        var parcel = new Parcel({
+            jsons:[ { id:'assets/anim.json' } ],
+            textures : [
+                { id: 'assets/apartment.png' },
+                { id: 'assets/player.png' }
+            ],
         });
+
+            //but, before we load it, we also want to
+            //display a simple progress bar for the parcel,
+            //this is a default one, you can create your own
+        new ParcelProgress({
+            parcel      : parcel,
+            background  : new Color(1,1,1,0.85),
+            oncomplete  : assets_loaded
+        });
+
+            //go!
+        parcel.load();
 
     } //ready
 ```
@@ -77,7 +81,9 @@ Inside of the ready function, we create them both, like this :
 
 ###On load complete
 
-The function handed to the oncomplete parameter was called _assets_loaded_, and like in the last guide, we ignore the argument it sends us using the \_ .
+The function handed to the oncomplete parameter - we named it _assets_loaded_.
+
+You'll notice that the function has a \_ for an argument. You can use this when you are using a function callback (like we are, asking the progress bar to call back to us when it's done) and you don't need the values it's giving you. It's a bit like an unnamed argument, we don't need it so we ignore it.
 
 All we do from here, is create the background imagery, create the player and it's animations, and connect the input.
 
@@ -96,26 +102,38 @@ All we do from here, is create the background imagery, create the player and it'
 
 ### Create the apartment and player
 
-As before, we create the image using _loadTexture_, but this time we don't have to worry about the onload timing as the preloader took care of that. We calculate a good size for the background, and create a sprite to display the image.
+As before, we now fetch the already loaded image using `Luxe.resources.texture`. We calculate a good size for the background, and create a sprite to display the image - as before.
 
 Much of the code is similar and will seem familiar, so the code can be viewed in the full code sample, at the end of this guide.
 
 ### Sprite animation basics
 
-Animation for sprites in luxe are created as a Component. This is a common design pattern that has been around for a long time, and allows small, modular pieces of code to affect an “Entity”. This design pattern is commonly also referred to as composition, as you compose complex behavior from a simple item, by given it a bunch of components. There is a guide later on specific to components that will go in detail about creating and composing your own, but for now we simply want to use an existing one.
+Animation for sprites in luxe are created as a Component, and attached to a sprite.
 
-In luxe, a `Sprite` is an `Entity`, so we can attach a `Component` type to it using `add`.
+**A Component?!**   
+This is a common design pattern that has been around for a long time. It allows small, modular pieces of code to affect any “Entity”. This design pattern is commonly also referred to as composition, as you compose complex behavior from a simple base item, by given it a bunch of components.
 
-To create a _SpriteAnimation_ component, we import it, create it, and attach it to the player.   
-We load some JSON text to define what animations we want, and we use the _animation_ property of the component to change what animation we are seeing.
+There is a guide in one of the next tutorials specific to components - so for now we simply want to use an existing one, the `SpriteAnimation` component.
 
-This is what the animation JSON and image file look :
+You will find that many engines have some variant of the `Component` type, but there are differences in how they behave, how they function and more. Don't assume because the name of the pattern is the same, that the functionality or behavior is the same.
+
+**A Sprite is an Entity**   
+In luxe, a `Sprite` is an `Entity`, so we can attach a `Component` type to it using `add`. A Sprite is a container for components.
+
+To create a _SpriteAnimation_, we import it and create an instance as usual, and attach it to the player once we have done this.   
+
+**Animation data**
+Previously we loaded some JSON text using the parcel. Inside this JSON file, was a list of animations. These are stored in the animation component, and later we can use the _animation_ property to change what animation we are seeing.
+
+This is how the animation image looks :
 
 image file:
 
 ![](./samples/3_sprite_animation/assets/player.png)
 
-animation data:
+This is how the animation data looks, in the json file:
+
+
 ```json
 {
     "idle" : {
@@ -133,29 +151,30 @@ animation data:
 }
 ```
 
-You can see that the json is quite expressive, allowing timing to be expressed through frame numbers. The speed parameter is frames per second. _Note that frame numbers in images always start at 1. There is no frame 0 in an animation._ 
+You can see that the json is quite expressive, allowing timing to be expressed through frame numbers. The speed parameter is frames per second. _Note that frame numbers in images always start at 1. There is no frame 0 in an animation._
 
 
-### Creating the animation and applying it
+### Creating the animation
 
-The animation component has a function to create its animation information from the JSON file, luxe can load the JSON file for us (no need to worry about preloading it, as text based assets like JSON are loaded synchonously by default), and we can attach the component to the sprite directly - storing the instance for later.
+The animation component has a function to create its animation information from the JSON data we have loaded - and we also store a reference to the animation component because we want to use it to change the animation when moving.
+
+Here is how we create the animation, add it to the sprite, and set the idle animation as active. You'll notice instead of `Luxe.resources.texture` we use `Luxe.resources.json`.
 
 &nbsp;
 
 ```
-
     function create_player_animation() {
 
-            //create the animation from a simple json string,
+            //create the animation from the previously loaded json,
             //the frameset structure allows us to specify things like
             //"animate frames 1-3 and then hold for 2 frames" etc.
-        var anim_object = Luxe.loadJSON('assets/anim.json');
+        var anim_object = Luxe.resources.json('assets/anim.json');
 
             //create the animation component and add it to the sprite
         anim = player.add( new SpriteAnimation({ name:'anim' }) );
 
             //create the animations from the json
-        anim.add_from_json_object( anim_object.json );
+        anim.add_from_json_object( anim_object.asset.json );
 
             //set the idle animation to active
         anim.animation = 'idle';
@@ -167,7 +186,7 @@ The animation component has a function to create its animation information from 
 
 ###Changing animations
 
-As much of the code is similar for movement, we will look at changing the animations only. By setting the _animation_ property of the component, you can change which animation is playing.
+As much of the code is similar for movement, we will look at changing the animations only. By setting the _animation_ property of the component, you can change which animation is playing - like we did for the `idle` animation when creating it.
 
 This is a snippet from the update function below :
 
@@ -227,25 +246,32 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-            //fetch a list of assets to load from the json file
-        Luxe.loadJSON('assets/parcel.json', function(json_asset) {
+            //A parcel is a group of resources,
+            //which allows us to conveniently load
+            //them all at once and keep track. We add
+            //the list of resources we want to the
+            //parcel when creating it, and then
+            //tell it to load.
 
-                //then create a parcel to load it for us
-            var preload = new Parcel();
-                preload.from_json(json_asset.json);
-
-                //but, we also want a progress bar for the parcel,
-                //this is a default one, you can do your own
-            new ParcelProgress({
-                parcel      : preload,
-                background  : new Color(1,1,1,0.85),
-                oncomplete  : assets_loaded
-            });
-
-                //go!
-            preload.load();
-
+        var parcel = new Parcel({
+            jsons:[ { id:'assets/anim.json' } ],
+            textures : [
+                { id: 'assets/apartment.png' },
+                { id: 'assets/player.png' }
+            ],
         });
+
+            //but, before we load it, we also want to
+            //display a simple progress bar for the parcel,
+            //this is a default one, you can create your own
+        new ParcelProgress({
+            parcel      : parcel,
+            background  : new Color(1,1,1,0.85),
+            oncomplete  : assets_loaded
+        });
+
+            //go!
+        parcel.load();
 
     } //ready
 
@@ -261,11 +287,12 @@ class Main extends luxe.Game {
 
     function create_apartment() {
 
-            //load the image up
-        var apartment = Luxe.loadTexture('assets/apartment.png');
+            //fetch the previously loaded image
+        var apartment = Luxe.resources.texture('assets/apartment.png');
 
-            //this makes sure the pixels stay crisp when scaling
-        apartment.filter = FilterType.nearest;
+            //this makes sure the pixels stay crisp when scaling,
+            //we set both at once, since they both are needed.
+        apartment.filter_min = apartment.filter_mag = FilterType.nearest;
 
             //this calculates how wide the image should be on screen,
             //if we make the image as high as the view itself
@@ -284,11 +311,11 @@ class Main extends luxe.Game {
 
     function create_player() {
 
-            //load the image
-        image = Luxe.loadTexture('assets/player.png');
+            //fetch the player image
+        image = Luxe.resources.texture('assets/player.png');
 
-            //keep pixels crisp
-        image.filter = FilterType.nearest;
+            //keep pixels crisp, same as create_apartment
+        image.filter_min = image.filter_mag = FilterType.nearest;
 
             //work out the correct size based on a ratio with the screen size
         var frame_width = 32;
@@ -315,16 +342,16 @@ class Main extends luxe.Game {
 
     function create_player_animation() {
 
-            //create the animation from a simple json string,
+            //create the animation from the previously loaded json,
             //the frameset structure allows us to specify things like
             //"animate frames 1-3 and then hold for 2 frames" etc.
-        var anim_object = Luxe.loadJSON('assets/anim.json');
+        var anim_object = Luxe.resources.json('assets/anim.json');
 
             //create the animation component and add it to the sprite
         anim = player.add( new SpriteAnimation({ name:'anim' }) );
 
             //create the animations from the json
-        anim.add_from_json_object( anim_object.json );
+        anim.add_from_json_object( anim_object.asset.json );
 
             //set the idle animation to active
         anim.animation = 'idle';
@@ -401,7 +428,6 @@ class Main extends luxe.Game {
         }
 
     } //onkeyup
-
 
 } //Main
 

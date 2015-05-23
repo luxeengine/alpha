@@ -14,7 +14,7 @@
 
 Before you get started, make sure you have [installed luxe and that it is working first](setup.html), of course!    
 
-To see what this guide will teach you, click on the demo below!
+To see what this guide will teach you, click on the demo below.
 
 ###Live demo
 
@@ -54,7 +54,9 @@ Here's is an example of what that looks like:
 
 The second place to look, is the `src/Main.hx` file, which is where your game begins.
 
-A luxe app in it's very basic form is a single haxe class that extends the `luxe.Game` class. If you override the `ready` function from the luxe game class, you will have the start of a project. If you ran this as is, you would see a blank window with default properties!
+A luxe app in it's very basic form is a single haxe class that extends the `luxe.Game` class. When you override the `ready` function from the luxe game class, you will have the entry point of a project. 
+
+If you ran this as is, you would see a blank window with default properties.
 
 
 ```
@@ -112,21 +114,33 @@ If you run this app as is, and push the escape key, the application would quit.
 
 ###Building and running a luxe app
 
-luxe uses a build toolchain called [flow](http://snowkit.org/flow) to build and run your application. flow is a command line tool but is integrated into tools like [Sublime Text](http://sublimetext.com/3) so that you can work from within a GUI instead of the command line, if you prefer.
+luxe uses a build toolchain called [flow](http://snowkit.org/flow) to build and run your application. 
+
+flow is a command line tool but is integrated into editors like [Sublime Text](http://sublimetext.com/3), [Atom](http://atom.io), and [Flash Develop](http://flashdevelop.org/) so that you can work from that instead, if you prefer.
 
 ####Running from the command line
 
-To run the game from a cli, you simply run `flow run` from within your project folder. If you want to build without running, use `flow build`. If you wanted to run in debug mode (useful for debugging) you would append a `--debug` flag, so the final command would be `flow run --debug`. This is not necessary unless your app is crashing and you need a callstack to see why.
+To run the game from a cli, you simply run `flow run` from within your project folder. If you want to build without running, use `flow build`. 
 
-####Running from sublime text 
+If you wanted to run in debug mode (useful for debugging crashes and such) you would append a `--debug` flag, so the final command would be `flow run --debug`. <small>_This is often not necessary unless your app is crashing and you need a callstack to see why, it slows down the application a lot_.</small>
 
-Make sure the [sublime text plugins](http://snowkit.org/flow/sublimetext) are installed and configured correctly.
+####Running from Sublime Text or Atom
 
-Once installed, you open your project folder as a folder in sublime text,
+Make sure the plugins or packages are installed and configured, following the instructions on these pages:
 
-1. set the flow file of your project to be the active flow file
-2. press ctrl/cmd + B depending on your platform
+- [Sublime Text 3](http://underscorediscovery.github.io/flow/guide/sublimetext.html)   
+- [Atom](https://atom.io/packages/flow)   
 
+Once installed, open your project as a folder.
+
+1. Set the flow file as active, right click on the flow file in the tree view
+2. press ctrl/cmd + B depending on your platform to build
+
+####Running from Flash Develop
+
+Make sure the [snowkit-FD](https://github.com/Chman/Snowkit-FD) templates are installed.
+
+Once installed, make a new project from the Project menu, and select a luxe project.
 
 ---
 
@@ -134,7 +148,9 @@ Once installed, you open your project folder as a folder in sublime text,
 
 Now that we have a blank window, let's draw a sprite and move it around!
 
-Remember that to use classes from the luxe package, we need to import them first. At the top of your file, with the other imports, add the following lines. We want to use colors, vectors (a x/y object) and the sprite class.
+Remember - to use classes from the luxe package, we usually import them first.   
+At the top of your file, with the other imports, add the following lines,   
+because we want to use `Color`s, `Vector`s (an object with x/y properties) and the `Sprite` class.
 
 ```
 import luxe.Sprite;
@@ -142,17 +158,23 @@ import luxe.Color;
 import luxe.Vector;
 ```
 
-This will bring the Sprite class into scope, so that can use it directly without using the full name, and the same for the other classes.
+This will bring the classes into the module, so that can use them directly without using the full name. In other words, we can now say `new Sprite` instead of `new luxe.Sprite` when referring to the Sprite class.
 
-Now, inside the ready function we can create a sprite. To use the sprite class, it wants us to specify some options in an object, like a simple object could look like this :
+**Sprite and it's options**   
+Inside the ready function we can create a sprite.
+When creating a `Sprite`, it wants us to specify some options, in an object. 
+A simple object could look like this :
 
 `{  name:'a sprite' }`
 
-This is an object with a `name` property, and it's value set. Since the Sprite class has a lot of options, it is easier to specify only the options we want to through objects (instead of a mega constructors).
+This is an object with a `name` property, and it's value set.
 
-For now, we will simply create a small orange block in the middle of the screen, so we need to give it a color, a size and a position. The name is optional, but it will make your project infinitely easier to work with if you name things. 
+Since the Sprite class has a lot of options, it is easier to specify only the options we need (instead of mega constructors). You will find much of the luxe API has an associated `options` type associated with it.
 
-You will see we store a reference to the sprite and call it block, this is so that we can move it later when the mouse moves.
+**Creating a Sprite**   
+For now, we will create a small orange block in the middle of the screen and give it a color, a size and a position. The name is optional, but it will make your project infinitely easier to work with if you name things from the start.
+
+We also make a variable called `block`, this is so that we can move the sprite later when the mouse moves, and store the reference to the Sprite in the variable.
 
 
 ```
@@ -166,12 +188,12 @@ override function ready() {
 		color: new Color().rgb(0xf94b04),
 		size: new Vector(128, 128)
 	});
-   
+
 } //ready
 
 ```
 
-There, now if you run this, you will see an orange block, center screen!
+If you run this, you will see an orange block, center screen!
 
 ---
 
@@ -180,9 +202,11 @@ There, now if you run this, you will see an orange block, center screen!
 &nbsp;
 ####mouse move
 
-We can use one of the Game classes functions called `onmousemove` to let us know when the mouse is moving - and we can use this information to move the block. To change the position of the block, you set the `pos` property of the block, which has an `x` and a `y` component.
+We can use one of the Game functions called `onmousemove` to let us know when the mouse is moving - and we can use this information to move the block.
 
-So we start with overriding the `onmousemove` function, and using the event object to set the position of the block :
+To change the position of the block, you set the `pos` property of the sprite, which is a `Vector`, so it also has an `x` and a `y` component that you can set (i.e `block.pos.x += 10;`).
+
+So we start with overriding the `onmousemove` function, just below `ready`, and using the mouse event - set the position of the block :
 
 ```
 override function onmousemove( event:MouseEvent ) {
@@ -195,15 +219,18 @@ override function onmousemove( event:MouseEvent ) {
 &nbsp;
 ####rotate on update
 
-Another thing we can do is rotate the block every frame by a small amount, using the update function shown above. The sprite class has a `rotation_z` property which is set in degrees, and controls how many degrees of rotation the sprite will have. If we want to animate the block spinning indefinitely, we simply add a small amount each frame, and scale it by the delta (difference in) time.
+Another thing we can do is rotate the block every update frame by a small amount, using the update function shown above. 
 
-If you wonder why you multiply this value, [read this link] when you are done here.
+The sprite class has a `rotation_z` property which is set in degrees, and controls how many degrees of rotation the sprite will have.
+
+If we want to animate the block spinning indefinitely, we simply add a small amount each frame, and scale it by the delta (difference in) time. This scaling of time makes sure it runs as "per second" rather than "per frame".
 
 ```
 override function update( delta:Float ) {
 
-	    //if we add 40 each frame, and scale it by the delta,
-        //it becomes 40 degrees per second!
+	    //if we add 40° each frame, and scale it by the delta,
+        //it becomes 40° per second instead of 40° per update.
+
     block.rotation_z += 40 * delta;
 
 } //update
@@ -213,12 +240,11 @@ override function update( delta:Float ) {
 
 ##conclusion
 
-That's the basics, of getting things on screen and updating things every frame, and using the override functions from the Game class to get key and mouse input.
+That's the basics of getting things on screen, updating things every frame, and using the override functions from the Game class to get key, mouse and other forms of input.
 
 
 ### What comes next
 
-Well, that's as basic as it gets!
 Some of the questions you may have,
 
 - **Where do I find a list of all the supported `Game` class functions?**   
@@ -228,7 +254,7 @@ Read the [Game class](api/luxe/Game.html) documentation.
 Read the [Sprite options](api/luxe/options/SpriteOptions.html) documentation.   
 
 - **Things that were not discussed include**   
-the [color](guide.color.html) class, [mouse events](guide.input.html#mouse), [key events](guide.input.html#keys).
+the [color](guide.color.html) class
 
 ###[To the next guide](guide.two.html)
 ###[Back to guides](guide.html)
@@ -243,6 +269,7 @@ _(found in samples/guides/1_gettingstarted/)_
 
 
 ```
+
 import luxe.Input;
 import luxe.Sprite;
 import luxe.Color;
@@ -279,14 +306,15 @@ class Main extends luxe.Game {
 
     override function update( delta:Float ) {
 
-            //if we add 40 each frame, and scale it by the delta,
-            //it becomes 40 degrees per second!
+             //if we add 40° each frame, and scale it by the delta,
+            //it becomes 40° per second instead of 40° per update.
+
         block.rotation_z += 40 * delta;
 
     } //update
 
-
 } //Main
+
 ```
 
 &nbsp;
