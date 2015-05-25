@@ -274,8 +274,8 @@ class Entity extends Objects {
 
 //internal
 
-
-    @:noCompletion public inline function _init() {
+    @:allow(luxe.Scene)
+    inline function _init() {
 
             //verbose debugging
         _verbose('${this} inside _init with options as $options' );
@@ -308,7 +308,8 @@ class Entity extends Objects {
 
     } //_init
 
-    @:noCompletion public inline function _reset(_) {
+    @:allow(luxe.Scene)
+    inline function _reset(_) {
 
         _debug('calling reset on ' + name);
 
@@ -399,8 +400,8 @@ class Entity extends Objects {
 
     } //destroy
 
-
-    @:noCompletion public inline function _update(dt:Float) {
+    @:allow(luxe.Scene)
+    inline function _update(dt:Float) {
 
         if(destroyed) {
             _debug(" calling update AFTER DESTROYED on " + name + " / " + id );
@@ -442,7 +443,8 @@ class Entity extends Objects {
 
 //timing
 
-    @:noCompletion public function _fixed_update() {
+    @:allow(luxe.Entity)
+    function _fixed_update() {
 
         if(destroyed) {
             return;
@@ -576,7 +578,10 @@ class Entity extends Objects {
 
     } //_listen
 
-    @:noCompletion public function _unlisten( _event:Int, _handler:EmitHandler, ?_self:Bool=false ) {
+    @:allow(luxe.Entity)
+    @:allow(luxe.Component)
+    @:allow(luxe.macros.ComponentRules)
+    function _unlisten( _event:Int, _handler:EmitHandler, ?_self:Bool=false ) {
 
         var source = _find_emit_source(true);
 
@@ -669,7 +674,7 @@ class Entity extends Objects {
 
 //Keys
 
-    @:noCompletion public function _keyup( _event:KeyEvent ) {
+    function _keyup( _event:KeyEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -682,7 +687,7 @@ class Entity extends Objects {
 
     } //_keyup
 
-    @:noCompletion public function _keydown( _event:KeyEvent ) {
+    function _keydown( _event:KeyEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -695,7 +700,7 @@ class Entity extends Objects {
 
     } //_keydown
 
-    @:noCompletion public function _textinput( _event:TextEvent ) {
+    function _textinput( _event:TextEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -711,7 +716,7 @@ class Entity extends Objects {
 
 //Mouse
 
-    @:noCompletion public function _mousedown( _event:MouseEvent ) {
+    function _mousedown( _event:MouseEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -725,7 +730,7 @@ class Entity extends Objects {
     } //_mousedown
 
 
-    @:noCompletion public function _mouseup( _event:MouseEvent ) {
+    function _mouseup( _event:MouseEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -738,7 +743,7 @@ class Entity extends Objects {
 
     } //_mouseup
 
-    @:noCompletion public function _mousewheel( _event:MouseEvent ) {
+    function _mousewheel( _event:MouseEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -751,7 +756,7 @@ class Entity extends Objects {
 
     } //_mousewheel
 
-    @:noCompletion public function _mousemove( _event:MouseEvent ) {
+    function _mousemove( _event:MouseEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -765,7 +770,7 @@ class Entity extends Objects {
     } //_mousemove
 
 //Touch
-    @:noCompletion public function _touchdown( _event:TouchEvent ) {
+    function _touchdown( _event:TouchEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -778,7 +783,7 @@ class Entity extends Objects {
 
     } //_touchdown
 
-    @:noCompletion public function _touchup( _event:TouchEvent ) {
+    function _touchup( _event:TouchEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -791,7 +796,7 @@ class Entity extends Objects {
 
     } //_touchup
 
-    @:noCompletion public function _touchmove( _event:TouchEvent ) {
+    function _touchmove( _event:TouchEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -805,7 +810,7 @@ class Entity extends Objects {
     } //_touchmove
 
 //Gamepad
-    @:noCompletion public function _gamepadaxis( _event:GamepadEvent ) {
+    function _gamepadaxis( _event:GamepadEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -818,7 +823,7 @@ class Entity extends Objects {
 
     } //_gamepadaxis
 
-    @:noCompletion public function _gamepaddown( _event:GamepadEvent ) {
+    function _gamepaddown( _event:GamepadEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -831,7 +836,7 @@ class Entity extends Objects {
 
     } //_gamepaddown
 
-    @:noCompletion public function _gamepadup( _event:GamepadEvent ) {
+    function _gamepadup( _event:GamepadEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -844,7 +849,7 @@ class Entity extends Objects {
 
     } //_gamepadup
 
-    @:noCompletion public function _gamepaddevice( _event:GamepadEvent ) {
+    function _gamepaddevice( _event:GamepadEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -859,7 +864,7 @@ class Entity extends Objects {
 
 //Windowing
 
-    @:noCompletion public function _windowmoved( _event:WindowEvent ) {
+    function _windowmoved( _event:WindowEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -872,7 +877,7 @@ class Entity extends Objects {
 
     } //_windowmoved
 
-    @:noCompletion public function _windowresized( _event:WindowEvent ) {
+    function _windowresized( _event:WindowEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -885,7 +890,7 @@ class Entity extends Objects {
 
     } //_windowresized
 
-    @:noCompletion public function _windowsized( _event:WindowEvent ) {
+    function _windowsized( _event:WindowEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -898,7 +903,7 @@ class Entity extends Objects {
 
     } //_windowsized
 
-    @:noCompletion public function _windowminimized( _event:WindowEvent ) {
+    function _windowminimized( _event:WindowEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -911,7 +916,7 @@ class Entity extends Objects {
 
     } //_windowminimized
 
-    @:noCompletion public function _windowrestored( _event:WindowEvent ) {
+    function _windowrestored( _event:WindowEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -926,7 +931,7 @@ class Entity extends Objects {
 
 //Input
 
-    @:noCompletion public function _inputdown( _event : { name:String, event:InputEvent } ) {
+    function _inputdown( _event : { name:String, event:InputEvent } ) {
 
         if(!active || !inited || !started) {
             return;
@@ -939,7 +944,7 @@ class Entity extends Objects {
 
     } //_inputdown
 
-    @:noCompletion public function _inputup( _event : { name:String, event:InputEvent } ) {
+    function _inputup( _event : { name:String, event:InputEvent } ) {
 
         if(!active || !inited || !started) {
             return;
@@ -1004,7 +1009,8 @@ class Entity extends Objects {
 
 //children
 
-    @:noCompletion public function _add_child( child:Entity ) {
+    @:allow(luxe.Entity)
+    function _add_child( child:Entity ) {
 
         children.push(child);
 
@@ -1020,8 +1026,8 @@ class Entity extends Objects {
 
     } //_add_child
 
-        //internal function do not use directly
-    @:noCompletion public function _remove_child(child:Entity) {
+    @:allow(luxe.Entity)
+    function _remove_child(child:Entity) {
 
         children.remove(child);
 
