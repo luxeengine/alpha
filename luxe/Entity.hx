@@ -1160,6 +1160,8 @@ class Entity extends Objects {
 
     function set_parent( other:Entity ) {
 
+        assert(other != this, 'Entity setting itself as parent makes no sense');
+
         _debug('>>  ' + name + ' calling set parent to ' + (other == null ? 'null' : other.name) );
 
             //if we are parented already,
