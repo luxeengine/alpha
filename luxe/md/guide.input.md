@@ -1,34 +1,42 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-###[To the prev guide](guide.two.html)
 ###[View all guides](guide.html)
 
 ---
 
 ## Handling input in luxe
 
-_This tutorial assumes you are familiar with the basics of [getting started with luxe](guide.one.html), and [displaying basic sprites stuff](guide.two.html) on screen._
+_This tutorial assumes you are familiar with the basics of [getting started with luxe](guide.one.html)._
 
 ###Different types of input
 ---
-Luxe supports all common types of input out of the box:
+luxe supports all common types of input out of the box:
 
-- Touch/Multitouch input (on mobile devices)
+- Touch input
 - Mouse input
 - Gamepad/Joystick input
 - Keyboard input
 
 ###Accessing input events
 ---
-Your Game class has a bunch of functions that can (and will) be called when an event happens. The reason that this is a function (and not say, an event) is because a function call is immediate.
+Your Game class has a bunch of functions that can (and will) be called when an event happens. Other classes that typically require input events _also_ receive them, like `Component` and `State` all have the same functions to override and handle the events as needed.
 
-As soon as luxe obtains an input event from the system it will immediately call your code to handle it. This is to avoid unnessary delays in handling touches or key/gamepad press and minimize latency when making games.
+All possible functions and descriptions are listed below.
+
+#### Events are fired immediately
+
+The reason that these event handlers are a function is because the call is direct, and happens immediately when the event propogates from the system.
+
+As soon as luxe obtains an input event from the **system** it will immediately call these functions - this is to avoid unnessary delays in handling touches or key presses and minimize latency wherever possible.
+
+### Event types
+
+Most input events are typically modelled around how the platform or OS handles the input events. Each type of event has a typed structure containing the details of the event that happened.    
 
 
-### The specific event types
+#### Specific event types
 ---
-Each type of event have a typed event structure, for the details of the event.    
 For example, here is a touch event :
 
     typedef TouchEvent = {
@@ -40,41 +48,42 @@ For example, here is a touch event :
         var raw : Dynamic;
     };
 
+**The raw property**   
 You may also note the `raw` property.   
-Sometimes you need to know some value from the OS/platform that luxe is not explicitly exposing.
+Sometimes you need to know some value from the OS/platform that luxe is not explicitly exposing. This simply helps prevent leaky abstractions on the platform specific events.
 
-For this purpose all of the events (MouseEvent, TouchEvent, GamepadEvent, KeyEvent) pass a property through the event object.
-This is the exact event structure, untouched, low level (you can use `trace(event.raw)` to dump it's contents.
+&nbsp;
 
 ## Named input 
---- 
-Sometimes it is convenient to bind multiple events to the same piece of code. Sometimes a person playing the game will want to use W/A/S/D and sometimes they would prefer the arrow keys. The combinations of sensible defaults for this can quickly escalate.
-
-It is always useful to be able to refer to an input binding by name (rather than the exact key) for things like customisable key binding screens.
-
-For these reasons, luxe offers a named input binding system, where multiple events (even of different types) can be bound to a single spot, so you can handle them accordingly.
-
-Let's use a common example where the jump key might be Z, Space, and Right Mouse.
-
-    Luxe.input.add('jump', KeyValue.key_Z);
-    Luxe.input.add('jump', KeyValue.space);
-    Luxe.input.add('jump', MouseButton.right);
-
-### handling the named input
 ---
+Sometimes it is convenient to bind multiple events to the same handler.   
+
+Sometimes a person playing the game will want to use W/A/S/D and sometimes they would prefer the arrow keys. The combinations of sensible defaults for this can quickly escalate, and gets relatively complex over different locales and keyboard layouts.
+
+Instead, binding an event to a name and using the name is more flexible.
+
+For this reason, luxe offers a named input binding system, where multiple events (even of different types) can be bound to a single identity and handler, so you can handle them accordingly.
+
+Let's use a common example where the jump key might be `Z`, `Space`, and `Right Mouse`.
+
+    Luxe.input.bind_key('jump', KeyValue.key_Z);
+    Luxe.input.bind_key('jump', KeyValue.space);
+    Luxe.input.bind_mouse('jump', MouseButton.right);
+
+#### Handling the named input
 
 Now that you have the named input bound, you can listen for the event using `oninputdown` or `oninputup`.
 
     public function oninputup( event_name:String, event:InputEvent ) {
-
+    
         switch( event_name ) {
             case 'jump':
                 player.jump();
         } //switch
+    
+    }
 
-    } 
-
-You can make the assumption here that all types of input mapped to jump, should call jump directly. But - the even is typed as InputEvent, and contains the following information :
+You can make the assumption here that all types of input mapped to jump, should call jump directly. But - the event is typed as InputEvent, and contains the following information :
 
     typedef InputEvent = {
         type             : InputType,
@@ -84,7 +93,7 @@ You can make the assumption here that all types of input mapped to jump, should 
         ?gamepad_event   : GamepadEvent
     } 
 
-When the event originates from a mouse event, the `event.type` will be `InputType.mouse`, and the `event.mouse_event` will be populated with the originating event.
+When the event originates from a mouse event, the `event.type` will be `InputType.mouse`, and the `event.mouse_event` will be populated with the originating event. Any other event structure (key_event, gamepad_event etc) will be null. Only the event matching the type will not be.
 
     enum InputType {
         mouse;
@@ -99,82 +108,78 @@ When the event originates from a mouse event, the `event.type` will be `InputTyp
 ---
 
 <a name="handlers"> </a>
-Here is a full list of functions, with commented descriptions :
+Here is a full list of functions, with descriptions :
     
-    //Keyboard
-        
-        public function onkeydown( event:KeyEvent ) {
-            //as soon as a key is pushed down
-        }
 
-        public function onkeyup( event:KeyEvent ) {
-            //as soon as a key is released
-        }
+```
 
-    //Mouse    
+//Named input
 
-        public function onmousedown( event:MouseEvent ) {
-            //as soon as a mouse button is pushed down
-        }
+       /** Called when a named input down event occurs */
+   public function oninputdown( _name:String, e:InputEvent ) {}
+       /** Called when a named input up event occurs */
+   public function oninputup( _name:String, e:InputEvent ) {}
 
-        public function onmouseup( event:MouseEvent ) {
-            //as soon as a mouse button is released
-        }
+//Mouse
 
-        public function onmousemove( event:MouseEvent ) {
-            //every time the mouse moves
-        }
+       /** Called for you when a mouse button is pressed */
+   public function onmousedown( event:MouseEvent ) {}
+       /** Called for you when a mouse button is released */
+   public function onmouseup( event:MouseEvent ) {}
+       /** Called for you when the mouse wheel moves */
+   public function onmousewheel( event:MouseEvent ) {}
+       /** Called for you when the mouse moves */
+   public function onmousemove( event:MouseEvent ) {}
 
-    //Touch    
+//Keyboard
 
-        public function ontouchbegin( event:TouchEvent ) {
-            //as soon as a touch is detected (event contains a unique touch ID)
-        }
+       /** Called for you when a key is pressed down */
+   public function onkeydown( event:KeyEvent ) {}
 
-        public function ontouchend( event:TouchEvent ) {
-            //as soon as a touch is released (event contains a unique touch ID, to know which)
-        }
+       /** Called for you when a key is released */
+   public function onkeyup( event:KeyEvent ) {}
 
-        public function ontouchmove( event:TouchEvent ) {
-            //as soon as a touch is moved (event contains a unique touch ID, to know which)
-        }
+       /** Called for you when text input is happening.
+           Use this for textfields, as it handles the complexity
+           of unicode and other platform specific details. */
+   public function ontextinput( event:TextEvent ) {}
 
-    //Gamepad    
+//Touch
 
-        public function ongamepadaxis( event:GamepadEvent ) {
-            //when a gamepad axis changes
-        }
-        
-        public function ongamepadball( event:GamepadEvent  ) {
-            //when a gamepad ball changes
-        }
+       /** Called for you when a touch is first pressed,
+            use the `touch_id` to track which */
+   public function ontouchdown( event:TouchEvent ) {}
 
-        public function ongamepadhat( event:GamepadEvent  ) {
-            //when a gamepad hat is pressed (D-pad)
-        }    
+       /** Called for you when a touch is released,
+            use the `touch_id` to track which */
+   public function ontouchup( event:TouchEvent ) {}
 
-        public function ongamepadbuttondown( event:GamepadEvent ) {
-            //when a gamepad button is pressed down
-        }    
+       /** Called for you when a touch is moved,
+            use the `touch_id` to track which */
+   public function ontouchmove( event:TouchEvent ) {}
 
-        public function ongamepadbuttonup( event:GamepadEvent ) {
-            //when a gamepad button is released
-        }
+//Gamepad
 
-    //Input    
+       /** Called for you when a connected gamepad axis moves, 
+            use `gamepad` to determine gamepad id */
+   public function ongamepadaxis( event:GamepadEvent ) {}
 
-        public function oninputup( named_input:String, e:InputEvent ) {
-            //called when a bound named input event is released  
-        } 
-        
-        public function oninputdown( named_input:String, e:InputEvent ) {
-            //called when a bound named input event is pressed
-        }
+       /** Called for you when a connected gamepad button is pressed, 
+            use `gamepad` to determine gamepad id */
+   public function ongamepaddown( event:GamepadEvent ) {}
+
+       /** Called for you when a connected gamepad button is released, 
+            use `gamepad` to determine gamepad id */
+   public function ongamepadup( event:GamepadEvent ) {}
+
+       /** Called for you when a gamepad is connected or disconnected, 
+            use `gamepad` to determine gamepad id */
+   public function ongamepaddevice( event:GamepadEvent ) {}
+
+```
 
 ---
 
-###[To the prev guide](guide.gettingstarted.html)
-###[To the next guide](guide.basiccomponents.html)
 ###[Back to guides](guide.html)
 
 &nbsp;   
