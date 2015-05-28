@@ -100,7 +100,7 @@ class Debug {
     } //get_view
 
         /** start a profiling section for the profiler debug view */
-    public function start(_name:String, ?_max:Float=0.0) {
+    public function start(_name:String, ?_max:Float) {
         #if !no_debug_console
         if(!core.headless) {
             ProfilerDebugView.start(_name, _max);
