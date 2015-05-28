@@ -135,17 +135,23 @@ class QuadGeometry extends Geometry {
 
     } //set uv in uv space directly
 
+    public function resize_xy( _x:Float, _y:Float ) {
+
+        vertices[0].pos.set_xy( 0,      0    );
+        vertices[1].pos.set_xy( 0+_x,   0    );
+        vertices[2].pos.set_xy( 0+_x,   0+_y );
+
+        vertices[3].pos.set_xy( 0,      0+_y );
+        vertices[4].pos.set_xy( 0,      0    );
+        vertices[5].pos.set_xy( 0+_x,   0+_y );
+
+    } //resize_xy
+
     public function resize( quad:luxe.Vector ) {
 
-        vertices[0].pos.set_xy( 0,            0         );
-        vertices[1].pos.set_xy( 0+quad.x,     0         );
-        vertices[2].pos.set_xy( 0+quad.x,     0+quad.y  );
+        resize_xy(quad.x, quad.y);
+    } //resize
 
-        vertices[3].pos.set_xy( 0,            0+quad.y  );
-        vertices[4].pos.set_xy( 0,            0         );
-        vertices[5].pos.set_xy( 0+quad.x,     0+quad.y  );
-
-    }
 
  	public function set( quad:luxe.Rectangle ) {
 
