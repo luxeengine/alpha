@@ -557,9 +557,7 @@ class Vector {
     } //truncate
 
     public inline function rotationTo( other:Vector ) : Float {
-        var theta =  Math.atan2(  other.x - x , other.y - y );
-        var r = -(180.0 + (theta*180.0/Math.PI));
-        return r;
+        return Math.atan2(other.y - y , other.x - x) * 180.0 / Math.PI;
     }
 
 //Transforms
