@@ -251,77 +251,30 @@ class Batcher {
     } //add_group
 
     public function compare_rule_to_string(r:Int) : String {
-        switch(r) {
-            case 0: {
-                return "same";
-            }
-            case 1: {
-                return "depth <";
-            }
-            case 2: {
-                return "depth >";
-            }
-
-            case 3: {
-                return "shader <";
-            }
-            case 4: {
-                return "shader >";
-            }
-            case 5: {
-                return "shader s._ >";
-            }
-            case 6: {
-                return "shader _.s <";
-            }
-
-            case 7: {
-                return "texture <";
-            }
-            case 8: {
-                return "texture >";
-            }
-            case 9: {
-                return "texture t._ >";
-            }
-            case 10: {
-                return "texture _.t <";
-            }
-
-            case 11: {
-                return "primitive <";
-            }
-            case 12: {
-                return "primitive >";
-            }
-            case 13: {
-                return "unclipped";
-            }
-            case 14: {
-                return "clipped";
-            }
-            case 15: {
-                return "timestamp <";
-            }
-            case 16: {
-                return "timestamp >";
-            }
-            case 17: {
-                return "timestamp ==";
-            }
-            case 18: {
-                return "sequence <";
-            }
-            case 19: {
-                return "sequence >";
-            }
-            case 20: {
-                return "fallback";
-            }
+        return switch(r) {
+            case 0: "same";
+            case 1: "depth <";
+            case 2: "depth >";
+            case 3: "shader <";
+            case 4: "shader >";
+            case 5: "shader s._ >";
+            case 6: "shader _.s <";
+            case 7: "texture <";
+            case 8: "texture >";
+            case 9: "texture t._ >";
+            case 10: "texture _.t <";
+            case 11: "primitive <";
+            case 12: "primitive >";
+            case 13: "unclipped";
+            case 14: "clipped";
+            case 15: "timestamp <";
+            case 16: "timestamp >";
+            case 17: "timestamp ==";
+            case 18: "sequence <";
+            case 19: "sequence >";
+            case 20: "fallback";
+            default: "unknown";
         }
-
-        return "unknown";
-
     }
 
     public function compare_rule( a:GeometryKey, b:GeometryKey ) : Int {
