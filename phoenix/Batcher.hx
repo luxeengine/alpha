@@ -255,14 +255,17 @@ class Batcher {
             case 0: "same";
             case 1: "depth <";
             case 2: "depth >";
+
             case 3: "shader <";
             case 4: "shader >";
             case 5: "shader s._ >";
             case 6: "shader _.s <";
+
             case 7: "texture <";
             case 8: "texture >";
             case 9: "texture t._ >";
             case 10: "texture _.t <";
+
             case 11: "primitive <";
             case 12: "primitive >";
             case 13: "unclipped";
