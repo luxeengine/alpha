@@ -53,16 +53,14 @@ class NineSlice extends luxe.Visual {
             //default to internal batcher
         slices = new Array<Slice>();
 
-            //we need to tell the sprite not to create geometry ,
-            //and not to add us to any scenes or anything
+            //we need to tell the visual not to create geometry ,
+            //because we create our own from here.
         if(_options == null) {
             _options = {
                 no_geometry : true,
-                no_scene : true
             }
         } else {
             _options.no_geometry = true;
-            _options.no_scene = true;
         }
 
         nineslice_options = _options;
