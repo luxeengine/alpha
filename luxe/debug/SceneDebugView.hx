@@ -156,7 +156,7 @@ class SceneDebugView extends luxe.debug.DebugView  {
 
     } //process
 
-#if desktop
+#if (desktop || web)
     //:wip:
     override function onmousewheel(e:MouseEvent) {
         var h = items_list.text_bounds.h;

@@ -255,7 +255,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
     } //process
 
-#if desktop
+#if (desktop || web)
     //:wip:
     override function onmousewheel(e:MouseEvent) {
 
