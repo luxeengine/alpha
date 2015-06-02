@@ -504,8 +504,12 @@ class Scene extends Objects {
 
         if(_delayed_init_entities.length > 0) {
             for(entity in _delayed_init_entities) {
-                _debug('\t handling late entity init ' + entity.name);
-                entity._init();
+                if(!entity.inited) {
+                    _debug('\t handling late entity init ' + entity.name);
+                    entity._init();
+                } else {
+                    _debug('\t skipped late entity init, already inited ' + entity.name);
+                }
             }
             _delayed_init_entities.splice(0, _delayed_init_entities.length);
         }
