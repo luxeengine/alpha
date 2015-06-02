@@ -80,7 +80,7 @@ class RingGeometry extends CircleGeometry {
             } //for
 
                 //wrap it up
-            add( new Vertex( _segment_pos[0], color ) );
+            add( new Vertex( _segment_pos[0].clone(), color ) );
 
         //and finally, set the position
         transform.pos = new Vector( _x, _y );

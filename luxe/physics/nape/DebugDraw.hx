@@ -2,6 +2,7 @@ package luxe.physics.nape;
 
 import phoenix.Color;
 import phoenix.geometry.Geometry;
+import phoenix.geometry.RingGeometry;
 import phoenix.geometry.Vertex;
 import phoenix.Vector;
 import luxe.options.RenderProperties;
@@ -80,7 +81,7 @@ import luxe.options.RenderProperties;
             for (_shape in _body.shapes) {
 
                 if (_shape.isCircle()) {
-                    shapeVerts = make_circle_verts(_shape.castCircle.radius);
+                    shapeVerts = make_circle_verts(_shape.castCircle);
                 } else {
                     shapeVerts = make_polygon_verts(_shape.castPolygon.localVerts);
                 }
@@ -238,7 +239,7 @@ import luxe.options.RenderProperties;
 
             if (_shape.isCircle()) {
                 var circle = _shape.castCircle;
-                geom.vertices = make_circle_verts(circle.radius);
+                geom.vertices = make_circle_verts(circle);
                 geom.transform.rotation.setFromEuler(new Vector(0, 0, _shape.body.rotation));
                 geom.transform.pos.set_xy(_shape.body.position.x, _shape.body.position.y);
             }
@@ -298,22 +299,27 @@ import luxe.options.RenderProperties;
 
         } //draw_AABB
 
-        function make_circle_verts(radius:Float):Array<Vertex> {
+        function make_circle_verts(circle:Circle):Array<Vertex> {
 
             var tmp = Luxe.draw.ring( {
                 x: 0,
                 y: 0,
-                r: radius,
+                r: circle.radius,
                 immediate:true,
                 no_batcher_add: true
             });
 
             var verts = tmp.vertices.copy();
             tmp.drop();
-
+			
+			for (v in verts) {
+				v.pos.x += circle.localCOM.x;
+				v.pos.y += circle.localCOM.y;
+			}
+			
             //add a center point
-            verts.insert( 0, new Vertex(new Vector()) );
-            verts.insert( 0, verts[1].clone() );
+            verts.insert( 0, new Vertex(new Vector(circle.localCOM.x, circle.localCOM.y)) );
+            verts.insert( 1, verts[1].clone() );
 
             return verts;
         }
