@@ -291,6 +291,7 @@ extends
                 sounds:     appconfig.preload.sounds,
                 oncomplete: internal_ready,
                 onfailed: function(_error:Dynamic) {
+                    log('config / preload / failed to load / $_error');
                     throw Error.error(_error);
                 }
             });
