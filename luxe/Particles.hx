@@ -34,7 +34,7 @@ class ParticleSystem extends Entity {
         }
 
             //create the emitter instance
-        var _emitter = add( new ParticleEmitter({ name:_name, system:this, template:_template }) );
+        var _emitter = add( new ParticleEmitter({ name:_name, system:this, template:_template, enabled:enabled, paused:paused }) );
             //store the reference of the emitter
         emitters.set(_name, _emitter);
 
@@ -44,8 +44,11 @@ class ParticleSystem extends Entity {
     public function start( duration:Float = -1 ) {
 
         enabled = true;
-        for(emitter in emitters) {
-            emitter.start(duration);
+
+        if(emitters != null) {
+            for(emitter in emitters) {
+                emitter.start(duration);
+            }
         }
 
         paused = false;
@@ -58,8 +61,11 @@ class ParticleSystem extends Entity {
     public function stop() {
 
         enabled = false;
-        for(emitter in emitters) {
-            emitter.stop();
+
+        if(emitters != null) {
+            for(emitter in emitters) {
+                emitter.stop();
+            }
         }
 
     } //stop
@@ -69,16 +75,21 @@ class ParticleSystem extends Entity {
     public function kill() {
 
         enabled = false;
-        for(emitter in emitters) {
-            emitter.kill();
+
+        if(emitters != null) {
+            for(emitter in emitters) {
+                emitter.kill();
+            }
         }
 
     } //kill
 
     inline function set_paused(_paused:Bool) {
 
-        for(emitter in emitters) {
-            emitter.paused = _paused;
+        if(emitters != null) {
+            for(emitter in emitters) {
+                emitter.paused = _paused;
+            }
         }
 
         return paused = _paused;
@@ -91,7 +102,9 @@ class ParticleSystem extends Entity {
 typedef ParticleEmitterInitData = {
     ?name : String,
     system : ParticleSystem,
-    template : ParticleEmitterOptions
+    template : ParticleEmitterOptions,
+    enabled : Bool,
+    paused : Bool,
 } //ParticleEmitterInitData
 
 class ParticleEmitter extends Component {
@@ -156,6 +169,20 @@ class ParticleEmitter extends Component {
     public var end_color : Color;
     public var end_color_random : Color;
 
+    public var emitter_type : ParticleEmitterType;
+    public var default_duration : Float;
+    public var y_multiplier : Float;
+    public var gravity_radial_accel : Float;
+    public var gravity_radial_accel_random : Float;
+    public var gravity_tangential_accel : Float;
+    public var gravity_tangential_accel_random : Float;
+    public var radial_rotation : Float;
+    public var radial_rotation_random : Float;
+    public var radial_start_radius : Float;
+    public var radial_start_radius_random : Float;
+    public var radial_end_radius : Float;
+    public var radial_end_radius_random : Float;
+
         //The template
     public var template : ParticleEmitterOptions;
 
@@ -172,6 +199,8 @@ class ParticleEmitter extends Component {
         super({ name:_data.name });
         system = _data.system;
         template = _data.template;
+        enabled = _data.enabled;
+        paused = _data.paused;
     }
 
     override function init() {
@@ -188,7 +217,7 @@ class ParticleEmitter extends Component {
 
         _to_remove = [];
 
-        if(template.batcher == null) 
+        if(template.batcher == null)
             template.batcher = Luxe.renderer.batcher;
 
         // name = _name;
@@ -324,6 +353,58 @@ class ParticleEmitter extends Component {
             end_color_random = _template.end_color_random :
             end_color_random = new Color(0,0,0,0);
 
+//
+        (_template.emitter_type != null) ?
+            emitter_type = _template.emitter_type :
+            emitter_type = ParticleEmitterType.luxe;
+
+        (_template.default_duration != null) ?
+            default_duration = _template.default_duration :
+            default_duration = -1.0;
+
+        (_template.y_multiplier != null) ?
+            y_multiplier = _template.y_multiplier :
+            y_multiplier = 1.0;
+
+        (_template.gravity_radial_accel != null) ?
+            gravity_radial_accel = _template.gravity_radial_accel :
+            gravity_radial_accel = 0.0;
+
+        (_template.gravity_radial_accel_random != null) ?
+            gravity_radial_accel_random = _template.gravity_radial_accel_random :
+            gravity_radial_accel_random = 0.0;
+
+        (_template.gravity_tangential_accel != null) ?
+            gravity_tangential_accel = _template.gravity_tangential_accel :
+            gravity_tangential_accel = 0.0;
+
+        (_template.gravity_tangential_accel_random != null) ?
+            gravity_tangential_accel_random = _template.gravity_tangential_accel_random :
+            gravity_tangential_accel_random = 0.0;
+
+        (_template.radial_rotation != null) ?
+            radial_rotation = _template.radial_rotation :
+            radial_rotation = 0.0;
+
+        (_template.radial_rotation_random != null) ?
+            radial_rotation_random = _template.radial_rotation_random :
+            radial_rotation_random = 0.0;
+
+        (_template.radial_start_radius != null) ?
+            radial_start_radius = _template.radial_start_radius :
+            radial_start_radius = 0.0;
+
+        (_template.radial_start_radius_random != null) ?
+            radial_start_radius_random = _template.radial_start_radius_random :
+            radial_start_radius_random = 0.0;
+
+        (_template.radial_end_radius != null) ?
+            radial_end_radius = _template.radial_end_radius :
+            radial_end_radius = 0.0;
+
+        (_template.radial_end_radius_random != null) ?
+            radial_end_radius_random = _template.radial_end_radius_random :
+            radial_end_radius_random = 0.0;
 
         check_cache();
 
@@ -374,12 +455,15 @@ class ParticleEmitter extends Component {
 
     public function start( t:Float ) {
 
-        duration = t;
-        enabled = true;
-        paused = false;
-        emit_last = 0;
-        emit_timer = 0;
-        emit_next = 0;
+        duration = (t != -1 ? t : default_duration);
+
+        if (!enabled || paused) {
+            enabled = true;
+            paused = false;
+            emit_last = 0;
+            emit_timer = 0;
+            emit_next = 0;
+        }
 
         if(duration != -1) {
             finish_time = Luxe.time + duration;
@@ -471,36 +555,10 @@ class ParticleEmitter extends Component {
 
         particle.time_to_live = (life + life_random * random_1_to_1());
 
-        particle.pos.x = (system.pos.x + pos_random.x * random_1_to_1()) + pos_offset.x;
-        particle.pos.y = (system.pos.y + pos_random.y * random_1_to_1()) + pos_offset.y;
-
-        particle.rotation = (zrotation + rotation_random * random_1_to_1()) + rotation_offset;
-
-        var new_dir = (direction + direction_random * random_1_to_1() ) * ( Math.PI / 180 ); // convert to radians
-            direction_vector.set_xy( Math.cos( new_dir ), Math.sin( new_dir ) );
-
-        var _point_speed = speed + speed_random * random_1_to_1();
-            particle.speed.set_xy(_point_speed, _point_speed);
-
-        particle.direction.x = direction_vector.x;// * particle.speed.x;
-        particle.direction.y = direction_vector.y;// * particle.speed.y;
-
-        particle.start_size.x = start_size.x + (start_size_random.x * random_1_to_1());
-        particle.start_size.y = start_size.y + (start_size_random.y * random_1_to_1());
-
-        particle.end_size.x = end_size.x + (end_size_random.x * random_1_to_1());
-        particle.end_size.y = end_size.y + (end_size_random.y * random_1_to_1());
-
-        particle.size.x = particle.start_size.x < 0 ? 0 : Math.floor(particle.start_size.x);
-        particle.size.y = particle.start_size.y < 0 ? 0 : Math.floor(particle.start_size.y);
-
-        particle.speed_delta = (end_speed - _point_speed);
-        if(particle.speed_delta != 0) {
-            particle.speed_delta /= particle.time_to_live;
-        }
-
-        particle.size_delta.x = ( end_size.x - start_size.x ) / particle.time_to_live;
-        particle.size_delta.y = ( end_size.y - start_size.y ) / particle.time_to_live;
+        particle.initial_pos.x = (system.pos.x + pos_offset.x);
+        particle.initial_pos.y = (system.pos.y + pos_offset.y);
+        particle.pos.x = (particle.initial_pos.x + pos_random.x * random_1_to_1());
+        particle.pos.y = (particle.initial_pos.y + pos_random.y * random_1_to_1());
 
         var _start_color =
             particle.color.set( start_color.r + start_color_random.r * random_1_to_1(),
@@ -519,9 +577,78 @@ class ParticleEmitter extends Component {
         particle.color_delta.b = ( _end_color.b - _start_color.b ) / particle.time_to_live;
         particle.color_delta.a = ( _end_color.a - _start_color.a ) / particle.time_to_live;
 
+        if( emitter_type == ParticleEmitterType.luxe ) {
+            particle.start_size.x = start_size.x + (start_size_random.x * random_1_to_1());
+            particle.start_size.y = start_size.y + (start_size_random.y * random_1_to_1());
+
+            particle.end_size.x = end_size.x + (end_size_random.x * random_1_to_1());
+            particle.end_size.y = end_size.y + (end_size_random.y * random_1_to_1());
+
+            particle.size.x = particle.start_size.x < 0 ? 0 : Math.floor(particle.start_size.x);
+            particle.size.y = particle.start_size.y < 0 ? 0 : Math.floor(particle.start_size.y);
+        } else {
+            particle.start_size.x = start_size.x + (start_size_random.x * random_1_to_1());
+            particle.start_size.y = particle.start_size.x;
+
+            particle.end_size.x = end_size.x + (end_size_random.x * random_1_to_1());
+            particle.end_size.y = particle.end_size.x;
+
+            particle.size.x = particle.start_size.x;
+            particle.size.y = particle.start_size.y;
+        }
+
+        particle.size_delta.x = ( end_size.x - start_size.x ) / particle.time_to_live;
+        particle.size_delta.y = ( end_size.y - start_size.y ) / particle.time_to_live;
+
+        particle.rotation = (zrotation + rotation_random * random_1_to_1()) + rotation_offset;
+
         if(has_end_rotation) {
             var _end_rotation = end_rotation + end_rotation_random * random_1_to_1();
             particle.rotation_delta  = ( _end_rotation - particle.rotation ) / particle.time_to_live;
+        } else {
+            particle.rotation_delta = 0.0;
+        }
+
+        var new_dir = (direction + direction_random * random_1_to_1() ) * ( Math.PI / 180 ); // convert to radians
+
+        switch(emitter_type) {
+            case pd_gravity: {
+                var _point_speed = speed + speed_random * random_1_to_1();
+
+                particle.direction.x = Math.cos(new_dir) * _point_speed;
+                particle.direction.y = Math.sin(new_dir) * _point_speed;
+                particle.gravity_radial_accel = gravity_radial_accel + gravity_radial_accel_random * random_1_to_1();
+                particle.gravity_tangential_accel = gravity_tangential_accel + gravity_tangential_accel_random * random_1_to_1();
+            }
+
+            case pd_radial: {
+                particle.radial_rotation = new_dir;
+
+                particle.radial_rotation_delta = (
+                    radial_rotation + radial_rotation_random * random_1_to_1()
+                ) * ( Math.PI / 180 ) / particle.time_to_live;
+
+                particle.radial_radius = (radial_end_radius + radial_end_radius_random * random_1_to_1());
+
+                particle.radial_radius_delta = (
+                    radial_start_radius + radial_start_radius_random * random_1_to_1() - particle.radial_radius
+                ) / particle.time_to_live;
+            }
+
+            default: {
+                direction_vector.set_xy( Math.cos( new_dir ), Math.sin( new_dir ) );
+
+                var _point_speed = speed + speed_random * random_1_to_1();
+                particle.speed.set_xy(_point_speed, _point_speed);
+
+                particle.direction.x = direction_vector.x;// * particle.speed.x;
+                particle.direction.y = direction_vector.y;// * particle.speed.y;
+
+                particle.speed_delta = (end_speed - _point_speed);
+                if(particle.speed_delta != 0) {
+                    particle.speed_delta /= particle.time_to_live;
+                }
+            }
         }
 
             //update sprite
@@ -541,12 +668,27 @@ class ParticleEmitter extends Component {
             // trace("updating " + name);
             emit_timer = Luxe.time;
 
-            if( emit_timer > emit_next ) {
-                emit_next = emit_timer + emit_time;
-                emit_last = emit_timer;
-                for(i in 0 ... emit_count) {
-                    spawn();
+            if( emitter_type == ParticleEmitterType.luxe ) {
+
+                if( emit_timer > emit_next ) {
+                    emit_next = emit_timer + emit_time;
+                    emit_last = emit_timer;
+                    for(i in 0 ... emit_count) {
+                        spawn();
+                    }
                 }
+
+            } else {
+
+                emit_next += dt;
+                emit_last = emit_timer;
+
+                // emit_time used as emit_rate here
+                while( active_particles.length < emit_count && emit_next > emit_time ) {
+                    spawn();
+                    emit_next -= emit_time;
+                }
+
             }
 
             if( duration != -1 && emit_timer > finish_time ){
@@ -557,6 +699,8 @@ class ParticleEmitter extends Component {
 
         var gravity_x = gravity.x;
         var gravity_y = gravity.y;
+        var _radial_dir = new Vector();
+        var _tangential_dir = new Vector();
 
             //update all active particles
         for(p in active_particles) {
@@ -567,16 +711,48 @@ class ParticleEmitter extends Component {
                 // If the current particle is alive
             if( p.time_to_live > 0 ) {
 
-                    //start with gravity direction
-                p.speed.x += p.speed_delta;
-                p.speed.y += p.speed_delta;
+                switch (emitter_type) {
+                    case pd_gravity: {
+                        p.pos.x -= p.initial_pos.x;
+                        p.pos.y = (p.pos.y - p.initial_pos.y) * y_multiplier;
+                        _radial_dir.set_xy(p.pos.x, p.pos.y);
 
-                p.move_dir.x = gravity_x + (p.direction.x * p.speed.x);
-                p.move_dir.y = gravity_y + (p.direction.y * p.speed.y);
+                        if (p.pos.x != 0 || p.pos.y != 0) {
+                            _radial_dir.normalize();
+                        }
 
-                    //then add that to the pos
-                p.pos.x += p.move_dir.x * dt;
-                p.pos.y += p.move_dir.y * dt;
+                        _tangential_dir.set_xy(- _radial_dir.y, _radial_dir.x);
+
+                        _radial_dir.multiplyScalar(p.gravity_radial_accel);
+                        _tangential_dir.multiplyScalar(p.gravity_tangential_accel);
+
+                        p.direction.x += (_radial_dir.x + _tangential_dir.x + gravity_x) * dt;
+                        p.direction.y += (_radial_dir.y + _tangential_dir.y + gravity_y) * dt;
+
+                        p.pos.x += p.direction.x * dt + p.initial_pos.x;
+                        p.pos.y = (p.pos.y + p.direction.y * dt) * y_multiplier + p.initial_pos.y;
+                    }
+
+                    case pd_radial: {
+                        p.radial_rotation += p.radial_rotation_delta * dt;
+                        p.radial_radius += p.radial_radius_delta * dt;
+                        p.pos.x = p.initial_pos.x - Math.cos(p.radial_rotation) * p.radial_radius;
+                        p.pos.y = p.initial_pos.y - Math.sin(p.radial_rotation) * p.radial_radius * y_multiplier;
+                    }
+
+                    default: {
+                            //start with gravity direction
+                        p.speed.x += p.speed_delta;
+                        p.speed.y += p.speed_delta;
+
+                        p.move_dir.x = gravity_x + (p.direction.x * p.speed.x);
+                        p.move_dir.y = gravity_y + (p.direction.y * p.speed.y);
+
+                            //then add that to the pos
+                        p.pos.x += p.move_dir.x * dt;
+                        p.pos.y += p.move_dir.y * dt;
+                    }
+                }
 
                     // update colours based on delta
                 var r = p.color.r += ( p.color_delta.r * dt );
@@ -600,7 +776,7 @@ class ParticleEmitter extends Component {
             }
 
                 //now transfer the updated info to the visuals
-            p.sprite.pos = p.pos;
+            p.sprite.pos = p.pos; //:todo : shouldn't it be p.sprite.pos.copy_from(p.pos) like in reset_particle()?
             p.sprite.size = p.draw_size;
             p.sprite.rotation_z = p.rotation;
             p.sprite.color = p.draw_color;
@@ -650,6 +826,13 @@ class Particle {
     public var draw_size : Vector;
     public var draw_color : Color;
 
+    public var initial_pos : Vector;
+    public var gravity_radial_accel : Float = 0;
+    public var gravity_tangential_accel : Float = 0;
+    public var radial_rotation : Float = 0;
+    public var radial_rotation_delta : Float = 0;
+    public var radial_radius : Float = 0;
+    public var radial_radius_delta : Float = 0;
 
     inline public function new(e:ParticleEmitter, _index:Int) {
 
@@ -674,6 +857,8 @@ class Particle {
         draw_color = new Color();
         draw_size = new Vector();
 
+        initial_pos = new Vector();
+
     } //new
 
     public function destroy() {
@@ -696,6 +881,7 @@ class Particle {
         end_color = null;
         draw_color = null;
         draw_size = null;
+        initial_pos = null;
 
     } //destroy
 
