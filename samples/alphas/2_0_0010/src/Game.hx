@@ -41,7 +41,7 @@ class Game extends State {
     override function onleave<T>(_:T) {
 
             //stop listening for pause events
-        Luxe.events.disconnect(paused_event_id);
+        Luxe.events.unlisten(paused_event_id);
 
         cleanup();
 
