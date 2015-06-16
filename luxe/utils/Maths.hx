@@ -106,30 +106,22 @@ class Maths {
 
     } //smootherstep
 
-    static inline public function random16() : Float {
-        return ( 65280 * Math.random() + 255 * Math.random() ) / 65535;
-    } //random16
-
-    static inline public function random_int( low:Int, high:Int ) : Int {
-        return low + Math.floor(Math.random() * (high - low + 1));
-    } //random_int
-
-    static inline public function random_float( low:Float, high:Float ) : Float {
-        return low + Math.random() * (high - low);
-    } //random_float
-
-    static inline public function random_float_spread( range:Float ) : Float {
-        return range * (0.5 - Math.random());
-    } //random_float_spread
-
+        /** Return the sign of a number, `1` if >= 0 and `-1` if < 0 */
     static inline public function sign( x:Float ) : Int {
+        return (x >= 0) ? 1 : -1;
+    } //sign
+
+        /** Return the sign of a number, `0` is returned as `0`, `1` if > `0` and `-1` if < `0` */
+    static inline public function sign0( x:Float ) : Int {
         return (x < 0) ? -1 : ((x > 0) ? 1 : 0);
     } //sign
 
+        /** Convert a number from degrees to radians */
     static inline public function radians( degrees:Float ) : Float {
         return degrees * _PI_OVER_180;
     } //radians
 
+        /** Convert a number from radians to degrees */
     static inline public function degrees( radians:Float ) : Float {
         return radians * _180_OVER_PI;
     } //degrees
