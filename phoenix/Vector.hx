@@ -1,6 +1,7 @@
 package phoenix;
 
 import luxe.utils.Maths;
+import luxe.Log.*;
 
 class Vector {
 
@@ -331,9 +332,7 @@ class Vector {
 
     public inline function add(other:Vector) {
 
-        if(other == null) {
-            throw "vector.add other was handed in as null";
-        }
+        assertnull(other);
 
         set_xyz( x + other.x, y + other.y, z + other.z );
 
@@ -352,9 +351,7 @@ class Vector {
 
     public inline function subtract(other:Vector) {
 
-        if(other == null) {
-            throw "vector.subtract other was handed in as null";
-        }
+        assertnull(other);
 
         set_xyz( x - other.x, y - other.y, z - other.z );
 
@@ -372,9 +369,7 @@ class Vector {
 
     public inline function multiply(other:Vector) {
 
-        if(other == null) {
-            throw "vector.multiply other was handed in as null";
-        }
+        assertnull(other);
 
         set_xyz( x * other.x, y * other.y, z * other.z );
 
@@ -393,9 +388,7 @@ class Vector {
         //:todo: check for division by 0
     public inline function divide(other:Vector) {
 
-        if(other == null) {
-            throw "vector.divide other was handed in as null";
-        }
+        assertnull(other);
 
         set_xyz( x / other.x, y / other.y, z / other.z );
 
