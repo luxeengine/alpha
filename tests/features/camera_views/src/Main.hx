@@ -179,8 +179,10 @@ class Main extends luxe.Game {
         }
 
         screen_mouse = e.pos;
-        world_mouse = current_camera.screen_point_to_world( e.pos );
-        view_mouse = current_camera.world_point_to_screen( world_mouse );
+            //convert mouse position on screen to world coordinate under cursor
+        view_mouse.x = screen_mouse.x - current_camera.viewport.x;
+        view_mouse.y = screen_mouse.y - current_camera.viewport.y;
+        world_mouse = current_camera.screen_point_to_world( view_mouse );
 
         if( mouse_down && !dragging && Luxe.time > drag_time ) {
             dragging = true;
@@ -332,7 +334,7 @@ class Main extends luxe.Game {
             immediate : true,
             pos:new Vector(10,10),
             color:new Color().rgb(0xff4b03),
-            text : 'world mouse : ' + world_mouse.x + ',' + world_mouse.y + '\n' + 'view mouse : ' + view_mouse.x + ',' + view_mouse.y
+            text : 'mouse position: ' + screen_mouse.x + ', ' + screen_mouse.y + ' (on screen)' + '\n' + '                               ' + view_mouse.x + ', ' + view_mouse.y + ' (in view)' + '\n' + '                               ' + Math.round(world_mouse.x) + ', ' + Math.round(world_mouse.y) + ' (in world)'
         });
 
     } //update
