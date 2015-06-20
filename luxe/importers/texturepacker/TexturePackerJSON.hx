@@ -71,8 +71,8 @@ class TexturePackerJSON {
         var _spriteSourceSize   = parse_rect( Reflect.field(json,"spriteSourceSize") );
         var _sourceSize         = parse_size( Reflect.field(json,"sourceSize") );
 
-        var _rotated : Bool = Reflect.field(json,"rotated") == "true" ? true : false;
-        var _trimmed : Bool = Reflect.field(json,"trimmed") == "true" ? true : false;
+        var _rotated : Bool = Reflect.field(json,"rotated");
+        var _trimmed : Bool = Reflect.field(json,"trimmed");
 
         return {
             filename            : name,
