@@ -112,11 +112,14 @@ class Main extends luxe.Game {
     } //onmousemove
 
     override function onmousedown( e:MouseEvent ) {
+
         mouse.set_xy(e.x,e.y);
 
             //pause particles with left click
         if(e.button == MouseButton.left) {
+
             particles.paused = !particles.paused;
+
         } else {
 
                 //stop emission with right click
@@ -131,13 +134,17 @@ class Main extends luxe.Game {
     } //onmousedown
 
     override function onmouseup( e:MouseEvent ) {
+
         mouse.set_xy(e.x,e.y);
+
     } //onmouseup
 
     override function onkeyup( e:KeyEvent ) {
+
         if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
+
     } //onkeyup
 
 

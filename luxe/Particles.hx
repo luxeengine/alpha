@@ -7,9 +7,11 @@ import luxe.options.ParticleOptions;
 
 class ParticleSystem extends Entity {
 
-
+        /** Setting this to true will pause all emission and particle updates, pausing the system */
     public var paused (default,set) : Bool = false;
+        /** This flag is set by start and stop and will be true if the system is emitting. */
     public var enabled : Bool = true;
+        /** The list of emitters by name. :todo: This is outdated in the new component layout. */
     public var emitters : Map<String, ParticleEmitter>;
 
 
@@ -21,6 +23,9 @@ class ParticleSystem extends Entity {
 
     } //init
 
+        /** Add an emitter to this system.
+            This adds the emitter as a component internally.
+            :todo: This is outdated in the new component layout */
     public function add_emitter(_template:ParticleEmitterOptions) {
 
         if(emitters == null) emitters = new Map();
@@ -40,7 +45,8 @@ class ParticleSystem extends Entity {
 
     } //add_emitter
 
-        /** Start all emitters. */
+        /** Start all emitters.
+            Emitters will continue to emit indefinitely, if no duration is specifed (duration < 0). */
     public function start( duration:Float = -1 ) {
 
         enabled = true;
@@ -75,6 +81,8 @@ class ParticleSystem extends Entity {
 
     } //kill
 
+//Internal
+
     inline function set_paused(_paused:Bool) {
 
         for(emitter in emitters) {
@@ -88,7 +96,7 @@ class ParticleSystem extends Entity {
 } //Particle System
 
 
-typedef ParticleEmitterInitData = {
+private typedef ParticleEmitterInitData = {
     ?name : String,
     system : ParticleSystem,
     template : ParticleEmitterOptions
@@ -197,6 +205,7 @@ class ParticleEmitter extends Component {
 
     } //init
 
+        /** Apply a particle emitter template to this emitter. */
     public function apply(_template:ParticleEmitterOptions) {
 
         if(_template == null) _template = {};
@@ -371,29 +380,39 @@ class ParticleEmitter extends Component {
 
     } //check_cache
 
+        /** Start the emitter.
+            If duration is not specified it will run indefinitely (duration < 0).
+            This is usually called by the `ParticleSystem` start function. */
+    public function start( _duration:Float = -1 ) {
 
-    public function start( t:Float ) {
-
-        duration = t;
+        duration = _duration;
         enabled = true;
         paused = false;
         emit_last = 0;
         emit_timer = 0;
         emit_next = 0;
 
-        if(duration != -1) {
+        if(duration >= 0) {
             finish_time = Luxe.time + duration;
         }
 
     } //start
 
+        /** Stop this emitter.
+            Alive particles will continue to update,
+            just emission will stop. see `kill` */
     public function stop() {
+
         enabled = false;
         elapsed_time = 0;
         emit_timer = 0;
-    }
 
+    } //stop
+
+        /** Stop this emitter from emitting,
+            and kills all alive particles. also see `stop` */
     public function kill() {
+
         stop();
 
         for(p in active_particles) {
@@ -404,6 +423,7 @@ class ParticleEmitter extends Component {
 
     } //kill
 
+        //component destroy handling
     override function ondestroy() {
 
         active_particles.splice(0,active_particles.length);
@@ -549,7 +569,7 @@ class ParticleEmitter extends Component {
                 }
             }
 
-            if( duration != -1 && emit_timer > finish_time ){
+            if( duration >= 0 && emit_timer > finish_time ){
                 stop();
             }
 
@@ -619,7 +639,6 @@ class ParticleEmitter extends Component {
 
     inline function random_1_to_1(){ return Math.random() * 2 - 1; }
 
-
 } //ParticleEmitter
 
 
@@ -649,7 +668,6 @@ class Particle {
 
     public var draw_size : Vector;
     public var draw_color : Color;
-
 
     inline public function new(e:ParticleEmitter, _index:Int) {
 
