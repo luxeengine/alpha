@@ -27,6 +27,7 @@ class SceneDebugView extends luxe.debug.DebugView  {
         var debug = Luxe.debug;
 
         items_list = new luxe.Text({
+            name: 'debug.scene.list',
             depth : 999.3,
             no_scene : true,
             color : new Color(0,0,0,1).rgb(0xf6007b),
@@ -37,6 +38,8 @@ class SceneDebugView extends luxe.debug.DebugView  {
             batcher : debug.batcher,
             visible : false,
         });
+
+        items_list.geometry.id = 'debug.scene.list.geometry';
 
         resize();
 

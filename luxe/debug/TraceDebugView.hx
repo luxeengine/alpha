@@ -50,6 +50,7 @@ class TraceDebugView extends luxe.debug.DebugView {
         if(lines.geometry != null) {
             lines.geometry.clip_rect = text_bounds;
             lines.geometry.locked = true;
+            lines.geometry.id = 'debug.log.text.geometry';
         }
     }
 

@@ -79,6 +79,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         var debug = Luxe.debug;
 
         render_stats_text = new luxe.Text({
+            name:'debug.render.stats',
             depth : 999.3,
             no_scene : true,
             color : new Color(0,0,0,1).rgb(0xf6007b),
@@ -91,6 +92,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         });
 
         resource_list_text = new luxe.Text({
+            name:'debug.resource.stats',
             depth : 999.3,
             no_scene : true,
             color : new Color(0,0,0,1).rgb(0xf6007b),
@@ -102,6 +104,9 @@ class StatsDebugView extends luxe.debug.DebugView  {
             batcher : debug.batcher,
             visible : false,
         });
+
+        render_stats_text.geometry.id = 'debug.render.stats.geometry';
+        render_stats_text.geometry.id = 'debug.resource.stats.geometry';
 
         resize();
 
