@@ -97,9 +97,7 @@ class Scene extends Objects {
     var entity_count : Int = 0;
     public function add( entity:Entity, ?pos:haxe.PosInfos ) {
 
-        if(entity == null) {
-            throw "can't put entity in a scene if the entity is null.";
-        }
+        assertnull(entity, 'can\'t put entity in a scene if the entity is null.');
 
             _debug('${name} / adding ${entity.name} with id : ${entity.id}');
 
@@ -127,9 +125,7 @@ class Scene extends Objects {
         /** removes given entity from this scene */
     public function remove( entity:Entity ) : Bool {
 
-        if(entity == null) {
-            throw "can't remove entity from a scene if the entity is null.";
-        }
+        assertnull(entity, 'can\'t remove entity from a scene if the entity is null.');
 
         _has_changed = true;
 

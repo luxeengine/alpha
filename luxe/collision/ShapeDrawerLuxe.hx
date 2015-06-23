@@ -18,9 +18,9 @@ class ShapeDrawerLuxe extends ShapeDrawer {
         super();
         options = _options;
 
-        if(options == null) options = {};
-        if(options.immediate == null) options.immediate = true;
-        if(options.depth == null) options.depth = 100;
+        def(options, {});
+        def(options.immediate, true);
+        def(options.depth, 100);
 
     }
 

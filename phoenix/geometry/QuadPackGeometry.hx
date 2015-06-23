@@ -11,6 +11,7 @@ import phoenix.Texture;
 import phoenix.Color;
 import phoenix.Vector;
 
+import luxe.Log.*;
 import luxe.options.GeometryOptions;
 
 typedef PackedQuad = {
@@ -62,9 +63,9 @@ class QuadPackGeometry extends Geometry {
 
     public function quad_add( _options:PackedQuadOptions ) : Int {
 
-        if(_options.visible == null) _options.visible = true;
-        if(_options.flipx == null) _options.flipx = false;
-        if(_options.flipy == null) _options.flipy = false;
+        def(_options.visible, true);
+        def(_options.flipx, false);
+        def(_options.flipy, false);
 
         var _uid = Luxe.utils.uniquehash();
 

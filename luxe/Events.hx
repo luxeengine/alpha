@@ -1,6 +1,7 @@
 package luxe;
 
 import luxe.Core;
+import luxe.Log.*;
 
 
 /** An event system that handles queued, immediate or
@@ -299,9 +300,7 @@ class Events {
 
     function tag_properties(_properties:Dynamic, _name:String,_count:Int) {
 
-        if(_properties == null) {
-            _properties = {};
-        }
+        def(_properties, {});
 
             //tag these information slots, with _ so they don't clobber other stuff
         Reflect.setField(_properties,'_event_name_', _name);

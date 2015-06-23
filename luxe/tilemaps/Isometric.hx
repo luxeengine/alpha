@@ -44,8 +44,8 @@ class Isometric {
         var tile_height_half = _scaled_th / 2;
 
             //  Top left by default
-        if(offset_x == null) { offset_x = TileOffset.left; };
-        if (offset_y == null) { offset_y = TileOffset.top; };
+        def(offset_x, TileOffset.left);
+        def(offset_y, TileOffset.top);
 
         var tile_offset_x : Float = 0;
         var tile_offset_y : Float = 0;

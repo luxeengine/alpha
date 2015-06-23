@@ -1,5 +1,6 @@
 package luxe.utils;
 
+import luxe.Log.*;
 import luxe.Vector;
 import phoenix.geometry.Geometry;
 
@@ -33,7 +34,8 @@ class GeometryUtils {
 
     public function point_in_polygon(_point:Vector, _offset:Vector, _verts:Array<Vector> ) : Bool {
 
-        if(_offset == null) _offset = new Vector();
+        def(_offset, new Vector());
+
         var c : Bool = false;
         var nvert : Int = _verts.length;
         var j : Int = nvert - 1;

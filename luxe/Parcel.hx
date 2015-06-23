@@ -102,9 +102,9 @@ class Parcel {
 
     public function new( ?_options:ParcelOptions ) {
 
-        if(_options == null)        _options = {};
-        if(_options.system == null) _options.system = Luxe.resources;
-        if(_options.id == null)     _options.id = Luxe.utils.uniqueid();
+        def(_options, {});
+        def(_options.system, Luxe.resources);
+        def(_options.id, Luxe.utils.uniqueid());
 
         if(_options.oncomplete != null)         oncomplete = _options.oncomplete;
         if(_options.onprogress != null)         onprogress = _options.onprogress;
@@ -151,7 +151,7 @@ class Parcel {
 
             start_load = Luxe.time;
 
-            if(_load_id == null) _load_id = id;
+            def(_load_id, id);
 
             _debug('$id / $_load_id / loading $length items');
             _debug('   bytes: ${list.bytes.length}');

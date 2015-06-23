@@ -10,6 +10,7 @@ import phoenix.Shader;
 import phoenix.Texture;
 import phoenix.Batcher;
 
+import luxe.Log.*;
 import luxe.options.GeometryOptions;
 
 import snow.api.buffers.Float32Array;
@@ -120,28 +121,25 @@ class Geometry {
             //this only applies if batcher is supplied, but is overriden with no_batcher_add
         var _do_add = true;
 
-
         if(options != null) {
 
-            state.depth             = (options.depth == null)           ? state.depth           : options.depth;
-            state.group             = (options.group == null)           ? state.group           : options.group;
-            state.texture           = (options.texture == null)         ? state.texture         : options.texture;
-            state.clip_rect         = (options.clip_rect == null)       ? state.clip_rect       : options.clip_rect;
-            state.primitive_type    = (options.primitive_type == null)  ? state.primitive_type  : options.primitive_type;
-            state.shader            = (options.shader == null)          ? state.shader          : options.shader;
+            id                   = def(options.id,              uuid);
+            color                = def(options.color,           new Color());
+            visible              = def(options.visible,         true);
+            immediate            = def(options.immediate,       false);
+            _do_add              = def(options.no_batcher_add,  true);
 
-            id                      = (options.id == null)              ? uuid                  : options.id;
+            state.depth          = def(options.depth,           state.depth);
+            state.group          = def(options.group,           state.group);
+            state.texture        = def(options.texture,         state.texture);
+            state.clip_rect      = def(options.clip_rect,       state.clip_rect);
+            state.primitive_type = def(options.primitive_type,  state.primitive_type);
+            state.shader         = def(options.shader,          state.shader);
 
-            transform.pos           = (options.pos == null)             ? transform.pos         : options.pos;
-            transform.rotation      = (options.rotation == null)        ? transform.rotation    : options.rotation;
-            transform.scale         = (options.scale == null)           ? transform.scale       : options.scale;
-            transform.origin        = (options.origin == null)          ? transform.origin      : options.origin;
-
-            immediate               = (options.immediate == null)       ? false                 : options.immediate;
-            visible                 = (options.visible == null)         ? true                  : options.visible;
-
-            color                   = (options.color == null)           ? new Color()           : options.color;
-            _do_add                 = (options.no_batcher_add == null)  ? true                  : options.no_batcher_add;
+            transform.pos        = def(options.pos,             transform.pos);
+            transform.rotation   = def(options.rotation,        transform.rotation);
+            transform.scale      = def(options.scale,           transform.scale);
+            transform.origin     = def(options.origin,          transform.origin);
 
         } else { //options != null
 

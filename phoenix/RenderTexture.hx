@@ -4,6 +4,7 @@ import snow.modules.opengl.GL;
 import phoenix.Batcher;
 import phoenix.Texture;
 
+import luxe.Log.*;
 import luxe.options.ResourceOptions;
 import luxe.resource.Resource;
 import luxe.Resources;
@@ -21,8 +22,8 @@ class RenderTexture extends Texture {
 
         super( _options );
 
-        if( _options.width == null ) _options.width = Std.int(Luxe.screen.w);
-        if( _options.height == null ) _options.height = Std.int(Luxe.screen.h);
+        def(_options.width, Std.int(Luxe.screen.w));
+        def(_options.height, Std.int(Luxe.screen.h));
 
             //Width and height of this texture item
         width = width_actual = _options.width;

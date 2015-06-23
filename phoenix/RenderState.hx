@@ -1,5 +1,6 @@
 package phoenix;
 
+import luxe.Log.*;
 import snow.modules.opengl.GL;
 import phoenix.Texture;
 
@@ -91,9 +92,7 @@ class RenderState {
 
         if(_current_fbo != buffer) {
 
-            if(buffer == null) {
-                buffer = renderer.default_fbo;
-            }
+            def(buffer, renderer.default_fbo);
 
             GL.bindFramebuffer( GL.FRAMEBUFFER, buffer );
             _current_fbo = buffer;
@@ -106,9 +105,7 @@ class RenderState {
 
         if(_current_rbo != buffer) {
 
-            if(buffer == null) {
-                buffer = renderer.default_rbo;
-            }
+            def(buffer, renderer.default_rbo);
 
             GL.bindRenderbuffer( GL.RENDERBUFFER, buffer );
             _current_rbo = buffer;

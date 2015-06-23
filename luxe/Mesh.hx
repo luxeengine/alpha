@@ -63,9 +63,9 @@ class Mesh {
 
         }
 
-        pos = (options.pos == null) ? new Vector() : options.pos;
-        scale = (options.scale == null) ? new Vector(1,1,1) : options.scale;
-        rotation = (options.rotation == null) ? new Quaternion() : options.rotation;
+        pos = def(options.pos, new Vector());
+        scale = def(options.scale, new Vector(1,1,1));
+        rotation = def(options.rotation, new Quaternion());
 
     } //new
 
@@ -156,7 +156,7 @@ class Mesh {
 
     public function from_string( string_data:String, texture:Texture, ?_scale:Vector, _batcher:Batcher ) {
 
-        if(_scale == null) _scale = new Vector(1,1,1);
+        def(_scale, new Vector(1,1,1));
 
         var file_input = new haxe.io.StringInput( string_data );
         var obj_mesh_data = new luxe.importers.obj.Reader(file_input).read();
@@ -179,7 +179,7 @@ class Mesh {
 
     public function from_obj_file( asset_id:String, texture:Texture, ?_scale:Vector, _batcher:Batcher ) {
 
-        if(_scale == null) _scale = new Vector(1,1,1);
+        def(_scale, new Vector(1,1,1));
 
         var res = Luxe.resources.text(asset_id);
 

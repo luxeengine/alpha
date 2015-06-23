@@ -38,8 +38,8 @@ class Ortho {
             world_pos.y = tile_y * _scaled_th;
 
             //top left by default
-        if(offset_x == null) { offset_x = TileOffset.left; };
-        if(offset_y == null) { offset_y = TileOffset.top; };
+        def(offset_x, TileOffset.left);
+        def(offset_y, TileOffset.top);
 
             switch(offset_x) {
                 case TileOffset.center:    { world_pos.x += (_scaled_tw/2); }

@@ -43,13 +43,13 @@ class ParcelProgress {
 
         options = _options;
 
-        if(options.no_visuals == null)  options.no_visuals = false;
-        if(options.bar == null)         options.bar = new Color().rgb(0x343434);
-        if(options.bar_border == null)  options.bar_border = new Color().rgb(0x161616);
-        if(options.background == null)  options.background = new Color().rgb(0x090909);
-        if(options.fade_in == null)     options.fade_in = true;
-        if(options.fade_out == null)    options.fade_out = true;
-        if(options.fade_time == null)   options.fade_time = 0.3;
+        def(options.no_visuals, false);
+        def(options.bar, new Color().rgb(0x343434));
+        def(options.bar_border, new Color().rgb(0x161616));
+        def(options.background, new Color().rgb(0x090909));
+        def(options.fade_in, true);
+        def(options.fade_out, true);
+        def(options.fade_time, 0.3);
 
         var fade_alpha : Float = options.background.a;
 

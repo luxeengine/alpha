@@ -17,9 +17,7 @@ import phoenix.Texture;
 
 import luxe.options.VisualOptions;
 
-import luxe.Log.log;
-import luxe.Log._verbose;
-import luxe.Log._debug;
+import luxe.Log.*;
 
 class Visual extends Entity {
 
@@ -57,10 +55,7 @@ class Visual extends Entity {
         /** Create a new visual based on the given options */
     public function new( _options:VisualOptions, ?_pos_info:haxe.PosInfos ) {
 
-        //safe
-        if(_options == null) {
-            throw "Visual needs not-null options at the moment";
-        }
+        assertnull(_options, 'Visual requires non-null options');
 
             //cached values
             //these need to be before super

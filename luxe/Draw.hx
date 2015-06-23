@@ -1,17 +1,12 @@
 package luxe;
 
+import luxe.Log.*;
 import luxe.Color;
-import phoenix.geometry.Geometry;
-import phoenix.geometry.LineGeometry;
-import phoenix.geometry.QuadGeometry;
-import phoenix.geometry.RectangleGeometry;
-import phoenix.geometry.CircleGeometry;
 import phoenix.Batcher;
-import phoenix.geometry.RingGeometry;
-import phoenix.geometry.ArcGeometry;
-import phoenix.geometry.PlaneGeometry;
-import phoenix.geometry.Vertex;
-import phoenix.geometry.TextGeometry;
+import phoenix.geometry.*;
+
+    //:todo: move text options to the options package
+import phoenix.geometry.TextGeometry.TextGeometryOptions;
 
 import luxe.options.GeometryOptions;
 import luxe.options.DrawOptions;
@@ -29,10 +24,11 @@ class Draw {
         /** Draw a line geometry between points `p0` and `p1` with options */
     public function line( options:DrawLineOptions ) {
 
-        if(options.p0 == null) { throw "draw.line requires p0:Vector, and p1:Vector"; }
-        if(options.p1 == null) { throw "draw.line requires p0:Vector, and p1:Vector"; }
-        if(options.id == null) { options.id = 'line.geometry'; }
-        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
+        assertnull(options.p0, 'draw.line requires p0:Vector, and p1:Vector');
+        assertnull(options.p1, 'draw.line requires p0:Vector, and p1:Vector');
+
+        def(options.id, 'line.geometry');
+        def(options.batcher, Luxe.renderer.batcher);
 
             return new LineGeometry(options);
 
@@ -41,8 +37,8 @@ class Draw {
         /** Draw a rectangle outline at the specified `x`,`y`,`w`,`h` with options */
     public function rectangle( options:DrawRectangleOptions ) {
 
-        if(options.id == null) { options.id = 'rectangle.geometry'; };
-        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
+        def(options.id, 'rectangle.geometry');
+        def(options.batcher, Luxe.renderer.batcher);
 
         return new RectangleGeometry(options);
 
@@ -51,8 +47,8 @@ class Draw {
         /** Draw a solid rectangle box at the specified `x`,`y`,`w`,`h` with options */
     public function box( options:DrawBoxOptions ) {
 
-        if(options.id == null) { options.id = 'quad.geometry'; }
-        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
+        def(options.id, 'quad.geometry');
+        def(options.batcher, Luxe.renderer.batcher);
 
         return new QuadGeometry(options);
 
@@ -61,8 +57,8 @@ class Draw {
         /** Draw a circle outline at the specified `x`,`y` with radius `r` (or `rx`,`ry` optionally for an ellipse), with options */
     public function ring( options:DrawRingOptions ) {
 
-        if(options.id == null) { options.id = 'ring.geometry'; };
-        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
+        def(options.id, 'ring.geometry');
+        def(options.batcher, Luxe.renderer.batcher);
 
         return new RingGeometry(options);
 
@@ -71,8 +67,8 @@ class Draw {
         /** Draw a solid circle at the specified `x`,`y` with radius `r` (or `rx`,`ry` optionally for an ellipse), with options */
     public function circle( options:DrawCircleOptions ) {
 
-        if(options.id == null) { options.id = 'circle.geometry'; };
-        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
+        def(options.id, 'circle.geometry');
+        def(options.batcher, Luxe.renderer.batcher);
 
         return new CircleGeometry(options);
 
@@ -81,8 +77,8 @@ class Draw {
         /** Draw an arc (open circle) at the specified `x`,`y`, between `start_angle` and `end_angle` with radius `r` (or `rx`,`ry` optionally for an ellipsical arc), with options */
     public function arc( options:DrawArcOptions ) {
 
-        if(options.id == null) { options.id = 'arc.geometry'; };
-        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
+        def(options.id, 'arc.geometry');
+        def(options.batcher, Luxe.renderer.batcher);
 
         return new ArcGeometry(options);
 
@@ -91,8 +87,8 @@ class Draw {
         /** Draw an n-sided polygon (3 sides for triangle, 6 for hexagon etc) at `x`,`y` with a radius `r` and `sides` with options  */
     public function ngon( options:DrawNgonOptions ) : Geometry {
 
-        if(options.id == null) { options.id = 'ngon.geometry'; };
-        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
+        def(options.id, 'ngon.geometry');
+        def(options.batcher, Luxe.renderer.batcher);
 
         var _sides : Int = 3;
         var _radius : Float = 64;
@@ -162,8 +158,8 @@ class Draw {
         /** Draw a textured `box` with image `texture` at `x`,`y`,`w`,`h` OR with `pos` and `size`, and `uv` with options */
     public function texture( options:DrawTextureOptions ) {
 
-        if(options.id == null) { options.id = 'texture.geometry'; };
-        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
+        def(options.id, 'texture.geometry');
+        def(options.batcher, Luxe.renderer.batcher);
 
         var _x : Float = 0;
         var _y : Float = 0;
@@ -193,21 +189,10 @@ class Draw {
                 _h = options.size.y;
             }
 
-            if(options.x == null) {
-                options.x = _x;
-            }
-
-            if(options.y == null) {
-                options.y = _y;
-            }
-
-            if(options.w == null) {
-                options.w = _w;
-            }
-
-            if(options.h == null) {
-                options.h = _h;
-            }
+            def(options.x, _x);
+            def(options.y, _y);
+            def(options.w, _w);
+            def(options.h, _h);
 
             var _quad = new QuadGeometry(options);
 
@@ -232,7 +217,7 @@ class Draw {
         /** Draw `text` with options (default font used if none specified) */
     public function text( options:TextGeometryOptions ) {
 
-        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
+        def(options.batcher, Luxe.renderer.batcher);
 
         return new TextGeometry(options);
 
@@ -242,8 +227,8 @@ class Draw {
         /** Draw a plane (three dimensional quad) with options */
     @:noCompletion public function plane( ?options:DrawPlaneOptions ) {
 
-        if(options.id == null) { options.id = 'plane.geometry'; };
-        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
+        def(options.id, 'plane.geometry');
+        def(options.batcher, Luxe.renderer.batcher);
 
         return new PlaneGeometry( options );
 
@@ -252,8 +237,9 @@ class Draw {
 
 //Internal API
 
-    @:noCompletion public var core : Core;
-    @:noCompletion public function new( _core:Core ) {
+    var core : Core;
+    @:allow(luxe.Core)
+    function new( _core:Core ) {
 
         core = _core;
 

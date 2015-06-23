@@ -1,5 +1,6 @@
 package phoenix.geometry;
 
+import luxe.Log.*;
 import phoenix.geometry.Vertex ;
 import phoenix.Vector;
 import phoenix.geometry.Geometry;
@@ -25,13 +26,8 @@ class CircleGeometry extends Geometry {
         var _radius_x : Float = 32;
         var _radius_y : Float = 32;
 
-        if(options.end_angle == null) {
-            options.end_angle = 360;
-        }
-
-        if(options.start_angle == null) {
-            options.start_angle = 0;
-        }
+        def(options.end_angle, 360);
+        def(options.start_angle, 0);
 
         if(options.r != null) {
             _radius_x = options.r;

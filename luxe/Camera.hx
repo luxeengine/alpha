@@ -1,5 +1,6 @@
 package luxe;
 
+import luxe.Log.*;
 import luxe.Rectangle;
 import luxe.utils.Maths;
 import luxe.Vector;
@@ -85,7 +86,7 @@ class Camera extends Entity {
         }
 
             //create or assign the underlying camera view
-        view = options.view == null ? new phoenix.Camera( options ) : options.view;
+        view = def(options.view, new phoenix.Camera( options ));
 
             //Init the entity part
         super({

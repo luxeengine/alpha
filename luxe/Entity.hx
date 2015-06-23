@@ -157,9 +157,7 @@ class Entity extends Objects {
 
     //name
                 //default to non-unique name
-            if(options.name_unique == null) {
-                options.name_unique = false;
-            }
+            def(options.name_unique, false);
 
             if(options.name != null) {
                 name = options.name;

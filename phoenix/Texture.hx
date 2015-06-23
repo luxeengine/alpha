@@ -76,9 +76,7 @@ class Texture extends Resource {
 
         //texture id must be first, followed by bind
 
-        if(_options.texture == null) {
-            _options.texture = create_texture_id();
-        }
+        def(_options.texture, create_texture_id());
 
         texture = _options.texture;
 

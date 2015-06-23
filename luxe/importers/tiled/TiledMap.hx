@@ -1,5 +1,6 @@
 package luxe.importers.tiled;
 
+import luxe.Log.*;
 import luxe.Vector;
 import luxe.Rectangle;
 import luxe.importers.tiled.TiledMapData;
@@ -20,12 +21,12 @@ class TiledMap extends Tilemap {
     public function new( options:TiledMapOptions ) {
 
             //sane defaults
-        if(options.format == null)      { options.format = 'xml';           }
-        if(options.asset_path == null)  { options.asset_path = 'assets/';   }
-        if(options.pos == null)         { options.pos = new Vector();       }
+        def(options.format, 'xml');
+        def(options.asset_path, 'assets/');
+        def(options.pos, new Vector());
 
         if(options.tiled_file_data == null || options.tiled_file_data.length == 0) {
-            throw "TiledMap handed invalid file data, pass the text contents of the tmx/json file";
+            throw 'TiledMap handed invalid file data, pass the text contents of the tmx/json file';
         }
 
             //create the tiled map data

@@ -5,6 +5,8 @@ import luxe.Mesh;
 import luxe.Quaternion;
 import luxe.options.MeshOptions;
 
+import luxe.Log.*;
+
 class MeshComponent extends Component {
 
     public var mesh : Mesh;
@@ -14,13 +16,9 @@ class MeshComponent extends Component {
 
         options = _options;
 
-        if(options == null) {
-            throw "MeshComponent requires non-null options at the moment";
-        }
+        assertnull(options, 'MeshComponent requires non-null options');
 
-        if(options.name == null) {
-            options.name = 'mesh';
-        }
+        def(options.name, 'mesh');
 
         super({ name:options.name });
 
@@ -61,16 +59,15 @@ class MeshComponent extends Component {
         if(mesh != null){
             mesh.scale = _scale;
         } //mesh
+
     } // entity_scale_change
 
-    override function update(dt:Float) {
-
-    } // update
-    
     override function ondestroy() {
+
         if(mesh != null) {
             mesh.destroy();
         }
+
     } // ondestroy
 
 } //MeshComponent

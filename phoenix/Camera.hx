@@ -14,6 +14,7 @@ import phoenix.Vector;
 import phoenix.Ray;
 
 import luxe.options.CameraOptions;
+import luxe.Log.*;
 
 enum ProjectionType {
     ortho;
@@ -27,11 +28,11 @@ class Camera {
     public var name : String = 'camera';
 
     @:isVar public var viewport (get,set) : Rectangle;
-    @:isVar public var center (get,set) : Vector;
-    @:isVar public var zoom (default,set) : Float = 1.0;
+    @:isVar public var center   (get,set) : Vector;
+    @:isVar public var zoom     (default,set) : Float = 1.0;
 
-    @:isVar public var near (default,set) : Float = 1000;
-    @:isVar public var far (default,set) : Float = -1000;
+    @:isVar public var near     (default,set) : Float = 1000;
+    @:isVar public var far      (default,set) : Float = -1000;
         //specific to perspective
     @:isVar public var fov      (default, set) : Float = 60;
     @:isVar public var fov_type (default, set) : FOVType = FOVType.horizontal;
@@ -80,9 +81,7 @@ class Camera {
         options = _options;
 
             //have sane defaults
-        if(options == null) {
-            options = default_camera_options();
-        }
+        def(options, default_camera_options());
 
             //store the name if any
         if(options.camera_name != null) {
@@ -362,7 +361,7 @@ class Camera {
 
     function persepective_world_to_screen( _vector:Vector, ?_viewport:Rectangle=null ) {
 
-        if(_viewport == null) { _viewport = viewport; }
+        def(_viewport, viewport);
 
         var _projected = project( _vector );
 

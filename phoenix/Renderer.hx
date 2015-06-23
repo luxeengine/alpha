@@ -167,19 +167,14 @@ class Renderer {
         /** Create a batcher, convenience for create batcher, add batcher (option), and create a camera for the batcher. */
     public function create_batcher( ? options:luxe.options.BatcherOptions ) : Batcher {
 
+            //:todo: why is this hardcoded at 2
         var _new_batcher_layer = 2;
 
         if(options != null) {
 
-            if(options.name == null) {
-                options.name = 'batcher';
-            }
-            if(options.layer == null) {
-                options.layer = _new_batcher_layer;
-            }
-            if(options.camera == null) {
-                options.camera = new phoenix.Camera();
-            }
+            def(options.name, 'batcher');
+            def(options.layer, _new_batcher_layer);
+            def(options.camera, new phoenix.Camera());
 
         } else {
             options = {
@@ -204,9 +199,7 @@ class Renderer {
 
     public function clear( _color:Color ) {
 
-        if(_color == null) {
-            _color = clear_color;
-        }
+        def(_color, clear_color);
 
         GL.clearColor( _color.r, _color.g, _color.b, _color.a );
 

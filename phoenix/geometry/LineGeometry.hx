@@ -1,5 +1,6 @@
 package phoenix.geometry;
 
+import luxe.Log.*;
 import luxe.Vector;
 import phoenix.Batcher;
 import phoenix.geometry.Geometry;
@@ -19,9 +20,9 @@ class LineGeometry extends Geometry {
             return;
         }
 
-        if(options.color == null)  { options.color  = new Color(); }
-        if(options.color0 == null) { options.color0 = options.color; }
-        if(options.color1 == null) { options.color1 = options.color; }
+        def(options.color, new Color());
+        def(options.color0, options.color);
+        def(options.color1, options.color);
 
             if(options.p0 != null) {
                 p0 = options.p0;

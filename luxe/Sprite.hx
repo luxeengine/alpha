@@ -1,5 +1,6 @@
 package luxe;
 
+import luxe.Log.*;
 import luxe.Visual;
 import luxe.Vector;
 import luxe.Rectangle;
@@ -25,9 +26,7 @@ class Sprite extends Visual {
 
         uv = new Rectangle();
 
-        if(options == null) {
-            throw "Sprite needs not-null options at the moment";
-        }
+        assertnull(options, 'Sprite requires non-null options');
 
             //centered
         if(options.centered != null) {
@@ -57,11 +56,7 @@ class Sprite extends Visual {
 
                 //because the default is 0,0,1,1 uv for the quad, we don't want that when
                 //textures are padded (like on web)
-            if(options.uv == null) {
-                uv = new Rectangle(0,0,texture.width,texture.height);
-            } else {
-                uv = options.uv;
-            }
+            uv = def(options.uv, new Rectangle(0,0,texture.width,texture.height));
 
                 //if texture is render target, flipy
             if(texture.resource_type == ResourceType.render_texture) {
@@ -91,9 +86,7 @@ class Sprite extends Visual {
             which includes more cost than simple AABB like `point_inside_AABB` */
     public function point_inside( _p:Vector ) : Bool {
 
-        if(geometry == null) {
-            return false;
-        }
+        if(geometry == null) return false;
 
         return Luxe.utils.geometry.point_in_geometry(_p, geometry);
 

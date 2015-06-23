@@ -4,6 +4,7 @@ import luxe.Component;
 import phoenix.Texture;
 
 import luxe.options.ParticleOptions;
+import luxe.Log.*;
 
 class ParticleSystem extends Entity {
 
@@ -17,9 +18,7 @@ class ParticleSystem extends Entity {
 
     override function init( ) {
 
-        if(emitters == null) {
-            emitters = new Map();
-        }
+        def(emitters, new Map());
 
     } //init
 
@@ -28,7 +27,7 @@ class ParticleSystem extends Entity {
             :todo: This is outdated in the new component layout */
     public function add_emitter(_template:ParticleEmitterOptions) {
 
-        if(emitters == null) emitters = new Map();
+        def(emitters, new Map());
 
         var _name = '';
 
@@ -196,8 +195,7 @@ class ParticleEmitter extends Component {
 
         _to_remove = [];
 
-        if(template.batcher == null) 
-            template.batcher = Luxe.renderer.batcher;
+        def(template.batcher, Luxe.renderer.batcher);
 
         // name = _name;
             //apply defaults
@@ -208,7 +206,7 @@ class ParticleEmitter extends Component {
         /** Apply a particle emitter template to this emitter. */
     public function apply(_template:ParticleEmitterOptions) {
 
-        if(_template == null) _template = {};
+        def(_template, {});
 //
         (_template.particle_image != null) ?
             particle_image = _template.particle_image :

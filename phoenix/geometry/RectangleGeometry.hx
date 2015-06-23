@@ -1,6 +1,7 @@
 package phoenix.geometry;
 
 
+import luxe.Log.*;
 import luxe.Vector;
 import phoenix.Batcher;
 import phoenix.geometry.Geometry;
@@ -70,9 +71,9 @@ class RectangleGeometry extends Geometry {
         add(vert4); add(vert5); add(vert6); add(vert7);
 
         primitive_type = PrimitiveType.lines;
-        immediate = (options.immediate == null) ? false : options.immediate;
-        visible = (options.visible == null) ? true : options.visible;
-        color = (options.color == null) ? new Color() : options.color;
+        immediate = def(options.immediate, false);
+        visible = def(options.visible, true);
+        color = def(options.color, new Color());
 
         transform.pos = new Vector( _x, _y );
 

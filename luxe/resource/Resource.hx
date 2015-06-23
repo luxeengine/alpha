@@ -33,8 +33,8 @@ class Resource {
         assertnull(_options);
         assertnull(_options.id);
 
-        if(_options.system == null) _options.system = Luxe.resources;
-        if(_options.resource_type == null) _options.resource_type = ResourceType.unknown;
+        def(_options.system, Luxe.resources);
+        def(_options.resource_type, ResourceType.unknown);
 
         id = _options.id;
         system = _options.system;

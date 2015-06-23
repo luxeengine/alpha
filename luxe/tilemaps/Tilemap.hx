@@ -1,16 +1,14 @@
 package luxe.tilemaps;
 
-import luxe.Log.log;
-
-import luxe.Rectangle;
+import luxe.Log.*;
 import luxe.Vector;
-import phoenix.Texture;
-import phoenix.geometry.Geometry;
-
+import luxe.Rectangle;
+import luxe.options.TilemapOptions;
 import luxe.tilemaps.Ortho.OrthoVisual;
 import luxe.tilemaps.Isometric.IsometricVisual;
 
-import luxe.options.TilemapOptions;
+import phoenix.Texture;
+import phoenix.geometry.Geometry;
 
 typedef TilemapVisualLayerGeometry = Array< Array<Geometry> >;
 
@@ -68,12 +66,12 @@ class TilemapVisual {
 
     function default_options() {
 
-        if(options.batcher == null)     options.batcher = Luxe.renderer.batcher;
-        if(options.depth == null)       options.depth = 0.0;
-        if(options.group == null)       options.group = 0;
-        if(options.scale == null)       options.scale = 1;
-        if(options.grid == null)        options.grid = false;
-        if(options.filter == null)      options.filter = FilterType.nearest;
+        def(options.batcher, Luxe.renderer.batcher);
+        def(options.depth, 0.0);
+        def(options.group, 0);
+        def(options.scale, 1);
+        def(options.grid, false);
+        def(options.filter, FilterType.nearest);
 
     } //default_options
 
@@ -259,19 +257,17 @@ class TileLayer {
 
     public function new( options:TileLayerOptions ) {
 
-        if(options.map == null) {
-            throw "TileLayer requires a Tilemap passed into the options, as map:Tilemap";
-        }
+        assertnull(options.map, 'TileLayer requires a Tilemap passed into the options, as map:Tilemap');
 
             //required options
         id = Luxe.utils.uniqueid();
         name = options.name;
         map = options.map;
 
-        layer = (options.layer == null) ? 0 : options.layer;
-        opacity = (options.opacity == null) ? 1.0 : options.opacity;
-        visible = (options.visible == null) ? true : options.visible;
-        fixed = (options.fixed == null) ? true : options.fixed;
+        layer = def(options.layer, 0);
+        opacity = def(options.opacity, 1.0);
+        visible = def(options.visible, true);
+        fixed = def(options.fixed, true);
 
         tiles = [];
         properties = new Map();
@@ -295,22 +291,17 @@ class Tileset {
 
     public function new( options:TilesetOptions ) {
 
-        if(options == null) {
-            throw "Tileset requires a non-null options on new()";
-        }
-
-        if(options.texture == null) {
-            throw "Tileset requires a texture that is not null";
-        }
+        assertnull(options, 'Tileset requires a non-null options on new()');
+        assertnull(options.texture, 'Tileset requires a texture that is not null');
 
         name = options.name;
         texture = options.texture;
         tile_width = options.tile_width;
         tile_height = options.tile_height;
 
-        first_id    = (options.first_id == null) ? 1 : options.first_id;
-        margin      = (options.margin   == null) ? 0 : options.margin;
-        spacing     = (options.spacing  == null) ? 0 : options.spacing;
+        first_id    = def(options.first_id, 1);
+        margin      = def(options.margin,   0);
+        spacing     = def(options.spacing,  0);
 
     } //new
 
@@ -622,7 +613,7 @@ class Tilemap {
 
     public function add_layer( options:TileLayerOptions ) {
 
-        if(options.map == null) options.map = this;
+        def(options.map, this);
 
         var new_layer = new TileLayer( options );
 

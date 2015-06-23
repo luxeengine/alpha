@@ -10,7 +10,7 @@ import phoenix.Batcher;
 import phoenix.Color;
 import phoenix.Rectangle;
 
-import luxe.Log.log;
+import luxe.Log.*;
 
 using luxe.utils.unifill.Unifill;
 
@@ -113,14 +113,14 @@ class TextGeometry extends Geometry {
         options = _options;
         emitter = new luxe.Emitter<EvTextGeometry>();
 
-        if(options == null) throw "TextGeometry: requires non-null options at the moment";
+        assertnull(options, 'TextGeometry requires non-null options');
 
         //order here before super() is important
 
                 //make sure sdf flag is early enough
             if(options.sdf != null) sdf = options.sdf;
                 //use the default font if none specified
-            font = (options.font == null) ? Luxe.renderer.font : options.font;
+            font = def(options.font, Luxe.renderer.font);
                 //the default font is always sdf enabled
             if(font == Luxe.renderer.font) { sdf = true; }
 
@@ -206,8 +206,8 @@ class TextGeometry extends Geometry {
             if(options.bounds != null) bounds = options.bounds;
             if(options.bounds_wrap != null) bounds_wrap = options.bounds_wrap;
 
-            if(options.align == null) options.align = TextAlign.left;
-            if(options.align_vertical == null) options.align_vertical = TextAlign.left;
+            def(options.align, TextAlign.left);
+            def(options.align_vertical, TextAlign.top);
 
             align = options.align;
             align_vertical = options.align_vertical;
