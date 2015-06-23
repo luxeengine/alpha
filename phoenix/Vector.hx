@@ -385,10 +385,11 @@ class Vector {
 
     } //multiply_xyz
 
-        //:todo: check for division by 0
     public inline function divide(other:Vector) {
 
         assertnull(other);
+        assert(other.x != 0, 'Vector: division by zero (other.x)');
+        assert(other.y != 0, 'Vector: division by zero (other.y)');
 
         set_xyz( x / other.x, y / other.y, z / other.z );
 
@@ -397,6 +398,10 @@ class Vector {
     } //divide
 
     public inline function divide_xyz( _x:Float = 1, _y:Float = 1, _z:Float = 1 ) {
+
+        assert(_x != 0, 'Vector.divide_xyz: division by zero (x)');
+        assert(_y != 0, 'Vector.divide_xyz: division by zero (y)');
+        assert(_z != 0, 'Vector.divide_xyz: division by zero (z)');
 
         set_xyz( x / _x, y / _y, z / _z);
 
