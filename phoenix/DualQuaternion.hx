@@ -8,7 +8,7 @@ import phoenix.Matrix;
 //Abstracted from Ben Kenwright's paper on A Beginners Guide To Dual Quaternions
 
 class DualQuaternion {
-    
+
     public var real : Quaternion;
     public var dual : Quaternion;
 
@@ -49,10 +49,10 @@ class DualQuaternion {
 
         return this;
 
-    } //set_translation_rotation    
+    } //set_translation_rotation
 
     public function dot( _other:DualQuaternion ) : Float {
-        
+
         return real.dot( _other.real );
 
     } //dot
@@ -61,7 +61,7 @@ class DualQuaternion {
 
         var mag:Float = real.dot( real );
 
-            #if debug 
+            #if debug
                 if( mag < 0.000001 ) {
                     throw "Invalid DualQuaternion for normalization";
                 }
@@ -77,7 +77,7 @@ class DualQuaternion {
     } //normalize
 
     public function scale( _scale:Float ) : DualQuaternion {
-        
+
         real.multiplyScalar( _scale );
         dual.multiplyScalar( _scale );
 
@@ -86,7 +86,7 @@ class DualQuaternion {
     } //scale
 
     public function conjugate() : DualQuaternion {
-        
+
         real.conjugate();
         dual.conjugate();
 
@@ -109,13 +109,13 @@ class DualQuaternion {
     }
 
     function get_rotation() : Quaternion {
-        
+
         return real.clone();
 
     } //get_rotation
 
     function get_translation() : Vector {
-        
+
         var t = dual.clone().multiplyScalar(2.0);
 
             t.multiply( real.clone().conjugate() );
@@ -131,18 +131,18 @@ class DualQuaternion {
 
         var M = new Matrix();
 
-        var w:Float = _q.real.w; 
-        var x:Float = _q.real.x; 
-        var y:Float = _q.real.y; 
+        var w:Float = _q.real.w;
+        var x:Float = _q.real.x;
+        var y:Float = _q.real.y;
         var z:Float = _q.real.z;
 
         // Extract rotational information
-            M.M11 = w*w + x*x - y*y - z*z; 
+            M.M11 = w*w + x*x - y*y - z*z;
             M.M12 = 2*x*y + 2*w*z;
             M.M13 = 2*x*z - 2*w*y;
 
             M.M21 = 2*x*y - 2*w*z;
-            M.M22 = w*w + y*y - x*x - z*z; 
+            M.M22 = w*w + y*y - x*x - z*z;
             M.M23 = 2*y*z + 2*w*x;
 
             M.M31 = 2*x*z + 2*w*y;
@@ -152,9 +152,9 @@ class DualQuaternion {
         // Extract translation information
         var t = _q.translation;
 
-            M.M41 = t.x; 
-            M.M42 = t.y; 
-            M.M43 = t.z; 
+            M.M41 = t.x;
+            M.M42 = t.y;
+            M.M43 = t.z;
 
         return M;
 
@@ -168,7 +168,7 @@ class DualQuaternion {
     } //Dot
 
     public static function Normalize( _dq:DualQuaternion ) {
-        
+
         return _dq.clone().normalize();
 
     } //Normalize
@@ -186,7 +186,7 @@ class DualQuaternion {
         // Multiplication order - left to right
     public static function Multiply( _a:DualQuaternion, _b:DualQuaternion ) {
 
-            // real = rhs.real * lhs.real 
+            // real = rhs.real * lhs.real
             // dual = (rhs.dual * lhs.real) + (rhs.real*lhs.dual)
             // :todo: tidy up clone()s and all that here
 
@@ -208,13 +208,13 @@ class DualQuaternion {
 
     public static function GetRotation( _q:DualQuaternion ) : Quaternion {
 
-        return _q.real.clone(); 
+        return _q.real.clone();
 
     }
 
     public static function GetTranslation( _q:DualQuaternion ) : Vector {
-        
-        return _q.clone().translation;        
+
+        return _q.clone().translation;
 
     } //GetTranslation
 
