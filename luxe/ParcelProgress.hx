@@ -2,6 +2,7 @@ package luxe;
 
 import luxe.resource.Resource;
 
+import luxe.Log.*;
 import luxe.Parcel;
 import luxe.Sprite;
 import luxe.Color;
