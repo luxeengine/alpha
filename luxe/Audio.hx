@@ -83,15 +83,6 @@ class Audio {
         return get(_name) != null;
     } //exists
 
-        /**
-            Set the on complete handler for a named audio reference   
-            **name** The audio reference name to assign to   
-            **handler** The callback to call when playback is complete   
-            **returns** nothing
-        */
-    public function on_complete( _name:String, handler:Void->Void ) : Void {
-        // return get( _name ).on_complete( handler );
-    } //playing
 
         /**
             Loop a named audio reference indefinitely. Use `stop` if needed.   
