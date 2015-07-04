@@ -76,10 +76,10 @@ class RayAndShape extends luxe.States.State {
         if(colls.length > 0) {
 
             for (c in colls) {
-                var hitstart = c.hitStart();
-                var hitend = c.hitEnd();
-                var raystart = c.ray.start;
-                var rayend = c.ray.end;
+                var hitstart = c.hitStart().clone();
+                var hitend = c.hitEnd().clone();
+                var raystart = c.ray.start.clone();
+                var rayend = c.ray.end.clone();
 
                 intersect.p0 = hitstart;
                 intersect.p1 = hitend;
