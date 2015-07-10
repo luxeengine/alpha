@@ -2,8 +2,16 @@ import luxe.Vector;
 import luxe.Component;
 import luxe.Input;
 import luxe.Text;
+import luxe.Log.*;
 
 using luxe.utils.unifill.Unifill;
+
+typedef TextEditOptions = {
+    ?name:String,
+        //A regex string for what to include in the text control
+        //i.e if you want numbers only, set this to numbers only regex
+    ?filter:EReg
+}
 
 class TextEdit extends Component {
 
@@ -16,9 +24,19 @@ class TextEdit extends Component {
     var blink = false;
     var next_blink:Float = 0.0;
 
-    public function new() {
-        super({ name:'text_edit' });
-        lp0 = new Vector(); lp1 = new Vector();
+    public var filter:EReg;
+
+    public function new( ?_options:TextEditOptions ) {
+
+        _options = def(_options, {});
+        var _name = def(_options.name,'text_edit');
+        super({ name:_name });
+
+        lp0 = new Vector();
+        lp1 = new Vector();
+
+        if(_options.filter != null) filter = _options.filter;
+
     }
 
     override function onadded() {
@@ -31,6 +49,13 @@ class TextEdit extends Component {
     }
 
     override function ontextinput( event:TextEvent ) {
+
+        if(filter != null) {
+            if(!filter.match(event.text)) {
+                return;
+            }
+        }
+
         var b = before(index);
         var a = after(index);
         index += event.text.uLength();
