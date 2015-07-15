@@ -205,7 +205,12 @@ class BytesResource extends Resource {
 
             });
 
-            get.error(reject);
+            get.error(function(_error) {
+
+                state = ResourceState.failed;
+                reject(_error);
+
+            });
 
         }); //promise
 
@@ -266,7 +271,12 @@ class TextResource extends Resource {
 
             });
 
-            get.error(reject);
+            get.error(function(_error) {
+
+                state = ResourceState.failed;
+                reject(_error);
+
+            });
 
         }); //promise
 
@@ -327,7 +337,12 @@ class JSONResource extends Resource {
 
             });
 
-            get.error(reject);
+            get.error(function(_error) {
+
+                state = ResourceState.failed;
+                reject(_error);
+
+            });
 
         }); //promise
 
