@@ -18,6 +18,7 @@ import luxe.Log.*;
 
 typedef ParcelChange = {
     load_id: String,
+    id: String,
     index: Int,
     total: Int,
     ? error: Dynamic,
@@ -169,11 +170,11 @@ class Parcel {
 
             var _index = 0;
 
-            inline function _handle(_load:Promise) {
+            inline function _handle(_item_id:String, _load:Promise) {
                 _load.then(function(_res) {
-                    one_loaded(_load_id, _res, ++_index, length);
+                    one_loaded(_item_id, _load_id, _res, ++_index, length);
                 }, function(_err:Dynamic){
-                    one_failed(_load_id, _err, ++_index, length);
+                    one_failed(_item_id, _load_id, _err, ++_index, length);
                 });
             }
 
@@ -186,13 +187,13 @@ class Parcel {
                         loaded.push(_bytes.id);
                         Luxe.timer.schedule(load_time_spacing, function() {
 
-                            _handle( system.load_bytes( _bytes.id ) );
+                            _handle( _bytes.id, system.load_bytes( _bytes.id ) );
 
                         }); //timer
 
                     } else { //!loaded
                         log('$id / already had ${_bytes.id} loaded, skipped');
-                        one_loaded(_load_id, system.get(_bytes.id), ++_index, length);
+                        one_loaded(_bytes.id, _load_id, system.get(_bytes.id), ++_index, length);
                     }
 
                 } //each bytes
@@ -206,13 +207,13 @@ class Parcel {
                         loaded.push(_text.id);
                         Luxe.timer.schedule(load_time_spacing*_index, function() {
 
-                            _handle( system.load_text( _text.id ) );
+                            _handle( _text.id, system.load_text( _text.id ) );
 
                         }); //timer
 
                     } else { //!loaded
                         log('$id / already had ${_text.id} loaded, skipped');
-                        one_loaded(_load_id, system.get(_text.id), ++_index, length);
+                        one_loaded(_text.id, _load_id, system.get(_text.id), ++_index, length);
                     }
 
                 } //each texts
@@ -226,13 +227,13 @@ class Parcel {
                         loaded.push(_json.id);
                         Luxe.timer.schedule(load_time_spacing*_index, function() {
 
-                            _handle( system.load_json( _json.id ) );
+                            _handle( _json.id, system.load_json( _json.id ) );
 
                         });
 
                     } else { //!loaded
                         log('$id / already had ${_json.id} loaded, skipped');
-                        one_loaded(_load_id, system.get(_json.id), ++_index, length);
+                        one_loaded(_json.id, _load_id, system.get(_json.id), ++_index, length);
                     }
 
                 } //each jsons
@@ -254,13 +255,13 @@ class Parcel {
                                 clamp_t:_texture.clamp_t
                             });
 
-                            _handle(_load);
+                            _handle(_texture.id, _load);
 
                         }); //timer
 
                     } else { //!loaded
                         log('$id / already had ${_texture.id} loaded, skipped');
-                        one_loaded(_load_id, system.get(_texture.id), ++_index, length);
+                        one_loaded(_texture.id, _load_id, system.get(_texture.id), ++_index, length);
                     }
 
                 } //each textures
@@ -278,13 +279,13 @@ class Parcel {
                                 texture_path:_font.texture_path
                             });
 
-                            _handle(_load);
+                            _handle(_font.id, _load);
 
                         }); //timer
 
                     } else { //!loaded
                         log('$id / already had ${_font.id} loaded, skipped');
-                        one_loaded(_load_id, system.get(_font.id), ++_index, length);
+                        one_loaded(_font.id, _load_id, system.get(_font.id), ++_index, length);
                     }
 
                 } //each fonts
@@ -303,13 +304,13 @@ class Parcel {
                                 vert_id: _shader.vert_id
                             });
 
-                            _handle(_load);
+                            _handle(_shader.id, _load);
 
                         }); //timer
 
                     } else { //!loaded
                         log('$id / already had ${_shader.id} loaded, skipped');
-                        one_loaded(_load_id, system.get(_shader.id), ++_index, length);
+                        one_loaded(_shader.id, _load_id, system.get(_shader.id), ++_index, length);
                     }
 
                 } //each shaders
@@ -330,16 +331,16 @@ class Parcel {
                             );
 
                             _load.then(function(_) {
-                                one_loaded(_load_id, null, ++_index, length);
+                                one_loaded(_sound.id, _load_id, null, ++_index, length);
                             }, function(_err:Dynamic){
-                                one_failed(_load_id, _err, ++_index, length);
+                                one_failed(_sound.id, _load_id, _err, ++_index, length);
                             });
 
                         }); //timer
 
                     } else { //!loaded
                         log('$id / already had ${_sound.id} (${_sound.name}) loaded, skipped');
-                        one_loaded(_load_id, null, ++_index, length);
+                        one_loaded(_sound.id, _load_id, null, ++_index, length);
                     }
 
                 } //each sounds
@@ -498,11 +499,12 @@ class Parcel {
 
 //Internal
 
-    function one_loaded( _load_id:String, _resource:Resource, _index:Int, _total:Int ) {
+    function one_loaded( _item_id:String, _load_id:String, _resource:Resource, _index:Int, _total:Int ) {
 
-        _debug('loaded $_index / $_total for $_load_id / ' + (_resource == null ? 'sound' : _resource.id) );
+        _debug('loaded $_index / $_item_id / $_total for $_load_id / ' + (_resource == null ? 'sound' : _resource) );
 
         var _state : ParcelChange = {
+            id: _item_id,
             load_id: _load_id,
             resource: _resource,
             index: _index,
@@ -521,11 +523,12 @@ class Parcel {
 
     } //one_loaded
 
-    function one_failed( _load_id:String, _error:Dynamic, _index:Int, _total:Int ) {
+    function one_failed( _item_id:String, _load_id:String, _error:Dynamic, _index:Int, _total:Int ) {
 
-        _debug('failed $_index / $_total for $_load_id / ${_error}');
+        _debug('failed $_index / $_item_id / $_total for $_load_id / ${_error}');
 
         var _state : ParcelChange = {
+            id: _item_id,
             load_id: _load_id,
             error: _error,
             index: _index,
