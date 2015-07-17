@@ -350,7 +350,7 @@ extends
         shutting_down = true;
 
             //shutdown snow, which calls ondestroy for us
-        snow.Snow.next(app.shutdown);
+        Luxe.next(app.shutdown);
 
     } //shutdown
 
@@ -769,7 +769,7 @@ extends
 
             game.ontouchdown(event);
 
-            #if !no_debug_console
+            #if (!no_debug_console && mobile)
 
                     //3 finger tap when console opens will switch tabs
                 if(app.input.touch_count == 3) {
