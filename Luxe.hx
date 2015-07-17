@@ -11,6 +11,7 @@ import luxe.resource.Resource;
 import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Screen;
+import snow.Snow;
 
 @:keep
 class Luxe {
@@ -90,6 +91,13 @@ class Luxe {
     public static function off<T>(event:Ev, handler:T->Void ) {
         return core.emitter.off(event, handler);
     }
+
+        /** Call a function at the start of the next frame */
+    public static inline function next( func: Void->Void ) {
+
+        Snow.next(func);
+
+    } //next
 
         /** shutdown the engine and quit */
     public static function shutdown() {
