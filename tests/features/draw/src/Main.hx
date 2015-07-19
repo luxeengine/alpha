@@ -48,12 +48,35 @@ class Main extends luxe.Game {
         if(ev.type == SystemEventType.input) {
             if(ev.input.type == InputEventType.joystick) {
 
-                var event : AccelEvent = ev.input.event;
-                switch(event.axis) {
-                    case 0: accel_x = event.value;
-                    case 1: accel_y = event.value;
-                    case 2: accel_z = event.value;
-                }
+                #if mobile
+                    var event : AccelEvent = ev.input.event;
+                    switch(event.axis) {
+                        case 0: accel_x = event.value;
+                        case 1: accel_y = event.value;
+                        case 2: accel_z = event.value;
+                    }
+                #end
+
+                #if web
+
+                    var event = ev.input.event;
+                    if(event.type == 'orientation') {
+                        // available:
+                        // event.alpha;
+                        // event.beta;
+                        // event.gamma;
+                    } else
+                    if(event.type == 'motion') {
+                        // available:
+                        // event.acceleration (.x, .y, .z)
+                        // event.accelerationIncludingGravity (.x, .y, .z)
+                        // event.rotationRate (.alpha, .beta, .gamma)
+                        accel_x = event.acceleration.x;
+                        accel_y = event.acceleration.y;
+                        accel_z = event.acceleration.z;
+                    }
+
+                #end
 
             } //if joystick
         } //if input
@@ -255,7 +278,7 @@ class Main extends luxe.Game {
                 align : TextAlign.center,
                 color : new Color(Math.random(),Math.random(),Math.random(),0.5),
                 pos : mouse,
-                text : Std.string(luxe.utils.Maths.fixed(Luxe.dt, 6))
+                text : '$accel_x, $accel_y, $accel_z'//Std.string(luxe.utils.Maths.fixed(Luxe.dt, 6))
             });
 
     } //onrender
