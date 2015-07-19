@@ -84,13 +84,19 @@ class TiledMap extends Tilemap {
         var layer_index : Int = 0;
         for(_layer in tiledmap_data.layers) {
 
+            var _layer_properties:Map<String,String> = new Map();
+
+            for(_prop in _layer.properties.keys()) {
+                _layer_properties.set(_prop, _layer.properties.get(_prop));
+            }
+
                 //add the layer
             add_layer({
                 name : _layer.name,
                 layer : layer_index,
                 opacity : _layer.opacity,
                 visible : _layer.visible,
-                properties : _layer.properties
+                properties : _layer_properties,
             });
 
                 //create the tiles
