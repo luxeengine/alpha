@@ -89,7 +89,8 @@ class TiledMap extends Tilemap {
                 name : _layer.name,
                 layer : layer_index,
                 opacity : _layer.opacity,
-                visible : _layer.visible
+                visible : _layer.visible,
+                properties : _layer.properties
             });
 
                 //create the tiles

@@ -116,6 +116,10 @@ class Main extends luxe.Game {
             //draw the additional objects
         draw_tiled_object_groups( scale );
 
+        for(layer in tiled_ortho.layers) {
+            trace('layer / ${layer.id} / ${layer.name} / ${layer.properties}');
+        }
+
     } //load_ortho_tiledmap
 
     function create_small_handmade_tilemap() {

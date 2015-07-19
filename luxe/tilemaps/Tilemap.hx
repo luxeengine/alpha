@@ -268,9 +268,9 @@ class TileLayer {
         opacity = def(options.opacity, 1.0);
         visible = def(options.visible, true);
         fixed = def(options.fixed, true);
+        properties = def(options.properties, new Map());
 
         tiles = [];
-        properties = new Map();
 
     } //new
 

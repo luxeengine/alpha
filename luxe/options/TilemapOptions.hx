@@ -70,6 +70,8 @@ typedef TileLayerOptions = {
     @:optional var map : Tilemap;
         /** */
     @:optional var layer : Int;
+        /** */
+    @:optional var properties : Map<String, String>;
 
 } //TileLayerOptions
 
