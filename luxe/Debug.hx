@@ -415,8 +415,8 @@ class Debug {
         dt_average_count++;
 
         if(dt_average_count == dt_average_span - 1) {
-            dt_average = dt_average_accum/dt_average_span;
-            dt_average_accum = dt_average;
+            dt_average = dt_average_accum/dt_average_count;
+            dt_average_accum = 0;
             dt_average_count = 0;
         }
 
@@ -425,7 +425,7 @@ class Debug {
         }
 
             //update the title
-        debug_inspector._title_text.text = "[ " + current_view.name + " ] " + Maths.fixed(Luxe.dt,5) + ' / ' + Maths.fixed(dt_average,5);
+        debug_inspector._title_text.text = '[${current_view.name}] / ${Math.round(1/dt_average)} / ${Maths.fixed(Luxe.dt,5)} / ${Maths.fixed(dt_average,5)}';
 
         for(view in views) {
             view.process();
