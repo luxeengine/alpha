@@ -109,7 +109,7 @@ extends
             //Don't change this, it matches semantic versioning http://semver.org/
         Luxe.build = Luxe.version + haxe.Resource.getString('build');
 
-        log('${Luxe.snow.platform} / version ${Luxe.build}');
+        log('${Luxe.snow.os} / ${Luxe.snow.platform} / version ${Luxe.build}');
 
             //flag for later
         headless = (app.window == null);
