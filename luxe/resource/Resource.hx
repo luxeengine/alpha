@@ -161,7 +161,7 @@ class Resource {
         }
     }
 
-    function toString() {
+    public function toString() {
         return 'Resource(`$id`, ${type_string()}, ${state_string()})';
     }
 
