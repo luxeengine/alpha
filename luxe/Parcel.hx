@@ -501,7 +501,7 @@ class Parcel {
 
     function one_loaded( _item_id:String, _load_id:String, _resource:Resource, _index:Int, _total:Int ) {
 
-        _debug('loaded $_index / $_item_id / $_total for $_load_id / ' + (_resource == null ? 'sound' : _resource) );
+        _debug('loaded $_index / $_item_id / $_total for $_load_id / ' + (_resource == null ? 'sound' : _resource.toString()) );
 
         var _state : ParcelChange = {
             id: _item_id,
