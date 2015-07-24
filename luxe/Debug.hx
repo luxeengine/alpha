@@ -415,8 +415,8 @@ class Debug {
         dt_average_count++;
 
         if(dt_average_count == dt_average_span - 1) {
-            dt_average = dt_average_accum/dt_average_count;
-            dt_average_accum = 0;
+            dt_average = dt_average_accum/dt_average_span;
+            dt_average_accum = dt_average;
             dt_average_count = 0;
         }
 
