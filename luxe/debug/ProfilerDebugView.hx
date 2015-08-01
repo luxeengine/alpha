@@ -113,7 +113,7 @@ class ProfilerDebugView extends luxe.debug.DebugView {
 
         if(graph.max != peak) {
             graph.max = peak;
-    }
+        }
 
         graph.ping = Maths.fixed(_byte_value,4);
 
@@ -326,7 +326,7 @@ private class ProfilerGraph {
         bg = _bg;
         name = _name;
         color = new Color();
-        max = (1/60) * 1000;
+        max = Maths.fixed((1/60) * 1000, 2);
 
     } //new
 
@@ -552,7 +552,7 @@ private class ProfilerBar {
     }
 
     function set_text(_t:String) {
-        text_item.text = '$name (${max}ms) | ${_t}ms';
+        text_item.text = '$name (${graph.max}ms) | ${_t}ms';
         return text = _t;
     }
 
