@@ -992,7 +992,7 @@ allocating strings each frame.
 @:noCompletion
 @:allow(luxe.Core)
 class Tag {
-    static var update       = 'real dt';
+    static var update       = 'update dt';
     static var renderdt     = 'render dt';
     static var game_update  = 'game.update';
     static var render       = 'core.render';
