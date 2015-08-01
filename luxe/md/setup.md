@@ -8,114 +8,73 @@
 
 ---
 
-####Make sure haxe is installed
-
-<a id="find-haxe" name="find-haxe">
-<h4>Install Haxe 3.1.3+</h4></a>
-&nbsp;   
+<a id="step1" name="step1">
+###Step 1: Make sure Haxe is installed
+</a>
 [ ![haxe](images/haxe.png) ](http://haxe.org)
 
-Alternatively, [you can help test the new Haxe 3.2.0 release](http://snowkit.org/2015/03/16/haxe-3-2-0/).
-&nbsp;   
+<a href="http://haxe.org/"><h4>Install Haxe 3.2.0+</h4></a>
+luxe uses a modern, high level programming language   
+and cross platform toolkit called Haxe.
 
 ---
-&nbsp;   
-####Make sure git is correctly installed
 
-<a id="find-git" name="find-git">
-<h4>Install Git</h4></a>
+<a id="step2" name="step2">
+###Step 2: Make sure git is correctly installed
+</a>
 
 [ ![github](images/github.png) ](https://github.com)
 
-To use the alpha of luxe, you must have git. 
-
-**Windows**   
-Pick one of these options :
-
-1. Install [Github for Windows](https://windows.github.com/). This is easiest.
-2. Install cli [msysgit](http://msysgit.github.io/). <smal>Make sure git is in your PATH.</small>
-
-**Mac**   
-Check if you have git already, by running `git --version` from `Terminal.app`.
-
-1. Install from homebrew
-  - Install [homebrew](http://brew.sh/) if you haven't   
-  - From <code>Terminal.app</code> run `brew install git`
-
-2. Install via Github for Mac
-  - Install [Github for Mac](https://mac.github.com/)
-  - Run the app, in the menu choose Preferences -> Advanced -> Install command line tools
-
-**Linux**   
-This varies wildly by distro, use your favourite package manager or install process.
-
-For example, on ubuntu 12+ you could use `sudo apt-get install git-core`.
+<a href="https://github.com/underscorediscovery/luxe"><h4>luxe is hosted on Github.com</h4></a>
+To use the alpha of luxe, you must have git installed.   
+If you don't have git installed, [there are some instructions below](#install-git).
 
 ---
-&nbsp;   
-&nbsp;   
-####Make sure flow, snow and luxe are installed
-<a id="find-libs" name="find-libs">
 
-[ ![deps](images/deps.png) ](http://luxeengine.com/)
+<a id="step3" name="step3">
+###Step 3: Install luxe
+</a>
 
-&nbsp;   
+[ ![deps](images/deps.png) ](https://github.com/underscorediscovery/luxe)
 
-[flow](https://github.com/underscorediscovery/flow) | [snow](https://github.com/underscorediscovery/snow) | [luxe](https://github.com/underscorediscovery/luxe)
+<a href=""><h4>luxe has two dependencies</h4></a>
 
-&nbsp;   
+luxe uses [flow](https://github.com/underscorediscovery/flow) to build,   
+and [snow](https://github.com/underscorediscovery/snow) to access the platforms.
 
-This process is the same for all 3 libraries.   
-This process is easiest using the github app for Windows/Mac.
+---
 
-For each of the dependencies the steps are the same :
+**Using `haxelib git` to install**   
+Once you have git installed, you can use haxelib to install the libraries.
 
-1. Clone the repository code into a folder somewhere
-2. Tell haxelib that this folder refers to the library
+Simply run the following commands:
 
-Note that this folder below is referred to as path/to/library/, which is not a real path, but where you have cloned the repo.
+`haxelib git flow https://github.com/underscorediscovery/flow.git`
 
-<h4>Installing the libraries</h4></a>
+`haxelib git snow https://github.com/underscorediscovery/snow.git`
 
-**Step one: Clone the repository**
+`haxelib git luxe https://github.com/underscorediscovery/luxe.git`
 
-1. Using the desktop app
-    - Visit the repository link on github, in browser
-    - click "Clone in desktop"
-    - Find folder location by right click on repo in app
+---
 
-2. Using manual clone
-    - `cd <path/to/library/>`
-    - `git clone <repourl>`
+<small>
 
-3. Using haxelib git
-    - `haxelib git <library> <repourl>`
+**Optional: Manually cloning**   
 
-**Step two: Tell haxelib where to find the library**
-
-Only required for option 1. or 2.
+If you clone the repositories manually, tell haxelib where to find the clone.
 
 `haxelib dev <library> <path/to/library>`
 
-**Library links**
-
-**flow** (haxelib name: `flow`)
-- [visit flow on github](https://github.com/underscorediscovery/flow)
-- repo url `https://github.com/underscorediscovery/flow.git`
-
-**snow** (haxelib name: `snow`)
-- [visit snow on github](https://github.com/underscorediscovery/snow)
-- repo url `https://github.com/underscorediscovery/snow.git`
-
-**luxe** (haxelib name: `luxe`)
-- [visit luxe on github](https://github.com/underscorediscovery/luxe)
-- repo url `https://github.com/underscorediscovery/luxe.git`
+</small>
 
 ---
 
 ##Test if setup is correct
 
-The simplest way to test is to 
+The simplest way to test is to run a test case for the web target.   
+To find out where haxelib put the luxe code, run `haxelib path luxe`.
+
+To run the test:
 
 - `cd /path/to/luxe/tests/features/draw/`
 - `haxelib run flow run web`
@@ -123,70 +82,68 @@ The simplest way to test is to
 You should see something similar to this open in your browser
 
 ![](images/guide.drawing.png)
-&nbsp;
-&nbsp;
 
 ---
 
 ##What's next?
 
-If everything is set up so far, you might have one or two more steps to do.
+Once everything is set up, there are further steps for working with luxe.
 
-- You should set up to build native applications (mac/windows/linux/ios/android),
-- You should set up IDE/editor support.
+- You can and should set up [IDE/Editor support](#step5).
+- Setup native platforms (mac/windows/linux/ios/android), [go to step 4](#step4).
 
-Both of those continue below this section.
+Additionally,
 
-** Once everything is setup **   
-You should visit the user guide, you can find a tutorial on getting started,
-how luxe apps fit together, and how to create your own project.
-
-####[Jump to the user guides](guide.html)
-####[Continue to setup native targets](#native)
-####[Continue to setup editor support](#editors)
-
----
-
-## Additional help and info, after setup
-
-Additional setup help and information : [here](http://snowkit.org/2014/10/29/quick-setup-guides-and-help/)
-
-Please visit http://snowkit.org for all the latest updates and news, as all news is posted here.
-
-You can also follow on http://twitter.com/snowkitorg, or join http://snowkit.org/chat
+- Always visit http://snowkit.org for the latest news and user posts.
+- You can follow news on http://twitter.com/snowkitorg
+- You can join the community chat http://snowkit.org/chat
+- You can view the [user guides](guide.html)
+- You can see the [“awesome-snowkit”](https://github.com/anissen/awesome-snowkit) respository for resources.
+- [Additional help and information](http://snowkit.org/2014/10/29/quick-setup-guides-and-help/)
 
 ---
 
-<a name="native"></a>
+<a id="step4" name="step4">
+###Step 4: Setup Native targets
+</a>
 
-##Native targets
+**Step 4.1 - Install C++**   
+To build the native targets, you must have c++ installed.
 
-To build windows/mac/linux builds, you need to have c++ installed.
+- Windows : [Visual C++ 2013](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx)   
+- Linux : GCC/G++   
+- Mac : [Xcode](https://developer.apple.com/xcode/downloads/) (and command line tools)   
+- iOS : Xcode, [iOS SDK](https://developer.apple.com/ios/) (comes with xcode)
+- Android : [Android SDK](http://developer.android.com/sdk/index.html), [Android NDK](https://developer.android.com/tools/sdk/ndk/index.html), [Continued setup](http://snowkit.org/2014/10/29/quick-setup-guides-and-help/#androidspecificsetup)
 
-- Windows : Visual C++ 2013 ([free](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx))
-- Linux : gcc/g++   
-- Mac : Xcode (and command line tools)   
+**Step 4.2 - Download the snow prebuilt binary**   
 
+snow is the underlying framework that handles the platform specifics for luxe.
 
-**Additionally,**   
-You need to download the latest prebuilt binaries and drop them in your ndll/ folder.
-
-[Read this blog post](http://snowkit.org/2015/03/23/snowkit-dev-log-2-history/#buildkitestatusanddownloads) for more details.
+Since snow interacts with the platform, it has prebuilt c++ components.   
+These prebuilt binaries are compiled by an automated build server,   
+and _currently_, **need to be copied manually into your snow folder.**
 
 Download the prebuilt files for your target platforms here:
 
 #### http://build.luxeengine.com/snow
 
-&nbsp;
-&nbsp;
+- Find out where snow is stored by running `haxelib path snow`.
+- Copy the contents of the zip file into the `<snow root>/ndll/` folder.
+- For history and details, [read this dev log](http://snowkit.org/2015/03/23/snowkit-dev-log-2-history/#buildkitestatusanddownloads).
 
+It should look like this (note: mine includes all platforms inside the ndll folder,   
+you only need the ones for the targets that you are using currently).
 
-<a name="editors"></a>
-
-##Editor setup
+![](images/snowndllfolder.png)
 
 ---
 
+<a id="step5" name="step5">
+###Step 5: Editor Setup
+</a>
+
+---
 
 ###Sublime text
 
@@ -222,6 +179,34 @@ and here is a direct [Download link](https://github.com/Chman/Snowkit-FD/blob/ma
 **Be sure to read the setup guide!**
 
 [Read the flash develop setup](https://underscorediscovery.github.io/flow/guide/flashdevelop.html) docs.
+
+---
+
+<a id="install-git" name="install-git">&nbsp;</a>
+## Appendix A: Installing git
+
+**Windows**   
+Pick **one** of these options :
+
+1. Install [Github for Windows](https://windows.github.com/). This is easiest.
+2. Install cli [msysgit](http://msysgit.github.io/). <small>Make sure git is in your PATH.</small>
+3. Install [cmder](http://gooseberrycreative.com/cmder/). <small>The full download includes git.</small>
+
+**Mac**   
+Check if you have git already, by running `git --version` from `Terminal.app`.
+
+1. Install from homebrew
+  - Install [homebrew](http://brew.sh/) if you haven't   
+  - From <code>Terminal.app</code> run `brew install git`
+
+2. Install via Github for Mac
+  - Install [Github for Mac](https://mac.github.com/)
+  - Run the app, in the menu choose Preferences -> Advanced -> Install command line tools
+
+**Linux**   
+This varies wildly by distro, use your favourite package manager or install process.
+
+For example, on ubuntu 12+ you could use `sudo apt-get install git-core`.
 
 
 ---
