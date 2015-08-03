@@ -309,15 +309,15 @@ class Camera {
 
             case ProjectionType.ortho: {
 
-                options.cull_backfaces = false;
-                options.depth_test = false;
+                def(options.cull_backfaces, false);
+                def(options.depth_test, false);
 
             } //ortho
 
             case ProjectionType.perspective: {
 
-                options.cull_backfaces = true;
-                options.depth_test = true;
+                def(options.cull_backfaces, true);
+                def(options.depth_test, true);
 
             } //perspective
 
