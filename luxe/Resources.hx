@@ -74,7 +74,7 @@ class Resources {
     } //add
 
         /** Remove a resource being tracked by this system. */
-    public function remove( resource:Resource, ?_pos:haxe.PosInfos ) : Bool {
+    public function remove( resource:Resource #if debug, ?_pos:haxe.PosInfos #end ) : Bool {
 
         assert(cache.exists(resource.id));
 

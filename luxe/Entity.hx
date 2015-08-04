@@ -125,7 +125,7 @@ class Entity extends Objects {
 
 
         /** Create a new entity with the given options */
-    public function new( ?_options:EntityOptions, ?_pos_info:haxe.PosInfos ) {
+    public function new( ?_options:EntityOptions #if debug, ?_pos_info:haxe.PosInfos #end ) {
 
         super('entity');
 
@@ -224,7 +224,7 @@ class Entity extends Objects {
 
             _verbose(" \tadding to scene " + scene.name);
 
-            scene.add( this, _pos_info );
+            scene.add( this #if debug, _pos_info #end );
 
                 //we also want to listen for scene events
 
@@ -985,7 +985,7 @@ class Entity extends Objects {
 
     } //_stop_fixed_rate_timer
 
-    inline function _set_fixed_rate_timer( _rate:Float, ?_pos:haxe.PosInfos ) {
+    inline function _set_fixed_rate_timer( _rate:Float #if debug , ?_pos:haxe.PosInfos #end ) {
 
         _stop_fixed_rate_timer();
 

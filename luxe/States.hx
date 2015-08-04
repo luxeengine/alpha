@@ -306,9 +306,11 @@ class States extends Objects {
 
     } //leave
 
-    public function set<T1,T2>(name:String, ?_enter_with:T1, ?_leave_with:T2, ?pos:haxe.PosInfos ) {
+    public function set<T1,T2>(name:String, ?_enter_with:T1, ?_leave_with:T2 #if debug, ?pos:haxe.PosInfos #end ) {
 
+        #if debug //:todo:
         _debug('attempt to set state to $name from ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
+        #end
 
         if (current_state != null) {
 

@@ -95,7 +95,7 @@ class Scene extends Objects {
 
         /** add given entity to this scene */
     var entity_count : Int = 0;
-    public function add( entity:Entity, ?pos:haxe.PosInfos ) {
+    public function add( entity:Entity #if debug, ?pos:haxe.PosInfos #end ) {
 
         assertnull(entity, 'can\'t put entity in a scene if the entity is null.');
 

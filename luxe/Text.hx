@@ -80,7 +80,7 @@ class Text extends Visual {
 
     public var text_options : TextOptions;
 
-    public function new( _options : TextOptions, ?_pos_info:haxe.PosInfos ) {
+    public function new( _options : TextOptions #if debug, ?_pos_info:haxe.PosInfos #end ) {
 
             //store for later
         text_options = _options;
@@ -144,7 +144,7 @@ class Text extends Visual {
         _options.shader = geom.shader;
 
             //create the visual
-        super(_options, _pos_info);
+        super(_options #if debug, _pos_info #end);
             //flush
         _update_bounds();
 
