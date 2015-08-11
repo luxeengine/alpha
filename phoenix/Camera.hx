@@ -114,8 +114,6 @@ class Camera {
 
         transform.listen(on_transform_cleaned);
 
-        apply_default_camera_options();
-
         switch (projection) {
 
             case ProjectionType.ortho:
@@ -138,20 +136,18 @@ class Camera {
 
     public function set_ortho( _options:CameraOptions ) {
 
-            //
         projection = ProjectionType.ortho;
-            //
+
         _merge_options( _options );
 
     } //set_ortho
 
     public function set_perspective( _options:CameraOptions ) {
 
-            //
         projection = ProjectionType.perspective;
-            //
+
         _merge_options( _options );
-            //reset the view origin
+
         transform.origin.set_xyz(0,0,0);
 
     } //set_perspective
@@ -309,15 +305,15 @@ class Camera {
 
             case ProjectionType.ortho: {
 
-                def(options.cull_backfaces, false);
-                def(options.depth_test, false);
+                options.cull_backfaces = false;
+                options.depth_test = false;
 
             } //ortho
 
             case ProjectionType.perspective: {
 
-                def(options.cull_backfaces, true);
-                def(options.depth_test, true);
+                options.cull_backfaces = true;
+                options.depth_test = true;
 
             } //perspective
 
@@ -606,8 +602,11 @@ class Camera {
 
     } //set_pos
 
-
+        //:todo: use def/tidy up/etc
     function _merge_options( _options:CameraOptions ) {
+
+            //start at defaults for the type
+        apply_default_camera_options();
 
         if(_options.aspect != null) {
             options.aspect = _options.aspect;
@@ -644,9 +643,6 @@ class Camera {
             options.viewport = _options.viewport;
             viewport = options.viewport;
         }
-
-            //start at defaults
-        apply_default_camera_options();
 
         if(_options.cull_backfaces != null) {
             options.cull_backfaces = _options.cull_backfaces;
