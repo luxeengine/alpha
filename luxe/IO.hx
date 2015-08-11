@@ -29,6 +29,7 @@ class IO {
     } //url_open
 
         /** Save a string value by key, with an optional slot.
+            To remove a saved key, pass value in as null.
             Works on all targets as a simple save/load mechanism.
             Data saved is plain text but obscured with basic encoding.
             Any further obfuscation can be done on the value prior to saving.
@@ -47,6 +48,14 @@ class IO {
         return core.app.io.string_load(_key, _slot);
 
     } //string_load
+
+        /** Destroy a specific string slot, removing all values stored.
+            Does not ask for confirmation. Returns true if successful, false otherwise. */
+    public inline function string_destroy( _slot:Int = 0 ) : Bool {
+
+        return core.app.io.string_destroy(_slot);
+
+    } //string_destroy
 
 //Internal
 
