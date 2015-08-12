@@ -58,8 +58,8 @@ class Camera {
     public var projection : ProjectionType;
     public var up : Vector;
 
-    @:noCompletion public var projection_float32array : Float32Array;
-    @:noCompletion public var view_inverse_float32array : Float32Array;
+    @:noCompletion public var proj_arr : Float32Array;
+    @:noCompletion public var view_inverse_arr : Float32Array;
 
         //Internal rendering fov, always vertical
     var fov_y:Float;
@@ -257,7 +257,7 @@ class Camera {
         }
 
         view_matrix_inverse = view_matrix.inverse();
-        view_inverse_float32array = view_matrix_inverse.float32array();
+        view_inverse_arr = view_matrix_inverse.float32array();
 
         transform_dirty = false;
 
@@ -279,7 +279,7 @@ class Camera {
 
         } //switch
 
-        projection_float32array = projection_matrix.float32array();
+        proj_arr = projection_matrix.float32array();
 
         projection_dirty = false;
 

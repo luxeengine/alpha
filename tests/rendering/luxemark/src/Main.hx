@@ -33,8 +33,7 @@ class Item {
 
 class Main extends luxe.Game {
 
-
-	var num : Int = 100;
+	var num : Int = 200;
 
     var list : Array<Item>;
     var list2 : Array<Item>;
@@ -44,6 +43,13 @@ class Main extends luxe.Game {
 	var tex : Texture;
 	var speed : Int = 2;
 
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({ id:'assets/luxe.png' });
+
+        return config;
+
+    } //config
 
     override function ready() {
 
@@ -52,7 +58,7 @@ class Main extends luxe.Game {
         list3 = [];
     	list4 = [];
 
-    	tex = Luxe.loadTexture('assets/luxe.png');
+    	tex = Luxe.resources.texture('assets/luxe.png');
 
         for(i in 0 ... num) {
             list.push(new Item(tex));

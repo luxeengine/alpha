@@ -9,6 +9,7 @@ import luxe.Log.*;
 import phoenix.Vector;
 import phoenix.Texture;
 import phoenix.Matrix;
+import phoenix.Batcher;
 
 import snow.api.Promise;
 import snow.modules.opengl.GL;
@@ -30,13 +31,8 @@ class Shader extends Resource {
     public var program : GLProgram;
     public var shader : GLShader;
 
-    public var vert_attribute   : Int = 0;
-    public var tcoord_attribute : Int = 1;
-    public var color_attribute  : Int = 2;
-    public var normal_attribute : Int = 3;
-
-    public var projectionmatrix_attribute : Location;
-    public var modelviewmatrix_attribute : Location;
+    public var proj_attribute : Location;
+    public var view_attribute : Location;
     public var tex0_attribute : Location;
     public var tex1_attribute : Location;
     public var tex2_attribute : Location;
@@ -308,10 +304,10 @@ class Shader extends Resource {
         GL.attachShader(program, frag_shader);
 
             //Now we want to ensure that our locations are static
-        GL.bindAttribLocation( program, vert_attribute,    'vertexPosition');
-        GL.bindAttribLocation( program, tcoord_attribute,  'vertexTCoord');
-        GL.bindAttribLocation( program, color_attribute,   'vertexColor');
-        GL.bindAttribLocation( program, normal_attribute,  'vertexNormal');
+        GL.bindAttribLocation( program, Batcher.vert_attribute,    'vertexPosition');
+        GL.bindAttribLocation( program, Batcher.tcoord_attribute,  'vertexTCoord');
+        GL.bindAttribLocation( program, Batcher.color_attribute,   'vertexColor');
+        GL.bindAttribLocation( program, Batcher.normal_attribute,  'vertexNormal');
 
         GL.linkProgram(program);
 
@@ -330,8 +326,8 @@ class Shader extends Resource {
             //way more flexible shaders and rendering :}
 
                 //Matrices
-            projectionmatrix_attribute = location("projectionMatrix");
-            modelviewmatrix_attribute = location("modelViewMatrix");
+            proj_attribute = location("projectionMatrix");
+            view_attribute = location("modelViewMatrix");
 
                 //Textures
             tex0_attribute = location( "tex0" );
