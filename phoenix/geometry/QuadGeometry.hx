@@ -5,6 +5,7 @@ import phoenix.geometry.Geometry;
 import phoenix.geometry.TextureCoord;
 import phoenix.Batcher;
 import phoenix.Vector;
+import luxe.Log.*;
 
 import luxe.options.GeometryOptions.QuadGeometryOptions;
 
@@ -13,11 +14,14 @@ class QuadGeometry extends Geometry {
     @:isVar public var flipx(default, set) : Bool = false;
     @:isVar public var flipy(default, set) : Bool = false;
 
-    var _uv_cache : luxe.Rectangle;
-
-    var is_set : Bool = false;
+    var _uv_x:Float = 0;
+    var _uv_y:Float = 0;
+    var _uv_w:Float = 1;
+    var _uv_h:Float = 1;
 
 	public function new( ?options : QuadGeometryOptions ) {
+
+        options.primitive_type = PrimitiveType.triangles;
 
 		super(options);
 
@@ -39,45 +43,61 @@ class QuadGeometry extends Geometry {
             _h = options.rect.h;
         }
 
-            //Init
-        _uv_cache = new luxe.Rectangle(0,0,1,1);
+            //First triangle
+            //tl
+        add(new Vertex( new Vector(  0,  0 ), color ));
+            //tr
+        add(new Vertex( new Vector( _w,  0 ), color ));
+            //br
+        add(new Vertex( new Vector( _w, _h ), color ));
 
-            //Apply the new options rect
-        set( new Rectangle(_x, _y, _w, _h) );
+           //Second triangle
+            //bl
+        add(new Vertex( new Vector(  0, _h ), color ));
+            //tl
+        add(new Vertex( new Vector(  0,  0 ), color ));
+            //br
+        add(new Vertex( new Vector( _w, _h ), color ));
+
+        transform.pos = transform.pos.set_xy(_x, _y);
+
+        uv_space( 0, 0, 1, 1 );
 
         if(options.visible != null) visible = options.visible;
         if(options.immediate != null) immediate = options.immediate;
 
-	}
+	} //new
 
-    public function uv( _rect:luxe.Rectangle ) {
+    public inline function uv( _rect:luxe.Rectangle ) {
 
-        if(texture == null) {
-            trace("Warning : calling UV on a geometry with null texture.");
-            return;
-        }
+        assertnull(texture, "QuadGeometry; Calling UV on a geometry with null texture.");
 
         var tlx = _rect.x/texture.width_actual;
         var tly = _rect.y/texture.height_actual;
         var szx = _rect.w/texture.width_actual;
         var szy = _rect.h/texture.height_actual;
 
-        uv_space( new luxe.Rectangle( tlx, tly, szx, szy ) );
+        uv_space( tlx, tly, szx, szy );
 
     } //uv
 
-    public function uv_space( _rect:luxe.Rectangle ) {
+    public inline function uv_space( _rect_x:Float,_rect_y:Float,_rect_w:Float,_rect_h:Float ) {
 
-            //the uv width and height
-        var sz_x = _rect.w;
-        var sz_y = _rect.h;
+        if(vertices.length == 0) return;
+
+        //the uv width and height
+        var sz_x = _rect_w;
+        var sz_y = _rect_h;
 
             //tl
-        var tl_x = _rect.x;
-        var tl_y = _rect.y;
+        var tl_x = _rect_x;
+        var tl_y = _rect_y;
 
             //Keep for later, before changing the values for flipping
-        _uv_cache.set( tl_x, tl_y, sz_x, sz_y );
+        _uv_x = tl_x;
+        _uv_y = tl_y;
+        _uv_w = sz_x;
+        _uv_h = sz_y;
 
             //tr
         var tr_x = tl_x + sz_x;
@@ -137,6 +157,8 @@ class QuadGeometry extends Geometry {
 
     public function resize_xy( _x:Float, _y:Float ) {
 
+        if(vertices.length == 0) return;
+
         vertices[0].pos.set_xy( 0,      0    );
         vertices[1].pos.set_xy( 0+_x,   0    );
         vertices[2].pos.set_xy( 0+_x,   0+_y );
@@ -147,53 +169,38 @@ class QuadGeometry extends Geometry {
 
     } //resize_xy
 
-    public function resize( quad:luxe.Vector ) {
+    public inline function resize( quad:luxe.Vector ) {
 
         resize_xy(quad.x, quad.y);
+
     } //resize
 
+    public inline function set(quad:luxe.Rectangle) {
 
- 	public function set( quad:luxe.Rectangle ) {
+        set_xywh(quad.x, quad.y, quad.w, quad.h);
 
- 		vertices.splice(0, vertices.length);
+    } //set
 
-            //First triangle
-        var vert0 : Vertex = new Vertex( new Vector( 0, 0 ), color );
-        var vert1 : Vertex = new Vertex( new Vector( quad.w, 0 ), color );
-        var vert2 : Vertex = new Vertex( new Vector( quad.w, quad.h ), color );
+        //:todo: this should just reuse not readd
+ 	public function set_xywh( _x:Float, _y:Float, _w:Float, _h:Float ) {
 
-           //Second triangle
-        var vert3 : Vertex = new Vertex( new Vector( 0 , quad.h ), color );
-        var vert4 : Vertex = new Vertex( new Vector( 0 , 0 ), color );
-        var vert5 : Vertex = new Vertex( new Vector( quad.w , quad.h ), color );
-
-           //Add to the list
+        if(vertices.length == 0) return;
 
             //tl
-        add( vert0 );
+        vertices[0].pos.set_xy(  0,  0 );
             //tr
-        add( vert1 );
+        vertices[1].pos.set_xy( _w,  0 );
             //br
-        add( vert2 );
+        vertices[2].pos.set_xy( _w, _h );
+
             //bl
-        add( vert3 );
+        vertices[3].pos.set_xy(  0, _h );
             //tl
-        add( vert4 );
+        vertices[4].pos.set_xy(  0,  0 );
             //br
-        add( vert5 );
+        vertices[5].pos.set_xy( _w, _h );
 
-
-        primitive_type = PrimitiveType.triangles;
-        immediate = false;
-
-            //And finally move it into place
-        transform.pos = new Vector(quad.x, quad.y);
-
-            //Make sure we know we can access the verts now
-        is_set = true;
-
-            //Apply default UV, handles flipping etc
-        uv_space( new luxe.Rectangle(0,0,1,1) );
+        transform.pos = transform.pos.set_xy(_x, _y);
 
  	} //set
 
@@ -202,11 +209,10 @@ class QuadGeometry extends Geometry {
             //set before calling uv_space
         flipx = _val;
 
-        if(is_set) {
-            uv_space(_uv_cache);
-        }
+        uv_space(_uv_x, _uv_y, _uv_w, _uv_h);
 
         return flipx;
+
     } //set_flipx
 
     function set_flipy(_val:Bool) {
@@ -214,9 +220,7 @@ class QuadGeometry extends Geometry {
             //set before calling uv_space
         flipy = _val;
 
-        if(is_set) {
-            uv_space(_uv_cache);
-        }
+        uv_space(_uv_x, _uv_y, _uv_w, _uv_h);
 
         return flipy;
 
