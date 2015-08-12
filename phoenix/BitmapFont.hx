@@ -249,6 +249,11 @@ class BitmapFont extends Resource {
         return _lines.length * ((info.line_height + _line_spc) * _ratio);
 
     } //height_of
+    
+        /** returns the point size at which a line of text will occupy a given pixel height */
+    public inline function line_height_to_point_size( _total_height:Float, _line_spc:Float=0.0 ) : Float {
+        return _total_height * ( info.point_size / ( info.line_height + _line_spc ) );
+    } //line_height_to_point_size
 
 //Resource api
 
