@@ -35,8 +35,8 @@ class Shader extends Resource {
     public var color_attribute  : Int = 2;
     public var normal_attribute : Int = 3;
 
-    public var projectionmatrix_attribute : Location;
-    public var modelviewmatrix_attribute : Location;
+    public var proj_attribute : Location;
+    public var view_attribute : Location;
     public var tex0_attribute : Location;
     public var tex1_attribute : Location;
     public var tex2_attribute : Location;
@@ -330,8 +330,8 @@ class Shader extends Resource {
             //way more flexible shaders and rendering :}
 
                 //Matrices
-            projectionmatrix_attribute = location("projectionMatrix");
-            modelviewmatrix_attribute = location("modelViewMatrix");
+            proj_attribute = location("projectionMatrix");
+            view_attribute = location("modelViewMatrix");
 
                 //Textures
             tex0_attribute = location( "tex0" );
