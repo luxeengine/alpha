@@ -856,10 +856,10 @@ class Batcher {
         }
     }
 
-    static inline var vert_attribute   : Int = 0;
-    static inline var tcoord_attribute : Int = 1;
-    static inline var color_attribute  : Int = 2;
-    static inline var normal_attribute : Int = 3;
+    public static inline var vert_attribute   : Int = 0;
+    public static inline var tcoord_attribute : Int = 1;
+    public static inline var color_attribute  : Int = 2;
+    public static inline var normal_attribute : Int = 3;
 
 } //Batcher
 

@@ -305,13 +305,15 @@ class Geometry {
 
             color_index += 4;
 
-            //         //normal directions
-            //     normallist[(normal_index+0)] = v.normal.x;
-            //     normallist[(normal_index+1)] = v.normal.y;
-            //     normallist[(normal_index+2)] = v.normal.z;
-            //     normallist[(normal_index+3)] = v.normal.w;
+                    //normal directions
+            #if phoenix_use_normals
+                normallist[(normal_index+0)] = v.normal.x;
+                normallist[(normal_index+1)] = v.normal.y;
+                normallist[(normal_index+2)] = v.normal.z;
+                normallist[(normal_index+3)] = v.normal.w;
+            #end
 
-            // normal_index += 4;
+            normal_index += 4;
 
         } //each vertex
 
@@ -345,11 +347,13 @@ class Geometry {
             colorlist.push( v.color.b );
             colorlist.push( v.color.a );
 
-                //normal directions
-            normallist.push( v.normal.x );
-            normallist.push( v.normal.y );
-            normallist.push( v.normal.z );
-            normallist.push( v.normal.w );
+            #if phoenix_use_normals
+                    //normal directions
+                normallist.push( v.normal.x );
+                normallist.push( v.normal.y );
+                normallist.push( v.normal.z );
+                normallist.push( v.normal.w );
+            #end
 
         } //each vertex
 
