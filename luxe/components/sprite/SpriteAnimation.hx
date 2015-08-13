@@ -633,7 +633,7 @@ class SpriteAnimationData {
         if(_json_image_sequence != null) {
 
                 //ask for the textures
-            var _images_list = Luxe.utils.find_assets_image_sequence( _json_image_sequence );
+            var _images_list = Luxe.utils.find_assets_sequence( _json_image_sequence );
                 //set the type
             type = SpriteAnimationType.animated_texture;
             image_set = [];
