@@ -32,6 +32,24 @@ typedef DrawNgonOptions = {
 
 } //DrawNgonOptions
 
+typedef DrawPolygonOptions = {
+
+    > GeometryOptions,
+
+        /** The list of points to add to the polyline */
+    var points : Array<Vector>;
+
+        /** Whether or not the polygon is solid. */
+    @:optional var solid : Bool;
+
+        /** A color to share for all points. */
+    @:optional var color : Color;
+
+        /** The list of colors, per point. Must match length with the points list */
+    @:optional var colors : Array<Color>;
+
+} //DrawPolygonOptions
+
 typedef DrawTextureOptions = {
 
     > QuadGeometryOptions,
