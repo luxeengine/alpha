@@ -126,10 +126,7 @@ class TiledLayer {
         } //child in root
 
         for(gid in tileGIDs) {
-            //:todo: for some reason the concept of UInt from Float seems to escape
-            //casting, which for whatever other reason parseInt seems to handle
-            var _id:UInt = Std.parseInt('$gid');
-            tiles.push( new TiledTile(this, _id) );
+            tiles.push( new TiledTile(this, Std.int(gid)) );
         } //gid in tileGIDs
 
     } //from_json
