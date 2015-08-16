@@ -5,24 +5,34 @@ import phoenix.Texture;
 import phoenix.Shader;
 import phoenix.Batcher;
 
+@:allow(phoenix.Batcher)
+@:allow(phoenix.BatchState)
+@:allow(phoenix.geometry.Geometry)
 class GeometryState {
 
-    public var dirty:Bool;
+    var dirty:Bool;
 
-    @:isVar public var primitive_type(default, set) : PrimitiveType;
-    @:isVar public var shader(default, set) : Shader;
-    @:isVar public var texture(default, set) : Texture;
-    @:isVar public var depth(default, set) : Float;
-    @:isVar public var group(default, set) : Int;
-    @:isVar public var clip(default, set) : Bool;
-    @:isVar public var clip_rect(default, set) : Rectangle;
+    @:isVar var primitive_type(default, set) : PrimitiveType;
+    @:isVar var shader(default, set) : Shader;
+    @:isVar var texture(default, set) : Texture;
+    @:isVar var depth(default, set) : Float;
+    @:isVar var group(default, set) : Int;
+    @:isVar var clip(default, set) : Bool;
+    @:isVar var clip_x(default, set) : Float;
+    @:isVar var clip_y(default, set) : Float;
+    @:isVar var clip_w(default, set) : Float;
+    @:isVar var clip_h(default, set) : Float;
 
-    public var log : Bool = false;
+    var log : Bool = false;
 
-    public function new() {
+    inline
+    function new() {
 
         clip = false;
-        clip_rect = new Rectangle();
+        clip_x = 0.0;
+        clip_y = 0.0;
+        clip_w = 0.0;
+        clip_h = 0.0;
         texture = null;
         shader = null;
         group = 0;
@@ -33,7 +43,8 @@ class GeometryState {
 
     } //new
 
-    public function clone_onto( _other:GeometryState )  {
+    inline
+    function clone_onto( _other:GeometryState )  {
 
         _other.dirty = dirty;
         _other.texture = texture;
@@ -42,36 +53,41 @@ class GeometryState {
         _other.depth = depth;
         _other.primitive_type = primitive_type;
         _other.clip = clip;
-        _other.clip_rect.copy_from( clip_rect );
+        _other.clip_x = clip_x;
+        _other.clip_y = clip_y;
+        _other.clip_w = clip_w;
+        _other.clip_h = clip_h;
 
     } //clone_onto
 
-    public function str() {
+    function str() {
 
         if(!log) return;
 
-        trace('\t+ GEOMETRYSTATE ' + dirty);
-            trace("\t\tdepth - "+ depth);
-            trace("\t\tgroup - "+ group);
-            trace("\t\ttexture - " + (( texture == null) ? 'null' :  texture.id ));
+        trace('\t+ GEOMETRYSTATE $dirty');
+            trace('\t\tdepth - $depth');
+            trace('\t\tgroup - $group');
+            trace('\t\ttexture - ' + (( texture == null) ? 'null' :  texture.id ));
             if(texture != null) {
-                trace("\t\t\t " + texture.texture);
+                trace('\t\t\t ${texture.texture}');
             }
-            trace("\t\tshader - " + (( shader == null) ? 'null' :  shader.id ));
-            trace("\t\tprimitive_type - "+ primitive_type);
-            trace("\t\tclip - "+ clip);
-            trace("\t\tclip rect - "+ clip_rect );
+            trace('\t\tshader - ' + (( shader == null) ? 'null' :  shader.id ));
+            trace('\t\tprimitive_type - $primitive_type');
+            trace('\t\tclip - $clip');
+            trace('\t\tclip rect - $clip_x,$clip_y,$clip_w,$clip_h');
         trace('\t- GEOMETRYSTATE');
 
     } //str
 
-    public function clean() {
+    inline
+    function clean() {
 
         dirty = false;
-        // trace('cleaned geometry state ');
+
     } //clean
 
-    public function update( other : GeometryState ) {
+    // inline
+    function update( other : GeometryState ) {
 
         if(depth != other.depth) {
             depth = other.depth;
@@ -97,47 +113,69 @@ class GeometryState {
             clip = other.clip;
         }
 
-        if(clip_rect != null) {
-            if(other.clip_rect != null && !clip_rect.equal(other.clip_rect)) {
-                clip_rect.set( other.clip_rect.x, other.clip_rect.y, other.clip_rect.w, other.clip_rect.h );
-            }
-        } //clip_rect
+        if(clip_x != other.clip_x) {
+            clip_x = other.clip_x;
+        } //clip_x
+
+        if(clip_y != other.clip_y) {
+            clip_y = other.clip_y;
+        } //clip_y
+
+        if(clip_w != other.clip_w) {
+            clip_w = other.clip_w;
+        } //clip_w
+
+        if(clip_h != other.clip_h) {
+            clip_h = other.clip_h;
+        } //clip_h
 
     } //update
 
 //Primitive Type
-    function set_primitive_type(val : PrimitiveType) : PrimitiveType {
+    inline function set_primitive_type(val : PrimitiveType) : PrimitiveType {
         dirty = true;
         return primitive_type = val;
     }
 //Texture
-    function set_texture(val : Texture) : Texture {
+    inline function set_texture(val : Texture) : Texture {
         dirty = true;
         return texture = val;
     }
 //Shader
-    function set_shader(val : Shader) : Shader {
+    inline function set_shader(val : Shader) : Shader {
         dirty = true;
         return shader = val;
     }
 //Depth
-    function set_depth(val : Float) : Float {
+    inline function set_depth(val : Float) : Float {
         return depth = val;
     }
 //Group
-    function set_group(val : Int) : Int {
+    inline function set_group(val : Int) : Int {
         dirty = true;
         return group = val;
     }
 //Clip
-    function set_clip(val : Bool) : Bool {
+    inline function set_clip(val : Bool) : Bool {
         dirty = true;
         return clip = val;
     }
 //Clip rect
-    function set_clip_rect(val : Rectangle) : Rectangle {
+    inline function set_clip_x(val : Float) : Float {
         dirty = true;
-        return clip_rect = val;
+        return clip_x = val;
+    }
+    inline function set_clip_y(val : Float) : Float {
+        dirty = true;
+        return clip_y = val;
+    }
+    inline function set_clip_w(val : Float) : Float {
+        dirty = true;
+        return clip_w = val;
+    }
+    inline function set_clip_h(val : Float) : Float {
+        dirty = true;
+        return clip_h = val;
     }
 //
 
