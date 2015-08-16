@@ -451,10 +451,7 @@ class Batcher {
         GL.deleteBuffer(tb);
         #if phoenix_use_normals
         GL.deleteBuffer(nb);
-        nb = null;
         #end
-
-        pb = cb = tb = null;
 
         draw_calls++;
 
@@ -545,10 +542,12 @@ class Batcher {
             pos_list,       tcoord_list,    color_list,     normal_list
         );
 
-        pos_floats       += geom.vertices.length * 4;
-        tcoord_floats    += geom.vertices.length * 4;
-        color_floats     += geom.vertices.length * 4;
-        normal_floats    += geom.vertices.length * 4;
+        var _length = geom.vertices.length * 4;
+
+        pos_floats       += _length;
+        tcoord_floats    += _length;
+        color_floats     += _length;
+        normal_floats    += _length;
 
     } //geometry_batch
 

@@ -386,7 +386,6 @@ class Geometry {
             colorlist.push( v.color.a );
 
             #if phoenix_use_normals
-                    //normal directions
                 normallist.push( v.normal.x );
                 normallist.push( v.normal.y );
                 normallist.push( v.normal.z );
@@ -400,6 +399,7 @@ class Geometry {
 //Explicit vb
 
     function destroy_vbos() {
+        if(vb_pos==null) return;
         GL.deleteBuffer(vb_pos);
         GL.deleteBuffer(vb_tcoords);
         GL.deleteBuffer(vb_colors);
@@ -458,6 +458,11 @@ class Geometry {
     #end
 
     inline
+    function unbind() {
+        GL.bindBuffer(GL.ARRAY_BUFFER, null);
+    }
+
+    inline
     function bind_and_upload() {
 
         bind_pos();
@@ -476,13 +481,16 @@ class Geometry {
 
     } //_bind_and_upload
 
+    var _prev_count = 0;
     function update_buffers() : Bool {
 
         if(!dirty) return false;
 
+        var _verts = vertices.length;
+
         //since vertices might change we recreate the buffers
-        if(buffer_pos == null) {
-            var _length = vertices.length * 4;
+        if((_verts != _prev_count) || buffer_pos == null) {
+            var _length:Int = (vertices.length * 4);
             buffer_pos = null;
             buffer_normals = null;
             buffer_colors = null;
@@ -509,7 +517,10 @@ class Geometry {
 
     inline
     function draw() {
-        GL.drawArrays( primitive_type, 0, vertices.length );
+        //the buffer pos length is favoured because if dirty is not flagged,
+        //and the vertices change, then the size of the buffers becomes inconsistent
+        //with the draw call and Bad Things happen like memory corruption
+        GL.drawArrays( primitive_type, 0, Std.int(buffer_pos.length/4) );
     }
 
 //Transform
@@ -522,15 +533,10 @@ class Geometry {
 
     function set_locked( _locked:Bool ) : Bool {
 
-        if(_locked) {
-            create_vbos();
-            buffer_type = GL.STATIC_DRAW;
-        }
+        buffer_type = _locked ? GL.STATIC_DRAW : GL.DYNAMIC_DRAW;
 
-        if(!_locked) {
-            destroy_vbos();
-            buffer_type = GL.DYNAMIC_DRAW;
-        }
+        if(_locked && vb_pos == null) create_vbos();
+        if(!_locked && vb_pos != null) destroy_vbos();
 
         return locked = _locked;
 
