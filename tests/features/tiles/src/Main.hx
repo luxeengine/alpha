@@ -193,7 +193,7 @@ class Main extends luxe.Game {
             Luxe.shutdown();
         }
 
-        if(e.keycode == Key.key_1) { Luxe.camera.zoom = 1.0; }
+        if(e.keycode == Key.key_1) { Luxe.camera.zoom = 1.0; Luxe.camera.pos = new Vector(); }
         if(e.keycode == Key.key_2) { Luxe.camera.zoom = 2.0; }
         if(e.keycode == Key.key_3) { Luxe.camera.zoom = 0.5; }
 
@@ -205,8 +205,18 @@ class Main extends luxe.Game {
             right_down = false;
         }
 
+        if(e.keycode == Key.key_w || e.keycode == Key.up) {
+            up_down = false;
+        }
+
+        if(e.keycode == Key.key_s || e.keycode == Key.down) {
+            down_down = false;
+        }
+
     } //onkeyup
 
+    var up_down = false;
+    var down_down = false;
     var left_down = false;
     var right_down = false;
 
@@ -220,7 +230,22 @@ class Main extends luxe.Game {
             right_down = true;
         }
 
+        if(e.keycode == Key.key_w || e.keycode == Key.up) {
+            up_down = true;
+        }
+
+        if(e.keycode == Key.key_s || e.keycode == Key.down) {
+            down_down = true;
+        }
+
     } //onkeydown
+
+
+    override function onmousewheel( e:MouseEvent ) {
+
+        Luxe.camera.zoom += e.y * 0.1;
+
+    } //onmousewheel
 
     override function onmouseup( e:MouseEvent ) {
 
@@ -349,12 +374,20 @@ class Main extends luxe.Game {
     override function update( dt:Float ) {
 
         if(left_down) {
-            Luxe.camera.pos.x -= 150 / Luxe.camera.zoom * dt;
+            Luxe.camera.pos.x -= (150/Luxe.camera.zoom) * dt;
         } //left_down
 
         if(right_down) {
-            Luxe.camera.pos.x += 150 / Luxe.camera.zoom * dt;
+            Luxe.camera.pos.x += (150/Luxe.camera.zoom) * dt;
         } //right_down
+
+        if(up_down) {
+            Luxe.camera.pos.y -= (150/Luxe.camera.zoom) * dt;
+        } //up_down
+
+        if(down_down) {
+            Luxe.camera.pos.y += (150/Luxe.camera.zoom) * dt;
+        } //down_down
 
     } //update
 
