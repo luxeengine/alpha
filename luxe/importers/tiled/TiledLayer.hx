@@ -26,7 +26,7 @@ class TiledLayer {
 
     public function from_xml( xml:Xml ) {
 
-        var tileGIDs:Array<Int> = new Array<Int>();
+        var tileGIDs:Array<UInt> = [];
 
         var root = xml;
 
@@ -97,7 +97,7 @@ class TiledLayer {
 
     public function from_json( json:Dynamic ) {
 
-        var tileGIDs:Array<Int> = new Array<Int>();
+        var tileGIDs:Array<Float> = [];
 
             name = Reflect.field(json, "name");
             width = Std.parseInt(Reflect.field(json, "width"));
@@ -118,7 +118,7 @@ class TiledLayer {
                 } //properties
 
                 case "data": {
-                    tileGIDs = cast child;
+                    tileGIDs = child;
                 } //data
 
             } //switch child nodename
@@ -126,7 +126,10 @@ class TiledLayer {
         } //child in root
 
         for(gid in tileGIDs) {
-            tiles.push( new TiledTile(this, gid) );
+            //:todo: for some reason the concept of UInt from Float seems to escape
+            //casting, which for whatever other reason parseInt seems to handle
+            var _id:UInt = Std.parseInt('$gid');
+            tiles.push( new TiledTile(this, _id) );
         } //gid in tileGIDs
 
     } //from_json

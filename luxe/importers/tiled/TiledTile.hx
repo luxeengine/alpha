@@ -5,7 +5,7 @@ import luxe.importers.tiled.TiledLayer;
 class TiledTile {
 
     public var layer : TiledLayer;
-    public var id : Int;
+    public var id : UInt;
 
     public var flip_horizontal:Bool;
     public var flip_vertical:Bool;
@@ -14,7 +14,8 @@ class TiledTile {
     @:isVar public var width (get,null) : Int;
     @:isVar public var height (get,null) : Int;
 
-    public function new( _layer:TiledLayer, _id:Int ) {
+    public function new( _layer:TiledLayer, _id:UInt ) {
+
         layer = _layer;
 
         flip_horizontal = _id & 0x80000000 != 0;
@@ -22,6 +23,7 @@ class TiledTile {
         flip_diagonal = _id & 0x20000000 != 0;
 
         id = _id & ~(0x80000000 | 0x40000000 | 0x20000000);
+
     } //new
 
 //properties
