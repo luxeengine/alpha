@@ -22,5 +22,16 @@ typedef MeshOptions = {
     @:optional var texture : Texture;
         /** */
     @:optional var geometry : Geometry;
+        /** */
+    @:optional var no_batcher_add : Bool;
+
+//:todo: note this section is WIP, considered volatile/not api
+
+    @:noCompletion 
+    @:optional var buffer_based : Bool;
+    @:noCompletion
+    @:optional var object_space : Bool;
+
+//end section
 
 } //MeshOptions

@@ -1,0 +1,25 @@
+{
+
+  project : {
+    name : 'luxe.submit',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_submit',
+      package : 'com.luxeengine.testsubmit'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*'
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
