@@ -13,6 +13,8 @@ class QuadGeometry extends Geometry {
 
     @:isVar public var flipx(default, set) : Bool = false;
     @:isVar public var flipy(default, set) : Bool = false;
+        //Has to be a multiple of 90
+    @:isVar public var uv_angle(default, set) : Int = 0;
 
     var _uv_x:Float = 0;
     var _uv_y:Float = 0;
@@ -112,34 +114,67 @@ class QuadGeometry extends Geometry {
         var tmp_x = 0.0;
         var tmp_y = 0.0;
 
-                //flipped y swaps tl and tr with bl and br, only on y
-            if(flipy) {
+            //rotates uvs 90 degrees counter-clockwise, i.e. the rotates the texture 90 degrees clockwise
+        inline function rotate_uvs() {
+            tmp_x = tl_x;
+            tl_x = bl_x;
+            bl_x = br_x;
+            br_x = tr_x;
+            tr_x = tmp_x;
 
+            tmp_y = tl_y;
+            tl_y = bl_y;
+            bl_y = br_y;
+            br_y = tr_y;
+            tr_y = tmp_y;
+        }
+
+            var rotations:Int = Std.int(uv_angle / 90);
+            rotations = rotations - 4 * Math.floor(rotations / 4);
+            
+            for(r in 0...rotations) {
+                rotate_uvs();
+            }
+                //flipped y swaps tl and tr with bl and br
+            if(flipy) {
                     //swap tl and bl
                 tmp_y = bl_y;
                     bl_y = tl_y;
                     tl_y = tmp_y;
+
+                tmp_x = bl_x;
+                    bl_x = tl_x;
+                    tl_x = tmp_x;
 
                     //swap tr and br
                 tmp_y = br_y;
                     br_y = tr_y;
                     tr_y = tmp_y;
 
+                tmp_x = br_x;
+                    br_x = tr_x;
+                    tr_x = tmp_x;
             } //flipy
 
-                //flipped x swaps tl and bl with tr and br, only on x
+                //flipped x swaps tl and bl with tr and br
             if(flipx) {
-
                     //swap tl and tr
                 tmp_x = tr_x;
                     tr_x = tl_x;
                     tl_x = tmp_x;
+
+                tmp_y = tr_y;
+                    tr_y = tl_y;
+                    tl_y = tmp_y;
 
                     //swap bl and br
                 tmp_x = br_x;
                     br_x = bl_x;
                     bl_x = tmp_x;
 
+                tmp_y = br_y;
+                    br_y = bl_y;
+                    bl_y = tmp_y;
             } //flipx
 
         vertices[0].uv.uv0.set_uv( tl_x , tl_y );
@@ -226,6 +261,11 @@ class QuadGeometry extends Geometry {
 
     } //set_flipy
 
-
+    function set_uv_angle(_val:Int) {
+        assert(_val % 90 == 0, 'uv_angle has to be a multiple of 90');
+        uv_angle = _val;
+        uv_space(_uv_x, _uv_y, _uv_w, _uv_h);
+        return uv_angle;
+    }
 
 }

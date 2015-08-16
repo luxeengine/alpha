@@ -32,7 +32,7 @@ class TilemapVisual {
 
     public function create() {
 
-        if(options.no_destroy == null && options.no_destroy != true) {
+        if(options.no_destroy != null && options.no_destroy != true) {
             destroy();
             geometry = new Map();
         }
@@ -82,15 +82,16 @@ class TilemapVisual {
 
     } //create_tile_for_layer
 
-    function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int ) {
+    function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool, _flipy:Bool, _angle:Int ) {
 
         //implemented in subclass
 
     } //update_tile_id
 
         /** Update the visual to match a new tile id at a given coordinate.
-            This is called automatically when you set a `Tile` ID in a map, if it has a visual assigned. */
-    public function refresh_tile_id( _layer_name:String, _x:Int, _y:Int, _id:Int ) {
+            This is called automatically when you set a `Tile` ID in a map, if it has a visual assigned. 
+            _angle has to be a multiple of 90 */
+    public function refresh_tile_id( _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool = false, _flipy:Bool = false, _angle:Int = 0) {
 
         var _tile_layer = map.layer(_layer_name);
         var _geom_layer = geometry_for_layer(_layer_name);
@@ -128,7 +129,7 @@ class TilemapVisual {
 
                     } else { //id == 0
 
-                        update_tile_id(_geom, _layer_name, _x, _y, _id);
+                        update_tile_id(_geom, _layer_name, _x, _y, _id, _flipx, _flipy, _angle);
 
                     } // id == 0 else
 
@@ -180,6 +181,10 @@ class Tile {
     public var y : Int;
     public var pos : Vector;
     public var size : Vector;
+    @:isVar public var flipx(default, set):Bool;
+    @:isVar public var flipy(default, set):Bool;
+        //Has to be a multiple of 90
+    @:isVar public var angle(default, set):Int;
 
     public var layer : TileLayer;
     public var map : Tilemap;
@@ -196,6 +201,10 @@ class Tile {
         x = options.x;
         y = options.y;
 
+        flipx = def(options.flipx, false);
+        flipy = def(options.flipy, false);
+        angle = def(options.angle, 0);
+
             //size is dependent on the tileset
         var _tileset = map.tileset_from_id( id );
             //but only if it can find it (i.e 0 tile id)
@@ -210,7 +219,7 @@ class Tile {
     } //new
 
     function toString() {
-        return 'Tile: id:$id x,y:$x,$y layer(${layer.name}) coord($x,$y) pos(${pos.x},${pos.y}) size(${size.x},${size.y})';
+        return 'Tile: id:$id x,y:$x,$y layer(${layer.name}) coord($x,$y) pos(${pos.x},${pos.y}) size(${size.x},${size.y}) flipx,flipy:$flipx,$flipy angle:$angle';
     }
 
     function set_id( _id:Int ) {
@@ -222,7 +231,7 @@ class Tile {
 
         if(map != null) {
             if(map.visual != null) {
-                map.visual.refresh_tile_id( layer.name, x, y, _id );
+                map.visual.refresh_tile_id( layer.name, x, y, _id, flipx, flipy, angle );
             }
         }
 
@@ -230,6 +239,30 @@ class Tile {
 
     } //set_id
 
+    function set_flipx(_val:Bool):Bool {
+        flipx = _val;
+        if(map != null && map.visual != null) {
+            map.visual.refresh_tile_id( layer.name, x, y, id, flipx, flipy, angle);
+        }
+        return flipx;
+    }
+
+    function set_flipy(_val:Bool):Bool {
+        flipy = _val;
+        if(map != null && map.visual != null) {
+            map.visual.refresh_tile_id( layer.name, x, y, id, flipx, flipy, angle);
+        }
+        return flipy;
+    }
+
+    function set_angle(_val:Int):Int {
+        assert(_val % 90 == 0, 'Tile angle has to be a multiple of 90');
+        angle = _val;
+        if(map != null && map.visual != null) {
+            map.visual.refresh_tile_id( layer.name, x, y, id, flipx, flipy, angle);
+        }
+        return angle;
+    }
 } //Tile
 
 

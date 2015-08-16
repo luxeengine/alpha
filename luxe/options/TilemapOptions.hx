@@ -53,6 +53,12 @@ typedef TileOptions = {
         /** */
     var layer : TileLayer;
 
+    @:optional var flipx : Bool;
+
+    @:optional var flipy : Bool;
+
+    @:optional var angle : Int;
+
 } //TileOptions
 
 /** Options specific to a `TileLayer`, part of a `Tilemap` */

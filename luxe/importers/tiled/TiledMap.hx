@@ -113,10 +113,17 @@ class TiledMap extends Tilemap {
             for(_y in 0 ... _layer.height) {
                 for(_x in 0 ... _layer.width) {
 
-                    var next_id = _layer.tiles[_gid_counter].id;
+                    var _layer_tile = _layer.tiles[_gid_counter];
 
-                        if(next_id != 0) {
-                            tilemap_layer.tiles[_y][_x].id = next_id;
+                        if(_layer_tile.id != 0) {
+                            var tile = tilemap_layer.tiles[_y][_x];
+                            tile.id = _layer_tile.id;
+                            tile.flipx = _layer_tile.flip_horizontal;
+                            tile.flipy = _layer_tile.flip_vertical;
+                            if(_layer_tile.flip_diagonal) {
+                                tile.angle = 90;
+                                tile.flipx = !tile.flipx;
+                            }
                         }
 
                     _gid_counter++;
