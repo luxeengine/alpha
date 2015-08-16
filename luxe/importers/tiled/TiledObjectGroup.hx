@@ -23,28 +23,32 @@ class TiledPolyObject {
 
 class TiledObject {
 
+        /** The group that this TiledObject is from */
     public var group : TiledObjectGroup;
-        //A identification number, which represents a part of the tileset.
-    public var gid:Int;
-        //The name of this object
+        /** Unique ID of the object. Each object that is placed on a map gets a unique id.
+            Even if an object was deleted, no object gets the same ID. */
+    public var id:Int;
+        /** The name of this object */
     public var name:String;
-        //The type of this object
+        /** The type of this object */
     public var type:String;
-        //if it's visible
-    public var visible:Bool = true;
-        //The x coordinate of this object (in pixels!)
+        /** The x coordinate of this object (in pixels!) */
     public var pos:Vector;
-        //The width of this object in pixels
+        /** The width of this object in pixels */
     public var width:Int;
-        //The width of this object in pixels
+        /** The width of this object in pixels */
     public var height:Int;
-        //The rotation of the object in degrees clockwise
+        /** The rotation of the object in degrees clockwise */
     public var rotation:Float;
-        //The object that represents a poly-like object (line/polygon)
+        /** A reference to a tile (optional). */
+    public var gid:Int;
+        /** if it's visible */
+    public var visible:Bool = true;
+        /** The object that represents a poly-like object (line/polygon) */
     public var polyobject:TiledPolyObject;
-        //The type of object this object represents
+        /** The type of object this object represents */
     public var object_type : TiledObjectType;
-        //Contains all properties from this object
+        /** Contains all properties from this object */
     public var properties:Map<String, String>;
 
     public function new( _group:TiledObjectGroup ) {
@@ -87,6 +91,7 @@ class TiledObject {
     public function from_xml( xml:Xml ) {
 
         gid = xml.get("gid") != null ? Std.parseInt(xml.get("gid")) : 0;
+        id = Std.parseInt(xml.get("id"));
         name = xml.get("name");
         type = xml.get("type");
         visible = xml.get("visible") != "0";
@@ -143,6 +148,7 @@ class TiledObject {
         var _gid = Reflect.field(json, "gid");
         gid = _gid != null ? cast _gid : 0;
 
+        id = cast Reflect.field(json, "id");
         name = Reflect.field(json, "name");
         type = Reflect.field(json, "type");
         visible = cast Reflect.field(json, "visible");

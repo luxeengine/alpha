@@ -397,7 +397,7 @@ class Main extends luxe.Game {
         for(group in tiled_ortho.tiledmap_data.object_groups) {
 
             for(object in group.objects) {
-                Luxe.draw.text({ text:object.name, point_size:14, pos:object.pos.clone().multiplyScalar(_scale).add(tiled_ortho.pos) });
+                Luxe.draw.text({ text:'${object.name} (${object.id})', point_size:14, pos:object.pos.clone().multiplyScalar(_scale).add(tiled_ortho.pos) });
                 switch(object.object_type) {
 
                     case TiledObjectType.polyline: {
