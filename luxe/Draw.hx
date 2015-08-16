@@ -155,6 +155,60 @@ class Draw {
 
     } //ngon
 
+        /** Draw an arbitrary polygon of points with options.
+            Uses triangle fans (no additional verts added) for solid,
+            Uses lines for non-solid, adding verts as needed to form lines. */
+    public function poly( options:DrawPolygonOptions ) {
+
+        def(options.id, 'poly.geometry');
+        def(options.batcher, Luxe.renderer.batcher);
+        def(options.solid, true);
+
+        var _default_col:Color = null;
+        var _has_colors = (options.colors != null);
+        if(!_has_colors) _default_col = def(options.color, new Color());
+
+        if(options.solid) {
+
+            def(options.primitive_type, PrimitiveType.triangle_fan);
+
+            var _geometry = new Geometry(options);
+
+            var _idx = 0;
+            var _l = options.points.length;
+            for(_point in options.points) {
+                var _color = _has_colors ? options.colors[_idx] : _default_col;
+                _geometry.add(new Vertex(_point, _color));
+                ++_idx;
+            }
+
+            return _geometry;
+
+        } else {
+
+            def(options.primitive_type, PrimitiveType.lines);
+
+            var _geometry = new Geometry(options);
+
+            var _idx = 0;
+            var _l = options.points.length;
+
+            for(_point in options.points) {
+                var _color = _has_colors ? options.colors[_idx] : _default_col;
+                _geometry.add(new Vertex(_point, _color));
+                if(_idx < _l-2) {
+                    var _color_next = _has_colors ? options.colors[_idx+1] : _default_col;
+                    _geometry.add(new Vertex(options.points[_idx+1], _color_next));
+                }
+                ++_idx;
+            }
+
+            return _geometry;
+
+        }
+
+    } //poly
+
         /** Draw a textured `box` with image `texture` at `x`,`y`,`w`,`h` OR with `pos` and `size`, and `uv` with options */
     public function texture( options:DrawTextureOptions ) {
 

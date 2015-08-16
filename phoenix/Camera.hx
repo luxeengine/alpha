@@ -126,6 +126,9 @@ class Camera {
 
         } //switch projection
 
+            //make sure values are valid
+        process();
+
         _setup = false;
 
     } //new

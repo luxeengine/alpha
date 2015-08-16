@@ -2,7 +2,7 @@ package luxe.options;
 
 typedef ColorOptions = {
 
-        /** The blue component. applies to `Color` only. */
+        /** The red component. applies to `Color` only. */
     @:optional var r : Float;
         /** The green component. applies to `Color` only. */
     @:optional var g : Float;

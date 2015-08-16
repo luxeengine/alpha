@@ -31,6 +31,15 @@ typedef GeometryOptions = {
         /** If specified, the geometry will be clipped to this rectangle region (in world space). */
     @:optional var clip_rect : Rectangle;
 
+//:todo: note this section is WIP, considered volatile/not api
+
+    @:noCompletion 
+    @:optional var buffer_based : Bool;
+    @:noCompletion
+    @:optional var object_space : Bool;
+
+//end section
+
 } //GeometryOptions
 
 /** Options for drawing or creating rectangle based geometry, phoenix.geometry.RectangleGeometry */

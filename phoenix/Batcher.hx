@@ -2,6 +2,7 @@ package phoenix;
 
 import phoenix.Renderer;
 import phoenix.geometry.Geometry;
+import phoenix.Matrix;
 
 import snow.modules.opengl.GL;
 import snow.api.buffers.Float32Array;
@@ -268,6 +269,12 @@ class Batcher {
                         //try
                     visible_count++;
 
+                        //Buffer based geometry doesn't get submitted here yet
+                    if(geom.buffer_based) {
+                        visible_count--;
+                        continue;
+                    }
+
                         //Static batched geometry gets sent on it's own
                     if(geom.locked) {
                         submit_static_geometry( geom );
@@ -343,6 +350,17 @@ class Batcher {
         draw_calls = 0;
         vert_count = 0;
 
+        update_view();
+
+            //apply geometries
+        batch( persist_immediate );
+
+    } //draw
+
+    @:noCompletion
+    inline
+    function update_view() {
+
             //update camera if it changes anything
         view.process();
 
@@ -351,145 +369,127 @@ class Batcher {
             //Set the viewport to the view
         renderer.state.viewport( view.viewport.x, view.viewport.y, view.viewport.w, view.viewport.h );
 
-            //apply geometries
-        batch( persist_immediate );
+    } //update_view
 
-    } //draw
+    //:todo: this is not part of the api
+    //       and should be considered volatile/WIP
+    @:noCompletion
+    inline
+    public function submit_geometry( geom:Geometry, ?_matrix:Matrix ) {
 
+        assert(geom.buffer_based, 'Only buffer based geometry can be submitted directly');
+
+        if(!geom.visible) return;
+        if(_matrix == null) _matrix = geom.transform.world.matrix;
+
+        geom.shader.set_matrix4('model', _matrix);
+        shader_activate(geom.shader);
+
+        var _length = geom.vertices.length;
+        var _length4 = _length * 4;
+        var _updated = geom.update_buffers();
+
+        _enable_attributes();
+
+        if(_updated) {
+            geom.bind_and_upload();
+        } else {
+            geom.bind();
+        }
+
+        geom.draw();
+
+        var _stats = renderer.stats;
+        _stats.geometry_count++;
+        _stats.visible_count++;
+        _stats.draw_calls++;
+        _stats.vert_count += _length;
+
+        _disable_attributes();
+
+    } //submit_geometry
+
+    // inline
+    @:noCompletion
+    public function submit_buffers(type:PrimitiveType, _pos:Float32Array, _tcoords:Float32Array, _colors:Float32Array, _normals:Float32Array) {
+
+        _enable_attributes();
+
+        var pb = GL.createBuffer();
+        var cb = GL.createBuffer();
+        var tb = GL.createBuffer();
+        #if phoenix_use_normals
+        var nb = GL.createBuffer();
+        #end
+
+        GL.bindBuffer(GL.ARRAY_BUFFER, pb );
+        GL.vertexAttribPointer( 0, 4, GL.FLOAT, false, 0, 0 );
+        GL.bufferData( GL.ARRAY_BUFFER , _pos, GL.STREAM_DRAW);
+
+        GL.bindBuffer(GL.ARRAY_BUFFER, tb );
+        GL.vertexAttribPointer( 1, 4, GL.FLOAT, false, 0, 0 );
+        GL.bufferData( GL.ARRAY_BUFFER , _tcoords, GL.STREAM_DRAW);
+
+        GL.bindBuffer(GL.ARRAY_BUFFER, cb );
+        GL.vertexAttribPointer( 2, 4, GL.FLOAT, false, 0, 0 );
+        GL.bufferData( GL.ARRAY_BUFFER , _colors, GL.STREAM_DRAW);
+
+        #if phoenix_use_normals
+        GL.bindBuffer(GL.ARRAY_BUFFER, nb );
+        GL.bufferData( GL.ARRAY_BUFFER , _normals, GL.STREAM_DRAW);
+        GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0 );
+        #end
+
+            //Draw
+        GL.drawArrays( type, 0, Std.int(_pos.length/4) );
+
+            //Disable attributes
+        _disable_attributes();
+
+        GL.deleteBuffer(pb);
+        GL.deleteBuffer(cb);
+        GL.deleteBuffer(tb);
+        #if phoenix_use_normals
+        GL.deleteBuffer(nb);
+        #end
+
+        draw_calls++;
+
+    } //submit_buffers
+
+    @:noCompletion
     inline
     public function submit_static_geometry( geom:Geometry ) {
 
         var _length = geom.vertices.length;
-        var _submit = !geom.submitted || geom.dirty;
 
         if( _length == 0 ) {
             return;
         }
 
-        var _static_verts = _length * 4;
+        var _updated = geom.update_buffers();
 
-        if(geom.static_vertex_buffer == null) {
-
-            geom.static_vertex_buffer = GL.createBuffer();
-            geom.static_tcoord_buffer = GL.createBuffer();
-            geom.static_vcolor_buffer = GL.createBuffer();
-
-            #if phoenix_use_normals
-                geom.static_normal_buffer = GL.createBuffer();
-            #end
-
-        } //static_vertex_buffer == null
-
-            //if resubmitting, rebatch
-        var _pos_list: Float32Array = null;
-        var _tcoord_list: Float32Array = null;
-        var _color_list: Float32Array = null;
-        var _normal_list: Float32Array = null;
-
-        if(_submit) {
-
-                //create the data streams, vert count * 4 floats per component
-            _pos_list = new Float32Array(_length * 4);
-            _tcoord_list = new Float32Array(_length * 4);
-            _color_list = new Float32Array(_length * 4);
-
-            #if phoenix_use_normals
-                _normal_list = new Float32Array(_length * 4);
-            #end
-
-            geom.batch( 0, 0, 0, 0,
-                _pos_list, _tcoord_list, _color_list, _normal_list
-            );
-
-        } //_submit
-
-            //enable the shader attributes
         _enable_attributes();
 
-        //these inline functions allow less branching and more imperative code
-        //and because haxe inlines it actually inline it goes away at runtime
-
-            inline function _setup_verts() {
-                    //set the vertices positions in the shader, but to static buffers
-                GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_vertex_buffer);
-                GL.vertexAttribPointer(vert_attribute, 4, GL.FLOAT, false, 0, 0);
-            }
-
-            inline function _setup_tcoords() {
-                    //set the texture coordinates in the shader, but to static buffers
-                GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_tcoord_buffer);
-                GL.vertexAttribPointer(tcoord_attribute, 4, GL.FLOAT, false, 0, 0);
-            }
-
-            inline function _setup_colors() {
-                    //set the color values in the shader, but to static buffers
-                GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_vcolor_buffer);
-                GL.vertexAttribPointer(color_attribute, 4, GL.FLOAT, false, 0, 0);
-            }
-
-            #if phoenix_use_normals
-                inline function _setup_normals() {
-                        //set the normal directions in the shader, but to static buffers
-                    GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_normal_buffer);
-                    GL.vertexAttribPointer(normal_attribute, 4, GL.FLOAT, false, 0, 0);
-                }
-            #end
-
-            inline function _bind_and_upload() {
-
-                _setup_verts();
-                GL.bufferData(GL.ARRAY_BUFFER, _pos_list, GL.DYNAMIC_DRAW);
-
-                _setup_tcoords();
-                GL.bufferData(GL.ARRAY_BUFFER, _tcoord_list, GL.DYNAMIC_DRAW);
-
-                _setup_colors();
-                GL.bufferData(GL.ARRAY_BUFFER, _color_list, GL.DYNAMIC_DRAW);
-
-                #if phoenix_use_normals
-                    _setup_normals();
-                    GL.bufferData(GL.ARRAY_BUFFER, _normal_list, GL.DYNAMIC_DRAW);
-                #end
-
-            } //_bind_and_upload
-
-            inline function _bind() {
-                _setup_verts();
-                _setup_tcoords();
-                _setup_colors();
-                #if phoenix_use_normals
-                    _setup_normals();
-                #end
-            }
-
-        if(_submit) {
-            _bind_and_upload();
+        if(_updated) {
+            geom.bind_and_upload();
         } else {
-            _bind();
+            geom.bind();
         }
 
-        GL.drawArrays(
-            geom.primitive_type, 0,
-            phoenix.utils.Rendering.get_elements_for_type(geom.primitive_type, _static_verts)
-        );
-
-        _pos_list = null;
-        _tcoord_list = null;
-        _color_list = null;
-        _normal_list = null;
+        geom.draw();
 
             //Disable attributes
         _disable_attributes();
-            //increase the stats
-        draw_calls++;
         static_batched_count++;
+        draw_calls++;
 
             //clear the geometry flags
         geom.dirty = false;
-        geom.submitted = true;
 
     } //submit_static_geometry
 
+    @:noCompletion
     inline
     public function submit_current_vertex_list( type : PrimitiveType ) {
 
@@ -501,57 +501,26 @@ class Batcher {
             throw "uh oh, somehow too many floats are being submitted (max:$max_floats, attempt:$pos_floats).";
         }
 
-        _enable_attributes();
-
-        var pb = GL.createBuffer();
-        var cb = GL.createBuffer();
-        var tb = GL.createBuffer();
-
-        #if phoenix_use_normals
-            var nb = GL.createBuffer();
-        #end
-
-        GL.bindBuffer(GL.ARRAY_BUFFER, pb );
-        GL.vertexAttribPointer( 0, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferData( GL.ARRAY_BUFFER , new Float32Array(pos_list.buffer, 0, pos_floats), GL.STREAM_DRAW);
-
-        GL.bindBuffer(GL.ARRAY_BUFFER, tb );
-        GL.vertexAttribPointer( 1, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferData( GL.ARRAY_BUFFER , new Float32Array(tcoord_list.buffer, 0, tcoord_floats), GL.STREAM_DRAW);
-
-        GL.bindBuffer(GL.ARRAY_BUFFER, cb );
-        GL.vertexAttribPointer( 2, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferData( GL.ARRAY_BUFFER , new Float32Array(color_list.buffer, 0, color_floats), GL.STREAM_DRAW);
+        var _pos = new Float32Array(pos_list.buffer, 0, pos_floats);
+        var _tcoords = new Float32Array(tcoord_list.buffer, 0, tcoord_floats);
+        var _colors = new Float32Array(color_list.buffer, 0, color_floats);
+        var _normals:Float32Array = null;
 
         #if phoenix_use_normals
-            GL.bindBuffer(GL.ARRAY_BUFFER, nb );
-            GL.bufferData( GL.ARRAY_BUFFER , new Float32Array(normal_list.buffer, 0, normal_floats), GL.STREAM_DRAW);
-            GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0 );
+            _normals = new Float32Array(normal_list.buffer, 0, normal_floats);
         #end
 
-            //Draw
-        GL.drawArrays(
-            type, 0,
-            phoenix.utils.Rendering.get_elements_for_type(type, pos_floats)
-        );
+        submit_buffers(type, _pos, _tcoords, _colors, _normals);
 
-            //Disable attributes
-        _disable_attributes();
-
-        GL.deleteBuffer(pb);
-        GL.deleteBuffer(cb);
-        GL.deleteBuffer(tb);
-
-        #if phoenix_use_normals
-            GL.deleteBuffer(nb);
-        #end
+        _pos = null;
+        _tcoords = null;
+        _colors = null;
+        _normals = null;
 
         pos_floats = 0;
         tcoord_floats = 0;
         color_floats = 0;
         normal_floats = 0;
-
-        draw_calls++;
 
     } //submit_current_vertex_list
 
@@ -573,10 +542,12 @@ class Batcher {
             pos_list,       tcoord_list,    color_list,     normal_list
         );
 
-        pos_floats       += geom.vertices.length * 4;
-        tcoord_floats    += geom.vertices.length * 4;
-        color_floats     += geom.vertices.length * 4;
-        normal_floats    += geom.vertices.length * 4;
+        var _length = geom.vertices.length * 4;
+
+        pos_floats       += _length;
+        tcoord_floats    += _length;
+        color_floats     += _length;
+        normal_floats    += _length;
 
     } //geometry_batch
 

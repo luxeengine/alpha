@@ -4,7 +4,7 @@ package luxe.structural;
 /**
     Copyright 2014 Sven Bergström
 
-    A unbalanced binary search tree,
+    An unbalanced binary search tree,
     implemented based on various stack overflow answers,
     wikipedia articles and books read over the years.
     some other references : https://github.com/polygonal/ds
@@ -12,10 +12,11 @@ package luxe.structural;
     Part of the structural library for haxe
     http://github.com/underscorediscovery/structural
 
-    MIT license
+    MIT License
 */
 
 @:generic
+@:allow(luxe.structural.BSTIterator)
 class BST<K,T> {
 
         /** The tree root node */
@@ -24,7 +25,6 @@ class BST<K,T> {
     public var compare : K->K->Int;
         /** Whether or not the tree is empty (i.e root == null) */
     public var empty (get, null) : Bool;
-
 
         /** Create a new BST with the given comparison function */
     public function new( compare_function : K->K->Int ) {
@@ -36,21 +36,21 @@ class BST<K,T> {
 //Public API
 
         /** Return the number of nodes in the tree */
-    public function size() {
+    public inline function size() {
 
         return node_count(root);
 
     } //size
 
         /** Return the depth of the tree */
-    public function depth() {
+    public inline function depth() {
 
         return node_depth(root);
 
     } //depth
 
         /** Insert a node into the tree */
-    public function insert( _key:K, _value:T ) {
+    public inline function insert( _key:K, _value:T ) {
 
         root = node_insert( root, _key, _value );
 
@@ -198,11 +198,10 @@ class BST<K,T> {
 
     } //keys
 
-        /** returns an iterator from a conversion to array of this tree. Usable as `for(item in tree)`
-            :todo: This should traverse directly and implement IIterator */
-    public function iterator() : Iterator<T> {
+        /** returns an iterator from a conversion to array of this tree. Usable as `for(item in tree)` */
+    public inline function iterator() {
 
-        return toArray().iterator();
+        return new BSTIterator<K,T>(this);
 
     } //iterator
 
@@ -297,7 +296,7 @@ class BST<K,T> {
     } //node_insert
 
         /* make sure the node count is up to date on a given node */
-    function node_update_count( _node:BSTNode<K,T> ) {
+    inline function node_update_count( _node:BSTNode<K,T> ) {
 
         _node.nodecount = node_count(_node.left) + node_count(_node.right) + 1;
 
@@ -504,6 +503,83 @@ class BST<K,T> {
     } //node_remove
 
 } //BST
+
+
+@:generic
+class BSTIterator<K,T> {
+
+    var tree : BST<K,T>;
+    var current : BSTNode<K,T>;
+    var rightest : BSTNode<K,T>;
+
+    public function new(_tree:BST<K,T>) {
+
+        if(_tree == null) return;
+        if(_tree.root == null) return;
+
+        tree = _tree;
+        current = _min(tree.root);
+        rightest = _max(tree.root);
+
+    } //new
+
+    public function hasNext():Bool {
+        if(current!=null && rightest!=null) {
+            var _cur = tree.compare(current.key, rightest.key);
+            return _cur <= 0;//current.val<=rightest.val)
+        }
+        return false;
+    }
+
+    public function next() {
+        var _temp = current;
+        current = update_next();
+        return _temp.value;
+    }
+
+    function update_next() {
+
+        if(!hasNext()) return null;
+        if(current.right!=null) return _min(current.right);
+
+            var _next = null;
+            var _temp = tree.root;
+            while(_temp != null) {
+
+                var _comp = tree.compare(current.key, _temp.key);
+                if(_comp < 0) {
+                    _next = _temp;
+                    _temp = _temp.left;
+                } else if(_comp > 0){
+                    _temp = _temp.right;
+                } else {
+                    current = _next;
+                    break;
+                }
+
+            } //while
+
+        return _next;
+
+    } //update_next
+
+    function _min(_node:BSTNode<K,T>) {
+
+        while(_node.left != null) _node = _node.left;
+
+        return _node;
+
+    } //_min
+
+    function _max(_node:BSTNode<K,T>) {
+
+        while(_node.right != null) _node = _node.right;
+
+        return _node;
+
+    } //_max
+
+} //BSTIterator
 
 
     /** A binary search tree node by `K` key and `T` value (type) */

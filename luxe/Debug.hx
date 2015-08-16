@@ -191,8 +191,6 @@ class Debug {
                 //Also, set the layer so it renders last
             batcher.layer = 999;
 
-            Luxe.renderer.add_batch( batcher );
-
             overlay = new QuadGeometry({
                 x:0, y:0,
                 w: Luxe.screen.w,  h: Luxe.screen.h,
