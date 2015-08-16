@@ -31,7 +31,6 @@ class RenderPath {
                 _stats.visible_count += batch.visible_count;
                 _stats.draw_calls += batch.draw_calls;
                 _stats.vert_count += batch.vert_count;
-                // _stats.group_count += batch.groups.
 
                     //Stop Measuring
                 Luxe.debug.end('batch.' + batch.name);
