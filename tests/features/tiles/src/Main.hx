@@ -33,11 +33,13 @@ class Main extends luxe.Game {
     override function config(config:luxe.AppConfig) {
 
         config.preload.textures.push({ id:'assets/isotiles.png' });
+        config.preload.textures.push({ id:'assets/clouds.png' });
         config.preload.textures.push({ id:'assets/tileset.png' });
         config.preload.textures.push({ id:'assets/tiles_padded.png' });
 
         config.preload.texts.push({ id:'assets/isotiles.tmx' });
         config.preload.texts.push({ id:'assets/tiles.json' });
+        config.preload.texts.push({ id:'assets/tiles.tmx' });
 
         return config;
 
@@ -96,25 +98,31 @@ class Main extends luxe.Game {
 
     function load_ortho_tiledmap() {
 
-        //try these, but remove the format:'json' or set to format:'xml',
-        //but make sure to adjust the config preload part as well, or it won't find them
+        //try these,
+        //make sure to adjust the config preload part as well, or it won't find them
         //'assets/tiles_base64_zlib.tmx'
         //'assets/tiles_base64.tmx'
         //'assets/tiles_csv.tmx'
-        var res = Luxe.resources.text('assets/tiles.json');
+
+        //change this to try the other type
+        var format = 'json';//
+        // var format = 'tmx';
+
+        var res = Luxe.resources.text('assets/tiles.$format');
 
         assertnull(res, 'Resource not found!');
 
         var scale = 2;
 
             //create from xml file, with various encodings, or from JSON
-        tiled_ortho = new TiledMap( { tiled_file_data:res.asset.text, format:'json', pos : new Vector(512,0) } );
+        tiled_ortho = new TiledMap( { tiled_file_data:res.asset.text, format:format, pos : new Vector(512,0) } );
 
             //tell the map to display
         tiled_ortho.display({ scale:scale, grid:true, filter:FilterType.nearest });
 
             //draw the additional objects
         draw_tiled_object_groups( scale );
+        draw_tiled_image_layers( scale );
 
         for(layer in tiled_ortho.layers) {
             trace('layer / ${layer.id} / ${layer.name} / ${layer.properties}');
@@ -390,6 +398,22 @@ class Main extends luxe.Game {
         } //down_down
 
     } //update
+
+    function draw_tiled_image_layers( _scale:Float = 1) {
+
+        for(layer in tiled_ortho.tiledmap_data.image_layers) {
+            trace('loading image layer ${layer.name} pos:${layer.x},${layer.x} properties:${layer.properties}');
+            new luxe.Sprite({
+                centered: false,
+                pos:new Vector(tiled_ortho.pos.x+(layer.x*_scale), tiled_ortho.pos.y+(layer.y * _scale)),
+                scale:new Vector(_scale, _scale),
+                texture: Luxe.resources.texture('assets/'+layer.image.source),
+                color: new Color(1,1,1,layer.opacity),
+                visible: layer.visible
+            });
+        }
+
+    } //
 
     function draw_tiled_object_groups( _scale:Float = 1) {
 

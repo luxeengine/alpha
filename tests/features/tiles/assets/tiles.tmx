@@ -6,6 +6,15 @@
  <tileset firstgid="71" name="tiles_padded" tilewidth="64" tileheight="64" spacing="4" margin="2" tilecount="4">
   <image source="tiles_padded.png" width="136" height="136"/>
  </tileset>
+ <imagelayer name="clouds" x="-48" y="11">
+  <image source="clouds.png" trans="000000"/>
+  <properties>
+   <property name="testprop" value="imageprop"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="clouds2" x="167" y="-41" opacity="0.9">
+  <image source="clouds.png" trans="000000"/>
+ </imagelayer>
  <layer name="walls" width="20" height="14">
   <properties>
    <property name="layer1" value="prop1"/>

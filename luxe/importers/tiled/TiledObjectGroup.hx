@@ -206,23 +206,19 @@ class TiledObject {
 class TiledObjectGroup {
 
     public var map : TiledMapData;
-    public var name : String;
+    public var name : String = '';
 
-    public var width : Int;
-    public var height : Int;
-    public var visible : Bool;
-    public var opacity : Float;
-    public var color:String;
+    public var width : Int = 0;
+    public var height : Int = 0;
+    public var visible : Bool = true;
+    public var opacity : Float = 1.0;
+    public var color:String = '';
     public var properties:Map<String, String>;
     public var objects : Array<TiledObject>;
 
     public function new( _map:TiledMapData ) {
         map = _map;
 
-        name = '';
-        width = 0;
-        height = 0;
-        color = '';
         properties = new Map();
         objects = [];
 
