@@ -794,8 +794,8 @@ class Tilemap {
                 tileID = layer.tiles[y][x].id;
 
                 if(tileID == 0 || checked[index] == true){
-                    //Set everything in this row to false again because it won't be included in the rectangle and should be checked again
-                    for(_x in 0...x) {
+                    //Set everything we've visited so far in this row to false again because it won't be included in the rectangle and should be checked again
+                    for(_x in start_x...x) {
                         index = y * width + _x;
                         checked[index] = false;
                     }
