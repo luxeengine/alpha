@@ -369,9 +369,6 @@ extends
         //called by snow
     override function onevent( event:snow.types.Types.SystemEvent ) {
 
-        if(!inited) return;
-
-            //forward to game class
         game.onevent( event );
 
     } //onevent
