@@ -307,6 +307,91 @@ class TileLayer {
 
     } //new
 
+
+        /** Returns a list of rectangles in tile space, 
+            where any tile with id > 0 is combined into bounding regions */
+    public function bounds_fitted():Array<Rectangle> {
+
+        var checked:Array<Null<Bool>> = [];
+        var rectangles:Array<Rectangle> = [];
+        var startCol = -1;
+        var index = -1;
+        var tileID = -1;
+        var width = map.width;
+        var height = map.height;
+
+        for(y in 0...height) {
+            for(x in 0...width) {
+
+                index = y * width + x;
+                tileID = tiles[y][x].id;
+
+                if(tileID > 0 && (checked[index] == false || checked[index] == null)) {
+
+                    if(startCol == -1) {
+                        startCol = x;
+                    }
+
+                    checked[index] = true;
+
+                } else if(tileID == 0 || checked[index] == true) {
+
+                    if(startCol != -1) {
+                        rectangles.push(find_bounds_rect(y, startCol, x, checked));
+                        startCol = -1;
+                    }
+
+                }
+
+            } //x in 0...width
+
+            if(startCol != -1) {
+                rectangles.push(find_bounds_rect(y, startCol, width, checked));
+                startCol = -1;
+            }
+
+        } //each row
+
+        return rectangles;
+
+    } //bounds_fitted
+
+        /** Finds the largest bounding rect around tiles with id > 0 between start_x and end_x, starting at start_y and going down as far as possible */
+    function find_bounds_rect(start_y:Int, start_x:Int, end_x:Int, checked:Array<Null<Bool>>) {
+
+        var index = -1;
+        var tileID = -1;
+        var width = map.width;
+        var height = map.height;
+
+        for(y in (start_y + 1)... height){
+            for(x in start_x...end_x) {
+
+                index = y * width + x;
+
+                tileID = tiles[y][x].id;
+
+                if(tileID == 0 || checked[index] == true){
+
+                    //Set everything we've visited so far in this row to false again because it won't be included in the rectangle and should be checked again
+                    for(_x in start_x...x) {
+                        index = y * width + _x;
+                        checked[index] = false;
+                    }
+
+                    return new Rectangle(start_x, start_y, end_x - start_x, y - start_y);
+
+                }
+
+                checked[index] = true;
+
+            } //each x
+        } //each y
+
+        return new Rectangle(start_x, start_y, end_x - start_x, height - start_y);
+
+    } //find_bounds_rect
+
 } //TileLayer
 
 
@@ -741,72 +826,6 @@ class Tilemap {
         }
 
     } //add_tiles_from_grid
-
-        /** Returns a list of rectangles in tile space, 
-            where any tile with id > 0 is combined into bounding regions */
-    public function bounds_fitted(layer_name:String):Array<Rectangle> {
-        var _layer = layers.get(layer_name);
-        if(_layer != null) {
-            var checked:Array<Null<Bool>> = [];
-            var rectangles:Array<Rectangle> = [];
-            var startCol = -1;
-            var index = -1;
-            var tileID = -1;
-            for(y in 0...height) {
-                for(x in 0...width) {
-                    index = y * width + x;
-                    tileID = _layer.tiles[y][x].id;
-                    if(tileID > 0 && (checked[index] == false || checked[index] == null)) {
-                        if(startCol == -1) {
-                            startCol = x;
-                        }
-
-                        checked[index] = true;
-                    } else if(tileID == 0 || checked[index] == true) {
-                        if(startCol != -1) {
-                            rectangles.push(construct_bounding_rect(y, startCol, x, checked, _layer));
-                            startCol = -1;
-                        }
-                    }
-                } //x in 0...width
-                if(startCol != -1) {
-                    rectangles.push(construct_bounding_rect(y, startCol, width, checked, _layer));
-                    startCol = -1;
-                }
-            }
-
-            return rectangles;
-        } 
-        else { //layer != null
-            trace('No tile layer called $layer_name exists');
-            return [];
-        }
-
-    }
-        /** Finds the largest bounding rect around tiles with id > 0 between start_x and end_x, starting at start_y and going down as far as possible */
-    function construct_bounding_rect(start_y:Int, start_x:Int, end_x:Int, checked:Array<Null<Bool>>, layer:TileLayer) {
-        var index = -1;
-        var tileID = -1;
-        for(y in (start_y + 1)...height){
-            for(x in start_x...end_x) {
-                index = y * width + x;
-
-                tileID = layer.tiles[y][x].id;
-
-                if(tileID == 0 || checked[index] == true){
-                    //Set everything we've visited so far in this row to false again because it won't be included in the rectangle and should be checked again
-                    for(_x in start_x...x) {
-                        index = y * width + _x;
-                        checked[index] = false;
-                    }
-                    return new Rectangle(start_x, start_y, end_x - start_x, y - start_y);
-                }
-                checked[index] = true;
-            }
-        }
-
-        return new Rectangle(start_x, start_y, end_x - start_x, height - start_y);
-    }
 
     function get_total_width() : Int {
         return width * tile_width;
