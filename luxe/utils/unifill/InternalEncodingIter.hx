@@ -16,8 +16,9 @@ class InternalEncodingIter {
         return index < endIndex;
     }
 
+	var i = 0; // FIXME: blocked by HaxeFoundation/haxe#4353
     public inline function next() : Int {
-        var i = index;
+		i = index;
         index += InternalEncoding.codePointWidthAt(string, index);
         return i;
     }

@@ -1,19 +1,26 @@
 package luxe.utils.unifill;
 
 class CodePointIter {
-    var s : String;
-    var itr : InternalEncodingIter;
+
+	var string : String;
+	var index : Int;
+	var endIndex : Int;
 
     public inline function new(s : String) {
-        this.s = s;
-        this.itr = new InternalEncodingIter(s, 0, s.length);
+		string = s;
+		index = 0;
+		endIndex = s.length;
     }
 
     public inline function hasNext() : Bool {
-        return itr.hasNext();
+		return index < endIndex;
     }
 
+	var i = 0; // FIXME: blocked by HaxeFoundation/haxe#4353
     public inline function next() : CodePoint {
-        return cast InternalEncoding.codePointAt(s, itr.next());
+		i = index;
+		index += InternalEncoding.codePointWidthAt(string, index);
+		return cast InternalEncoding.codePointAt(string, i);
     }
+
 }
