@@ -109,7 +109,7 @@ extends
             //Don't change this, it matches semantic versioning http://semver.org/
         Luxe.build = Luxe.version + haxe.Resource.getString('build');
 
-        log('os:${Luxe.snow.os} / platform:${Luxe.snow.platform} / version ${Luxe.build}');
+        log(runtime_info());
 
             //flag for later
         headless = (app.window == null);
@@ -273,8 +273,7 @@ extends
                 //it's a catch for crashing because
                 //we don't have a valid GL context, until the query
                 //is finalized on snow side
-            log('opengl /');
-            log(snow.modules.opengl.GL.versionString());
+            log('opengl ${snow.modules.opengl.GL.versionString()}');
 
             _debug('ready. loading default parcel ' + appconfig.preload);
 
@@ -996,6 +995,8 @@ extends
 
     } //config
 
+    @:noCompletion
+    public inline function runtime_info() return '${Luxe.build} / debug:${app.debug} / os:${app.os} / platform:${app.platform}';
 
 } //Core
 
