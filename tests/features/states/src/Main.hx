@@ -98,9 +98,10 @@ class Main extends luxe.Game {
         machine.add(new State2({ name:'state2', int:24, game:this }) );
         machine.add(new TransientState({ name:'transient'}));
 
+        machine.set('fake');
         machine.set('state1', 222 );
         machine.set('state2', { name:"state2enter", int:2536, game:this }, 223 );
-        machine.set('', null , { name:"state2leave", int:4356, game:this } );
+        machine.unset({ name:"state2leave", int:4356, game:this });
 
         trace("Hit space key to enable a transient state");
 
