@@ -90,7 +90,7 @@ Luxe.draw.text({
     //draw a texture center screen
 Luxe.draw.texture({
     pos : Luxe.screen.mid,
-    texture : Luxe.loadTexture('assets/logo.png'),
+    texture : Luxe.resources.texture('assets/logo.png'),
     size : new Vector(60,60)
 });
 ```
@@ -105,5 +105,24 @@ Luxe.draw.ngon({
     solid : true,
     color: new Color(1,1,1,0.1),
     x:Luxe.screen.mid.x, y:Luxe.screen.mid.y
+});
+```
+
+> luxe.Draw.poly
+
+```
+    //draw a list of points as a polygon
+Luxe.draw.poly({
+    solid : true,
+    color: new Color().rgb(0xff4b03),
+    points : [
+        new Vector(28, 114),
+        new Vector(77, 104),
+        new Vector(84, 109),
+        new Vector(108, 184),
+        new Vector(44, 202),
+        new Vector(25, 120),
+        new Vector(28, 114),
+    ]
 });
 ```

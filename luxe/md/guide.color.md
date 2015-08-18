@@ -186,7 +186,7 @@ class Main extends luxe.Game {
         sprite_test_pad = new Sprite({
             centered : false,
             pos : new Vector(60,100),
-            texture : Luxe.loadTexture('assets/test.png'),
+            texture : Luxe.resources.texture('assets/test.png'),
             depth : 1
         });
 

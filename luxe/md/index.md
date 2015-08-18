@@ -38,7 +38,7 @@ luxe is built on top of open source technologies, and proudly powered by [Haxe](
 
 
     var player = new Sprite({
-        texture : Luxe.loadTexture('assets/player.png'),
+        texture : Luxe.resources.texture('assets/player.png'),
         pos : Luxe.screen.mid,
         depth : 4
     });

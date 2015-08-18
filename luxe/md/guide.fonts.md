@@ -28,10 +28,10 @@ If you want to color the text in luxe using geometry colors, you must create a w
 
 To use a custom font, you can use a [parcel](guide.parcels.html) (as shown in the [beginner guide](guide.four.html)), or, you can manually load the font yourself.
 
-To do so, you use `Luxe.loadFont`, or manually create a `phoenix.BitmapFont` and use `BitmapFont.load`, or even `new BitmapFont()` and `from_string` functions. The [BitmapFont API docs](api/phoenix/BitmapFont.html) have all the details.
+To do so, you use `Luxe.resources.load_font`. You can manually create a `phoenix.BitmapFont` and use `BitmapFont.load`, or even `new BitmapFont()` and `from_string` functions. The [BitmapFont API docs](api/phoenix/BitmapFont.html) have all the details.
 
 
-To use `Luxe.loadFont` you should also read the [assets guide](guide.assets.html).   
+To use `Luxe.resources.font` and `Luxe.resources.load_font` you should also read the [assets guide](guide.assets.html).   
 Take note that the folder is separated from the file name, because there can and often are multiple texture sheets for a font set. The name is always without a path.
 
 _find more code in tests/rendering/fonts/_
@@ -39,7 +39,20 @@ _find more code in tests/rendering/fonts/_
 ```
 override function ready() {
 
-    var font = Luxe.loadFont('font.fnt', 'assets/fonts/', on_load );
+    var get = Luxe.resources.load_font('assets/fonts/font.fnt');
+    get.then(function(font:BitmapFont) {
+
+        Luxe.draw.text({
+            font: font,
+            text : "LUXE\n",
+            bounds : new Rectangle(0, 0, Luxe.screen.w * 0.99, Luxe.screen.h * 0.98),
+            color : new Color().rgb(0xff4b03),
+            align : TextAlign.right,
+            align_vertical : TextAlign.bottom,
+            point_size : 32
+        });
+
+    }); //onload
 
 }
 ```

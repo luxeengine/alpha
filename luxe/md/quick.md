@@ -19,7 +19,7 @@
         override function ready() {
 
             var player = new Sprite({
-                texture : Luxe.loadTexture('assets/player.png'),
+                texture : Luxe.resources.texture('assets/player.png'),
                 pos : Luxe.screen.mid,
                 depth : 4
             });
