@@ -454,33 +454,38 @@ class Tileset {
 
 class Tilemap {
 
-    //the layers the map consists of
+        /** The layers the map consists of, stored by name */
     public var layers : Map<String,TileLayer>;
+        /** The layers in an ordered array */
     public var layers_ordered : Array<TileLayer>;
 
-        //tilesets associated with this map
+        /** Tilesets associated with this map */
     public var tilesets : Map<String,Tileset>;
-        //key:value property list for this tilemap
+        /** key:value property list for this tilemap */
     public var properties : Map<String,String>;
 
-        //the orientation if any of this map
+        /** The orientation if any of this map */
     public var orientation : TilemapOrientation;
-        //the visual representation if any of this map
+        /** The visual representation if any of this map */
     public var visual : TilemapVisual;
 
-        //the position of the tilemap in world space
+        /** The position of the tilemap in world space */
     public var pos : Vector;
-        //the size of the tiles in this map
+        /** The width of a tile */
     public var tile_width : Int = 0;
+        /** The height of a tile */
     public var tile_height : Int = 0;
-        //the sizes of the layer
+        /** The width of the map in tiles */
     public var width : Int = 0;
+        /** The height of the map in tiles */
     public var height : Int = 0;
 
-        //the total width of the layer
-    @:isVar public var total_width (get,null) : Int = 0;
-    @:isVar public var total_height (get,null) : Int = 0;
-    @:isVar public var bounds (get,null) : Rectangle;
+        /** Get the total width of the tilemap in world units (tilewidth*width) */
+    public var total_width (get,null) : Int = 0;
+        /** Get the total height of the tilemap in world units (tilewidth*width) */
+    public var total_height (get,null) : Int = 0;
+        /** Get the containing bounding rectangle of the map in world units */
+    public var bounds (get,null) : Rectangle;
 
     public function new( options:TilemapOptions ) {
 
@@ -518,7 +523,7 @@ class Tilemap {
 
     } //display
 
-        //If the position is inside the map or not
+        /** If the given tile space coordinate is inside the map or not */
     public function inside( x:Int, y:Int ) : Bool {
 
         if(width == 0 || height == 0) {
@@ -545,6 +550,7 @@ class Tilemap {
 
     } //inside
 
+        /** Get the world space position of a tile coordinate, from a given layer. */
     public function tile_pos( layer_name:String, x:Int, y:Int, ?scale:Float=1.0, ?offset_x:TileOffset, ?offset_y:TileOffset ) {
 
         if(inside(x,y)) {
@@ -573,6 +579,7 @@ class Tilemap {
 
     } //tile_pos
 
+        /** Returns the tile at a given world position, or null */
     public function tile_at_pos( layer_name:String, worldpos:Vector, ?_scale:Float = 1.0 ) {
 
         switch(orientation) {
@@ -601,6 +608,7 @@ class Tilemap {
 
     } //tile_at_pos
 
+        /** Convert a world space position to map space coords */
     public function worldpos_to_map( worldpos:Vector, ?_scale:Float = 1.0 ) {
 
          switch(orientation) {
@@ -621,15 +629,17 @@ class Tilemap {
 
     } //worldpos_to_map
 
+        /** Fetch a layer by name, or null if it's not found */
     public function layer( layer_name:String ) {
         return layers.get( layer_name );
     }
 
-    public function tileset( layer_name:String ) {
-        return tilesets.get( layer_name );
+        /** Fetch a tileset by name, or null if its not found */
+    public function tileset( tileset_name:String ) {
+        return tilesets.get( tileset_name );
     }
 
-        //return a tile from a layer, in tile coordinates
+        /** Return a tile from a layer, at the given tile coordinates */
     public function tile_at( layer_name:String, x:Int, y:Int ) {
 
         if( inside(x,y) ) {
@@ -647,12 +657,14 @@ class Tilemap {
 
     } //tile_at
 
+        /** Allows iterating on the layers in order */
     public function iterator() : Iterator<TileLayer> {
 
         return layers_ordered.iterator();
 
     } //iterator
 
+        /** Add a tileset with the given options */
     public function add_tileset( options:TilesetOptions ) {
 
         var tileset = new Tileset( options );
@@ -663,16 +675,7 @@ class Tilemap {
 
     } //add_tileset
 
-    function _sort_layers( a:TileLayer,b:TileLayer ) {
-        if(a.layer < b.layer) return -1;
-        if(a.layer >= b.layer) return 1;
-        return 1;
-    } //_sort_layers
-
-    function sort_layers() {
-        layers_ordered.sort( _sort_layers );
-    } //sort_layers
-
+        /** Return the tileset for a given tile id, or null */
     public function tileset_from_id( _id:Int ) {
 
         var tileset:Tileset = null;
@@ -689,7 +692,7 @@ class Tilemap {
 
     } //tileset_from_id
 
-        //to remove the tile we can set the id to 0
+        /**  Removes the tile at the given tile coordinates. Sets the tile id to 0 */
     public function remove_tile( layer_name:String, x:Int, y:Int ) : Bool {
 
         if(inside(x,y)) {
@@ -705,6 +708,7 @@ class Tilemap {
 
     } //remove_tile
 
+        /** Remove a tileset by name */
     public function remove_tileset( name:String, _destroy_textures:Bool = false ) : Bool {
 
         var _tileset = tileset(name);
@@ -717,6 +721,7 @@ class Tilemap {
 
     } //remove_tileset
 
+        /** Remove a layer by name */
     public function remove_layer( name:String ) : Bool {
 
         var _layer = layer(name);
@@ -729,6 +734,7 @@ class Tilemap {
 
     } //remove_layer
 
+        /** Add a layer with the given options */
     public function add_layer( options:TileLayerOptions ) {
 
         def(options.map, this);
@@ -746,6 +752,8 @@ class Tilemap {
 
     } //add_layer
 
+        /** Fill an entire layer with the given tile id.
+            The existing tiles are replaced. */
     public function add_tiles_fill_by_id( layer_name:String, _tileid:Int = 0 ) {
 
         var _layer = layers.get(layer_name);
@@ -781,7 +789,8 @@ class Tilemap {
 
     } //add_tiles_fill_by_id
 
-        //this will destroy previous tiles (use set to change them)
+        /** Add tiles from an array of integer tile id's to the given layer.
+            This will destroy previous tiles (use set to change them). */
     public function add_tiles_from_grid( layer_name:String, grid:Array< Array<Int> > ) {
 
         if(grid.length != height) {
@@ -827,17 +836,62 @@ class Tilemap {
 
     } //add_tiles_from_grid
 
-    function get_total_width() : Int {
-        return width * tile_width;
-    } //get_total_width
+        /** Destroys the tilemap and it's visual. */
+    public function destroy(?_keep_visual:Bool=false) {
 
-    function get_total_height() : Int {
-        return height * tile_height;
-    } //get_total_height
+        layers = null;
+        layers_ordered = null;
+        tilesets = null;
+        properties = null;
+        orientation = null;
+        pos = null;
+        tile_width = 0;
+        tile_height = 0;
+        width = 0;
+        height = 0;
+
+        if(!_keep_visual) {
+            visual.destroy();
+        }
+
+    } //destroy
+
+//Internal
+
+    function _sort_layers( a:TileLayer,b:TileLayer ) {
+        if(a.layer < b.layer) return -1;
+        if(a.layer >= b.layer) return 1;
+        return 1;
+    } //_sort_layers
+
+    function sort_layers() {
+
+        layers_ordered.sort( _sort_layers );
+
+    } //sort_layers
+
+//Getters
 
     function get_bounds() : Rectangle {
+
         return new Rectangle( pos.x, pos.y, pos.x+total_width, pos.y + total_height );
+
     } //get_bounds
+
+        /** Get the total height of the tilemap in tile width space */
+    function get_total_width() : Int {
+
+        return width * tile_width;
+
+    } //get_total_width
+
+        /** Get the total height of the tilemap in tile height space */
+    
+    function get_total_height() : Int {
+
+        return height * tile_height;
+
+    } //get_total_height
 
 } // Tilemap
 

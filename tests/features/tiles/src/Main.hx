@@ -52,7 +52,7 @@ class Main extends luxe.Game {
         batcher = Luxe.renderer.create_batcher({ name:'separate tile view' });
 
             //we create a custom tilemap
-        create_small_handmade_tilemap();
+        generate_tilemap();
 
             //now we load a few tiled maps from the Tiled editor
         load_ortho_tiledmap();
@@ -75,6 +75,7 @@ class Main extends luxe.Game {
             color : new Color(0,1.0,0,1.0),
             depth : 700
         });
+
     } //ready
 
     function load_isometric_tiledmap() {
@@ -130,7 +131,7 @@ class Main extends luxe.Game {
 
     } //load_ortho_tiledmap
 
-    function create_small_handmade_tilemap() {
+    function generate_tilemap() {
 
             //random tile grid for foreground layer
         var small_tiles_grid = [
@@ -193,7 +194,7 @@ class Main extends luxe.Game {
         small_tiles.tile_at('fg', 4, 0).id = 1;
         small_tiles.tile_at('fg', 5, 0).id = 1;
 
-    } //create_small_handmade_tilemap
+    } //generate_tilemap
 
     override function onkeyup( e:KeyEvent ) {
 
@@ -204,6 +205,17 @@ class Main extends luxe.Game {
         if(e.keycode == Key.key_1) { Luxe.camera.zoom = 1.0; Luxe.camera.pos = new Vector(); }
         if(e.keycode == Key.key_2) { Luxe.camera.zoom = 2.0; }
         if(e.keycode == Key.key_3) { Luxe.camera.zoom = 0.5; }
+
+        if(e.keycode == Key.key_r) {
+            if(small_tiles != null) {
+                small_tiles.destroy();
+                small_tiles = null;
+            }
+        }
+
+        if(e.keycode == Key.key_c) {
+            if(small_tiles == null) generate_tilemap();
+        }
 
         if(e.keycode == Key.key_a || e.keycode == Key.left) {
             left_down = false;
