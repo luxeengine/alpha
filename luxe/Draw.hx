@@ -163,6 +163,7 @@ class Draw {
         def(options.id, 'poly.geometry');
         def(options.batcher, Luxe.renderer.batcher);
         def(options.solid, true);
+        def(options.close, false);
 
         var _default_col:Color = null;
         var _has_colors = (options.colors != null);
@@ -201,6 +202,14 @@ class Draw {
                     _geometry.add(new Vertex(options.points[_idx+1], _color_next));
                 }
                 ++_idx;
+            }
+
+            if(options.close) {
+                var _last = options.points.length-1;
+                var _color1 = _has_colors ? options.colors[0] : _default_col;
+                var _color2 = _has_colors ? options.colors[_last] : _default_col;
+                _geometry.add(new Vertex(options.points[_last], _color1));
+                _geometry.add(new Vertex(options.points[0], _color2));
             }
 
             return _geometry;
