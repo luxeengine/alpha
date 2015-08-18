@@ -147,12 +147,12 @@ typedef DebugInspectorOptions = {
             batcher : _batcher,
             no_scene : true,
             depth : 999.2,
-            color : new Color().rgb(0x333333),
+            color : new Color().rgb(0x545459),
             pos : new Vector( pos.x+(size.x-14), pos.y+6 ),
             align : TextAlign.right,
             font : font,
-            text : '${Luxe.build}',
-            point_size : 16,
+            text : '${Luxe.core.runtime_info()}',
+            point_size : 13,
             visible : false
         });
 

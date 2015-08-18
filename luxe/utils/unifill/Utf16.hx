@@ -1,14 +1,18 @@
 package luxe.utils.unifill;
 
-class Utf16 implements Utf {
+abstract Utf16 (StringU16) {
 
     /**
        Converts the code point `code` to a character as a Utf16 string.
     **/
     public static inline function fromCodePoint(codePoint : Int) : Utf16 {
-        var buf = new StringU16Buffer();
-        Utf16Impl.encode_code_point(function (x) buf.addUnit(x), codePoint);
-        return new Utf16(buf.getStringU16());
+		if (codePoint <= 0xFFFF) {
+			return new Utf16(StringU16.fromCodeUnit(codePoint));
+		} else {
+			return new Utf16(StringU16.fromTwoCodeUnits(
+				Unicode.encodeHighSurrogate(codePoint),
+				Unicode.encodeLowSurrogate(codePoint)));
+		}
     }
 
     /**
@@ -36,7 +40,7 @@ class Utf16 implements Utf {
        Returns the UTF-16 code unit at position `index` of `this`.
     **/
     public inline function codeUnitAt(index : Int) : Int {
-        return this.str.codeUnitAt(index);
+		return this.codeUnitAt(index);
     }
 
     /**
@@ -44,7 +48,7 @@ class Utf16 implements Utf {
        `this`.
     **/
     public function codePointAt(index : Int) : Int {
-        return Utf16Impl.decode_code_point(length, codeUnitAt, index);
+		return Utf16Impl.decode_code_point(length, function(i) return codeUnitAt(i), index);
     }
 
     /**
@@ -52,7 +56,7 @@ class Utf16 implements Utf {
        `this`.
     **/
     public inline function charAt(index : Int) : Utf16 {
-        return new Utf16(this.str.substr(index, codePointWidthAt(index)));
+		return new Utf16(this.substr(index, codePointWidthAt(index)));
     }
 
     /**
@@ -83,7 +87,7 @@ class Utf16 implements Utf {
        position `index` of `this`.
     **/
     public inline function codePointWidthBefore(index : Int) : Int {
-        return Utf16Impl.find_prev_code_point(codeUnitAt, index);
+		return Utf16Impl.find_prev_code_point(function(i) return codeUnitAt(i), index);
     }
 
     /**
@@ -102,7 +106,7 @@ class Utf16 implements Utf {
        Returns `len` code units of `this`, starting at position pos.
     **/
     public inline function substr(index : Int, ?len : Int) : Utf16 {
-        return new Utf16(this.str.substr(index, len));
+		return new Utf16(this.substr(index, len));
     }
 
     /**
@@ -112,8 +116,8 @@ class Utf16 implements Utf {
        `Exception.InvalidCodeUnitSequence` is throwed.
     **/
     public function validate() : Void {
-        var len = this.str.length;
-        var accessor = codeUnitAt;
+		var len = this.length;
+		var accessor = function(i) return codeUnitAt(i);
         var i = 0;
         while  (i < len) {
             Utf16Impl.decode_code_point(len, accessor, i);
@@ -122,25 +126,23 @@ class Utf16 implements Utf {
     }
 
     public inline function toString() : String {
-        return this.str.toString();
+		return this.toString();
     }
 
     public inline function toArray() : Array<Int> {
-        return this.str.toArray();
+		return this.toArray();
     }
 
-    var str : StringU16;
-
     inline function new(s : StringU16) {
-        this.str = s;
+		this = s;
     }
 
     inline function get_length() : Int {
-        return this.str.length;
+		return this.length;
     }
 
     inline function forward_offset_by_code_points(index : Int, codePointOffset : Int) : Int {
-        var len = this.str.length;
+		var len = this.length;
         var i = 0;
         while (i < codePointOffset && index < len) {
             index += codePointWidthAt(index);
@@ -225,7 +227,15 @@ private abstract StringU16(String) {
 
     public static inline function fromString(s : String) : StringU16 {
         return new StringU16(s);
+	}
+
+	public static inline function fromCodeUnit(u : Int) : StringU16 {
+		return new StringU16(String.fromCharCode(u));
     }
+
+	public static inline function fromTwoCodeUnits(u0 : Int, u1 : Int) : StringU16 {
+		return new StringU16(String.fromCharCode(u0) + String.fromCharCode(u1));
+	}
 
     public static inline function ofArray(a : Array<Int>) : StringU16 {
         return fromArray(a);
@@ -297,6 +307,14 @@ private abstract StringU16(Array<Int>) {
             Utf16Impl.encode_code_point(addUnit, c);
         }
         return buf.getStringU16();
+	}
+
+	public static inline function fromCodeUnit(u : Int) : StringU16 {
+		return new StringU16([u]);
+	}
+
+	public static inline function fromTwoCodeUnits(u0 : Int, u1 : Int) : StringU16 {
+		return new StringU16([u0, u1]);
     }
 
     public static inline function ofArray(a : Array<Int>) : StringU16 {

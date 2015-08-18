@@ -19,7 +19,7 @@ class TraceDebugView extends luxe.debug.DebugView {
 
         logged = new Array<String>();
 
-        add_line('luxe version ${Luxe.build} Debug Log');
+        add_line('luxe version ${Luxe.build}');
 
     } //new
 

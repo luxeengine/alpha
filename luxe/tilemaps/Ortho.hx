@@ -129,7 +129,7 @@ class OrthoVisual extends TilemapVisual {
 
     } //create
 
-    override function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int ) {
+    override function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool, _flipy:Bool, _angle:Int ) {
 
         var tileset = map.tileset_from_id( _id );
         var image_coord = tileset.pos_in_texture( _id );
@@ -144,6 +144,10 @@ class OrthoVisual extends TilemapVisual {
                 tileset.tile_height
             ) //Rectangle
         ); //uv
+
+        g.flipx = _flipx;
+        g.flipy = _flipy;
+        g.uv_angle = _angle;
 
     } //update_tile_id
 
@@ -196,6 +200,10 @@ class OrthoVisual extends TilemapVisual {
                     tileset.tile_height
                 ) //Rectangle
             ); //uv
+
+            _tile_geom.uv_angle = tile.angle;
+            _tile_geom.flipx = tile.flipx;
+            _tile_geom.flipy = tile.flipy;
 
             tileset.texture.filter_min = tileset.texture.filter_mag = options.filter;
 

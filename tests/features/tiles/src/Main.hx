@@ -33,11 +33,13 @@ class Main extends luxe.Game {
     override function config(config:luxe.AppConfig) {
 
         config.preload.textures.push({ id:'assets/isotiles.png' });
+        config.preload.textures.push({ id:'assets/clouds.png' });
         config.preload.textures.push({ id:'assets/tileset.png' });
         config.preload.textures.push({ id:'assets/tiles_padded.png' });
 
         config.preload.texts.push({ id:'assets/isotiles.tmx' });
         config.preload.texts.push({ id:'assets/tiles.json' });
+        config.preload.texts.push({ id:'assets/tiles.tmx' });
 
         return config;
 
@@ -50,7 +52,7 @@ class Main extends luxe.Game {
         batcher = Luxe.renderer.create_batcher({ name:'separate tile view' });
 
             //we create a custom tilemap
-        create_small_handmade_tilemap();
+        generate_tilemap();
 
             //now we load a few tiled maps from the Tiled editor
         load_ortho_tiledmap();
@@ -73,6 +75,7 @@ class Main extends luxe.Game {
             color : new Color(0,1.0,0,1.0),
             depth : 700
         });
+
     } //ready
 
     function load_isometric_tiledmap() {
@@ -96,25 +99,31 @@ class Main extends luxe.Game {
 
     function load_ortho_tiledmap() {
 
-        //try these, but remove the format:'json' or set to format:'xml',
-        //but make sure to adjust the config preload part as well, or it won't find them
+        //try these,
+        //make sure to adjust the config preload part as well, or it won't find them
         //'assets/tiles_base64_zlib.tmx'
         //'assets/tiles_base64.tmx'
         //'assets/tiles_csv.tmx'
-        var res = Luxe.resources.text('assets/tiles.json');
+
+        //change this to try the other type
+        var format = 'json';//
+        // var format = 'tmx';
+
+        var res = Luxe.resources.text('assets/tiles.$format');
 
         assertnull(res, 'Resource not found!');
 
         var scale = 2;
 
             //create from xml file, with various encodings, or from JSON
-        tiled_ortho = new TiledMap( { tiled_file_data:res.asset.text, format:'json', pos : new Vector(512,0) } );
+        tiled_ortho = new TiledMap( { tiled_file_data:res.asset.text, format:format, pos : new Vector(512,0) } );
 
             //tell the map to display
         tiled_ortho.display({ scale:scale, grid:true, filter:FilterType.nearest });
 
             //draw the additional objects
         draw_tiled_object_groups( scale );
+        draw_tiled_image_layers( scale );
 
         for(layer in tiled_ortho.layers) {
             trace('layer / ${layer.id} / ${layer.name} / ${layer.properties}');
@@ -122,7 +131,7 @@ class Main extends luxe.Game {
 
     } //load_ortho_tiledmap
 
-    function create_small_handmade_tilemap() {
+    function generate_tilemap() {
 
             //random tile grid for foreground layer
         var small_tiles_grid = [
@@ -185,7 +194,7 @@ class Main extends luxe.Game {
         small_tiles.tile_at('fg', 4, 0).id = 1;
         small_tiles.tile_at('fg', 5, 0).id = 1;
 
-    } //create_small_handmade_tilemap
+    } //generate_tilemap
 
     override function onkeyup( e:KeyEvent ) {
 
@@ -193,9 +202,20 @@ class Main extends luxe.Game {
             Luxe.shutdown();
         }
 
-        if(e.keycode == Key.key_1) { Luxe.camera.zoom = 1.0; }
+        if(e.keycode == Key.key_1) { Luxe.camera.zoom = 1.0; Luxe.camera.pos = new Vector(); }
         if(e.keycode == Key.key_2) { Luxe.camera.zoom = 2.0; }
         if(e.keycode == Key.key_3) { Luxe.camera.zoom = 0.5; }
+
+        if(e.keycode == Key.key_r) {
+            if(small_tiles != null) {
+                small_tiles.destroy();
+                small_tiles = null;
+            }
+        }
+
+        if(e.keycode == Key.key_c) {
+            if(small_tiles == null) generate_tilemap();
+        }
 
         if(e.keycode == Key.key_a || e.keycode == Key.left) {
             left_down = false;
@@ -205,8 +225,18 @@ class Main extends luxe.Game {
             right_down = false;
         }
 
+        if(e.keycode == Key.key_w || e.keycode == Key.up) {
+            up_down = false;
+        }
+
+        if(e.keycode == Key.key_s || e.keycode == Key.down) {
+            down_down = false;
+        }
+
     } //onkeyup
 
+    var up_down = false;
+    var down_down = false;
     var left_down = false;
     var right_down = false;
 
@@ -220,7 +250,22 @@ class Main extends luxe.Game {
             right_down = true;
         }
 
+        if(e.keycode == Key.key_w || e.keycode == Key.up) {
+            up_down = true;
+        }
+
+        if(e.keycode == Key.key_s || e.keycode == Key.down) {
+            down_down = true;
+        }
+
     } //onkeydown
+
+
+    override function onmousewheel( e:MouseEvent ) {
+
+        Luxe.camera.zoom += e.y * 0.1;
+
+    } //onmousewheel
 
     override function onmouseup( e:MouseEvent ) {
 
@@ -349,14 +394,38 @@ class Main extends luxe.Game {
     override function update( dt:Float ) {
 
         if(left_down) {
-            Luxe.camera.pos.x -= 150 / Luxe.camera.zoom * dt;
+            Luxe.camera.pos.x -= (150/Luxe.camera.zoom) * dt;
         } //left_down
 
         if(right_down) {
-            Luxe.camera.pos.x += 150 / Luxe.camera.zoom * dt;
+            Luxe.camera.pos.x += (150/Luxe.camera.zoom) * dt;
         } //right_down
 
+        if(up_down) {
+            Luxe.camera.pos.y -= (150/Luxe.camera.zoom) * dt;
+        } //up_down
+
+        if(down_down) {
+            Luxe.camera.pos.y += (150/Luxe.camera.zoom) * dt;
+        } //down_down
+
     } //update
+
+    function draw_tiled_image_layers( _scale:Float = 1) {
+
+        for(layer in tiled_ortho.tiledmap_data.image_layers) {
+            trace('loading image layer ${layer.name} pos:${layer.x},${layer.x} properties:${layer.properties}');
+            new luxe.Sprite({
+                centered: false,
+                pos:new Vector(tiled_ortho.pos.x+(layer.x*_scale), tiled_ortho.pos.y+(layer.y * _scale)),
+                scale:new Vector(_scale, _scale),
+                texture: Luxe.resources.texture('assets/'+layer.image.source),
+                color: new Color(1,1,1,layer.opacity),
+                visible: layer.visible
+            });
+        }
+
+    } //
 
     function draw_tiled_object_groups( _scale:Float = 1) {
 
@@ -364,7 +433,7 @@ class Main extends luxe.Game {
         for(group in tiled_ortho.tiledmap_data.object_groups) {
 
             for(object in group.objects) {
-                Luxe.draw.text({ text:object.name, point_size:14, pos:object.pos.clone().multiplyScalar(_scale).add(tiled_ortho.pos) });
+                Luxe.draw.text({ text:'${object.name} (${object.id})', point_size:14, pos:object.pos.clone().multiplyScalar(_scale).add(tiled_ortho.pos) });
                 switch(object.object_type) {
 
                     case TiledObjectType.polyline: {

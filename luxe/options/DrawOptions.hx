@@ -42,6 +42,9 @@ typedef DrawPolygonOptions = {
         /** Whether or not the polygon is solid. */
     @:optional var solid : Bool;
 
+        /** Whether or not the polygon will be closed (the first and last vertex are connected). */
+    @:optional var close : Bool;
+
         /** A color to share for all points. */
     @:optional var color : Color;
 

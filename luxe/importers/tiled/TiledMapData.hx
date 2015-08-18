@@ -32,6 +32,8 @@ class TiledMapData {
     public var layers:Array<TiledLayer>;
         //All objectgroups
     public var object_groups:Array<TiledObjectGroup>;
+        //All imagelayers
+    public var image_layers:Array<TiledImageLayer>;
         //All map properties
     public var properties:Map<String, String>;
 
@@ -47,6 +49,7 @@ class TiledMapData {
         layers = [];
         properties = new Map();
         object_groups = [];
+        image_layers = [];
 
     }
 
@@ -116,6 +119,15 @@ class TiledMapData {
 
                     } //objectgroup
 
+                    case "imagelayer" : {
+
+                        var image_layer : TiledImageLayer = new TiledImageLayer( this );
+                            image_layer.from_xml( child );
+
+                        image_layers.push( image_layer );
+
+                    } //imagelayer
+
                 } //switch child nodename
             } //if valid element
         } //for each child in root
@@ -182,6 +194,13 @@ class TiledMapData {
                                     object_group.from_json( _layer_json );
 
                                 object_groups.push( object_group );
+                            }
+
+                            case "imagelayer" : {
+                                var image_layer : TiledImageLayer = new TiledImageLayer( this );
+                                    image_layer.from_json( _layer_json );
+
+                                image_layers.push( image_layer );
                             }
 
                         } //switch type
