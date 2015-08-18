@@ -148,7 +148,7 @@ class Batcher {
 
     } //add
 
-        /** :todo: this is a temporary construct as part of #119 */
+        /** Drop all the geometry within this batcher, emptying it out. */
     public function empty( _drop:Bool=true ) {
 
         if(_drop) {
@@ -164,8 +164,41 @@ class Batcher {
 
     } //empty
 
-        /** :todo: part of #119 */
-    public function destroy() {
+        /** Destroy this batcher.
+            Drops all the geometry within it (empty). 
+            Removes itself from the renderer.
+            Does not change the `view`.
+            Do not use the batcher instance after calling this. */
+    public function destroy( _drop:Bool=true ) {
+
+        empty(_drop);
+
+        renderer.remove_batch(this);
+
+        geometry = null;
+        groups = null;
+        pos_list = null;
+        tcoord_list = null;
+        color_list = null;
+        normal_list = null;
+
+        max_verts = 0;
+        max_floats = 0;
+        vert_count = 0;
+
+        proj_attribute = null;
+        view_attribute = null;
+        tex0_attribute = null;
+        tex1_attribute = null;
+        tex2_attribute = null;
+        tex3_attribute = null;
+        tex4_attribute = null;
+        tex5_attribute = null;
+        tex6_attribute = null;
+        tex7_attribute = null;
+
+        renderer = null;
+        view = null;
 
     } //destroy
 

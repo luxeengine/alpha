@@ -77,6 +77,7 @@ class Main extends luxe.Game {
             //add the sprite to the first one
         var level_sprite = new Sprite({
 
+            name:'level',
             texture : level_texture,
             pos : new Vector(0,0),
             centered : false,
@@ -285,6 +286,20 @@ class Main extends luxe.Game {
         }
         if(e.keycode == Key.down) {
             current_camera.pos.y += 320;
+        }
+
+        if(e.keycode == Key.key_r) {
+            if(batcher_4 != null) {
+                batcher_4.destroy(false);
+                batcher_4 = null;
+                for(b in Luxe.renderer.batchers) {
+                    trace(b.name + ' / ' + b.layer);
+                }
+            } else {
+                batcher_4 = Luxe.renderer.create_batcher({ name:'viewport4', camera:camera_4.view });
+                var _level_sprite:Sprite = Luxe.scene.get('level');
+                batcher_4.add( _level_sprite.geometry );
+            }
         }
 
         if(e.keycode == Key.key_1) {
