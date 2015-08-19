@@ -35,7 +35,12 @@ class TiledImageLayer {
         name = xml.get("name");
         x = Std.parseInt(xml.get("x"));
         y = Std.parseInt(xml.get("y"));
-        opacity = xml.get("opacity") == null ? 1 : Std.parseFloat(xml.get("opacity"));
+
+        var _opacity = xml.get("opacity");
+        var _visible = xml.get("visible");
+
+        opacity = (_opacity == null) ? 1.0 : Std.parseFloat(_opacity);
+        visible = (_visible == "0") ? false : true;
 
         for( child in xml ) {
             if( valid_element(child) ) {
