@@ -1,0 +1,36 @@
+{
+
+  luxe:{
+    window: {
+      width:960,
+      height:540,
+      title:'tilemap platformer',
+      fullscreen:false,
+      resizable:true,
+      borderless:false
+    }
+  },
+
+  project : {
+    name : 'tilemap_platformer',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'tilemap_platformer',
+      package : 'com.luxeengine.tilemap_platformer'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

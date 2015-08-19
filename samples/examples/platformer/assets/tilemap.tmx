@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="16" tileheight="16" nextobjectid="9">
+ <tileset firstgid="1" name="collisionTiles" tilewidth="16" tileheight="16" tilecount="1">
+  <image source="collisionTiles.png" width="16" height="16"/>
+ </tileset>
+ <tileset firstgid="2" name="visualtile" tilewidth="16" tileheight="16" tilecount="64">
+  <image source="tilesheet.png" width="128" height="128"/>
+ </tileset>
+ <imagelayer name="sky">
+  <image source="background.png"/>
+ </imagelayer>
+ <layer name="visualbg" width="16" height="9">
+  <data encoding="base64" compression="zlib">
+   eJyNkUsOwjAMREdAKULtJvw2dMeSHRyAo+UoOUqP0qMwQ1xholTCkjVWM88fFcixAyIqMfzWH8+JeWZe3FuN3zv+CowzP5TGBV5zDlnjkbzqQH0wbxWenqnsQW/kbHSZE/9Sn7u9r0xb+lrHyWc6Vnrimd8SZyb2TlvyTDTf3RPnTMHu6kzFzH2ays09c2176W5xNifye9xkhbRf+Gc+HKf67wi2R8n5/RVvrCobFw==
+  </data>
+ </layer>
+ <layer name="visualbgalt" width="16" height="9">
+  <data encoding="base64" compression="zlib">
+   eJzTY2BIMANiBhKACAODApQ+oAvUawrVD2Qz6JFgDg9QPzIfaA6DGR71wmjq0YEtENsRYa8wkf4FqntAjDp6ASYGhgZCaoSAbubC4W4NoH4gZtACygPDXgEWj9iAFpF+BwAxVQ03
+  </data>
+ </layer>
+ <layer name="collision" width="16" height="9" visible="0" opacity="0.34">
+  <data encoding="base64" compression="zlib">
+   eJxjYIAARgbKAK30MxKhhlT7sZnJiMUMUs1EN4OQfmzy2MzBJodPHbH6qIEBIQQAMQ==
+  </data>
+ </layer>
+ <objectgroup name="portals">
+  <properties>
+   <property name="id" value="1"/>
+  </properties>
+  <object id="1" name="beta" type="portal" x="61.6666" y="27.0001" width="6" height="6">
+   <properties>
+    <property name="target" value="4"/>
+   </properties>
+  </object>
+  <object id="4" name="alpha" type="portal" x="20.6667" y="12.3334" width="6" height="6">
+   <properties>
+    <property name="target" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="visualfg" width="16" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFQxkoALE8lCYHaACxOpQmBwAATCgA1w==
+  </data>
+ </layer>
+ <objectgroup name="markers">
+  <object id="5" name="spawn" type="spawn" x="56" y="118.666" width="5" height="5">
+   <ellipse/>
+  </object>
+  <object id="8" name="exit" type="exit" x="3.66667" y="46.6667" width="11" height="18">
+   <properties>
+    <property name="target" value="4"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
