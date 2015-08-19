@@ -10,7 +10,7 @@ typedef NapeBodyOptions = {
 
 	> ComponentOptions,
 
-        /** Set internally unless creating a NapeBody */
+        /** The nape BodyType (i.e DYNAMIC, STATIC, KINEMATIC) */
     @:optional var body_type : nape.phys.BodyType;
         /** The optional InteractionFilter */
     @:optional var filter : nape.dynamics.InteractionFilter;
