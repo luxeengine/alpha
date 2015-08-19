@@ -1,7 +1,7 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](./index.html)
 
- [api](#docs) • [guide](#docs) • [source](https://github.com/underscorediscovery/luxe) • [issues](https://github.com/underscorediscovery/luxe/issues) 
+ [api](#api) • [guide](#docs) • [source](https://github.com/underscorediscovery/luxe) • [issues](https://github.com/underscorediscovery/luxe/issues) 
 
 A free and open cross platform game development engine.   
 
@@ -109,6 +109,7 @@ For more concrete examples of this in practice. Click the diagram below for a fu
 ###[view the luxe guide](guide.html)   
 
 ----
+<a name="api"></a>
 
 ##Documentation
 

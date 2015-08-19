@@ -45,3 +45,11 @@
     overflow-y:auto;
     line-height: 1.5em;
 }
+
+.omni_selected {
+    background: #ff4b03;
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+    padding-left: 0.3em;
+}
