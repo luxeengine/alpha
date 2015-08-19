@@ -1,5 +1,7 @@
 package luxe.components.physics.nape;
 
+#if nape
+
 import luxe.Vector;
 import luxe.Component;
 import luxe.options.ComponentOptions;
@@ -76,3 +78,5 @@ class NapeBody extends Component {
     } //post_add
 
 } //Body
+
+#end //nape

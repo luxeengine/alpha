@@ -1,5 +1,7 @@
 package luxe.components.physics.nape;
 
+#if nape
+
 import nape.phys.BodyType;
 import nape.phys.Body;
 
@@ -43,3 +45,5 @@ class CircleCollider extends NapeBody {
     } //onadded
 
 } //CircleCollider
+
+#end //nape

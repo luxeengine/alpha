@@ -1,5 +1,7 @@
 package luxe.components.physics.nape;
 
+#if nape
+
 import nape.geom.Vec2;
 import nape.phys.Body;
 import nape.phys.BodyType;
@@ -50,3 +52,5 @@ class PolygonCollider extends NapeBody {
     } //onadded
 
 } //PolygonCollider
+
+#end //nape

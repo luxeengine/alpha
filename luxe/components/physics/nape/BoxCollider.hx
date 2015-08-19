@@ -1,5 +1,7 @@
 package luxe.components.physics.nape;
 
+#if nape
+
 import nape.phys.Body;
 import nape.phys.BodyType;
 import nape.shape.Polygon;
@@ -46,3 +48,5 @@ class BoxCollider extends NapeBody {
     } //onadded
 
 } //BoxCollider
+
+#end //nape
