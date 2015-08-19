@@ -169,6 +169,7 @@ class Main extends luxe.Game {
     override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.key_r) {
+            Luxe.scene.empty();
             Luxe.physics.nape.space.clear();
             reset_world();
         }
