@@ -1226,8 +1226,8 @@ class Entity extends Objects {
 
         if(_scene != null) {
             _scene.entities.remove(name);
-            _scene.entities.set(_name, this);
             _scene.handle_duplicate_warning(_name);
+            _scene.entities.set(_name, this);
             _scene._has_changed = true;
         }
 
