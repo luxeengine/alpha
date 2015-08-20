@@ -4,7 +4,7 @@
     window: {
       width:960,
       height:540,
-      title:'tilemap platformer',
+      title:'luxe.platformer',
       fullscreen:false,
       resizable:true,
       borderless:false
@@ -12,13 +12,13 @@
   },
 
   project : {
-    name : 'tilemap_platformer',
+    name : 'luxe_platformer',
     version : '1.0.0',
     author : 'luxeengine',
 
     app : {
-      name : 'tilemap_platformer',
-      package : 'com.luxeengine.tilemap_platformer'
+      name : 'luxe_platformer',
+      package : 'com.luxeengine.platformer'
     },
 
     build : {

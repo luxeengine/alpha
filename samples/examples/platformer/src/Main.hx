@@ -1,61 +1,103 @@
 
 import luxe.Input;
-import luxe.importers.tiled.TiledMap;
-import luxe.tilemaps.Ortho;
-import luxe.utils.Maths;
 import luxe.Vector;
-import luxe.collision.shapes.Polygon;
-import luxe.Rectangle;
-import phoenix.geometry.Geometry;
 import luxe.Color;
-import phoenix.Texture.FilterType;
-import luxe.importers.tiled.TiledObjectGroup;
-import luxe.collision.data.ShapeCollision;
 import luxe.Sprite;
+import luxe.Rectangle;
+import luxe.utils.Maths;
+import luxe.tilemaps.Ortho;
+import phoenix.Texture.FilterType;
+
+import luxe.collision.shapes.Polygon;
+import luxe.collision.data.ShapeCollision;
+
+import luxe.importers.tiled.TiledMap;
+import luxe.importers.tiled.TiledObjectGroup;
 
 class Main extends luxe.Game {
 
-    var player:Polygon;
-    var playerSprite:Sprite;
-    var exit:Sprite;
-    var spawn:Vector;
+
+        //Our visual items
+    var player_sprite: Sprite;
+    var exit: Sprite;
+
+        //The level tiles
+    var map: TiledMap;
+    var map_scale: Int = 1;
+
+        //Some helpers for information
+    var spawn_pos:Vector;
     var portals:Map<Int, Vector>;
 
-    var engine:CollisionEngine;
+        //The simulation helper
+    var sim:Simulation;
 
-    override function config(config:luxe.AppConfig) {
-        config.preload.textures.push({id:'assets/collisionTiles.png'});
-        config.preload.textures.push({id:'assets/player.png', filter_min:nearest, filter_mag:nearest });
-        config.preload.textures.push({id:'assets/exit.png', filter_min:nearest, filter_mag:nearest });
-        config.preload.textures.push({id:'assets/background.png', filter_min:nearest, filter_mag:nearest });
-        config.preload.textures.push({id:'assets/tilesheet.png'});
-        config.preload.texts.push({id:'assets/tilemap.tmx'});
-        return config;
-
-    } //config
 
     override function ready() {
 
+            //Set the sky/background color
         Luxe.renderer.clear_color.rgb(0x181c1f);
+
+            //Tell the camera to keep the world size fixed,
+            //And automatically fit the window size
         Luxe.camera.size = new Vector(256, 144);
-        player = Polygon.rectangle(0,0,8,8);
 
-        //set by level load
-        spawn = new Vector(120, 48);
+            //Setup the simulation helper
+        sim = Luxe.physics.add_engine(Simulation);
+        sim.draw = false;
+        sim.player_collider = Polygon.rectangle(0,0,8,8);
 
-        engine = Luxe.physics.add_engine(CollisionEngine);
-        engine.draw = false;
-        engine.player = player;
+        create_map();
+        create_map_collision();
+        bind_input();
 
-        var map = new TiledMap({
-            format:'tmx', 
-            tiled_file_data:Luxe.resources.text('assets/tilemap.tmx').asset.text
-        });
+        Luxe.events.listen('simulation.triggers.collide', ontrigger);
 
-        var scale = 1;
-        map.display({ scale:scale, filter:FilterType.nearest });
+            //start the simulation
+        sim.paused = false;
 
-        portals = new Map();
+    } //ready
+
+    function bind_input() {
+
+        Luxe.input.bind_key('left', Key.key_a);
+        Luxe.input.bind_key('left', Key.left);
+
+        Luxe.input.bind_key('right', Key.key_d);
+        Luxe.input.bind_key('right', Key.right);
+
+        Luxe.input.bind_key('jump', Key.key_w);
+        Luxe.input.bind_key('jump', Key.up);
+        Luxe.input.bind_key('jump', Key.space);
+        Luxe.input.bind_key('jump', Key.key_z);
+        Luxe.input.bind_key('jump', Key.key_x);
+
+    } //bind_input
+
+    function create_map_collision() {
+
+        var bounds = map.layer('collision').bounds_fitted();
+        for(bound in bounds) {
+            bound.x *= map.tile_width * map_scale;
+            bound.y *= map.tile_height * map_scale;
+            bound.w *= map.tile_width * map_scale;
+            bound.h *= map.tile_height * map_scale;
+            sim.levelObstacles.push(Polygon.rectangle(bound.x, bound.y, bound.w, bound.h, false));
+        }
+
+    } //create_map_collision
+
+    function create_map() {
+
+            //Fetch the loaded tmx data from the assets
+        var map_data = Luxe.resources.text('assets/tilemap.tmx').asset.text;
+
+            //parse that data into a usable TiledMap instance
+        map = new TiledMap({ format:'tmx', tiled_file_data: map_data });
+
+            //Create the tilemap visuals
+        map.display({ scale:map_scale, filter:FilterType.nearest });
+
         for(_group in map.tiledmap_data.object_groups) {
             for(_object in _group.objects) {
 
@@ -63,7 +105,18 @@ class Main extends luxe.Game {
 
                     case 'spawn': {
 
-                        spawn.set_xy(_object.pos.x, _object.pos.y);
+                            //The spawn position is set from the map
+                        spawn_pos = new Vector(_object.pos.x, _object.pos.y);
+
+                            //We use it to move the collider,
+                        sim.player_collider.position.copy_from(spawn_pos);
+
+                            //And create the visual
+                        player_sprite = new Sprite({
+                            pos: spawn_pos.clone(),
+                            size: new Vector(8,8), depth:2,
+                            texture:Luxe.resources.texture('assets/player.png')
+                        });
 
                     } //spawn
 
@@ -71,31 +124,58 @@ class Main extends luxe.Game {
 
                         var _y = _object.pos.y;
 
+                            //create the exit collectible sprite
                         exit = new Sprite({
-                            depth:8,
-                            centered:false,
-                            pos:new Vector(_object.pos.x, _y+2),
+                            centered:false, depth:8,
+                            pos: new Vector(_object.pos.x, _y+2),
                             texture:Luxe.resources.texture('assets/exit.png')
                         });
 
+                            //Bounce the exit collectible sprite up and down
                         luxe.tween.Actuate.tween(exit.pos, 1.5, { y:_y }).reflect().repeat();
 
-                        var shape = Polygon.rectangle(_object.pos.x * scale, _object.pos.y * scale, _object.width * scale, _object.height * scale, false);
-                            shape.tags.set('type', 'exit');
+                        var shape = Polygon.rectangle(
+                            _object.pos.x * map_scale,
+                            _object.pos.y * map_scale,
+                            _object.width * map_scale,
+                            _object.height * map_scale,
+                            false
+                        );
 
-                        engine.levelTriggers.push(shape);
+                            //set the type tag on the collider
+                        shape.tags.set('type', 'exit');
+
+                            //store it in the list of triggers
+                        sim.levelTriggers.push(shape);
 
                     } //exit
 
                     case 'portal': {
 
+                            //create the portal map if its not yet created
+                        if(portals == null) portals = new Map();
+
+                            //store the position of the portal for when we teleport
                         portals.set(_object.id, _object.pos);
 
-                        var shape = Polygon.rectangle(_object.pos.x * scale, _object.pos.y * scale, _object.width * scale, _object.height * scale, false);
-                            shape.data = {target:Std.parseInt(_object.properties.get('target'))};
-                            shape.tags.set('type', 'portal');
+                            //create the portal collision shape
+                        var shape = Polygon.rectangle(
+                            _object.pos.x * map_scale,
+                            _object.pos.y * map_scale,
+                            _object.width * map_scale,
+                            _object.height * map_scale,
+                            false
+                        );
 
-                        engine.levelTriggers.push(shape);
+                            //fetch the information from tiled object property for the target teleporter
+                        var target_id = Std.parseInt(_object.properties.get('target'));
+                            //store it on the collider
+                        shape.data = { target:target_id };
+                            //and add a tag for the type of collider
+                        shape.tags.set('type', 'portal');
+
+                            //and finally add it to the list of triggers
+                        sim.levelTriggers.push(shape);
 
                     } //portal
 
@@ -103,75 +183,64 @@ class Main extends luxe.Game {
             } //each object
         } //each object group
 
-            //we assume the spawn has loaded by now
-        player.position.copy_from(spawn);
-        playerSprite = new Sprite({
-            pos:new Vector(spawn.x, spawn.y),
-            size:new Vector(8,8),
-            depth:2,
-            texture:Luxe.resources.texture('assets/player.png')
-        });
-
         for(layer in map.tiledmap_data.image_layers) {
-            trace('loading image layer ${layer.name} pos:${layer.x},${layer.x} properties:${layer.properties} visible:${layer.visible} opacity:${layer.opacity}');
-            var _scale = Luxe.camera.zoom;
+            
             new luxe.Sprite({
-                centered: false,
-                depth:-1,
-                pos:new Vector(map.pos.x+(layer.x*_scale), map.pos.y+(layer.y * _scale)),
-                scale:new Vector(_scale, _scale),
+                name:'image_layer.${layer.name}',
+                centered: false, depth:-1,
+                pos: new Vector(map.pos.x+(layer.x*map_scale), map.pos.y+(layer.y * map_scale)),
+                scale: new Vector(map_scale, map_scale),
                 texture: Luxe.resources.texture('assets/'+layer.image.source),
-                color: new Color(1,1,1,layer.opacity),
+                color: new Color(1,1,1, layer.opacity),
                 visible: layer.visible
             });
-        }
 
+        } //each image_layer
+
+
+            //fetch the goemetry for the foreground
         var _rows = map.visual.geometry_for_layer('visualfg');
-        for(_row in _rows) for(_geom in _row) if(_geom != null) _geom.depth = 5;
 
+            //for each row in the tiles
+        for(_row in _rows) {
+                //for each tile in that row
+            for(_geom in _row) {
+                    //if there is a tile at all
+                if(_geom != null) {
+                        //move it above the player depth
+                    _geom.depth = 5;
+                }
+            }
+        } //each row
 
+    } //create_map
 
-        var bounds = map.layer('collision').bounds_fitted();
-        for(bound in bounds) {
-            bound.x *= map.tile_width * scale;
-            bound.y *= map.tile_height * scale;
-            bound.w *= map.tile_width * scale;
-            bound.h *= map.tile_height * scale;
-            engine.levelObstacles.push(Polygon.rectangle(bound.x, bound.y, bound.w, bound.h, false));
-        }
+    var teleportDisabled: Bool = false;
+    function ontrigger(collisions:Array<ShapeCollision>) {
 
-        Luxe.input.bind_key('left', Key.key_a);
-        Luxe.input.bind_key('left', Key.left);
-        Luxe.input.bind_key('right', Key.key_d);
-        Luxe.input.bind_key('right', Key.right);
-        Luxe.input.bind_key('jump', Key.key_w);
-        Luxe.input.bind_key('jump', Key.up);
-        Luxe.input.bind_key('jump', Key.space);
-
-        Luxe.events.listen('CollisionEngine.touchedTriggers', onTouchedTriggers);
-    } //ready
-
-    var teleportDisabled:Bool = false;
-    function onTouchedTriggers(collisions:Array<ShapeCollision>) {
         if(collisions.length == 0) teleportDisabled = false;
+
         for(collision in collisions) {
+
             if(!teleportDisabled && collision.shape2.tags.exists('type') && collision.shape2.tags.get('type') == 'portal') {
-                player.position = portals.get(collision.shape2.data.target).clone();
-                player.position.add_xyz(4,4);
+                sim.player_collider.position = portals.get(collision.shape2.data.target).clone();
+                sim.player_collider.position.add_xyz(4,4);
                 teleportDisabled = true;
             }
+
         }
-    }
+
+    } //ontrigger
 
     override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.key_0) {
-            engine.draw = !engine.draw;
+            sim.draw = !sim.draw;
         }
 
         if(e.keycode == Key.key_r) {
-            player.position.copy_from(spawn);
-            engine.playerVel.set_xy(0,0);
+            sim.player_collider.position.copy_from(spawn_pos);
+            sim.player_velocity.set_xy(0,0);
         }
 
         if(e.keycode == Key.escape) {
@@ -188,40 +257,63 @@ class Main extends luxe.Game {
     var damp_air = 0.9;
     var jumpsAvailable:Int = 0;
     override function update(dt:Float) {
-        if(Luxe.input.inputdown('left')) {
-            engine.playerVel.x -= move_spd * dt;
-        }
-        else if(Luxe.input.inputdown('right')) {
-            engine.playerVel.x += move_spd * dt;
-        }
-        else {
-            if(engine.jumpAllowed) {
-                engine.playerVel.x *= damp;
-            } else {
-                engine.playerVel.x *= damp_air;
-            }
-        }
 
-        var _max_vel = (engine.jumpAllowed) ? max_vel : air_vel;
-        engine.playerVel.x = Maths.clamp(engine.playerVel.x, -_max_vel, _max_vel);
+        apply_input(dt);
 
-        if(engine.jumpAllowed) {
+        if(sim.player_can_jump) {
             jumpsAvailable = 2;
         }
 
         if(jumpsAvailable > 0 && Luxe.input.inputpressed('jump')) {
-            engine.playerVel.y = -jump_force;
+            sim.player_velocity.y = -jump_force;
             jumpsAvailable -= 1;
         }
 
-        player.position.x = Maths.clamp(player.position.x, 4, 256 - 4);
+        sim.player_collider.position.x = Maths.clamp(sim.player_collider.position.x, 4, 256 - 4);
+        player_sprite.pos.copy_from(sim.player_collider.position);
 
-        playerSprite.pos.copy_from(player.position);
-        if(engine.playerVel.x > 0) {
-            playerSprite.flipx = true;
-        }
-        else {
-            playerSprite.flipx = false;
-        }
+        var _max_vel = (sim.player_can_jump) ? max_vel : air_vel;
+        sim.player_velocity.x = Maths.clamp(sim.player_velocity.x, -_max_vel, _max_vel);
+
     } //update
+
+    function apply_input(dt:Float) {
+
+        if(Luxe.input.inputdown('left')) {
+
+            sim.player_velocity.x -= move_spd * dt;
+            player_sprite.flipx = false;
+
+        } else if(Luxe.input.inputdown('right')) {
+
+            sim.player_velocity.x += move_spd * dt;
+            player_sprite.flipx = true;
+
+        } else {
+
+            if(sim.player_can_jump) {
+                sim.player_velocity.x *= damp;
+            } else {
+                sim.player_velocity.x *= damp_air;
+            }
+        
+        } //not left or right
+
+    } //update_input
+
+
+    override function config(config:luxe.AppConfig) {
+
+        config.preload.textures.push({id:'assets/collisionTiles.png'});
+        config.preload.textures.push({id:'assets/player.png', filter_min:nearest, filter_mag:nearest });
+        config.preload.textures.push({id:'assets/exit.png', filter_min:nearest, filter_mag:nearest });
+        config.preload.textures.push({id:'assets/background.png', filter_min:nearest, filter_mag:nearest });
+        config.preload.textures.push({id:'assets/tilesheet.png'});
+        
+        config.preload.texts.push({id:'assets/tilemap.tmx'});
+        
+        return config;
+
+    } //config
+
 } //Main
