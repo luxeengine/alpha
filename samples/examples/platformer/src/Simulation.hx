@@ -24,8 +24,8 @@ class Simulation extends luxe.Physics.PhysicsEngine {
     public var player_velocity: Vector;
     public var player_can_jump: Bool = false;
 
-    public var levelObstacles: Array<Shape>;
-    public var levelTriggers: Array<Shape>;
+    public var obstacle_colliders: Array<Shape>;
+    public var trigger_colliders: Array<Shape>;
 
         //This is called when you call new Simulation
     public function new() {
@@ -38,8 +38,8 @@ class Simulation extends luxe.Physics.PhysicsEngine {
 
         //collision related
 
-        levelObstacles = [];
-        levelTriggers = [];
+        obstacle_colliders = [];
+        trigger_colliders = [];
 
         //physics related values
 
@@ -53,7 +53,7 @@ class Simulation extends luxe.Physics.PhysicsEngine {
 
             //The gravity value comes from luxe.Physics.PhysicsEngine
             //and is just a Vector we can use to apply gravity as a force
-        gravity.set_xyz(0, 1, 0);
+        gravity.set_xyz(0, 800, 0);
 
     } //init
 
@@ -93,7 +93,7 @@ class Simulation extends luxe.Physics.PhysicsEngine {
 
         player_can_jump = false;
 
-        var collisions = Collision.shapeWithShapes(player_collider, levelObstacles);
+        var collisions = Collision.shapeWithShapes(player_collider, obstacle_colliders);
 
         for(collision in collisions) {
 
@@ -112,7 +112,7 @@ class Simulation extends luxe.Physics.PhysicsEngine {
 
         }
 
-        collisions = Collision.shapeWithShapes(player_collider, levelTriggers);
+        collisions = Collision.shapeWithShapes(player_collider, trigger_colliders);
         Luxe.events.fire('simulation.triggers.collide', collisions);
 
     } //handle_collision
@@ -124,8 +124,8 @@ class Simulation extends luxe.Physics.PhysicsEngine {
 
         if(!draw) return;
 
-        for(shape in levelObstacles)  draw_collider_polygon(cast shape);
-        for(shape in levelTriggers)   draw_collider_polygon(cast shape);
+        for(shape in obstacle_colliders)  draw_collider_polygon(cast shape);
+        for(shape in trigger_colliders)   draw_collider_polygon(cast shape);
             
         draw_collider_polygon(cast player_collider);
 

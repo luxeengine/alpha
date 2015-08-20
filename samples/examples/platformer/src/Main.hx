@@ -82,7 +82,7 @@ class Main extends luxe.Game {
             bound.y *= map.tile_height * map_scale;
             bound.w *= map.tile_width * map_scale;
             bound.h *= map.tile_height * map_scale;
-            sim.levelObstacles.push(Polygon.rectangle(bound.x, bound.y, bound.w, bound.h, false));
+            sim.obstacle_colliders.push(Polygon.rectangle(bound.x, bound.y, bound.w, bound.h, false));
         }
 
     } //create_map_collision
@@ -146,7 +146,7 @@ class Main extends luxe.Game {
                         shape.tags.set('type', 'exit');
 
                             //store it in the list of triggers
-                        sim.levelTriggers.push(shape);
+                        sim.trigger_colliders.push(shape);
 
                     } //exit
 
@@ -175,7 +175,7 @@ class Main extends luxe.Game {
                         shape.tags.set('type', 'portal');
 
                             //and finally add it to the list of triggers
-                        sim.levelTriggers.push(shape);
+                        sim.trigger_colliders.push(shape);
 
                     } //portal
 
@@ -222,13 +222,30 @@ class Main extends luxe.Game {
 
         for(collision in collisions) {
 
-            if(!teleportDisabled && collision.shape2.tags.exists('type') && collision.shape2.tags.get('type') == 'portal') {
-                sim.player_collider.position = portals.get(collision.shape2.data.target).clone();
-                sim.player_collider.position.add_xyz(4,4);
-                teleportDisabled = true;
-            }
+            var _type = collision.shape2.tags.get('type');
 
-        }
+            switch(_type) {
+                case 'portal':
+                        //can we teleport?
+                    if(!teleportDisabled) {
+
+                        var _destination = portals.get(collision.shape2.data.target);
+
+                            //add add 4 so that we are no longer colliding
+                        sim.player_collider.position.x = _destination.x;
+                        sim.player_collider.position.y = _destination.y + 4;
+
+                        teleportDisabled = true;
+
+                    } //if
+
+                case 'exit':
+
+                case _:
+            
+            } //switch type
+
+        } //each collision
 
     } //ontrigger
 
