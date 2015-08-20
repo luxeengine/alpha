@@ -77,7 +77,8 @@ class Main extends luxe.Game {
         mesh.geometry.texture.bind();
 
         for(node in nodes) {
-            Luxe.renderer.batcher.submit_geometry(mesh.geometry, node);
+            mesh.geometry.shader.set_matrix4('model', node);
+            Luxe.renderer.batcher.submit_geometry(mesh.geometry);
         }
 
     } //onrender

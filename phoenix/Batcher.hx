@@ -3,6 +3,7 @@ package phoenix;
 import phoenix.Renderer;
 import phoenix.geometry.Geometry;
 import phoenix.Matrix;
+import phoenix.Shader;
 
 import snow.modules.opengl.GL;
 import snow.api.buffers.Float32Array;
@@ -44,6 +45,9 @@ class Batcher {
 
     public var renderer : Renderer;
     public var view : Camera;
+        // An explicit shader override (instead of per geometry).
+        // Useful for things like wireframe/depth/normal/debug/shadow rendering passes.
+    public var shader : Shader;
 
     public var draw_calls : Int = 0;
     public var dynamic_batched_count : Int = 0;
@@ -228,6 +232,11 @@ class Batcher {
 
     public inline function shader_activate( _shader:Shader ) {
 
+            //apply shader override, if it is set
+        if(shader != null) {
+            _shader = shader;
+        }
+
             //activate (GL.useProgram) the shader
         _shader.activate();
 
@@ -350,9 +359,6 @@ class Batcher {
 
                 } //geom.visible
 
-            } else { //!null && !dropped
-                //:todo : If there is null (maybe dropped) geometry shouldn't they be removed or maybe
-                //stashed in a diff list? Dropped come from the above drop, but null is invalid state
             }
 
         } //geom list
@@ -408,29 +414,28 @@ class Batcher {
     //       and should be considered volatile/WIP
     @:noCompletion
     inline
-    public function submit_geometry( geom:Geometry, ?_matrix:Matrix ) {
+    public function submit_geometry( _geom:Geometry, ?_shader:Shader ) {
 
-        assert(geom.buffer_based, 'Only buffer based geometry can be submitted directly');
+        assert(_geom.buffer_based, 'Only buffer based geometry can be submitted directly');
 
-        if(!geom.visible) return;
-        if(_matrix == null) _matrix = geom.transform.world.matrix;
+        if(!_geom.visible) return;
+        if(_shader == null) _shader = _geom.shader;
 
-        geom.shader.set_matrix4('model', _matrix);
-        shader_activate(geom.shader);
+        shader_activate(_shader);
 
-        var _length = geom.vertices.length;
+        var _length = _geom.vertices.length;
         var _length4 = _length * 4;
-        var _updated = geom.update_buffers();
+        var _updated = _geom.update_buffers();
 
         _enable_attributes();
 
         if(_updated) {
-            geom.bind_and_upload();
+            _geom.bind_and_upload();
         } else {
-            geom.bind();
+            _geom.bind();
         }
 
-        geom.draw();
+        _geom.draw();
 
         var _stats = renderer.stats;
         _stats.geometry_count++;
