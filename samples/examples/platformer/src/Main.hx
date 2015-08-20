@@ -321,6 +321,11 @@ class Main extends luxe.Game {
 
     override function config(config:luxe.AppConfig) {
 
+        #if (web && sample)
+            config.window.width = 720;
+            config.window.height = 405;
+        #end
+
         config.preload.textures.push({id:'assets/collisionTiles.png'});
         config.preload.textures.push({id:'assets/player.png', filter_min:nearest, filter_mag:nearest });
         config.preload.textures.push({id:'assets/exit.png', filter_min:nearest, filter_mag:nearest });
