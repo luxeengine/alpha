@@ -45,9 +45,6 @@ typedef DrawPolygonOptions = {
         /** Whether or not the polygon will be closed (the first and last vertex are connected). */
     @:optional var close : Bool;
 
-        /** A color to share for all points. */
-    @:optional var color : Color;
-
         /** The list of colors, per point. Must match length with the points list */
     @:optional var colors : Array<Color>;
 
