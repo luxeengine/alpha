@@ -365,6 +365,14 @@ extends
         return emitter.emit(event, data);
     }
 
+    override function ontickstart() {
+        if(!has_shutdown) emitter.emit(Ev.tickstart);
+    }
+
+    override function ontickend() {
+        if(!has_shutdown) emitter.emit(Ev.tickend);
+    }
+
         //called by snow
     override function onevent( event:snow.types.Types.SystemEvent ) {
 
