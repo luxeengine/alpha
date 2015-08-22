@@ -20,6 +20,8 @@ typedef BoxColliderOptions = {
     var w : Float;
         /** the height of the box */
     var h : Float;
+        /** the rotation of the box (in degrees) */
+    @:optional var rotation : Float;
 
 } //BoxColliderOptions
 
@@ -42,6 +44,7 @@ class BoxCollider extends NapeBody {
             var verts = Polygon.box(options.w, options.h);
             body.shapes.add(new Polygon(verts, options.material, options.filter));
             body.position.setxy(options.x, options.y);
+            body.rotation = Log.def(options.rotation, 0);
 
         post_add();
 
