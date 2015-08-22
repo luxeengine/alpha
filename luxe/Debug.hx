@@ -185,7 +185,7 @@ class Debug {
                 //create the debug renderer and view
             batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
                 //create a camera
-            view = new Camera();
+            view = new Camera({ camera_name:'debug_batcher_camera' });
                 //set the camera of the batcher
             batcher.view = view;
                 //Also, set the layer so it renders last
