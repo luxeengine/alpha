@@ -501,20 +501,24 @@ extends
 
             #if !no_debug_console
 
-                debug.start(Tag.debug_batch);
+                var _batch = debug.batcher;
+                
+                if(_batch.enabled) {                
+                
+                    debug.start(Tag.debug_batch);
+                        
+                        _batch.draw();
 
-                    var _batch = debug.batcher;
-                    
-                    _batch.draw();
+                        renderer.stats.geometry_count += _batch.geometry.size();
+                        renderer.stats.dynamic_batched_count += _batch.dynamic_batched_count;
+                        renderer.stats.static_batched_count += _batch.static_batched_count;
+                        renderer.stats.visible_count += _batch.visible_count;
+                        renderer.stats.draw_calls += _batch.draw_calls;
+                        renderer.stats.vert_count += _batch.vert_count;
 
-                    renderer.stats.geometry_count += _batch.geometry.size();
-                    renderer.stats.dynamic_batched_count += _batch.dynamic_batched_count;
-                    renderer.stats.static_batched_count += _batch.static_batched_count;
-                    renderer.stats.visible_count += _batch.visible_count;
-                    renderer.stats.draw_calls += _batch.draw_calls;
-                    renderer.stats.vert_count += _batch.vert_count;
+                    debug.end(Tag.debug_batch);
 
-                debug.end(Tag.debug_batch);
+                } //_batch.enabled
 
             #end
 
