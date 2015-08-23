@@ -298,8 +298,11 @@ class SpriteAnimation extends Component {
                         _frame = current.frame_count;
                     }
 
+                    emit_anim_event('loop');
+
                 } else {
                     stop();
+                    emit_anim_event('end');
                 }
 
             } //if end
@@ -433,7 +436,7 @@ class SpriteAnimation extends Component {
 
                 //default to animation.event.image_frame
             if(_event_emit_name == '') {
-                _event_emit_name = animation + '.event.' + current_frame.image_frame;
+                _event_emit_name = 'animation.$animation.${current_frame.image_frame}';
             }
 
                 //fire the event into the holding entity
@@ -448,6 +451,17 @@ class SpriteAnimation extends Component {
         } //each event
 
     } //emit_frame_events
+
+    inline function emit_anim_event(_name:String) {
+        var _event_emit_name = 'animation.$animation.$_name';
+        entity.events.fire( _event_emit_name, {
+            animation : animation,
+            event: _event_emit_name,
+            frame_event : null,
+            frame: current_frame,
+            image_frame : current_frame.image_frame
+        });
+    }
 
 
 } //SpriteAnimation
