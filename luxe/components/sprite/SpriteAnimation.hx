@@ -371,6 +371,12 @@ class SpriteAnimation extends Component {
             return frame;
         }
 
+            //:todo: the frame events could be deferred
+            //and need testing but fixing quickly
+        if(entity.destroyed) {
+            return frame;
+        }
+
             current_frame = current.frameset[ frame - 1 ];
             image_frame = current_frame.image_frame;
             emit_frame_events();
