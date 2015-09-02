@@ -156,6 +156,8 @@ typedef GamepadEvent = {
     var axis : Int;
         /** The axis value, if the event `type` is `axis` */
     var value : Float;
+        /** The system id / name of the device, **only** if the event `type` is `device_added`,`device_removed` or `device_remapped` */
+    var id : String;
 
 } //GamepadEvent
 

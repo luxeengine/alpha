@@ -881,7 +881,8 @@ extends
             gamepad : gamepad,
             button : -1,
             axis : axis,
-            value : value
+            value : value,
+            id : null
         }
 
         if(!shutting_down) {
@@ -904,7 +905,8 @@ extends
             gamepad : gamepad,
             button : button,
             axis : -1,
-            value : value
+            value : value,
+            id : null
         }
 
         if(!shutting_down) {
@@ -928,7 +930,8 @@ extends
             gamepad : gamepad,
             button : button,
             axis : -1,
-            value : value
+            value : value,
+            id : null
         }
 
         if(!shutting_down) {
@@ -941,7 +944,7 @@ extends
 
     } //ongamepadup
 
-    override function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
+    override function ongamepaddevice( gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float ) {
 
         if(!inited) return;
 
@@ -964,7 +967,8 @@ extends
             gamepad : gamepad,
             button : -1,
             axis : -1,
-            value : 0
+            value : 0,
+            id : id
         }
 
         if(!shutting_down) {
