@@ -485,13 +485,14 @@ class Entity extends Objects {
         } else if(parent != null) {
 
             var looking = true;
+            var _parent = parent;
 
             while(looking) {
 
                     //not a root item
-                if(parent.scene == null) {
+                if(_parent.scene == null) {
                         //no parent? this is not connected at all
-                    if(parent.parent == null) {
+                    if(_parent.parent == null) {
                         if(!_from_unlisten) {
                             log('entity has no parent or scene, currently no core events will reach it.');
                         }
@@ -500,11 +501,12 @@ class Entity extends Objects {
                     } else {
                         //still has a parent,
                         //keep looking
+                        _parent = parent.parent;
                     }
 
                 } else {
 
-                    source = parent.scene;
+                    source = _parent.scene;
                     looking = false;
                     break;
 
