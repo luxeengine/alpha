@@ -216,7 +216,6 @@ class QuadGeometry extends Geometry {
 
     } //set
 
-        //:todo: this should just reuse not readd
  	public function set_xywh( _x:Float, _y:Float, _w:Float, _h:Float ) {
 
         if(vertices.length == 0) return;
