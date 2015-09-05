@@ -279,7 +279,7 @@ class Shader extends Resource {
             var _type_name = (_is_frag) ? 'frag' : 'vert';
             var _type_id = (_is_frag) ? frag_id : vert_id;
 
-            _log += '\n\t// start -- ($_type_name / $_type_id) compile log -- \n';
+            _log += '\n\t// start -- ($_type_name / $_type_id) compile log --\n';
             _log +=  format_log(_compile_log);
             _log += '\n\t// end --\n';
 
@@ -300,7 +300,7 @@ class Shader extends Resource {
         return _shader;
     }
 
-    public function link() {
+    public function link() : Bool {
 
         program = GL.createProgram();
 
@@ -320,7 +320,7 @@ class Shader extends Resource {
             add_log( format_log(GL.getProgramInfoLog(program)) );
             GL.deleteProgram(program);
             program = null;
-            return;
+            return false;
         }
 
             //first bind it
@@ -343,7 +343,9 @@ class Shader extends Resource {
             tex6_attribute = location( "tex6" );
             tex7_attribute = location( "tex7" );
 
-    }
+        return true;
+
+    } //link
 
 //Resource
 
@@ -435,6 +437,12 @@ class Shader extends Resource {
         /** Loads shaders from a string, compiles, and links them */
     public function from_string( _vert_source:String, _fragment_source:String ) {
 
+        inline function dump_log() {
+            if(log.length > 0) {
+                luxe.Log.log(log);
+            }
+        }
+
         clear();
 
         frag_source = _fragment_source;
@@ -445,17 +453,17 @@ class Shader extends Resource {
         frag_shader = compile( GL.FRAGMENT_SHADER, frag_source );
 
         if( vert_shader == null || frag_shader == null ) {
+            dump_log();
             return false;
         }
 
             //Link shader
-        link();
-
-        if(log.length > 0) {
-            luxe.Log.log(log);
+        if(!link()) {
+            dump_log();
+            return false;
         }
 
-        return program != null;
+        return true;
 
     } //
 

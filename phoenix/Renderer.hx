@@ -328,10 +328,13 @@ function get_target() : RenderTexture {
         var _font = new Shader({ id:'luxe.shader_bitmapfont', frag_id:'bitmapfont', vert_id:'default' });
 
         //create compile and link the shaders
+        var _ok = true;
 
-            _plain.from_string( vert, frag );
-            _textured.from_string( vert, frag_textured );
-            _font.from_string( vert, frag_bitmapfont );
+            _ok = _ok && _plain.from_string( vert, frag );
+            _ok = _ok && _textured.from_string( vert, frag_textured );
+            _ok = _ok && _font.from_string( vert, frag_bitmapfont );
+
+        assert(_ok, 'Default shaders failed to compile or link. See log for errors');
 
         //store for use
 

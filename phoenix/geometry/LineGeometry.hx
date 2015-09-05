@@ -2,6 +2,8 @@ package phoenix.geometry;
 
 import luxe.Log.*;
 import luxe.Vector;
+import luxe.Color;
+
 import phoenix.Batcher;
 import phoenix.geometry.Geometry;
 
@@ -11,77 +13,86 @@ class LineGeometry extends Geometry {
 
     @:isVar public var p0(default,set) : Vector;
     @:isVar public var p1(default,set) : Vector;
+    @:isVar public var color0(default,set) : Color;
+    @:isVar public var color1(default,set) : Color;
 
     public function new( ?options : LineGeometryOptions ) {
 
         super(options);
 
-        if(options == null) {
-            return;
-        }
+            //must happen after super to unset the default
+        primitive_type = PrimitiveType.lines;
+
+
+        if(options == null) return;
+
 
         def(options.color, new Color());
         def(options.color0, options.color);
         def(options.color1, options.color);
 
-            if(options.p0 != null) {
-                p0 = options.p0;
-            } else {
-                p0 = new Vector();
-            }
+        p0 = def(options.p0, new Vector());
+        p1 = def(options.p1, new Vector(64,64)); //:todo: unit constant
 
-            if(options.p1 != null) {
-                p1 = options.p1;
-            } else {
-                p1 = new Vector();
-            }
+        var vert0 = new Vertex( p0, options.color0 );
+        var vert1 = new Vertex( p1, options.color1 );
 
-        set(options);
-
-    } //new
-
-    public function set_p0(_p:Vector) : Vector {
-
-        if(vertices.length == 0) return p0 = _p;
-
-            vertices[0].pos.x = _p.x;
-            vertices[0].pos.y = _p.y;
-            vertices[0].pos.z = _p.z;
-
-        return p0 = _p;
-
-    } //set_p0
-
-    public function set_p1(_p:Vector) : Vector {
-
-        if(vertices.length == 0) return p1 = _p;
-
-            vertices[1].pos.x = _p.x;
-            vertices[1].pos.y = _p.y;
-            vertices[1].pos.z = _p.z;
-
-        return p1 = _p;
-
-    } //set_p1
-
-    public function set(options:Dynamic) {
-
-        vertices.splice(0, vertices.length);
-
-        //p0
-        var vert0 : Vertex = new Vertex( new Vector( options.p0.x, options.p0.y, options.p0.z ), options.color0 );
             vert0.uv.uv0.set_uv(0,0);
-
-        var vert1 : Vertex = new Vertex( new Vector( options.p1.x, options.p1.y, options.p1.z ), options.color1 );
             vert1.uv.uv0.set_uv(1,0);
 
         add(vert0);
         add(vert1);
 
-        primitive_type = PrimitiveType.lines;
-        immediate = options.immediate;
+    } //new
 
-    } //set
+//Internal
 
+    function set_p0(_p:Vector) : Vector {
+
+        p0 = _p;
+
+        if(vertices.length == 0) return p0;
+
+        vertices[0].pos = p0;
+
+        return p0 = _p;
+
+    } //set_p0
+
+    function set_p1(_p:Vector) : Vector {
+
+        p1 = _p;
+
+        if(vertices.length == 0) return p1;
+
+        vertices[1].pos = p1;
+
+        return p1 = _p;
+
+    } //set_p1
+
+    function set_color0(_c:Color) : Color {
+
+        color0 = _c;
+
+        if(vertices.length == 0) return color0;
+
+        vertices[0].color = color0;
+
+        return color0;
+
+    } //set_color0
+
+    function set_color1(_c:Color) : Color {
+
+        color1 = _c;
+
+        if(vertices.length == 0) return color1;
+
+        vertices[1].color = color1;
+
+        return color1;
+
+    } //set_color1
 
 } //LineGeometry
