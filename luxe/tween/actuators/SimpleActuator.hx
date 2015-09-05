@@ -58,7 +58,7 @@ class SimpleActuator extends GenericActuator {
         if (!addedEvent) {
 
             addedEvent = true;
-            Luxe.on(Luxe.Ev.update, on_internal_update );
+            Luxe.on(Luxe.Ev.tickstart, on_internal_update);
 
         }
 
@@ -451,9 +451,9 @@ class SimpleActuator extends GenericActuator {
 
     static var update_timer : Float = 0;
     static var current_time : Float = 0;
-    static function on_internal_update( dt : Float) : Void {
+    static function on_internal_update(_) : Void {
 
-        update_timer += dt;
+        update_timer += Luxe.dt;
         current_time = Luxe.time;
 
         var currentTime = current_time;

@@ -11,6 +11,7 @@ import luxe.resource.Resource;
 import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Screen;
+import snow.Snow;
 
 @:keep
 class Luxe {
@@ -90,6 +91,13 @@ class Luxe {
     public static function off<T>(event:Ev, handler:T->Void ) {
         return core.emitter.off(event, handler);
     }
+
+        /** Call a function at the start of the next frame */
+    public static inline function next( func: Void->Void ) {
+
+        Snow.next(func);
+
+    } //next
 
         /** shutdown the engine and quit */
     public static function shutdown() {
@@ -171,36 +179,38 @@ class Luxe {
     var ready           = 1;
     var init            = 2;
     var reset           = 3;
-    var update          = 4;
-    var fixedupdate     = 5;
-    var destroy         = 6;
-    var prerender       = 7;
-    var render          = 8;
-    var postrender      = 9;
-    var keydown         = 10;
-    var keyup           = 11;
-    var textinput       = 12;
-    var inputdown       = 13;
-    var inputup         = 14;
-    var mousedown       = 15;
-    var mouseup         = 16;
-    var mousemove       = 17;
-    var mousewheel      = 18;
-    var touchdown       = 19;
-    var touchup         = 20;
-    var touchmove       = 21;
-    var gamepadaxis     = 22;
-    var gamepaddown     = 23;
-    var gamepadup       = 24;
-    var gamepaddevice   = 25;
+    var tickstart       = 4;
+    var tickend         = 5;
+    var update          = 6;
+    var fixedupdate     = 7;
+    var destroy         = 8;
+    var prerender       = 9;
+    var render          = 10;
+    var postrender      = 11;
+    var keydown         = 12;
+    var keyup           = 13;
+    var textinput       = 14;
+    var inputdown       = 15;
+    var inputup         = 16;
+    var mousedown       = 17;
+    var mouseup         = 18;
+    var mousemove       = 19;
+    var mousewheel      = 20;
+    var touchdown       = 21;
+    var touchup         = 22;
+    var touchmove       = 23;
+    var gamepadaxis     = 24;
+    var gamepaddown     = 25;
+    var gamepadup       = 26;
+    var gamepaddevice   = 27;
 
-    var window          = 26;
-    var windowmoved     = 27;
-    var windowresized   = 28;
-    var windowsized     = 29;
-    var windowminimized = 30;
-    var windowrestored  = 31;
+    var window          = 28;
+    var windowmoved     = 29;
+    var windowresized   = 30;
+    var windowsized     = 31;
+    var windowminimized = 32;
+    var windowrestored  = 33;
         //this is not a typo, it should match
-    var last            = 31;
+    var last            = 33;
 
 } //Ev

@@ -58,8 +58,8 @@ class Camera {
     public var projection : ProjectionType;
     public var up : Vector;
 
-    @:noCompletion public var projection_float32array : Float32Array;
-    @:noCompletion public var view_inverse_float32array : Float32Array;
+    @:noCompletion public var proj_arr : Float32Array;
+    @:noCompletion public var view_inverse_arr : Float32Array;
 
         //Internal rendering fov, always vertical
     var fov_y:Float;
@@ -114,8 +114,6 @@ class Camera {
 
         transform.listen(on_transform_cleaned);
 
-        apply_default_camera_options();
-
         switch (projection) {
 
             case ProjectionType.ortho:
@@ -128,6 +126,9 @@ class Camera {
 
         } //switch projection
 
+            //make sure values are valid
+        process();
+
         _setup = false;
 
     } //new
@@ -138,20 +139,18 @@ class Camera {
 
     public function set_ortho( _options:CameraOptions ) {
 
-            //
         projection = ProjectionType.ortho;
-            //
+
         _merge_options( _options );
 
     } //set_ortho
 
     public function set_perspective( _options:CameraOptions ) {
 
-            //
         projection = ProjectionType.perspective;
-            //
+
         _merge_options( _options );
-            //reset the view origin
+
         transform.origin.set_xyz(0,0,0);
 
     } //set_perspective
@@ -261,7 +260,7 @@ class Camera {
         }
 
         view_matrix_inverse = view_matrix.inverse();
-        view_inverse_float32array = view_matrix_inverse.float32array();
+        view_inverse_arr = view_matrix_inverse.float32array();
 
         transform_dirty = false;
 
@@ -283,7 +282,7 @@ class Camera {
 
         } //switch
 
-        projection_float32array = projection_matrix.float32array();
+        proj_arr = projection_matrix.float32array();
 
         projection_dirty = false;
 
@@ -606,8 +605,11 @@ class Camera {
 
     } //set_pos
 
-
+        //:todo: use def/tidy up/etc
     function _merge_options( _options:CameraOptions ) {
+
+            //start at defaults for the type
+        apply_default_camera_options();
 
         if(_options.aspect != null) {
             options.aspect = _options.aspect;
@@ -644,9 +646,6 @@ class Camera {
             options.viewport = _options.viewport;
             viewport = options.viewport;
         }
-
-            //start at defaults
-        apply_default_camera_options();
 
         if(_options.cull_backfaces != null) {
             options.cull_backfaces = _options.cull_backfaces;

@@ -6,7 +6,7 @@ import phoenix.Batcher.BlendMode;
 
 class Rendering {
 
-	public static function gl_blend_mode_from_BlendMode(_b:BlendMode) {
+	public static inline function gl_blend_mode_from_BlendMode(_b:BlendMode) {
 
         switch(_b) {
             case zero:
@@ -34,29 +34,10 @@ class Rendering {
         }
     } //BlendMode convert
 
-
-    public static function get_elements_for_type( type:PrimitiveType, length:Int ) {
-            // line_strip || line_loop || triangle_strip || triangle_fan are separated from being batched
-        switch( type ) {
-            case points:
-                return Std.int(length/4);
-            case lines:
-                return Std.int(length/4);
-            case line_strip:
-                return Std.int(length/4);
-            case line_loop:
-                return Std.int(length/4);
-            case triangle_strip:
-                return Std.int(length/4);
-            case triangle_fan:
-                return Std.int(length/4);
-            default:
-                return Std.int(length/4);
-        }
-    } //get_opengl_type_length
-    
     public static inline function fovx_to_y(fovx:Float, aspect:Float):Float {
+
         return (180 / Math.PI) * (2 * Math.atan(Math.tan(fovx * (Math.PI / 180) / 2) * (1 / aspect)));
+
     } //fovx_to_y
 
 } //Rendering

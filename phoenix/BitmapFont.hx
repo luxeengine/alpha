@@ -278,7 +278,7 @@ class BitmapFont extends Resource {
                 //fetch the bitmap font data
             var _font_get = Luxe.snow.assets.text(id);
 
-            _font_get.then(function(_asset:AssetText){
+            _font_get.then(function(_asset:AssetText) {
 
                     //parse the data
                 info = BitmapFontParser.parse( _asset.text );
@@ -307,9 +307,19 @@ class BitmapFont extends Resource {
                     state = ResourceState.loaded;
                     resolve(this);
 
-                }).error(reject);
+                }).error(function(_error){
 
-            }).error(reject);
+                    state = ResourceState.failed;
+                    reject(_error);
+
+                });
+
+            }).error(function(_error){
+
+                state = ResourceState.failed;
+                reject(_error);
+
+            });
 
         }); //promise
 

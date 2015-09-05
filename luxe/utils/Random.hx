@@ -1,6 +1,9 @@
 package luxe.utils;
 
-//Adapted from code by Grant Skinner, see bottom of file.
+import luxe.Log.*;
+
+//Adapted from code by Grant Skinner,
+//see bottom of file for license information and sources.
 
 /**
  Given an `initial` value for the seed, subsequent generated numbers will be predictable,
@@ -12,6 +15,14 @@ package luxe.utils;
 class Random {
 
     public function new( _initial_seed:Float ) {
+
+        #if !luxe_random_allow_negative_seed
+            assert(
+                _initial_seed > 0,
+                'initial negative seed will return negative random results, if this was intentional, define luxe_random_allow_negative_seed'
+            );
+        #end
+
         seed = initial = _initial_seed;
     }
 
@@ -19,7 +30,7 @@ class Random {
 
         /** Returns a float number between [0,1) */
     public inline function get() : Float {
-        return (seed = (seed * 16807) % 2147483647)/0x7FFFFFFF+0.000000000233;
+        return (seed = (seed * 16807) % 0x7FFFFFFF)/0x7FFFFFFF+0.000000000233;
     }
 
         /** Returns a number between [min,max).

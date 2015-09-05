@@ -148,7 +148,7 @@ class IsometricVisual extends TilemapVisual {
 
     } //create
 
-    override function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int ) {
+    override function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool, _flipy:Bool, _angle:Int ) {
 
         var tileset = map.tileset_from_id( _id );
         var image_coord = tileset.pos_in_texture( _id );

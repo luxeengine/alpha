@@ -1,0 +1,27 @@
+{
+
+  project : {
+    name : 'luxe.nape.comp',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_nape_comp',
+      package : 'com.luxeengine.testnapecomp'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+        nape : '*'
+      }
+    },
+
+    files : {
+      config : 'config.json',
+      assets : 'assets/'
+    }
+
+  }
+
+}

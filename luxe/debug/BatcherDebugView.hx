@@ -148,14 +148,14 @@ class BatcherDebugView extends luxe.debug.DebugView {
 
         if(_leaf.left != null) {
             notes_l = 'node';
-            var compare = Luxe.renderer.batcher.compare_rule(_leaf.key, _leaf.left.key);
-            notes_l = Luxe.renderer.batcher.compare_rule_to_string(compare);
+            var compare = @:privateAccess Luxe.renderer.batcher.compare_rule(_leaf.key, _leaf.left.key);
+            notes_l = @:privateAccess Luxe.renderer.batcher.compare_rule_to_string(compare);
         }
 
         if(_leaf.right != null) {
             notes_r = 'node';
-            var compare = Luxe.renderer.batcher.compare_rule(_leaf.key, _leaf.right.key);
-            notes_r = Luxe.renderer.batcher.compare_rule_to_string(compare);
+            var compare = @:privateAccess Luxe.renderer.batcher.compare_rule(_leaf.key, _leaf.right.key);
+            notes_r = @:privateAccess Luxe.renderer.batcher.compare_rule_to_string(compare);
         }
 
         _tree_geom.add_geometry(
@@ -192,7 +192,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
 
             if(_leaf.left != null) {
 
-                if( Luxe.renderer.batcher.geometry_compare( _leaf.left.key, _leaf.key ) < 0 ) {
+                if( @:privateAccess Luxe.renderer.batcher.geometry_compare( _leaf.left.key, _leaf.key ) < 0 ) {
                     c = new Color(1,1,1,1).rgb(0x00cc00);
                 } else {
                     c = new Color(1,1,1,1).rgb(0xcc0000);
@@ -213,7 +213,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
             }
             if(_leaf.right != null) {
 
-                if( Luxe.renderer.batcher.geometry_compare( _leaf.right.key, _leaf.key ) > 0 ) {
+                if( @:privateAccess Luxe.renderer.batcher.geometry_compare( _leaf.right.key, _leaf.key ) > 0 ) {
                     c = new Color(1,1,1,1).rgb(0x00cc00);
                 } else {
                     c = new Color(1,1,1,1).rgb(0xcc0000);

@@ -227,7 +227,12 @@ class Texture extends Resource {
 
             }); //then
 
-            get.error(reject);
+            get.error(function(_error) {
+
+                state = ResourceState.failed;
+                reject(_error);
+
+            });
 
         }); //promise
 

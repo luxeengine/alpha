@@ -9,6 +9,7 @@ import luxe.Log.*;
 import phoenix.Vector;
 import phoenix.Texture;
 import phoenix.Matrix;
+import phoenix.Batcher;
 
 import snow.api.Promise;
 import snow.modules.opengl.GL;
@@ -30,13 +31,8 @@ class Shader extends Resource {
     public var program : GLProgram;
     public var shader : GLShader;
 
-    public var vert_attribute   : Int = 0;
-    public var tcoord_attribute : Int = 1;
-    public var color_attribute  : Int = 2;
-    public var normal_attribute : Int = 3;
-
-    public var projectionmatrix_attribute : Location;
-    public var modelviewmatrix_attribute : Location;
+    public var proj_attribute : Location;
+    public var view_attribute : Location;
     public var tex0_attribute : Location;
     public var tex1_attribute : Location;
     public var tex2_attribute : Location;
@@ -46,9 +42,14 @@ class Shader extends Resource {
     public var tex6_attribute : Location;
     public var tex7_attribute : Location;
 
-    public var uniforms : Map<String, Uniform<Dynamic> >;
-
-    var uniform_textures : Map<String,Texture>;
+    var uniform_int     : Map<String, Uniform<Int>>;
+    var uniform_float   : Map<String, Uniform<Float>>;
+    var uniform_vector2 : Map<String, Uniform<Vector>>;
+    var uniform_vector3 : Map<String, Uniform<Vector>>;
+    var uniform_vector4 : Map<String, Uniform<Vector>>;
+    var uniform_matrix4 : Map<String, Uniform<Matrix>>;
+    var uniform_color   : Map<String, Uniform<Color>>;
+    var uniform_texture : Map<String, Uniform<Texture>>;
 
     public function new( _options:ShaderOptions ) {
 
@@ -61,12 +62,18 @@ class Shader extends Resource {
         frag_id = _options.frag_id;
         vert_id = _options.vert_id;
 
-        uniforms = new Map<String, Uniform<Dynamic> >();
-        uniform_textures = new Map();
+        uniform_int = new Map();
+        uniform_float = new Map();
+        uniform_vector2 = new Map();
+        uniform_vector3 = new Map();
+        uniform_vector4 = new Map();
+        uniform_matrix4 = new Map();
+        uniform_color = new Map();
+        uniform_texture = new Map();
 
     } //new
 
-    public function activate() {
+    public inline function activate() {
 
         if(program != null) {
             Luxe.renderer.state.useProgram( program );
@@ -74,7 +81,7 @@ class Shader extends Resource {
 
     } //activate
 
-    public function deactivate() {
+    public inline function deactivate() {
 
         Luxe.renderer.state.useProgram( null );
 
@@ -95,165 +102,84 @@ class Shader extends Resource {
 
     } //clone
 
-   public function set_int( _name:String, _value:Int ) : Void {
-        if(uniforms.exists(_name)) {
-            var _uniform : Uniform<Int> = uniforms.get(_name);
-                _uniform.value = _value;
+   public inline function set_int( _name:String, _value:Int ) : Void {
+
+        if(uniform_int.exists(_name)) {
+            uniform_int.get(_name).value = _value;
         } else {
-
-            var _uniform = {
-                name : _name,
-                value : _value,
-                type : UniformType.int,
-                location : location( _name )
-            }
-
-            uniforms.set(_name, _uniform);
+            uniform_int.set(_name, new Uniform<Int>(_name, _value, location(_name)));
         }
+
     } //set_int
-   public function set_float( _name:String, _value:Float ) : Void {
-        if(uniforms.exists(_name)) {
-            var _uniform : Uniform<Float> = uniforms.get(_name);
-                _uniform.value = _value;
+
+   public inline function set_float( _name:String, _value:Float ) : Void {
+
+        if(uniform_float.exists(_name)) {
+            uniform_float.get(_name).value = _value;
         } else {
-
-            var _uniform = {
-                name : _name,
-                value : _value,
-                type : UniformType.float,
-                location : location( _name )
-            }
-
-            uniforms.set(_name, _uniform);
+            uniform_float.set(_name, new Uniform<Float>(_name, _value, location(_name)));
         }
+
     } //set_float
 
-    public function set_vector2( _name:String, _value:Vector ) : Void {
+    public inline function set_vector2( _name:String, _value:Vector ) : Void {
 
-        if(uniforms.exists(_name)) {
-
-            var _uniform : Uniform<Vector> = uniforms.get(_name);
-                _uniform.value = _value;
-
+        if(uniform_vector2.exists(_name)) {
+            uniform_vector2.get(_name).value = _value;
         } else {
-
-            var _uniform = {
-                name : _name,
-                value : _value,
-                type : UniformType.vector2,
-                location : location( _name )
-            }
-
-            uniforms.set(_name, _uniform);
+            uniform_vector2.set(_name, new Uniform<Vector>(_name, _value, location(_name)));
         }
+
     } //set_vector2
 
-    public function set_vector3( _name:String, _value:Vector ) : Void {
+    public inline function set_vector3( _name:String, _value:Vector ) : Void {
 
-        if(uniforms.exists(_name)) {
-
-            var _uniform : Uniform<Vector> = uniforms.get(_name);
-                _uniform.value = _value;
-
+        if(uniform_vector3.exists(_name)) {
+            uniform_vector3.get(_name).value = _value;
         } else {
-
-            var _uniform = {
-                name : _name,
-                value : _value,
-                type : UniformType.vector3,
-                location : location( _name )
-            }
-
-            uniforms.set(_name, _uniform);
-
+            uniform_vector3.set(_name, new Uniform<Vector>(_name, _value, location(_name)));
         }
 
     } //set_vector3
 
-    public function set_vector4( _name:String, _value:Vector ) : Void {
+    public inline function set_vector4( _name:String, _value:Vector ) : Void {
 
-        if(uniforms.exists(_name)) {
-
-            var _uniform : Uniform<Vector> = uniforms.get(_name);
-                _uniform.value = _value;
-
+        if(uniform_vector4.exists(_name)) {
+            uniform_vector4.get(_name).value = _value;
         } else {
-
-            var _uniform = {
-                name : _name,
-                value : _value,
-                type : UniformType.vector4,
-                location : location( _name )
-            }
-
-            uniforms.set(_name, _uniform);
-
-        } //if exists
+            uniform_vector4.set(_name, new Uniform<Vector>(_name, _value, location(_name)));
+        }
 
     } //set_vector4
 
-    public function set_matrix4( _name:String, _value:Matrix ) : Void {
+    public inline function set_matrix4( _name:String, _value:Matrix ) : Void {
 
-        if(uniforms.exists(_name)) {
-
-            var _uniform : Uniform<Matrix> = uniforms.get(_name);
-                _uniform.value = _value;
-
+        if(uniform_matrix4.exists(_name)) {
+            uniform_matrix4.get(_name).value = _value;
         } else {
-
-            var _uniform = {
-                name : _name,
-                value : _value,
-                type : UniformType.matrix4,
-                location : location( _name )
-            }
-
-            uniforms.set(_name, _uniform);
-
-        } //if exists
+            uniform_matrix4.set(_name, new Uniform<Matrix>(_name, _value, location(_name)));
+        }
 
     } //set_matrix4
 
-    public function set_color( _name:String, _value:Color ) : Void {
+    public inline function set_color( _name:String, _value:Color ) : Void {
 
-        if(uniforms.exists(_name)) {
-
-            var _uniform : Uniform<Color> = uniforms.get(_name);
-                _uniform.value = _value;
-
+        if(uniform_color.exists(_name)) {
+            uniform_color.get(_name).value = _value;
         } else {
-
-            var _uniform = {
-                name : _name,
-                value : _value,
-                type : UniformType.color,
-                location : location( _name )
-            }
-
-            uniforms.set(_name, _uniform);
-
+            uniform_color.set(_name, new Uniform<Color>(_name, _value, location(_name)));
         }
 
     } //set_color
 
-    public function set_texture( _name:String, _value:Texture ) : Void {
-        if(uniforms.exists(_name)) {
+    public inline function set_texture( _name:String, _value:Texture ) : Void {
 
-            var _uniform : Uniform<Texture> = uniforms.get(_name);
-                _uniform.value = _value;
-                uniform_textures.set(_name, _value);
-
+        if(uniform_texture.exists(_name)) {
+            uniform_texture.get(_name).value = _value;
         } else {
-
-            var _uniform : Uniform<Texture> = {
-                name : _name, value : _value,
-                type : UniformType.texture,
-                location : location( _name )
-            }
-
-            uniforms.set(_name, _uniform);
-            uniform_textures.set(_name, _value);
+            uniform_texture.set(_name, new Uniform<Texture>(_name, _value, location(_name)));
         }
+
     } //set_texture
 
     inline function format_log(_log:String) {
@@ -308,10 +234,10 @@ class Shader extends Resource {
         GL.attachShader(program, frag_shader);
 
             //Now we want to ensure that our locations are static
-        GL.bindAttribLocation( program, vert_attribute,    'vertexPosition');
-        GL.bindAttribLocation( program, tcoord_attribute,  'vertexTCoord');
-        GL.bindAttribLocation( program, color_attribute,   'vertexColor');
-        GL.bindAttribLocation( program, normal_attribute,  'vertexNormal');
+        GL.bindAttribLocation( program, Batcher.vert_attribute,    'vertexPosition');
+        GL.bindAttribLocation( program, Batcher.tcoord_attribute,  'vertexTCoord');
+        GL.bindAttribLocation( program, Batcher.color_attribute,   'vertexColor');
+        GL.bindAttribLocation( program, Batcher.normal_attribute,  'vertexNormal');
 
         GL.linkProgram(program);
 
@@ -330,8 +256,8 @@ class Shader extends Resource {
             //way more flexible shaders and rendering :}
 
                 //Matrices
-            projectionmatrix_attribute = location("projectionMatrix");
-            modelviewmatrix_attribute = location("modelViewMatrix");
+            proj_attribute = location("projectionMatrix");
+            view_attribute = location("modelViewMatrix");
 
                 //Textures
             tex0_attribute = location( "tex0" );
@@ -467,7 +393,7 @@ class Shader extends Resource {
 
     } //
 
-    @:noCompletion public function apply_uniforms() {
+    @:noCompletion public inline function apply_uniforms() {
 
         if(tex0_attribute != null) GL.uniform1i( tex0_attribute, 0 );
         if(tex1_attribute != null) GL.uniform1i( tex1_attribute, 1 );
@@ -478,59 +404,19 @@ class Shader extends Resource {
         if(tex6_attribute != null) GL.uniform1i( tex6_attribute, 6 );
         if(tex7_attribute != null) GL.uniform1i( tex7_attribute, 7 );
 
-        for(uniform in uniforms) {
+        for(uniform in uniform_int)     { GL.uniform1i(uniform.location, uniform.value); }
+        for(uniform in uniform_float)   { GL.uniform1f(uniform.location, uniform.value); }
+        for(uniform in uniform_vector2) { GL.uniform2f(uniform.location, uniform.value.x, uniform.value.y); }
+        for(uniform in uniform_vector3) { GL.uniform3f(uniform.location, uniform.value.x, uniform.value.y, uniform.value.z); }
+        for(uniform in uniform_vector4) { GL.uniform4f(uniform.location, uniform.value.x, uniform.value.y, uniform.value.z, uniform.value.w); }
+        for(uniform in uniform_matrix4) { GL.uniformMatrix4fv(uniform.location, false, uniform.value.float32array()); }
+        for(uniform in uniform_color)   { GL.uniform4f(uniform.location, uniform.value.r, uniform.value.g, uniform.value.b, uniform.value.a); }
+        for(uniform in uniform_texture) { GL.uniform1i(uniform.location, uniform.value.slot); uniform.value.bind(); }
 
-            switch(uniform.type) {
-                case int:       apply_int( uniform.location, uniform.value );
-                case float:     apply_float( uniform.location, uniform.value );
-                case vector2:   apply_vec2( uniform.location, uniform.value );
-                case vector3:   apply_vec3( uniform.location, uniform.value );
-                case vector4:   apply_vec4( uniform.location, uniform.value );
-                case matrix4:   apply_mat4( uniform.location, uniform.value );
-                case color:     apply_color( uniform.location, uniform.value );
-                case texture:   apply_texture( uniform.location, uniform.value );
-                case unknown:
-            } //switch type
-
-        } //for each uniform
-
-    }
+    } //apply_uniforms
 
     inline function location( _name : String ) : Location {
         return GL.getUniformLocation( program, _name );
-    }
-
-    inline function apply_int( _location:Location, _int:Int ) {
-        GL.uniform1i( _location, _int );
-    }
-
-    inline function apply_float( _location:Location, _float:Float ) {
-        GL.uniform1f( _location, _float );
-    }
-
-    inline function apply_vec2( _location:Location, _vec:Vector ) {
-        GL.uniform2f( _location, _vec.x, _vec.y);
-    }
-
-    inline function apply_vec3( _location:Location, _vec:Vector ) {
-        GL.uniform3f( _location, _vec.x, _vec.y, _vec.z );
-    }
-
-    inline function apply_vec4( _location:Location, _vec:Vector ) {
-        GL.uniform4f( _location, _vec.x, _vec.y, _vec.z, _vec.w );
-    }
-
-    inline function apply_mat4( _location:Location, _mat:Matrix ) {
-        GL.uniformMatrix4fv( _location, false, _mat.float32array() );
-    }
-
-    inline function apply_color( _location:Location, _color:Color ) {
-        GL.uniform4f( _location, _color.r, _color.g, _color.b, _color.a );
-    }
-
-    inline function apply_texture( _location:Location, _tex:Texture ) {
-        GL.uniform1i( _location, _tex.slot );
-        _tex.bind();
     }
 
     inline function add_log( _log:String ) {
@@ -543,27 +429,18 @@ class Shader extends Resource {
 
 } //Shader
 
-
-@:enum abstract UniformType(Int) from Int to Int {
-    var unknown = 0;
-    var int     = 1;
-    var float   = 2;
-    var vector2 = 3;
-    var vector3 = 4;
-    var vector4 = 5;
-    // var matrix2 = 6;
-    // var matrix3 = 7;
-    var matrix4 = 8;
-    var color   = 9;
-    var texture = 10;
-}
-
-typedef Uniform<T> = {
+@:allow(phoenix.Shader)
+class Uniform<T> {
 
     var name : String;
     var value : T;
-    var type : UniformType;
     var location : Location;
+
+    inline function new(_name:String, _value:T, _location:Location) {
+        name = _name;
+        value = _value;
+        location = _location;
+    }
 
 } //Uniform
 

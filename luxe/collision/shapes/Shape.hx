@@ -59,6 +59,8 @@ class Shape {
         _scaleX = 1;
         _scaleY = 1;
 
+        Vector.Listen(_position, _pos_changed);
+
         _transformMatrix = new Matrix();
         _transformMatrix.makeTranslation( _position.x, _position.y, 0 );
 
@@ -98,47 +100,56 @@ class Shape {
 
 //.position
 
-    function get_position() : Vector {
+    inline function get_position() : Vector {
         return _position;
     }
 
-    function set_position( v : Vector ) : Vector {
+    inline function set_position( v : Vector ) : Vector {
+        
         _position = v;
         refresh_transform();
+
+        if(_position != null) Vector.Listen(_position, _pos_changed);
+
         return _position;
-    }
+   
+    } //set_position
 
 //.x
 
-    function get_x() : Float {
+    inline function get_x() : Float {
         return _position.x;
     }
 
-    function set_x(x : Float) : Float {
+    inline function set_x(x : Float) : Float {
+        _position.ignore_listeners = true;
         _position.x = x;
         refresh_transform();
+        _position.ignore_listeners = false;
         return _position.x;
     }
 
 //.y
 
-    function get_y() : Float {
+    inline function get_y() : Float {
         return _position.y;
     }
 
-    function set_y(y : Float) : Float {
+    inline function set_y(y : Float) : Float {
+        _position.ignore_listeners = true;
         _position.y = y;
         refresh_transform();
+        _position.ignore_listeners = false;
         return _position.y;
     }
 
 //.rotation
 
-    function get_rotation() : Float {
+    inline function get_rotation() : Float {
         return _rotation;
     }
 
-    function set_rotation( v : Float ) : Float {
+    inline function set_rotation( v : Float ) : Float {
 
         _rotation_radians = v * (Math.PI / 180);
 
@@ -150,11 +161,11 @@ class Shape {
 
 //.scaleX
 
-    function get_scaleX():Float {
+    inline function get_scaleX():Float {
         return _scaleX;
     }
 
-    function set_scaleX( scale : Float ) : Float {
+    inline function set_scaleX( scale : Float ) : Float {
         _scaleX = scale;
         _scale.x = _scaleX;
         refresh_transform();
@@ -163,15 +174,20 @@ class Shape {
 
 //.scaleY
 
-    function get_scaleY():Float {
+    inline function get_scaleY():Float {
         return _scaleY;
     }
 
-    function set_scaleY(scale:Float) : Float {
+    inline function set_scaleY(scale:Float) : Float {
         _scaleY = scale;
         _scale.y = _scaleY;
         refresh_transform();
         return _scaleY;
     }
+
+
+//internal
+
+    inline function _pos_changed(_)     refresh_transform();
 
 }

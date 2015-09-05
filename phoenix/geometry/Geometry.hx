@@ -17,22 +17,7 @@ import snow.api.buffers.Float32Array;
 
 import snow.modules.opengl.GL;
 
-class GeometryKey {
-
-    public inline function new() {}
-
-    public var timestamp : Float = 0;
-    public var sequence : Int = 0;
-    public var uuid : String = '';
-    public var primitive_type : PrimitiveType;
-    public var texture : Texture;
-    public var shader : Shader;
-    public var group : Int = 0;
-    public var depth : Float = 0;
-    public var clip : Bool = false;
-
-} //GeometryKey
-
+@:allow(phoenix.Batcher)
 class Geometry {
 
         //the positional transform information
@@ -41,12 +26,24 @@ class Geometry {
         //The list of vertices
     public var vertices : Array<Vertex>;
 
-        //Statically batched VBO's
-    public var submitted : Bool = false;
-    public var static_vertex_buffer : GLBuffer;
-    public var static_tcoord_buffer : GLBuffer;
-    public var static_vcolor_buffer : GLBuffer;
-    public var static_normal_buffer : GLBuffer;
+//:todo: This section is largely WIP
+//and not considered API, should be treated as volatile
+
+    var object_space : Bool = false;
+
+    var buffer_based : Bool = false;
+    var buffer_type : Int = GL.DYNAMIC_DRAW;
+    var buffer_pos : Float32Array;
+    var buffer_tcoords : Float32Array;
+    var buffer_colors : Float32Array;
+    var buffer_normals : Float32Array;
+
+    var vb_pos : GLBuffer;
+    var vb_tcoords : GLBuffer;
+    var vb_colors : GLBuffer;
+    var vb_normals : GLBuffer;
+
+//End section
 
         //Batcher information
     public var added : Bool = false;
@@ -104,9 +101,9 @@ class Geometry {
         uuid = Luxe.utils.uniqueid();
         id = uuid;
 
-        vertices = new Array<Vertex>();
         state = new GeometryState();
-        batchers = new Array<Batcher>();
+        vertices = [];
+        batchers = [];
 
             //init transforms
         transform = new Transform();
@@ -127,19 +124,34 @@ class Geometry {
             color                = def(options.color,           new Color());
             visible              = def(options.visible,         true);
             immediate            = def(options.immediate,       false);
-            _do_add              = def(options.no_batcher_add,  true);
+
+            //:todo: This section is WIP and considered volatile/not api
+            buffer_based         = def(options.buffer_based,    false);
+            object_space         = def(options.object_space,    false);
+            //end section
 
             state.depth          = def(options.depth,           state.depth);
             state.group          = def(options.group,           state.group);
             state.texture        = def(options.texture,         state.texture);
-            state.clip_rect      = def(options.clip_rect,       state.clip_rect);
             state.primitive_type = def(options.primitive_type,  state.primitive_type);
             state.shader         = def(options.shader,          state.shader);
+
+            if(options.clip_rect != null) {
+                var _r = options.clip_rect;
+                state.clip_x = _r.x;
+                state.clip_y = _r.y;
+                state.clip_w = _r.w;
+                state.clip_h = _r.h;
+            }
 
             transform.pos        = def(options.pos,             transform.pos);
             transform.rotation   = def(options.rotation,        transform.rotation);
             transform.scale      = def(options.scale,           transform.scale);
             transform.origin     = def(options.origin,          transform.origin);
+
+            if(options.no_batcher_add != null && options.no_batcher_add == true) {
+                _do_add = false;
+            }
 
         } else { //options != null
 
@@ -170,6 +182,9 @@ class Geometry {
         if(options != null && options.batcher != null && _do_add) {
             options.batcher.add( this );
         }
+
+            //:todo: This is WIP/volatile and not considered api
+        if(buffer_based) create_vbos();
 
     } //new
 
@@ -246,6 +261,7 @@ class Geometry {
 
     } //remove
 
+    inline
     public function batch( vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int,
                            vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array
         ) {
@@ -257,65 +273,89 @@ class Geometry {
                 //apply the transform to the vert
             _final_vert_position.transform( transform.world.matrix );
 
-                    //submit vertex positions
-                    //:todo: ask hugh about hxcpp ArrayImpl not being inline
-            // #if luxe_native
-            //     vertlist.__set_d((vert_index+0), _final_vert_position.x);
-            //     vertlist.__set_d((vert_index+1), _final_vert_position.y);
-            //     vertlist.__set_d((vert_index+2), _final_vert_position.z);
-            //     vertlist.__set_d((vert_index+3), _final_vert_position.w);
-            // #else
                 vertlist[(vert_index+0)] = _final_vert_position.x;
                 vertlist[(vert_index+1)] = _final_vert_position.y;
                 vertlist[(vert_index+2)] = _final_vert_position.z;
                 vertlist[(vert_index+3)] = _final_vert_position.w;
-            // #end
 
             vert_index += 4;
 
-            //         //texture coordinates :todo: multiple uv sets
-            // #if luxe_native
-            //     tcoordlist.__set_d((tcoord_index+0), v.uv.uv0.u);
-            //     tcoordlist.__set_d((tcoord_index+1), v.uv.uv0.v);
-            //     tcoordlist.__set_d((tcoord_index+2), v.uv.uv0.w);
-            //     tcoordlist.__set_d((tcoord_index+3), v.uv.uv0.t);
-            // #else
-                tcoordlist[(tcoord_index+0)] = v.uv.uv0.u;
-                tcoordlist[(tcoord_index+1)] = v.uv.uv0.v;
-                tcoordlist[(tcoord_index+2)] = v.uv.uv0.w;
-                tcoordlist[(tcoord_index+3)] = v.uv.uv0.t;
-            // #end
+            var _vuv = v.uv.uv0;
+
+                tcoordlist[(tcoord_index+0)] = _vuv.u;
+                tcoordlist[(tcoord_index+1)] = _vuv.v;
+                tcoordlist[(tcoord_index+2)] = _vuv.w;
+                tcoordlist[(tcoord_index+3)] = _vuv.t;
 
             tcoord_index += 4;
 
-                //color values per vertex
-
-            // #if luxe_native
-            //     colorlist.__set_d((color_index+0), v.color.r);
-            //     colorlist.__set_d((color_index+1), v.color.g);
-            //     colorlist.__set_d((color_index+2), v.color.b);
-            //     colorlist.__set_d((color_index+3), v.color.a);
-            // #else
                 colorlist[(color_index+0)] = v.color.r;
                 colorlist[(color_index+1)] = v.color.g;
                 colorlist[(color_index+2)] = v.color.b;
                 colorlist[(color_index+3)] = v.color.a;
-            // #end
-
 
             color_index += 4;
 
-            //         //normal directions
-            //     normallist[(normal_index+0)] = v.normal.x;
-            //     normallist[(normal_index+1)] = v.normal.y;
-            //     normallist[(normal_index+2)] = v.normal.z;
-            //     normallist[(normal_index+3)] = v.normal.w;
+            #if phoenix_use_normals
+                var _vn = v.normal;
+                normallist[(normal_index+0)] = _vn.x;
+                normallist[(normal_index+1)] = _vn.y;
+                normallist[(normal_index+2)] = _vn.z;
+                normallist[(normal_index+3)] = _vn.w;
+            #end
 
-            // normal_index += 4;
+            normal_index += 4;
 
         } //each vertex
 
     } //batch
+
+    @:noCompletion
+    inline
+    public function batch_object_space( vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int,
+                                        vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array
+        ) {
+
+        for(v in vertices) {
+
+            var _vpos = v.pos;
+            var _vuv = v.uv.uv0;
+            var _vcol = v.color;
+
+                vertlist[(vert_index+0)] = _vpos.x;
+                vertlist[(vert_index+1)] = _vpos.y;
+                vertlist[(vert_index+2)] = _vpos.z;
+                vertlist[(vert_index+3)] = _vpos.w;
+
+            vert_index += 4;
+
+                tcoordlist[(tcoord_index+0)] = _vuv.u;
+                tcoordlist[(tcoord_index+1)] = _vuv.v;
+                tcoordlist[(tcoord_index+2)] = _vuv.w;
+                tcoordlist[(tcoord_index+3)] = _vuv.t;
+
+            tcoord_index += 4;
+
+                colorlist[(color_index+0)] = _vcol.r;
+                colorlist[(color_index+1)] = _vcol.g;
+                colorlist[(color_index+2)] = _vcol.b;
+                colorlist[(color_index+3)] = _vcol.a;
+
+            color_index += 4;
+
+            #if phoenix_use_normals
+                var _vnorm = v.normal;
+                normallist[(normal_index+0)] = _vnorm.x;
+                normallist[(normal_index+1)] = _vnorm.y;
+                normallist[(normal_index+2)] = _vnorm.z;
+                normallist[(normal_index+3)] = _vnorm.w;
+            #end
+
+            normal_index += 4;
+
+        } //each vertex
+
+    } //batch_object_space
 
     public function batch_into_arrays( vertlist : Array<Float>, tcoordlist : Array<Float>,
                            colorlist : Array<Float>, normallist : Array<Float> ) {
@@ -345,15 +385,143 @@ class Geometry {
             colorlist.push( v.color.b );
             colorlist.push( v.color.a );
 
-                //normal directions
-            normallist.push( v.normal.x );
-            normallist.push( v.normal.y );
-            normallist.push( v.normal.z );
-            normallist.push( v.normal.w );
+            #if phoenix_use_normals
+                normallist.push( v.normal.x );
+                normallist.push( v.normal.y );
+                normallist.push( v.normal.z );
+                normallist.push( v.normal.w );
+            #end
 
         } //each vertex
 
     } //batch_into_arrays
+
+//Explicit vb
+
+    function destroy_vbos() {
+        if(vb_pos==null) return;
+        GL.deleteBuffer(vb_pos);
+        GL.deleteBuffer(vb_tcoords);
+        GL.deleteBuffer(vb_colors);
+        #if phoenix_use_normals
+        GL.deleteBuffer(vb_normals);
+        #end
+    } //destroy_vbos
+
+    inline
+    function create_vbos() {
+        if(vb_pos!=null) return;
+        vb_pos = GL.createBuffer();
+        vb_tcoords = GL.createBuffer();
+        vb_colors = GL.createBuffer();
+        #if phoenix_use_normals
+        vb_normals = GL.createBuffer();
+        #end
+        dirty = true;
+    }
+
+    inline
+    function bind() {
+        bind_pos();
+        bind_tcoords();
+        bind_colors();
+        #if phoenix_use_normals
+        bind_normals();
+        #end
+    }
+
+
+    inline
+    function bind_pos() {
+        GL.bindBuffer(GL.ARRAY_BUFFER, vb_pos);
+        GL.vertexAttribPointer(Batcher.vert_attribute, 4, GL.FLOAT, false, 0, 0);
+    }
+
+    inline
+    function bind_tcoords() {
+        GL.bindBuffer(GL.ARRAY_BUFFER, vb_tcoords);
+        GL.vertexAttribPointer(Batcher.tcoord_attribute, 4, GL.FLOAT, false, 0, 0);
+    }
+
+    inline
+    function bind_colors() {
+        GL.bindBuffer(GL.ARRAY_BUFFER, vb_colors);
+        GL.vertexAttribPointer(Batcher.color_attribute, 4, GL.FLOAT, false, 0, 0);
+    }
+
+    #if phoenix_use_normals
+    inline
+    function bind_normals() {
+        GL.bindBuffer(GL.ARRAY_BUFFER, vb_normals);
+        GL.vertexAttribPointer(Batcher.normal_attribute, 4, GL.FLOAT, false, 0, 0);
+    }
+    #end
+
+    inline
+    function unbind() {
+        GL.bindBuffer(GL.ARRAY_BUFFER, null);
+    }
+
+    inline
+    function bind_and_upload() {
+
+        bind_pos();
+        GL.bufferData(GL.ARRAY_BUFFER, buffer_pos, buffer_type);
+
+        bind_tcoords();
+        GL.bufferData(GL.ARRAY_BUFFER, buffer_tcoords, buffer_type);
+
+        bind_colors();
+        GL.bufferData(GL.ARRAY_BUFFER, buffer_colors, buffer_type);
+
+        #if phoenix_use_normals
+        bind_normals();
+        GL.bufferData(GL.ARRAY_BUFFER, buffer_normals, buffer_type);
+        #end
+
+    } //_bind_and_upload
+
+    var _prev_count = 0;
+    function update_buffers() : Bool {
+
+        if(!dirty) return false;
+
+        var _verts = vertices.length;
+
+        //since vertices might change we recreate the buffers
+        if((_verts != _prev_count) || buffer_pos == null) {
+            var _length:Int = (vertices.length * 4);
+            buffer_pos = null;
+            buffer_normals = null;
+            buffer_colors = null;
+            buffer_tcoords = null;
+            buffer_pos = new Float32Array(_length);
+            buffer_tcoords = new Float32Array(_length);
+            buffer_colors = new Float32Array(_length);
+            #if phoenix_use_normals
+            buffer_normals = new Float32Array(_length);
+            #end
+        }
+        
+        if(object_space) {
+            batch_object_space(0,0,0,0,buffer_pos,buffer_tcoords,buffer_colors,buffer_normals);
+        } else {
+            batch(0,0,0,0,buffer_pos,buffer_tcoords,buffer_colors,buffer_normals);
+        }
+
+        dirty = false;
+
+        return true;
+
+    } //update_vb
+
+    inline
+    function draw() {
+        //the buffer pos length is favoured because if dirty is not flagged,
+        //and the vertices change, then the size of the buffers becomes inconsistent
+        //with the draw call and Bad Things happen like memory corruption
+        GL.drawArrays( primitive_type, 0, Std.int(buffer_pos.length/4) );
+    }
 
 //Transform
 
@@ -365,11 +533,16 @@ class Geometry {
 
     function set_locked( _locked:Bool ) : Bool {
 
+        buffer_type = _locked ? GL.STATIC_DRAW : GL.DYNAMIC_DRAW;
+
+        if(_locked && vb_pos == null) create_vbos();
+        if(!_locked && vb_pos != null) destroy_vbos();
+
         return locked = _locked;
 
     } //set_locked
 
-    function get_locked() : Bool {
+    inline function get_locked() : Bool {
 
         return locked;
 
@@ -381,7 +554,7 @@ class Geometry {
 
     } //set_dirty
 
-    function get_dirty() : Bool {
+    inline function get_dirty() : Bool {
 
         return dirty;
 
@@ -438,7 +611,7 @@ class Geometry {
 
 //Primitive Type
 
-    function get_primitive_type() : PrimitiveType {
+    inline function get_primitive_type() : PrimitiveType {
 
         return state.primitive_type;
 
@@ -458,7 +631,7 @@ class Geometry {
 
 //Texture
 
-    function get_texture() : Texture {
+    inline function get_texture() : Texture {
 
         return state.texture;
 
@@ -498,7 +671,7 @@ class Geometry {
 
 //Shader
 
-    function get_shader() : Shader {
+    inline function get_shader() : Shader {
 
         return state.shader;
 
@@ -518,7 +691,7 @@ class Geometry {
 
 //Depth
 
-    function get_depth() : Float {
+    inline function get_depth() : Float {
 
         return state.depth;
 
@@ -539,7 +712,7 @@ class Geometry {
 
 //Group
 
-    function get_group() : Int {
+    inline function get_group() : Int {
 
         return state.group;
 
@@ -559,7 +732,7 @@ class Geometry {
 
 //Clip
 
-    function get_clip() : Bool {
+    inline function get_clip() : Bool {
 
         return state.clip;
 
@@ -579,9 +752,9 @@ class Geometry {
 
 //Clip rect
 
-    function get_clip_rect() : Rectangle {
+    inline function get_clip_rect() : Rectangle {
 
-        return state.clip_rect;
+        return clip_rect;
 
     } //get_clip_rect
 
@@ -591,9 +764,13 @@ class Geometry {
             clip = false;
         } else {
             clip = true;
+            state.clip_x = val.x;
+            state.clip_y = val.y;
+            state.clip_w = val.w;
+            state.clip_h = val.h;
         }
 
-        return state.clip_rect = val;
+        return clip_rect = val;
 
     } //set_clip_rect
 
@@ -601,3 +778,18 @@ class Geometry {
 } //Geometry
 
 
+class GeometryKey {
+
+    public inline function new() {}
+
+    public var timestamp : Float = 0;
+    public var sequence : Int = 0;
+    public var uuid : String = '';
+    public var primitive_type : PrimitiveType;
+    public var texture : Texture;
+    public var shader : Shader;
+    public var group : Int = 0;
+    public var depth : Float = 0;
+    public var clip : Bool = false;
+
+} //GeometryKey

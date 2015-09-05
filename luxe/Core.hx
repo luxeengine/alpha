@@ -109,7 +109,7 @@ extends
             //Don't change this, it matches semantic versioning http://semver.org/
         Luxe.build = Luxe.version + haxe.Resource.getString('build');
 
-        log('${Luxe.snow.platform} / version ${Luxe.build}');
+        log(runtime_info());
 
             //flag for later
         headless = (app.window == null);
@@ -273,8 +273,7 @@ extends
                 //it's a catch for crashing because
                 //we don't have a valid GL context, until the query
                 //is finalized on snow side
-            log('opengl /');
-            log(snow.modules.opengl.GL.versionString());
+            log('opengl ${snow.modules.opengl.GL.versionString()}');
 
             _debug('ready. loading default parcel ' + appconfig.preload);
 
@@ -350,7 +349,7 @@ extends
         shutting_down = true;
 
             //shutdown snow, which calls ondestroy for us
-        snow.Snow.next(app.shutdown);
+        Luxe.next(app.shutdown);
 
     } //shutdown
 
@@ -366,12 +365,17 @@ extends
         return emitter.emit(event, data);
     }
 
+    override function ontickstart() {
+        if(!has_shutdown) emitter.emit(Ev.tickstart);
+    }
+
+    override function ontickend() {
+        if(!has_shutdown) emitter.emit(Ev.tickend);
+    }
+
         //called by snow
     override function onevent( event:snow.types.Types.SystemEvent ) {
 
-        if(!inited) return;
-
-            //forward to game class
         game.onevent( event );
 
     } //onevent
@@ -494,6 +498,29 @@ extends
             game.onpostrender();
 
             debug.end(Tag.render);
+
+            #if !no_debug_console
+
+                var _batch = debug.batcher;
+                
+                if(_batch.enabled) {                
+                
+                    debug.start(Tag.debug_batch);
+                        
+                        _batch.draw();
+
+                        renderer.stats.geometry_count += _batch.geometry.size();
+                        renderer.stats.dynamic_batched_count += _batch.dynamic_batched_count;
+                        renderer.stats.static_batched_count += _batch.static_batched_count;
+                        renderer.stats.visible_count += _batch.visible_count;
+                        renderer.stats.draw_calls += _batch.draw_calls;
+                        renderer.stats.vert_count += _batch.vert_count;
+
+                    debug.end(Tag.debug_batch);
+
+                } //_batch.enabled
+
+            #end
 
         } //!headless
 
@@ -769,7 +796,7 @@ extends
 
             game.ontouchdown(event);
 
-            #if !no_debug_console
+            #if (!no_debug_console && mobile)
 
                     //3 finger tap when console opens will switch tabs
                 if(app.input.touch_count == 3) {
@@ -854,7 +881,8 @@ extends
             gamepad : gamepad,
             button : -1,
             axis : axis,
-            value : value
+            value : value,
+            id : null
         }
 
         if(!shutting_down) {
@@ -877,7 +905,8 @@ extends
             gamepad : gamepad,
             button : button,
             axis : -1,
-            value : value
+            value : value,
+            id : null
         }
 
         if(!shutting_down) {
@@ -901,7 +930,8 @@ extends
             gamepad : gamepad,
             button : button,
             axis : -1,
-            value : value
+            value : value,
+            id : null
         }
 
         if(!shutting_down) {
@@ -914,7 +944,7 @@ extends
 
     } //ongamepadup
 
-    override function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
+    override function ongamepaddevice( gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float ) {
 
         if(!inited) return;
 
@@ -937,7 +967,8 @@ extends
             gamepad : gamepad,
             button : -1,
             axis : -1,
-            value : 0
+            value : 0,
+            id : id
         }
 
         if(!shutting_down) {
@@ -980,6 +1011,8 @@ extends
 
     } //config
 
+    @:noCompletion
+    public inline function runtime_info() return '${Luxe.build} / debug:${app.debug} / os:${app.os} / platform:${app.platform}';
 
 } //Core
 
@@ -992,7 +1025,7 @@ allocating strings each frame.
 @:noCompletion
 @:allow(luxe.Core)
 class Tag {
-    static var update       = 'real dt';
+    static var update       = 'update dt';
     static var renderdt     = 'render dt';
     static var game_update  = 'game.update';
     static var render       = 'core.render';
@@ -1003,4 +1036,5 @@ class Tag {
     static var input        = 'core.input';
     static var timer        = 'core.timer';
     static var scene        = 'core.scene';
+    static var debug_batch  = 'batcher.debug_batcher';
 }

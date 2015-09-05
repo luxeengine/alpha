@@ -141,7 +141,7 @@ class Utils {
 
     } //path_is_relative
 
-    public function find_assets_image_sequence( _name:String, _ext:String='.png', _start:String='1' ) : Array<String> {
+    public function find_assets_sequence( _name:String, _ext:String='.png', _start:String='1' ) : Array<String> {
 
         var _final : Array<String> = [];
 
@@ -171,10 +171,10 @@ class Utils {
             }
 
         if(_sequence_type != '') {
-            for(_asset in core.app.assets.list) {
+            for(_asset in core.resources.cache) {
                 //check for continuations of the sequence, matching by pattern rather than just brute force, so we can catch missing frames etc
-                if(_pattern_regex.match(_asset)) {
-                    _final.push( _asset );
+                if(_pattern_regex.match(_asset.id)) {
+                    _final.push( _asset.id );
                 }
             }
 
@@ -183,7 +183,7 @@ class Utils {
 
         return _final;
 
-    } //find_assets_image_sequence
+    } //find_assets_sequence
 
         /** :WIP: Wrap text using a knuth plass algorithm for column breaking. */
     #if release inline #end

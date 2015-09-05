@@ -3,6 +3,12 @@ import luxe.Input;
 
 class Main extends luxe.Game {
 
+    override function config(config:luxe.AppConfig) {
+
+        return config;
+
+    } //config
+
     override function ready() {
 
     } //ready

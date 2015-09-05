@@ -42,6 +42,7 @@ class RingGeometry extends CircleGeometry {
             var y : Float = _rx * Math.sin(_start_angle_rad);
 
             //now work out the ratio between _x and _y
+            //:todo: epsilon
             var radial_ratio : Float = _rx / _ry;
             if(radial_ratio == 0) radial_ratio = 0.000000001;
 
@@ -79,8 +80,10 @@ class RingGeometry extends CircleGeometry {
 
             } //for
 
-                //wrap it up
-            add( new Vertex( _segment_pos[0].clone(), color ) );
+                //if steps is < 0 no segments were added
+            if(_segment_pos.length > 0) {
+                add( new Vertex( _segment_pos[0].clone(), color ) );
+            }
 
         //and finally, set the position
         transform.pos = new Vector( _x, _y );

@@ -125,7 +125,7 @@ class Entity extends Objects {
 
 
         /** Create a new entity with the given options */
-    public function new( ?_options:EntityOptions, ?_pos_info:haxe.PosInfos ) {
+    public function new( ?_options:EntityOptions #if debug, ?_pos_info:haxe.PosInfos #end ) {
 
         super('entity');
 
@@ -224,7 +224,7 @@ class Entity extends Objects {
 
             _verbose(" \tadding to scene " + scene.name);
 
-            scene.add( this, _pos_info );
+            scene.add( this #if debug, _pos_info #end );
 
                 //we also want to listen for scene events
 
@@ -485,13 +485,14 @@ class Entity extends Objects {
         } else if(parent != null) {
 
             var looking = true;
+            var _parent = parent;
 
             while(looking) {
 
                     //not a root item
-                if(parent.scene == null) {
+                if(_parent.scene == null) {
                         //no parent? this is not connected at all
-                    if(parent.parent == null) {
+                    if(_parent.parent == null) {
                         if(!_from_unlisten) {
                             log('entity has no parent or scene, currently no core events will reach it.');
                         }
@@ -500,11 +501,12 @@ class Entity extends Objects {
                     } else {
                         //still has a parent,
                         //keep looking
+                        _parent = parent.parent;
                     }
 
                 } else {
 
-                    source = parent.scene;
+                    source = _parent.scene;
                     looking = false;
                     break;
 
@@ -985,7 +987,7 @@ class Entity extends Objects {
 
     } //_stop_fixed_rate_timer
 
-    inline function _set_fixed_rate_timer( _rate:Float, ?_pos:haxe.PosInfos ) {
+    inline function _set_fixed_rate_timer( _rate:Float #if debug , ?_pos:haxe.PosInfos #end ) {
 
         _stop_fixed_rate_timer();
 
@@ -1226,8 +1228,8 @@ class Entity extends Objects {
 
         if(_scene != null) {
             _scene.entities.remove(name);
-            _scene.entities.set(_name, this);
             _scene.handle_duplicate_warning(_name);
+            _scene.entities.set(_name, this);
             _scene._has_changed = true;
         }
 

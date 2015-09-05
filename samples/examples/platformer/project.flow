@@ -1,0 +1,36 @@
+{
+
+  luxe:{
+    window: {
+      width:960,
+      height:540,
+      title:'luxe.platformer',
+      fullscreen:false,
+      resizable:true,
+      borderless:false
+    }
+  },
+
+  project : {
+    name : 'luxe_platformer',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_platformer',
+      package : 'com.luxeengine.platformer'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

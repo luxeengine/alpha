@@ -63,10 +63,15 @@ class TiledMap extends Tilemap {
 
         for(_tileset in tiledmap_data.tilesets) {
 
+            var _tileset_id = haxe.io.Path.join([options.asset_path,_tileset.texture_name]);
+            var _texture = Luxe.resources.texture(_tileset_id);
+
+            assertnull(_texture, 'Tiled; trying to load $_tileset_id but texture not found in resources');
+
             add_tileset({
 
                 name : _tileset.name,
-                texture : Luxe.resources.texture( options.asset_path + _tileset.texture_name),
+                texture : _texture,
                 first_id : _tileset.first_id,
                 tile_width : _tileset.tile_width,
                 tile_height : _tileset.tile_height,
@@ -84,12 +89,19 @@ class TiledMap extends Tilemap {
         var layer_index : Int = 0;
         for(_layer in tiledmap_data.layers) {
 
+            var _layer_properties:Map<String,String> = new Map();
+
+            for(_prop in _layer.properties.keys()) {
+                _layer_properties.set(_prop, _layer.properties.get(_prop));
+            }
+
                 //add the layer
             add_layer({
                 name : _layer.name,
                 layer : layer_index,
                 opacity : _layer.opacity,
-                visible : _layer.visible
+                visible : _layer.visible,
+                properties : _layer_properties,
             });
 
                 //create the tiles
@@ -102,10 +114,17 @@ class TiledMap extends Tilemap {
             for(_y in 0 ... _layer.height) {
                 for(_x in 0 ... _layer.width) {
 
-                    var next_id = _layer.tiles[_gid_counter].id;
+                    var _layer_tile = _layer.tiles[_gid_counter];
 
-                        if(next_id != 0) {
-                            tilemap_layer.tiles[_y][_x].id = next_id;
+                        if(_layer_tile.id != 0) {
+                            var tile = tilemap_layer.tiles[_y][_x];
+                            tile.id = _layer_tile.id;
+                            tile.flipx = _layer_tile.flip_horizontal;
+                            tile.flipy = _layer_tile.flip_vertical;
+                            if(_layer_tile.flip_diagonal) {
+                                tile.angle = 90;
+                                tile.flipx = !tile.flipx;
+                            }
                         }
 
                     _gid_counter++;

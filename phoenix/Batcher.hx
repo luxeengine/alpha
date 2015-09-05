@@ -1,65 +1,17 @@
 package phoenix;
 
-import phoenix.geometry.Geometry;
-import phoenix.geometry.GeometryState;
-import phoenix.geometry.Vertex;
 import phoenix.Renderer;
-import phoenix.BatchState;
+import phoenix.geometry.Geometry;
+import phoenix.Matrix;
+import phoenix.Shader;
 
 import snow.modules.opengl.GL;
 import snow.api.buffers.Float32Array;
 
+import luxe.Log.*;
 import luxe.structural.BalancedBST;
 
-import luxe.Log.log;
-import luxe.Log._debug;
-
-@:enum abstract PrimitiveType(Int) from Int to Int {
-
-    var unknown         = -1;
-    var line_strip      = GL.LINE_STRIP;
-    var line_loop       = GL.LINE_LOOP;
-    var lines           = GL.LINES;
-    var triangle_strip  = GL.TRIANGLE_STRIP;
-    var triangles       = GL.TRIANGLES;
-    var triangle_fan    = GL.TRIANGLE_FAN;
-    var points          = GL.POINTS;
-
-} //PrimitiveType
-
-@:enum abstract BlendMode(Int) from Int to Int {
-
-    var zero                    = GL.ZERO;
-    var one                     = GL.ONE;
-    var src_color               = GL.SRC_COLOR;
-    var one_minus_src_color     = GL.ONE_MINUS_SRC_COLOR;
-    var src_alpha               = GL.SRC_ALPHA;
-    var one_minus_src_alpha     = GL.ONE_MINUS_SRC_ALPHA;
-    var dst_alpha               = GL.DST_ALPHA;
-    var one_minus_dst_alpha     = GL.ONE_MINUS_DST_ALPHA;
-    var dst_color               = GL.DST_COLOR;
-    var one_minus_dst_color     = GL.ONE_MINUS_DST_COLOR;
-    var src_alpha_saturate      = GL.SRC_ALPHA_SATURATE;
-
-} //BlendMode
-
-@:enum abstract BlendEquation(Int) from Int to Int {
-
-    var add                    = GL.FUNC_ADD;
-    var subtract               = GL.FUNC_SUBTRACT;
-    var reverse_subtract       = GL.FUNC_REVERSE_SUBTRACT;
-
-} //BlendEquation
-
-class BatchGroup {
-    public function new(_pre, _post) {
-        pre_render = _pre;
-        post_render = _post;
-    }
-    public var pre_render : Batcher -> Void;
-    public var post_render : Batcher -> Void;
-}
-
+@:allow(phoenix.Renderer)
 class Batcher {
 
     public var id : String;
@@ -70,49 +22,17 @@ class Batcher {
     public var groups : Map<Int, Array<BatchGroup> >;
     public var tree_changed : Bool = false;
 
-    public var vertlist     : Float32Array;
-    public var tcoordlist   : Float32Array;
-    public var colorlist    : Float32Array;
-    public var normallist   : Float32Array;
+    public var pos_list   : Float32Array;
+    public var tcoord_list : Float32Array;
+    public var color_list  : Float32Array;
+    public var normal_list : Float32Array;
 
-    public var static_vertlist : Float32Array;
-    public var static_tcoordlist : Float32Array;
-    public var static_colorlist : Float32Array;
-    public var static_normallist : Float32Array;
-
-        //The current indexes into the memory buffers
-    public var vert_floats    : Int = 0;
-    public var tcoord_floats  : Int = 0;
-    public var color_floats   : Int = 0;
-    public var normal_floats  : Int = 0;
-
-        //The current indexes into the memory buffers
-    public var static_vert_floats    : Int = 0;
-    public var static_tcoord_floats  : Int = 0;
-    public var static_color_floats   : Int = 0;
-    public var static_normal_floats  : Int = 0;
-
-        //the current number of active buffers in the ring
-    public var buffer_count : Int = 2;
-
-        //the index we are on
-    public var buffer_index : Int = 0;
     public var max_verts : Int = 0;
     public var max_floats : Int = 0;
     public var vert_count : Int = 0;
 
-    public var vertexBuffers : Array<GLBuffer>;
-    public var tcoordBuffers : Array<GLBuffer>;
-    public var vcolorBuffers : Array<GLBuffer>;
-    // public var normalBuffers : Array<GLBuffer>;
-
-    public var projectionmatrix_attribute : GLUniformLocation;
-    public var modelviewmatrix_attribute : GLUniformLocation;
-
-    public var vert_attribute   : Int = 0;
-    public var tcoord_attribute : Int = 1;
-    public var color_attribute  : Int = 2;
-    // public var normal_attribute : Int = 3;
+    public var proj_attribute : GLUniformLocation;
+    public var view_attribute : GLUniformLocation;
 
     public var tex0_attribute : GLUniformLocation;
     public var tex1_attribute : GLUniformLocation;
@@ -125,6 +45,9 @@ class Batcher {
 
     public var renderer : Renderer;
     public var view : Camera;
+        // An explicit shader override (instead of per geometry).
+        // Useful for things like wireframe/depth/normal/debug/shadow rendering passes.
+    public var shader : Shader;
 
     public var draw_calls : Int = 0;
     public var dynamic_batched_count : Int = 0;
@@ -137,7 +60,12 @@ class Batcher {
         //This is a failsafe against identical layer values
         //being sorted differently by target etc. Not reset intentionally.
     static var _sequence_key : Int = -1;
-    @:noCompletion public var sequence : Int = -1;
+    var sequence : Int = -1;
+
+    var pos_floats    : Int = 0;
+    var tcoord_floats  : Int = 0;
+    var color_floats   : Int = 0;
+    var normal_floats  : Int = 0;
 
     public function new( _r : Renderer, ?_name:String = '' ) {
 
@@ -153,57 +81,24 @@ class Batcher {
         max_floats = max_verts * 4;
 
             //these are expecting elements in floats, so each vert etc has 4 floats
-        vertlist = new Float32Array( max_floats );
-        tcoordlist = new Float32Array( max_floats );
-        colorlist = new Float32Array( max_floats );
-        // normallist = new Float32Array( max_floats );
+        pos_list = new Float32Array( max_floats );
+        tcoord_list = new Float32Array( max_floats );
+        color_list = new Float32Array( max_floats );
 
-        static_vertlist = new Float32Array( max_floats );
-        static_tcoordlist = new Float32Array( max_floats );
-        static_colorlist = new Float32Array( max_floats );
-        // static_normallist = new Float32Array( max_floats );
+        #if phoenix_use_normals
+            normal_list = new Float32Array( max_floats );
+        #end
 
             //The default view so we see stuff
         view = renderer.camera;
 
-            //Create the attribute buffers
-        vertexBuffers = [];
-        tcoordBuffers = [];
-        vcolorBuffers = [];
-        // normalBuffers = [];
-
-        for(i in 0 ... buffer_count) {
-
-            var _vb = GL.createBuffer();
-            var _tb = GL.createBuffer();
-            var _cb = GL.createBuffer();
-            var _nb = GL.createBuffer();
-
-    //VERTEX
-            GL.bindBuffer(GL.ARRAY_BUFFER, _vb);
-            GL.bufferData(GL.ARRAY_BUFFER, vertlist, GL.STATIC_DRAW);
-    //TCOORD
-            GL.bindBuffer(GL.ARRAY_BUFFER, _tb);
-            GL.bufferData(GL.ARRAY_BUFFER, tcoordlist, GL.STATIC_DRAW);
-    //COLOR
-            GL.bindBuffer(GL.ARRAY_BUFFER, _cb);
-            GL.bufferData(GL.ARRAY_BUFFER, colorlist, GL.STATIC_DRAW);
-    //NORMALS
-            // GL.bindBuffer(GL.ARRAY_BUFFER, _nb);
-            // GL.bufferData(GL.ARRAY_BUFFER, normallist, GL.STATIC_DRAW);
-
-            vertexBuffers.push(_vb);
-            tcoordBuffers.push(_tb);
-            vcolorBuffers.push(_cb);
-            // normalBuffers.push(_nb);
-
-        } //for the total buffer count
-
-
         GL.enableVertexAttribArray( vert_attribute );
         GL.enableVertexAttribArray( tcoord_attribute );
         GL.enableVertexAttribArray( color_attribute );
-        // GL.enableVertexAttribArray( normal_attribute );
+
+        #if phoenix_use_normals
+            GL.enableVertexAttribArray( normal_attribute );
+        #end
 
             //A default name
         if(_name.length == 0) {
@@ -212,33 +107,9 @@ class Batcher {
             name = _name;
         }
 
-    }
+    } //new
 
-    function set_layer( _layer:Int ) : Int {
-
-            //set the value
-        layer = _layer;
-            //re-sort the list
-        renderer.batchers.sort( renderer.sort_batchers );
-
-            //return value
-        return layer;
-
-    } //set_layer
-
-    function toString() {
-        return "Batcher(" + name + ")";
-    }
-
-        //this sorts the batchers in a list by layer
-    public function compare(other:Batcher) {
-
-        if(layer == other.layer) return 0;
-        if(layer < other.layer) return -1;
-
-        return 1;
-
-    } //compare
+//Public function
 
     public function add_group(_group:Int, ?_pre_render:Batcher->Void, ?_post_render:Batcher->Void ) {
 
@@ -250,8 +121,526 @@ class Batcher {
 
     } //add_group
 
-    public function compare_rule_to_string(r:Int) : String {
+    public function add( _geom:Geometry, _force_add:Bool = false ) {
+
+        // _debug("adding geom to batcher " + _geom.id + " at " + _geom.depth);
+        // _debug("\t list before: ");
+            // list_geometry();
+
+        if( geometry.find(_geom.key) == null || _force_add ) {
+
+                //Only add if not already there
+            if( !Lambda.has(_geom.batchers, this) ) {
+                _geom.batchers.push(this);
+            }
+
+                //Insert into our list
+            geometry.insert( _geom.key, _geom );
+
+                //Make sure it is flagged
+            _geom.added = true;
+
+                //and this local test flag
+            tree_changed = true;
+
+            // _debug("\t list after: ");
+            //     list_geometry();
+
+        } else {
+            // trace("Warning : Attempting to add geometry to the same batcher twice. " + _geom);
+        }
+
+    } //add
+
+        /** Drop all the geometry within this batcher, emptying it out. */
+    public function empty( _drop:Bool=true ) {
+
+        if(_drop) {
+            for(geom in geometry) {
+                geom.drop(true);
+                geom = null;
+            }
+        } else {
+            for(geom in geometry) {
+                geometry.remove(geom.key);
+            }
+        }
+
+    } //empty
+
+        /** Destroy this batcher.
+            Drops all the geometry within it (empty). 
+            Removes itself from the renderer.
+            Does not change the `view`.
+            Do not use the batcher instance after calling this. */
+    public function destroy( _drop:Bool=true ) {
+
+        empty(_drop);
+
+        renderer.remove_batch(this);
+
+        geometry = null;
+        groups = null;
+        pos_list = null;
+        tcoord_list = null;
+        color_list = null;
+        normal_list = null;
+
+        max_verts = 0;
+        max_floats = 0;
+        vert_count = 0;
+
+        proj_attribute = null;
+        view_attribute = null;
+        tex0_attribute = null;
+        tex1_attribute = null;
+        tex2_attribute = null;
+        tex3_attribute = null;
+        tex4_attribute = null;
+        tex5_attribute = null;
+        tex6_attribute = null;
+        tex7_attribute = null;
+
+        renderer = null;
+        view = null;
+
+    } //destroy
+
+    public function remove( _geom:Geometry, ?_remove_batcher_from_geometry:Bool = true ) {
+
+        if(_remove_batcher_from_geometry) {
+            _geom.batchers.remove(this);
+            if(_geom.batchers.length == 0) {
+                _geom.added = false;
+            }
+        } //_remove_batcher_from_geometry
+
+        var countbefore = geometry.size();
+
+        geometry.remove( _geom.key );
+
+        var countafter = geometry.size();
+
+        if(countbefore == countafter) {
+            //:todo: this fail state should never happen but it comes up on web rarely
+            // throw("GEOMETRY NOT REMOVED " + _geom.key);
+        }
+
+        tree_changed = true;
+
+    } //remove
+
+    public inline function shader_activate( _shader:Shader ) {
+
+            //apply shader override, if it is set
+        if(shader != null) {
+            _shader = shader;
+        }
+
+            //activate (GL.useProgram) the shader
+        _shader.activate();
+
+            //Matrices
+        proj_attribute  = _shader.proj_attribute;
+        view_attribute  = _shader.view_attribute;
+            //Textures
+
+        tex0_attribute = _shader.tex0_attribute;
+        tex1_attribute = _shader.tex1_attribute;
+        tex2_attribute = _shader.tex2_attribute;
+        tex3_attribute = _shader.tex3_attribute;
+        tex4_attribute = _shader.tex4_attribute;
+        tex5_attribute = _shader.tex5_attribute;
+        tex6_attribute = _shader.tex6_attribute;
+        tex7_attribute = _shader.tex7_attribute;
+
+            //and any uniforms they defined
+        _shader.apply_uniforms();
+
+            //undo any changes to be sure
+        Luxe.renderer.state.activeTexture(GL.TEXTURE0);
+
+    } //shader_activate
+
+
+        //Run the batcher over the current list of geometry
+        //and submit it to the graphics card for drawing
+    public var state : phoenix.BatchState;
+
+    public function batch( persist_immediate : Bool = false ) {
+
+        //reset render stats before we start
+        dynamic_batched_count = 0;
+        static_batched_count = 0;
+        visible_count = 0;
+
+        pos_floats = 0;
+        tcoord_floats = 0;
+        color_floats = 0;
+        normal_floats = 0;
+
+            //The current batch state values
+        state = new phoenix.BatchState(this);
+            //The current geometry in the set
+        var geom : Geometry = null;
+
+            //For each in the list
+        for(_geom in geometry) {
+
+                //grab the next geometry
+            geom = _geom;
+
+                //If it's valid to be drawn
+            if( geom != null && !geom.dropped ) {
+
+                    //If the update will cause a state change, submit the vertices accumulated
+                if( state.update(geom) ) {
+
+                        //Only submit if there are vertices in our list to draw
+                        //but if there are the batch is dirty and needs to be submitted
+                    if(pos_floats > 0) {
+                        submit_current_vertex_list( state.last_geom_state.primitive_type );
+                    } //if pos_list.length > 0
+
+                } // state.update(geom)
+
+                    // Now activate state changes (if any)
+                state.activate(this);
+
+                if(geom.visible) {
+                        //try
+                    visible_count++;
+
+                        //Buffer based geometry doesn't get submitted here yet
+                    if(geom.buffer_based) {
+                        visible_count--;
+                        continue;
+                    }
+
+                        //Static batched geometry gets sent on it's own
+                    if(geom.locked) {
+                        submit_static_geometry( geom );
+                        vert_count += geom.vertices.length;
+                    }
+
+                        // Do not accumulate for tri strips, line strips, line loops, triangle fans, quad strips, or polygons
+                    else if( geom.primitive_type == PrimitiveType.line_strip ||
+                             geom.primitive_type == PrimitiveType.line_loop ||
+                             geom.primitive_type == PrimitiveType.triangle_strip ||
+                             geom.primitive_type == PrimitiveType.triangle_fan ) {
+
+                                // doing this with the same list is fine because the primitive type causes a batch break anyways.
+                                // Send it on, this will also clear the list for the next geom so it doesn't acccumlate as usual.
+                            geometry_batch(geom);
+                                //submit the geometry
+                            submit_current_vertex_list( geom.primitive_type );
+                                //increase counts
+                            vert_count += geom.vertices.length;
+
+                    } //if it's unbatchable
+
+                        // Accumulate, this is standard geometry
+                    else {
+
+                        geometry_batch( geom );
+
+                            //increase counts
+                        dynamic_batched_count++;
+                        vert_count += geom.vertices.length;
+
+                    } //standard geometry
+
+
+                        // If the geometry is immediate get rid of it (unless the flag to keep immediate geometry)
+                        // in the list was specified...i.e for drawing multiple passes etc
+                    if( !persist_immediate && geom.immediate ) {
+                        geom.drop();
+                    } //!persist_immediate && geom.immediate
+
+                } //geom.visible
+
+            }
+
+        } //geom list
+
+            //If there is anything left in the vertex buffer, submit it.
+        if(pos_floats > 0 && geom != null) {
+
+                //Make sure the state matches this geometry
+            state.update(geom);
+                //And the state is active for renderering
+            state.activate( this );
+                //submit the list for rendering
+            submit_current_vertex_list( state.last_geom_state.primitive_type );
+
+        }
+
+            //disable any states set by the batches
+        state.deactivate(this);
+            //cleanup
+        state = null;
+
+    }
+
+    inline
+    public function draw( ?persist_immediate:Bool = false ) {
+
+        //Reset the draw count
+        draw_calls = 0;
+        vert_count = 0;
+
+        update_view();
+
+            //apply geometries
+        batch( persist_immediate );
+
+    } //draw
+
+    @:noCompletion
+    inline
+    function update_view() {
+
+            //update camera if it changes anything
+        view.process();
+
+        // trace('batcher $name / view ${view.name} / viewport:${view.viewport}');
+
+            //Set the viewport to the view
+        renderer.state.viewport( view.viewport.x, view.viewport.y, view.viewport.w, view.viewport.h );
+
+    } //update_view
+
+    //:todo: this is not part of the api
+    //       and should be considered volatile/WIP
+    @:noCompletion
+    inline
+    public function submit_geometry( _geom:Geometry, ?_shader:Shader ) {
+
+        assert(_geom.buffer_based, 'Only buffer based geometry can be submitted directly');
+
+        if(!_geom.visible) return;
+        if(_shader == null) _shader = _geom.shader;
+
+        shader_activate(_shader);
+
+        var _length = _geom.vertices.length;
+        var _length4 = _length * 4;
+        var _updated = _geom.update_buffers();
+
+        _enable_attributes();
+
+        if(_updated) {
+            _geom.bind_and_upload();
+        } else {
+            _geom.bind();
+        }
+
+        _geom.draw();
+
+        var _stats = renderer.stats;
+        _stats.geometry_count++;
+        _stats.visible_count++;
+        _stats.draw_calls++;
+        _stats.vert_count += _length;
+
+        _disable_attributes();
+
+    } //submit_geometry
+
+    // inline
+    @:noCompletion
+    public function submit_buffers(type:PrimitiveType, _pos:Float32Array, _tcoords:Float32Array, _colors:Float32Array, _normals:Float32Array) {
+
+        _enable_attributes();
+
+        var pb = GL.createBuffer();
+        var cb = GL.createBuffer();
+        var tb = GL.createBuffer();
+        #if phoenix_use_normals
+        var nb = GL.createBuffer();
+        #end
+
+        GL.bindBuffer(GL.ARRAY_BUFFER, pb );
+        GL.vertexAttribPointer( 0, 4, GL.FLOAT, false, 0, 0 );
+        GL.bufferData( GL.ARRAY_BUFFER , _pos, GL.STREAM_DRAW);
+
+        GL.bindBuffer(GL.ARRAY_BUFFER, tb );
+        GL.vertexAttribPointer( 1, 4, GL.FLOAT, false, 0, 0 );
+        GL.bufferData( GL.ARRAY_BUFFER , _tcoords, GL.STREAM_DRAW);
+
+        GL.bindBuffer(GL.ARRAY_BUFFER, cb );
+        GL.vertexAttribPointer( 2, 4, GL.FLOAT, false, 0, 0 );
+        GL.bufferData( GL.ARRAY_BUFFER , _colors, GL.STREAM_DRAW);
+
+        #if phoenix_use_normals
+        GL.bindBuffer(GL.ARRAY_BUFFER, nb );
+        GL.bufferData( GL.ARRAY_BUFFER , _normals, GL.STREAM_DRAW);
+        GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0 );
+        #end
+
+            //Draw
+        GL.drawArrays( type, 0, Std.int(_pos.length/4) );
+
+            //Disable attributes
+        _disable_attributes();
+
+        GL.deleteBuffer(pb);
+        GL.deleteBuffer(cb);
+        GL.deleteBuffer(tb);
+        #if phoenix_use_normals
+        GL.deleteBuffer(nb);
+        #end
+
+        draw_calls++;
+
+    } //submit_buffers
+
+    @:noCompletion
+    inline
+    public function submit_static_geometry( geom:Geometry ) {
+
+        var _length = geom.vertices.length;
+
+        if( _length == 0 ) {
+            return;
+        }
+
+        var _updated = geom.update_buffers();
+
+        _enable_attributes();
+
+        if(_updated) {
+            geom.bind_and_upload();
+        } else {
+            geom.bind();
+        }
+
+        geom.draw();
+
+            //Disable attributes
+        _disable_attributes();
+        static_batched_count++;
+        draw_calls++;
+
+            //clear the geometry flags
+        geom.dirty = false;
+
+    } //submit_static_geometry
+
+    @:noCompletion
+    inline
+    public function submit_current_vertex_list( type : PrimitiveType ) {
+
+        if( pos_floats == 0 ) {
+            return;
+        }
+
+        if( pos_floats > max_floats ) {
+            throw "uh oh, somehow too many floats are being submitted (max:$max_floats, attempt:$pos_floats).";
+        }
+
+        var _pos = new Float32Array(pos_list.buffer, 0, pos_floats);
+        var _tcoords = new Float32Array(tcoord_list.buffer, 0, tcoord_floats);
+        var _colors = new Float32Array(color_list.buffer, 0, color_floats);
+        var _normals:Float32Array = null;
+
+        #if phoenix_use_normals
+            _normals = new Float32Array(normal_list.buffer, 0, normal_floats);
+        #end
+
+        submit_buffers(type, _pos, _tcoords, _colors, _normals);
+
+        _pos = null;
+        _tcoords = null;
+        _colors = null;
+        _normals = null;
+
+        pos_floats = 0;
+        tcoord_floats = 0;
+        color_floats = 0;
+        normal_floats = 0;
+
+    } //submit_current_vertex_list
+
+//Batch related helper functions
+
+    inline
+    function geometry_batch( geom:Geometry ) {
+
+            //pos_floats is in element count (so/4)
+        var _count_after = geom.vertices.length+(pos_floats/4);
+
+            //submit the current batch if we exceed the max buffer size
+        if(_count_after > max_verts) {
+            submit_current_vertex_list( geom.primitive_type );
+        }
+
+        geom.batch(
+            pos_floats,     tcoord_floats,  color_floats,   normal_floats,
+            pos_list,       tcoord_list,    color_list,     normal_list
+        );
+
+        var _length = geom.vertices.length * 4;
+
+        pos_floats       += _length;
+        tcoord_floats    += _length;
+        color_floats     += _length;
+        normal_floats    += _length;
+
+    } //geometry_batch
+
+
+//Shader related attribute setup
+
+    @:noCompletion
+    inline
+    public function _enable_attributes() {
+
+            //Update the GL Matrices
+        GL.uniformMatrix4fv( proj_attribute, false, view.proj_arr );
+        GL.uniformMatrix4fv( view_attribute, false, view.view_inverse_arr );
+
+    } //_enable_attributes
+
+    @:noCompletion
+    inline
+    public function _disable_attributes() {
+
+    } //_disable_attributes
+
+//Internal
+
+    inline function set_layer( _layer:Int ) : Int {
+
+            //set the value
+        layer = _layer;
+            //re-sort the list
+        renderer.batchers.sort( renderer.sort_batchers );
+
+            //return value
+        return layer;
+
+    } //set_layer
+
+    inline
+    function toString() {
+        return "Batcher(" + name + ")";
+    }
+
+        //this sorts the batchers in a list by layer
+    inline
+    function compare(other:Batcher) {
+
+        if(layer == other.layer) return 0;
+        if(layer < other.layer) return -1;
+
+        return 1;
+
+    } //compare
+
+    function compare_rule_to_string(r:Int) : String {
         return switch(r) {
+
             case 0: "same";
             case 1: "depth <";
             case 2: "depth >";
@@ -277,10 +666,12 @@ class Batcher {
             case 19: "sequence >";
             case 20: "fallback";
             default: "unknown";
-        }
-    }
 
-    public function compare_rule( a:GeometryKey, b:GeometryKey ) : Int {
+        }
+
+    } //compare_rule_to_string
+
+    function compare_rule( a:GeometryKey, b:GeometryKey ) : Int {
 
         if(a.uuid == b.uuid)
             { return 0; }
@@ -368,9 +759,10 @@ class Batcher {
 
             //otherwise push down the list because wtf
         return 20;
-    }
 
-    public function geometry_compare( a:GeometryKey, b:GeometryKey ) : Int {
+    } //compare_rule
+
+    function geometry_compare( a:GeometryKey, b:GeometryKey ) : Int {
 
             //rules :
                 //depth
@@ -473,436 +865,56 @@ class Batcher {
         }
     }
 
-    public function add( _geom:Geometry, _force_add:Bool = false ) {
+    public static inline var vert_attribute   : Int = 0;
+    public static inline var tcoord_attribute : Int = 1;
+    public static inline var color_attribute  : Int = 2;
+    public static inline var normal_attribute : Int = 3;
 
-        // _debug("adding geom to batcher " + _geom.id + " at " + _geom.depth);
-        // _debug("\t list before: ");
-            // list_geometry();
-
-        if( geometry.find(_geom.key) == null || _force_add ) {
-
-                //Only add if not already there
-            if( !Lambda.has(_geom.batchers, this) ) {
-                _geom.batchers.push(this);
-            }
-
-                //Insert into our list
-            geometry.insert( _geom.key, _geom );
-
-                //Make sure it is flagged
-            _geom.added = true;
-
-                //and this local test flag
-            tree_changed = true;
-
-            // _debug("\t list after: ");
-            //     list_geometry();
-
-        } else {
-            // trace("Warning : Attempting to add geometry to the same batcher twice. " + _geom);
-        }
-
-    } //add
-
-        /** :todo: this is a temporary construct as part of #119 */
-    public function empty( _drop:Bool=true ) {
-
-        if(_drop) {
-            for(geom in geometry) {
-                geom.drop(true);
-                geom = null;
-            }
-        } else {
-            for(geom in geometry) {
-                geometry.remove(geom.key);
-            }
-        }
-
-    } //empty
-
-    public function remove( _geom:Geometry, ?_remove_batcher_from_geometry:Bool = true ) {
-
-        if(_remove_batcher_from_geometry) {
-            _geom.batchers.remove(this);
-            if(_geom.batchers.length == 0) {
-                _geom.added = false;
-            }
-        } //_remove_batcher_from_geometry
-
-        var countbefore = geometry.size();
-
-        geometry.remove( _geom.key );
-
-        var countafter = geometry.size();
-
-        if(countbefore == countafter) {
-            //:todo: this fail state should never happen but it comes up on web rarely
-            // throw("GEOMETRY NOT REMOVED " + _geom.key);
-        }
-
-        tree_changed = true;
-
-    } //remove
-
-    public function shader_activate( _shader:Shader ) {
-
-            //activate (GL.useProgram) the shader
-        _shader.activate();
-
-            //Matrices
-        projectionmatrix_attribute  = _shader.projectionmatrix_attribute;
-        modelviewmatrix_attribute   = _shader.modelviewmatrix_attribute;
-            //Textures
-
-        tex0_attribute = _shader.tex0_attribute;
-        tex1_attribute = _shader.tex1_attribute;
-        tex2_attribute = _shader.tex2_attribute;
-        tex3_attribute = _shader.tex3_attribute;
-        tex4_attribute = _shader.tex4_attribute;
-        tex5_attribute = _shader.tex5_attribute;
-        tex6_attribute = _shader.tex6_attribute;
-        tex7_attribute = _shader.tex7_attribute;
-
-            //and any uniforms they defined
-        _shader.apply_uniforms();
-
-            //undo any changes to be sure
-        Luxe.renderer.state.activeTexture(GL.TEXTURE0);
-
-    } //shader_activate
+} //Batcher
 
 
-        //Run the batcher over the current list of geometry
-        //and submit it to the graphics card for drawing
-    public var state : BatchState;
-    public function batch( persist_immediate : Bool = false ) {
+@:enum abstract PrimitiveType(Int) from Int to Int {
 
-        //reset render stats before we start
-        dynamic_batched_count = 0;
-        static_batched_count = 0;
-        visible_count = 0;
+    var unknown         = -1;
+    var line_strip      = GL.LINE_STRIP;
+    var line_loop       = GL.LINE_LOOP;
+    var lines           = GL.LINES;
+    var triangle_strip  = GL.TRIANGLE_STRIP;
+    var triangles       = GL.TRIANGLES;
+    var triangle_fan    = GL.TRIANGLE_FAN;
+    var points          = GL.POINTS;
 
-        vert_floats = 0;
-        tcoord_floats = 0;
-        color_floats = 0;
-        normal_floats = 0;
+} //PrimitiveType
 
-            //The current batch state values
-        state = new BatchState(this);
-            //The current geometry in the set
-        var geom : Geometry = null;
+@:enum abstract BlendMode(Int) from Int to Int {
 
-            //For each in the list
-        for(_geom in geometry) {
+    var zero                    = GL.ZERO;
+    var one                     = GL.ONE;
+    var src_color               = GL.SRC_COLOR;
+    var one_minus_src_color     = GL.ONE_MINUS_SRC_COLOR;
+    var src_alpha               = GL.SRC_ALPHA;
+    var one_minus_src_alpha     = GL.ONE_MINUS_SRC_ALPHA;
+    var dst_alpha               = GL.DST_ALPHA;
+    var one_minus_dst_alpha     = GL.ONE_MINUS_DST_ALPHA;
+    var dst_color               = GL.DST_COLOR;
+    var one_minus_dst_color     = GL.ONE_MINUS_DST_COLOR;
+    var src_alpha_saturate      = GL.SRC_ALPHA_SATURATE;
 
-                //grab the next geometry
-            geom = _geom;
+} //BlendMode
 
-                //If it's valid to be drawn
-            if( geom != null && !geom.dropped ) {
+@:enum abstract BlendEquation(Int) from Int to Int {
 
-                    //If the update will cause a state change, submit the vertices accumulated
-                if( state.update(geom) ) {
+    var add                    = GL.FUNC_ADD;
+    var subtract               = GL.FUNC_SUBTRACT;
+    var reverse_subtract       = GL.FUNC_REVERSE_SUBTRACT;
 
-                        //Only submit if there are vertices in our list to draw
-                        //but if there are the batch is dirty and needs to be submitted
-                    if(vert_floats > 0) {
-                        submit_current_vertex_list( state.last_geom_state.primitive_type );
-                    } //if vertlist.length > 0
+} //BlendEquation
 
-                } // state.update(geom)
-
-                    // Now activate state changes (if any)
-                state.activate(this);
-
-                if(geom.visible) {
-                        //try
-                    visible_count++;
-
-                        //Static batched geometry gets sent on it's own
-                    if(geom.locked) {
-                        submit_static_geometry( geom );
-                        vert_count += geom.vertices.length;
-                    }
-
-                        // Do not accumulate for tri strips, line strips, line loops, triangle fans, quad strips, or polygons
-                    else if( geom.primitive_type == PrimitiveType.line_strip ||
-                             geom.primitive_type == PrimitiveType.line_loop ||
-                             geom.primitive_type == PrimitiveType.triangle_strip ||
-                             geom.primitive_type == PrimitiveType.triangle_fan ) {
-
-                                // doing this with the same list is fine because the primitive type causes a batch break anyways.
-                                // Send it on, this will also clear the list for the next geom so it doesn't acccumlate as usual.
-                            geometry_batch(geom);
-                                //submit the geometry
-                            submit_current_vertex_list( geom.primitive_type );
-                                //increase counts
-                            vert_count += geom.vertices.length;
-
-                    } //if it's unbatchable
-
-                        // Accumulate, this is standard geometry
-                    else {
-
-                        geometry_batch( geom );
-
-                            //increase counts
-                        dynamic_batched_count++;
-                        vert_count += geom.vertices.length;
-
-                    } //standard geometry
-
-
-                        // If the geometry is immediate get rid of it (unless the flag to keep immediate geometry)
-                        // in the list was specified...i.e for drawing multiple passes etc
-                    if( !persist_immediate && geom.immediate ) {
-                        geom.drop();
-                    } //!persist_immediate && geom.immediate
-
-                } //geom.visible
-
-            } else { //!null && !dropped
-                //:todo : If there is null (maybe dropped) geometry shouldn't they be removed or maybe
-                //stashed in a diff list? Dropped come from the above drop, but null is invalid state
-            }
-
-        } //geom list
-
-            //If there is anything left in the vertex buffer, submit it.
-        if(vert_floats > 0 && geom != null) {
-
-                //Make sure the state matches this geometry
-            state.update(geom);
-                //And the state is active for renderering
-            state.activate( this );
-                //submit the list for rendering
-            submit_current_vertex_list( state.last_geom_state.primitive_type );
-
-        }
-
-            //disable any states set by the batches
-        state.deactivate(this);
-            //cleanup
-        state = null;
-
+class BatchGroup {
+    public function new(_pre, _post) {
+        pre_render = _pre;
+        post_render = _post;
     }
-
-    public function draw( ?persist_immediate:Bool = false ) {
-
-        //Reset the draw count
-        draw_calls = 0;
-        vert_count = 0;
-
-            //update camera if it changes anything
-        view.process();
-
-        // trace('batcher $name / view ${view.name} / viewport:${view.viewport}');
-
-            //Set the viewport to the view
-        renderer.state.viewport( view.viewport.x, view.viewport.y, view.viewport.w, view.viewport.h );
-
-            //apply geometries
-        batch( persist_immediate );
-
-    } //draw
-
-    public function submit_static_geometry( geom:Geometry ) {
-
-            //Don't bother when it's empty
-        if( geom.vertices.length == 0 ) {
-            return;
-        }
-
-            //and counts
-        static_vert_floats = 0; static_tcoord_floats = 0; static_color_floats = 0; 
-        // static_normal_floats = 0;
-
-        if(!geom.submitted || geom.dirty) {
-
-                //now batch the geometry into the static arrays
-            geometry_batch_static( geom );
-
-        } else {
-
-            static_vert_floats    = geom.vertices.length * 4;
-            static_tcoord_floats  = geom.vertices.length * 4;
-            static_color_floats   = geom.vertices.length * 4;
-            // static_normal_floats  = geom.vertices.length * 4;
-
-        }
-
-            //ensure the geometry has buffers already
-        if(geom.static_vertex_buffer == null) {
-            geom.static_vertex_buffer = GL.createBuffer();
-            geom.static_tcoord_buffer = GL.createBuffer();
-            geom.static_vcolor_buffer = GL.createBuffer();
-            // geom.static_normal_buffer = GL.createBuffer();
-        }
-
-            //enable the shader attributes
-        _enable_attributes();
-
-            //set the vertices positions in the shader, but to static buffers
-        GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_vertex_buffer);
-        GL.vertexAttribPointer(vert_attribute, 4, GL.FLOAT, false, 0, 0);
-
-        if(!geom.submitted || geom.dirty) {
-            GL.bufferData(GL.ARRAY_BUFFER, static_vertlist, GL.STATIC_DRAW);
-        }
-
-            //set the texture coordinates in the shader, but to static buffers
-        GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_tcoord_buffer);
-        GL.vertexAttribPointer(tcoord_attribute, 4, GL.FLOAT, false, 0, 0);
-
-        if(!geom.submitted || geom.dirty) {
-            GL.bufferData(GL.ARRAY_BUFFER, static_tcoordlist, GL.STATIC_DRAW);
-        }
-
-            //set the color values in the shader, but to static buffers
-        GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_vcolor_buffer);
-        GL.vertexAttribPointer(color_attribute, 4, GL.FLOAT, false, 0, 0);
-
-        if(!geom.submitted || geom.dirty) {
-            GL.bufferData(GL.ARRAY_BUFFER, static_colorlist, GL.STATIC_DRAW);
-        }
-
-        //     //set the normal directions in the shader, but to static buffers
-        // GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_normal_buffer);
-        // GL.vertexAttribPointer(normal_attribute, 4, GL.FLOAT, false, 0, 0);
-
-        // if(!geom.submitted || geom.dirty) {
-        //     GL.bufferData(GL.ARRAY_BUFFER, static_normallist, GL.STATIC_DRAW);
-        // }
-
-            //Draw
-        GL.drawArrays(
-            geom.primitive_type, 0,
-            phoenix.utils.Rendering.get_elements_for_type(geom.primitive_type, static_vert_floats)
-        );
-
-            //Disable attributes
-        _disable_attributes();
-            //increase the stats
-        draw_calls++;
-        static_batched_count++;
-
-            //and counts
-        static_vert_floats = 0;
-        static_tcoord_floats = 0;
-        static_color_floats = 0;
-        // static_normal_floats = 0;
-
-            //clear the geometry flags
-        geom.dirty = false;
-        geom.submitted = true;
-
-    } //submit_static_buffer_object
-
-
-    public function submit_current_vertex_list( type : PrimitiveType ) {
-
-        if( vert_floats == 0 ) {
-                //No verts?
-            return;
-        }
-
-        if( vert_floats > max_floats ) {
-            throw "uh oh, somehow too many floats are being submitted (max:$max_floats, attempt:$vert_floats).";
-        }
-
-            //Enable atttributes
-        _enable_attributes();
-
-        GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffers[buffer_index] );
-        GL.vertexAttribPointer( 0, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(vertlist.buffer, 0, vert_floats) );
-
-        GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffers[buffer_index] );
-        GL.vertexAttribPointer( 1, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(tcoordlist.buffer, 0, tcoord_floats) );
-
-        GL.bindBuffer(GL.ARRAY_BUFFER, vcolorBuffers[buffer_index] );
-        GL.vertexAttribPointer( 2, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(colorlist.buffer, 0, color_floats) );
-
-        // GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffers[buffer_index] );
-        // GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0 );
-        // GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(normallist.buffer, 0, normal_floats) );
-
-            //Draw
-        GL.drawArrays(
-            type, 0,
-            phoenix.utils.Rendering.get_elements_for_type(type, vert_floats)
-        );
-
-            //Disable attributes
-        _disable_attributes();
-
-        // cycle the buffers in use
-        buffer_index++;
-        if(buffer_index >= buffer_count) {
-            buffer_index = 0;
-        }
-
-            //Reset counts
-        vert_floats = 0; tcoord_floats = 0; color_floats = 0; normal_floats= 0;
-            //Increase stats
-        draw_calls++;
-
-    } //submit_current_vertex_list
-
-//Batch related helper functions
-
-    function geometry_batch( geom:Geometry ) {
-
-            //vert_floats is in element count (so/4)
-        var _count_after = geom.vertices.length+(vert_floats/4);
-
-            //submit the current batch if we exceed the max buffer size
-        if(_count_after > max_verts) {
-            submit_current_vertex_list( geom.primitive_type );
-        }
-
-        geom.batch(
-            vert_floats,    tcoord_floats,  color_floats,   normal_floats,
-            vertlist,       tcoordlist,     colorlist,      normallist
-        );
-
-        vert_floats      += geom.vertices.length * 4;
-        tcoord_floats    += geom.vertices.length * 4;
-        color_floats     += geom.vertices.length * 4;
-        // normal_floats    += geom.vertices.length * 4;
-
-    } //geometry_batch
-
-    function geometry_batch_static( geom:Geometry ) {
-
-        geom.batch(
-            static_vert_floats,     static_tcoord_floats,   static_color_floats,    static_normal_floats,
-            static_vertlist,        static_tcoordlist,      static_colorlist,       static_normallist
-        );
-
-        static_vert_floats      += geom.vertices.length * 4;
-        static_tcoord_floats    += geom.vertices.length * 4;
-        static_color_floats     += geom.vertices.length * 4;
-        // static_normal_floats    += geom.vertices.length * 4;
-
-    } //geometry_batch_static
-
-//Shader related attribute setup
-
-    @:noCompletion public function _enable_attributes() {
-
-            //Update the GL Matrices
-        GL.uniformMatrix4fv( projectionmatrix_attribute, false, view.projection_float32array );
-        GL.uniformMatrix4fv( modelviewmatrix_attribute, false, view.view_inverse_float32array );
-
-    } //_enable_attributes
-
-    function _disable_attributes() {
-
-            //Unset
-
-    } //_disable_attributes
-
+    public var pre_render : Batcher -> Void;
+    public var post_render : Batcher -> Void;
 }

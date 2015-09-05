@@ -109,7 +109,7 @@ class Unifill {
     /**
        Returns an iterator of the code points of String `s`.
      **/
-    public static inline function uIterator(s : String) : Iterator<CodePoint> {
+	public static inline function uIterator(s : String) : CodePointIter {
         return new CodePointIter(s);
     }
 

@@ -306,9 +306,37 @@ class States extends Objects {
 
     } //leave
 
-    public function set<T1,T2>(name:String, ?_enter_with:T1, ?_leave_with:T2, ?pos:haxe.PosInfos ) {
+        /** Change the actively set state. */
+    public function set<T1,T2>(name:String, ?_enter_with:T1, ?_leave_with:T2 #if debug, ?pos:haxe.PosInfos #end ) : Bool {
 
+        #if debug //:todo:
         _debug('attempt to set state to $name from ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
+        #end
+
+        if(!_states.exists(name)) {
+            log('cannot find state named $name, is it added to this state machine?');
+            return false;
+        }
+
+        //leave current state
+
+        unset(_leave_with);
+
+        //enter new state
+
+        _debug('found state named $name, calling enter');
+
+        current_state = _states.get(name);
+        enter( current_state, _enter_with );
+
+        _debug('called enter on $name, now at ${Lambda.count(active_states)} active_states');
+
+        return true;
+
+    } //set
+
+        /** Exit the actively set state. */
+    public function unset<T>( ?_leave_with:T ) {
 
         if (current_state != null) {
 
@@ -323,18 +351,7 @@ class States extends Objects {
 
         } //current_state != null
 
-        if (_states.exists(name)) {
-
-                _debug('found state named $name, calling enter');
-
-            current_state = _states.get(name);
-            enter( current_state, _enter_with );
-
-                _debug('called enter on $name, now at ${Lambda.count(active_states)} active_states');
-
-        } //if states.exists(name)
-
-    } //set
+    } //unset
 
     public function destroy() {
 

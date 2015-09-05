@@ -95,7 +95,7 @@ class Scene extends Objects {
 
         /** add given entity to this scene */
     var entity_count : Int = 0;
-    public function add( entity:Entity, ?pos:haxe.PosInfos ) {
+    public function add( entity:Entity #if debug, ?pos:haxe.PosInfos #end ) {
 
         assertnull(entity, 'can\'t put entity in a scene if the entity is null.');
 
@@ -152,19 +152,31 @@ class Scene extends Objects {
 
     } //get
 
-        /** destroy all entities in this scene, emptying it. */
+        /** Destroy all entities in this scene.
+            There is one exception: If `entity == Luxe.camera`,
+            it will not be destroyed. Call Luxe.camera.destroy()
+            explicitly. This exception will change in future,
+            but saves a lot of confusion for and improves workflow. */
     public function empty() {
 
         if(entity_count > 0) {
-            for(entity in entities) {
-                if(entity != null) {
-
-                    remove( entity );
-                    entity.destroy();
-                    entity = null;
-
-                }
-            } //each entity
+            #if luxe_camera_is_not_special
+                for(entity in entities) {
+                    if(entity != null) {
+                        remove( entity );
+                        entity.destroy();
+                        entity = null;
+                    }
+                } //each entity
+            #else
+                for(entity in entities) {
+                    if(entity != null && entity != Luxe.camera) {
+                        remove( entity );
+                        entity.destroy();
+                        entity = null;
+                    }
+                } //each entity
+            #end
         } //entity_count > 0
 
     } //empty

@@ -86,7 +86,8 @@ class Physics {
 
     } //fixed_update
 
-    @:noCompletion public function add_engine<T1,T2>( type:Class<T1>, ?_data:T2 ) : T1 {
+        /** Add a physics engine type to be run by this class. */
+    public function add_engine<T1,T2>( type:Class<T1>, ?_data:T2 ) : T1 {
 
         var _engine_instance = Type.createInstance( type, [ _data ] );
         var _physics_engine : PhysicsEngine = cast _engine_instance;

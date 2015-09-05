@@ -48,12 +48,35 @@ class Main extends luxe.Game {
         if(ev.type == SystemEventType.input) {
             if(ev.input.type == InputEventType.joystick) {
 
-                var event : AccelEvent = ev.input.event;
-                switch(event.axis) {
-                    case 0: accel_x = event.value;
-                    case 1: accel_y = event.value;
-                    case 2: accel_z = event.value;
-                }
+                #if mobile
+                    var event : AccelEvent = ev.input.event;
+                    switch(event.axis) {
+                        case 0: accel_x = event.value;
+                        case 1: accel_y = event.value;
+                        case 2: accel_z = event.value;
+                    }
+                #end
+
+                #if web
+
+                    var event = ev.input.event;
+                    if(event.type == 'orientation') {
+                        // available:
+                        // event.alpha;
+                        // event.beta;
+                        // event.gamma;
+                    } else
+                    if(event.type == 'motion') {
+                        // available:
+                        // event.acceleration (.x, .y, .z)
+                        // event.accelerationIncludingGravity (.x, .y, .z)
+                        // event.rotationRate (.alpha, .beta, .gamma)
+                        accel_x = event.acceleration.x;
+                        accel_y = event.acceleration.y;
+                        accel_z = event.acceleration.z;
+                    }
+
+                #end
 
             } //if joystick
         } //if input
@@ -73,11 +96,59 @@ class Main extends luxe.Game {
 
         rect = Luxe.draw.rectangle({
             x : 10, y : 10,
+            depth: -2,
             w : Luxe.screen.w - 20,
             h : Luxe.screen.h - 20,
             color : new Color(0.4,0.4,0.4)
         });
 
+        var _mx = Luxe.screen.mid.x;
+
+        Luxe.draw.poly({
+            solid : true,
+            depth : -1,
+            colors: [
+                new Color().rgb(0xff4b03),
+                new Color().rgb(0xff4b03),
+                new Color().rgb(0xff4b03),
+                new Color().rgb(0x121212),
+                new Color().rgb(0x121212),
+                new Color().rgb(0xff4b03),
+                new Color().rgb(0xff4b03),
+            ],
+            points : [
+                new Vector(_mx-(55/2)+160, 228/2),
+                new Vector(_mx-(154/2)+160, 207/2),
+                new Vector(_mx-(167/2)+160, 217/2),
+                new Vector(_mx-(215/2)+160, 367/2),
+                new Vector(_mx-(88/2)+160, 404/2),
+                new Vector(_mx-(49/2)+160, 240/2),
+                new Vector(_mx-(55/2)+160, 228/2),
+            ]
+        });
+
+        Luxe.draw.poly({
+            solid : false,
+            depth : -1,
+            colors: [
+                new Color().rgb(0xff4b03),
+                new Color().rgb(0xff4b03),
+                new Color().rgb(0xff4b03),
+                new Color().rgb(0x191919),
+                new Color().rgb(0x191919),
+                new Color().rgb(0xff4b03),
+                new Color().rgb(0xff4b03)
+            ],
+            points : [
+                new Vector(_mx+(55/2)-160, 228/2),
+                new Vector(_mx+(154/2)-160, 207/2),
+                new Vector(_mx+(167/2)-160, 217/2),
+                new Vector(_mx+(215/2)-160, 367/2),
+                new Vector(_mx+(88/2)-160, 404/2),
+                new Vector(_mx+(49/2)-160, 240/2),
+                new Vector(_mx+(55/2)-160, 228/2),
+            ]
+        });
 
         Luxe.draw.ngon({
             r:200, sides : 3,
@@ -85,6 +156,7 @@ class Main extends luxe.Game {
             color: new Color(1,1,1,0.1),
             x:Luxe.screen.mid.x, y:Luxe.screen.mid.y
         });
+
         Luxe.draw.ngon({
             r:120, sides : 3,
             color: new Color(1,1,1,0.5),
@@ -120,6 +192,7 @@ class Main extends luxe.Game {
 
         box = Luxe.draw.box({
             x : 40, y : 40,
+            depth:-3,
             w : Luxe.screen.w - 80,
             h : Luxe.screen.h - 80,
             color : new Color(0,0,0,0.5)
@@ -243,7 +316,7 @@ class Main extends luxe.Game {
             Luxe.draw.rectangle({
                     //this line is important, as each frame it will create new geometry!
                 immediate : true,
-                x : mouse.x-85, y : mouse.y,
+                x : mouse.x-85, y : mouse.y+5,
                 w : 170,
                 h : 32,
                 color : new Color(Math.random(),Math.random(),Math.random(),0.5)

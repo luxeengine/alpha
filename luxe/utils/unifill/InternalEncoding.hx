@@ -33,8 +33,7 @@ class InternalEncoding {
        String `s`.
      **/
     public static inline function codeUnitAt(s : String, index : Int) : Int {
-        var u = UtfX.fromString(s);
-        return u.codeUnitAt(index);
+		return UtfX.fromString(s).codeUnitAt(index);
     }
 
     /**
@@ -42,8 +41,7 @@ class InternalEncoding {
        String `s`.
      **/
     public static inline function codePointAt(s : String, index : Int) : Int {
-        var u = UtfX.fromString(s);
-        return u.codePointAt(index);
+		return UtfX.fromString(s).codePointAt(index);
     }
 
     /**
@@ -51,8 +49,7 @@ class InternalEncoding {
        String `s`.
      **/
     public static inline function charAt(s : String, index : Int) : String {
-        var u = UtfX.fromString(s);
-        return u.charAt(index).toString();
+		return UtfX.fromString(s).charAt(index).toString();
     }
 
     /**
@@ -60,8 +57,7 @@ class InternalEncoding {
        to `endIndex` in String `s`.
      **/
     public static inline function codePointCount(s : String, beginIndex : Int, endIndex : Int) : Int {
-        var u = UtfX.fromString(s);
-        return u.codePointCount(beginIndex, endIndex);
+		return UtfX.fromString(s).codePointCount(beginIndex, endIndex);
     }
 
     /**
@@ -69,8 +65,7 @@ class InternalEncoding {
        `index` of String `s`.
      **/
     public static inline function codePointWidthAt(s : String, index : Int) : Int {
-        var u = UtfX.fromString(s);
-        return u.codePointWidthAt(index);
+		return UtfX.fromString(s).codePointWidthAt(index);
     }
 
     /**
@@ -78,8 +73,7 @@ class InternalEncoding {
        position `index` of String `s`.
      **/
     public static inline function codePointWidthBefore(s : String, index : Int) : Int {
-        var u = UtfX.fromString(s);
-        return u.codePointWidthBefore(index);
+		return UtfX.fromString(s).codePointWidthBefore(index);
     }
 
     /**
@@ -87,8 +81,7 @@ class InternalEncoding {
        position `index` by `codePointOffset` code points.
      **/
     public static inline function offsetByCodePoints(s : String, index : Int, codePointOffset : Int) : Int {
-        var u = UtfX.fromString(s);
-        return u.offsetByCodePoints(index, codePointOffset);
+		return UtfX.fromString(s).offsetByCodePoints(index, codePointOffset);
     }
 
     /**
@@ -97,8 +90,7 @@ class InternalEncoding {
        backward.
      **/
     public static inline function backwardOffsetByCodePoints(s : String, index : Int, codePointOffset : Int) : Int {
-        var u = UtfX.fromString(s);
-        return u.offsetByCodePoints(index, -codePointOffset);
+		return UtfX.fromString(s).offsetByCodePoints(index, -codePointOffset);
     }
 
     /**
@@ -122,8 +114,7 @@ class InternalEncoding {
        `Exception.InvalidCodeUnitSequence` is throwed.
      **/
     public static inline function validate(s : String) : Void {
-        var u = UtfX.fromString(s);
-        u.validate();
+		UtfX.fromString(s).validate();
     }
 
     /**

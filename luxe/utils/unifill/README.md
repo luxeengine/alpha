@@ -1,7 +1,5 @@
 # Unifill
 
-https://github.com/mandel59/unifill
-
 Shim your code to support Unicode across all platforms.
 
 ## Usage
@@ -31,7 +29,7 @@ class Main {
 
 ## Iteration
 
-You would write iteration such that:
+You might write iteration such that:
 
 ```haxe
 function f(s : String) : Void {
@@ -51,4 +49,22 @@ function f(s : String) : Void {
     trace(c.toString());
   }
 }
+```
+
+## InternalEncoding
+
+For advanced usage, you can use `InternalEncoding`, which provides methods
+treating variable-length encoding without considering which encoding form
+is practically used.
+
+These methods index by code units. That is, the value of
+`InternalEncoding.charAt("эюя", 2)` varies depending the target environment:
+UTF-8 environments (Haxe macro, C++, Neko, PHP) gives `"ю"` and UTF-16
+environments (Flash, C#, Java, JavaScript) gives `"я"`.
+
+`InternalEncoding.codePointWidthAt` tells the number of code units the code
+point is consist of, so any platform gives `"ю"` for the following expression:
+
+```haxe
+InternalEncoding.charAt("эюя", InternalEncoding.codePointWidthAt("эюя", 0))
 ```

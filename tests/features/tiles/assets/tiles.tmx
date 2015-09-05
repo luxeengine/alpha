@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="20" height="14" tilewidth="16" tileheight="16" backgroundcolor="#e6c587">
- <tileset firstgid="1" name="tileset1" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="14" tilewidth="16" tileheight="16" backgroundcolor="#e6c587" nextobjectid="5">
+ <tileset firstgid="1" name="tileset1" tilewidth="16" tileheight="16" tilecount="70">
   <image source="tileset.png" width="224" height="80"/>
  </tileset>
- <tileset firstgid="71" name="tiles_padded" tilewidth="64" tileheight="64" spacing="4" margin="2">
+ <tileset firstgid="71" name="tiles_padded" tilewidth="64" tileheight="64" spacing="4" margin="2" tilecount="4">
   <image source="tiles_padded.png" width="136" height="136"/>
  </tileset>
+ <imagelayer name="clouds" x="-48" y="11">
+  <image source="clouds.png" trans="000000"/>
+  <properties>
+   <property name="testprop" value="imageprop"/>
+  </properties>
+ </imagelayer>
+ <imagelayer name="clouds2" x="167" y="-41" opacity="0.9">
+  <image source="clouds.png" trans="000000"/>
+ </imagelayer>
  <layer name="walls" width="20" height="14">
   <properties>
    <property name="layer1" value="prop1"/>
@@ -21,12 +30,12 @@
    <tile gid="36"/>
    <tile gid="36"/>
    <tile gid="36"/>
+   <tile gid="3758096454"/>
+   <tile gid="1073741894"/>
    <tile gid="36"/>
-   <tile gid="35"/>
    <tile gid="36"/>
    <tile gid="36"/>
-   <tile gid="36"/>
-   <tile gid="43"/>
+   <tile gid="31"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -41,8 +50,8 @@
    <tile gid="36"/>
    <tile gid="36"/>
    <tile gid="36"/>
-   <tile gid="36"/>
-   <tile gid="36"/>
+   <tile gid="2147483718"/>
+   <tile gid="70"/>
    <tile gid="36"/>
    <tile gid="36"/>
    <tile gid="36"/>
@@ -91,7 +100,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="6"/>
+   <tile gid="2147483698"/>
    <tile gid="6"/>
    <tile gid="3"/>
    <tile gid="6"/>
@@ -164,8 +173,8 @@
    <tile gid="36"/>
    <tile gid="36"/>
    <tile gid="36"/>
-   <tile gid="36"/>
-   <tile gid="36"/>
+   <tile gid="35"/>
+   <tile gid="2147483683"/>
    <tile gid="36"/>
    <tile gid="36"/>
    <tile gid="36"/>
@@ -580,25 +589,25 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="objects" width="20" height="14">
-  <object name="obj1" type="collect" x="160" y="48" width="21" height="21">
+ <objectgroup name="objects">
+  <object id="1" name="obj1" type="collect" x="160" y="48" width="21" height="21">
    <properties>
     <property name="objprop1" value="objprop1val"/>
    </properties>
   </object>
-  <object name="circle1" type="eat" x="196" y="52" width="39" height="38">
+  <object id="2" name="circle1" type="eat" x="196" y="52" width="39" height="38">
    <properties>
     <property name="circleprop1" value="circleprop1val"/>
    </properties>
    <ellipse/>
   </object>
-  <object name="poly1" type="nothing" x="70" y="40">
+  <object id="3" name="poly1" type="nothing" x="70" y="40">
    <properties>
     <property name="polyprop1" value="polyprop1val"/>
    </properties>
    <polygon points="0,0 -19,7 -12,39 36,28 34,-20 -1,-31 -26,-31 -27,-20"/>
   </object>
-  <object name="line1" type="zone" x="280" y="11">
+  <object id="4" name="line1" type="zone" x="280" y="11">
    <properties>
     <property name="zonetype" value="zonevalue"/>
    </properties>
@@ -655,10 +664,14 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="1073741830"/>
    <tile gid="0"/>
+   <tile gid="1073741835"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="1073741830"/>
    <tile gid="0"/>
+   <tile gid="536870949"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -708,12 +721,15 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="1073741830"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="1073741830"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="1073741830"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -753,15 +769,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="1073741863"/>
+   <tile gid="1073741863"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>

@@ -185,13 +185,11 @@ class Debug {
                 //create the debug renderer and view
             batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
                 //create a camera
-            view = new Camera();
+            view = new Camera({ camera_name:'debug_batcher_camera' });
                 //set the camera of the batcher
             batcher.view = view;
                 //Also, set the layer so it renders last
             batcher.layer = 999;
-
-            Luxe.renderer.add_batch( batcher );
 
             overlay = new QuadGeometry({
                 x:0, y:0,
@@ -425,7 +423,7 @@ class Debug {
         }
 
             //update the title
-        debug_inspector._title_text.text = "[ " + current_view.name + " ] " + Maths.fixed(Luxe.dt,5) + ' / ' + Maths.fixed(dt_average,5);
+        debug_inspector._title_text.text = '[${current_view.name}] / ${Math.round(1/dt_average)} / ${Maths.fixed(Luxe.dt,5)} / ${Maths.fixed(dt_average,5)}';
 
         for(view in views) {
             view.process();

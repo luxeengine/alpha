@@ -10,7 +10,7 @@ import luxe.Log.log;
 @:noCompletion typedef EmitHandler = Dynamic->Void;
 @:noCompletion typedef HandlerList = Array<EmitHandler>;
 
-@:noCompletion private typedef EmitNode<T> = { event : T, handler:EmitHandler, ?pos:haxe.PosInfos }
+@:noCompletion private typedef EmitNode<T> = { event : T, handler:EmitHandler #if debug, ?pos:haxe.PosInfos #end }
 
 
 /** A simple event emitter, used as a base class for systems that want to handle direct connections to named events */
@@ -36,14 +36,14 @@ class Emitter<ET:Int> {
     } //new
 
         /** Emit a named event */
-    @:noCompletion public function emit<T>( event:ET, ?data:T, ?pos:haxe.PosInfos  ) {
+    @:noCompletion public function emit<T>( event:ET, ?data:T #if debug, ?pos:haxe.PosInfos #end ) {
 
         _check();
 
         var list = bindings.get(event);
         if(list != null && list.length > 0) {
             for(handler in list) {
-                _verboser('emit / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
+                #if debug _verboser('emit / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}'); #end
                 handler(data);
             }
         }
@@ -55,29 +55,29 @@ class Emitter<ET:Int> {
     } //emit
 
         /** connect a named event to a handler */
-    @:noCompletion public function on<T>(event:ET, handler: T->Void, ?pos:haxe.PosInfos ) {
+    @:noCompletion public function on<T>(event:ET, handler: T->Void #if debug, ?pos:haxe.PosInfos #end ) {
 
         _check();
 
-        _verbose('on / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
+        #if debug _verbose('on / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}'); #end
 
         if(!bindings.exists(event)) {
 
             bindings.set(event, [handler]);
-            connected.push({ handler:handler, event:event, pos:pos });
+            connected.push({ handler:handler, event:event #if debug, pos:pos #end });
 
         } else {
             var list = bindings.get(event);
             if(list.indexOf(handler) == -1) {
                 list.push(handler);
-                connected.push({ handler:handler, event:event, pos:pos });
+                connected.push({ handler:handler, event:event #if debug, pos:pos #end });
             }
         }
 
     } //on
 
         /** disconnect a named event and handler. returns true on success, or false if event or handler not found */
-    @:noCompletion public function off<T>(event:ET, handler: T->Void, ?pos:haxe.PosInfos ) : Bool {
+    @:noCompletion public function off<T>(event:ET, handler: T->Void #if debug, ?pos:haxe.PosInfos #end ) : Bool {
 
         _check();
 
@@ -85,7 +85,7 @@ class Emitter<ET:Int> {
 
         if(bindings.exists(event)) {
 
-            _verbose('off / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
+            #if debug _verbose('off / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}'); #end
 
             _to_remove.push({ event:event, handler:handler });
 
