@@ -54,10 +54,7 @@ class LuxeApp {
 
         var _snow_config : SnowConfig = {
             has_loop : {{toString snow.config.has_loop}},
-            config_custom_assets : {{toString snow.config.custom_assets}},
-            config_custom_runtime : {{toString snow.config.custom_runtime}},
-            config_runtime_path : '{{toString snow.config.runtime_path}}',
-            config_assets_path : '{{toString snow.config.assets_path}}',
+            config_path : '{{toString snow.config.config_path}}',
             app_package : '{{toString project.app.package}}'
         };
 
