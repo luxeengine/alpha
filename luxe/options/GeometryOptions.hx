@@ -69,8 +69,6 @@ typedef QuadGeometryOptions = {
     @:optional var flipx : Bool;
         /** Whether or not the quad is flipped vertically */
     @:optional var flipy : Bool;
-        /** An optional UV texture space rectangle for the quad */
-    @:optional var uv : Rectangle;
 
 } //QuadGeometryOptions
 
