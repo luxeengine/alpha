@@ -43,8 +43,6 @@ class Geometry {
     var vb_colors : GLBuffer;
     var vb_normals : GLBuffer;
 
-    var uniforms : Uniforms;
-
 //End section
 
         //Batcher information
@@ -187,7 +185,6 @@ class Geometry {
 
             //:todo: This is WIP/volatile and not considered api
         if(buffer_based) create_vbos();
-        uniforms = new Uniforms();
 
     } //new
 
@@ -239,28 +236,9 @@ class Geometry {
 
         }
 
-        key = null;
-        color = null;
-        state = null;
-        _final_vert_position = null;
-        batchers = null;
-        uuid = null;
-        id = null;
-        shadow_texture = null;
-        shadow_shader = null;
-        vertices = null;
-
         if(transform != null) {
             transform.destroy();
             transform = null;
-        }
-
-        destroy_vbos();
-        if(buffer_pos != null) {
-            buffer_pos = null;
-            buffer_tcoords = null;
-            buffer_colors = null;
-            buffer_normals = null;
         }
 
         dropped = true;
@@ -683,11 +661,9 @@ class Geometry {
 
     function set_color(val : Color) : Color {
 
-        if(vertices != null && vertices.length > 0) {
-            for(v in vertices) {
-                v.color = val;
-            } //for each vertex
-        }
+        for(v in vertices) {
+            v.color = val;
+        } //for each vertex
 
         return color = val;
 

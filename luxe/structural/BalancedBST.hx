@@ -16,7 +16,6 @@ package luxe.structural;
 */
 
 @:generic
-@:allow(luxe.structural.BalancedBSTIterator)
 class BalancedBST<K,T> {
 
         /** The tree root node */
@@ -26,34 +25,41 @@ class BalancedBST<K,T> {
         /** Whether or not the tree is empty (i.e root == null) */
     public var empty (get, null) : Bool;
 
+        /** Internal array cache for iterator :todo : short term */
+    @:noCompletion public var _array:Array<T>;
+
         /** Create a new balanced BST with the given comparison function */
     public function new( compare_function : K->K->Int ) {
 
         compare = compare_function;
+        _array = [];
 
     } //new
 
 //Public API
 
         /** Return the number of nodes in the tree */
-    public inline function size() {
+    public function size() {
 
         return node_count(root);
 
     } //size
 
         /** Return the depth of the tree */
-    public inline function depth() {
+    public function depth() {
 
         return node_depth(root);
 
     } //depth
 
         /** Insert a node into the tree */
-    public inline function insert( _key:K, _value:T ) {
+    public function insert( _key:K, _value:T ) {
 
         root = node_insert( root, _key, _value );
         root.color = NodeColor.black;
+
+        _array = null;
+        _array = toArray();
 
     } //insert
 
@@ -137,6 +143,9 @@ class BalancedBST<K,T> {
             root.color = NodeColor.black;
         }
 
+        _array = null;
+        _array = toArray();
+
         return true;
 
     } //remove
@@ -153,6 +162,9 @@ class BalancedBST<K,T> {
         if(root != null) {
             root.color = NodeColor.black;
         }
+
+        _array = null;
+        _array = toArray();
 
         return true;
 
@@ -171,6 +183,9 @@ class BalancedBST<K,T> {
         if(root != null ) {
             root.color = NodeColor.black;
         }
+
+        _array = null;
+        _array = toArray();
 
         return true;
 
@@ -228,10 +243,11 @@ class BalancedBST<K,T> {
 
     } //keys
 
-        /** returns an iterator from a conversion to array of this tree. Usable as `for(item in tree)` */
-    public inline function iterator() {
+        /** returns an iterator from a conversion to array of this tree. Usable as `for(item in tree)`   
+            :todo: This should traverse directly and implement IIterator */
+    public function iterator() : Iterator<T> {
 
-        return new BalancedBSTIterator<K,T>(this);
+        return _array.iterator();
         // return toArray().iterator();
 
     } //iterator
@@ -290,7 +306,7 @@ class BalancedBST<K,T> {
     } //node_depth
 
         /** the node count/children of a single node */
-    inline function node_count( _node:BalancedBSTNode<K,T> ) {
+    function node_count( _node:BalancedBSTNode<K,T> ) {
 
         return _node == null ? 0 : _node.nodecount;
 
@@ -305,6 +321,7 @@ class BalancedBST<K,T> {
 
         } //_node
 
+                //use the comparison function
             var comparison = compare(_key, _node.key);
 
             if(comparison < 0) {
@@ -340,7 +357,7 @@ class BalancedBST<K,T> {
     } //node_insert
 
         /* make sure the node count is up to date on a given node */
-    inline function node_update_count( _node:BalancedBSTNode<K,T> ) {
+    function node_update_count( _node:BalancedBSTNode<K,T> ) {
 
         _node.nodecount = node_count(_node.left) + node_count(_node.right) + 1;
 
@@ -625,7 +642,7 @@ class BalancedBST<K,T> {
 
     } //swap_color
 
-    inline function move_red_left( _node:BalancedBSTNode<K,T> ) : BalancedBSTNode<K,T> {
+    function move_red_left( _node:BalancedBSTNode<K,T> ) : BalancedBSTNode<K,T> {
 
         swap_color(_node);
 
@@ -637,7 +654,7 @@ class BalancedBST<K,T> {
         return _node;
     }
 
-    inline function move_red_right( _node:BalancedBSTNode<K,T> ) : BalancedBSTNode<K,T> {
+    function move_red_right( _node:BalancedBSTNode<K,T> ) : BalancedBSTNode<K,T> {
 
         swap_color(_node);
 
@@ -648,7 +665,7 @@ class BalancedBST<K,T> {
         return _node;
     }
 
-    inline function balance( _node:BalancedBSTNode<K,T> ) : BalancedBSTNode<K,T> {
+    function balance( _node:BalancedBSTNode<K,T> ) : BalancedBSTNode<K,T> {
 
         if (is_red(_node.right))    {
             _node = rotate_left(_node);
@@ -669,84 +686,6 @@ class BalancedBST<K,T> {
     } //balance
 
 } //BalancedBST
-
-
-@:generic
-class BalancedBSTIterator<K,T> {
-
-    var tree : BalancedBST<K,T>;
-    var current : BalancedBSTNode<K,T>;
-    var rightest : BalancedBSTNode<K,T>;
-
-    public inline function new(_tree:BalancedBST<K,T>) {
-
-        if(_tree == null) return;
-        if(_tree.root == null) return;
-
-        tree = _tree;
-        current = _min(tree.root);
-        rightest = _max(tree.root);
-
-    } //new
-
-    public inline function hasNext():Bool {
-
-        if(current == null || rightest == null) return false;
-
-        return tree.compare(current.key, rightest.key) <= 0;
-
-    } //hasNext
-
-    public inline function next() {
-        var _temp = current;
-        current = update_next();
-        return _temp.value;
-    }
-
-    inline function update_next() {
-
-        if(!hasNext()) return null;
-        if(current.right!=null) return _min(current.right);
-
-            var _next = null;
-            var _temp = tree.root;
-            while(_temp != null) {
-
-                var _comp = tree.compare(current.key, _temp.key);
-                if(_comp < 0) {
-                    _next = _temp;
-                    _temp = _temp.left;
-                } else if(_comp > 0){
-                    _temp = _temp.right;
-                } else {
-                    current = _next;
-                    break;
-                }
-
-            } //while
-
-        return _next;
-
-    } //update_next
-
-    inline function _min(_node:BalancedBSTNode<K,T>) {
-
-        while(_node.left != null) _node = _node.left;
-
-        return _node;
-
-    } //_min
-
-    inline function _max(_node:BalancedBSTNode<K,T>) {
-
-        while(_node.right != null) _node = _node.right;
-
-        return _node;
-
-    } //_max
-
-} //BalancedBSTIterator
-
 
 @:noCompletion
 private class NodeColor {

@@ -142,14 +142,7 @@ class Matrix {
 
     public inline function float32array() : snow.api.buffers.Float32Array {
 
-        var i = 0;
-
-        while(i < 16) {
-            _float32array[i] = elements[i];
-            ++i;
-        }
-
-        return _float32array;
+        return new snow.api.buffers.Float32Array( elements );
 
     } //float32array
 

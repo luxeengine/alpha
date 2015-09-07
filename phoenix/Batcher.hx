@@ -22,7 +22,7 @@ class Batcher {
     public var groups : Map<Int, Array<BatchGroup> >;
     public var tree_changed : Bool = false;
 
-    public var pos_list    : Float32Array;
+    public var pos_list   : Float32Array;
     public var tcoord_list : Float32Array;
     public var color_list  : Float32Array;
     public var normal_list : Float32Array;
@@ -30,6 +30,18 @@ class Batcher {
     public var max_verts : Int = 0;
     public var max_floats : Int = 0;
     public var vert_count : Int = 0;
+
+    public var proj_attribute : GLUniformLocation;
+    public var view_attribute : GLUniformLocation;
+
+    public var tex0_attribute : GLUniformLocation;
+    public var tex1_attribute : GLUniformLocation;
+    public var tex2_attribute : GLUniformLocation;
+    public var tex3_attribute : GLUniformLocation;
+    public var tex4_attribute : GLUniformLocation;
+    public var tex5_attribute : GLUniformLocation;
+    public var tex6_attribute : GLUniformLocation;
+    public var tex7_attribute : GLUniformLocation;
 
     public var renderer : Renderer;
     public var view : Camera;
@@ -60,6 +72,7 @@ class Batcher {
         id = Luxe.utils.uniqueid();
         renderer = _r;
         sequence = ++_sequence_key;
+        _dropped = [];
 
         geometry = new BalancedBST<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
@@ -94,8 +107,6 @@ class Batcher {
         } else {
             name = _name;
         }
-
-        _dropped = [];
 
     } //new
 
@@ -180,6 +191,17 @@ class Batcher {
         max_floats = 0;
         vert_count = 0;
 
+        proj_attribute = null;
+        view_attribute = null;
+        tex0_attribute = null;
+        tex1_attribute = null;
+        tex2_attribute = null;
+        tex3_attribute = null;
+        tex4_attribute = null;
+        tex5_attribute = null;
+        tex6_attribute = null;
+        tex7_attribute = null;
+
         renderer = null;
         view = null;
 
@@ -209,11 +231,42 @@ class Batcher {
 
     } //remove
 
+    public inline function shader_activate( _shader:Shader ) {
+
+            //apply shader override, if it is set
+        if(shader != null) {
+            _shader = shader;
+        }
+
+            //activate (GL.useProgram) the shader
+        _shader.activate();
+
+            //Matrices
+        proj_attribute  = _shader.proj_attribute;
+        view_attribute  = _shader.view_attribute;
+            //Textures
+
+        tex0_attribute = _shader.tex0_attribute;
+        tex1_attribute = _shader.tex1_attribute;
+        tex2_attribute = _shader.tex2_attribute;
+        tex3_attribute = _shader.tex3_attribute;
+        tex4_attribute = _shader.tex4_attribute;
+        tex5_attribute = _shader.tex5_attribute;
+        tex6_attribute = _shader.tex6_attribute;
+        tex7_attribute = _shader.tex7_attribute;
+
+            //and any uniforms they defined
+        _shader.apply_uniforms();
+
+            //undo any changes to be sure
+        Luxe.renderer.state.activeTexture(GL.TEXTURE0);
+
+    } //shader_activate
+
+
         //Run the batcher over the current list of geometry
         //and submit it to the graphics card for drawing
     public var state : phoenix.BatchState;
-
-    var _dropped:Array<Geometry>;
 
     public function batch( persist_immediate : Bool = false ) {
 
@@ -302,10 +355,7 @@ class Batcher {
                         // If the geometry is immediate get rid of it (unless the flag to keep immediate geometry)
                         // in the list was specified...i.e for drawing multiple passes etc
                     if( !persist_immediate && geom.immediate ) {
-                        //set the flag to avoid redrawing at all
-                        geom.dropped = true;
-                        //store to be dropped after iteration
-                        _dropped.push(geom);
+                        geom.drop();
                     } //!persist_immediate && geom.immediate
 
                 } //geom.visible
@@ -331,9 +381,11 @@ class Batcher {
             //cleanup
         state = null;
 
-        prune();
+        // prune();
 
     } //batch
+
+    var _dropped : Array<Geometry>;
 
     inline function prune() {
 
@@ -377,15 +429,6 @@ class Batcher {
 
     } //update_view
 
-    @:noCompletion
-    inline 
-    public function apply_default_uniforms(_shader:Shader) {
-        if(!_shader.no_default_uniforms) {
-            _shader.set_matrix4_arr('projectionMatrix', view.proj_arr);
-            _shader.set_matrix4_arr('modelViewMatrix', view.view_inverse_arr);
-        }
-    }
-
     //:todo: this is not part of the api
     //       and should be considered volatile/WIP
     @:noCompletion
@@ -396,15 +439,14 @@ class Batcher {
 
         if(!_geom.visible) return;
         if(_shader == null) _shader = _geom.shader;
-        if(shader != null) _shader = shader;
 
-        _shader.activate();
-        apply_default_uniforms(_shader);
-        _geom.uniforms.apply();
+        shader_activate(_shader);
 
         var _length = _geom.vertices.length;
         var _length4 = _length * 4;
         var _updated = _geom.update_buffers();
+
+        _enable_attributes();
 
         if(_updated) {
             _geom.bind_and_upload();
@@ -420,11 +462,15 @@ class Batcher {
         _stats.draw_calls++;
         _stats.vert_count += _length;
 
+        _disable_attributes();
+
     } //submit_geometry
 
     // inline
     @:noCompletion
     public function submit_buffers(type:PrimitiveType, _pos:Float32Array, _tcoords:Float32Array, _colors:Float32Array, _normals:Float32Array) {
+
+        _enable_attributes();
 
         var pb = GL.createBuffer();
         var cb = GL.createBuffer();
@@ -454,6 +500,9 @@ class Batcher {
             //Draw
         GL.drawArrays( type, 0, Std.int(_pos.length/4) );
 
+            //Disable attributes
+        _disable_attributes();
+
         GL.deleteBuffer(pb);
         GL.deleteBuffer(cb);
         GL.deleteBuffer(tb);
@@ -477,6 +526,8 @@ class Batcher {
 
         var _updated = geom.update_buffers();
 
+        _enable_attributes();
+
         if(_updated) {
             geom.bind_and_upload();
         } else {
@@ -486,6 +537,7 @@ class Batcher {
         geom.draw();
 
             //Disable attributes
+        _disable_attributes();
         static_batched_count++;
         draw_calls++;
 
@@ -556,6 +608,24 @@ class Batcher {
 
     } //geometry_batch
 
+
+//Shader related attribute setup
+
+    @:noCompletion
+    inline
+    public function _enable_attributes() {
+
+            //Update the GL Matrices
+        GL.uniformMatrix4fv( proj_attribute, false, view.proj_arr );
+        GL.uniformMatrix4fv( view_attribute, false, view.view_inverse_arr );
+
+    } //_enable_attributes
+
+    @:noCompletion
+    inline
+    public function _disable_attributes() {
+
+    } //_disable_attributes
 
 //Internal
 

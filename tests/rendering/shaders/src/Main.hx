@@ -11,8 +11,7 @@ class Main extends luxe.Game {
 
 
 	var distort_sprite : Sprite;
-    var hue_sprite : Sprite;
-	var hue_sprite2 : Sprite;
+	var hue_sprite : Sprite;
 	var level_sprite : Sprite;
 
 	var level_tiltshift : Shader;
@@ -53,16 +52,9 @@ class Main extends luxe.Game {
     	});
 
     	hue_sprite = new Sprite({
-            texture : luxe_tex,
-            pos : new Vector(_size+(_size*0.05),_size),
-            size : new Vector(_size,_size),
-            depth : 2
-        });
-
-        hue_sprite2 = new Sprite({
     		texture : luxe_tex,
-    		pos : new Vector(_size+(_size*0.05),_size/2),
-            size : new Vector(_size/2,_size/2),
+    		pos : new Vector(_size+(_size*0.05),_size),
+            size : new Vector(_size,_size),
             depth : 2
     	});
 
@@ -124,31 +116,6 @@ class Main extends luxe.Game {
     } //onmousemove
 
     override function onkeyup( e:KeyEvent ) {
-
-        if(e.keycode == Key.key_2) {
-            Luxe.camera.pos.x+=30;
-        }
-
-        if(e.keycode == Key.key_3) {
-            if(Luxe.renderer.batcher.shader != null) {
-                Luxe.renderer.batcher.shader = null;
-            } else {
-                Luxe.renderer.batcher.shader = hue_shader;
-            }
-        }
-
-        if(e.keycode == Key.key_4) {
-            if(Luxe.renderer.batcher.shader != null) {
-                Luxe.renderer.batcher.shader = null;
-            } else {
-                Luxe.renderer.batcher.shader = distort_shader;
-            }
-        }
-
-        if(e.keycode == Key.key_1) {
-            Luxe.camera.pos.x-=30;
-        }
-
 
         if(e.keycode == Key.escape) {
             Luxe.shutdown();
