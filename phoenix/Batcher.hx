@@ -326,6 +326,17 @@ class Batcher {
 
         }
 
+            //disable any states set by the batches
+        state.deactivate(this);
+            //cleanup
+        state = null;
+
+        prune();
+
+    } //batch
+
+    inline function prune() {
+
             //clean up dropped geometry
         if(_dropped.length > 0) {
             for(geom in _dropped) {
@@ -336,12 +347,7 @@ class Batcher {
             _dropped = [];
         }
 
-            //disable any states set by the batches
-        state.deactivate(this);
-            //cleanup
-        state = null;
-
-    }
+    } //prune
 
     inline
     public function draw( ?persist_immediate:Bool = false ) {
