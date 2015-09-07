@@ -64,26 +64,23 @@ class BatchState {
 
             } //geom_state.texture !=null
 
-            if(geom_state.shader != null) {
+            var _shader = batcher.shader == null ? geom_state.shader : batcher.shader;
 
-                if(last_shader_id != geom_state.shader.program) {
-                        //activate it and store the reference to it
-                    batcher.shader_activate(geom_state.shader);
-                    last_shader_id = geom_state.shader.program;
-                }
-
-            } else {
+            if(_shader == null) {
 
                     //fallback onto the default shaders
                 if(geom_state.texture != null) {
-                        //if there is a texture attached, use the textured shader
-                    batcher.shader_activate( batcher.renderer.shaders.textured.shader );
-                    last_shader_id = batcher.renderer.shaders.textured.shader.program;
+                    _shader = batcher.renderer.shaders.textured.shader;
                 } else {
-                    batcher.shader_activate( batcher.renderer.shaders.plain.shader );
-                    last_shader_id = batcher.renderer.shaders.plain.shader.program;
+                    _shader = batcher.renderer.shaders.plain.shader;
                 }
 
+            } //_shader
+
+            if(last_shader_id != _shader.program) {
+                batcher.apply_default_uniforms(_shader);
+                _shader.activate();
+                last_shader_id = _shader.program;
             }
 
 
