@@ -93,6 +93,9 @@ class RectangleGeometry extends Geometry {
             //tl
         vertices[7].pos.set_xy( 0, 0 );
 
+            //
+        transform.pos = transform.pos.set_xy( _x, _y );
+
     } //set_xywh
 
         /** Set the vertices based on a rectangle instance */
