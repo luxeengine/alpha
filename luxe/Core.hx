@@ -501,20 +501,24 @@ extends
 
             #if !no_debug_console
 
-                debug.start(Tag.debug_batch);
+                var _batch = debug.batcher;
+                
+                if(_batch.enabled) {                
+                
+                    debug.start(Tag.debug_batch);
+                        
+                        _batch.draw();
 
-                    var _batch = debug.batcher;
-                    
-                    _batch.draw();
+                        renderer.stats.geometry_count += _batch.geometry.size();
+                        renderer.stats.dynamic_batched_count += _batch.dynamic_batched_count;
+                        renderer.stats.static_batched_count += _batch.static_batched_count;
+                        renderer.stats.visible_count += _batch.visible_count;
+                        renderer.stats.draw_calls += _batch.draw_calls;
+                        renderer.stats.vert_count += _batch.vert_count;
 
-                    renderer.stats.geometry_count += _batch.geometry.size();
-                    renderer.stats.dynamic_batched_count += _batch.dynamic_batched_count;
-                    renderer.stats.static_batched_count += _batch.static_batched_count;
-                    renderer.stats.visible_count += _batch.visible_count;
-                    renderer.stats.draw_calls += _batch.draw_calls;
-                    renderer.stats.vert_count += _batch.vert_count;
+                    debug.end(Tag.debug_batch);
 
-                debug.end(Tag.debug_batch);
+                } //_batch.enabled
 
             #end
 
@@ -877,7 +881,8 @@ extends
             gamepad : gamepad,
             button : -1,
             axis : axis,
-            value : value
+            value : value,
+            id : null
         }
 
         if(!shutting_down) {
@@ -900,7 +905,8 @@ extends
             gamepad : gamepad,
             button : button,
             axis : -1,
-            value : value
+            value : value,
+            id : null
         }
 
         if(!shutting_down) {
@@ -924,7 +930,8 @@ extends
             gamepad : gamepad,
             button : button,
             axis : -1,
-            value : value
+            value : value,
+            id : null
         }
 
         if(!shutting_down) {
@@ -937,7 +944,7 @@ extends
 
     } //ongamepadup
 
-    override function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
+    override function ongamepaddevice( gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float ) {
 
         if(!inited) return;
 
@@ -960,7 +967,8 @@ extends
             gamepad : gamepad,
             button : -1,
             axis : -1,
-            value : 0
+            value : 0,
+            id : id
         }
 
         if(!shutting_down) {

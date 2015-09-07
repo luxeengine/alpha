@@ -417,14 +417,14 @@ class ParticleEmitter extends Component {
             unspawn(p, false);
         }
 
-        active_particles.splice(0, active_particles.length);
+        active_particles = null;
+        active_particles = [];
 
     } //kill
 
         //component destroy handling
     override function ondestroy() {
 
-        active_particles.splice(0,active_particles.length);
         active_particles = null;
 
         if(particle_cache != null) {
@@ -631,7 +631,8 @@ class ParticleEmitter extends Component {
         }
 
             //clean up the dead list
-        _to_remove.splice(0,_to_remove.length);
+        _to_remove = null;
+        _to_remove = [];
 
     } //update
 

@@ -64,13 +64,14 @@ class TiledMap extends Tilemap {
         for(_tileset in tiledmap_data.tilesets) {
 
             var _tileset_id = haxe.io.Path.join([options.asset_path,_tileset.texture_name]);
+            var _texture = Luxe.resources.texture(_tileset_id);
 
-            _debug('loading $_tileset_id');
+            assertnull(_texture, 'Tiled; trying to load $_tileset_id but texture not found in resources');
 
             add_tileset({
 
                 name : _tileset.name,
-                texture : Luxe.resources.texture(_tileset_id),
+                texture : _texture,
                 first_id : _tileset.first_id,
                 tile_width : _tileset.tile_width,
                 tile_height : _tileset.tile_height,

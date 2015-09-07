@@ -63,7 +63,11 @@ class QuadGeometry extends Geometry {
 
         transform.pos = transform.pos.set_xy(_x, _y);
 
-        uv_space( 0, 0, 1, 1 );
+        if(options.uv != null) {
+            uv(options.uv);
+        } else {
+            uv_space( 0, 0, 1, 1 );
+        }
 
         if(options.visible != null) visible = options.visible;
         if(options.immediate != null) immediate = options.immediate;
@@ -216,7 +220,6 @@ class QuadGeometry extends Geometry {
 
     } //set
 
-        //:todo: this should just reuse not readd
  	public function set_xywh( _x:Float, _y:Float, _w:Float, _h:Float ) {
 
         if(vertices.length == 0) return;

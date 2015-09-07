@@ -10,22 +10,14 @@ import luxe.options.GeometryOptions.RectangleGeometryOptions;
 
 class RectangleGeometry extends Geometry {
 
-
+        /** Create a new Rectangle goemetry with given options */
     public function new( ?options : RectangleGeometryOptions ) {
+
+        options.primitive_type = PrimitiveType.lines;
 
         super(options);
 
-        if(options == null) {
-            return;
-        }
-
-        set(options);
-
-    } //new
-
-    public function set( options:RectangleGeometryOptions ) {
-
-        vertices.splice(0, vertices.length);
+        if(options == null) return;
 
         var _x : Float = options.x;
         var _y : Float = options.y;
@@ -40,42 +32,73 @@ class RectangleGeometry extends Geometry {
         }
 
             //tl
-        var vert0 : Vertex = new Vertex( new Vector( 0, 0 ) );
-            vert0.uv.uv0.set_uv(0,0);
+        add(new Vertex( new Vector( 0, 0 ), color ));
             //tr
-        var vert1 : Vertex = new Vertex( new Vector( _w, 0 ) );
-            vert1.uv.uv0.set_uv(1,0);
+        add(new Vertex( new Vector( _w, 0 ), color ));
 
             //tr
-        var vert2 : Vertex = new Vertex( new Vector( _w, 0 ) );
-            vert2.uv.uv0.set_uv(1,0);
+        add(new Vertex( new Vector( _w, 0 ), color ));
             //br
-        var vert3 : Vertex = new Vertex( new Vector( _w, _h ) );
-            vert3.uv.uv0.set_uv(1,1);
+        add(new Vertex( new Vector( _w, _h ), color ));
 
             //br
-        var vert4 : Vertex = new Vertex( new Vector( _w, _h ) );
-            vert4.uv.uv0.set_uv(1,1);
+        add(new Vertex( new Vector( _w, _h ), color ));
             //bl
-        var vert5 : Vertex = new Vertex( new Vector( 0, _h ) );
-            vert5.uv.uv0.set_uv(0,1);
+        add(new Vertex( new Vector( 0, _h ), color ));
 
             //bl
-        var vert6 : Vertex = new Vertex( new Vector( 0, _h ) );
-            vert6.uv.uv0.set_uv(0,1);
+        add(new Vertex( new Vector( 0, _h ), color ));
             //tl
-        var vert7 : Vertex = new Vertex( new Vector( 0, 0 ) );
-            vert7.uv.uv0.set_uv(0,0);
+        add(new Vertex( new Vector( 0, 0 ), color ));
 
-        add(vert0); add(vert1); add(vert2); add(vert3);
-        add(vert4); add(vert5); add(vert6); add(vert7);
-
-        primitive_type = PrimitiveType.lines;
         immediate = def(options.immediate, false);
         visible = def(options.visible, true);
-        color = def(options.color, new Color());
 
-        transform.pos = new Vector( _x, _y );
+        transform.pos = transform.pos.set_xy( _x, _y );
+
+            //:todo: these aren't actually needed, 
+            //but kept short term in case
+        // vertices[0].uv.uv0.set_uv(0,0);
+        // vertices[1].uv.uv0.set_uv(1,0);
+        // vertices[2].uv.uv0.set_uv(1,0);
+        // vertices[3].uv.uv0.set_uv(1,1);
+        // vertices[4].uv.uv0.set_uv(1,1);
+        // vertices[5].uv.uv0.set_uv(0,1);
+        // vertices[6].uv.uv0.set_uv(0,1);
+        // vertices[7].uv.uv0.set_uv(0,0);
+
+    } //new
+
+        /** Set the vertices from values */
+    public function set_xywh( _x:Float, _y:Float, _w:Float, _h:Float ) {
+
+        if(vertices.length == 0) return;
+
+        vertices[0].pos.set_xy( 0, 0 );
+            //tr
+        vertices[1].pos.set_xy( _w, 0 );
+
+            //tr
+        vertices[2].pos.set_xy( _w, 0 );
+            //br
+        vertices[3].pos.set_xy( _w, _h );
+
+            //br
+        vertices[4].pos.set_xy( _w, _h );
+            //bl
+        vertices[5].pos.set_xy( 0, _h );
+
+            //bl
+        vertices[6].pos.set_xy( 0, _h );
+            //tl
+        vertices[7].pos.set_xy( 0, 0 );
+
+    } //set_xywh
+
+        /** Set the vertices based on a rectangle instance */
+    public inline function set( _rect:luxe.Rectangle ) {
+
+        set_xywh(_rect.x, _rect.y, _rect.w, _rect.h);
 
     } //set
 

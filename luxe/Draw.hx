@@ -107,22 +107,22 @@ class Draw {
         if(options.angle != null) { _angle = options.angle; }
         if(options.solid != null) { _solid = options.solid; }
 
-        var _geometry = new Geometry(options);
-
         if(!_solid) {
-            _geometry.primitive_type = PrimitiveType.lines;
+            options.primitive_type = PrimitiveType.lines;
         } else {
-            _geometry.primitive_type = PrimitiveType.triangle_fan;
+            options.primitive_type = PrimitiveType.triangle_fan;
         }
 
+        var _geometry = new Geometry(options);
         var _two_pi : Float = 2 * Math.PI;
         var _sides_over_pi : Float = Math.PI / _sides;
         var _sides_over_twopi : Float = _two_pi / _sides;
         var _angle_rad : Float = luxe.utils.Maths.radians(_angle);
+        var _color = options.color;
 
         if(_solid) {
                 //add the center vertex
-            _geometry.add( new Vertex( new Vector( _x, _y ), options.color ) );
+            _geometry.add( new Vertex( new Vector( _x, _y ), _color ) );
         }
 
         var _count : Int = (_solid == false) ? _sides : _sides+1;
@@ -134,12 +134,12 @@ class Draw {
             var __y   = (_radius * Math.cos(_angle_rad + (_sides_over_pi) + (i * (_sides_over_twopi))));
             var __pos = new Vector( _x + __x, _y + __y, 0 );
 
-            _geometry.add( new Vertex( __pos, options.color ) );
+            _geometry.add( new Vertex( __pos, _color ) );
 
             if(!_solid) {
                 if(i > 0) {
                     var _last = _points[i - 1];
-                    _geometry.add( new Vertex( __pos, options.color ) );
+                    _geometry.add( new Vertex( __pos, _color ) );
                 }
             }
 
@@ -148,7 +148,7 @@ class Draw {
         } //for all sides
 
         if(!_solid) {
-            _geometry.add( new Vertex( _points[0], options.color ) );
+            _geometry.add( new Vertex( _points[0], _color ) );
         }
 
         return _geometry;

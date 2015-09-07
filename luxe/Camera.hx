@@ -78,6 +78,7 @@ class Camera extends Entity {
         if(options != null) {
             if(options.name != null) {
                 _name = options.name;
+                options.camera_name = '$_name.view';
             }
         } else {
             options = {

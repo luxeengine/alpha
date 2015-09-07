@@ -2,6 +2,7 @@ package luxe.components.physics.nape;
 
 #if nape
 
+import luxe.Log.*;
 import nape.phys.Body;
 import nape.phys.BodyType;
 import nape.shape.Polygon;
@@ -20,6 +21,8 @@ typedef BoxColliderOptions = {
     var w : Float;
         /** the height of the box */
     var h : Float;
+        /** the rotation of the box (in degrees) */
+    @:optional var rotation : Float;
 
 } //BoxColliderOptions
 
@@ -42,6 +45,7 @@ class BoxCollider extends NapeBody {
             var verts = Polygon.box(options.w, options.h);
             body.shapes.add(new Polygon(verts, options.material, options.filter));
             body.position.setxy(options.x, options.y);
+            body.rotation = def(options.rotation, 0);
 
         post_add();
 
