@@ -12,10 +12,272 @@ import phoenix.Matrix;
 import phoenix.Batcher;
 
 import snow.api.Promise;
+import snow.api.buffers.Float32Array;
 import snow.modules.opengl.GL;
 import snow.types.Types.Error;
 import snow.system.assets.Asset;
 
+
+@:allow(phoenix.Shader)
+@:allow(phoenix.geometry.Geometry)
+class Uniforms {
+
+    var ints        : Map<String, Uniform<Int>>;
+    var floats      : Map<String, Uniform<Float>>;
+    var vector2s    : Map<String, Uniform<Vector>>;
+    var vector3s    : Map<String, Uniform<Vector>>;
+    var vector4s    : Map<String, Uniform<Vector>>;
+    var matrix4s    : Map<String, Uniform<Matrix>>;
+    var matrix4arrs : Map<String, Uniform<Float32Array>>;
+    var colors      : Map<String, Uniform<Color>>;
+    var textures    : Map<String, Uniform<Texture>>;
+
+    var dirty_ints          : Array<Uniform<Int>>;
+    var dirty_floats        : Array<Uniform<Float>>;
+    var dirty_vector2s      : Array<Uniform<Vector>>;
+    var dirty_vector3s      : Array<Uniform<Vector>>;
+    var dirty_vector4s      : Array<Uniform<Vector>>;
+    var dirty_matrix4s      : Array<Uniform<Matrix>>;
+    var dirty_matrix4arrs   : Array<Uniform<Float32Array>>;
+    var dirty_colors        : Array<Uniform<Color>>;
+    var dirty_textures      : Array<Uniform<Texture>>;
+
+    public function new() {
+        clear();
+    } //new
+
+    function destroy() {
+        ints = null;
+        floats = null;
+        vector2s = null;
+        vector3s = null;
+        vector4s = null;
+        matrix4s = null;
+        colors = null;
+        textures = null;
+        dirty_ints = null;
+        dirty_floats = null;
+        dirty_vector2s = null;
+        dirty_vector3s = null;
+        dirty_vector4s = null;
+        dirty_matrix4s = null;
+        dirty_matrix4arrs = null;
+        dirty_colors = null;
+        dirty_textures = null;
+    }
+
+    function clear() {
+
+        destroy();
+
+        ints        = new Map();
+        floats      = new Map();
+        vector2s    = new Map();
+        vector3s    = new Map();
+        vector4s    = new Map();
+        matrix4s    = new Map();
+        matrix4arrs = new Map();
+        colors      = new Map();
+        textures    = new Map();
+
+        dirty_ints          = [];
+        dirty_floats        = [];
+        dirty_vector2s      = [];
+        dirty_vector3s      = [];
+        dirty_vector4s      = [];
+        dirty_matrix4s      = [];
+        dirty_matrix4arrs   = [];
+        dirty_colors        = [];
+        dirty_textures      = [];
+
+    } //clear
+
+    public inline function set_int( _name:String, _value:Int, _location:Location ) : Void {
+
+        var _int = ints.get(_name);
+
+        if(_int != null) {
+            _int.value = _value;
+        } else {
+            _int = new Uniform<Int>(_name, _value, _location);
+            ints.set(_name, _int);
+        }
+
+        dirty_ints.push(_int);
+
+    } //set_int
+
+    public inline function set_float( _name:String, _value:Float, _location:Location ) : Void {
+
+        var _float = floats.get(_name);
+        
+        if(_float != null) {
+            _float.value = _value;
+        } else {
+            _float = new Uniform<Float>(_name, _value, _location);
+            floats.set(_name, _float);
+        }
+
+        dirty_floats.push(_float);
+
+    } //set_float
+
+    public inline function set_vector2( _name:String, _value:Vector, _location:Location ) : Void {
+
+        var _vector2 = vector2s.get(_name);
+        
+        if(_vector2 != null) {
+            _vector2.value = _value;
+        } else {
+            _vector2 = new Uniform<Vector>(_name, _value, _location);
+            vector2s.set(_name, _vector2);
+        }
+
+        dirty_vector2s.push(_vector2);
+
+    } //set_vector2
+
+    public inline function set_vector3( _name:String, _value:Vector, _location:Location ) : Void {
+
+        var _vector3 = vector3s.get(_name);
+        
+        if(_vector3 != null) {
+            _vector3.value = _value;
+        } else {
+            _vector3 = new Uniform<Vector>(_name, _value, _location);
+            vector3s.set(_name, _vector3);
+        }
+
+        dirty_vector3s.push(_vector3);
+
+    } //set_vector3
+
+    public inline function set_vector4( _name:String, _value:Vector, _location:Location ) : Void {
+
+        var _vector4 = vector4s.get(_name);
+        
+        if(_vector4 != null) {
+            _vector4.value = _value;
+        } else {
+            _vector4 = new Uniform<Vector>(_name, _value, _location);
+            vector4s.set(_name, _vector4);
+        }
+
+        dirty_vector4s.push(_vector4);
+
+    } //set_vector4
+
+    public inline function set_matrix4( _name:String, _value:Matrix, _location:Location ) : Void {
+
+        var _matrix4 = matrix4s.get(_name);
+        
+        if(_matrix4 != null) {
+            _matrix4.value = _value;
+        } else {
+            _matrix4 = new Uniform<Matrix>(_name, _value, _location);
+            matrix4s.set(_name, _matrix4);
+        }
+
+        dirty_matrix4s.push(_matrix4);
+
+    } //set_matrix4
+
+    public inline function set_matrix4_arr( _name:String, _value:Float32Array, _location:Location ) : Void {
+
+        var _matrix4 = matrix4arrs.get(_name);
+        
+        if(_matrix4 != null) {
+            _matrix4.value = _value;
+        } else {
+            _matrix4 = new Uniform<Float32Array>(_name, _value, _location);
+            matrix4arrs.set(_name, _matrix4);
+        }
+
+        dirty_matrix4arrs.push(_matrix4);
+
+    } //set_matrix4_arr
+
+    public inline function set_color( _name:String, _value:Color, _location:Location ) : Void {
+
+        var _color = colors.get(_name);
+        
+        if(_color != null) {
+            _color.value = _value;
+        } else {
+            _color = new Uniform<Color>(_name, _value, _location);
+            colors.set(_name, _color);
+        }
+
+        dirty_colors.push(_color);
+
+    } //set_color
+
+    public inline function set_texture( _name:String, _value:Texture, _location:Location ) : Void {
+
+        var _texture = textures.get(_name);
+        
+        if(_texture != null) {
+            _texture.value = _value;
+        } else {
+            _texture = new Uniform<Texture>(_name, _value, _location);
+            textures.set(_name, _texture);
+        }
+
+        dirty_textures.push(_texture);
+
+    } //set_texture
+
+    //inline
+    public function apply() {
+
+        while(dirty_ints.length > 0) { 
+            var uf = dirty_ints.pop();
+            GL.uniform1i(uf.location, uf.value); 
+        }
+
+        while(dirty_floats.length > 0) { 
+            var uf = dirty_floats.pop();
+            GL.uniform1f(uf.location, uf.value); 
+        }
+
+        while(dirty_vector2s.length > 0) { 
+            var uf = dirty_vector2s.pop();
+            GL.uniform2f(uf.location, uf.value.x, uf.value.y); 
+        }
+
+        while(dirty_vector3s.length > 0) { 
+            var uf = dirty_vector3s.pop();
+            GL.uniform3f(uf.location, uf.value.x, uf.value.y, uf.value.z); 
+        }
+
+        while(dirty_vector4s.length > 0) { 
+            var uf = dirty_vector4s.pop();
+            GL.uniform4f(uf.location, uf.value.x, uf.value.y, uf.value.z, uf.value.w); 
+        }
+
+        while(dirty_colors.length > 0) { 
+            var uf = dirty_colors.pop();
+            GL.uniform4f(uf.location, uf.value.r, uf.value.g, uf.value.b, uf.value.a); 
+        }
+
+        while(dirty_textures.length > 0) { 
+            var uf = dirty_textures.pop();
+            GL.uniform1i(uf.location, uf.value.slot); uf.value.bind(); 
+        }
+
+        while(dirty_matrix4s.length > 0) { 
+            var uf = dirty_matrix4s.pop();
+            GL.uniformMatrix4fv(uf.location, false, uf.value.float32array()); 
+        }
+
+        while(dirty_matrix4arrs.length > 0) { 
+            var uf = dirty_matrix4arrs.pop();
+            GL.uniformMatrix4fv(uf.location, false, uf.value); 
+        }
+
+    } //apply
+
+} //Uniforms
 
 class Shader extends Resource {
 
@@ -31,25 +293,11 @@ class Shader extends Resource {
     public var program : GLProgram;
     public var shader : GLShader;
 
+    public var no_default_uniforms : Bool = false;
     public var proj_attribute : Location;
     public var view_attribute : Location;
-    public var tex0_attribute : Location;
-    public var tex1_attribute : Location;
-    public var tex2_attribute : Location;
-    public var tex3_attribute : Location;
-    public var tex4_attribute : Location;
-    public var tex5_attribute : Location;
-    public var tex6_attribute : Location;
-    public var tex7_attribute : Location;
 
-    var uniform_int     : Map<String, Uniform<Int>>;
-    var uniform_float   : Map<String, Uniform<Float>>;
-    var uniform_vector2 : Map<String, Uniform<Vector>>;
-    var uniform_vector3 : Map<String, Uniform<Vector>>;
-    var uniform_vector4 : Map<String, Uniform<Vector>>;
-    var uniform_matrix4 : Map<String, Uniform<Matrix>>;
-    var uniform_color   : Map<String, Uniform<Color>>;
-    var uniform_texture : Map<String, Uniform<Texture>>;
+    public var uniforms:Uniforms;
 
     public function new( _options:ShaderOptions ) {
 
@@ -61,25 +309,30 @@ class Shader extends Resource {
 
         frag_id = _options.frag_id;
         vert_id = _options.vert_id;
+        no_default_uniforms = def(_options.no_default_uniforms, false);
 
-        uniform_int = new Map();
-        uniform_float = new Map();
-        uniform_vector2 = new Map();
-        uniform_vector3 = new Map();
-        uniform_vector4 = new Map();
-        uniform_matrix4 = new Map();
-        uniform_color = new Map();
-        uniform_texture = new Map();
+        uniforms = new Uniforms();
 
     } //new
 
     public inline function activate() {
 
+        use();
+
+        uniforms.apply();
+
+            //I dont remember what this was doing here exactly
+        Luxe.renderer.state.activeTexture(GL.TEXTURE0);
+
+    } //activate
+
+    public function use() {
+    
         if(program != null) {
             Luxe.renderer.state.useProgram( program );
         }
 
-    } //activate
+    } //use
 
     public inline function deactivate() {
 
@@ -102,92 +355,42 @@ class Shader extends Resource {
 
     } //clone
 
-   public inline function set_int( _name:String, _value:Int ) : Void {
-
-        if(uniform_int.exists(_name)) {
-            uniform_int.get(_name).value = _value;
-        } else {
-            uniform_int.set(_name, new Uniform<Int>(_name, _value, location(_name)));
-        }
-
+    public inline function set_int( _name:String, _value:Int ) : Void {
+        uniforms.set_int(_name, _value, location(_name));
     } //set_int
 
-   public inline function set_float( _name:String, _value:Float ) : Void {
-
-        if(uniform_float.exists(_name)) {
-            uniform_float.get(_name).value = _value;
-        } else {
-            uniform_float.set(_name, new Uniform<Float>(_name, _value, location(_name)));
-        }
-
+    public inline function set_float( _name:String, _value:Float ) : Void {
+        uniforms.set_float(_name, _value, location(_name));
     } //set_float
 
     public inline function set_vector2( _name:String, _value:Vector ) : Void {
-
-        if(uniform_vector2.exists(_name)) {
-            uniform_vector2.get(_name).value = _value;
-        } else {
-            uniform_vector2.set(_name, new Uniform<Vector>(_name, _value, location(_name)));
-        }
-
+        uniforms.set_vector2(_name, _value, location(_name));
     } //set_vector2
 
     public inline function set_vector3( _name:String, _value:Vector ) : Void {
-
-        if(uniform_vector3.exists(_name)) {
-            uniform_vector3.get(_name).value = _value;
-        } else {
-            uniform_vector3.set(_name, new Uniform<Vector>(_name, _value, location(_name)));
-        }
-
+        uniforms.set_vector3(_name, _value, location(_name));
     } //set_vector3
 
     public inline function set_vector4( _name:String, _value:Vector ) : Void {
-
-        if(uniform_vector4.exists(_name)) {
-            uniform_vector4.get(_name).value = _value;
-        } else {
-            uniform_vector4.set(_name, new Uniform<Vector>(_name, _value, location(_name)));
-        }
-
+        uniforms.set_vector4(_name, _value, location(_name));
     } //set_vector4
 
     public inline function set_matrix4( _name:String, _value:Matrix ) : Void {
-
-        if(uniform_matrix4.exists(_name)) {
-            uniform_matrix4.get(_name).value = _value;
-        } else {
-            uniform_matrix4.set(_name, new Uniform<Matrix>(_name, _value, location(_name)));
-        }
-
+        uniforms.set_matrix4(_name, _value, location(_name));
     } //set_matrix4
 
+    public inline function set_matrix4_arr( _name:String, _value:Float32Array ) : Void {
+        uniforms.set_matrix4_arr(_name, _value, location(_name));
+    } //set_matrix4_arr
+
     public inline function set_color( _name:String, _value:Color ) : Void {
-
-        if(uniform_color.exists(_name)) {
-            uniform_color.get(_name).value = _value;
-        } else {
-            uniform_color.set(_name, new Uniform<Color>(_name, _value, location(_name)));
-        }
-
+        uniforms.set_color(_name, _value, location(_name));
     } //set_color
 
     public inline function set_texture( _name:String, _value:Texture ) : Void {
-
-        if(uniform_texture.exists(_name)) {
-            uniform_texture.get(_name).value = _value;
-        } else {
-            uniform_texture.set(_name, new Uniform<Texture>(_name, _value, location(_name)));
-        }
-
+        uniforms.set_texture(_name, _value, location(_name));
     } //set_texture
 
-    inline function format_log(_log:String) {
-        var _items = _log.split('\n');
-        _items = _items.filter(function(s) { return StringTools.trim(s) != ''; });
-        _items = _items.map(function(s) { return '\t\t' + StringTools.trim(s); });
-        return _items.join('\n');
-    }
 
     public function compile( _type : Int, _source:String ) : GLShader {
 
@@ -250,28 +453,44 @@ class Shader extends Resource {
         }
 
             //first bind it
-        activate();
+        use();
 
             //:todo: this is being refactored for the new
             //way more flexible shaders and rendering :}
 
                 //Matrices
-            proj_attribute = location("projectionMatrix");
-            view_attribute = location("modelViewMatrix");
+            if(!no_default_uniforms) {
 
-                //Textures
-            tex0_attribute = location( "tex0" );
-            tex1_attribute = location( "tex1" );
-            tex2_attribute = location( "tex2" );
-            tex3_attribute = location( "tex3" );
-            tex4_attribute = location( "tex4" );
-            tex5_attribute = location( "tex5" );
-            tex6_attribute = location( "tex6" );
-            tex7_attribute = location( "tex7" );
+                proj_attribute = location('projectionMatrix');
+                view_attribute = location('modelViewMatrix');
+
+                var _tex0_attribute = location( 'tex0' );
+                var _tex1_attribute = location( 'tex1' );
+                var _tex2_attribute = location( 'tex2' );
+                var _tex3_attribute = location( 'tex3' );
+                var _tex4_attribute = location( 'tex4' );
+                var _tex5_attribute = location( 'tex5' );
+                var _tex6_attribute = location( 'tex6' );
+                var _tex7_attribute = location( 'tex7' );
+
+                if(_tex0_attribute != null) GL.uniform1i( _tex0_attribute, 0 );
+                if(_tex1_attribute != null) GL.uniform1i( _tex1_attribute, 1 );
+                if(_tex2_attribute != null) GL.uniform1i( _tex2_attribute, 2 );
+                if(_tex3_attribute != null) GL.uniform1i( _tex3_attribute, 3 );
+                if(_tex4_attribute != null) GL.uniform1i( _tex4_attribute, 4 );
+                if(_tex5_attribute != null) GL.uniform1i( _tex5_attribute, 5 );
+                if(_tex6_attribute != null) GL.uniform1i( _tex6_attribute, 6 );
+                if(_tex7_attribute != null) GL.uniform1i( _tex7_attribute, 7 );
+
+            }
 
         return true;
 
     } //link
+
+    public inline function location( _name : String ) : Location {
+        return GL.getUniformLocation( program, _name );
+    }
 
 //Resource
 
@@ -283,6 +502,8 @@ class Shader extends Resource {
 
         vert_source = null;
         frag_source = null;
+
+        uniforms.clear();
 
     } //clear
 
@@ -393,32 +614,6 @@ class Shader extends Resource {
 
     } //
 
-    @:noCompletion public inline function apply_uniforms() {
-
-        if(tex0_attribute != null) GL.uniform1i( tex0_attribute, 0 );
-        if(tex1_attribute != null) GL.uniform1i( tex1_attribute, 1 );
-        if(tex2_attribute != null) GL.uniform1i( tex2_attribute, 2 );
-        if(tex3_attribute != null) GL.uniform1i( tex3_attribute, 3 );
-        if(tex4_attribute != null) GL.uniform1i( tex4_attribute, 4 );
-        if(tex5_attribute != null) GL.uniform1i( tex5_attribute, 5 );
-        if(tex6_attribute != null) GL.uniform1i( tex6_attribute, 6 );
-        if(tex7_attribute != null) GL.uniform1i( tex7_attribute, 7 );
-
-        for(uniform in uniform_int)     { GL.uniform1i(uniform.location, uniform.value); }
-        for(uniform in uniform_float)   { GL.uniform1f(uniform.location, uniform.value); }
-        for(uniform in uniform_vector2) { GL.uniform2f(uniform.location, uniform.value.x, uniform.value.y); }
-        for(uniform in uniform_vector3) { GL.uniform3f(uniform.location, uniform.value.x, uniform.value.y, uniform.value.z); }
-        for(uniform in uniform_vector4) { GL.uniform4f(uniform.location, uniform.value.x, uniform.value.y, uniform.value.z, uniform.value.w); }
-        for(uniform in uniform_matrix4) { GL.uniformMatrix4fv(uniform.location, false, uniform.value.float32array()); }
-        for(uniform in uniform_color)   { GL.uniform4f(uniform.location, uniform.value.r, uniform.value.g, uniform.value.b, uniform.value.a); }
-        for(uniform in uniform_texture) { GL.uniform1i(uniform.location, uniform.value.slot); uniform.value.bind(); }
-
-    } //apply_uniforms
-
-    inline function location( _name : String ) : Location {
-        return GL.getUniformLocation( program, _name );
-    }
-
     inline function add_log( _log:String ) {
         log += _log;
     }
@@ -427,9 +622,18 @@ class Shader extends Resource {
         return 'Shader($id) vert:$vert_id / frag: $frag_id';
     }
 
+//Internal
+
+    inline function format_log(_log:String) {
+        var _items = _log.split('\n');
+        _items = _items.filter(function(s) { return StringTools.trim(s) != ''; });
+        _items = _items.map(function(s) { return '\t\t' + StringTools.trim(s); });
+        return _items.join('\n');
+    }
+
 } //Shader
 
-@:allow(phoenix.Shader)
+@:allow(phoenix.Uniforms)
 class Uniform<T> {
 
     var name : String;

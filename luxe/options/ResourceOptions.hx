@@ -135,6 +135,13 @@ typedef ShaderOptions = {
     } //LoadFontOptions
 
     typedef LoadShaderOptions = {
+            
+            /** The fragment shader asset id */
         var frag_id : String;
+            /** The vertex shader asset id */
         var vert_id : String;
+            /** Set this to avoid setting any default
+                uniforms initially or each frame */
+        @:optional var no_default_uniforms : Bool;
+
     }

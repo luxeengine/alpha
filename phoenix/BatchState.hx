@@ -41,7 +41,8 @@ class BatchState {
         }
     }
 
-    public inline function activate(batcher:Batcher) {
+    //inline
+    public function activate(batcher:Batcher) {
 
             // Handle texture state changes
         if(geom_state.dirty) {
@@ -64,28 +65,35 @@ class BatchState {
 
             } //geom_state.texture !=null
 
-            if(geom_state.shader != null) {
+                //default to the override
+            var _shader = batcher.shader;
+            if(_shader == null) {
+                
+                if(geom_state.shader != null) {
 
-                if(last_shader_id != geom_state.shader.program) {
-                        //activate it and store the reference to it
-                    batcher.shader_activate(geom_state.shader);
-                    last_shader_id = geom_state.shader.program;
-                }
+                    _shader = geom_state.shader;
 
-            } else {
-
-                    //fallback onto the default shaders
-                if(geom_state.texture != null) {
-                        //if there is a texture attached, use the textured shader
-                    batcher.shader_activate( batcher.renderer.shaders.textured.shader );
-                    last_shader_id = batcher.renderer.shaders.textured.shader.program;
                 } else {
-                    batcher.shader_activate( batcher.renderer.shaders.plain.shader );
-                    last_shader_id = batcher.renderer.shaders.plain.shader.program;
-                }
 
-            }
+                    if(geom_state.texture != null) {
+                        _shader = batcher.renderer.shaders.textured.shader;
+                    } else {
+                        _shader = batcher.renderer.shaders.plain.shader;
+                    }
 
+                } //no shader
+
+            } //no override shader
+
+            if(last_shader_id != _shader.program) {
+                
+                _shader.activate();
+                batcher.apply_default_uniforms(_shader);
+                last_shader_id = _shader.program;
+            
+            } //changed shader
+
+            //group
 
                 // Handle group state changes
             if(geom_state.group != last_group) {
