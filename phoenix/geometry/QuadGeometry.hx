@@ -63,7 +63,11 @@ class QuadGeometry extends Geometry {
 
         transform.pos = transform.pos.set_xy(_x, _y);
 
-        uv_space( 0, 0, 1, 1 );
+        if(options.uv != null) {
+            uv(options.uv);
+        } else {
+            uv_space( 0, 0, 1, 1 );
+        }
 
         if(options.visible != null) visible = options.visible;
         if(options.immediate != null) immediate = options.immediate;
