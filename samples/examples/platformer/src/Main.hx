@@ -14,12 +14,40 @@ import luxe.collision.data.ShapeCollision;
 import luxe.importers.tiled.TiledMap;
 import luxe.importers.tiled.TiledObjectGroup;
 
+class Fader extends luxe.Component {
+
+    var overlay: Sprite;
+
+    override function init() {
+        overlay = new Sprite({
+            size: Luxe.screen.size,
+            color: new Color(0,0,0,1),
+            centered: false,
+            depth:99
+        });
+    }
+
+    public function out(?t=0.15,?fn:Void->Void) {
+        overlay.color.tween(t, {a:1}).onComplete(fn);
+    }
+
+    public function up(?t=0.15,?fn:Void->Void) {
+        overlay.color.tween(t, {a:0}).onComplete(fn);
+    }
+
+    override function ondestroy() {
+        overlay.destroy( );
+    }
+
+}
+
 class Main extends luxe.Game {
 
 
         //Our visual items
     var player_sprite: Sprite;
     var exit: Sprite;
+    var fade: Fader;
 
         //The level tiles
     var map: TiledMap;
@@ -38,6 +66,9 @@ class Main extends luxe.Game {
             //Set the sky/background color
         Luxe.renderer.clear_color.rgb(0x181c1f);
 
+            //Add a fade component to the camera
+        fade = Luxe.camera.add(new Fader({ name:'fade' }));
+
             //Tell the camera to keep the world size fixed,
             //And automatically fit the window size
         Luxe.camera.size = new Vector(256, 144);
@@ -55,6 +86,9 @@ class Main extends luxe.Game {
 
             //start the simulation
         sim.paused = false;
+
+            //fade in when the init event happens
+        Luxe.on(Luxe.Ev.init, function(_){ fade.up(0.5); });
 
     } //ready
 
@@ -215,10 +249,11 @@ class Main extends luxe.Game {
 
     } //create_map
 
-    var teleportDisabled: Bool = false;
+    var teleport_disabled: Bool = false;
+
     function ontrigger(collisions:Array<ShapeCollision>) {
 
-        if(collisions.length == 0) teleportDisabled = false;
+        if(collisions.length == 0) teleport_disabled = false;
 
         for(collision in collisions) {
 
@@ -227,15 +262,15 @@ class Main extends luxe.Game {
             switch(_type) {
                 case 'portal':
                         //can we teleport?
-                    if(!teleportDisabled) {
+                    if(!teleport_disabled) {
 
                         var _destination = portals.get(collision.shape2.data.target);
 
-                            //add add 4 so that we are no longer colliding
+                            //add 4 so that we are no longer colliding
                         sim.player_collider.position.x = _destination.x;
                         sim.player_collider.position.y = _destination.y + 4;
 
-                        teleportDisabled = true;
+                        teleport_disabled = true;
 
                     } //if
 
@@ -249,6 +284,16 @@ class Main extends luxe.Game {
 
     } //ontrigger
 
+    function respawn() {
+    
+        fade.out(function(){
+            sim.player_collider.position.copy_from(spawn_pos);
+            sim.player_velocity.set_xy(0,0);
+            fade.up();
+        });
+
+    } //respawn
+
     override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.key_0) {
@@ -256,8 +301,7 @@ class Main extends luxe.Game {
         }
 
         if(e.keycode == Key.key_r) {
-            sim.player_collider.position.copy_from(spawn_pos);
-            sim.player_velocity.set_xy(0,0);
+            respawn();
         }
 
         if(e.keycode == Key.escape) {
