@@ -72,7 +72,6 @@ import luxe.options.RenderProperties;
                 primitive_type : phoenix.Batcher.PrimitiveType.lines,
                 immediate: options.immediate,
                 depth: options.depth,
-                group: options.group,
                 visible: visible,
                 batcher: options.batcher
             });
@@ -232,7 +231,6 @@ import luxe.options.RenderProperties;
                 primitive_type: phoenix.Batcher.PrimitiveType.lines,
                 immediate: options.immediate,
                 depth: options.depth,
-                group: options.group,
                 visible: options.visible,
                 batcher: options.batcher
             });
@@ -275,7 +273,6 @@ import luxe.options.RenderProperties;
                 color: color,
                 immediate: options.immediate,
                 depth: options.depth,
-                group: options.group,
                 visible: options.visible,
                 batcher: options.batcher
             });
@@ -292,7 +289,6 @@ import luxe.options.RenderProperties;
                 color: color,
                 immediate: true,
                 depth: options.depth,
-                group: options.group,
                 visible: options.visible,
                 batcher: options.batcher
             });
@@ -301,7 +297,8 @@ import luxe.options.RenderProperties;
 
         function make_circle_verts(circle:Circle):Array<Vertex> {
 
-            var tmp = Luxe.draw.ring( {
+            var _color = new Color();
+            var _tmp = Luxe.draw.ring({
                 x: 0,
                 y: 0,
                 r: circle.radius,
@@ -309,20 +306,23 @@ import luxe.options.RenderProperties;
                 no_batcher_add: true
             });
 
-            var verts = tmp.vertices.copy();
-            tmp.drop();
-			
-			for (v in verts) {
+            var _verts = _tmp.vertices.copy();
+            
+            _tmp.drop();
+
+			for (v in _verts) {
 				v.pos.x += circle.localCOM.x;
 				v.pos.y += circle.localCOM.y;
+                v.color = _color;
 			}
 			
-            //add a center point
-            verts.insert( 0, new Vertex(new Vector(circle.localCOM.x, circle.localCOM.y)) );
-            verts.insert( 1, verts[1].clone() );
+                //add a center point
+            _verts.insert( 0, new Vertex(new Vector(circle.localCOM.x, circle.localCOM.y), _color) );
+            _verts.insert( 1, _verts[1].clone() );
 
-            return verts;
-        }
+            return _verts;
+
+        } //make_circle_verts
 
         function make_polygon_verts( vertexList:Vec2List):Array<Vertex> {
 
