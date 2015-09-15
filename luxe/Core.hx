@@ -353,14 +353,17 @@ extends
 
     } //shutdown
 
+    inline
     public function on<T>(event:Ev, handler:T->Void ) {
         emitter.on(event, handler);
     }
 
+    inline
     public function off<T>(event:Ev, handler:T->Void ) {
         return emitter.off(event, handler);
     }
 
+    inline
     public function emit<T>(event:Ev, ?data:T) {
         return emitter.emit(event, data);
     }
