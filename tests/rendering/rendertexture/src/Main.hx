@@ -20,8 +20,8 @@ class Main extends luxe.Game {
     var display_sprite : Sprite;
 
 
-        //In this test, we render 'example' into a render texture,
-        //and then display that texture on 'display'.
+        //In this test, we render the 'example' sprite into a render texture,
+        //and then display that texture on 'display_sprite'.
 
     override function ready() {
 
@@ -37,27 +37,16 @@ class Main extends luxe.Game {
         target_texture = new RenderTexture({ id:'rtt', width:512, height:512 });
 
             //create a new batcher to draw from, but don't add to the main rendering
-        batcher = Luxe.renderer.create_batcher({
-            name:'target_batcher',
-            no_add : true
-        });
-
-            //camera should match the size of the texture if we want it to look right for this example
+        batcher = Luxe.renderer.create_batcher({ name:'target_batcher' });
+            //The batcher camera should match the size of the texture if we want it to look right for this example
         batcher.view.viewport = new Rectangle(0,0,512,512);
 
-            //Create a sprite, but don't add it to the default batcher,
-            //add it to our custom batcher here instead.
+            //Create a sprite, and add it to our custom batcher here instead.
         example = new Sprite({
             texture : image,
             pos : new Vector(256,256),
-            size : new Vector(512,512),
             batcher : batcher
         });
-
-            //enable this if you want to see how the above is rendering "outside" of the target.
-            //we set it to false above because we want to call batch.draw() ourselves.
-            //by adding to the renderer, it will also render it as well.
-        // Luxe.renderer.add_batch(batcher);
 
             //using onload like this lets you work with web late loading textures,
             //on desktop it will always call this, so it will work across all targets
@@ -67,7 +56,27 @@ class Main extends luxe.Game {
             pos : Luxe.screen.mid
         });
 
+            //listen for the start and end of the batcher
+        batcher.on(prerender, before);
+        batcher.on(postrender, after);
+
     } //onloaded
+
+    function before(_) {
+
+            //Set the rendering target to the texture
+        Luxe.renderer.target = target_texture;
+                //clear the texture to an obvious color
+        Luxe.renderer.clear(new Color().rgb(0xff4b03));
+
+    } //before
+
+    function after(_) {
+
+            //reset the target back to no target (i.e the screen)
+        Luxe.renderer.target = null;
+
+    } //after
 
     override function onkeyup( e:KeyEvent ) {
 
@@ -76,24 +85,6 @@ class Main extends luxe.Game {
         }
 
     } //onkeyup
-
-    override function onprerender() {
-
-            //wait for onloaded
-        if(display_sprite == null) return;
-
-            //Set the current rendering target
-        Luxe.renderer.target = target_texture;
-
-                //clear the texture!
-            Luxe.renderer.clear(new Color().rgb(0xff4b03));
-                //draw the geometry inside our batcher
-            batcher.draw();
-
-            //reset the target back to no target (i.e the screen)
-        Luxe.renderer.target = null;
-
-    } //onprerender
 
     override function update( dt:Float ) {
 
