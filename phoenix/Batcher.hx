@@ -243,11 +243,9 @@ class Batcher {
                     //If the update will cause a state change, submit the vertices accumulated
                 if( state.update(geom) ) {
 
-                        //Only submit if there are vertices in our list to draw
-                        //but if there are the batch is dirty and needs to be submitted
-                    if(pos_floats > 0) {
-                        submit_current_vertex_list( state.last_geom_state.primitive_type );
-                    } //if pos_list.length > 0
+                        //if there are verts in the last batch, it needs to be submitted
+                        //The function returns early if there are none 
+                    submit_current_vertex_list( state.last_geom_state.primitive_type );
 
                 } // state.update(geom)
 
@@ -255,7 +253,8 @@ class Batcher {
                 state.activate(this);
 
                 if(geom.visible) {
-                        //try
+                    
+                    //try
                     visible_count++;
 
                         //Buffer based geometry doesn't get submitted here yet
