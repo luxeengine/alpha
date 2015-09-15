@@ -32,9 +32,9 @@ class RayAndShape extends luxe.States.State {
         Main.shapes.push( Polygon.rectangle(600,200,50,50));
         Main.shapes.push( Polygon.rectangle(200,200,50,50));
 
-        intersect = Luxe.draw.line({ depth:100, group:3, p0:new Vector(), p1:new Vector(), color:new Color().rgb(0xffffff) });
-        before = Luxe.draw.line({ depth:100, group:2, p0:new Vector(), p1:new Vector(), color:new Color().rgb(0x00f67b) });
-        after = Luxe.draw.line({ depth:100, group:2, p0:new Vector(), p1:new Vector(), color:new Color().rgb(0x7b00f6) });
+        intersect = Luxe.draw.line({ depth:100, batcher: Main.thicker, p0:new Vector(), p1:new Vector(), color:new Color().rgb(0xffffff) });
+        before = Luxe.draw.line({ depth:100, batcher: Main.thicker, p0:new Vector(), p1:new Vector(), color:new Color().rgb(0x00f67b) });
+        after = Luxe.draw.line({ depth:100, batcher: Main.thicker, p0:new Vector(), p1:new Vector(), color:new Color().rgb(0x7b00f6) });
 
     } //onenter
 
@@ -97,6 +97,7 @@ class RayAndShape extends luxe.States.State {
                     text: 'hit start %: ${c.start}\n end %: ${c.end}',
                     immediate:true,
                 });
+
                 textYval += 30;
             }
 

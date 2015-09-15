@@ -29,6 +29,7 @@ class Menu extends luxe.State {
     var title_shader: phoenix.Shader;
     var items_shader: phoenix.Shader;
     var active_items_shader: phoenix.Shader;
+    var glowing : Batcher;
 
     var glow_amount: Float = 0.4;
     var prev_select: Text;
@@ -39,6 +40,7 @@ class Menu extends luxe.State {
 
         super({ name:'menu' });
 
+        glowing = Luxe.renderer.create_batcher({ name:'glowing', camera:Luxe.camera.view });
         left_fire = new Vector(Luxe.screen.mid.x - 180, -171);
         right_fire = new Vector(Luxe.screen.mid.x + 180, -171);
         items = new Map();
@@ -83,9 +85,9 @@ class Menu extends luxe.State {
                 gravity : new Vector(0,-90),
                 life:0.9,
                 depth:2,
-                group:5,
                 rotation_random:360,
-                emit_time : 0.05
+                emit_time : 0.05,
+                batcher: glowing
             });
 
             particles.add_emitter({
@@ -101,7 +103,6 @@ class Menu extends luxe.State {
                 life : 1.2,
                 rotation_random:360,
                 depth:1,
-                group:2,
                 emit_time : 0.2
             });
 
@@ -116,14 +117,12 @@ class Menu extends luxe.State {
                 life : 0.8,
                 end_speed : 0,
                 depth:3,
-                group:5,
-                emit_time : 0.3
+                emit_time : 0.3,
+                batcher: glowing
             });
 
-            Luxe.renderer.batcher.add_group(5,
-                function(_){ Luxe.renderer.blend_mode(BlendMode.src_alpha, BlendMode.one); },
-                function(_){ Luxe.renderer.blend_mode(); }
-            );
+            glowing.on(prerender, function(_){ Luxe.renderer.blend_mode(BlendMode.src_alpha, BlendMode.one); });
+            glowing.on(postrender, function(_){ Luxe.renderer.blend_mode(); });
 
         } //create_particles
 

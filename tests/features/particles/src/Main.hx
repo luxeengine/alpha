@@ -14,6 +14,7 @@ class Main extends luxe.Game {
 
     var mouse : Vector;
 
+    var glowing : Batcher;
     var particle_system : Entity;
     var particles : ParticleSystem;
 
@@ -42,6 +43,8 @@ class Main extends luxe.Game {
 
         particles = new ParticleSystem({name:'particles'});
 
+        glowing = Luxe.renderer.create_batcher({ name:'glowing', camera:Luxe.camera.view });
+
         particles.add_emitter({
             name : 'flames',
             particle_image:t1,
@@ -51,7 +54,7 @@ class Main extends luxe.Game {
             gravity : new Vector(0,-90),
             life:0.9,
             depth:2,
-            group:5,
+            batcher: glowing,
             rotation_random:360,
             emit_time : 0.05
         });
@@ -73,7 +76,6 @@ class Main extends luxe.Game {
             life : 1.2,
             rotation_random:360,
             depth:1,
-            group:2,
             emit_time : 0.2
         });
 
@@ -87,18 +89,12 @@ class Main extends luxe.Game {
             life : 0.8,
             end_speed : 0,
             depth:3,
-            group:5,
+            batcher: glowing,
             emit_time : 0.3
         });
 
-        Luxe.renderer.batcher.add_group(5,
-            function(b:Batcher){
-                Luxe.renderer.blend_mode(BlendMode.src_alpha, BlendMode.one);
-            },
-            function(b:Batcher){
-                Luxe.renderer.blend_mode();
-            }
-        );
+        glowing.on(prerender, function(_){ Luxe.renderer.blend_mode(BlendMode.src_alpha, BlendMode.one); });
+        glowing.on(postrender, function(_){ Luxe.renderer.blend_mode(); });
 
     } //ready
 

@@ -5,6 +5,7 @@ import luxe.Text;
 
 import luxe.collision.shapes.*;
 import luxe.collision.ShapeDrawerLuxe;
+import phoenix.Batcher;
 
 class Main extends luxe.Game {
 
@@ -12,6 +13,7 @@ class Main extends luxe.Game {
     public static var drawer: ShapeDrawerLuxe;
     public static var shapes: Array<Shape>;
     public static var rays: Array<Ray>;
+    public static var thicker: Batcher;
     static var disp : Text;
 
         //main specifics
@@ -32,21 +34,10 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-            //Set the line widths to the group number,
-            //so that the test cases can opt into sizes
+        thicker = Luxe.renderer.create_batcher({ name:'thicker', camera:Luxe.camera.view });
 
-        Luxe.renderer.batcher.add_group(2,
-            function(_) Luxe.renderer.state.lineWidth(2),
-            function(_) Luxe.renderer.state.lineWidth(1)
-        );
-        Luxe.renderer.batcher.add_group(3,
-            function(_) Luxe.renderer.state.lineWidth(3),
-            function(_) Luxe.renderer.state.lineWidth(1)
-        );
-        Luxe.renderer.batcher.add_group(4,
-            function(_) Luxe.renderer.state.lineWidth(4),
-            function(_) Luxe.renderer.state.lineWidth(1)
-        );
+        thicker.on(prerender, function(_) Luxe.renderer.state.lineWidth(3));
+        thicker.on(postrender, function(_) Luxe.renderer.state.lineWidth(1));
 
         drawer = new ShapeDrawerLuxe();
         shapes = [];

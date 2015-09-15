@@ -9,17 +9,18 @@ import snow.modules.opengl.GL;
 import snow.api.buffers.Float32Array;
 
 import luxe.Log.*;
+import luxe.Emitter;
 import luxe.structural.BalancedBST;
 
 @:allow(phoenix.Renderer)
 class Batcher {
 
     public var id : String;
-    @:isVar public var layer (default, set) : Int = 0;
     public var enabled : Bool = true;
+    @:isVar public var layer (default, set) : Int = 0;
 
     public var geometry : BalancedBST< GeometryKey, Geometry >;
-    public var groups : Map<Int, Array<BatchGroup> >;
+    public var emitter : Emitter<BatcherEventType>;
     public var tree_changed : Bool = false;
 
     public var pos_list    : Float32Array;
@@ -62,7 +63,7 @@ class Batcher {
         sequence = ++_sequence_key;
 
         geometry = new BalancedBST<GeometryKey,Geometry>( geometry_compare );
-        groups = new Map();
+        emitter = new Emitter();
 
         max_verts = Std.int(Math.pow(2, 16));
             //4 floats per vert, i.e x y z w
@@ -100,16 +101,15 @@ class Batcher {
     } //new
 
 //Public function
+    inline
+    public function on(event:BatcherEventType, handler:Batcher->Void) {
+        emitter.on(event, handler);
+    }
 
-    public function add_group(_group:Int, ?_pre_render:Batcher->Void, ?_post_render:Batcher->Void ) {
-
-        if(!groups.exists(_group)) {
-            groups.set(_group, new Array<BatchGroup>());
-        }
-
-        groups.get(_group).push( new BatchGroup(_pre_render, _post_render) );
-
-    } //add_group
+    inline
+    public function off(event:BatcherEventType, handler:Batcher->Void) {
+        return emitter.off(event, handler);
+    }
 
     public function add( _geom:Geometry, _force_add:Bool = false ) {
 
@@ -169,8 +169,8 @@ class Batcher {
 
         renderer.remove_batch(this);
 
+        emitter = null;
         geometry = null;
-        groups = null;
         pos_list = null;
         tcoord_list = null;
         color_list = null;
@@ -335,7 +335,7 @@ class Batcher {
 
     inline function prune() {
 
-            //clean up dropped geometry
+        //clean up dropped geometry
         if(_dropped.length > 0) {
             for(geom in _dropped) {
                 geom.drop();
@@ -356,8 +356,11 @@ class Batcher {
 
         update_view();
 
-            //apply geometries
+        emitter.emit(BatcherEventType.prerender, this);
+
         batch( persist_immediate );
+
+        emitter.emit(BatcherEventType.postrender, this);
 
     } //draw
 
@@ -629,7 +632,7 @@ class Batcher {
         if( a.depth > b.depth )
             { return 2; }
 
-            //by this point, both group and depth are equal
+            //by this point, depth are equal
             //so sort by shader, then texture, then primitive type
 
         if(a.shader != null && b.shader != null) {
@@ -730,7 +733,7 @@ class Batcher {
         if( a.depth > b.depth )
             { return 1; }
 
-            //by this point, both group and depth are equal
+            //by this point, depth are equal
             //so sort by shader, then texture, then primitive type
         if(a.shader != null && b.shader != null) {
 
@@ -807,7 +810,7 @@ class Batcher {
 
     function list_geometry() {
         for(geom in geometry) {
-            _debug('\t   geometry: ' + geom.id + ' / ' + geom.group + ' / ' + geom.depth + ' / ' + geom.uuid );
+            _debug('\t   geometry: ' + geom.id  + ' / ' + geom.depth + ' / ' + geom.uuid );
             _debug('\t\t' + geom.key);
         }
     }
@@ -857,11 +860,11 @@ class Batcher {
 
 } //BlendEquation
 
-class BatchGroup {
-    public function new(_pre, _post) {
-        pre_render = _pre;
-        post_render = _post;
-    }
-    public var pre_render : Batcher -> Void;
-    public var post_render : Batcher -> Void;
-}
+@:enum abstract BatcherEventType(Int) from Int to Int {
+
+    var unknown     = 0;
+    var prerender   = 1;
+    var postrender  = 2;
+
+} //BatcherEventType
+

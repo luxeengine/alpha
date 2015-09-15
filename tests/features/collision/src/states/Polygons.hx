@@ -84,7 +84,7 @@ class Polygons extends luxe.States.State {
             var r = Luxe.draw.rectangle({
                 immediate: true,
                 color: colors[index],
-                group: 2,
+                batcher: Main.thicker,
                 x: mover_separated_pos.x,
                 y: mover_separated_pos.y,
                 w: 50, h: 50,

@@ -64,7 +64,7 @@ class Circles extends luxe.States.State {
             Luxe.draw.ring({
                 immediate: true,
                 color: new Color(1,1,1,0.4),
-                group: 2,
+                batcher: Main.thicker,
                 x: mover_separated_pos.x,
                 y: mover_separated_pos.y,
                 r: mover.transformedRadius

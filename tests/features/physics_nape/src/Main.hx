@@ -26,13 +26,8 @@ class Main extends luxe.Game {
     var end : Float = 0;
     override function ready() {
 
-        Luxe.renderer.batcher.add_group(0,
-            function(_) {
-                Luxe.renderer.state.lineWidth(2);
-            },
-            function(_) {
-                Luxe.renderer.state.lineWidth(1);
-            });
+        Luxe.renderer.batcher.on(prerender, function(_) { Luxe.renderer.state.lineWidth(2); });
+        Luxe.renderer.batcher.on(postrender, function(_) { Luxe.renderer.state.lineWidth(1); });
 
         reset_world();
 

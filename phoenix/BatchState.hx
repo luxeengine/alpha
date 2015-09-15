@@ -16,7 +16,6 @@ class BatchState {
 
     public var last_texture_id : Dynamic;
     public var last_shader_id : Dynamic;
-    public var last_group : Int = -1;
     public var is_clipping : Bool;
     public var clip_rect : Rectangle;
     public var last_clip_rect : Rectangle;
@@ -84,32 +83,6 @@ class BatchState {
             }
 
 
-                // Handle group state changes
-            if(geom_state.group != last_group) {
-                // trace("group state change " + last_group + ' -> ' + geom_state.group  );
-
-                // finalize the previous group.
-                var previous = batcher.groups.get(last_group);
-                if(previous != null) {
-                    // trace('\t--post render for ' + last_group );
-                    for(_batch_group in previous) {
-                        if(_batch_group.post_render != null) _batch_group.post_render(batcher);
-                    } //for batch_group in previous
-                } //is there?
-
-
-                // activate the current group.
-                var current = batcher.groups.get(geom_state.group);
-                if(current != null) {
-                    // trace('\t--pre render for ' + geom_state.group);
-                    for(_batch_group in current) {
-                        if(_batch_group.pre_render != null) _batch_group.pre_render(batcher);
-                    }
-                } //is there?
-
-                last_group = geom_state.group;
-            }
-
         } //state.dirty
 
             // excluded from isDirty because rect can change every time without the state being dirty */
@@ -160,13 +133,6 @@ class BatchState {
             //batchers are not aware of us yet.
         Luxe.renderer.state.useProgram(null);
 
-        var previous = batcher.groups.get(last_group);
-        if(previous != null) {
-            // trace('\t--post render for '+ last_group);
-            for(_batch_group in previous) {
-                if(_batch_group.post_render != null) _batch_group.post_render(batcher);
-            }
-        }
         // remove clipping
         if( is_clipping ) GL.disable( GL.SCISSOR_TEST );
     }
@@ -192,7 +158,6 @@ class BatchState {
 
         trace('\t+ BATCHSTATE LAST ');
             trace("\t\tdepth - "+last_geom_state.depth);
-            trace("\t\tgroup - "+last_geom_state.group);
             trace("\t\ttexture - " + (( last_geom_state.texture == null) ? 'null' :  last_geom_state.texture.id ));
             if(last_geom_state.texture != null) {
                 trace("\t\t\t " + last_geom_state.texture.texture);
@@ -204,7 +169,6 @@ class BatchState {
 
         trace('\t+ BATCHSTATE STATE');
             trace("\t\tdepth - "+geom_state.depth);
-            trace("\t\tgroup - "+geom_state.group);
             trace("\t\ttexture - " + (( geom_state.texture == null) ? 'null' :  geom_state.texture.id ));
             if(geom_state.texture != null) {
                 trace("\t\t\t " + geom_state.texture.texture);

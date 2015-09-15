@@ -13,6 +13,10 @@ class Main extends luxe.Game {
     var luxe_sprite2 : Sprite;
     var luxe_sprite3 : Sprite;
 
+    var batch1 : Batcher;
+    var batch2 : Batcher;
+    var batch3 : Batcher;
+
     override function config(config:luxe.AppConfig) {
 
         config.preload.textures.push({ id:'assets/level.png' });
@@ -24,6 +28,10 @@ class Main extends luxe.Game {
 
 
     override function ready() {
+
+        batch1 = Luxe.renderer.create_batcher({ name:'batch1', camera:Luxe.camera.view });
+        batch2 = Luxe.renderer.create_batcher({ name:'batch2', camera:Luxe.camera.view });
+        batch3 = Luxe.renderer.create_batcher({ name:'batch3', camera:Luxe.camera.view });
 
         var level_texture = Luxe.resources.texture('assets/level.png');
     	var luxe_texture = Luxe.resources.texture('assets/luxe.png');
@@ -46,46 +54,32 @@ class Main extends luxe.Game {
             texture : luxe_texture,
             pos : new Vector( a_third * 1, mid ),
             size : new Vector( half_a_third, half_a_third ),
-            group : 1
+            batcher: batch1
         });
 
         luxe_sprite2 = new Sprite({
             texture : luxe_texture,
             pos : new Vector( a_third * 2, mid ),
             size : new Vector( half_a_third, half_a_third ),
-            group : 2
+            batcher: batch2
         });
 
         luxe_sprite3 = new Sprite({
             texture : luxe_texture,
             pos : new Vector( a_third * 3, mid ),
             size : new Vector( half_a_third, half_a_third ),
-            group : 3
+            batcher: batch3
         });
 
             //for the first group, we set the blend mode to additive
-        Luxe.renderer.batcher.add_group(1,
-            function(b:Batcher){
-                Luxe.renderer.blend_mode(BlendMode.src_alpha, BlendMode.one);
-            }
-        );
+        batch1.on(prerender, function(b:Batcher){ Luxe.renderer.blend_mode(BlendMode.src_alpha, BlendMode.one); });
 
             //for the second, we set it to negative
-        Luxe.renderer.batcher.add_group(2,
-            function(b:Batcher){
-                Luxe.renderer.blend_mode(BlendMode.one_minus_src_color, BlendMode.zero);
-            }
-        );
+        batch2.on(prerender, function(b:Batcher){ Luxe.renderer.blend_mode(BlendMode.one_minus_src_color, BlendMode.zero); });
 
             //for the third one, we maks sure it is reset as well
-        Luxe.renderer.batcher.add_group(3,
-            function(b:Batcher){
-                Luxe.renderer.blend_mode(BlendMode.dst_color, BlendMode.one_minus_src_alpha);
-            },
-            function(b:Batcher){
-                Luxe.renderer.blend_mode();
-            }
-        );
+        batch3.on(prerender, function(b:Batcher){ Luxe.renderer.blend_mode(BlendMode.dst_color, BlendMode.one_minus_src_alpha); });
+        batch3.on(postrender, function(b:Batcher){ Luxe.renderer.blend_mode(); });
 
     } //ready
 
