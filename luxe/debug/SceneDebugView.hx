@@ -163,7 +163,7 @@ class SceneDebugView extends luxe.debug.DebugView  {
     //:wip:
     override function onmousewheel(e:MouseEvent) {
         var h = items_list.text_bounds.h;
-        var vh = Luxe.debug.debug_inspector.size.y - margin;
+        var vh = Luxe.debug.inspector.size.y - margin;
         var diff = h - vh;
 
         var new_y = items_list.pos.y;
@@ -203,10 +203,10 @@ class SceneDebugView extends luxe.debug.DebugView  {
         var debug = Luxe.debug;
 
         var viewrect = new Rectangle(
-            debug.debug_inspector.pos.x + (margin/2),
-            debug.debug_inspector.pos.y + (margin*1.5),
-            debug.debug_inspector.size.x - margin,
-            debug.debug_inspector.size.y - margin - (margin*1.5)
+            debug.inspector.pos.x + (margin/2),
+            debug.inspector.pos.y + (margin*1.5),
+            debug.inspector.size.x - margin,
+            debug.inspector.size.y - margin - (margin*1.5)
         );
 
         var left = debug.padding.x + margin;

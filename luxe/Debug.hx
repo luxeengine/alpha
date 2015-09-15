@@ -29,7 +29,7 @@ class Debug {
     public var visible : Bool = false;
     public static var shut_down : Bool = false;
 
-    public var debug_inspector : Inspector;
+    public var inspector : Inspector;
     public var overlay : QuadGeometry;
 
     public var batcher : Batcher;
@@ -192,6 +192,7 @@ class Debug {
             batcher.layer = 999;
 
             overlay = new QuadGeometry({
+                id: 'debug.overlay',
                 x:0, y:0,
                 w: Luxe.screen.w,  h: Luxe.screen.h,
                 color : new Color(0,0,0,0.8),
@@ -201,29 +202,30 @@ class Debug {
                 batcher : batcher
             });
 
+            overlay.locked = true;
+
                 //create the scene inspector
             padding = new Vector(Luxe.screen.w*0.05,Luxe.screen.h*0.05);
-            debug_inspector = new Inspector({
-                title:'luxe debug',
+            inspector = new Inspector({
                 pos : new Vector(padding.x, padding.y),
                 size : new Vector(Luxe.screen.w-(padding.x*2), Luxe.screen.h-(padding.y*2)),
                 batcher : batcher
             });
 
-            debug_inspector.onrefresh = refresh;
+
+            inspector.onrefresh = refresh;
 
             core.on(Ev.windowsized, function( _event:luxe.Screen.WindowEvent ){
 
                 var _w = _event.event.x;
                 var _h = _event.event.y;
-                var _v = new Vector(_w, _h);
 
                 padding.set_xy(_w*0.05,_h*0.05);
 
-                overlay.resize(_v);
+                overlay.resize_xy(_w, _h);
                 view.viewport = new Rectangle(0, 0, _w, _h);
-                debug_inspector.size = new Vector(_w-(padding.x*2), _h-(padding.y*2));
-                debug_inspector.pos = new Vector(padding.x, padding.y);
+                inspector.size = new Vector(_w-(padding.x*2), _h-(padding.y*2));
+                inspector.pos = new Vector(padding.x, padding.y);
 
                 for(view in views) {
                     view.onwindowsized(_event);
@@ -384,10 +386,10 @@ class Debug {
         if(_show) {
             current_view.show();
             overlay.visible = true;
-            debug_inspector.show();
+            inspector.show();
         } else {
             current_view.hide();
-            debug_inspector.hide();
+            inspector.hide();
             overlay.visible = false;
         }
 
@@ -423,7 +425,7 @@ class Debug {
         }
 
             //update the title
-        debug_inspector._title_text.text = '[${current_view.name}] / ${Math.round(1/dt_average)} / ${Maths.fixed(Luxe.dt,5)} / ${Maths.fixed(dt_average,5)}';
+        inspector.title.text = '[${current_view.name}] / ${Math.round(1/dt_average)} / ${Maths.fixed(Luxe.dt,5)} / ${Maths.fixed(dt_average,5)}';
 
         for(view in views) {
             view.process();

@@ -43,10 +43,10 @@ class ProfilerDebugView extends luxe.debug.DebugView {
             var debug = Luxe.debug;
 
             var viewrect = new Rectangle(
-                debug.debug_inspector.pos.x + (margin/2),
-                debug.debug_inspector.pos.y + (margin*1.5),
-                debug.debug_inspector.size.x - margin,
-                debug.debug_inspector.size.y - margin - (margin*1.5)
+                debug.inspector.pos.x + (margin/2),
+                debug.inspector.pos.y + (margin*1.5),
+                debug.inspector.size.x - margin,
+                debug.inspector.size.y - margin - (margin*1.5)
             );
 
             memgraph = new ProfilerGraph('usage');

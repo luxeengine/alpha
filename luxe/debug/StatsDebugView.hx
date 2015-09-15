@@ -124,14 +124,14 @@ class StatsDebugView extends luxe.debug.DebugView  {
         var debug = Luxe.debug;
 
         var viewrect = new Rectangle(
-            debug.debug_inspector.pos.x + (margin/2),
-            debug.debug_inspector.pos.y + (margin*1.5),
-            debug.debug_inspector.size.x - margin,
-            debug.debug_inspector.size.y - margin - (margin*1.5)
+            debug.inspector.pos.x + (margin/2),
+            debug.inspector.pos.y + (margin*1.5),
+            debug.inspector.size.x - margin,
+            debug.inspector.size.y - margin - (margin*1.5)
         );
 
         var left = debug.padding.x + margin;
-        var right = debug.padding.x + debug.debug_inspector.size.x - margin;
+        var right = debug.padding.x + debug.inspector.size.x - margin;
         var top = debug.padding.y +(margin*1.5);
         var render_w = render_stats_text.text_bounds.w;
         var render_h = render_stats_text.text_bounds.h;
@@ -267,7 +267,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         Actuate.stop(resource_list_text.pos);
 
         var h = resource_list_text.text_bounds.h;
-        var vh = Luxe.debug.debug_inspector.size.y - margin;
+        var vh = Luxe.debug.inspector.size.y - margin;
         var diff = h - vh;
 
         var new_y = resource_list_text.pos.y;
@@ -316,7 +316,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         Actuate.stop(resource_list_text.pos);
 
         var h = resource_list_text.text_bounds.h;
-        var vh = Luxe.debug.debug_inspector.size.y - margin;
+        var vh = Luxe.debug.inspector.size.y - margin;
         var diff = h - vh;
 
         var start_y = Luxe.debug.padding.y +(margin*1.5);
