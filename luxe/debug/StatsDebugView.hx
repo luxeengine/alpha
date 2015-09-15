@@ -36,8 +36,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             static_batched_count : 0,
             visible_count : 0,
             draw_calls : 0,
-            vert_count : 0,
-            group_count : 0
+            vert_count : 0
         };
 
         _render_stats = {
@@ -47,8 +46,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             static_batched_count : 0,
             visible_count : 0,
             draw_calls : 0,
-            vert_count : 0,
-            group_count : 0
+            vert_count : 0
         };
 
     } //new
@@ -249,8 +247,6 @@ class StatsDebugView extends luxe.debug.DebugView  {
             { dirty = true; _last_render_stats.visible_count = _render_stats.visible_count; }
         if(_last_render_stats.draw_calls != _render_stats.draw_calls)
             { dirty = true; _last_render_stats.draw_calls = _render_stats.draw_calls; }
-        if(_last_render_stats.group_count != _render_stats.group_count)
-            { dirty = true; _last_render_stats.group_count = _render_stats.group_count; }
         if(_last_render_stats.vert_count != _render_stats.vert_count)
             { dirty = true; _last_render_stats.vert_count = _render_stats.vert_count; }
 
@@ -389,5 +385,4 @@ typedef RenderStats = {
     visible_count : Int,
     draw_calls : Int,
     vert_count : Int,
-    group_count : Int
 }

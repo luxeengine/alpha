@@ -9,7 +9,6 @@ import luxe.Input;
 import phoenix.Batcher;
 import phoenix.BitmapFont;
 import phoenix.Camera;
-import phoenix.geometry.CompositeGeometry;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 import luxe.utils.Maths;
@@ -197,7 +196,6 @@ class Debug {
                 w: Luxe.screen.w,  h: Luxe.screen.h,
                 color : new Color(0,0,0,0.8),
                 depth : 999,    //debug depth
-                group : 999,    //debug group
                 visible : false, //default invisible
                 batcher : batcher
             });

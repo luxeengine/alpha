@@ -68,7 +68,6 @@ class TilemapVisual {
 
         def(options.batcher, Luxe.renderer.batcher);
         def(options.depth, 0.0);
-        def(options.group, 0);
         def(options.scale, 1);
         def(options.grid, false);
         def(options.filter, FilterType.nearest);

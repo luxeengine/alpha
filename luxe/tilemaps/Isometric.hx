@@ -124,7 +124,6 @@ class IsometricVisual extends TilemapVisual {
                     p1 : new Vector(map.pos.x + ip_bot.x, map.pos.y + ip_bot.y),
                     color : color,
                     depth : options.depth+0.001,
-                    group : options.group,
                     batcher : options.batcher
                 });
             }
@@ -139,7 +138,6 @@ class IsometricVisual extends TilemapVisual {
                     p1 : new Vector(map.pos.x + ip_bot.x, map.pos.y + ip_bot.y),
                     color : color,
                     depth : options.depth+0.001,
-                    group : options.group,
                     batcher : options.batcher
                 });
             }
@@ -203,7 +201,6 @@ class IsometricVisual extends TilemapVisual {
             visible : layer.visible,
             color : new Color(1,1,1,layer.opacity),
             depth : options.depth,
-            group : options.group,
             batcher : options.batcher
         });
 

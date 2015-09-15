@@ -34,7 +34,6 @@ class ShapeDrawerLuxe extends ShapeDrawer {
             r: circle.transformedRadius,
             color: color,
             depth: options.depth,
-            group: options.group,
             immediate: options.immediate,
             batcher: options.batcher,
         });
@@ -51,7 +50,6 @@ class ShapeDrawerLuxe extends ShapeDrawer {
             p1 : new luxe.Vector(p1.x, p1.y),
             color : color,
             depth: options.depth,
-            group: options.group,
             immediate: options.immediate,
             batcher: options.batcher
         });

@@ -72,7 +72,6 @@ import luxe.options.RenderProperties;
                 primitive_type : phoenix.Batcher.PrimitiveType.lines,
                 immediate: options.immediate,
                 depth: options.depth,
-                group: options.group,
                 visible: visible,
                 batcher: options.batcher
             });
@@ -232,7 +231,6 @@ import luxe.options.RenderProperties;
                 primitive_type: phoenix.Batcher.PrimitiveType.lines,
                 immediate: options.immediate,
                 depth: options.depth,
-                group: options.group,
                 visible: options.visible,
                 batcher: options.batcher
             });
@@ -275,7 +273,6 @@ import luxe.options.RenderProperties;
                 color: color,
                 immediate: options.immediate,
                 depth: options.depth,
-                group: options.group,
                 visible: options.visible,
                 batcher: options.batcher
             });
@@ -292,7 +289,6 @@ import luxe.options.RenderProperties;
                 color: color,
                 immediate: true,
                 depth: options.depth,
-                group: options.group,
                 visible: options.visible,
                 batcher: options.batcher
             });

@@ -6,7 +6,6 @@ import luxe.Sprite;
 import luxe.Vector;
 import phoenix.Batcher;
 import phoenix.geometry.QuadPackGeometry;
-import phoenix.geometry.CompositeGeometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.TextureCoord;
 
@@ -354,7 +353,6 @@ class NineSlice extends luxe.Visual {
             texture : texture,
             color : _color,
             depth : nineslice_options.depth,
-            group : nineslice_options.group,
             visible : nineslice_options.visible,
             batcher : _batcher
         });

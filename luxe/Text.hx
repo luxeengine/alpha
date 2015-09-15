@@ -101,7 +101,6 @@ class Text extends Visual {
                 //render properties
             batcher: _batcher,
             depth : _options.depth,
-            group : _options.group,
             visible : _options.visible,
             immediate : _options.immediate,
                 //transform properties

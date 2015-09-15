@@ -167,7 +167,6 @@ class Mesh {
             immediate : false,
             batcher : _batcher,
             depth : options.depth,
-            group : options.group,
             no_batcher_add : options.no_batcher_add,
             buffer_based : options.buffer_based,
             object_space : options.object_space

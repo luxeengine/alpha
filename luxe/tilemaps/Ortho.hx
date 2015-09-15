@@ -109,7 +109,6 @@ class OrthoVisual extends TilemapVisual {
                     p1 : new Vector(map.pos.x + (x * _map_scaled_tw), map.pos.y + (map.height * _map_scaled_th)),
                     color : color,
                     depth : options.depth+0.0001, //:todo :
-                    group : options.group,
                     batcher : options.batcher
                 });
             }
@@ -120,7 +119,6 @@ class OrthoVisual extends TilemapVisual {
                     p1 : new Vector(map.pos.x + (map.width * _map_scaled_tw), map.pos.y + (y * _map_scaled_th)),
                     color : color,
                     depth : options.depth+0.0001,
-                    group : options.group,
                     batcher : options.batcher
                 });
             }
@@ -183,7 +181,6 @@ class OrthoVisual extends TilemapVisual {
             texture : (tileset != null) ? tileset.texture : null,
             color : new Color(1,1,1, layer.opacity),
             depth : options.depth,
-            group : options.group,
             batcher : options.batcher
         });
 

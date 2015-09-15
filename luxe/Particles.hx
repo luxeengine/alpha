@@ -342,7 +342,6 @@ class ParticleEmitter extends Component {
             particle.sprite = new Sprite({
                 name: name + '_particle_'+index,
                 depth: template.depth,
-                group: template.group,
                 texture: particle_image,
                 no_scene: true,
                 no_batcher_add: true,

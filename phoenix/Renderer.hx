@@ -389,7 +389,6 @@ class RendererStats {
     public var static_batched_count : Int = 0;
     public var visible_count : Int = 0;
     public var draw_calls : Int = 0;
-    public var group_count : Int = 0;
     public var vert_count : Int = 0;
 
     public function reset() {
@@ -397,7 +396,6 @@ class RendererStats {
         dynamic_batched_count = 0;
         static_batched_count = 0;
         visible_count = 0;
-        group_count = 0;
         draw_calls = 0;
         vert_count = 0;
     }
