@@ -1,7 +1,6 @@
 package luxe.options;
 
 import phoenix.BitmapFont;
-import phoenix.geometry.CompositeGeometry;
 
 typedef TextOptions = {
 
