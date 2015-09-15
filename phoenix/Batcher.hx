@@ -354,9 +354,9 @@ class Batcher {
         draw_calls = 0;
         vert_count = 0;
 
-        update_view();
-
         emitter.emit(BatcherEventType.prerender, this);
+
+        update_view();
 
         batch( persist_immediate );
 
