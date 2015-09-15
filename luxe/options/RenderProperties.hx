@@ -12,7 +12,5 @@ typedef RenderProperties = {
     @:optional var visible : Bool;
         /** the geometry depth value (see guides)*/
     @:optional var depth : Float;
-        /** the geometry group id (see guides)*/
-    @:optional var group : Int;
 
 } //RenderProperties

@@ -62,20 +62,17 @@ class Geometry {
     @:isVar public var texture (get, set) : Texture;
     @:isVar public var shader (get, set) : Shader;
     @:isVar public var depth (get, set) : Float;
-    @:isVar public var group (get, set) : Int;
     @:isVar public var clip_rect (get, set) : Rectangle;
 
     var shadow_primitive_type : PrimitiveType;
     var shadow_texture : Texture;
     var shadow_shader : Shader;
-    var shadow_group : Int = 0;
     var shadow_depth : Float = 0.0;
     var shadow_clip : Bool = false;
 
     var dirty_primitive_type : Bool = false;
     var dirty_texture : Bool = false;
     var dirty_shader : Bool = false;
-    var dirty_group : Bool = false;
     var dirty_depth : Bool = false;
     var dirty_clip : Bool = false;
 
@@ -133,7 +130,6 @@ class Geometry {
             //end section
 
             state.depth          = def(options.depth,           state.depth);
-            state.group          = def(options.group,           state.group);
             state.texture        = def(options.texture,         state.texture);
             state.primitive_type = def(options.primitive_type,  state.primitive_type);
             state.shader         = def(options.shader,          state.shader);
@@ -172,7 +168,6 @@ class Geometry {
             key.primitive_type = state.primitive_type;
             key.texture = state.texture;
             key.shader = state.shader;
-            key.group = state.group;
             key.depth = state.depth;
             key.clip = state.clip;
 
@@ -199,7 +194,6 @@ class Geometry {
             'primitive_type: '+ key.primitive_type + '\n' +
             'texture: '+ (key.texture == null ? 'null' : key.texture.id) + '\n' +
             'shader: '+ (key.shader == null ? 'null' : key.shader.id) + '\n' +
-            'group: '+ key.group + '\n' +
             'depth: '+ key.depth + '\n' +
             'clip: '+ key.clip;
 
@@ -215,7 +209,6 @@ class Geometry {
         key.primitive_type = state.primitive_type;
         key.texture = state.texture;
         key.shader = state.shader;
-        key.group = state.group;
         key.depth = state.depth;
         key.clip = state.clip;
 
@@ -607,11 +600,6 @@ class Geometry {
                 state.shader = shadow_shader;
             } //dirty_shader
 
-            if(dirty_group) {
-                dirty_group = false;
-                state.group = shadow_group;
-            } //dirty_group
-
             if(dirty_depth) {
                 dirty_depth = false;
                 state.depth = shadow_depth;
@@ -734,26 +722,6 @@ class Geometry {
 
     } //set_depth
 
-//Group
-
-    inline function get_group() : Int {
-
-        return state.group;
-
-    } //get_group
-
-    function set_group(val : Int) : Int {
-
-        if(state.group != val) {
-            shadow_group = val;
-            dirty_group = true;
-            refresh();
-        }
-
-        return group = val;
-
-    } //set_group
-
 //Clip
 
     inline function get_clip() : Bool {
@@ -812,7 +780,6 @@ class GeometryKey {
     public var primitive_type : PrimitiveType;
     public var texture : Texture;
     public var shader : Shader;
-    public var group : Int = 0;
     public var depth : Float = 0;
     public var clip : Bool = false;
 

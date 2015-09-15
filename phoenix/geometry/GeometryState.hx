@@ -16,7 +16,6 @@ class GeometryState {
     @:isVar var shader(default, set) : Shader;
     @:isVar var texture(default, set) : Texture;
     @:isVar var depth(default, set) : Float;
-    @:isVar var group(default, set) : Int;
     @:isVar var clip(default, set) : Bool;
     @:isVar var clip_x(default, set) : Float;
     @:isVar var clip_y(default, set) : Float;
@@ -35,7 +34,6 @@ class GeometryState {
         clip_h = 0.0;
         texture = null;
         shader = null;
-        group = 0;
         depth = 0.0;
         primitive_type = PrimitiveType.points;
 
@@ -49,7 +47,6 @@ class GeometryState {
         _other.dirty = dirty;
         _other.texture = texture;
         _other.shader = shader;
-        _other.group = group;
         _other.depth = depth;
         _other.primitive_type = primitive_type;
         _other.clip = clip;
@@ -66,7 +63,6 @@ class GeometryState {
 
         trace('\t+ GEOMETRYSTATE $dirty');
             trace('\t\tdepth - $depth');
-            trace('\t\tgroup - $group');
             trace('\t\ttexture - ' + (( texture == null) ? 'null' :  texture.id ));
             if(texture != null) {
                 trace('\t\t\t ${texture.texture}');
@@ -91,10 +87,6 @@ class GeometryState {
 
         if(depth != other.depth) {
             depth = other.depth;
-        }
-
-        if(group != other.group) {
-            group = other.group;
         }
 
         if(texture != other.texture) {
@@ -149,11 +141,6 @@ class GeometryState {
 //Depth
     inline function set_depth(val : Float) : Float {
         return depth = val;
-    }
-//Group
-    inline function set_group(val : Int) : Int {
-        dirty = true;
-        return group = val;
     }
 //Clip
     inline function set_clip(val : Bool) : Bool {

@@ -38,8 +38,6 @@ class Visual extends Entity {
     @:isVar public var visible      (default,set) : Bool = true;
         /** the geometry depth value (see guides)*/
     @:isVar public var depth        (default,set) : Float = 0.0;
-        /** the geometry group id (see guides)*/
-    @:isVar public var group        (default,set) : Int = 0;
         /** If note null, the geometry will be clipped to this rectangle region (in world space). */
     @:isVar public var clip_rect    (default,set) : Rectangle;
         /** convenience: controls the rotation around the z axis, in radians. */
@@ -84,10 +82,6 @@ class Visual extends Entity {
             //depth
         if(options.depth != null) {
             depth = options.depth;
-        }
-            //group
-        if(options.group != null) {
-            group = options.group;
         }
             //visible
         if(options.visible != null) {
@@ -154,7 +148,6 @@ class Visual extends Entity {
                         shader : shader,
                         batcher : _batcher,
                         depth : (options.depth == null) ? 0 : options.depth,
-                        group : (options.group == null) ? 0 : options.group,
                         visible : (options.visible == null) ? visible : options.visible
                     });
 
@@ -234,16 +227,6 @@ class Visual extends Entity {
 
     } //set_depth
 
-    function set_group(_v:Int) {
-
-        if(geometry != null) {
-            geometry.group = _v;
-        } //geometry
-
-        return group = _v;
-
-    } //set_group
-
 //Color properties
 
     function set_color(_c:Color) {
@@ -309,7 +292,6 @@ class Visual extends Entity {
                     if(_creating_geometry == false) {
 
                         geometry.color = color;
-                        geometry.group = group;
                         geometry.depth = depth;
                         geometry.visible = visible;
                         // geometry.shader = shader;
