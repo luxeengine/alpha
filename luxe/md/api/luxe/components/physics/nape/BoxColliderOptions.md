@@ -39,6 +39,9 @@
                 <a name="w"><a class="lift" href="#w">w</a></a><div class="clear"></div>
                 <code class="signature apipage">w : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat">the width of the box</span><br/><span class="member apipage">
+                <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><div class="clear"></div>
+                <code class="signature apipage">rotation : [Null](http://api.haxe.org/Null.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</code><br/></span>
+            <span class="small_desc_flat">the rotation of the box (in degrees)</span><br/><span class="member apipage">
                 <a name="name"><a class="lift" href="#name">name</a></a><div class="clear"></div>
                 <code class="signature apipage">name : [Null](http://api.haxe.org/Null.html)&lt;[String](http://api.haxe.org/String.html)&gt;</code><br/></span>
             <span class="small_desc_flat">The component name. This is extremely important,
