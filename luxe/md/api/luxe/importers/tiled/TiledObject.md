@@ -13,7 +13,7 @@
 
 
 <h1>TiledObject</h1>
-<small>`luxe.importers.tiled.TiledObject`</small>
+<small>`luxe.importers.tiled.TiledObject` defined in `luxe.importers.tiled.TiledObjectGroup`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

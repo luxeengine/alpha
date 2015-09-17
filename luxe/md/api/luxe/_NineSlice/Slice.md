@@ -13,19 +13,17 @@
 
 
 <h1>Slice</h1>
-<small>`luxe._NineSlice.Slice`</small>
+<small>`luxe._NineSlice.Slice` defined in `luxe.NineSlice`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,19 +13,17 @@
 
 
 <h1>Shape</h1>
-<small>`luxe.collision.shapes.Shape`</small>
+<small>`luxe.collision.shapes.Shape` defined in ``</small>
 
 A base collision shape
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

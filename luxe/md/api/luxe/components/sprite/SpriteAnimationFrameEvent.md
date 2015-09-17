@@ -13,19 +13,17 @@
 
 
 <h1>SpriteAnimationFrameEvent</h1>
-<small>`luxe.components.sprite.SpriteAnimationFrameEvent`</small>
+<small>`luxe.components.sprite.SpriteAnimationFrameEvent` defined in `luxe.components.sprite.SpriteAnimation`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

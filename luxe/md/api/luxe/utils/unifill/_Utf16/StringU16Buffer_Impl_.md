@@ -13,19 +13,17 @@
 
 
 <h1>StringU16Buffer_Impl_</h1>
-<small>`luxe.utils.unifill._Utf16.StringU16Buffer_Impl_`</small>
+<small>`luxe.utils.unifill._Utf16.StringU16Buffer_Impl_` defined in `luxe.utils.unifill.Utf16`</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

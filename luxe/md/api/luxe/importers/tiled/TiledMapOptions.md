@@ -13,19 +13,17 @@
 
 
 <h1>TiledMapOptions</h1>
-<small>`luxe.importers.tiled.TiledMapOptions`</small>
+<small>`luxe.importers.tiled.TiledMapOptions` defined in `luxe.importers.tiled.TiledMap`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

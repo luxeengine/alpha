@@ -13,7 +13,7 @@
 
 
 <h1>Unifill</h1>
-<small>`luxe.utils.unifill.Unifill`</small>
+<small>`luxe.utils.unifill.Unifill` defined in ``</small>
 
 Unifill provides Unicode-code-point-wise methods on Strings. It is
    ideally used with 'using Unifill' and then acts as an extension to
@@ -22,12 +22,10 @@ Unifill provides Unicode-code-point-wise methods on Strings. It is
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

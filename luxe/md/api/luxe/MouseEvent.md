@@ -13,19 +13,17 @@
 
 
 <h1>MouseEvent</h1>
-<small>`luxe.MouseEvent`</small>
+<small>`luxe.MouseEvent` defined in `luxe.Input`</small>
 
 Information about a mouse event
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

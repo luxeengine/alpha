@@ -13,7 +13,7 @@
 
 
 <h1>BatchState</h1>
-<small>`phoenix.BatchState`</small>
+<small>`phoenix.BatchState` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

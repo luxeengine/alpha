@@ -13,7 +13,7 @@
 
 
 <h1>BSTNode</h1>
-<small>`luxe.structural.BSTNode`</small>
+<small>`luxe.structural.BSTNode` defined in `luxe.structural.BST`</small>
 
 A binary search tree node by `K` key and `T` value (type)
 
@@ -22,12 +22,10 @@ A binary search tree node by `K` key and `T` value (type)
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:generic</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

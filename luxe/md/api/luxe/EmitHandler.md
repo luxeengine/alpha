@@ -13,7 +13,7 @@
 
 
 <h1>EmitHandler</h1>
-<small>`luxe.EmitHandler`</small>
+<small>`luxe.EmitHandler` defined in `luxe.Emitter`</small>
 
 
 
@@ -23,13 +23,10 @@
 <br/><span class="meta">
 meta: @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

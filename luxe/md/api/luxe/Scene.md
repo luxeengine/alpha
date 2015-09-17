@@ -13,7 +13,7 @@
 
 
 <h1>Scene</h1>
-<small>`luxe.Scene`</small>
+<small>`luxe.Scene` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.Objects</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

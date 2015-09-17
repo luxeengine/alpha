@@ -13,7 +13,7 @@
 
 
 <h1>Camera</h1>
-<small>`luxe.Camera`</small>
+<small>`luxe.Camera` defined in ``</small>
 
 An entity based camera class
 
@@ -22,12 +22,10 @@ An entity based camera class
 `class`extends <code><span>luxe.Entity</span></code><br/><span class="meta">
 meta: @:directlyUsed, @:build(luxe.macros.EntityRules.apply()), @:autoBuild(luxe.macros.EntityRules.apply())</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

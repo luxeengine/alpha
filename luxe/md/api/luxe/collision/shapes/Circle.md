@@ -13,7 +13,7 @@
 
 
 <h1>Circle</h1>
-<small>`luxe.collision.shapes.Circle`</small>
+<small>`luxe.collision.shapes.Circle` defined in ``</small>
 
 A circle collision shape
 
@@ -22,12 +22,10 @@ A circle collision shape
 `class`extends <code><span>luxe.collision.shapes.Shape</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

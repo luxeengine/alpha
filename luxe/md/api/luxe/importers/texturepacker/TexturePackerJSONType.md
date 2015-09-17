@@ -13,7 +13,7 @@
 
 
 <h1>TexturePackerJSONType</h1>
-<small>`luxe.importers.texturepacker.TexturePackerJSONType`</small>
+<small>`luxe.importers.texturepacker.TexturePackerJSONType` defined in `luxe.importers.texturepacker.TexturePackerJSON`</small>
 
 
 
@@ -22,12 +22,10 @@
 `enum`<br/><span class="meta">
 meta: @:directlyUsed, @:flatEnum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

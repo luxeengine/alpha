@@ -13,19 +13,17 @@
 
 
 <h1>DrawPolygonOptions</h1>
-<small>`luxe.options.DrawPolygonOptions`</small>
+<small>`luxe.options.DrawPolygonOptions` defined in `luxe.options.DrawOptions`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

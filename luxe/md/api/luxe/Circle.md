@@ -13,7 +13,7 @@
 
 
 <h1>Circle</h1>
-<small>`luxe.Circle`</small>
+<small>`luxe.Circle` defined in ``</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `phoenix.Circle`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

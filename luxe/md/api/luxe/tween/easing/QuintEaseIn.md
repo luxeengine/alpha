@@ -13,7 +13,7 @@
 
 
 <h1>QuintEaseIn</h1>
-<small>`luxe.tween.easing.QuintEaseIn`</small>
+<small>`luxe.tween.easing.QuintEaseIn` defined in `luxe.tween.easing.Quint`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/>implements <code><span>luxe.tween.easing.IEasing</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

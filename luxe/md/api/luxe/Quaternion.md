@@ -13,7 +13,7 @@
 
 
 <h1>Quaternion</h1>
-<small>`luxe.Quaternion`</small>
+<small>`luxe.Quaternion` defined in ``</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `phoenix.Quaternion`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

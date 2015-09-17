@@ -13,19 +13,17 @@
 
 
 <h1>ResourceOptions</h1>
-<small>`luxe.options.ResourceOptions`</small>
+<small>`luxe.options.ResourceOptions` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>Common</h1>
-<small>`luxe.collision.sat.Common`</small>
+<small>`luxe.collision.sat.Common` defined in ``</small>
 
 Common math utilities used internally
 
@@ -22,12 +22,10 @@ Common math utilities used internally
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

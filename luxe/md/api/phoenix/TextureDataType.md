@@ -13,7 +13,7 @@
 
 
 <h1>TextureDataType</h1>
-<small>`phoenix.TextureDataType`</small>
+<small>`phoenix.TextureDataType` defined in `phoenix.Texture`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `Int`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

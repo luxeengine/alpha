@@ -13,7 +13,7 @@
 
 
 <h1>Utf8_Impl_</h1>
-<small>`luxe.utils.unifill._Utf8.Utf8_Impl_`</small>
+<small>`luxe.utils.unifill._Utf8.Utf8_Impl_` defined in `luxe.utils.unifill.Utf8`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

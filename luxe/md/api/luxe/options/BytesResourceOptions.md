@@ -13,7 +13,7 @@
 
 
 <h1>BytesResourceOptions</h1>
-<small>`luxe.options.BytesResourceOptions`</small>
+<small>`luxe.options.BytesResourceOptions` defined in `luxe.options.ResourceOptions`</small>
 
 Options for creating a Bytes Resource instance.
         These are usually `load`ed via `Luxe.resources.load_bytes(...)` and
@@ -22,12 +22,10 @@ Options for creating a Bytes Resource instance.
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>StackNode</h1>
-<small>`luxe.structural.StackNode`</small>
+<small>`luxe.structural.StackNode` defined in `luxe.structural.Stack`</small>
 
 A single stack node holding
 
@@ -22,12 +22,10 @@ A single stack node holding
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

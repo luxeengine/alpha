@@ -13,7 +13,7 @@
 
 
 <h1>JSONResource</h1>
-<small>`luxe.resource.JSONResource`</small>
+<small>`luxe.resource.JSONResource` defined in `luxe.resource.Resource`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.resource.Resource</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

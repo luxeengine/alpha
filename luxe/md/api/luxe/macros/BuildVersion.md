@@ -13,7 +13,7 @@
 
 
 <h1>BuildVersion</h1>
-<small>`luxe.macros.BuildVersion`</small>
+<small>`luxe.macros.BuildVersion` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

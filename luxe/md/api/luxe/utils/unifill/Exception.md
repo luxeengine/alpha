@@ -13,7 +13,7 @@
 
 
 <h1>Exception</h1>
-<small>`luxe.utils.unifill.Exception`</small>
+<small>`luxe.utils.unifill.Exception` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `enum`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

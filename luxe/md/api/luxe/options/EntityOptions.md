@@ -13,19 +13,17 @@
 
 
 <h1>EntityOptions</h1>
-<small>`luxe.options.EntityOptions`</small>
+<small>`luxe.options.EntityOptions` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

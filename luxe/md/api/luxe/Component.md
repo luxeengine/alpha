@@ -13,7 +13,7 @@
 
 
 <h1>Component</h1>
-<small>`luxe.Component`</small>
+<small>`luxe.Component` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.ID</span></code><br/><span class="meta">
 meta: @:autoBuild(luxe.macros.ComponentRules.apply())</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>DrawLineOptions</h1>
-<small>`luxe.options.DrawLineOptions`</small>
+<small>`luxe.options.DrawLineOptions` defined in `luxe.options.DrawOptions`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `luxe.options.LineGeometryOptions`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

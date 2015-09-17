@@ -13,7 +13,7 @@
 
 
 <h1>TileArray</h1>
-<small>`luxe.tilemaps.TileArray`</small>
+<small>`luxe.tilemaps.TileArray` defined in `luxe.tilemaps.Tilemap`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `Array`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

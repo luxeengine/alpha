@@ -13,19 +13,18 @@
 
 
 <h1>Vec</h1>
-<small>`phoenix.Vec`</small>
+<small>`phoenix.Vec` defined in `phoenix.Vector`</small>
 
 
 
 <hr/>
 
-`abstract`
+`abstract`&nbsp;of `phoenix.Vector`<br/><span class="meta">to phoenix.Vector</span>&nbsp;<span class="meta">from phoenix.Vector</span>
+
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

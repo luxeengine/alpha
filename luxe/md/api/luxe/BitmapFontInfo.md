@@ -13,19 +13,17 @@
 
 
 <h1>BitmapFontInfo</h1>
-<small>`luxe.BitmapFontInfo`</small>
+<small>`luxe.BitmapFontInfo` defined in `luxe.Parcel`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

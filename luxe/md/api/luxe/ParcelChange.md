@@ -13,19 +13,17 @@
 
 
 <h1>ParcelChange</h1>
-<small>`luxe.ParcelChange`</small>
+<small>`luxe.ParcelChange` defined in `luxe.Parcel`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

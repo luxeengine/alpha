@@ -13,7 +13,7 @@
 
 
 <h1>TextureID</h1>
-<small>`phoenix.TextureID`</small>
+<small>`phoenix.TextureID` defined in `phoenix.Texture`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `snow.modules.opengl.GLTexture`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

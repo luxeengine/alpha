@@ -13,7 +13,7 @@
 
 
 <h1>ParticleEmitter</h1>
-<small>`luxe.ParticleEmitter`</small>
+<small>`luxe.ParticleEmitter` defined in `luxe.Particles`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.Component</span></code><br/><span class="meta">
 meta: @:directlyUsed, @:build(luxe.macros.ComponentRules.apply()), @:autoBuild(luxe.macros.ComponentRules.apply())</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

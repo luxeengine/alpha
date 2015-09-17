@@ -13,7 +13,7 @@
 
 
 <h1>Sound</h1>
-<small>`luxe.Sound`</small>
+<small>`luxe.Sound` defined in ``</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `snow.system.audio.Sound`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

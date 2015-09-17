@@ -13,19 +13,17 @@
 
 
 <h1>AppConfig</h1>
-<small>`luxe.AppConfig`</small>
+<small>`luxe.AppConfig` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

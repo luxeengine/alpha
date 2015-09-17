@@ -13,19 +13,17 @@
 
 
 <h1>ID</h1>
-<small>`luxe.ID`</small>
+<small>`luxe.ID` defined in `luxe.Objects`</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

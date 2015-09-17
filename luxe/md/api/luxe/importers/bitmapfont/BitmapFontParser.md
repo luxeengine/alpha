@@ -13,7 +13,7 @@
 
 
 <h1>BitmapFontParser</h1>
-<small>`luxe.importers.bitmapfont.BitmapFontParser`</small>
+<small>`luxe.importers.bitmapfont.BitmapFontParser` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

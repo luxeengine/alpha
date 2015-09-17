@@ -13,19 +13,17 @@
 
 
 <h1>TextOptions</h1>
-<small>`luxe.options.TextOptions`</small>
+<small>`luxe.options.TextOptions` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

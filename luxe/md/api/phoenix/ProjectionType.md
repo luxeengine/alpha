@@ -13,7 +13,7 @@
 
 
 <h1>ProjectionType</h1>
-<small>`phoenix.ProjectionType`</small>
+<small>`phoenix.ProjectionType` defined in `phoenix.Camera`</small>
 
 
 
@@ -22,12 +22,10 @@
 `enum`<br/><span class="meta">
 meta: @:directlyUsed, @:flatEnum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

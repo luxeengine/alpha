@@ -13,19 +13,17 @@
 
 
 <h1>GeometryOptions</h1>
-<small>`luxe.options.GeometryOptions`</small>
+<small>`luxe.options.GeometryOptions` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

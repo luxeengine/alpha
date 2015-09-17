@@ -13,7 +13,7 @@
 
 
 <h1>SAT2D</h1>
-<small>`luxe.collision.sat.SAT2D`</small>
+<small>`luxe.collision.sat.SAT2D` defined in ``</small>
 
 Implementation details for the 2D SAT collision queries.
     Used by the various shapes, and Collision API, mostly internally.
@@ -23,12 +23,10 @@ Implementation details for the 2D SAT collision queries.
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

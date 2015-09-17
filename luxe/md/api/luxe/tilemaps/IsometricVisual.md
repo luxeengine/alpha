@@ -13,7 +13,7 @@
 
 
 <h1>IsometricVisual</h1>
-<small>`luxe.tilemaps.IsometricVisual`</small>
+<small>`luxe.tilemaps.IsometricVisual` defined in `luxe.tilemaps.Isometric`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.tilemaps.TilemapVisual</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

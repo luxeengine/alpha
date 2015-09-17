@@ -13,7 +13,7 @@
 
 
 <h1>TiledTile</h1>
-<small>`luxe.importers.tiled.TiledTile`</small>
+<small>`luxe.importers.tiled.TiledTile` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

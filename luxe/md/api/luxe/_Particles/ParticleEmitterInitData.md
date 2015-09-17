@@ -13,19 +13,17 @@
 
 
 <h1>ParticleEmitterInitData</h1>
-<small>`luxe._Particles.ParticleEmitterInitData`</small>
+<small>`luxe._Particles.ParticleEmitterInitData` defined in `luxe.Particles`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

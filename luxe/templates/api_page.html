@@ -10,7 +10,7 @@
 {{#item}}
 
 <h1>{{{name}}}</h1>
-<small>`{{{path}}}`</small>
+<small>`{{{path}}}` defined in `{{{module}}}`</small>
 
 {{{doc}}}
 
@@ -25,6 +25,10 @@
     {{/if~}}
 {{/if}}
 
+{{~#if type '==' 'abstract'~}}
+    &nbsp;of `{{athis.name}}`   
+{{~/if}}
+
 {{~#with superClass}}
     {{~#unless @index}}extends {{/unless~}}
     {{#if @index}}, {{/if~}}
@@ -37,6 +41,18 @@
     <code><span>{{path}}</span></code>
 {{~/each~}}
 
+{{~#if type '==' 'abstract'}}
+<br/><span class="meta">
+    {{~#each to~}}
+        {{#if @index}}, {{/if~}}to {{{t.name}}}
+    {{~/each~}}
+</span>&nbsp;<span class="meta">
+    {{~#each from~}}
+        {{#if @index}}, {{/if~}}from {{{t.name}}}
+    {{~/each~}}
+</span>
+{{/if~}}
+
 {{#if meta.length}}
 <br/><span class="meta">
 {{#each meta~}}
@@ -47,10 +63,9 @@
 </span>
 {{/if}}
 
+
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 {{>type_page . }}

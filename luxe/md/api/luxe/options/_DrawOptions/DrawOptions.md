@@ -13,7 +13,7 @@
 
 
 <h1>DrawOptions</h1>
-<small>`luxe.options._DrawOptions.DrawOptions`</small>
+<small>`luxe.options._DrawOptions.DrawOptions` defined in `luxe.options.DrawOptions`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

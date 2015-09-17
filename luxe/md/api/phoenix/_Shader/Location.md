@@ -13,7 +13,7 @@
 
 
 <h1>Location</h1>
-<small>`phoenix._Shader.Location`</small>
+<small>`phoenix._Shader.Location` defined in `phoenix.Shader`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `snow.modules.opengl.GLUniformLocation`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

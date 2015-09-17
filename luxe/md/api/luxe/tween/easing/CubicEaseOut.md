@@ -13,7 +13,7 @@
 
 
 <h1>CubicEaseOut</h1>
-<small>`luxe.tween.easing.CubicEaseOut`</small>
+<small>`luxe.tween.easing.CubicEaseOut` defined in `luxe.tween.easing.Cubic`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/>implements <code><span>luxe.tween.easing.IEasing</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

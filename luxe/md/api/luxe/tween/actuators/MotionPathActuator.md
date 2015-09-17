@@ -13,7 +13,7 @@
 
 
 <h1>MotionPathActuator</h1>
-<small>`luxe.tween.actuators.MotionPathActuator`</small>
+<small>`luxe.tween.actuators.MotionPathActuator` defined in ``</small>
 
 * @author Joshua Granick
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.tween.actuators.SimpleActuator</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,19 +13,17 @@
 
 
 <h1>RenderTexture</h1>
-<small>`phoenix.RenderTexture`</small>
+<small>`phoenix.RenderTexture` defined in ``</small>
 
 
 
 <hr/>
 
 `class`extends <code><span>phoenix.Texture</span></code>
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

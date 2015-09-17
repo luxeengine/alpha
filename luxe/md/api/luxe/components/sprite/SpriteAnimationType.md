@@ -13,7 +13,7 @@
 
 
 <h1>SpriteAnimationType</h1>
-<small>`luxe.components.sprite.SpriteAnimationType`</small>
+<small>`luxe.components.sprite.SpriteAnimationType` defined in `luxe.components.sprite.SpriteAnimation`</small>
 
 
 
@@ -22,12 +22,10 @@
 `enum`<br/><span class="meta">
 meta: @:directlyUsed, @:flatEnum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

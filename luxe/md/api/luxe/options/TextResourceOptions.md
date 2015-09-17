@@ -13,7 +13,7 @@
 
 
 <h1>TextResourceOptions</h1>
-<small>`luxe.options.TextResourceOptions`</small>
+<small>`luxe.options.TextResourceOptions` defined in `luxe.options.ResourceOptions`</small>
 
 Options for creating a Text Resource instance.
         These are usually `load`ed via `Luxe.resources.load_text(...)` and
@@ -22,12 +22,10 @@ Options for creating a Text Resource instance.
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>TextGeometry</h1>
-<small>`phoenix.geometry.TextGeometry`</small>
+<small>`phoenix.geometry.TextGeometry` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>phoenix.geometry.Geometry</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

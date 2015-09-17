@@ -13,7 +13,7 @@
 
 
 <h1>ParticleSystem</h1>
-<small>`luxe.ParticleSystem`</small>
+<small>`luxe.ParticleSystem` defined in `luxe.Particles`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.Entity</span></code><br/><span class="meta">
 meta: @:build(luxe.macros.EntityRules.apply()), @:autoBuild(luxe.macros.EntityRules.apply())</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

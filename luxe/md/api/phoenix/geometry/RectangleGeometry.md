@@ -13,7 +13,7 @@
 
 
 <h1>RectangleGeometry</h1>
-<small>`phoenix.geometry.RectangleGeometry`</small>
+<small>`phoenix.geometry.RectangleGeometry` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>phoenix.geometry.Geometry</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

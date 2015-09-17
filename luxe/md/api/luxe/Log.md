@@ -13,7 +13,7 @@
 
 
 <h1>Log</h1>
-<small>`luxe.Log`</small>
+<small>`luxe.Log` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

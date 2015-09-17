@@ -13,24 +13,31 @@
 
 
 <h1>ClampSlot</h1>
-<small>`phoenix._Texture.ClampSlot`</small>
+<small>`phoenix._Texture.ClampSlot` defined in `phoenix.Texture`</small>
 
 
 
 <hr/>
 
-`abstract`<br/><span class="meta">
+`abstract`&nbsp;of `Int`<br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 
-
-
+ <hr/><span class="member apipage">
+            <a name="wrap_s"><a class="lift" href="#wrap_s">wrap\_s</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="wrap_t"><a class="lift" href="#wrap_t">wrap\_t</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/>
 
 
 

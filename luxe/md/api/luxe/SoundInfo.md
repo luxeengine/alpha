@@ -13,19 +13,17 @@
 
 
 <h1>SoundInfo</h1>
-<small>`luxe.SoundInfo`</small>
+<small>`luxe.SoundInfo` defined in `luxe.Parcel`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

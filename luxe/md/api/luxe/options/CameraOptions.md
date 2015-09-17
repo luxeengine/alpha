@@ -13,19 +13,17 @@
 
 
 <h1>CameraOptions</h1>
-<small>`luxe.options.CameraOptions`</small>
+<small>`luxe.options.CameraOptions` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

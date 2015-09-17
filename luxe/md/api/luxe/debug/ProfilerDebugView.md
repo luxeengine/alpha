@@ -13,7 +13,7 @@
 
 
 <h1>ProfilerDebugView</h1>
-<small>`luxe.debug.ProfilerDebugView`</small>
+<small>`luxe.debug.ProfilerDebugView` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.debug.DebugView</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

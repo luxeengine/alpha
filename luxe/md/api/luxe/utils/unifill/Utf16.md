@@ -13,19 +13,18 @@
 
 
 <h1>Utf16</h1>
-<small>`luxe.utils.unifill.Utf16`</small>
+<small>`luxe.utils.unifill.Utf16` defined in ``</small>
 
 
 
 <hr/>
 
-`abstract`
+`abstract`&nbsp;of `luxe.utils.unifill._Utf16.StringU16`<br/><span class="meta"></span>&nbsp;<span class="meta"></span>
+
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

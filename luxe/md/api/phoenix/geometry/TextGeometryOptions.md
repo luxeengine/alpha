@@ -13,19 +13,17 @@
 
 
 <h1>TextGeometryOptions</h1>
-<small>`phoenix.geometry.TextGeometryOptions`</small>
+<small>`phoenix.geometry.TextGeometryOptions` defined in `phoenix.geometry.TextGeometry`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>InternalEncodingIter</h1>
-<small>`luxe.utils.unifill.InternalEncodingIter`</small>
+<small>`luxe.utils.unifill.InternalEncodingIter` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

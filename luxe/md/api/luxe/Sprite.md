@@ -13,7 +13,7 @@
 
 
 <h1>Sprite</h1>
-<small>`luxe.Sprite`</small>
+<small>`luxe.Sprite` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.Visual</span></code><br/><span class="meta">
 meta: @:directlyUsed, @:build(luxe.macros.EntityRules.apply()), @:autoBuild(luxe.macros.EntityRules.apply())</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

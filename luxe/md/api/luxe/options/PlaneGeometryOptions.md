@@ -13,7 +13,7 @@
 
 
 <h1>PlaneGeometryOptions</h1>
-<small>`luxe.options.PlaneGeometryOptions`</small>
+<small>`luxe.options.PlaneGeometryOptions` defined in `luxe.options.GeometryOptions`</small>
 
 
 
@@ -22,12 +22,10 @@
 `typedef`<br/><span class="meta">
 meta: @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

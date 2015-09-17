@@ -13,24 +13,31 @@
 
 
 <h1>FilterSlot</h1>
-<small>`phoenix._Texture.FilterSlot`</small>
+<small>`phoenix._Texture.FilterSlot` defined in `phoenix.Texture`</small>
 
 
 
 <hr/>
 
-`abstract`<br/><span class="meta">
+`abstract`&nbsp;of `Int`<br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 
-
-
+ <hr/><span class="member apipage">
+            <a name="min_filter"><a class="lift" href="#min_filter">min\_filter</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="mag_filter"><a class="lift" href="#mag_filter">mag\_filter</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/>
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>Vector</h1>
-<small>`luxe.Vector`</small>
+<small>`luxe.Vector` defined in ``</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `phoenix.Vector`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>Collision</h1>
-<small>`luxe.collision.Collision`</small>
+<small>`luxe.collision.Collision` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

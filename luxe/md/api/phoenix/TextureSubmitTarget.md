@@ -13,24 +13,51 @@
 
 
 <h1>TextureSubmitTarget</h1>
-<small>`phoenix.TextureSubmitTarget`</small>
+<small>`phoenix.TextureSubmitTarget` defined in `phoenix.Texture`</small>
 
 
 
 <hr/>
 
-`abstract`<br/><span class="meta">
+`abstract`&nbsp;of `Int`<br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 
-
-
+ <hr/><span class="member apipage">
+            <a name="tex_2D"><a class="lift" href="#tex_2D">tex\_2D</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="cube_plus_x"><a class="lift" href="#cube_plus_x">cube\_plus\_x</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="cube_plus_y"><a class="lift" href="#cube_plus_y">cube\_plus\_y</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="cube_plus_z"><a class="lift" href="#cube_plus_z">cube\_plus\_z</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="cube_minus_x"><a class="lift" href="#cube_minus_x">cube\_minus\_x</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="cube_minus_y"><a class="lift" href="#cube_minus_y">cube\_minus\_y</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="cube_minus_z"><a class="lift" href="#cube_minus_z">cube\_minus\_z</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/>
 
 
 

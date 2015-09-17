@@ -13,7 +13,7 @@
 
 
 <h1>ComponentRules</h1>
-<small>`luxe.macros.ComponentRules`</small>
+<small>`luxe.macros.ComponentRules` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

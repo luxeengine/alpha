@@ -13,19 +13,17 @@
 
 
 <h1>ParcelList</h1>
-<small>`luxe.ParcelList`</small>
+<small>`luxe.ParcelList` defined in `luxe.Parcel`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

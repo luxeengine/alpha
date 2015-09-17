@@ -13,7 +13,7 @@
 
 
 <h1>Key</h1>
-<small>`luxe.Key`</small>
+<small>`luxe.Key` defined in `luxe.Input`</small>
 
 A named list of keycodes. Use to compare against key event `keycode` values
 
@@ -21,13 +21,10 @@ A named list of keycodes. Use to compare against key event `keycode` values
 
 `typedef`&nbsp;alias of `snow.system.input.Keycodes`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

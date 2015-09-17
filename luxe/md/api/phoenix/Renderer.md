@@ -13,7 +13,7 @@
 
 
 <h1>Renderer</h1>
-<small>`phoenix.Renderer`</small>
+<small>`phoenix.Renderer` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

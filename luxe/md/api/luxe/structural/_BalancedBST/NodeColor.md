@@ -13,7 +13,7 @@
 
 
 <h1>NodeColor</h1>
-<small>`luxe.structural._BalancedBST.NodeColor`</small>
+<small>`luxe.structural._BalancedBST.NodeColor` defined in `luxe.structural.BalancedBST`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

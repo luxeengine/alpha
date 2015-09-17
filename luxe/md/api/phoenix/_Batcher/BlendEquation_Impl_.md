@@ -13,7 +13,7 @@
 
 
 <h1>BlendEquation_Impl_</h1>
-<small>`phoenix._Batcher.BlendEquation_Impl_`</small>
+<small>`phoenix._Batcher.BlendEquation_Impl_` defined in `phoenix.Batcher`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

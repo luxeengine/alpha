@@ -13,7 +13,7 @@
 
 
 <h1>EvTextGeometry_Impl_</h1>
-<small>`phoenix.geometry._TextGeometry.EvTextGeometry_Impl_`</small>
+<small>`phoenix.geometry._TextGeometry.EvTextGeometry_Impl_` defined in `phoenix.geometry.TextGeometry`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

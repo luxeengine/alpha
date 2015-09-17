@@ -13,7 +13,7 @@
 
 
 <h1>FlyCamera</h1>
-<small>`luxe.components.cameras.FlyCamera`</small>
+<small>`luxe.components.cameras.FlyCamera` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.Camera</span></code><br/><span class="meta">
 meta: @:directlyUsed, @:build(luxe.macros.EntityRules.apply()), @:autoBuild(luxe.macros.EntityRules.apply())</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

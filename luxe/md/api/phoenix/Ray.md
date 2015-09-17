@@ -13,7 +13,7 @@
 
 
 <h1>Ray</h1>
-<small>`phoenix.Ray`</small>
+<small>`phoenix.Ray` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

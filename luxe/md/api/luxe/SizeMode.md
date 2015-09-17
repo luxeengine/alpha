@@ -13,7 +13,7 @@
 
 
 <h1>SizeMode</h1>
-<small>`luxe.SizeMode`</small>
+<small>`luxe.SizeMode` defined in `luxe.Camera`</small>
 
 A value to use when controlling the camera size property only.
 
@@ -22,12 +22,10 @@ A value to use when controlling the camera size property only.
 `enum`<br/><span class="meta">
 meta: @:directlyUsed, @:flatEnum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

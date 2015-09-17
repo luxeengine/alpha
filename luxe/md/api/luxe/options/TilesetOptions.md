@@ -13,19 +13,17 @@
 
 
 <h1>TilesetOptions</h1>
-<small>`luxe.options.TilesetOptions`</small>
+<small>`luxe.options.TilesetOptions` defined in `luxe.options.TilemapOptions`</small>
 
 Options specific to a `Tileset`, part of a `Tilemap`
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

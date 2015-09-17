@@ -13,19 +13,17 @@
 
 
 <h1>DebugInspectorOptions</h1>
-<small>`luxe.debug.DebugInspectorOptions`</small>
+<small>`luxe.debug.DebugInspectorOptions` defined in `luxe.debug.Inspector`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

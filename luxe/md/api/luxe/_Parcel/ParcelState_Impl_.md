@@ -13,7 +13,7 @@
 
 
 <h1>ParcelState_Impl_</h1>
-<small>`luxe._Parcel.ParcelState_Impl_`</small>
+<small>`luxe._Parcel.ParcelState_Impl_` defined in `luxe.Parcel`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

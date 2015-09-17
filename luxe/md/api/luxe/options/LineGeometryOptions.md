@@ -13,19 +13,17 @@
 
 
 <h1>LineGeometryOptions</h1>
-<small>`luxe.options.LineGeometryOptions`</small>
+<small>`luxe.options.LineGeometryOptions` defined in `luxe.options.GeometryOptions`</small>
 
 Options for drawing or creating line based geometry, phoenix.geometry.LineGeometry
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

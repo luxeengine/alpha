@@ -13,7 +13,7 @@
 
 
 <h1>BalancedBST</h1>
-<small>`luxe.structural.BalancedBST`</small>
+<small>`luxe.structural.BalancedBST` defined in ``</small>
 
 Copyright 2014 Sven Bergström
 
@@ -32,12 +32,10 @@ Copyright 2014 Sven Bergström
 `class`<br/><span class="meta">
 meta: @:generic, @:allow(luxe.structural.BalancedBSTIterator)</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

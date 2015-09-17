@@ -13,7 +13,7 @@
 
 
 <h1>Particle</h1>
-<small>`luxe.Particle`</small>
+<small>`luxe.Particle` defined in `luxe.Particles`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

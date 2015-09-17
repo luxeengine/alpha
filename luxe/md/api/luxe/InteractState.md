@@ -13,7 +13,7 @@
 
 
 <h1>InteractState</h1>
-<small>`luxe.InteractState`</small>
+<small>`luxe.InteractState` defined in `luxe.Input`</small>
 
 A typed state for mouse, touch, or pressed/similar
 
@@ -22,12 +22,10 @@ A typed state for mouse, touch, or pressed/similar
 `enum`<br/><span class="meta">
 meta: @:directlyUsed, @:flatEnum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

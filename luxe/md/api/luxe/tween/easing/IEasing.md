@@ -13,7 +13,7 @@
 
 
 <h1>IEasing</h1>
-<small>`luxe.tween.easing.IEasing`</small>
+<small>`luxe.tween.easing.IEasing` defined in ``</small>
 
 * @author Joshua Granick
  * @author Philippe / http://philippe.elsass.me
@@ -23,12 +23,10 @@
 `class`<br/><span class="meta">
 meta: @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

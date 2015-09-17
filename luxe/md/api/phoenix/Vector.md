@@ -13,7 +13,7 @@
 
 
 <h1>Vector</h1>
-<small>`phoenix.Vector`</small>
+<small>`phoenix.Vector` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

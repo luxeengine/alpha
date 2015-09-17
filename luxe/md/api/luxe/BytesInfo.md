@@ -13,7 +13,7 @@
 
 
 <h1>BytesInfo</h1>
-<small>`luxe.BytesInfo`</small>
+<small>`luxe.BytesInfo` defined in `luxe.Parcel`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `luxe.ItemInfo`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

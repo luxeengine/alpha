@@ -13,7 +13,7 @@
 
 
 <h1>Audio</h1>
-<small>`luxe.Audio`</small>
+<small>`luxe.Audio` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

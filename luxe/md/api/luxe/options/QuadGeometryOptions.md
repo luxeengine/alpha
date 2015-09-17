@@ -13,19 +13,17 @@
 
 
 <h1>QuadGeometryOptions</h1>
-<small>`luxe.options.QuadGeometryOptions`</small>
+<small>`luxe.options.QuadGeometryOptions` defined in `luxe.options.GeometryOptions`</small>
 
 Options for drawing or creating quad based geometry, phoenix.geometry.QuadGeometry
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

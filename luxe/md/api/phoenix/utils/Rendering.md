@@ -13,19 +13,17 @@
 
 
 <h1>Rendering</h1>
-<small>`phoenix.utils.Rendering`</small>
+<small>`phoenix.utils.Rendering` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,24 +13,35 @@
 
 
 <h1>BlendEquation</h1>
-<small>`phoenix.BlendEquation`</small>
+<small>`phoenix.BlendEquation` defined in `phoenix.Batcher`</small>
 
 
 
 <hr/>
 
-`abstract`<br/><span class="meta">
+`abstract`&nbsp;of `Int`<br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 
-
-
+ <hr/><span class="member apipage">
+            <a name="add"><a class="lift" href="#add">add</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="subtract"><a class="lift" href="#subtract">subtract</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="reverse_subtract"><a class="lift" href="#reverse_subtract">reverse\_subtract</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/>
 
 
 

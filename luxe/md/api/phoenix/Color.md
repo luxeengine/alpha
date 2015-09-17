@@ -13,7 +13,7 @@
 
 
 <h1>Color</h1>
-<small>`phoenix.Color`</small>
+<small>`phoenix.Color` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

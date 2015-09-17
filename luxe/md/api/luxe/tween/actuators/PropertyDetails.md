@@ -13,7 +13,7 @@
 
 
 <h1>PropertyDetails</h1>
-<small>`luxe.tween.actuators.PropertyDetails`</small>
+<small>`luxe.tween.actuators.PropertyDetails` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

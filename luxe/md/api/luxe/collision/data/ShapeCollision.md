@@ -13,7 +13,7 @@
 
 
 <h1>ShapeCollision</h1>
-<small>`luxe.collision.data.ShapeCollision`</small>
+<small>`luxe.collision.data.ShapeCollision` defined in ``</small>
 
 Collision data, obtained by testing two shapes for a collision.
 
@@ -22,12 +22,10 @@ Collision data, obtained by testing two shapes for a collision.
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

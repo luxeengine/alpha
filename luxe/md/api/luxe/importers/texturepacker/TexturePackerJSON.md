@@ -13,7 +13,7 @@
 
 
 <h1>TexturePackerJSON</h1>
-<small>`luxe.importers.texturepacker.TexturePackerJSON`</small>
+<small>`luxe.importers.texturepacker.TexturePackerJSON` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

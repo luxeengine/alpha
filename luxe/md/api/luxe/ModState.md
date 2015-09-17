@@ -13,7 +13,7 @@
 
 
 <h1>ModState</h1>
-<small>`luxe.ModState`</small>
+<small>`luxe.ModState` defined in `luxe.Input`</small>
 
 A modifier state for key events
 
@@ -21,13 +21,10 @@ A modifier state for key events
 
 `typedef`&nbsp;alias of `snow.types.ModState`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

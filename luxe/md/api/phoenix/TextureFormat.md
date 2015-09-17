@@ -13,7 +13,7 @@
 
 
 <h1>TextureFormat</h1>
-<small>`phoenix.TextureFormat`</small>
+<small>`phoenix.TextureFormat` defined in `phoenix.Texture`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `Int`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>TextureOptions</h1>
-<small>`luxe.options.TextureOptions`</small>
+<small>`luxe.options.TextureOptions` defined in `luxe.options.ResourceOptions`</small>
 
 Options for creating a Texture instance.
         These are usually `load`ed via `Luxe.resources.load_texture(...)` and
@@ -24,12 +24,10 @@ Options for creating a Texture instance.
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>HandlerList</h1>
-<small>`luxe.HandlerList`</small>
+<small>`luxe.HandlerList` defined in `luxe.Emitter`</small>
 
 
 
@@ -23,13 +23,10 @@
 <br/><span class="meta">
 meta: @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

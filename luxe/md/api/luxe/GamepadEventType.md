@@ -13,7 +13,7 @@
 
 
 <h1>GamepadEventType</h1>
-<small>`luxe.GamepadEventType`</small>
+<small>`luxe.GamepadEventType` defined in `luxe.Input`</small>
 
 A typed gamepad event type
 
@@ -22,12 +22,10 @@ A typed gamepad event type
 `enum`<br/><span class="meta">
 meta: @:directlyUsed, @:flatEnum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

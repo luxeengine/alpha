@@ -13,7 +13,7 @@
 
 
 <h1>Input</h1>
-<small>`luxe.Input`</small>
+<small>`luxe.Input` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

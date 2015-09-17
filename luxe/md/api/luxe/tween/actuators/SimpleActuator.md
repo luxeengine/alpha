@@ -13,7 +13,7 @@
 
 
 <h1>SimpleActuator</h1>
-<small>`luxe.tween.actuators.SimpleActuator`</small>
+<small>`luxe.tween.actuators.SimpleActuator` defined in ``</small>
 
 @author Joshua Granick   
   @version 1.2
@@ -23,12 +23,10 @@
 `class`extends <code><span>luxe.tween.actuators.GenericActuator</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

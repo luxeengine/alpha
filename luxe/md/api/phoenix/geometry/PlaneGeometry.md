@@ -13,7 +13,7 @@
 
 
 <h1>PlaneGeometry</h1>
-<small>`phoenix.geometry.PlaneGeometry`</small>
+<small>`phoenix.geometry.PlaneGeometry` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>phoenix.geometry.Geometry</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

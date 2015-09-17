@@ -13,7 +13,7 @@
 
 
 <h1>DrawBoxOptions</h1>
-<small>`luxe.options.DrawBoxOptions`</small>
+<small>`luxe.options.DrawBoxOptions` defined in `luxe.options.DrawOptions`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `luxe.options.QuadGeometryOptions`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

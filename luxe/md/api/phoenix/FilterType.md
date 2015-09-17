@@ -13,24 +13,47 @@
 
 
 <h1>FilterType</h1>
-<small>`phoenix.FilterType`</small>
+<small>`phoenix.FilterType` defined in `phoenix.Texture`</small>
 
 
 
 <hr/>
 
-`abstract`<br/><span class="meta">
+`abstract`&nbsp;of `Int`<br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 
-
-
+ <hr/><span class="member apipage">
+            <a name="nearest"><a class="lift" href="#nearest">nearest</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="linear"><a class="lift" href="#linear">linear</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="mip_nearest_nearest"><a class="lift" href="#mip_nearest_nearest">mip\_nearest\_nearest</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="mip_linear_nearest"><a class="lift" href="#mip_linear_nearest">mip\_linear\_nearest</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="mip_nearest_linear"><a class="lift" href="#mip_nearest_linear">mip\_nearest\_linear</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="mip_linear_linear"><a class="lift" href="#mip_linear_linear">mip\_linear\_linear</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/>
 
 
 

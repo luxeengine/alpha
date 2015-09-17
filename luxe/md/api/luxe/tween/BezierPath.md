@@ -13,7 +13,7 @@
 
 
 <h1>BezierPath</h1>
-<small>`luxe.tween.BezierPath`</small>
+<small>`luxe.tween.BezierPath` defined in `luxe.tween.MotionPath`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

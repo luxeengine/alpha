@@ -13,19 +13,17 @@
 
 
 <h1>Unicode</h1>
-<small>`luxe.utils.unifill.Unicode`</small>
+<small>`luxe.utils.unifill.Unicode` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

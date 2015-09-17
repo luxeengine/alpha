@@ -13,7 +13,7 @@
 
 
 <h1>EventObject</h1>
-<small>`luxe._Events.EventObject`</small>
+<small>`luxe._Events.EventObject` defined in `luxe.Events`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

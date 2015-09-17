@@ -13,19 +13,17 @@
 
 
 <h1>UV</h1>
-<small>`luxe.importers.obj.UV`</small>
+<small>`luxe.importers.obj.UV` defined in `luxe.importers.obj.Data`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

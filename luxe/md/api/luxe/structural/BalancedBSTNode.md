@@ -13,7 +13,7 @@
 
 
 <h1>BalancedBSTNode</h1>
-<small>`luxe.structural.BalancedBSTNode`</small>
+<small>`luxe.structural.BalancedBSTNode` defined in `luxe.structural.BalancedBST`</small>
 
 A balanced binary search tree node by `K` key and `T` value (type)
 
@@ -22,12 +22,10 @@ A balanced binary search tree node by `K` key and `T` value (type)
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:generic</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

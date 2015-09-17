@@ -13,7 +13,7 @@
 
 
 <h1>ColorHSL</h1>
-<small>`luxe.ColorHSL`</small>
+<small>`luxe.ColorHSL` defined in `luxe.Color`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `phoenix.ColorHSL`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

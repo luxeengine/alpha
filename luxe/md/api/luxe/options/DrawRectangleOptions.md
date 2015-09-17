@@ -13,7 +13,7 @@
 
 
 <h1>DrawRectangleOptions</h1>
-<small>`luxe.options.DrawRectangleOptions`</small>
+<small>`luxe.options.DrawRectangleOptions` defined in `luxe.options.DrawOptions`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `luxe.options.RectangleGeometryOptions`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

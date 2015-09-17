@@ -13,19 +13,17 @@
 
 
 <h1>RenderPass</h1>
-<small>`phoenix.RenderPass`</small>
+<small>`phoenix.RenderPass` defined in ``</small>
 
 
 
 <hr/>
 
 `class`extends <code><span>phoenix.Batcher</span></code>
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

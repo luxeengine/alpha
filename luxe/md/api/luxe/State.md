@@ -13,19 +13,17 @@
 
 
 <h1>State</h1>
-<small>`luxe.State`</small>
+<small>`luxe.State` defined in `luxe.States`</small>
 
 
 
 <hr/>
 
 `class`extends <code><span>luxe.ID</span></code>
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

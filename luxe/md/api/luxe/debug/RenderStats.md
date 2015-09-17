@@ -13,19 +13,17 @@
 
 
 <h1>RenderStats</h1>
-<small>`luxe.debug.RenderStats`</small>
+<small>`luxe.debug.RenderStats` defined in `luxe.debug.StatsDebugView`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

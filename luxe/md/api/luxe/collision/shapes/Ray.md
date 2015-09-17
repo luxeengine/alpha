@@ -13,19 +13,17 @@
 
 
 <h1>Ray</h1>
-<small>`luxe.collision.shapes.Ray`</small>
+<small>`luxe.collision.shapes.Ray` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>TiledObjectType</h1>
-<small>`luxe.importers.tiled.TiledObjectType`</small>
+<small>`luxe.importers.tiled.TiledObjectType` defined in `luxe.importers.tiled.TiledObjectGroup`</small>
 
 
 
@@ -22,12 +22,10 @@
 `enum`<br/><span class="meta">
 meta: @:directlyUsed, @:flatEnum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

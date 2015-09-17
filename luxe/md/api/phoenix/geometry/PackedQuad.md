@@ -13,19 +13,17 @@
 
 
 <h1>PackedQuad</h1>
-<small>`phoenix.geometry.PackedQuad`</small>
+<small>`phoenix.geometry.PackedQuad` defined in `phoenix.geometry.QuadPackGeometry`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

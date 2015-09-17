@@ -13,7 +13,7 @@
 
 
 <h1>ResourceStats</h1>
-<small>`luxe.ResourceStats`</small>
+<small>`luxe.ResourceStats` defined in `luxe.Resources`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

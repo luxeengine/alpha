@@ -13,7 +13,7 @@
 
 
 <h1>Components</h1>
-<small>`luxe.components.Components`</small>
+<small>`luxe.components.Components` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

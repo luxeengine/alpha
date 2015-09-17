@@ -13,19 +13,17 @@
 
 
 <h1>Utf16_Impl_</h1>
-<small>`luxe.utils.unifill._Utf16.Utf16_Impl_`</small>
+<small>`luxe.utils.unifill._Utf16.Utf16_Impl_` defined in `luxe.utils.unifill.Utf16`</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

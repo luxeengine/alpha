@@ -13,7 +13,7 @@
 
 
 <h1>SpriteAnimation</h1>
-<small>`luxe.components.sprite.SpriteAnimation`</small>
+<small>`luxe.components.sprite.SpriteAnimation` defined in ``</small>
 
 A component for : luxe.Sprite
     Once attached to a sprite, the animation component can play animations,
@@ -25,12 +25,10 @@ A component for : luxe.Sprite
 `class`extends <code><span>luxe.Component</span></code><br/><span class="meta">
 meta: @:build(luxe.macros.ComponentRules.apply()), @:autoBuild(luxe.macros.ComponentRules.apply())</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

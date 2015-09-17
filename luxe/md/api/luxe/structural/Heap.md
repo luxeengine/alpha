@@ -13,7 +13,7 @@
 
 
 <h1>Heap</h1>
-<small>`luxe.structural.Heap`</small>
+<small>`luxe.structural.Heap` defined in ``</small>
 
 Copyright (c) 2008 Chase Kernan, Laurence Taylor
 chase.kernan@gmail.com, polysemantic@gmail.com
@@ -45,12 +45,10 @@ OTHER DEALINGS IN THE SOFTWARE.
 `class`<br/><span class="meta">
 meta: @:generic</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

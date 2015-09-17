@@ -13,7 +13,7 @@
 
 
 <h1>Rectangle</h1>
-<small>`luxe.Rectangle`</small>
+<small>`luxe.Rectangle` defined in ``</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `phoenix.Rectangle`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

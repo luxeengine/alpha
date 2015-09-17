@@ -13,19 +13,17 @@
 
 
 <h1>GamepadEvent</h1>
-<small>`luxe.GamepadEvent`</small>
+<small>`luxe.GamepadEvent` defined in `luxe.Input`</small>
 
 Information about a gamepad event
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

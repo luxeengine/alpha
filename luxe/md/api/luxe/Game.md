@@ -13,7 +13,7 @@
 
 
 <h1>Game</h1>
-<small>`luxe.Game`</small>
+<small>`luxe.Game` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.Emitter</span></code><br/><span class="meta">
 meta: @:noCompletion, @:keepSub</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

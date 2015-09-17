@@ -13,7 +13,7 @@
 
 
 <h1>ColorHSL</h1>
-<small>`phoenix.ColorHSL`</small>
+<small>`phoenix.ColorHSL` defined in `phoenix.Color`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>phoenix.Color</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

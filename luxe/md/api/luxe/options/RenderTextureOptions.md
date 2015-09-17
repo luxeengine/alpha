@@ -13,7 +13,7 @@
 
 
 <h1>RenderTextureOptions</h1>
-<small>`luxe.options.RenderTextureOptions`</small>
+<small>`luxe.options.RenderTextureOptions` defined in `luxe.options.ResourceOptions`</small>
 
 Options for creating a RenderTexture instance.
         Note that width/height are the mainly used options,
@@ -22,12 +22,10 @@ Options for creating a RenderTexture instance.
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

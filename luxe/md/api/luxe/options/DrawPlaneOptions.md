@@ -13,7 +13,7 @@
 
 
 <h1>DrawPlaneOptions</h1>
-<small>`luxe.options.DrawPlaneOptions`</small>
+<small>`luxe.options.DrawPlaneOptions` defined in `luxe.options.DrawOptions`</small>
 
 
 
@@ -23,13 +23,10 @@
 <br/><span class="meta">
 meta: @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

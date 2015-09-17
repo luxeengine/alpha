@@ -13,19 +13,17 @@
 
 
 <h1>BitmapFontData</h1>
-<small>`luxe.importers.bitmapfont.BitmapFontData`</small>
+<small>`luxe.importers.bitmapfont.BitmapFontData` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

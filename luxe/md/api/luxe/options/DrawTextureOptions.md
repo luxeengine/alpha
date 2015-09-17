@@ -13,19 +13,17 @@
 
 
 <h1>DrawTextureOptions</h1>
-<small>`luxe.options.DrawTextureOptions`</small>
+<small>`luxe.options.DrawTextureOptions` defined in `luxe.options.DrawOptions`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

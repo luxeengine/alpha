@@ -13,19 +13,17 @@
 
 
 <h1>Tilemap</h1>
-<small>`luxe.tilemaps.Tilemap`</small>
+<small>`luxe.tilemaps.Tilemap` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

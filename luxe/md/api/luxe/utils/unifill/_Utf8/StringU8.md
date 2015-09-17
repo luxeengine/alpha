@@ -13,19 +13,18 @@
 
 
 <h1>StringU8</h1>
-<small>`luxe.utils.unifill._Utf8.StringU8`</small>
+<small>`luxe.utils.unifill._Utf8.StringU8` defined in `luxe.utils.unifill.Utf8`</small>
 
 
 
 <hr/>
 
-`abstract`
+`abstract`&nbsp;of `String`<br/><span class="meta"></span>&nbsp;<span class="meta"></span>
+
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

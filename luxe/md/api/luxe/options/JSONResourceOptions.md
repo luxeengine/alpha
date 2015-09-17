@@ -13,7 +13,7 @@
 
 
 <h1>JSONResourceOptions</h1>
-<small>`luxe.options.JSONResourceOptions`</small>
+<small>`luxe.options.JSONResourceOptions` defined in `luxe.options.ResourceOptions`</small>
 
 Options for creating a JSON Resource instance.
         These are usually `load`ed via `Luxe.resources.load_json(...)` and
@@ -22,12 +22,10 @@ Options for creating a JSON Resource instance.
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

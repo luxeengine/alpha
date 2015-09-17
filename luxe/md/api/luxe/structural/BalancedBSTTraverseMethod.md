@@ -13,7 +13,7 @@
 
 
 <h1>BalancedBSTTraverseMethod</h1>
-<small>`luxe.structural.BalancedBSTTraverseMethod`</small>
+<small>`luxe.structural.BalancedBSTTraverseMethod` defined in `luxe.structural.BalancedBST`</small>
 
 A traversal method for iterating a node in the tree
 
@@ -22,12 +22,10 @@ A traversal method for iterating a node in the tree
 `enum`<br/><span class="meta">
 meta: @:directlyUsed, @:flatEnum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

@@ -13,7 +13,7 @@
 
 
 <h1>Pool</h1>
-<small>`luxe.structural.Pool`</small>
+<small>`luxe.structural.Pool` defined in ``</small>
 
 Copyright 2014 Sven Bergström
     A simple cacheable pool type with on create callback
@@ -28,12 +28,10 @@ Copyright 2014 Sven Bergström
 `class`<br/><span class="meta">
 meta: @:generic</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

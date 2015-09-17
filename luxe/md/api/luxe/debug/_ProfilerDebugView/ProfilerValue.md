@@ -13,7 +13,7 @@
 
 
 <h1>ProfilerValue</h1>
-<small>`luxe.debug._ProfilerDebugView.ProfilerValue`</small>
+<small>`luxe.debug._ProfilerDebugView.ProfilerValue` defined in `luxe.debug.ProfilerDebugView`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,19 +13,17 @@
 
 
 <h1>Vec_Impl_</h1>
-<small>`phoenix._Vector.Vec_Impl_`</small>
+<small>`phoenix._Vector.Vec_Impl_` defined in `phoenix.Vector`</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

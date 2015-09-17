@@ -13,19 +13,17 @@
 
 
 <h1>LuxeCameraOptions</h1>
-<small>`luxe.options.LuxeCameraOptions`</small>
+<small>`luxe.options.LuxeCameraOptions` defined in `luxe.options.CameraOptions`</small>
 
 Don't like this naming here, tentative. Will have to do for now.
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>Vertex</h1>
-<small>`phoenix.geometry.Vertex`</small>
+<small>`phoenix.geometry.Vertex` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

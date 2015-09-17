@@ -13,7 +13,7 @@
 
 
 <h1>Luxe</h1>
-<small>`Luxe`</small>
+<small>`Luxe` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:keep</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

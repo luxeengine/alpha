@@ -13,19 +13,17 @@
 
 
 <h1>StatesOptions</h1>
-<small>`luxe.options.StatesOptions`</small>
+<small>`luxe.options.StatesOptions` defined in `luxe.options.StateOptions`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 
