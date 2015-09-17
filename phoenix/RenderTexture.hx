@@ -50,7 +50,7 @@ class RenderTexture extends Texture {
         bindRenderBuffer();
 
             //Create storage for the depth buffer :todo: optionize
-        GL.renderbufferStorage(GL.RENDERBUFFER, GL.DEPTH_COMPONENT16, width, height);
+        GL.renderbufferStorage(GL.RENDERBUFFER, GL.DEPTH_COMPONENT, width, height);
             //Attach the framebuffer texture to the buffer
         GL.framebufferTexture2D( GL.FRAMEBUFFER, GL.COLOR_ATTACHMENT0, GL.TEXTURE_2D, texture, 0 );
             //Attach the depth buffer to the render buffer
