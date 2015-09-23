@@ -69,7 +69,7 @@ class Unifill {
     /**
        Splits String `s` at each occurence of `delimiter`.
      **/
-    public static inline function uSplit(s : String, delimiter : String) : Array<String> {
+    public static function uSplit(s : String, delimiter : String) : Array<String> {
         return if (delimiter.length == 0) {
             [for (i in new InternalEncodingIter(s, 0, s.length)) InternalEncoding.charAt(s, i)];
         } else {
