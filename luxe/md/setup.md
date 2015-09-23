@@ -110,7 +110,7 @@ Additionally,
 **Step 4.1 - Install C++**   
 To build the native targets, you must have c++ installed.
 
-- Windows : [Visual C++ 2013](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx)   
+- Windows : [Visual C++ 2013](https://www.visualstudio.com/en-us/dn872790.aspx)   - Currently ONLY 2013 is supported out of the box, waiting for hxcpp stable release
 - Linux : GCC/G++   
 - Mac : [Xcode](https://developer.apple.com/xcode/downloads/) (and command line tools)   
 - iOS : Xcode, [iOS SDK](https://developer.apple.com/ios/) (comes with xcode)

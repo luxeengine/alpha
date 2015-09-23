@@ -36,9 +36,6 @@ meta: @:directlyUsed, @:allow(phoenix.Batcher)</span>
                 <a name="batchers"><a class="lift" href="#batchers">batchers</a></a><div class="clear"></div>
                 <code class="signature apipage">batchers : [Array](http://api.haxe.org/Array.html)&lt;[phoenix.Batcher](../../../api/phoenix/Batcher.html)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><br/><span class="member apipage">
-                <a name="buffers"><a class="lift" href="#buffers">buffers</a></a><div class="clear"></div>
-                <code class="signature apipage">buffers : [Array](http://api.haxe.org/Array.html)&lt;[snow.api.buffers.ArrayBufferView](#)&gt;</code><br/></span>
-            <span class="small_desc_flat"></span><br/><span class="member apipage">
                 <a name="dropped"><a class="lift" href="#dropped">dropped</a></a><div class="clear"></div>
                 <code class="signature apipage">dropped : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
             <span class="small_desc_flat"></span><br/><span class="member apipage">
