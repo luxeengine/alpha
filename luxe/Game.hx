@@ -29,61 +29,61 @@ class Game extends Emitter<Int> {
     @:noCompletion public function onevent( event:snow.types.Types.SystemEvent ) { }
 
        /** Your exit point. Called for you when you should shut down your application */
-   public function ondestroy() {}
+   @:noCompletion public function ondestroy() {}
 
        /** Called when the application is about to render */
-   public function onprerender() {}
+   @:noCompletion public function onprerender() {}
        /** Called when the application is rendering */
-   public function onrender() {}
+   @:noCompletion public function onrender() {}
        /** Called when the application is done rendering */
-   public function onpostrender() {}
+   @:noCompletion public function onpostrender() {}
 
        /** Called when a named input down event occurs */
-   public function oninputdown( _name:String, e:InputEvent ) {}
+   @:noCompletion public function oninputdown( _name:String, e:InputEvent ) {}
        /** Called when a named input up event occurs */
-   public function oninputup( _name:String, e:InputEvent ) {}
+   @:noCompletion public function oninputup( _name:String, e:InputEvent ) {}
 
        /** Called for you when a mouse button is pressed */
-   public function onmousedown( event:MouseEvent ) {}
+   @:noCompletion public function onmousedown( event:MouseEvent ) {}
        /** Called for you when a mouse button is released */
-   public function onmouseup( event:MouseEvent ) {}
+   @:noCompletion public function onmouseup( event:MouseEvent ) {}
        /** Called for you when the mouse wheel moves */
-   public function onmousewheel( event:MouseEvent ) {}
+   @:noCompletion public function onmousewheel( event:MouseEvent ) {}
        /** Called for you when the mouse moves */
-   public function onmousemove( event:MouseEvent ) {}
+   @:noCompletion public function onmousemove( event:MouseEvent ) {}
 
        /** Called for you when a key is pressed down */
-   public function onkeydown( event:KeyEvent ) {}
+   @:noCompletion public function onkeydown( event:KeyEvent ) {}
        /** Called for you when a key is released */
-   public function onkeyup( event:KeyEvent ) {}
+   @:noCompletion public function onkeyup( event:KeyEvent ) {}
        /** Called for you when text input is happening. Use this for textfields, as it handles the complexity of unicode etc. */
-   public function ontextinput( event:TextEvent ) {}
+   @:noCompletion public function ontextinput( event:TextEvent ) {}
 
        /** Called for you when a touch is first pressed, use the `touch_id` to track which */
-   public function ontouchdown( event:TouchEvent ) {}
+   @:noCompletion public function ontouchdown( event:TouchEvent ) {}
        /** Called for you when a touch is released, use the `touch_id` to track which */
-   public function ontouchup( event:TouchEvent ) {}
+   @:noCompletion public function ontouchup( event:TouchEvent ) {}
        /** Called for you when a touch is moved, use the `touch_id` to track which */
-   public function ontouchmove( event:TouchEvent ) {}
+   @:noCompletion public function ontouchmove( event:TouchEvent ) {}
 
        /** Called for you when a connected gamepad axis moves, use `gamepad` to determine gamepad id */
-   public function ongamepadaxis( event:GamepadEvent ) {}
+   @:noCompletion public function ongamepadaxis( event:GamepadEvent ) {}
        /** Called for you when a connected gamepad button is pressed, use `gamepad` to determine gamepad id */
-   public function ongamepaddown( event:GamepadEvent ) {}
+   @:noCompletion public function ongamepaddown( event:GamepadEvent ) {}
        /** Called for you when a connected gamepad button is released, use `gamepad` to determine gamepad id */
-   public function ongamepadup( event:GamepadEvent ) {}
+   @:noCompletion public function ongamepadup( event:GamepadEvent ) {}
        /** Called for you when a gamepad is connected or disconnected, use `gamepad` to determine gamepad id */
-   public function ongamepaddevice( event:GamepadEvent ) {}
+   @:noCompletion public function ongamepaddevice( event:GamepadEvent ) {}
 
        /** Called for you when a window is moved, with the data containing the new x/y position */
-   public function onwindowmoved( event:WindowEvent ) {}
+   @:noCompletion public function onwindowmoved( event:WindowEvent ) {}
        /** Called for you when a window is resized by the user, with the data containing the new x/y size */
-   public function onwindowresized( event:WindowEvent ) {}
+   @:noCompletion public function onwindowresized( event:WindowEvent ) {}
        /** Called for you when a window is resized by the system or code or the user, with the data containing the new x/y size */
-   public function onwindowsized( event:WindowEvent ) {}
+   @:noCompletion public function onwindowsized( event:WindowEvent ) {}
        /** Called for you when a window is minimized. */
-   public function onwindowminimized( event:WindowEvent ) {}
+   @:noCompletion public function onwindowminimized( event:WindowEvent ) {}
        /** Called for you when a window is restored. */
-   public function onwindowrestored( event:WindowEvent ) {}
+   @:noCompletion public function onwindowrestored( event:WindowEvent ) {}
 
 } //Game
