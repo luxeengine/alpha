@@ -21,10 +21,6 @@ class ShapeCollision {
 
     @:noCompletion
     public function new() {
-
-        separation = new Vector();
-        unitVector = new Vector();
-
     } //new
 
 } //ShapeCollision
