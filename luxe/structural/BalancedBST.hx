@@ -15,7 +15,7 @@ package luxe.structural;
     MIT License
 */
 
-@:generic
+#if !display @:generic #end
 @:allow(luxe.structural.BalancedBSTIterator)
 class BalancedBST<K,T> {
 
@@ -671,7 +671,7 @@ class BalancedBST<K,T> {
 } //BalancedBST
 
 
-@:generic
+#if !display @:generic #end
 class BalancedBSTIterator<K,T> {
 
     var tree : BalancedBST<K,T>;
@@ -755,7 +755,7 @@ private class NodeColor {
 }
 
     /** A balanced binary search tree node by `K` key and `T` value (type) */
-@:generic
+#if !display @:generic #end
 class BalancedBSTNode<K,T> {
 
 
