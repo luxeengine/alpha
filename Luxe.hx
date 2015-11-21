@@ -88,8 +88,8 @@ class Luxe {
     }
 
         /** stop listening for core events */
-    public static function off<T>(event:Ev, handler:T->Void ) : Void {
-        core.emitter.off(event, handler);
+    public static function off<T>(event:Ev, handler:T->Void ) : Bool {
+        return core.emitter.off(event, handler);
     }
 
         /** Call a function at the start of the next frame */
