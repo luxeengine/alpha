@@ -83,31 +83,31 @@ class Luxe {
     public static var alpha (get,set) : Float;
 
         /** listen for core events */
-    public static function on<T>(event:Ev, handler:T->Void ) {
+    public static function on<T>(event:Ev, handler:T->Void ) : Void {
         core.emitter.on(event, handler);
     }
 
         /** stop listening for core events */
-    public static function off<T>(event:Ev, handler:T->Void ) {
+    public static function off<T>(event:Ev, handler:T->Void ) : Void {
         return core.emitter.off(event, handler);
     }
 
         /** Call a function at the start of the next frame */
-    public static inline function next( func: Void->Void ) {
+    public static inline function next( func: Void->Void ) : Void {
 
         Snow.next(func);
 
     } //next
 
         /** shutdown the engine and quit */
-    public static function shutdown() {
+    public static function shutdown() : Void {
 
         core.shutdown();
 
     } //shutdown
 
         /** show/hide the debug console programmatically */
-    public static function showConsole(_show:Bool) {
+    public static function showConsole(_show:Bool) : Void {
 
         core.show_console( _show );
 
