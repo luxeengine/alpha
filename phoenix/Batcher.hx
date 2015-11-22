@@ -435,21 +435,21 @@ class Batcher {
         #end
 
         GL.bindBuffer(GL.ARRAY_BUFFER, pb );
-        GL.vertexAttribPointer( 0, 4, GL.FLOAT, false, 0, 0 );
+        GL.vertexAttribPointer( vert_attribute, 4, GL.FLOAT, false, 0, 0 );
         GL.bufferData( GL.ARRAY_BUFFER , _pos, GL.STREAM_DRAW);
 
         GL.bindBuffer(GL.ARRAY_BUFFER, tb );
-        GL.vertexAttribPointer( 1, 4, GL.FLOAT, false, 0, 0 );
+        GL.vertexAttribPointer( tcoord_attribute, 4, GL.FLOAT, false, 0, 0 );
         GL.bufferData( GL.ARRAY_BUFFER , _tcoords, GL.STREAM_DRAW);
 
         GL.bindBuffer(GL.ARRAY_BUFFER, cb );
-        GL.vertexAttribPointer( 2, 4, GL.FLOAT, false, 0, 0 );
+        GL.vertexAttribPointer( color_attribute, 4, GL.FLOAT, false, 0, 0 );
         GL.bufferData( GL.ARRAY_BUFFER , _colors, GL.STREAM_DRAW);
 
         #if phoenix_use_normals
         GL.bindBuffer(GL.ARRAY_BUFFER, nb );
         GL.bufferData( GL.ARRAY_BUFFER , _normals, GL.STREAM_DRAW);
-        GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0 );
+        GL.vertexAttribPointer( normal_attribute, 4, GL.FLOAT, false, 0, 0 );
         #end
 
             //Draw
