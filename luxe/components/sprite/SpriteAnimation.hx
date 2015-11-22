@@ -421,7 +421,7 @@ class SpriteAnimation extends Component {
             loop = current.loop;
             pingpong = current.pingpong;
             reverse = current.reverse;
-            next_frame_time = time;
+            next_frame_time = time + current.frame_time;
 
             //set to the first frame of this animation
         frame = 1;
