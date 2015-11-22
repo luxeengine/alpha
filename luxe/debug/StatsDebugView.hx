@@ -212,8 +212,8 @@ class StatsDebugView extends luxe.debug.DebugView  {
             }
 
 
-
-            lists += '\n\n---\nAudio list (${Lambda.count(Luxe.snow.audio.sound_list)})\n\n';
+            var _count = Lambda.count(Luxe.snow.audio.sound_list);
+            lists += '\n\n---\nAudio list ($_count)\n\n';
                 lists += orblank(sound_list);
 
         resource_list_text.text = lists;
@@ -363,7 +363,6 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
         if(hide_debug) {
 
-            _render_stats.batchers = _render_stats.batchers - 1;
             _render_stats.geometry_count = _render_stats.geometry_count - debug_geometry_count;
             _render_stats.visible_count = _render_stats.visible_count - Luxe.debug.batcher.visible_count;
             _render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count - Luxe.debug.batcher.dynamic_batched_count;// - Luxe.debug.batcher.static_batched_count;
