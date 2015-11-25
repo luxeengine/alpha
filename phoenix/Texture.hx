@@ -119,7 +119,7 @@ class Texture extends Resource {
 
         /** Fetch the pixels from the texture id, storing them in the provided array buffer view.
             Returns image pixels in RGBA format, as unsigned byte (0-255) values only.
-            This means that the view must be w * h * 4 in length, minimum.
+            This means that the view must be `w * h * 4` in length, minimum.
             By default, x and y are 0, 0, and the texture `width` and `height`
             are used (not width_actual/height_actual) */
     public function fetch( _into:Uint8Array, ?_x:Int = 0, ?_y:Int = 0, ?_w:Int, ?_h:Int ) : Uint8Array {
