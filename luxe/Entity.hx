@@ -501,7 +501,7 @@ class Entity extends Objects {
                     } else {
                         //still has a parent,
                         //keep looking
-                        _parent = parent.parent;
+                        _parent = _parent.parent;
                     }
 
                 } else {
