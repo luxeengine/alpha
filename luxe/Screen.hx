@@ -17,18 +17,7 @@ typedef WindowEventData = {
 
 
 /** A window event */
-typedef WindowEvent = {
-
-        /** The type of window event this was. Use WindowEventType */
-    @:optional var type : WindowEventType;
-        /** The time in seconds that this event occured, useful for deltas */
-    @:optional var timestamp : Float;
-        /** The window id from which this event originated */
-    @:optional var window_id : Int;
-        /** The event data, where applicable. For example, with move, resized or sized events the data contains the new information as a result of the event. */
-    @:optional var event : WindowEventData;
-
-} //WindowEvent
+typedef WindowEvent = snow.types.Types.WindowEvent;
 
 
 
@@ -169,7 +158,8 @@ class Cursor {
 
     function set_visible( _visible:Bool ) : Bool {
 
-        screen.core.app.windowing.enable_cursor( _visible );
+        //:todo:snowdev mouse api was removed (1)
+        // screen.core.app.windowing.enable_cursor( _visible );
 
         return visible = _visible;
 
@@ -189,7 +179,7 @@ class Cursor {
 
     function set_grab( _grab:Bool ) : Bool {
 
-        screen.core.app.window.grab = _grab;
+        screen.core.app.runtime.window_grab(_grab);
 
         return grab = _grab;
 
@@ -197,7 +187,8 @@ class Cursor {
 
     function set_lock( _lock:Bool ) : Bool {
 
-        screen.core.app.windowing.enable_cursor_lock(_lock);
+        //:todo:snowdev mouse api was removed (1)
+        // screen.core.app.windowing.enable_cursor_lock(_lock);
 
         return lock = _lock;
 
@@ -212,7 +203,8 @@ class Cursor {
     function set_pos( _p:Vector ) : Vector {
 
         if(pos != null && _p != null && !ignore) {
-            screen.core.app.window.set_cursor_position( Std.int(_p.x), Std.int(_p.y) );
+            //:todo:snowdev: mouse api was removed (1)
+            // screen.core.app.window.set_cursor_position( Std.int(_p.x), Std.int(_p.y) );
         }
 
         return pos = _p;

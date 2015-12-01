@@ -258,7 +258,7 @@ import luxe.options.RenderProperties;
 
         function draw_compound( _space:Compound) {
 
-            //:todo :
+            //:todo : I wanted to look at how nape default draws things to match if possible
 
         } //draw_compound
 

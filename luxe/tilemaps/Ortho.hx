@@ -101,6 +101,7 @@ class OrthoVisual extends TilemapVisual {
 
         if(options.grid) {
 
+            //:todo : grid for tilemap is primitive, should be a facility
             var color = new Color(1,1,1,0.8).rgb(0xcc0000);
 
             for(x in 0 ... map.width+1) {
@@ -108,7 +109,7 @@ class OrthoVisual extends TilemapVisual {
                     p0 : new Vector(map.pos.x + (x * _map_scaled_tw), map.pos.y + 0 ),
                     p1 : new Vector(map.pos.x + (x * _map_scaled_tw), map.pos.y + (map.height * _map_scaled_th)),
                     color : color,
-                    depth : options.depth+0.0001, //:todo :
+                    depth : options.depth+0.0001,
                     batcher : options.batcher
                 });
             }

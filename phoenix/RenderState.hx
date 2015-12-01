@@ -117,7 +117,11 @@ class RenderState {
     public function useProgram( program:GLProgram ) {
         if(_used_program != program) {
             _used_program = program;
-            GL.useProgram( program );
+            #if luxe_native 
+                program == null ? GL.useProgram(0) : GL.useProgram( program );
+            #else 
+                GL.useProgram( program ); 
+            #end
         }
     } //useProgram
 
@@ -142,7 +146,11 @@ class RenderState {
     public function bindTexture2D( tex:TextureID ) {
         if(bound_texture_2D != tex) {
             bound_texture_2D = tex;
-            GL.bindTexture(GL.TEXTURE_2D, tex);
+            #if luxe_native 
+                tex == null ? GL.bindTexture(GL.TEXTURE_2D, 0) : GL.bindTexture(GL.TEXTURE_2D, tex);
+            #else
+                GL.bindTexture(GL.TEXTURE_2D, tex); 
+            #end
         }
     }
 

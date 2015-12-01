@@ -5,6 +5,10 @@
     }
   },
 
+  snow: {
+    main: 'luxe.Core'
+  },
+
   project : {
 
     name : 'luxe',
@@ -15,6 +19,7 @@
       icon : 'flow/icons/ => luxe'
     },
     build : {
+      defines: ['snow_no_main'],
       flags : [
           "-resource version@version",
           "-resource build@build",
@@ -25,7 +30,7 @@
           "-resource phoenix/defaults/shaders/frag.bitmapfont.glsl@default.frag.bitmapfont.glsl"
       ],
       dependencies : {
-        snow : '*'
+        snowdev : '*'
       },
       files : {
         boot : { path:'flow/boot/LuxeApp.hx => haxe/LuxeApp.hx', template:['project','snow', 'luxe'] },

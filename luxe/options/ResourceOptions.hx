@@ -2,7 +2,7 @@ package luxe.options;
 
 import luxe.Parcel;
 import snow.api.buffers.Uint8Array;
-import snow.system.assets.Asset;
+import snow.systems.assets.Asset;
 import phoenix.Texture;
 
 typedef ResourceOptions = {

@@ -4,6 +4,7 @@ import luxe.Parcel;
 
 typedef AppConfig = {
     > snow.types.Types.AppConfig,
+    ? headless : Bool,
     ? preload: {
         ? bytes: Array<BytesInfo>,
         ? texts: Array<TextInfo>,

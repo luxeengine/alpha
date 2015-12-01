@@ -36,12 +36,12 @@ class Main extends luxe.Game {
         //overriding the built in function to configure the default window
     override function config( config:AppConfig ) : AppConfig {
 
-        if(config.runtime.window != null) {
-            if(config.runtime.window.width != null) {
-                config.window.width = Std.int(config.runtime.window.width);
+        if(config.user.window != null) {
+            if(config.user.window.width != null) {
+                config.window.width = Std.int(config.user.window.width);
             }
-            if(config.runtime.window.height != null) {
-                config.window.height = Std.int(config.runtime.window.height);
+            if(config.user.window.height != null) {
+                config.window.height = Std.int(config.user.window.height);
             }
         }
 

@@ -319,29 +319,30 @@ class Parcel {
 
                 for(_sound in list.sounds) {
 
-                    if(!Luxe.audio.exists(_sound.name)) {
+                    //:todo:snowdev AudioSource -> Resource (1)
+                    // if(!Luxe.audio.exists(_sound.name)) {
 
-                        // loaded.push(_sound.id); //:todo: this is not a resource, so it gets weird
-                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+                    //     // loaded.push(_sound.id);
+                    //     Luxe.timer.schedule(load_time_spacing*_index, function() {
 
-                            var _load = Luxe.audio.create(
-                                _sound.id,
-                                _sound.name,
-                                _sound.is_stream
-                            );
+                    //         var _load = Luxe.audio.create(
+                    //             _sound.id,
+                    //             _sound.name,
+                    //             _sound.is_stream
+                    //         );
 
-                            _load.then(function(_) {
-                                one_loaded(_sound.id, _load_id, null, ++_index, length);
-                            }, function(_err:Dynamic){
-                                one_failed(_sound.id, _load_id, _err, ++_index, length);
-                            });
+                    //         _load.then(function(_) {
+                    //             one_loaded(_sound.id, _load_id, null, ++_index, length);
+                    //         }, function(_err:Dynamic){
+                    //             one_failed(_sound.id, _load_id, _err, ++_index, length);
+                    //         });
 
-                        }); //timer
+                    //     }); //timer
 
-                    } else { //!loaded
-                        log('$id / already had ${_sound.id} (${_sound.name}) loaded, skipped');
-                        one_loaded(_sound.id, _load_id, null, ++_index, length);
-                    }
+                    // } else { //!loaded
+                    //     log('$id / already had ${_sound.id} (${_sound.name}) loaded, skipped');
+                    //     one_loaded(_sound.id, _load_id, null, ++_index, length);
+                    // }
 
                 } //each sounds
 
@@ -364,7 +365,8 @@ class Parcel {
         for(item in list.textures)  _remove(item.id);
         for(item in list.fonts)     _remove(item.id);
         for(item in list.shaders)   _remove(item.id);
-        for(item in list.sounds)    Luxe.audio.uncreate(item.name);
+        //:todo:snowdev: AudioSource -> Resource (1)
+        // for(item in list.sounds)    Luxe.audio.uncreate(item.name);
 
         if(_empty_list) {
             list = null;
@@ -553,7 +555,7 @@ class Parcel {
         for(item in list.textures)  _result.push(item.id);
         for(item in list.fonts)     _result.push(item.id);
         for(item in list.shaders)   _result.push(item.id);
-            //:todo: this is a list of resources, sounds aren't resources...
+            //:todo:snowdev: this is a list of resources, sounds aren't resources... (1)
         // for(item in list.sounds)    _result.push(item.id);
 
         return _result;

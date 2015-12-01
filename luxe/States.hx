@@ -309,8 +309,9 @@ class States extends Objects {
         /** Change the actively set state. */
     public function set<T1,T2>(name:String, ?_enter_with:T1, ?_leave_with:T2 #if debug, ?pos:haxe.PosInfos #end ) : Bool {
 
-        #if debug //:todo:
-        _debug('attempt to set state to $name from ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
+         //:todo: these debug flags should be consolidated
+        #if debug
+            _debug('attempt to set state to $name from ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
         #end
 
         if(!_states.exists(name)) {

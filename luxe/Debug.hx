@@ -101,18 +101,18 @@ class Debug {
         /** start a profiling section for the profiler debug view */
     public function start(_name:String, ?_max:Float) {
         #if !no_debug_console
-        if(!core.headless) {
-            ProfilerDebugView.start(_name, _max);
-        }
+            if(!core.appconfig.headless) {
+                ProfilerDebugView.start(_name, _max);
+            }
         #end
     }
 
         /** end a profiling section for the profiler debug view */
     public function end(_name:String) {
         #if !no_debug_console
-        if(!core.headless) {
-            ProfilerDebugView.end(_name);
-        }
+            if(!core.appconfig.headless) {
+                ProfilerDebugView.end(_name);
+            }
         #end
     }
         /** remove a trace listener added via add_trace_listener */
@@ -215,8 +215,8 @@ class Debug {
 
             core.on(Ev.windowsized, function( _event:luxe.Screen.WindowEvent ){
 
-                var _w = _event.event.x;
-                var _h = _event.event.y;
+                var _w = _event.x;
+                var _h = _event.y;
 
                 padding.set_xy(_w*0.05,_h*0.05);
 

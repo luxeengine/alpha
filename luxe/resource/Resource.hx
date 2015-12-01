@@ -5,7 +5,7 @@ import luxe.options.ResourceOptions;
 import luxe.Resources;
 
 import snow.api.Promise;
-import snow.system.assets.Asset;
+import snow.systems.assets.Asset;
 
 class Resource {
 

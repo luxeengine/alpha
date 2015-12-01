@@ -16,7 +16,7 @@ import phoenix.Vector;
 import phoenix.Texture;
 import snow.api.Promise;
 import snow.types.Types.Error;
-import snow.system.assets.Asset;
+import snow.systems.assets.Asset;
 
 import luxe.Log.*;
 

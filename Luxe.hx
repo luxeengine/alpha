@@ -65,22 +65,22 @@ class Luxe {
         /** if this is non zero, updates will be forced to this rate */
     public static var update_rate (get,set) : Float;
         /** the maximum frame time */
-    public static var max_frame_time (get,set) : Float;
+    public static var frame_max_delta (get,set) : Float;
 
 //Timing information
 
         /** the time the last frame took to run */
     public static var dt (get,set) : Float;
-        /** the simulated time the last frame took to run, relative to scale etc */
-    public static var delta_sim (get,set) : Float;
-        /** the start time of the last frame */
-    public static var last_frame_start (get,set) : Float;
-        /** the current simulation time */
-    public static var current_time (get,set) : Float;
         /** the start time of this frame */
-    public static var cur_frame_start (get,set) : Float;
+    public static var frame_start (get,set) : Float;
+        /** the start time of the last frame */
+    public static var frame_start_prev (get,set) : Float;
         /** the alpha time for a render between frame updates */
-    public static var alpha (get,set) : Float;
+    public static var fixed_alpha (get,set) : Float;
+        /** the current simulation time */
+    public static var sim_time (get,set) : Float;
+        /** the simulated time the last frame took to run, relative to scale etc */
+    public static var sim_delta (get,set) : Float;
 
         /** listen for core events */
     public static function on<T>(event:Ev, handler:T->Void ) : Void {
@@ -114,6 +114,7 @@ class Luxe {
     } //showConsole
 
 //Internal
+//:todo:snowdev: App variable names, and lots of these setters are bogus (1)
 
         /** the snow app instance */
     static inline function get_snow() : snow.Snow return core.app;
@@ -128,19 +129,19 @@ class Luxe {
         /** if this is non zero, updates will be forced to this rate */
     static inline function get_update_rate() : Float return core.update_rate;
         /** the maximum frame time */
-    static inline function get_max_frame_time() : Float return core.max_frame_time;
+    static inline function get_frame_max_delta() : Float return core.frame_max_delta;
         /** the time the last frame took to run */
-    static inline function get_dt() : Float return core.delta_time;
-        /** the simulated time the last frame took to run, relative to scale etc */
-    static inline function get_delta_sim() : Float return core.delta_sim;
-        /** the start time of the last frame */
-    static inline function get_last_frame_start() : Float return core.last_frame_start;
-        /** the current simulation time */
-    static inline function get_current_time() : Float return core.current_time;
+    static inline function get_dt() : Float return core.frame_delta;
         /** the start time of this frame */
-    static inline function get_cur_frame_start() : Float return core.cur_frame_start;
+    static inline function get_frame_start() : Float return core.frame_start;
+        /** the start time of the last frame */
+    static inline function get_frame_start_prev() : Float return core.frame_start_prev;
+        /** the simulated time the last frame took to run, relative to scale etc */
+    static inline function get_sim_delta() : Float return core.sim_delta;
+        /** the current simulation time */
+    static inline function get_sim_time() : Float return core.sim_time;
         /** the alpha time for a render between frame updates */
-    static inline function get_alpha() : Float return core.alpha;
+    static inline function get_fixed_alpha() : Float return core.fixed_alpha;
 
         /** the scale of time */
     static inline function set_timescale( value:Float ) : Float return core.timescale = value;
@@ -149,19 +150,19 @@ class Luxe {
         /** if this is non zero, updates will be forced to this rate */
     static inline function set_update_rate( value:Float ) : Float return core.update_rate = value;
         /** the maximum frame time */
-    static inline function set_max_frame_time( value:Float ) : Float return core.max_frame_time = value;
+    static inline function set_frame_max_delta( value:Float ) : Float return core.frame_max_delta = value;
         /** the time the last frame took to run */
-    static inline function set_dt( value:Float ) : Float return core.delta_time = value;
+    static inline function set_dt( value:Float ) : Float return core.frame_delta = value;
         /** the simulated time the last frame took to run, relative to scale etc */
-    static inline function set_delta_sim( value:Float ) : Float return core.delta_sim = value;
-        /** the start time of the last frame */
-    static inline function set_last_frame_start( value:Float ) : Float return core.last_frame_start = value;
+    static inline function set_sim_delta( value:Float ) : Float return core.sim_delta = value;
         /** the current simulation time */
-    static inline function set_current_time( value:Float ) : Float return core.current_time = value;
+    static inline function set_sim_time( value:Float ) : Float return core.sim_time = value;
         /** the start time of this frame */
-    static inline function set_cur_frame_start( value:Float ) : Float return core.cur_frame_start = value;
+    static inline function set_frame_start( value:Float ) : Float return core.frame_start = value;
+        /** the start time of the last frame */
+    static inline function set_frame_start_prev( value:Float ) : Float return core.frame_start_prev = value;
         /** the alpha time for a render between frame updates */
-    static inline function set_alpha( value:Float ) : Float return core.alpha = value;
+    static inline function set_fixed_alpha( value:Float ) : Float return core.fixed_alpha = value;
 
 
 

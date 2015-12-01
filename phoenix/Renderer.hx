@@ -1,8 +1,7 @@
 package phoenix;
 
 import snow.modules.opengl.GL;
-import snow.api.Libs;
-import snow.system.assets.Asset;
+import snow.systems.assets.Asset;
 
 import luxe.Log.*;
 
@@ -60,7 +59,6 @@ class Renderer {
     public var render_path : RenderPath;
     public var default_render_path : RenderPath;
 
-    @:isVar public var vsync (get,set) : Bool;
     @:isVar public var target (get,set) : RenderTexture;
     public var target_size : Vector;
 
@@ -81,6 +79,13 @@ class Renderer {
 
         default_fbo = GL.getParameter(GL.FRAMEBUFFER_BINDING);
         default_rbo = GL.getParameter(GL.RENDERBUFFER_BINDING);
+
+        //:todo:snowdev: clear code calling swap directly (1)
+        GL.clearDepth(1.0);
+        GL.clearColor(0,0,0,1);
+        GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
+        core.app.runtime.window_swap();
+        GL.clear(GL.COLOR_BUFFER_BIT);
 
         _debug("default Framebuffer set to " + default_fbo);
         _debug("default Renderbuffer set to " + default_rbo);
@@ -261,21 +266,8 @@ class Renderer {
 
     } //onresize
 
-    function set_vsync( _vsync:Bool ) : Bool {
 
-        Luxe.core.app.windowing.enable_vsync( _vsync );
-
-        return vsync = _vsync;
-
-    } //set_vsync
-
-    function get_vsync() : Bool {
-
-        return vsync;
-
-    } //get_vsync
-
-function get_target() : RenderTexture {
+    function get_target() : RenderTexture {
 
         return target;
 
