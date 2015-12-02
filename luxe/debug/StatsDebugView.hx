@@ -159,6 +159,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         var rtt_lists = '';
         var font_lists = '';
         var shader_lists = '';
+        var audio_lists = '';
 
         inline function _res(res:Resource) return '${res.id} • ${res.ref}\t\n';
         inline function _tex(tex:Texture) return '(${tex.width_actual}x${tex.height_actual} ~${Luxe.utils.bytes_to_string(tex.memory_use())})    ${tex.id} • ${tex.ref}\t\n';
@@ -173,6 +174,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
                 case ResourceType.render_texture:   rtt_lists += _tex(cast res);
                 case ResourceType.font:             font_lists += _res(res);
                 case ResourceType.shader:           shader_lists += _shd(cast res);
+                case ResourceType.audio:            audio_lists += _res(res);
                 default:
             }
         }
@@ -189,15 +191,14 @@ class StatsDebugView extends luxe.debug.DebugView  {
                 lists += orblank(json_lists);
             lists += '\nTexture (${Luxe.resources.stats.textures})\n';
                 lists += orblank(texture_lists);
-            lists += '\nRenderTexture (${Luxe.resources.stats.render_textures})\n';
+            lists += '\nRenderTexture (${Luxe.resources.stats.rtt})\n';
                 lists += orblank(rtt_lists);
             lists += '\nFont (${Luxe.resources.stats.fonts})\n';
                 lists += orblank(font_lists);
             lists += '\nShader (${Luxe.resources.stats.shaders})\n';
                 lists += orblank(shader_lists);
-
-        //add the sounds, those are not resources in the same manner, but for now
-        //:todo: snowdev: audio resources (1)
+            lists += '\nAudio (${Luxe.resources.stats.audios})\n';
+                lists += orblank(audio_lists);
 
         resource_list_text.text = lists;
 

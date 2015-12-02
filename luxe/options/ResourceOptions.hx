@@ -47,6 +47,17 @@ typedef JSONResourceOptions = {
     @:optional var asset: AssetJSON;
 }
 
+    /** Options for creating an Audio Resource instance.
+        These are usually `load`ed via `Luxe.resources.load_audio(...)` and
+        `fetch`ed via `Luxe.resources.audio(...)`, not created manually */
+typedef AudioResourceOptions = {
+    > ResourceOptions,
+        /** The snow asset that contains the audio asset, that this resource will hold.*/
+    @:optional var asset: AssetAudio;
+        /** Whether or not this resource is loaded as a stream */
+    @:optional var is_stream: Bool;
+}
+
     /** Options for creating a Texture instance.
         These are usually `load`ed via `Luxe.resources.load_texture(...)` and
         `fetch`ed via `Luxe.resources.texture(...)`.
@@ -143,5 +154,11 @@ typedef ShaderOptions = {
             /** Set this to avoid setting any default
                 uniforms initially or each frame */
         @:optional var no_default_uniforms : Bool;
+
+    }    
+
+    typedef LoadAudioOptions = {
+            
+        @:optional var is_stream : Bool;
 
     }
