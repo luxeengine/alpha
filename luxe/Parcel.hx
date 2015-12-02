@@ -45,7 +45,6 @@ typedef ShaderInfo = {
 
 typedef SoundInfo = {
     > ItemInfo,
-    name: String,
     is_stream: Bool
 }
 
@@ -315,34 +314,27 @@ class Parcel {
 
                 } //each shaders
 
-            //sound
+            //audio
 
                 for(_sound in list.sounds) {
 
-                    //:todo:snowdev AudioSource -> Resource (1)
-                    // if(!Luxe.audio.exists(_sound.name)) {
+                    if(!is_loaded(_sound.id)) {
 
-                    //     // loaded.push(_sound.id);
-                    //     Luxe.timer.schedule(load_time_spacing*_index, function() {
+                        loaded.push(_sound.id);
+                        Luxe.timer.schedule(load_time_spacing*_index, function() {
 
-                    //         var _load = Luxe.audio.create(
-                    //             _sound.id,
-                    //             _sound.name,
-                    //             _sound.is_stream
-                    //         );
+                            var _load = system.load_audio( _sound.id, {
+                                is_stream: _sound.is_stream
+                            });
 
-                    //         _load.then(function(_) {
-                    //             one_loaded(_sound.id, _load_id, null, ++_index, length);
-                    //         }, function(_err:Dynamic){
-                    //             one_failed(_sound.id, _load_id, _err, ++_index, length);
-                    //         });
+                            _handle(_sound.id, _load);
 
-                    //     }); //timer
+                        }); //timer
 
-                    // } else { //!loaded
-                    //     log('$id / already had ${_sound.id} (${_sound.name}) loaded, skipped');
-                    //     one_loaded(_sound.id, _load_id, null, ++_index, length);
-                    // }
+                    } else { //!loaded
+                        log('$id / already had ${_sound.id} loaded, skipped');
+                        one_loaded(_sound.id, _load_id, system.get(_sound.id), ++_index, length);
+                    }
 
                 } //each sounds
 
@@ -365,8 +357,7 @@ class Parcel {
         for(item in list.textures)  _remove(item.id);
         for(item in list.fonts)     _remove(item.id);
         for(item in list.shaders)   _remove(item.id);
-        //:todo:snowdev: AudioSource -> Resource (1)
-        // for(item in list.sounds)    Luxe.audio.uncreate(item.name);
+        for(item in list.sounds)    _remove(item.id);
 
         if(_empty_list) {
             list = null;
@@ -488,7 +479,6 @@ class Parcel {
                 if(item != null) {
                     assertnull(item);
                     assertnull(item.id);
-                    assertnull(item.name);
 
                     // if(item.is_stream == null) item.is_stream = false;
 
@@ -555,8 +545,7 @@ class Parcel {
         for(item in list.textures)  _result.push(item.id);
         for(item in list.fonts)     _result.push(item.id);
         for(item in list.shaders)   _result.push(item.id);
-            //:todo:snowdev: this is a list of resources, sounds aren't resources... (1)
-        // for(item in list.sounds)    _result.push(item.id);
+        for(item in list.sounds)    _result.push(item.id);
 
         return _result;
     }
