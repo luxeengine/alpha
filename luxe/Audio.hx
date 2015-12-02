@@ -1,28 +1,33 @@
 package luxe;
 
 import luxe.Core;
-
 import luxe.Log._debug;
 
+@:allow(luxe.Core)
 class Audio {
 
-    @:noCompletion public var core : Core;
+    public var core : Core;
 
-    @:noCompletion public function new( _core:Core ) {
+    function new( _core:Core ) {
 
         core = _core;
 
     } //new
 
-    @:noCompletion public function init() {
+    function init() {
+
         _debug('\t audio initialized.');
+
     } //init
 
-    @:noCompletion public function destroy() {
+    function destroy() {
+
         _debug('\t audio shut down.');
+
     } //destroy
 
-    @:noCompletion public function process() {
+    function process() {
+
 
     } //process
 
