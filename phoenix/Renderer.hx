@@ -74,18 +74,18 @@ class Renderer {
         core = _core;
         font_asset = _asset;
 
-            //store the default FBO as on some platforms
-            //it is not the same as 0
+        //store the default FBO as on some platforms
+        //it is not the same as 0
+        //:todo:refactor:gl:
 
-        default_fbo = GL.getParameter(GL.FRAMEBUFFER_BINDING);
-        default_rbo = GL.getParameter(GL.RENDERBUFFER_BINDING);
+            default_fbo = GL.getParameter(GL.FRAMEBUFFER_BINDING);
+            default_rbo = GL.getParameter(GL.RENDERBUFFER_BINDING);
 
-        //:todo:snowdev: clear code calling swap directly (1)
-        GL.clearDepth(1.0);
-        GL.clearColor(0,0,0,1);
-        GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
-        core.app.runtime.window_swap();
-        GL.clear(GL.COLOR_BUFFER_BIT);
+        //also clear the garbage for first swap
+
+            GL.clearDepth(1.0);
+            GL.clearColor(0,0,0,1);
+            GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
 
         _debug("default Framebuffer set to " + default_fbo);
         _debug("default Renderbuffer set to " + default_rbo);
