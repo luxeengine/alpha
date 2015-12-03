@@ -635,9 +635,7 @@ class Core extends snow.App {
 
         if(!inited) return;
 
-            //this has to be a new value because if it's cached it sends in references that get kept by user code
-            //until :todo:immutable: Vector types
-        screen.cursor.set_internal(new luxe.Vector( x, y ));
+        screen.cursor.set_internal(x, y);
 
         var event : MouseEvent = {
             timestamp : timestamp,
@@ -665,8 +663,7 @@ class Core extends snow.App {
 
         if(!inited) return;
 
-            //see notes on new in mousedown
-        screen.cursor.set_internal(new luxe.Vector( x, y ));
+        screen.cursor.set_internal(x, y);
 
         var event : MouseEvent = {
             timestamp : timestamp,
@@ -694,8 +691,7 @@ class Core extends snow.App {
 
         if(!inited) return;
 
-            //see notes on new in mousedown
-        screen.cursor.set_internal(new luxe.Vector( x, y ));
+        screen.cursor.set_internal(x, y);
 
         var event : MouseEvent = {
             timestamp : timestamp,

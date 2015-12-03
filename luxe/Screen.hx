@@ -120,7 +120,7 @@ class Cursor {
             allow movement without it stopping at the bounds.   
             On `web`, this must come from a user initiated action, and asks their permission. (get/set) */
     @:isVar public var grab (get,set): Bool = false;
-        /** The current mouse position. Setting this has no effect on `web` (and cannot). */
+        /** The current mouse position. `read only` */
     @:isVar public var pos (get,null): Vector;
 
         /** The screen this cursor relates to. */
@@ -136,10 +136,17 @@ class Cursor {
     } //new
 
     @:allow(luxe.Core)
-    inline function set_internal( _pos:Vector ) {
+    inline function set_internal(_x:Float, _y:Float) {
 
+            //this has to be a new value because if it's cached, 
+            //it sends in references that get kept by user code
+            //or accidentally modified by .operation calls
+            //this is temporary till embers immutable stuff
+            //:todo:immutable: Vector types
         ignore = true;
-            pos = _pos;
+
+            pos = new luxe.Vector(_x, _y);
+
         ignore = false;
 
     } //set_internal
