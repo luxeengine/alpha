@@ -47,7 +47,7 @@ class Screen {
     var core : Core;
 
     @:allow(luxe.Core)
-    function new( ?_core:Core, _w:Int, _h:Int ) {
+    function new(_core:Core, _w:Int, _h:Int) {
 
         core = _core;
         cursor = new Cursor(this);
@@ -115,17 +115,13 @@ class Screen {
 
 class Cursor {
 
-        /** The visibility of the cursor. (get/set) */
-    @:isVar public var visible (get,set): Bool = true;
-        /** Grabbing the cursor locks it to the window bounds. On web this is analogous to `lock`. (get/set) */
-    @:isVar public var grab (get,set): Bool = false;
         /** Locking the cursor hides it, and enables the `xrel`/`yrel`   
             values on the mouse move events. This changes the mouse to   
             allow movement without it stopping at the bounds.   
             On `web`, this must come from a user initiated action, and asks their permission. (get/set) */
-    @:isVar public var lock (get,set): Bool = false;
+    @:isVar public var grab (get,set): Bool = false;
         /** The current mouse position. Setting this has no effect on `web` (and cannot). */
-    @:isVar public var pos (get,set): Vector;
+    @:isVar public var pos (get,null): Vector;
 
         /** The screen this cursor relates to. */
     var screen : Screen;
@@ -140,7 +136,7 @@ class Cursor {
     } //new
 
     @:allow(luxe.Core)
-    function set_internal( _pos:Vector ) {
+    inline function set_internal( _pos:Vector ) {
 
         ignore = true;
             pos = _pos;
@@ -150,32 +146,11 @@ class Cursor {
 
 //getters/setters
 
-    function get_visible() : Bool {
-
-        return visible;
-
-    } //get_visible
-
-    function set_visible( _visible:Bool ) : Bool {
-
-        //:todo:snowdev mouse api was removed (1)
-        // screen.core.app.windowing.enable_cursor( _visible );
-
-        return visible = _visible;
-
-    } //set_visible
-
     function get_grab() : Bool {
 
         return grab;
 
     } //get_grab
-
-    function get_lock() : Bool {
-
-        return lock;
-
-    } //get_lock
 
     function set_grab( _grab:Bool ) : Bool {
 
@@ -185,31 +160,10 @@ class Cursor {
 
     } //set_grab
 
-    function set_lock( _lock:Bool ) : Bool {
-
-        //:todo:snowdev mouse api was removed (1)
-        // screen.core.app.windowing.enable_cursor_lock(_lock);
-
-        return lock = _lock;
-
-    } //set_lock
-
     function get_pos() : Vector {
 
         return pos;
 
     } //get_pos
-
-    function set_pos( _p:Vector ) : Vector {
-
-        if(pos != null && _p != null && !ignore) {
-            //:todo:snowdev: mouse api was removed (1)
-            // screen.core.app.window.set_cursor_position( Std.int(_p.x), Std.int(_p.y) );
-        }
-
-        return pos = _p;
-
-    } //set_pos
-
 
 } //Cursor
