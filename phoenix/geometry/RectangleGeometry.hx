@@ -56,17 +56,6 @@ class RectangleGeometry extends Geometry {
 
         transform.pos = transform.pos.set_xy( _x, _y );
 
-            //:todo: these aren't actually needed, 
-            //but kept short term in case
-        // vertices[0].uv.uv0.set_uv(0,0);
-        // vertices[1].uv.uv0.set_uv(1,0);
-        // vertices[2].uv.uv0.set_uv(1,0);
-        // vertices[3].uv.uv0.set_uv(1,1);
-        // vertices[4].uv.uv0.set_uv(1,1);
-        // vertices[5].uv.uv0.set_uv(0,1);
-        // vertices[6].uv.uv0.set_uv(0,1);
-        // vertices[7].uv.uv0.set_uv(0,0);
-
     } //new
 
         /** Set the vertices from values */

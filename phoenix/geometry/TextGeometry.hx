@@ -141,8 +141,9 @@ class TextGeometry extends Geometry {
                 }
             }
 
+            options.primitive_type = PrimitiveType.triangles;
+
             super( options );
-            primitive_type = PrimitiveType.triangles;
 
         //setup
 

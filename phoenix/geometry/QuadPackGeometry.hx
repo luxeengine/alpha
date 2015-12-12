@@ -46,8 +46,9 @@ class QuadPackGeometry extends Geometry {
 
     public function new( ?_options : GeometryOptions ) {
 
+        _options.primitive_type = PrimitiveType.triangles;
+
         super( _options );
-        primitive_type = PrimitiveType.triangles;
 
         quads = new Map();
 
