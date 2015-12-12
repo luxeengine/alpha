@@ -18,14 +18,15 @@ class LineGeometry extends Geometry {
 
     public function new( ?options : LineGeometryOptions ) {
 
+        if(options != null) {
+            options.primitive_type = PrimitiveType.lines;
+        }
+
         super(options);
 
-            //must happen after super to unset the default
-        primitive_type = PrimitiveType.lines;
-
-
-        if(options == null) return;
-
+        if(options == null) {
+            return;
+        }
 
         def(options.color, new Color());
         def(options.color0, options.color);
@@ -34,14 +35,8 @@ class LineGeometry extends Geometry {
         p0 = def(options.p0, new Vector());
         p1 = def(options.p1, new Vector(64,64)); //:todo: unit constant
 
-        var vert0 = new Vertex( p0, options.color0 );
-        var vert1 = new Vertex( p1, options.color1 );
-
-            vert0.uv.uv0.set_uv(0,0);
-            vert1.uv.uv0.set_uv(1,0);
-
-        add(vert0);
-        add(vert1);
+        add(new Vertex( p0, options.color0 ));
+        add(new Vertex( p1, options.color1 ));
 
     } //new
 
