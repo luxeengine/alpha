@@ -265,6 +265,10 @@ class Batcher {
 
                         //Static batched geometry gets sent on it's own
                     if(geom.locked) {
+
+                            //static submissions split the batch for sorting reasons
+                        submit_current_vertex_list( state.last_geom_state.primitive_type );
+
                         submit_static_geometry( geom );
                         vert_count += geom.vertices.length;
                     }
