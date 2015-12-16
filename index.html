@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="./index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<p> <a href="#api">api</a> • <a href="#docs">guide</a> • <a href="https://github.com/underscorediscovery/luxe">source</a> • <a href="https://github.com/underscorediscovery/luxe/issues">issues</a> </p>
+<p>A free and open cross platform game development engine.   </p>
+<hr>
+<p><script src="./js/release.version.js"> </script></p>
+<div class="version">current version <a href="https://github.com/underscorediscovery/luxe/" id="version_notes_link" target="_blank">notes</a> <code> <a id="version_tag" target="_blank" href="https://github.com/underscorediscovery/luxe/"> master </a></code> </div>
+
+<h2 id="about">About</h2>
+<p>luxe is a free, open source cross platform rapid development haxe based game engine<br>for deploying games on Mac, Windows, Linux, Android, iOS and WebGL.</p>
+<p><img title="Mac" alt="Mac" src="images/mac64.png" class="platform-icon-64"/>
+<img title="Linux" alt="Linux" src="images/linux64.png" class="platform-icon-64"/>
+<img title="Windows" alt="Windows" src="images/windows64.png" class="platform-icon-64"/>
+<img title="WebGL" alt="WebGL" src="images/web64.png" class="platform-icon-64"/>
+<img title="iOS" alt="iOS" src="images/ios64.png" class="platform-icon-64"/>
+<img title="Android" alt="Android" src="images/android64.png" class="platform-icon-64"/></p>
+<p>luxe is built on top of open source technologies, and proudly powered by <a href="http://haxe.org">Haxe</a>. It’s built on top of <a href="http://snowkit.org/snow">snow</a>, uses <a href="http://snowkit.org/flow">flow</a> to build and is built with simplicity in mind. You code only in haxe, and deploy to all available platforms.</p>
+<p><a href="http://haxe.org"> <img src="images/haxe.png" alt="haxe"> </a></p>
+<hr>
+<p><a name="quick"></a></p>
+<p><h2>Quick look</h2>
+<small><a href="quick.html">more quick examples</a></small></p>
+<p><strong> A simple sprite </strong></p>
+<pre><code><span class="hljs-keyword">var</span> player = <span class="hljs-keyword">new</span> Sprite({
+    texture : Luxe.resources.texture(<span class="hljs-string">'assets/player.png'</span>),
+    pos : Luxe.screen.mid,
+    depth : <span class="hljs-number">4</span>
+});
+</code></pre><hr>
+<h3 id="community">Community</h3>
+<h4 id="home">Home</h4>
+<p>Join the community on <a href="http://snowkit.org">http://snowkit.org</a><br>and share your projects, ask questions and<br>view additional setup guides and tutorials. </p>
+<p><strong>Please visit <a href="http://snowkit.org">http://snowkit.org</a> for the latest news and changes that are happening!</strong></p>
+<p>All news regarding luxe is posted on snowkit.org,<br>plus you get to see what others are making.</p>
+<h4 id="support">Support</h4>
+<p>If you’d like to support the project and community you can:<br><strong><a href="https://patreon.com/snowkit">https://patreon.com/snowkit</a></strong></p>
+<h4 id="chat">Chat</h4>
+<p>You can also also join the <a href="http://snowkit.org/chat">community chat</a> for realtime discussion and help.</p>
+<p><a href="http://snowkit.org"><img src="./images/snowkit.png" alt="snowkit"></a></p>
+<hr>
+<h3 id="alpha">Alpha</h3>
+<p><small>
+Please note   </p>
+<p>luxe is currently considered alpha, which means there may be bugs, inconsistencies, incomplete implementations, and possible minor API changes.
+It is still considered fairly stable and is being used by multiple tools and games,
+but there are things to tighten up before 1.0.0 release can be called final. </p>
+<p>Join us in developing and testing the engine and tools, below.
+</small></p>
+<h4 id="2d-focus">2D focus</h4>
+<p>For version 1.0.0 luxe will focus solely on being a really solid, flexible 2D game engine first. That doesn’t mean that 3D is not possible, there are already 3D tests and examples around the repo but please be aware there is no lighting model, very little 3D file imports this is intentional.</p>
+<p>The roadmap will speak more of this soon.</p>
+<hr>
+<h3 id="brief-design-philosophy">brief design philosophy</h3>
+<h4 id="luxe-is-a-facilitator">luxe is a facilitator</h4>
+<p>The engine supplies and supports common patterns for making games, like <em>Components/Entity</em> systems, <em>State Machines</em> and <em>Events</em> messaging systems. </p>
+<p><strong><em>These are not enforced</em></strong> and do not stop you from bypassing those in favour of your own specific methodology or architecting.   </p>
+<p>luxe contains many helpers, functions and systems for you to use when building your games, allowing luxe to be feature packed without being bloated.
+luxe is minimilistic in core and design, in that application domain features are left up to libraries and the application itself.</p>
+<p>It might not supply every feature you need for your specific game, but it will make it very easy to get there quickly.
+For more concrete examples of this in practice. Click the diagram below for a full picture of the architecture/design.</p>
+<p><a href="./images/luxe-design.png" target="_blank"> <img src="./images/luxe-design-small.png" /> </a></p>
+<hr>
+<p><a name="docs"></a></p>
+<h2 id="guides">Guides</h2>
+<h3 id="-view-the-setup-guide-setup-html-"><a href="setup.html">view the setup guide</a></h3>
+<h3 id="-view-the-luxe-guide-guide-html-"><a href="guide.html">view the luxe guide</a></h3>
+<hr>
+<p><a name="api"></a></p>
+<h2 id="documentation">Documentation</h2>
+<h3 id="-view-api-docs-api-index-html-"><a href="api/index.html">View API docs</a></h3>
+<hr>
+<style> img {max-width:32em;} </style>
+
+<h2 id="editor-support">Editor support</h2>
+<p>Where possible, full code completion and building from the editor is supplied.</p>
+<h4 id="-sublime-text-https-underscorediscovery-github-io-flow-guide-sublimetext-html-mac-windows-linux-"><a href="https://underscorediscovery.github.io/flow/guide/sublimetext.html">Sublime Text</a> (mac/windows/linux)</h4>
+<p><a href="https://underscorediscovery.github.io/flow/guide/sublimetext.html"><img src="images/plugins/sublime.png" alt=""></a></p>
+<hr>
+<h4 id="-atom-https-atom-io-packages-flow-mac-windows-linux-"><a href="https://atom.io/packages/flow">Atom</a> (mac/windows/linux)</h4>
+<p><a href="https://atom.io/packages/flow"><img src="images/plugins/atom.png" alt=""></a></p>
+<hr>
+<h4 id="-flashdevelop-https-underscorediscovery-github-io-flow-guide-flashdevelop-html-windows-only-"><a href="https://underscorediscovery.github.io/flow/guide/flashdevelop.html">FlashDevelop</a> (windows only)</h4>
+<p>template is at <a href="https://github.com/Chman/Snowkit-FD">snowkit-fd</a>, and here is a <a href="https://github.com/Chman/Snowkit-FD/blob/master/SnowkitTemplate.fdz?raw=true">Download link</a>   </p>
+<p><a href="https://underscorediscovery.github.io/flow/guide/flashdevelop.html"><img src="images/plugins/fd.png" alt=""></a></p>
+<hr>
+<h2 id="features">Features</h2>
+<p>Take note there are features that are not listed,<br>pending features are <a href="#roadmap">dissected in the roadmap</a>.</p>
+<p>These features may not be what you expect them to be.<br>Read the design links for more info.   </p>
+<p><small>
+<code>design</code> : Brief details on what the system is about, and contains.<br><code>guide</code> : User guide link for the feature, explained in depth.<br></small></p>
+<p><strong>Short list and focuses</strong></p>
+<ul>
+<li><code>Open</code> - Free and Open Source, under the <a href="https://github.com/underscorediscovery/luxe/blob/master/LICENSE.md">MIT license</a></li>
+<li><code>Approachable</code> - high pace through an expressive, easy to use API. </li>
+<li><code>Rapid</code> Fits jam games and long form projects alike.</li>
+<li><code>Documentation</code> - continuous focus on documenting with high standards</li>
+<li><code>Audio</code> - OpenAL/HowlerJS backed audio, named or instance based API</li>
+<li><code>Rendering</code> - WebGL spec based API, same code on all platforms</li>
+<li><code>Portable</code> - written to be ported, supporting new platforms is simpler</li>
+<li><code>Input</code> - Low level, immediate, event based OR high level input API for Gamepad, Touch, Keys and Mouse</li>
+</ul>
+<p><strong>gameplay</strong></p>
+<ul>
+<li><code>Scene</code> - simple auto scene state management <small> <del><a href="#">guide</a></del> </small></li>
+<li><code>Collision</code> - SAT collision query for shapes/rays <small> <del><a href="#">guide</a></del> </small></li>
+<li><code>Physics</code> - third party framework hooks, i.e <a href="http://napephys.com/">nape</a>.  <small> <del><a href="#">guide</a></del> </small></li>
+<li><code>Transforms</code> - stackable transforms for positioning/rendering <small> <del><a href="#">guide</a></del> </small></li>
+<li><code>Timing</code> - control over time scale, per entity fixed rates and more <small> <del><a href="#">guide</a></del> </small></li>
+<li><code>Timer</code> - schedule functions and events into the timeline <small> <a href="guide.timers.html">guide</a> </small></li>
+<li><code>Audio</code> - simple to use but flexible audio api <small> <del><a href="guide.audio.html">guide</a></del> </small></li>
+</ul>
+<p><strong>Rendering</strong></p>
+<ul>
+<li><code>Sprite</code> - visual backed class with animation, flipping etc <small> <a href="guide.sprite.html">guide</a></small></li>
+<li><code>Color</code> - handle HSV, HSL, RGB interchangeably <small> <a href="guide.color.html">guide</a> </small></li>
+<li><code>Render</code> - automatic or self managed batching of geometry <small> <del><a href="#rendering">guide</a></del> </small></li>
+<li><code>Render control</code> - flexible depth, blending and group rendering <small> <a href="guide.rendercontrol.html">guide</a> </small></li>
+<li><code>OpenGL</code> - direct or indirect access to WebGL spec API <small> <del><a href="#opengl">guide</a></del> </small></li>
+<li><code>Shaders</code> - first class citizen, built into the core of rendering <small> <a href="guide.shaders.html">guide</a> </small></li>
+<li><code>Camera</code> - split views, focus, rotation, shake, etc built in <small> <del><a href="guide.camera.html">guide</a></del> </small></li>
+<li><code>Tilemaps</code> - isometric, ortho support, with import from <a href="http://mapeditor.org">Tiled</a> <small> <del><a href="#">guide</a></del> </small></li>
+<li><code>Drawing</code> - easy style shape/geometry drawing API <small> <a href="guide.drawing.html">guide</a> </small></li>
+<li><code>Nineslice</code> - for scaling of assets like UI elements <small> <del><a href="#">guide</a></del> </small></li>
+<li><code>Particles</code> - simple particle support for quick effects <small> <del><a href="guide.particles.html">guide</a></del> </small></li>
+<li><code>Textures</code> - easy to use texture api, fully supports render to texture <small> <del><a href="guide.textures.html">guide</a></del> </small></li>
+<li><code>Fonts</code> - BMFont based bitmap font rendering <small> <a href="guide.fonts.html">guide</a> </small></li>
+</ul>
+<p><strong>systemic</strong></p>
+<ul>
+<li><code>Assets</code> - cross platform access to assets <small> <a href="guide.assets.html">guide</a> </small></li>
+<li><code>Maths</code> - support for Vector, Matrix and Quaternion based maths <small> <del><a href="#">guide</a></del> </small></li>
+<li><code>States</code> - modal, transient and stacked state machine <small> <del><a href="#states">guide</a></del> </small></li>
+<li><code>Events</code> - expressive filterable local or global event system <small> <a href="guide.events.html">guide</a> </small></li>
+<li><code>Components</code> - modular code behavior composition <small> <a href="guide.basiccomponents.html">guide</a> </small></li>
+<li><code>Structural</code> - common data structures <a href="https://github.com/underscorediscovery/structural">link</a></li>
+<li><code>Tweening</code> - customized Actuate built in <small> <a href="guide.tween.html">guide</a> </small></li>
+<li><code>Utils</code> - many geometrical and game related utilities <small> <a href="api/index.html#luxe.utils">api</a> </small></li>
+<li><code>Parcel</code> - control preloading, loading/unloading parcels of assets <small> <del><a href="#parcels">guide</a></del> </small></li>
+</ul>
+<p>&nbsp;
+&nbsp;</p>
+<h2 id="announcement-demos-video">Announcement demos video</h2>
+<p>Note this video is quite old and new ones will be up during the alpha.</p>
+<p><br/></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3w5HXYp1zlw" frameborder="0" allowfullscreen></iframe>
+
+<p><br/></p>
+<h2 id="games-developed-in-luxe">Games developed in luxe</h2>
+<p>Either developed, or developing</p>
+<hr>
+<h3 id="the-westport-independent">The Westport Independent</h3>
+<p><a href="https://twitter.com/0010_Games">news page</a><br><a href="http://www.doublezeroonezero.com/westport.html">home page</a>   </p>
+<p><img src="images/games/wpi/wpi_logo.png" alt="wpi_menu"></p>
+<p>&nbsp;
+&nbsp;</p>
+<hr>
+<h3 id="-heavier-than-air-">-Heavier than Air-</h3>
+<p><a href="http://forums.tigsource.com/index.php?topic=47030.0">dev log</a><br><a href="http://snowkit.org/2015/01/21/heavier-than-air-wip/">game post</a></p>
+<p><img src="images/games/hta/1.png" alt="htamenu"></p>
+<iframe src="http://gfycat.com/ifr/JauntySpiffyHeifer" frameborder="0" scrolling="no" width="532" height="167" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
+
+
+<h3 id="soil">SOIL</h3>
+<p><a href="http://soil.sudsdev.net/">news page</a><br><a href="https://twitter.com/JustSuds">twitter</a>   </p>
+<p><img src="images/games/soil/soil_ingame.png" alt="soil_ingame"></p>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/wPttCM7-GRc" frameborder="0" allowfullscreen></iframe>
+
+<hr>
+<h3 id="equilibrium-working-title-">Equilibrium (working title)</h3>
+<p><a href="https://twitter.com/bennpowell">news page</a><br><a href="http://snowkit.org/2014/10/02/equilibrium-created-using-luxe/">game post</a></p>
+<p><img src="images/games/eq/eq_menu.png" alt="eq_menu"></p>
+<hr>
+<p><img src="images/games/eq/eq_ingame.png" alt="eq_ingame"></p>
+<p>&nbsp;
+&nbsp;</p>
+<p>&nbsp;
+&nbsp;</p>
+<p>&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

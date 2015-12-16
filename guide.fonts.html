@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<hr>
+<h2 id="using-custom-fonts-in-luxe">Using custom fonts in luxe</h2>
+<hr>
+<h3 id="creating-custom-bitmap-fonts">Creating custom bitmap fonts</h3>
+<p>The fonts currently supported by luxe are in a “AngelCode BMFont” format. This format has become widespread and many tools now exist to create fonts easily for it.</p>
+<p>Some tools to generate a font, but Literra is the best free choice :</p>
+<ul>
+<li><a href="http://kvazars.com/littera/">Literra</a>, online, free</li>
+<li><a href="http://www.bmglyph.com/">bmGlyph</a>, mac only, commercial</li>
+<li><a href="https://71squared.com/en/glyphdesigner">glyphdesigner</a>, mac only, commercial</li>
+<li><a href="http://www.angelcode.com/products/bmfont/">BMFont</a>, windows only, free</li>
+</ul>
+<p>If you want to color the text in luxe using geometry colors, you must create a white fill on alpha image.</p>
+<p><strong>Export the fonts as .fnt text based format</strong>. </p>
+<h3 id="importing-custom-fonts">Importing custom fonts</h3>
+<p>To use a custom font, you can use a <a href="guide.parcels.html">parcel</a> (as shown in the <a href="guide.four.html">beginner guide</a>), or, you can manually load the font yourself.</p>
+<p>To do so, you use <code>Luxe.resources.load_font</code>. You can manually create a <code>phoenix.BitmapFont</code> and use <code>BitmapFont.load</code>, or even <code>new BitmapFont()</code> and <code>from_string</code> functions. The <a href="api/phoenix/BitmapFont.html">BitmapFont API docs</a> have all the details.</p>
+<p>To use <code>Luxe.resources.font</code> and <code>Luxe.resources.load_font</code> you should also read the <a href="guide.assets.html">assets guide</a>.<br>Take note that the folder is separated from the file name, because there can and often are multiple texture sheets for a font set. The name is always without a path.</p>
+<p><em>find more code in tests/rendering/fonts/</em></p>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-keyword">var</span> get = Luxe.resources.load_font(<span class="hljs-string">'assets/fonts/font.fnt'</span>);
+    get.then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(font:BitmapFont)</span> </span>{
+
+        Luxe.draw.text({
+            font: font,
+            text : <span class="hljs-string">"LUXE\n"</span>,
+            bounds : <span class="hljs-keyword">new</span> Rectangle(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, Luxe.screen.w * <span class="hljs-number">0.99</span>, Luxe.screen.h * <span class="hljs-number">0.98</span>),
+            color : <span class="hljs-keyword">new</span> Color().rgb(<span class="hljs-number">0xff4b03</span>),
+            align : TextAlign.right,
+            align_vertical : TextAlign.bottom,
+            point_size : <span class="hljs-number">32</span>
+        });
+
+    }); <span class="hljs-comment">//onload</span>
+
+}
+</code></pre><hr>
+<p>&nbsp;   </p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

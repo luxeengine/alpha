@@ -1,0 +1,55 @@
+#omnibar {
+    position: fixed;
+    display: block;
+    width: 50em;
+    top:4em;
+    left:50%;
+    margin-left:-24em;
+    height:3.5em;
+    background:#fff;
+    border-radius: 0.3em;
+    border:solid 1px #ddd;
+    box-shadow: 0 0 2em rgba(0,0,0,0.2);
+}
+
+#omnibar input {
+    width: 42em !important;
+    margin-left:auto;
+    margin-right:auto;
+    position: relative;
+    display: block;
+    height:1em;
+    top:0.6em;
+    padding:0.5em;
+    font-size: 1em;
+    border-radius: 0.3em;
+    border: solid 1px;
+}
+
+#omnibar_close {
+    cursor: pointer;
+    background:url(../images/close.png);
+    background-repeat:no-repeat;
+    background-size: 2em;
+    width: 2em;
+    height: 2em;
+    left: 50%;
+    margin-left: -24.25em;
+    margin-top: 0.7em;
+    display: block;
+    position: absolute;
+}
+
+.tooltipster-shadow .tooltipster-content {
+    max-height: 20em;
+    overflow-y:auto;
+    line-height: 1.5em;
+}
+
+.omni_selected {
+    background: #ff4b03;
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+    padding-left: 0.3em;
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<hr>
+<h2 id="setting-up">Setting up</h2>
+<hr>
+<p><a id="step1" name="step1"></p>
+<h3 id="step-1-make-sure-haxe-is-installed">Step 1: Make sure Haxe is installed</h3>
+<p></a>
+<a href="http://haxe.org"> <img src="images/haxe.png" alt="haxe"> </a></p>
+<p><a href="http://haxe.org/"><h4>Install Haxe 3.2.0+</h4></a>
+luxe uses a modern, high level programming language<br>and cross platform toolkit called Haxe.</p>
+<hr>
+<p><a id="step2" name="step2"></p>
+<h3 id="step-2-make-sure-git-is-correctly-installed">Step 2: Make sure git is correctly installed</h3>
+<p></a></p>
+<p><a href="https://github.com"> <img src="images/github.png" alt="github"> </a></p>
+<p><a href="https://github.com/underscorediscovery/luxe"><h4>luxe is hosted on Github.com</h4></a>
+To use the alpha of luxe, you must have git installed.<br>If you don’t have git installed, <a href="#install-git">there are some instructions below</a>.</p>
+<hr>
+<p><a id="step3" name="step3"></p>
+<h3 id="step-3-install-luxe">Step 3: Install luxe</h3>
+<p></a></p>
+<p><a href="https://github.com/underscorediscovery/luxe"> <img src="images/deps.png" alt="deps"> </a></p>
+<p><a href=""><h4>luxe has two dependencies</h4></a></p>
+<p>luxe uses <a href="https://github.com/underscorediscovery/flow">flow</a> to build,<br>and <a href="https://github.com/underscorediscovery/snow">snow</a> to access the platforms.</p>
+<hr>
+<p><strong>Using <code>haxelib git</code> to install</strong><br>Once you have git installed, you can use haxelib to install the libraries.</p>
+<p>Simply run the following commands:</p>
+<p><code>haxelib git flow https://github.com/underscorediscovery/flow.git</code></p>
+<p><code>haxelib git snow https://github.com/underscorediscovery/snow.git</code></p>
+<p><code>haxelib git luxe https://github.com/underscorediscovery/luxe.git</code></p>
+<hr>
+<p><small></p>
+<p><strong>Optional: Manually cloning</strong>   </p>
+<p>If you clone the repositories manually, tell haxelib where to find the clone.</p>
+<p><code>haxelib dev &lt;library&gt; &lt;path/to/library&gt;</code></p>
+<p></small></p>
+<hr>
+<h2 id="test-if-setup-is-correct">Test if setup is correct</h2>
+<p>The simplest way to test is to run a test case for the web target.<br>To find out where haxelib put the luxe code, run <code>haxelib path luxe</code>.</p>
+<p>To run the test:</p>
+<ul>
+<li><code>cd /path/to/luxe/tests/features/draw/</code></li>
+<li><code>haxelib run flow run web</code></li>
+</ul>
+<p>You should see something similar to this open in your browser</p>
+<p><img src="images/guide.drawing.png" alt=""></p>
+<hr>
+<h2 id="what-s-next-">What’s next?</h2>
+<p>Once everything is set up, there are further steps for working with luxe.</p>
+<ul>
+<li>You can and should set up <a href="#step5">IDE/Editor support</a>.</li>
+<li>Setup native platforms (mac/windows/linux/ios/android), <a href="#step4">go to step 4</a>.</li>
+</ul>
+<p>Additionally,</p>
+<ul>
+<li>Always visit <a href="http://snowkit.org">http://snowkit.org</a> for the latest news and user posts.</li>
+<li>You can follow news on <a href="http://twitter.com/snowkitorg">http://twitter.com/snowkitorg</a></li>
+<li>You can join the community chat <a href="http://snowkit.org/chat">http://snowkit.org/chat</a></li>
+<li>You can view the <a href="guide.html">user guides</a></li>
+<li>You can see the <a href="https://github.com/anissen/awesome-snowkit">“awesome-snowkit”</a> respository for resources.</li>
+<li><a href="http://snowkit.org/2014/10/29/quick-setup-guides-and-help/">Additional help and information</a></li>
+</ul>
+<hr>
+<p><a id="step4" name="step4"></p>
+<h3 id="step-4-setup-native-targets">Step 4: Setup Native targets</h3>
+<p></a></p>
+<p><strong>Step 4.1 - Install C++</strong><br>To build the native targets, you must have c++ installed.</p>
+<ul>
+<li>Windows : <a href="https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx">Visual C++ 2013</a>   </li>
+<li>Linux : GCC/G++   </li>
+<li>Mac : <a href="https://developer.apple.com/xcode/downloads/">Xcode</a> (and command line tools)   </li>
+<li>iOS : Xcode, <a href="https://developer.apple.com/ios/">iOS SDK</a> (comes with xcode)</li>
+<li>Android : <a href="http://developer.android.com/sdk/index.html">Android SDK</a>, <a href="https://developer.android.com/tools/sdk/ndk/index.html">Android NDK</a>, <a href="http://snowkit.org/2014/10/29/quick-setup-guides-and-help/#androidspecificsetup">Continued setup</a></li>
+</ul>
+<p><strong>Step 4.2 - Download the snow prebuilt binary</strong>   </p>
+<p>snow is the underlying framework that handles the platform specifics for luxe.</p>
+<p>Since snow interacts with the platform, it has prebuilt c++ components.<br>These prebuilt binaries are compiled by an automated build server,<br>and <em>currently</em>, <strong>need to be copied manually into your snow folder.</strong></p>
+<p>Download the prebuilt files for your target platforms here:</p>
+<h4 id="http-build-luxeengine-com-snow"><a href="http://build.luxeengine.com/snow">http://build.luxeengine.com/snow</a></h4>
+<ul>
+<li>Find out where snow is stored by running <code>haxelib path snow</code>.</li>
+<li>Copy the contents of the zip file into the <code>&lt;snow root&gt;/ndll/</code> folder.</li>
+<li>For history and details, <a href="http://snowkit.org/2015/03/23/snowkit-dev-log-2-history/#buildkitestatusanddownloads">read this dev log</a>.</li>
+</ul>
+<p>It should look like this (note: mine includes all platforms inside the ndll folder,<br>you only need the ones for the targets that you are using currently).</p>
+<p><img src="images/snowndllfolder.png" alt=""></p>
+<hr>
+<p><a id="step5" name="step5"></p>
+<h3 id="step-5-editor-setup">Step 5: Editor Setup</h3>
+<p></a></p>
+<hr>
+<h3 id="sublime-text">Sublime text</h3>
+<p>When using the sublime text plugin provided by the build tools, you get project management, building and running, and full code completion within sublime text.</p>
+<p><a href="https://underscorediscovery.github.io/flow/guide/sublimetext.html">Read the sublime text setup</a> docs.</p>
+<p><img src="images/plugins/sublime.png" alt=""></p>
+<h3 id="atom">Atom</h3>
+<p>Building, code completion, error linting, go to definition and more.</p>
+<p><a href="http://atom.io">http://atom.io</a> support is hosted by atom package manager.</p>
+<p>For details and instructions, visit the links below.
+You need both flow and haxe packages for using luxe.</p>
+<p><a href="http://atom.io/packages/haxe">http://atom.io/packages/haxe</a>
+<a href="http://atom.io/packages/flow">http://atom.io/packages/flow</a></p>
+<p><img src="images/plugins/atom.png" alt=""></p>
+<h3 id="flash-develop">Flash develop</h3>
+<p>When using the flash develop template provided, you also get project management, building and running, and full code completion.</p>
+<p><img src="images/plugins/fd.png" alt=""></p>
+<p>The FD template is located at <a href="https://github.com/Chman/Snowkit-FD">snowkit-fd</a>,<br>and here is a direct <a href="https://github.com/Chman/Snowkit-FD/blob/master/SnowkitTemplate.fdz?raw=true">Download link</a></p>
+<p><strong>Be sure to read the setup guide!</strong></p>
+<p><a href="https://underscorediscovery.github.io/flow/guide/flashdevelop.html">Read the flash develop setup</a> docs.</p>
+<hr>
+<p><a id="install-git" name="install-git">&nbsp;</a></p>
+<h2 id="appendix-a-installing-git">Appendix A: Installing git</h2>
+<p><strong>Windows</strong><br>Pick <strong>one</strong> of these options :</p>
+<ol>
+<li>Install <a href="https://windows.github.com/">Github for Windows</a>. This is easiest.</li>
+<li>Install cli <a href="http://msysgit.github.io/">msysgit</a>. <small>Make sure git is in your PATH.</small></li>
+<li>Install <a href="http://gooseberrycreative.com/cmder/">cmder</a>. <small>The full download includes git.</small></li>
+</ol>
+<p><strong>Mac</strong><br>Check if you have git already, by running <code>git --version</code> from <code>Terminal.app</code>.</p>
+<ol>
+<li><p>Install from homebrew</p>
+<ul>
+<li>Install <a href="http://brew.sh/">homebrew</a> if you haven’t   </li>
+<li>From <code>Terminal.app</code> run <code>brew install git</code></li>
+</ul>
+</li>
+<li><p>Install via Github for Mac</p>
+<ul>
+<li>Install <a href="https://mac.github.com/">Github for Mac</a></li>
+<li>Run the app, in the menu choose Preferences -&gt; Advanced -&gt; Install command line tools</li>
+</ul>
+</li>
+</ol>
+<p><strong>Linux</strong><br>This varies wildly by distro, use your favourite package manager or install process.</p>
+<p>For example, on ubuntu 12+ you could use <code>sudo apt-get install git-core</code>.</p>
+<hr>
+<h3 id="-continue-to-the-user-guides-guide-html-"><a href="guide.html">Continue to the user guides</a></h3>
+<h3 id="-back-to-the-index-index-html-"><a href="index.html">Back to the index</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

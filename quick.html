@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<h3 id="-back-index-html-quick-"><a href="index.html#quick">Back</a></h3>
+<hr>
+<h2 id="some-quick-examples-of-things-done-in-luxe">Some quick examples of things done in luxe</h2>
+<h3 id="creating-a-simple-sprite">Creating a simple sprite</h3>
+<hr>
+<pre><code><span class="hljs-keyword">import</span> luxe.Sprite;
+<span class="hljs-keyword">import</span> luxe.Vector;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyGame</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+        <span class="hljs-keyword">var</span> player = <span class="hljs-keyword">new</span> Sprite({
+            texture : Luxe.resources.texture(<span class="hljs-string">'assets/player.png'</span>),
+            pos : Luxe.screen.mid,
+            depth : <span class="hljs-number">4</span>
+        });
+
+            <span class="hljs-comment">//random position in a circle 90% of screen size</span>
+
+        <span class="hljs-keyword">var</span> rand = Luxe.utils.geometry.random_point_in_unit_circle();
+
+        player.pos.x = rand.x * (Luxe.screen.w * <span class="hljs-number">0.9</span>);
+        player.pos.y = rand.y * (Luxe.screen.h * <span class="hljs-number">0.9</span>);
+
+    } <span class="hljs-comment">//ready</span>
+
+} <span class="hljs-comment">//MyGame</span>
+</code></pre><h3 id="create-an-entity-and-give-it-a-component">Create an entity and give it a component</h3>
+<hr>
+<pre><code>    <span class="hljs-comment">//will get added to default scene</span>
+<span class="hljs-keyword">var</span> player = <span class="hljs-keyword">new</span> Entity({ name:<span class="hljs-string">'player'</span> });
+
+    <span class="hljs-comment">//custom component class</span>
+<span class="hljs-keyword">var</span> move = <span class="hljs-keyword">new</span> PlayerMovement({ name:<span class="hljs-string">'move'</span> });
+
+    <span class="hljs-comment">//2.5x faster than default</span>
+move.speed *= <span class="hljs-number">2.5</span>;
+
+    <span class="hljs-comment">//attach to entity!</span>
+entity.add(move);
+</code></pre><h3 id="drawing-raw-geometry-shapes">Drawing raw geometry shapes</h3>
+<hr>
+<pre><code>Luxe.draw.rectangle({
+    x : <span class="hljs-number">10</span>,
+    y : <span class="hljs-number">10</span>,
+    w : Luxe.screen.w - <span class="hljs-number">20</span>,
+    h : Luxe.screen.h - <span class="hljs-number">20</span>,
+    color : <span class="hljs-keyword">new</span> ColorHSV(<span class="hljs-number">120</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">1.0</span>)
+});
+
+Luxe.draw.circle({
+    r : <span class="hljs-number">50</span>,
+    x : Luxe.screen.w/<span class="hljs-number">2</span>,
+    y : Luxe.screen.h/<span class="hljs-number">2</span>,
+    color : <span class="hljs-keyword">new</span> Color().rgb(<span class="hljs-number">0xcc0000</span>)
+});
+
+Luxe.draw.arc({
+    r : <span class="hljs-number">70</span>,
+    end_angle:<span class="hljs-number">60</span>,
+    x : Luxe.screen.w/<span class="hljs-number">2</span>,
+    y : Luxe.screen.h/<span class="hljs-number">2</span>,
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)
+});
+</code></pre><hr>
+<p>&nbsp;
+&nbsp;</p>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<h3 id="-back-index-html-quick-"><a href="index.html#quick">Back</a></h3>
+<p>&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

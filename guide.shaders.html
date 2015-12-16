@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<p><a href="#usage">jump to luxe shader usage?</a></p>
+<h2 id="shaders-in-luxe">Shaders in luxe</h2>
+<hr>
+<p>Mouse x axis controls the distortion in the distort shader.<br>Mouse x axis controls the hue degrees in the Hue change shader.<br>Level background has a severe tilt shift shader that also desaturates the image.   </p>
+<div data-content="samples/test_shaders/index.html" class="sample"> <p>Click to run example</p> </div>
+
+<hr>
+<h2 id="wait-what-are-shaders-exactly-">Wait, what are shaders exactly?</h2>
+<p>I have written a comprehensive primer to shaders here!</p>
+<p><a href="http://notes.underscorediscovery.com/shaders-a-primer/">Shaders : A primer</a></p>
+<p>The series talks about shaders in various ways,<br>but for getting started with shaders in luxe, let’s move along.</p>
+<p><a name="usage" href="#usage"></p>
+<h2 id="using-shaders-in-luxe-a-">Using shaders in luxe </a></h2>
+<hr>
+<p>luxe makes using shaders easier by wrapping up the details, allowing you to load and apply shaders to your sprites and geometry easily. It also makes it simple to send information into the shaders.</p>
+<p>Take a look at the code from the demo, and you should be able to follow along as to what is happening.</p>
+<pre><code>    <span class="hljs-comment">//we create a variable to hold the shader</span>
+<span class="hljs-keyword">var</span> hue_shader : Shader;
+
+    <span class="hljs-comment">//and then we fetch the already loaded shader </span>
+hue_shader = Luxe.resources.shader(<span class="hljs-string">'hue'</span>);
+
+    <span class="hljs-comment">//then we tell the sprite to use this shader when rendering</span>
+hue_sprite.shader = hue_shader;
+</code></pre><p>And finally, when we move the mouse, we send some information to the shader to change the color</p>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( e:MouseEvent )</span> </span>{
+
+    <span class="hljs-keyword">var</span> percent = e.pos.x / Luxe.screen.w;
+    <span class="hljs-keyword">var</span> hue = (Math.PI*<span class="hljs-number">2</span>) * percent;
+
+        <span class="hljs-comment">//hue based on mouse x</span>
+    hue_shader.set_float(<span class="hljs-string">'in_hue'</span>, hue);
+
+}
+</code></pre><hr>
+<h2 id="shader-code">shader code</h2>
+<p>This is one of the two shaders shown</p>
+<h4 id="distort-glsl">distort.glsl</h4>
+<pre><code class="lang-glsl"><span class="hljs-keyword">uniform</span> <span class="hljs-keyword">sampler2D</span> tex0;
+<span class="hljs-keyword">uniform</span> <span class="hljs-keyword">sampler2D</span> tex1;
+
+<span class="hljs-keyword">varying</span> <span class="hljs-keyword">vec2</span> tcoord;
+<span class="hljs-keyword">varying</span> <span class="hljs-keyword">vec4</span> color;
+
+<span class="hljs-keyword">uniform</span> <span class="hljs-keyword">float</span> distortamount;
+
+<span class="hljs-keyword">void</span> main() {
+
+    <span class="hljs-keyword">vec4</span> direction = <span class="hljs-built_in">texture2D</span>(tex1, tcoord);
+    <span class="hljs-keyword">vec4</span> c = <span class="hljs-built_in">texture2D</span>(tex0, tcoord + distortamount * (direction.rg - <span class="hljs-keyword">vec2</span>(<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>)));
+
+    <span class="hljs-built_in">gl_FragColor</span> = c;
+
+}
+</code></pre>
+<hr>
+<h2 id="full-code">full code</h2>
+<p><em>can be found at tests/rendering/shaders/</em></p>
+<pre><code>
+<span class="hljs-keyword">import</span> luxe.Input;
+<span class="hljs-keyword">import</span> luxe.Sprite;
+<span class="hljs-keyword">import</span> luxe.Vector;
+<span class="hljs-keyword">import</span> luxe.Color;
+<span class="hljs-keyword">import</span> phoenix.Shader;
+<span class="hljs-keyword">import</span> phoenix.Texture.FilterType;
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
+
+
+    <span class="hljs-keyword">var</span> distort_sprite : Sprite;
+    <span class="hljs-keyword">var</span> hue_sprite : Sprite;
+    <span class="hljs-keyword">var</span> level_sprite : Sprite;
+
+    <span class="hljs-keyword">var</span> level_tiltshift : Shader;
+    <span class="hljs-keyword">var</span> hue_shader : Shader;
+    <span class="hljs-keyword">var</span> distort_shader : Shader;
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">config</span><span class="hljs-params">(config:luxe.AppConfig)</span> </span>{
+
+        config.preload.textures.push({ id:<span class="hljs-string">'assets/level.png'</span> });
+        config.preload.textures.push({ id:<span class="hljs-string">'assets/luxe.png'</span> });
+        config.preload.textures.push({ id:<span class="hljs-string">'assets/distort.png'</span> });
+
+        config.preload.shaders.push({ id:<span class="hljs-string">'hue'</span>, frag_id:<span class="hljs-string">'assets/huechange.glsl'</span>, vert_id:<span class="hljs-string">'default'</span> });
+        config.preload.shaders.push({ id:<span class="hljs-string">'gray-tilt'</span>, frag_id:<span class="hljs-string">'assets/gray_tilt_shift.glsl'</span>, vert_id:<span class="hljs-string">'default'</span> });
+        config.preload.shaders.push({ id:<span class="hljs-string">'distort'</span>, frag_id:<span class="hljs-string">'assets/distort.glsl'</span>, vert_id:<span class="hljs-string">'default'</span> });
+
+        <span class="hljs-keyword">return</span> config;
+
+    } <span class="hljs-comment">//config</span>
+
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+        <span class="hljs-keyword">var</span> luxe_tex = Luxe.resources.texture(<span class="hljs-string">'assets/luxe.png'</span>);
+        <span class="hljs-keyword">var</span> level_texture = Luxe.resources.texture(<span class="hljs-string">'assets/level.png'</span>);
+        <span class="hljs-keyword">var</span> distort_map = Luxe.resources.texture(<span class="hljs-string">'assets/distort.png'</span>);
+
+            level_texture.filter_min = level_texture.filter_mag = FilterType.nearest;
+
+        <span class="hljs-keyword">var</span> _size = Luxe.screen.h * <span class="hljs-number">0.8</span>;
+        <span class="hljs-keyword">if</span>(_size &gt; <span class="hljs-number">512</span>) _size = <span class="hljs-number">512</span>;
+
+        distort_sprite = <span class="hljs-keyword">new</span> Sprite({
+            texture : luxe_tex,
+            pos : <span class="hljs-keyword">new</span> Vector(_size/<span class="hljs-number">2</span>,_size),
+            size : <span class="hljs-keyword">new</span> Vector(_size,_size),
+            depth : <span class="hljs-number">2</span>
+        });
+
+        hue_sprite = <span class="hljs-keyword">new</span> Sprite({
+            texture : luxe_tex,
+            pos : <span class="hljs-keyword">new</span> Vector(_size+(_size*<span class="hljs-number">0.05</span>),_size),
+            size : <span class="hljs-keyword">new</span> Vector(_size,_size),
+            depth : <span class="hljs-number">2</span>
+        });
+
+        level_sprite = <span class="hljs-keyword">new</span> Sprite({
+            texture : level_texture,
+            pos : <span class="hljs-keyword">new</span> Vector(Luxe.screen.w/<span class="hljs-number">2</span>,Luxe.screen.h/<span class="hljs-number">2</span>),
+            depth : <span class="hljs-number">0</span>
+        });
+
+            <span class="hljs-comment">//for the logo blocks image</span>
+
+        distort_sprite.scale = <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">0.5</span>,<span class="hljs-number">0.5</span>);
+        hue_sprite.scale = <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">0.5</span>,<span class="hljs-number">0.5</span>);
+
+        hue_shader = Luxe.resources.shader(<span class="hljs-string">'hue'</span>);
+        hue_sprite.shader = hue_shader;
+
+        level_sprite.scale = <span class="hljs-keyword">new</span> Vector(Luxe.screen.w/<span class="hljs-number">240</span>,Luxe.screen.h/<span class="hljs-number">160</span>);
+
+        <span class="hljs-comment">// #if !mobile</span>
+          level_tiltshift = Luxe.resources.shader(<span class="hljs-string">'gray-tilt'</span>);
+          level_sprite.shader = level_tiltshift;
+        <span class="hljs-comment">// #end</span>
+
+        distort_shader = Luxe.resources.shader(<span class="hljs-string">'distort'</span>);
+        distort_sprite.shader = distort_shader;
+
+            <span class="hljs-comment">//move to second slot</span>
+        distort_map.slot = <span class="hljs-number">1</span>;
+            <span class="hljs-comment">//set the uniform</span>
+        distort_shader.set_texture(<span class="hljs-string">'tex1'</span>, distort_map);
+
+    } <span class="hljs-comment">//ready</span>
+
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">if</span> mobile</span>
+        <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontouchmove</span><span class="hljs-params">( e:TouchEvent )</span> </span>{
+
+            <span class="hljs-keyword">var</span> percent = e.x / Luxe.screen.w;
+            <span class="hljs-keyword">var</span> hue = (Math.PI*<span class="hljs-number">2</span>) * percent;
+
+                <span class="hljs-comment">//distort based on mouse x</span>
+            distort_shader.set_float(<span class="hljs-string">'distortamount'</span>, percent);
+                <span class="hljs-comment">//hue based on mouse x</span>
+            hue_shader.set_float(<span class="hljs-string">'in_hue'</span>, hue);
+
+        } <span class="hljs-comment">//ontouchmove</span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">end</span> //mobile</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( e:MouseEvent )</span> </span>{
+
+        <span class="hljs-keyword">var</span> percent = e.pos.x / Luxe.screen.w;
+        <span class="hljs-keyword">var</span> hue = (Math.PI*<span class="hljs-number">2</span>) * percent;
+
+            <span class="hljs-comment">//distort based on mouse x</span>
+        distort_shader.set_float(<span class="hljs-string">'distortamount'</span>, percent);
+            <span class="hljs-comment">//hue based on mouse x</span>
+        hue_shader.set_float(<span class="hljs-string">'in_hue'</span>, hue);
+
+    } <span class="hljs-comment">//onmousemove</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">( e:KeyEvent )</span> </span>{
+
+        <span class="hljs-keyword">if</span>(e.keycode == Key.escape) {
+            Luxe.shutdown();
+        }
+
+    } <span class="hljs-comment">//onkeyup</span>
+
+
+} <span class="hljs-comment">//Main</span>
+</code></pre><p>&nbsp;   </p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

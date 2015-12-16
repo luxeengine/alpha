@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-to-the-next-guide-guide-two-html-"><a href="guide.two.html">To the next guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<hr>
+<h4 id="output-image">Output image</h4>
+<p><img src="images/guide.one.gif" alt="getting started screenshot"></p>
+<h2 id="getting-started-with-luxe">Getting Started with luxe</h2>
+<p>Before you get started, make sure you have <a href="setup.html">installed luxe and that it is working first</a>, of course!    </p>
+<p>To see what this guide will teach you, click on the demo below.</p>
+<h3 id="live-demo">Live demo</h3>
+<p>Move the mouse around</p>
+<hr>
+<div data-content="samples/1_gettingstarted/index.html" class="sample"> <p>Click to run example</p> </div>
+
+<p><a href="#code">code listing</a></p>
+<hr>
+<h3 id="an-empty-project">An empty project</h3>
+<p>For now, as luxe is in development, you can <strong>copy the <code>luxe/samples/empty</code> folder as a starting point</strong>.</p>
+<p><em>This will be automated in future, and in some editors (FlashDevelop) a new project template is already included.</em></p>
+<h3 id="basic-anatomy">Basic Anatomy</h3>
+<h4 id="a-flow-file-">A flow file?!</h4>
+<p>When you build a luxe app, it’s built by flow, a build tool that reads your project file.
+Your <strong>project file is called a flow file</strong>, and has the extension <code>.flow</code>.</p>
+<p>To build your game, you run flow (discussed further below) and it does all the work.</p>
+<p>If you copied the project template, or look inside <code>samples/empty</code> you’ll see a <code>project.flow</code>  file.
+Open that up, and you’ll find the information specific to that project.</p>
+<p>Here’s is an example of what that looks like:</p>
+<p><img src="images/flow-file.png" alt="flow-file"></p>
+<h4 id="your-game-in-code">Your game in code</h4>
+<p>The second place to look, is the <code>src/Main.hx</code> file, which is where your game begins.</p>
+<p>A luxe app in it’s very basic form is a single haxe class that extends the <code>luxe.Game</code> class. When you override the <code>ready</code> function from the luxe game class, you will have the entry point of a project. </p>
+<p>If you ran this as is, you would see a blank window with default properties.</p>
+<pre><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+       <span class="hljs-comment">//your game starts here</span>
+    }
+
+}
+</code></pre><p>Aside from the <code>ready</code> function, there are quite a few that you can override in order to handle luxe system events - like <code>onkeyup(event:KeyEvent)</code> or <code>update(dt:Float)</code>. The first being when a key is released, and update is called every frame for you, so you can update your game logic.</p>
+<h3 id="the-empty-game-class">The empty Game class</h3>
+<p>If you start from the empty project template, it would look similar to this: </p>
+<pre><code>
+<span class="hljs-keyword">import</span> luxe.Input;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+        <span class="hljs-comment">//called by luxe for you when you can start coding</span>
+
+    } <span class="hljs-comment">//ready</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">( e:KeyEvent )</span> </span>{
+
+        <span class="hljs-comment">//called by luxe for you, when a key is released</span>
+
+        <span class="hljs-keyword">if</span>(e.keycode == Key.escape) {
+            Luxe.shutdown();
+        }
+
+    } <span class="hljs-comment">//onkeyup</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">(dt:Float)</span> </span>{
+
+        <span class="hljs-comment">//called by luxe for you, each frame, and passes in the</span>
+        <span class="hljs-comment">//delta time (the length in seconds of the last frame).</span>
+
+    } <span class="hljs-comment">//update</span>
+
+
+} <span class="hljs-comment">//Main</span>
+</code></pre><p>If you run this app as is, and push the escape key, the application would quit. </p>
+<hr>
+<h3 id="building-and-running-a-luxe-app">Building and running a luxe app</h3>
+<p>luxe uses a build toolchain called <a href="http://snowkit.org/flow">flow</a> to build and run your application. </p>
+<p>flow is a command line tool but is integrated into editors like <a href="http://sublimetext.com/3">Sublime Text</a>, <a href="http://atom.io">Atom</a>, and <a href="http://flashdevelop.org/">Flash Develop</a> so that you can work from that instead, if you prefer.</p>
+<h4 id="running-from-the-command-line">Running from the command line</h4>
+<p>To run the game from a cli, you simply run <code>flow run</code> from within your project folder. If you want to build without running, use <code>flow build</code>. </p>
+<p>If you wanted to run in debug mode (useful for debugging crashes and such) you would append a <code>--debug</code> flag, so the final command would be <code>flow run --debug</code>. <small><em>This is often not necessary unless your app is crashing and you need a callstack to see why, it slows down the application a lot</em>.</small></p>
+<h4 id="running-from-sublime-text-or-atom">Running from Sublime Text or Atom</h4>
+<p>Make sure the plugins or packages are installed and configured, following the instructions on these pages:</p>
+<ul>
+<li><a href="http://underscorediscovery.github.io/flow/guide/sublimetext.html">Sublime Text 3</a>   </li>
+<li><a href="https://atom.io/packages/flow">Atom</a>   </li>
+</ul>
+<p>Once installed, open your project as a folder.</p>
+<ol>
+<li>Set the flow file as active, right click on the flow file in the tree view</li>
+<li>press ctrl/cmd + B depending on your platform to build</li>
+</ol>
+<h4 id="running-from-flash-develop">Running from Flash Develop</h4>
+<p>Make sure the <a href="https://github.com/Chman/Snowkit-FD">snowkit-FD</a> templates are installed.</p>
+<p>Once installed, make a new project from the Project menu, and select a luxe project.</p>
+<hr>
+<h3 id="getting-something-on-screen">Getting something on screen</h3>
+<p>Now that we have a blank window, let’s draw a sprite and move it around!</p>
+<p>Remember - to use classes from the luxe package, we usually import them first.<br>At the top of your file, with the other imports, add the following lines,<br>because we want to use <code>Color</code>s, <code>Vector</code>s (an object with x/y properties) and the <code>Sprite</code> class.</p>
+<pre><code><span class="hljs-keyword">import</span> luxe.Sprite;
+<span class="hljs-keyword">import</span> luxe.Color;
+<span class="hljs-keyword">import</span> luxe.Vector;
+</code></pre><p>This will bring the classes into the module, so that can use them directly without using the full name. In other words, we can now say <code>new Sprite</code> instead of <code>new luxe.Sprite</code> when referring to the Sprite class.</p>
+<p><strong>Sprite and it’s options</strong><br>Inside the ready function we can create a sprite.
+When creating a <code>Sprite</code>, it wants us to specify some options, in an object. 
+A simple object could look like this :</p>
+<p><code>{  name:&#39;a sprite&#39; }</code></p>
+<p>This is an object with a <code>name</code> property, and it’s value set.</p>
+<p>Since the Sprite class has a lot of options, it is easier to specify only the options we need (instead of mega constructors). You will find much of the luxe API has an associated <code>options</code> type associated with it.</p>
+<p><strong>Creating a Sprite</strong><br>For now, we will create a small orange block in the middle of the screen and give it a color, a size and a position. The name is optional, but it will make your project infinitely easier to work with if you name things from the start.</p>
+<p>We also make a variable called <code>block</code>, this is so that we can move the sprite later when the mouse moves, and store the reference to the Sprite in the variable.</p>
+<pre><code><span class="hljs-keyword">var</span> block : Sprite;
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+    block = <span class="hljs-keyword">new</span> Sprite({
+        name: <span class="hljs-string">'a sprite'</span>,
+        pos: Luxe.screen.mid,
+        color: <span class="hljs-keyword">new</span> Color().rgb(<span class="hljs-number">0xf94b04</span>),
+        size: <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">128</span>, <span class="hljs-number">128</span>)
+    });
+
+} <span class="hljs-comment">//ready</span>
+</code></pre><p>If you run this, you will see an orange block, center screen!</p>
+<hr>
+<h3 id="moving-things-around">Moving things around</h3>
+<p>&nbsp;</p>
+<h4 id="mouse-move">mouse move</h4>
+<p>We can use one of the Game functions called <code>onmousemove</code> to let us know when the mouse is moving - and we can use this information to move the block.</p>
+<p>To change the position of the block, you set the <code>pos</code> property of the sprite, which is a <code>Vector</code>, so it also has an <code>x</code> and a <code>y</code> component that you can set (i.e <code>block.pos.x += 10;</code>).</p>
+<p>So we start with overriding the <code>onmousemove</code> function, just below <code>ready</code>, and using the mouse event - set the position of the block :</p>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( event:MouseEvent )</span> </span>{
+
+    block.pos = event.pos;
+
+} <span class="hljs-comment">//onmousemove</span>
+</code></pre><p>&nbsp;</p>
+<h4 id="rotate-on-update">rotate on update</h4>
+<p>Another thing we can do is rotate the block every update frame by a small amount, using the update function shown above. </p>
+<p>The sprite class has a <code>rotation_z</code> property which is set in degrees, and controls how many degrees of rotation the sprite will have.</p>
+<p>If we want to animate the block spinning indefinitely, we simply add a small amount each frame, and scale it by the delta (difference in) time. This scaling of time makes sure it runs as “per second” rather than “per frame”.</p>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">( delta:Float )</span> </span>{
+
+        <span class="hljs-comment">//if we add 40° each frame, and scale it by the delta,</span>
+        <span class="hljs-comment">//it becomes 40° per second instead of 40° per update.</span>
+
+    block.rotation_z += <span class="hljs-number">40</span> * delta;
+
+} <span class="hljs-comment">//update</span>
+</code></pre><hr>
+<h2 id="conclusion">conclusion</h2>
+<p>That’s the basics of getting things on screen, updating things every frame, and using the override functions from the Game class to get key, mouse and other forms of input.</p>
+<h3 id="what-comes-next">What comes next</h3>
+<p>Some of the questions you may have,</p>
+<ul>
+<li><p><strong>Where do I find a list of all the supported <code>Game</code> class functions?</strong><br>Read the <a href="api/luxe/Game.html">Game class</a> documentation.   </p>
+</li>
+<li><p><strong>Where do I find a list of all the <code>Sprite</code> options?</strong><br>Read the <a href="api/luxe/options/SpriteOptions.html">Sprite options</a> documentation.   </p>
+</li>
+<li><p><strong>Things that were not discussed include</strong><br>the <a href="guide.color.html">color</a> class</p>
+</li>
+</ul>
+<h3 id="-to-the-next-guide-guide-two-html-"><a href="guide.two.html">To the next guide</a></h3>
+<h3 id="-back-to-guides-guide-html-"><a href="guide.html">Back to guides</a></h3>
+<hr>
+<p><a name="code"></p>
+<h4 id="code-listing-1">Code listing 1</h4>
+<p></a></p>
+<p><em>(found in samples/guides/1_gettingstarted/)</em></p>
+<pre><code>
+<span class="hljs-keyword">import</span> luxe.Input;
+<span class="hljs-keyword">import</span> luxe.Sprite;
+<span class="hljs-keyword">import</span> luxe.Color;
+<span class="hljs-keyword">import</span> luxe.Vector;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
+
+    <span class="hljs-keyword">var</span> block : Sprite;
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+        block = <span class="hljs-keyword">new</span> Sprite({
+            name: <span class="hljs-string">'a sprite'</span>,
+            pos: Luxe.screen.mid,
+            color: <span class="hljs-keyword">new</span> Color().rgb(<span class="hljs-number">0xf94b04</span>),
+            size: <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">128</span>, <span class="hljs-number">128</span>)
+        });
+
+    } <span class="hljs-comment">//ready</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( event:MouseEvent )</span> </span>{
+
+        block.pos = event.pos;
+
+    } <span class="hljs-comment">//onmousemove</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">( e:KeyEvent )</span> </span>{
+
+        <span class="hljs-keyword">if</span>(e.keycode == Key.escape) {
+            Luxe.shutdown();
+        }
+
+    } <span class="hljs-comment">//onkeyup</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">( delta:Float )</span> </span>{
+
+             <span class="hljs-comment">//if we add 40° each frame, and scale it by the delta,</span>
+            <span class="hljs-comment">//it becomes 40° per second instead of 40° per update.</span>
+
+        block.rotation_z += <span class="hljs-number">40</span> * delta;
+
+    } <span class="hljs-comment">//update</span>
+
+} <span class="hljs-comment">//Main</span>
+</code></pre><p>&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<hr>
+<h2 id="tweening-with-actuate">Tweening with Actuate</h2>
+<hr>
+<p><a href="http://lib.haxe.org/p/actuate">Actuate</a> is a motion library created by <a href="http://www.joshuagranick.com/">Joshua Granick</a>.</p>
+<h4 id="it-is-built-into-luxe-and-accessible-as-luxe-tween-actuate-">It is <strong> built into luxe </strong> and accessible as <code>luxe.tween.Actuate</code>.</h4>
+<p>&nbsp;</p>
+<h3 id="what-is-tweening-">What is tweening?</h3>
+<hr>
+<p>Tweening is <a href="http://en.wikipedia.org/wiki/Inbetweening">a shortened version of <em>inbetweening</em></a>, used commonly in digital animation.</p>
+<p>It, in simple terms, is about moving from a start value to an end value (keyframes). This is especially useful in games where things should move smoothly, transition and generally animate over time.</p>
+<h3 id="examples">Examples</h3>
+<p>Slide the menu in from the top, over 2 seconds</p>
+<pre><code>    <span class="hljs-comment">//assume that y was -menu.height (off screen)</span>
+Actuate.tween( menu, <span class="hljs-number">2</span>, { y:<span class="hljs-number">10</span> } );
+</code></pre><p>Fade in this overlay over half a second</p>
+<pre><code>    <span class="hljs-comment">//assume that alpha is 0 already</span>
+Actuate.tween( overlay.color, <span class="hljs-number">0.5</span>, { a:<span class="hljs-number">1</span> } );
+</code></pre><p>Fade this enemy quickly to half opaque, then wait 1 second, then fade out slowly</p>
+<pre><code>    <span class="hljs-comment">//Take the tween that Acutate returns, and </span>
+    <span class="hljs-comment">// call .onComplete on it with a function</span>
+Actuate.tween( enemy.color, <span class="hljs-number">0.2</span>, { a:<span class="hljs-number">0.5</span> } )
+    .onComplete(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+
+            <span class="hljs-comment">//Now that the first tween is done, start a second one,</span>
+            <span class="hljs-comment">//but by using the tween .delay function we can wait</span>
+        Actuate.tween( enemy.color, <span class="hljs-number">3</span>, { a:<span class="hljs-number">0</span> } ).delay( <span class="hljs-number">1</span> );
+
+    }); <span class="hljs-comment">//onComplete</span>
+</code></pre><p>Fade up, over and over, starting from 0</p>
+<pre><code>    <span class="hljs-comment">//the value of flashing.color.a should be 0 at first</span>
+    <span class="hljs-comment">//then we fade to 1, and say "repeat that"</span>
+Actuate.tween(flashing.color, <span class="hljs-number">0.5</span>, { a:<span class="hljs-number">1</span> }).repeat();
+</code></pre><p>Fade up and down continuously</p>
+<pre><code>    <span class="hljs-comment">//Similar to repeat, you can ping pong the value using reflect</span>
+    <span class="hljs-comment">//If flashing.color.a is 0, </span>
+    <span class="hljs-comment">//it will go up to 1, and then animate to 0 on a loop</span>
+Actuate.tween(flashing.color, <span class="hljs-number">0.5</span>, { a:<span class="hljs-number">1</span> }).repeat().reflect();
+</code></pre><h2 id="callback-functions-on-the-created-motion">Callback functions on the created motion</h2>
+<hr>
+<p>Like the onComplete function above, there are other callbacks you can ask for :</p>
+<pre><code>    <span class="hljs-comment">//Remember, these can be chained like above and function handlers can be a local class member</span>
+    <span class="hljs-comment">//or any previously declared function - or an inline function like the above example.</span>
+
+    <span class="hljs-comment">//Called when the motion has completed</span>
+.onComplete( handler:Dynamic, parameters:Array&lt;Dynamic&gt; = <span class="hljs-literal">null</span> )
+
+    <span class="hljs-comment">//When a .repeat() is requested, you will get an onRepeat instead of onComplete</span>
+.onRepeat( handler:Dynamic, parameters:Array&lt;Dynamic&gt; = <span class="hljs-literal">null</span> )
+
+    <span class="hljs-comment">//Every time the value changes in the animation/motion, your callback will fire</span>
+.onUpdate( handler:Dynamic, parameters:Array&lt;Dynamic&gt; = <span class="hljs-literal">null</span> )
+</code></pre><h2 id="helper-functions-on-the-created-motion">Helper functions on the created motion</h2>
+<hr>
+<pre><code>    <span class="hljs-comment">//If you want float values during motion should be automatically rounded to </span>
+.snapping( enabled:Bool = <span class="hljs-literal">true</span> )
+
+    <span class="hljs-comment">//If you want the motion to be performed in reverse</span>
+.reverse( enabled:Bool = <span class="hljs-literal">true</span> )
+
+    <span class="hljs-comment">//If you want the motion to repeat</span>
+.repeat( enabled:Bool = <span class="hljs-literal">true</span> )
+
+    <span class="hljs-comment">//If you want to motion to reverse the tween on repeat</span>
+    <span class="hljs-comment">//this requires .repeat() to be enabled!</span>
+.reflect( enabled:Bool = <span class="hljs-literal">true</span> )    
+
+    <span class="hljs-comment">//Helper functions to set tween properties</span>
+
+    <span class="hljs-comment">//the curve function to use (curves displayed below)</span>
+.ease( luxe.tween.easing.* )
+
+    <span class="hljs-comment">//the amount of time to wait in seconds, before doing the tween</span>
+.delay( duration:Bool )
+</code></pre><h2 id="the-different-types-of-easing">The different types of easing</h2>
+<hr>
+<p>These easing values are accessed via <code>luxe.tween.easing.*</code><br>Each type has one or more variations, such as <code>easeIn</code>, <code>easeOut</code> or <code>easeInOut</code> listed below.<br>This means that the curve is applied at the beginning (ease in) at the end (ease out) or both over the time period.</p>
+<pre><code>    <span class="hljs-comment">//example usage, this will bounce "at the end" of the animation</span>
+Actuate.tween( menu, <span class="hljs-number">2</span>, { y:<span class="hljs-number">10</span> } ).ease( luxe.tween.easing.Bounce.easeOut );
+</code></pre><p>The following curve type has only one option (because it is linear!)</p>
+<ul>
+<li>Linear  <code>easeNone</code></li>
+</ul>
+<p>The following curves have <code>easeIn</code>, <code>easeOut</code>, <code>easeInOut</code></p>
+<ul>
+<li>Back</li>
+<li>Bounce</li>
+<li>Cubic </li>
+<li>Elastic</li>
+<li>Expo</li>
+<li>Quad  </li>
+<li>Quart </li>
+<li>Quint </li>
+<li>Sine  </li>
+</ul>
+<h2 id="visual-curves">Visual Curves</h2>
+<hr>
+<p>This is how these curves look when drawn as graphs.   </p>
+<p><img src="images/tweens.png" alt="tweening curves"></p>
+<hr>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h4 id="just-starting-out-">Just starting out?</h4>
+<p>Don’t miss the <a href="setup.html"> setup guide </a>.</p>
+<h2 id="choose-your-destination">Choose your destination</h2>
+<hr>
+<h3 id="-beginners-guide-beginnersguide-"><a href="#beginnersguide"> Beginners guide </a></h3>
+<p><strong>The beginners guide is a linear guide</strong>,<br>it follows a semi logical progression about getting started with luxe.</p>
+<p><a href="#gettingstarted"> Getting Started </a><br><a href="#imagesandsprites"> Images and sprites </a><br><a href="#spritesandanimation"> Sprites and animation </a><br><a href="#textandtweening"> Text and tweening </a>    </p>
+<p><a name="list"></a></p>
+<h3 id="-feature-guide-featureguide-"><a href="#featureguide"> Feature guide </a></h3>
+<p>The feature guide is a piece by piece reference for specific features of the engine, designed to explain and teach what the engine can do.</p>
+<p><strong>gameplay</strong></p>
+<p><a href="#timers"> timers </a><br><del>transforms</del><br><del>app timing</del><br><del>audio</del><br><del>scene</del><br><del>physics</del><br><del>collision</del>    </p>
+<p><strong>rendering</strong></p>
+<p><a href="#sprite"> sprite </a><br><a href="#spriteanimation"> sprite animation </a><br><a href="#color"> color </a><br><del>render batching</del><br><a href="#rendercontrol"> render control </a><br><a href="#shaders"> shaders </a><br><del>cameras</del><br><del>tilemaps</del><br><a href="#drawing"> drawing </a><br><del>nineslice</del><br><del>particles</del><br><del>textures</del><br><a href="#fonts"> fonts </a>    </p>
+<p><strong>systems</strong></p>
+<p><a href="#assets"> assets </a><br><del>maths</del><br><del>states</del><br><a href="#events"> events </a><br><a href="#components"> components </a><br><a href="#tweening"> tweening </a><br><a href="#utils"> utils </a>    </p>
+<h3 id="-details-guide-detailguide-"><a href="#detailguide"> Details guide </a></h3>
+<p>The detail guide is a look at the inner structure and design philosophy behind the engine and it’s pieces, as well as elaborate on common questions.</p>
+<p><a href="#opengl"> <del>OpenGL API access</del> </a><br><a href="#openal"> <del>OpenAL API access</del> </a><br><a href="#snow"> <del>snow API access</del> </a>  </p>
+<h3 id="-advanced-guide-advancedguide-"><a href="#advancedguide"> Advanced guide </a></h3>
+<p>The advanced guide is for more experienced developers looking to fully understand and take advantage of squeezing more out of the engine.</p>
+<hr>
+<p><a name="beginnersguide"> </a></p>
+<h2 id="beginners-guide">Beginners guide</h2>
+<p><a name="gettingstarted"> </a></p>
+<h3 id="-getting-started-with-luxe-guide-one-html-"><a href="guide.one.html"> Getting Started with luxe </a></h3>
+<ul>
+<li>Understanding the anatomy of a luxe game,<br>drawing a sprite, and moving it around.
+<a href="guide.one.html"> <img src="images/guide.one.png" alt="getting started guide screenshot"> </a></li>
+</ul>
+<p><a name="imagesandsprites"> </a></p>
+<h3 id="-images-and-sprites-guide-two-html-"><a href="guide.two.html"> Images and sprites </a></h3>
+<ul>
+<li>Drawing static images, flipping, and movement
+<a href="guide.two.html"> <img src="images/guide.two.png" alt="sprites guide screenshot"> </a></li>
+</ul>
+<p><a name="spritesandanimation"> </a></p>
+<h3 id="-sprites-and-animation-guide-three-html-"><a href="guide.three.html"> Sprites and animation </a></h3>
+<ul>
+<li>Drawing animated sprites, preloading, and more
+<a href="guide.three.html"> <img src="images/guide.three.png" alt="sprite anim guide screenshot"> </a></li>
+</ul>
+<p><a name="textandtweening"> </a></p>
+<h3 id="-text-and-tweening-guide-four-html-"><a href="guide.four.html"> Text and tweening </a></h3>
+<ul>
+<li>Playing some sounds, fading, simple events, text and more
+<a href="guide.four.html"> <img src="images/guide.four.png" alt="text guide screenshot"> </a></li>
+</ul>
+<hr>
+<p><a class="toplink" href="#">back to top</a>
+<a name="featureguide"> </a></p>
+<h2 id="feature-guide">Feature guide</h2>
+<h4 id="these-can-be-used-and-read-in-any-order">These can be used and read in any order</h4>
+<p>These vary from feature reference guides to in depth article guides.</p>
+<hr>
+<p><a class="toplink" href="#">back to top</a></p>
+<h3 id="gameplay">Gameplay</h3>
+<h3 id="scene">scene</h3>
+<ul>
+<li>Scene/entity relationship</li>
+</ul>
+<h3 id="physics">physics</h3>
+<ul>
+<li>Physics hook implementation
+<img src="images/guide.physics.png" alt="physics guide screenshot"></li>
+</ul>
+<h3 id="collision">collision</h3>
+<ul>
+<li>SAT collision query helpers
+<img src="images/guide.collision.png" alt="collision guide screenshot"></li>
+</ul>
+<h3 id="transforms">transforms</h3>
+<ul>
+<li>transformation stack for spatial control (pos/rot/scale)
+<img src="images/guide.transforms.png" alt="transform guide screenshot"></li>
+</ul>
+<h3 id="app-timing">app timing</h3>
+<ul>
+<li>app timing, timescale, fixed rate, etc</li>
+</ul>
+<p><a name="timers"> </a></p>
+<h3 id="-timers-guide-timers-html-"><a href="guide.timers.html">timers</a></h3>
+<ul>
+<li>scheduling things in time, once or repeating</li>
+</ul>
+<h3 id="audio">audio</h3>
+<ul>
+<li>playing music and sound effects</li>
+</ul>
+<hr>
+<p><a class="toplink" href="#">back to top</a></p>
+<h3 id="rendering">Rendering</h3>
+<p><a name="sprite"> </a></p>
+<h3 id="-sprite-guide-sprite-html-"><a href="guide.sprite.html"> sprite </a></h3>
+<ul>
+<li>Sprite feature guide</li>
+</ul>
+<p><a name="spriteanimation"> </a></p>
+<h3 id="-sprite-animation-guide-spriteanimation-html-"><a href="guide.spriteanimation.html"> sprite animation </a></h3>
+<ul>
+<li>How to bring your sprites to life by importing sprite sheets or using separate images.</li>
+</ul>
+<p><a name="color"> </a></p>
+<h3 id="-color-guide-guide-color-html-"><a href="guide.color.html"> color guide </a></h3>
+<ul>
+<li>The different types of color classes and utility functions for handling HSL, HSV, and RGB color.
+<a href="guide.color.html"> <img src="images/guide.color.png" alt="color guide screenshot"> </a></li>
+</ul>
+<h3 id="render-batching">render batching</h3>
+<ul>
+<li>understanding and using the batching system effectively</li>
+</ul>
+<p><a name="rendercontrol"> </a></p>
+<h3 id="-render-control-guide-rendercontrol-html-"><a href="guide.rendercontrol.html">render control</a></h3>
+<ul>
+<li>controlling depth, blend mode, and using render events like pre/post render
+<a href="guide.rendercontrol.html"> <img src="images/guide.rendercontrol.png" alt="render control guide screenshot"> </a></li>
+</ul>
+<p><a name="shaders"> </a></p>
+<h3 id="-shader-guide-guide-shaders-html-"><a href="guide.shaders.html"> shader guide </a></h3>
+<ul>
+<li>Understanding how to use shaders on your sprites or geometry.
+<a href="guide.shaders.html"> <img src="images/guide.shaders.png" alt="shader guide screenshot"> </a></li>
+</ul>
+<h3 id="cameras">cameras</h3>
+<ul>
+<li>creating and manipulating views
+<img src="images/guide.cameras.png" alt="camera guide screenshot"></li>
+</ul>
+<h3 id="tilemaps">tilemaps</h3>
+<ul>
+<li>creating manually, or loading tilemaps from Tiled
+<img src="images/guide.tiles.png" alt="tiles guide screenshot"></li>
+</ul>
+<p><a name="drawing"> </a></p>
+<h3 id="-drawing-guide-guide-drawing-html-"><a href="guide.drawing.html"> drawing guide </a></h3>
+<ul>
+<li>How to draw shapes, text, and to create custom geometry
+<a href="guide.drawing.html"> <img src="images/guide.drawing.png" alt="sprites guide screenshot"> </a></li>
+</ul>
+<h3 id="nineslice">nineslice</h3>
+<ul>
+<li>“Nine slice” scaleable graphics helper guide</li>
+</ul>
+<h3 id="particles">particles</h3>
+<ul>
+<li>using the default simple particle system
+<img src="images/guide.particles.png" alt="particle guide screenshot"></li>
+</ul>
+<h3 id="textures">textures</h3>
+<ul>
+<li>managing and working with textures and render textures</li>
+</ul>
+<p><a name="fonts"> </a></p>
+<h3 id="-fonts-guide-fonts-html-"><a href="guide.fonts.html">fonts</a></h3>
+<ul>
+<li>creating, loading and displaying custom bitmap fonts</li>
+</ul>
+<hr>
+<p><a class="toplink" href="#">back to top</a></p>
+<h3 id="systems">Systems</h3>
+<p><a name="assets"> </a></p>
+<h3 id="-assets-guide-assets-html-"><a href="guide.assets.html"> assets </a></h3>
+<ul>
+<li>loading and using text, bytes, or other assets with parcels</li>
+</ul>
+<h3 id="maths">maths</h3>
+<ul>
+<li>using Matrix, Quaternion and Vector and Math utils</li>
+</ul>
+<h3 id="states">states</h3>
+<ul>
+<li>using the built in state machine, for stackable, transient or modal states</li>
+</ul>
+<p><a name="events"> </a></p>
+<h3 id="-events-guide-events-html-"><a href="guide.events.html"> events </a></h3>
+<ul>
+<li>Using the event system to communicate locally and globally.</li>
+</ul>
+<p><a name="components"> </a></p>
+<h3 id="-components-guide-basiccomponents-html-"><a href="guide.basiccomponents.html"> components </a></h3>
+<ul>
+<li>using the built in component entity system</li>
+</ul>
+<p><a name="tweening"> </a></p>
+<h3 id="-tweening-guide-tween-html-"><a href="guide.tween.html"> tweening </a></h3>
+<ul>
+<li>Making things animate smoothly over time using tweening.
+<a href="guide.tween.html"> <img src="images/guide.tween.png" alt="tween guide screenshot"> </a></li>
+</ul>
+<p><a name="utils"> </a></p>
+<h3 id="-utils-guide-utils-html-"><a href="guide.utils.html"> utils </a></h3>
+<ul>
+<li>Find out about utilities like maths and geometry functions</li>
+</ul>
+<hr>
+<p><a class="toplink" href="#">back to top</a>
+<a name="detailguide"> </a></p>
+<h2 id="detail-guide">Detail guide</h2>
+<p>:todo:</p>
+<hr>
+<p><a class="toplink" href="#">back to top</a></p>
+<p><a name="advancedguide"> </a></p>
+<p>:todo:</p>
+<hr>
+<p><a class="toplink" href="#">back to top</a></p>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

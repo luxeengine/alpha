@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<hr>
+<h2 id="utilities-and-helpers">Utilities and helpers</h2>
+<hr>
+<h3 id="geometry-utils">Geometry utils</h3>
+<p>Often when dealing with geometry or geometrical constructions (like procedurally generating spaces) it’s helpful to have functions or classes to make building complex things easier.</p>
+<h4 id="these-functions-are-accessible-through-luxe-utils-geometry-">These functions are accessible through <code>Luxe.utils.geometry</code></h4>
+<p>The geometrical utils object contains a handful of useful functions for exactly that, some examples:</p>
+<ul>
+<li>Determine line segments that make a smooth circle with a radius of <em>r</em></li>
+<li>Generate a random point within a 1 radius circle area</li>
+<li>Find if a point is inside of this polygon (list of positions, or Geometry)</li>
+<li>Find a point of line intersect with an invisible plane</li>
+</ul>
+<p>These functions are easily used by <code>Luxe.utils.geometry</code> from anywhere.</p>
+<p>As the API changes and more additions are added,<br>you will find the full list of utilities in the<br><a href="api/luxe/utils/GeometryUtils.html">GeometryUtils API docs</a></p>
+<h3 id="general-utilities">General utilities</h3>
+<p>These are functions that aren’t specific to any discipline so there are many different kinds.<br>Some of the examples include :</p>
+<h4 id="these-functions-are-accessible-through-luxe-utils-">These functions are accessible through <code>Luxe.utils</code></h4>
+<ul>
+<li>generate a uniqueid or UUID</li>
+<li>get a haxe stacktrace as a string</li>
+<li>find assets in a sequence</li>
+</ul>
+<h3 id="math-utilities">Math utilities</h3>
+<p>Haxe already has many maths utilities built in, in the <a href="http://api.haxe.org/Math.html">Math</a> class.</p>
+<p>On top of that, there are many game or rendering specific maths functions that are convenient to have,</p>
+<p>These are all currently <strong>static functions</strong>, rather than an instance. i.e <code>Maths.radians( 90 )</code></p>
+<h4 id="these-functions-are-accessible-through-luxe-utils-maths-">These functions are accessible through <code>luxe.utils.Maths</code></h4>
+<ul>
+<li>is a value within a range (useful for floating point “equality”)</li>
+<li>wrap an angle smoothly around a fixed range (like 0~60 or 0~360)</li>
+<li>the nearest power of two value of a number</li>
+<li>smoothstep interpolations</li>
+<li>degrees/radians conversions</li>
+<li>random number helpers</li>
+</ul>
+<p>You will find the full list of utilities in the<br><a href="api/luxe/utils/Maths.html">Maths API docs</a></p>
+<hr>
+<p>&nbsp;   </p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

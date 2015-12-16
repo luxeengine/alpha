@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<hr>
+<h2 id="spriteanimation-feature-guide">SpriteAnimation feature guide</h2>
+<hr>
+<p>The <a href="guide.html#beginnersguide">beginners guides</a> cover the basic sprite and sprite animation usage.</p>
+<p>The <code>SpriteAnimation</code> class extends the <code>Component</code> class,<br>allowing it to be attached to a <code>Sprite</code>.</p>
+<p>This component can only be attached to a <code>Sprite</code> or child instance.</p>
+<h3 id="animation-type">Animation type</h3>
+<p>The SpriteAnimation component supports</p>
+<ul>
+<li>uv animation from a packed sprite sheet</li>
+<li>image sequence from separate textures</li>
+</ul>
+<h3 id="controlling-playback">Controlling playback</h3>
+<p>For each example, anim is an instance of a <code>SpriteAnimation</code></p>
+<h4 id="get-set-animation">get/set animation</h4>
+<p><code>anim.animation = &#39;name&#39;;</code><br><code>var name = anim.animation;</code>   </p>
+<h3 id="with-current-animation">With current animation</h3>
+<h4 id="get-change-speed">get/change speed</h4>
+<p><code>anim.speed = 25;</code><br><code>var speed = anim.speed;</code>   </p>
+<h4 id="set-specific-frame">set specific frame</h4>
+<p>uses frame index, not image frame</p>
+<p><code>anim.set_frame( 6 );</code></p>
+<h4 id="control-playback">control playback</h4>
+<p><code>anim.restart();</code><br><code>anim.play();</code><br><code>anim.stop();</code>   </p>
+<h3 id="add-remove-frame-events">add/remove frame events</h3>
+<p><code>anim.add_event( &#39;animation&#39;, 6, &#39;event_name&#39; );</code><br><code>anim.remove_event( &#39;animation&#39;, 6, &#39;event_name&#39; );</code><br><code>anim.remove_events( &#39;animation&#39;, 6 );</code>   </p>
+<h3 id="animation-data">Animation Data</h3>
+<p>The animation frame JSON data consists of the following properties :</p>
+<h4 id="uv-image-sequence">UV &amp; Image sequence</h4>
+<ul>
+<li><code>pingpong</code> : Bool<ul>
+<li>default: false</li>
+<li>if true, the animation will reverse at the last frame</li>
+<li>1  2  3  2  1</li>
+</ul>
+</li>
+<li><code>loop</code> : Bool<ul>
+<li>default: false</li>
+<li>if true, the animation will continue to loop</li>
+<li>1  2  3  1  2  3 etc</li>
+<li>can combine with pingpong</li>
+</ul>
+</li>
+<li><code>reverse</code> : Bool<ul>
+<li>default: false</li>
+<li>if true, animation will play in reverse</li>
+<li>can combine with pingpong and loop</li>
+<li>3  2  1</li>
+</ul>
+</li>
+<li><code>speed</code> : Float<ul>
+<li>default: 2</li>
+<li>frames per second to play at</li>
+<li>can be 0</li>
+</ul>
+</li>
+<li><code>events</code> : Array of { frame:Int, ?event:String }<ul>
+<li>fires named <em>event</em> on <em>frame</em> into the attached sprite</li>
+<li>IF <em>event</em> is not given:</li>
+<li>{animation}.event.{frame}, i.e “walk.event.5”</li>
+<li>handler given <a href="api/luxe/components/SpriteAnimationEventData.html">SpriteAnimationEventData</a></li>
+</ul>
+</li>
+<li><code>frameset</code> : Array of String<ul>
+<li>required</li>
+<li>sequential list of frames or frame actions:</li>
+<li>range : “1-10”</li>
+<li>frame : “1”</li>
+<li><code>hold n</code> hold current for <em>n</em> frames of time : “hold 10”</li>
+<li><code>f hold n</code> hold specific frame <em>f</em> for <em>n</em> frames : “1 hold 10”</li>
+</ul>
+</li>
+<li><code>frame_size</code> : { x:Int, y:Int }<ul>
+<li>the size of a frame in texture pixels</li>
+<li>acts as the default for frame_sources, if any</li>
+</ul>
+</li>
+<li><code>frame_sources</code> : { frame:Int, pos:{ x:Int, y:Int }, size:{ w:Int, h:Int }, source:{ x:Int, y:Int, w:Int, h:Int } }<ul>
+<li>optional</li>
+<li>per frame custom size, position and source uv rect</li>
+<li>uses frame_size in place of missing info</li>
+</ul>
+</li>
+</ul>
+<h4 id="image-sequence-only">Image sequence only</h4>
+<ul>
+<li><code>image_sequence</code> : String<ul>
+<li>name of a sequence of images :</li>
+<li>i.e assets/idle =&gt; assets/idle0.png … assets/idleN.png</li>
+<li>will search for :</li>
+<li><code>name_0</code>, <code>name-0</code>, <code>name0</code> patterns</li>
+</ul>
+</li>
+<li><code>filter_type</code> : String<ul>
+<li>“linear” or “nearest”, to set when loading the sequence</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;   </p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

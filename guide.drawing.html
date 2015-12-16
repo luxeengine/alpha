@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<h2 id="drawing-shapes-and-geometry-in-luxe">Drawing shapes and geometry in luxe</h2>
+<hr>
+<p>Luxe supports drawing a few shapes by default, each with some very similar options available. We can start by defining which functions are available, these functions are accessed via the Luxe api under <code>Luxe.draw</code>.</p>
+<ul>
+<li>line    </li>
+<li>rectangle</li>
+<li>box</li>
+<li>ring</li>
+<li>circle</li>
+<li>arc</li>
+<li>pie</li>
+<li>text</li>
+</ul>
+<p>You should notice a pattern here - a rectangle is an outline, and a box is filled in. A ring is an <code>outline</code>, a circle is <code>solid</code>. An arc is an <code>outline</code>, a pie is <code>solid</code>. </p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+<h2 id="starting-by-example-drawing-a-line">Starting by example, drawing a line</h2>
+<hr>
+<pre><code><span class="hljs-keyword">var</span> mid_y = Luxe.screen.h/<span class="hljs-number">2</span>;
+
+Luxe.draw.line({
+    p0 : <span class="hljs-keyword">new</span> Vector( <span class="hljs-number">0</span>, mid_y ),
+    p1 : <span class="hljs-keyword">new</span> Vector( Luxe.screen.w, mid_y ),
+    color : <span class="hljs-keyword">new</span> Color( <span class="hljs-number">0.5</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">1</span> )
+});
+</code></pre><h4 id="and-a-rectangle-">And a rectangle :</h4>
+<pre><code>Luxe.draw.rectangle({
+    x : <span class="hljs-number">10</span>, 
+    y : <span class="hljs-number">10</span>,
+    w : Luxe.screen.w - <span class="hljs-number">20</span>, 
+    h : Luxe.screen.h - <span class="hljs-number">20</span>,
+    color : <span class="hljs-keyword">new</span> Color( <span class="hljs-number">0.4</span>, <span class="hljs-number">0.4</span>, <span class="hljs-number">0.4</span> )
+});
+</code></pre><h4 id="and-a-circle-">And a circle :</h4>
+<pre><code>Luxe.draw.circle({
+    x : Luxe.screen.w/<span class="hljs-number">2</span>,
+    y : Luxe.screen.h/<span class="hljs-number">2</span>,
+    r : <span class="hljs-number">50</span>,
+    color : <span class="hljs-keyword">new</span> Color( <span class="hljs-number">0.8</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">1</span> )
+});
+</code></pre><h3 id="list-options">list options</h3>
+<p>Each drawing function takes an <code>options</code> parameter that can have the following values :</p>
+<hr>
+<h3 id="text">text</h3>
+<ul>
+<li>text &emsp; The text to draw &emsp; <code>String</code> </li>
+<li>font &emsp; The font to use when drawing &emsp; <code>BitmapFont</code> </li>
+</ul>
+<p>&nbsp;   </p>
+<ul>
+<li>pos <code>Vector</code></li>
+<li>color <code>Color</code></li>
+<li>depth <code>Float</code></li>
+<li>group <code>Int</code></li>
+<li>immediate <code>Bool</code></li>
+<li>batcher <code>Batcher</code></li>
+</ul>
+<hr>
+<h3 id="line">line</h3>
+<ul>
+<li>p0 &emsp; The first point on the line &emsp; <code>Vector</code> </li>
+<li>p1 &emsp; The second point on the line &emsp; <code>Vector</code> </li>
+</ul>
+<p>&nbsp;   </p>
+<ul>
+<li>color <code>Color</code></li>
+<li>depth <code>Float</code></li>
+<li>group <code>Int</code></li>
+<li>immediate <code>Bool</code></li>
+<li>batcher <code>Batcher</code></li>
+</ul>
+<hr>
+<h3 id="rectangle-box">rectangle / box</h3>
+<ul>
+<li>x &emsp; The top left x of the shape &emsp; <code>Float</code> </li>
+<li>y &emsp; The top left y of the shape &emsp; <code>Float</code> </li>
+<li>w &emsp; The width of the shape &emsp; <code>Float</code> </li>
+<li>h &emsp; The height of the shape &emsp; <code>Float</code> </li>
+</ul>
+<p>&nbsp;   </p>
+<ul>
+<li>color <code>Color</code></li>
+<li>depth <code>Float</code></li>
+<li>group <code>Int</code></li>
+<li>immediate <code>Bool</code></li>
+<li>batcher <code>Batcher</code></li>
+</ul>
+<hr>
+<h3 id="circle-ring">circle / ring</h3>
+<ul>
+<li>x &emsp; The x center of the shape &emsp; <code>Float</code> </li>
+<li>y &emsp; The y center of the shape &emsp; <code>Float</code> </li>
+<li>r &emsp; The radius of the circle &emsp; <code>Float</code> </li>
+</ul>
+<p>&nbsp;   </p>
+<ul>
+<li>color <code>Color</code></li>
+<li>depth <code>Float</code></li>
+<li>group <code>Int</code></li>
+<li>immediate <code>Bool</code></li>
+<li>batcher <code>Batcher</code></li>
+</ul>
+<hr>
+<h3 id="arc-pie">arc / pie</h3>
+<ul>
+<li>x  &emsp; The x center of the shape &emsp; <code>Float</code></li>
+<li>y &emsp; The y center of the shape &emsp; <code>Float</code></li>
+<li>r &emsp; The radius of the circle &emsp; <code>Float</code> </li>
+<li>end_angle &emsp; The ending angle of the arc  &emsp; <code>Float</code></li>
+</ul>
+<p>&nbsp;   </p>
+<ul>
+<li>color <code>Color</code></li>
+<li>depth <code>Float</code></li>
+<li>group <code>Int</code></li>
+<li>immediate <code>Bool</code></li>
+<li>batcher <code>Batcher</code></li>
+</ul>
+<hr>
+<h3 id="live-demo">Live demo</h3>
+<hr>
+<div data-content="samples/test_draw/index.html" class="sample"> <p>Click to run example</p> </div>
+
+<hr>
+<h3 id="code-from-the-live-demo">Code from the live demo</h3>
+<pre><code>import luxe.Vector;
+import luxe.Color;
+import luxe.Input;
+
+import phoenix.geometry.CircleGeometry;
+import phoenix.geometry.RingGeometry;
+import phoenix.geometry.LineGeometry;
+import phoenix.geometry.QuadGeometry;
+import phoenix.geometry.RectangleGeometry;
+
+class Main extends luxe.Game {
+
+    public var mouse    : Vector;
+    public var line     : LineGeometry; 
+    public var rect     : RectangleGeometry; 
+    public var box      : QuadGeometry; 
+    public var circle   : CircleGeometry; 
+    public var ring     : RingGeometry; 
+
+    public function ready() {
+
+        mouse = new Vector();
+
+        line = Luxe.draw.line({
+            p0 : new Vector( 0, Luxe.screen.h/2 ),
+            p1 : new Vector( Luxe.screen.w, Luxe.screen.h/2 ),
+            color : new Color(0.5,0.2,0.2,1)
+        });
+
+        rect = Luxe.draw.rectangle({
+            x : 10, y : 10,
+            w : Luxe.screen.w - 20, 
+            h : Luxe.screen.h - 20,
+            color : new Color(0.4,0.4,0.4)
+        });
+
+        box = Luxe.draw.box({
+            x : 40, y : 40,
+            w : Luxe.screen.w - 80, 
+            h : Luxe.screen.h - 80,
+            color : new Color(0.5,0.2,0.2,0.5)
+        });
+
+        circle = Luxe.draw.circle({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            r : 50,
+            color : new Color(0.8,0.3,0.2,1)
+        });
+
+        ring = Luxe.draw.ring({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            r : 60,
+            color : new Color(1,1,1,1)
+        });
+
+        Luxe.draw.arc({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            r : 70,
+            end_angle:70,
+            color : new Color(1,1,1,1)
+        });
+
+        Luxe.draw.text({
+            color : new Color(Math.random(),Math.random(),Math.random(),0.5),
+            pos : new Vector( Luxe.screen.w/2, Luxe.screen.h/2 ),
+            text : &quot;Luxe.draw.ring({
+                        \t x : Luxe.screen.w/2,
+                        \t y : Luxe.screen.h/2,
+                        \t r : 70,
+                        \t color : new Color(1,1,1,1)
+                    });\n&quot;
+        });
+
+    } //ready
+
+    public function onmousemove(e) {
+        mouse.set(e.x,e.y);
+    }
+    public function onmousedown(e) {
+        mouse.set(e.x,e.y);
+    }
+    public function onmouseup(e) {
+        mouse.set(e.x,e.y);
+    }
+
+    public function onkeyup(e) {
+        if(e.value == Input.Keys.escape) {
+            Luxe.shutdown();
+        }
+    } //onkeyup
+
+    public function update(dt:Float) {
+
+        Luxe.draw.rectangle({
+                //this line is important, as each frame it will create new geometry!
+            immediate : true,
+            x : mouse.x, y : mouse.y,
+            w : 120,
+            h : 120,
+            color : new Color(Math.random(),Math.random(),Math.random(),0.5)
+        });
+
+        Luxe.draw.text({
+                //this line is important, as each frame it will create new geometry!
+            immediate:true,
+            color : new Color(Math.random(),Math.random(),Math.random(),0.5),
+            pos : mouse,
+            text : Luxe.dt
+        });
+
+    } //update
+
+} //Main
+</code></pre><p>&nbsp;   </p>
+<p>&nbsp;   </p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

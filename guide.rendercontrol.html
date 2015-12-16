@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<h2 id="render-sorting">Render sorting</h2>
+<p>The rendering works by sorting items according to the following high level rules :</p>
+<ul>
+<li>Renderer<ul>
+<li>batchers, sorted by <code>layer</code> property<ul>
+<li>geometry, sorted by a order sort<ul>
+<li><code>depth</code></li>
+<li>shader</li>
+<li>texture</li>
+<li>primitive</li>
+<li>clipping</li>
+<li>age</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>In general use, you control specific batches of items using a <code>Batcher</code>, specifying it’s layer for overall order. Then, you specify geometry depths, <strong>the rest is automatic</strong>.</p>
+<h3 id="geometry-depth">Geometry depth</h3>
+<p>In luxe, “geometry depth” is not the same as the geometry z position in world space. The depth is a render tree depth, <strong>controlling render order explicitly</strong>.</p>
+<p>If you want to draw spriteA above spriteB, setting spriteA depth to 2, and spriteB depth to 1, it will always rendering second.</p>
+<h5 id="depth-values">depth values</h5>
+<p>The depth value <em>*is a floating point number</em> which is convenient for “last minute” depth control, allowing finely grained details to matter. Some examples can be “all hud elements are between 10 and 11”, where 10.1 is hud background, 10.2 is hud buttons, 10.3 is hud text and so on.</p>
+<p>Because of this, <code>10.1</code> is a valid depth and so is <code>10.142325</code>. The granularity is subject to floating point errors, so try not to go too small here or you may get different sorting.</p>
+<h5 id="uses">uses</h5>
+<p>This is especially useful when render depth is calculated dynamically. In a 2D front down view, the depth can simply be the Y position in world space, and as avatars move through the space they update their depth to their position. It also allows division to be used to calculate sorting, which is helpful in situations where depth is calculated on the fly.</p>
+<p>As the depth value is the first rule, it can also be used when working with depth testing and transparent objects. You could split transparent objects into a separate batcher, and control it as a whole, or you can separate it using the depth values, ensuring the render order is respected.</p>
+<hr>
+<h2 id="render-callbacks">Render callbacks</h2>
+<p>In your <a href="api/luxe/Game.html">game class</a> you can override the <code>onprerender</code>, <code>onrender</code> and <code>onpostrender</code> events.</p>
+<p>These are for <em>all</em> rendering that happens, not a specific subset of geometry. This is useful if you want to do some explicit rendering into render targets before the rest is processed.</p>
+<h3 id="group-render-callbacks">Group render callbacks</h3>
+<p>In luxe, in phoenix (the rendering engine in luxe) you can give geometry (and therefore sprites etc) a group number.</p>
+<p>The group number is a simple integer, and allows you to group geometry such that a pre/post render callback can be triggered. This allows you to specify custom render state (like blend modes) or control rendering into textures explicitly through the use of a group number.</p>
+<p>Take a look at this example, we ask the default batcher to tell us when group 3 is rendered.</p>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+    Luxe.renderer.batcher.add_group( <span class="hljs-number">3</span>, pre_group3, post_group3 );
+
+} <span class="hljs-comment">//ready</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pre_group3</span><span class="hljs-params">(_)</span> </span>{
+
+        <span class="hljs-comment">//change how this group is blended</span>
+    Luxe.renderer.blend_mode( BlendMode.dst_color, BlendMode.one_minus_src_alpha );
+
+} <span class="hljs-comment">//pre_group3</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post_group3</span><span class="hljs-params">(_)</span> </span>{
+
+        <span class="hljs-comment">//reset to default</span>
+    Luxe.renderer.blend_mode();
+
+} <span class="hljs-comment">//post_group3</span>
+</code></pre><p>And the results would be similar to :</p>
+<p><img src="images/guide.rendercontrol.1.png" alt=""></p>
+<p>Blending and blendmodes are a very frequent topic in rendering and you can explore the different types here :</p>
+<p><a href="http://www.andersriggelsen.dk/glblendfunc.php">Anders Riggelsen blend modes online tool</a></p>
+<hr>
+<p>&nbsp;</p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

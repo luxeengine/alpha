@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<hr>
+<h2 id="handling-input-in-luxe">Handling input in luxe</h2>
+<p><em>This tutorial assumes you are familiar with the basics of <a href="guide.one.html">getting started with luxe</a>.</em></p>
+<h3 id="different-types-of-input">Different types of input</h3>
+<hr>
+<p>luxe supports all common types of input out of the box:</p>
+<ul>
+<li>Touch input</li>
+<li>Mouse input</li>
+<li>Gamepad/Joystick input</li>
+<li>Keyboard input</li>
+</ul>
+<h3 id="accessing-input-events">Accessing input events</h3>
+<hr>
+<p>Your Game class has a bunch of functions that can (and will) be called when an event happens. Other classes that typically require input events <em>also</em> receive them, like <code>Component</code> and <code>State</code> all have the same functions to override and handle the events as needed.</p>
+<p>All possible functions and descriptions are listed below.</p>
+<h4 id="events-are-fired-immediately">Events are fired immediately</h4>
+<p>The reason that these event handlers are a function is because the call is direct, and happens immediately when the event propogates from the system.</p>
+<p>As soon as luxe obtains an input event from the <strong>system</strong> it will immediately call these functions - this is to avoid unnessary delays in handling touches or key presses and minimize latency wherever possible.</p>
+<h3 id="event-types">Event types</h3>
+<p>Most input events are typically modelled around how the platform or OS handles the input events. Each type of event has a typed structure containing the details of the event that happened.    </p>
+<h4 id="specific-event-types">Specific event types</h4>
+<hr>
+<p>For example, here is a touch event :</p>
+<pre><code><span class="hljs-keyword">typedef</span> TouchEvent = {
+    <span class="hljs-keyword">var</span> state : TouchState;
+    <span class="hljs-keyword">var</span> flags : Int;
+    <span class="hljs-keyword">var</span> ID : Int;
+    <span class="hljs-keyword">var</span> x : Float;
+    <span class="hljs-keyword">var</span> y : Float;
+    <span class="hljs-keyword">var</span> raw : Dynamic;
+};
+</code></pre><p><strong>The raw property</strong><br>You may also note the <code>raw</code> property.<br>Sometimes you need to know some value from the OS/platform that luxe is not explicitly exposing. This simply helps prevent leaky abstractions on the platform specific events.</p>
+<p>&nbsp;</p>
+<h2 id="named-input">Named input</h2>
+<hr>
+<p>Sometimes it is convenient to bind multiple events to the same handler.   </p>
+<p>Sometimes a person playing the game will want to use W/A/S/D and sometimes they would prefer the arrow keys. The combinations of sensible defaults for this can quickly escalate, and gets relatively complex over different locales and keyboard layouts.</p>
+<p>Instead, binding an event to a name and using the name is more flexible.</p>
+<p>For this reason, luxe offers a named input binding system, where multiple events (even of different types) can be bound to a single identity and handler, so you can handle them accordingly.</p>
+<p>Let’s use a common example where the jump key might be <code>Z</code>, <code>Space</code>, and <code>Right Mouse</code>.</p>
+<pre><code>Luxe.input.bind_key(<span class="hljs-string">'jump'</span>, KeyValue.key_Z);
+Luxe.input.bind_key(<span class="hljs-string">'jump'</span>, KeyValue.space);
+Luxe.input.bind_mouse(<span class="hljs-string">'jump'</span>, MouseButton.right);
+</code></pre><h4 id="handling-the-named-input">Handling the named input</h4>
+<p>Now that you have the named input bound, you can listen for the event using <code>oninputdown</code> or <code>oninputup</code>.</p>
+<pre><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">oninputup</span><span class="hljs-params">( event_name:String, event:InputEvent )</span> </span>{
+
+    <span class="hljs-keyword">switch</span>( event_name ) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'jump'</span>:
+            player.jump();
+    } <span class="hljs-comment">//switch</span>
+
+}
+</code></pre><p>You can make the assumption here that all types of input mapped to jump, should call jump directly. But - the event is typed as InputEvent, and contains the following information :</p>
+<pre><code><span class="hljs-keyword">typedef</span> InputEvent = {
+    type             : InputType,
+    ?touch_event     : TouchEvent,
+    ?mouse_event     : MouseEvent,
+    ?key_event       : KeyEvent,
+    ?gamepad_event   : GamepadEvent
+} 
+</code></pre><p>When the event originates from a mouse event, the <code>event.type</code> will be <code>InputType.mouse</code>, and the <code>event.mouse_event</code> will be populated with the originating event. Any other event structure (key_event, gamepad_event etc) will be null. Only the event matching the type will not be.</p>
+<pre><code><span class="hljs-keyword">enum</span> InputType {
+    mouse;
+    touch;
+    keys;
+    gamepad;
+}
+</code></pre><hr>
+<h2 id="additional-information">Additional information</h2>
+<hr>
+<p><a name="handlers"> </a>
+Here is a full list of functions, with descriptions :</p>
+<pre><code>
+<span class="hljs-comment">//Named input</span>
+
+       <span class="hljs-comment">/** Called when a named input down event occurs */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">oninputdown</span><span class="hljs-params">( _name:String, e:InputEvent )</span> </span>{}
+       <span class="hljs-comment">/** Called when a named input up event occurs */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">oninputup</span><span class="hljs-params">( _name:String, e:InputEvent )</span> </span>{}
+
+<span class="hljs-comment">//Mouse</span>
+
+       <span class="hljs-comment">/** Called for you when a mouse button is pressed */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousedown</span><span class="hljs-params">( event:MouseEvent )</span> </span>{}
+       <span class="hljs-comment">/** Called for you when a mouse button is released */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmouseup</span><span class="hljs-params">( event:MouseEvent )</span> </span>{}
+       <span class="hljs-comment">/** Called for you when the mouse wheel moves */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousewheel</span><span class="hljs-params">( event:MouseEvent )</span> </span>{}
+       <span class="hljs-comment">/** Called for you when the mouse moves */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( event:MouseEvent )</span> </span>{}
+
+<span class="hljs-comment">//Keyboard</span>
+
+       <span class="hljs-comment">/** Called for you when a key is pressed down */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeydown</span><span class="hljs-params">( event:KeyEvent )</span> </span>{}
+
+       <span class="hljs-comment">/** Called for you when a key is released */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">( event:KeyEvent )</span> </span>{}
+
+       <span class="hljs-comment">/** Called for you when text input is happening.
+           Use this for textfields, as it handles the complexity
+           of unicode and other platform specific details. */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontextinput</span><span class="hljs-params">( event:TextEvent )</span> </span>{}
+
+<span class="hljs-comment">//Touch</span>
+
+       <span class="hljs-comment">/** Called for you when a touch is first pressed,
+            use the `touch_id` to track which */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontouchdown</span><span class="hljs-params">( event:TouchEvent )</span> </span>{}
+
+       <span class="hljs-comment">/** Called for you when a touch is released,
+            use the `touch_id` to track which */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontouchup</span><span class="hljs-params">( event:TouchEvent )</span> </span>{}
+
+       <span class="hljs-comment">/** Called for you when a touch is moved,
+            use the `touch_id` to track which */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontouchmove</span><span class="hljs-params">( event:TouchEvent )</span> </span>{}
+
+<span class="hljs-comment">//Gamepad</span>
+
+       <span class="hljs-comment">/** Called for you when a connected gamepad axis moves, 
+            use `gamepad` to determine gamepad id */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepadaxis</span><span class="hljs-params">( event:GamepadEvent )</span> </span>{}
+
+       <span class="hljs-comment">/** Called for you when a connected gamepad button is pressed, 
+            use `gamepad` to determine gamepad id */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepaddown</span><span class="hljs-params">( event:GamepadEvent )</span> </span>{}
+
+       <span class="hljs-comment">/** Called for you when a connected gamepad button is released, 
+            use `gamepad` to determine gamepad id */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepadup</span><span class="hljs-params">( event:GamepadEvent )</span> </span>{}
+
+       <span class="hljs-comment">/** Called for you when a gamepad is connected or disconnected, 
+            use `gamepad` to determine gamepad id */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepaddevice</span><span class="hljs-params">( event:GamepadEvent )</span> </span>{}
+</code></pre><hr>
+<h3 id="-back-to-guides-guide-html-"><a href="guide.html">Back to guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

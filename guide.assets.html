@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<hr>
+<h2 id="assets">Assets</h2>
+<p>The following asset types are supported directly by the API for convenience :</p>
+<ul>
+<li><strong>textures</strong> ( images, png, jpg, tga, psd, gif, bmp )</li>
+<li><strong>text assets</strong> ( any format, xml, txt etc )</li>
+<li><strong>json assets</strong> ( parses and returns a usable json object )</li>
+<li><strong>sound assets</strong> ( audio, ogg/wav/pcm )</li>
+<li><strong>bitmap fonts</strong> ( a text .fnt description + image files <a href="guide.fonts.html">see font guide</a> )</li>
+<li><strong>shader files</strong> ( glsl shaders, with custom vertex or fragment shaders )</li>
+<li><strong>binary files</strong> ( any binary byte data )</li>
+</ul>
+<p>&nbsp;</p>
+<h3 id="async">Async</h3>
+<p>By design, you should always consider asset loading to be asynchronous.   </p>
+<p>If you load assets in a background thread, you wait. If you load assets on web, you wait.
+Many game consoles load data async too. For this reason, and for portability, assets are treated as asynchronous.</p>
+<p>The separation between <em>loading</em>, and <em>using</em> an asset is important.<br>To use an asset, it must already be loaded.
+The resource manager employs the concept of Promises and Parcels to make this really simple,
+and the luxe Game class includes an easy way to quickly load dev assets for prototyping/jamming.</p>
+<p>&nbsp;</p>
+<h3 id="using-assets">Using assets</h3>
+<p>Once an asset has been loaded (see below) it is stored in the resource manager.<br>To retrieve a stored asset by it’s id, the following functions are available:</p>
+<ul>
+<li><code>Luxe.resources.bytes</code></li>
+<li><code>Luxe.resources.text</code></li>
+<li><code>Luxe.resources.json</code></li>
+<li><code>Luxe.resources.texture</code></li>
+<li><code>Luxe.resources.font</code></li>
+<li><code>Luxe.resources.shader</code></li>
+<li><code>Luxe.resources.sound</code></li>
+</ul>
+<p>If the asset does not exist (i.e is not loaded) then the function returns null.
+Since these functions return concrete types, you can make the code using the resource imperative and deterministic.
+For example, this code can rely on the asset being loaded, if I ensured that it was ahead of time.</p>
+<pre><code><span class="hljs-keyword">var</span> sprite = <span class="hljs-keyword">new</span> luxe.Sprite({
+    pos: Luxe.screen.mid,
+    texture: Luxe.resources.texture(<span class="hljs-string">'assets/image.png'</span>)
+});
+</code></pre><p>&nbsp;</p>
+<h3 id="loading-assets">Loading assets</h3>
+<hr>
+<p>&nbsp;
+<strong>Assets need to be loaded before they can be used.</strong>   </p>
+<p><code>Luxe.resources</code> has a bunch of <code>load_*</code> functions for this purpose.</p>
+<ul>
+<li><code>Luxe.resources.load_bytes</code></li>
+<li><code>Luxe.resources.load_text</code></li>
+<li><code>Luxe.resources.load_json</code></li>
+<li><code>Luxe.resources.load_texture</code></li>
+<li><code>Luxe.resources.load_font</code></li>
+<li><code>Luxe.resources.load_shader</code></li>
+<li><code>Luxe.resources.load_sound</code></li>
+</ul>
+<p>These functions return something called a Promise, which promises a value when it’s ready.<br>This just means that it will call a function for you, when the asset has finished loading.</p>
+<p>&nbsp;   </p>
+<pre><code><span class="hljs-keyword">var</span> load = Luxe.resources.load_texture(<span class="hljs-string">'assets/image.png'</span>);
+
+load.then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(texture:phoenix.Texture)</span> </span>{
+
+    <span class="hljs-comment">//now use the texture value</span>
+    <span class="hljs-keyword">trace</span>(<span class="hljs-string">'Loaded texture ${texture.id} with size ${texture.width}x${texture.height}'</span>);
+
+});
+</code></pre><p>&nbsp;   </p>
+<p>To handle multiple returned load promises, you can use <code>Promise.all</code> from <code>snow.api.Promise</code>.
+Take note that the array returned from Promise.all will be typed as <code>Dynamic</code> if mixing resource types.</p>
+<p>&nbsp;   </p>
+<pre><code><span class="hljs-keyword">var</span> list = [
+    Luxe.resources.load_texture(<span class="hljs-string">'assets/image.png'</span>),
+    Luxe.resources.load_texture(<span class="hljs-string">'assets/image2.png'</span>),
+    Luxe.resources.load_texture(<span class="hljs-string">'assets/image3.png'</span>)
+];
+
+<span class="hljs-keyword">var</span> load = Promise.all(list);
+
+load.then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(loaded:Array&lt;phoenix.Texture&gt;)</span> </span>{
+    <span class="hljs-keyword">for</span>(image <span class="hljs-keyword">in</span> loaded) {
+        <span class="hljs-keyword">trace</span>(<span class="hljs-string">'Loaded texture ${image.id}'</span>);
+    }
+});
+</code></pre><p>&nbsp;   </p>
+<p><strong>Resource content</strong><br>Some of these load functions return a Resource instance,<br>which contains the asset data within it.</p>
+<p>For example, to access the loaded text data from a <code>load_text</code> call, it will give you a <code>TextResource</code>, which contains a <code>TextAsset</code>. To access the value, you would use <code>loaded_text.asset.text</code>.</p>
+<p>The resource <a href="api/index.html#luxe">API docs</a> have further details.</p>
+<h3 id="loading-assets-in-a-parcel">Loading assets in a Parcel</h3>
+<p>A parcel is simply a related group of assets that would like to load together.<br>This can include all the assets for your game, or just a subsection like a specific level.</p>
+<p>A parcel includes the same default types as listed above, <code>bytes</code>, <code>texts</code>, <code>jsons</code>, <code>textures</code>, <code>fonts</code>, <code>shaders</code> and <code>sounds</code>.<br>These are simple arrays, that you fill when creating a parcel before calling the load function.</p>
+<p>Taken from <a href="guide.three.html">a tutorial guide</a>:</p>
+<pre><code><span class="hljs-keyword">var</span> parcel = <span class="hljs-keyword">new</span> luxe.Parcel({
+    jsons:[ { id:<span class="hljs-string">'assets/anim.json'</span> } ],
+    textures : [
+        { id: <span class="hljs-string">'assets/apartment.png'</span> },
+        { id: <span class="hljs-string">'assets/player.png'</span> }
+    ],
+});
+</code></pre><p>We could now call <code>parcel.load()</code> which would load the assets,<br>but we would probably like to see a progress bar.</p>
+<p>There is a simple default one built in, but you can feel free to implement one yourself.</p>
+<pre><code>    <span class="hljs-comment">//this will call a function named assets_loaded when done</span>
+<span class="hljs-keyword">new</span> luxe.ParcelProgress({
+    parcel      : parcel,
+    background  : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0.85</span>),
+    oncomplete  : assets_loaded
+});
+
+    <span class="hljs-comment">//load the assets</span>
+parcel.load();
+</code></pre><h3 id="the-default-preload-parcel">The default preload parcel</h3>
+<p>To aid rapid development and for convenience,<br>the <code>Game</code> class (your application) offers you a “default preload parcel”.<br>This parcel is loaded before anything happens, and assets in it will be available before <code>ready</code> is called.</p>
+<p>Take note that the preload parcel serves a simple purpose:</p>
+<ul>
+<li>Handle really early asset/data dependency</li>
+<li>Rapid development to avoid creating a parcel manually (yet)</li>
+</ul>
+<p>It is not suited for preloading game content in general,</p>
+<ul>
+<li>It does not include a progress bar (no renderer available yet)</li>
+<li>Failed assets in this early loader are fatal, the application stops</li>
+</ul>
+<p>This makes it good for early required data, less so for loading levels and menus and so on.</p>
+<p>To use the preload parcel, you fill in the parcel arrays within your config function.</p>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">config</span><span class="hljs-params">(config:luxe.AppConfig)</span> </span>{
+
+    config.preload.textures.push({ id:<span class="hljs-string">'assets/logo.png'</span> });
+
+    config.preload.jsons = [
+        { id:<span class="hljs-string">'assets/1.json'</span> },
+        { id:<span class="hljs-string">'assets/2.json'</span> }
+    ];
+
+    <span class="hljs-keyword">return</span> config;
+
+} <span class="hljs-comment">//config</span>
+</code></pre><hr>
+<p>&nbsp;   </p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-to-the-prev-guide-guide-three-html-"><a href="guide.three.html">To the prev guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<hr>
+<h4 id="output-image">Output image</h4>
+<p><img src="images/guide.four.gif" alt="text screenshot"></p>
+<h2 id="text-and-tweening-and-more-">Text and tweening (and more!)</h2>
+<p><em>This tutorial follows on the previous guides. Read those first.</em></p>
+<p>Below is a list of what we will cover, and a demo:</p>
+<ul>
+<li>tweening</li>
+<li>text and fonts</li>
+<li>timers and schedules</li>
+<li>depth control</li>
+<li>global events</li>
+<li>playing audio</li>
+</ul>
+<h3 id="live-demo">Live demo</h3>
+<p>Press R to reset the demo at any time</p>
+<hr>
+<div data-content="samples/4_text_and_tweening/index.html" class="sample"> <p>Click to run example</p> </div>
+
+<p><a href="#code">code listing</a></p>
+<p><code>:todo:</code></p>
+<p><em>Note that this will be explained properly in this guide in the near future.</em></p>
+<hr>
+<h3 id="-to-the-prev-guide-guide-three-html-"><a href="guide.three.html">To the prev guide</a></h3>
+<h3 id="-back-to-guides-guide-html-"><a href="guide.html">Back to guides</a></h3>
+<hr>
+<p><a name="code"></p>
+<h4 id="code-listing-4">Code listing 4</h4>
+<p></a></p>
+<p><em>(found in samples/guides/4_text_and_tweening/)</em></p>
+<pre><code>
+<span class="hljs-keyword">import</span> luxe.Input;
+<span class="hljs-keyword">import</span> luxe.Sprite;
+<span class="hljs-keyword">import</span> luxe.Parcel;
+<span class="hljs-keyword">import</span> luxe.ParcelProgress;
+<span class="hljs-keyword">import</span> luxe.Text;
+<span class="hljs-keyword">import</span> luxe.Vector;
+<span class="hljs-keyword">import</span> luxe.Color;
+
+<span class="hljs-keyword">import</span> phoenix.BitmapFont;
+<span class="hljs-keyword">import</span> phoenix.Texture;
+
+
+<span class="hljs-comment">//A simple message object,</span>
+    <span class="hljs-comment">//time to stay on screen,</span>
+    <span class="hljs-comment">//message to show,</span>
+    <span class="hljs-comment">//and optional event to fire</span>
+<span class="hljs-keyword">typedef</span> Message = {
+      msg : String,
+      time : Float,
+    ? event : String
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
+
+        <span class="hljs-comment">//the text object</span>
+    <span class="hljs-keyword">var</span> text : Text;
+        <span class="hljs-comment">//the font we will use</span>
+    <span class="hljs-keyword">var</span> montez_font : BitmapFont;
+        <span class="hljs-comment">//the screen sized color overlay</span>
+    <span class="hljs-keyword">var</span> overlay : Sprite;
+        <span class="hljs-comment">//the image background</span>
+    <span class="hljs-keyword">var</span> apartment : Sprite;
+        <span class="hljs-comment">//a list of messages to show</span>
+    <span class="hljs-keyword">var</span> messages : Array&lt;Message&gt;;
+
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-comment">//as with guide 3, we just create a list of assets to load</span>
+
+        <span class="hljs-keyword">var</span> parcel = <span class="hljs-keyword">new</span> Parcel({
+            textures : [{ id : <span class="hljs-string">'assets/apartment.png'</span> }],
+            fonts : [{ id : <span class="hljs-string">'assets/montez/montez.fnt'</span> }],
+            sounds : [
+                {
+                    id : <span class="hljs-string">'assets/sound/244053__lennyboy__thunder.ogg'</span>,
+                    name : <span class="hljs-string">'thunder'</span>,
+                    is_stream : <span class="hljs-literal">false</span>
+                },
+                {
+                    id : <span class="hljs-string">'assets/sound/244028__lennyboy__rain001.ogg'</span>,
+                    name : <span class="hljs-string">'rain'</span>,
+                    is_stream : <span class="hljs-literal">false</span>
+                },
+                {
+                    id : <span class="hljs-string">'assets/sound/189175__triangelx__emotional-piano.ogg'</span>,
+                    name : <span class="hljs-string">'music'</span>,
+                    is_stream : <span class="hljs-literal">false</span>
+                }
+            ]
+        });
+
+            <span class="hljs-comment">//and a simpe progress bar</span>
+        <span class="hljs-keyword">new</span> ParcelProgress({
+            parcel      : parcel,
+            background  : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0.85</span>),
+            oncomplete  : assets_loaded
+        });
+
+            <span class="hljs-comment">//go!</span>
+        parcel.load();
+
+    } <span class="hljs-comment">//ready</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assets_loaded</span><span class="hljs-params">(_)</span> </span>{
+
+        create_apartment();
+        create_overlay();
+        create_text();
+        connect_events();
+
+        <span class="hljs-comment">//once all created, start the chain</span>
+
+        start();
+
+    } <span class="hljs-comment">//assets_loaded</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span><span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-comment">//now we tween over time, to fade in the color alpha</span>
+            <span class="hljs-comment">//notice the times are all in seconds, always</span>
+
+            <span class="hljs-comment">//for the apartment, it fades to full alpha</span>
+        apartment.color.tween(<span class="hljs-number">1</span>, { a:<span class="hljs-number">1</span> });
+            <span class="hljs-comment">//for the overlay, partially full</span>
+        overlay.color.tween(<span class="hljs-number">2</span>, { a:<span class="hljs-number">0.95</span> }).delay(<span class="hljs-number">0.5</span>);
+            <span class="hljs-comment">//now, a little after that, start the text!</span>
+        Luxe.timer.schedule(<span class="hljs-number">2.8</span>, show_message);
+
+            <span class="hljs-comment">//as the parcel has loaded the sound for us, we can use it already,</span>
+            <span class="hljs-comment">//but on web we have to be wary that even streamed sounds might take a few frames</span>
+            <span class="hljs-comment">//to start playing, so we wait till its loaded using the on load event</span>
+        Luxe.audio.on(<span class="hljs-string">"rain"</span>, <span class="hljs-string">"load"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(_)</span></span>{
+            Luxe.audio.loop(<span class="hljs-string">"rain"</span>);
+        });
+
+    } <span class="hljs-comment">//start</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reset</span><span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-comment">//flush the existing stuff</span>
+        Luxe.scene.empty();
+            <span class="hljs-comment">//kill the audio</span>
+        Luxe.audio.stop(<span class="hljs-string">'music'</span>);
+        Luxe.audio.stop(<span class="hljs-string">'thunder'</span>);
+        Luxe.audio.stop(<span class="hljs-string">'rain'</span>);
+            <span class="hljs-comment">//reset the timers</span>
+        Luxe.timer.reset();
+            <span class="hljs-comment">//start over</span>
+        assets_loaded(<span class="hljs-literal">null</span>);
+
+    } <span class="hljs-comment">//reset</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">create_overlay</span><span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-comment">//create a large screen sized rectangle,</span>
+            <span class="hljs-comment">//and set its depth to 2, so its above the apartment</span>
+
+            <span class="hljs-comment">//notice the alpha is set to 0, we want to fade it in</span>
+            <span class="hljs-comment">//later on as well</span>
+        overlay = <span class="hljs-keyword">new</span> Sprite({
+            name : <span class="hljs-string">'overlay'</span>,
+            centered : <span class="hljs-literal">false</span>,
+            size : Luxe.screen.size,
+            color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>),
+            depth : <span class="hljs-number">1</span>
+        });
+
+    } <span class="hljs-comment">//create_overlay</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">create_text</span><span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-comment">//since the parcel has created the font, its in the resource manager</span>
+        montez_font = Luxe.resources.font(<span class="hljs-string">'assets/montez/montez.fnt'</span>);
+
+            <span class="hljs-comment">//scale to fit the screen nicely, but max at the font default size of 48,</span>
+            <span class="hljs-comment">//and the 12 is a ratio I made up based on the default window size</span>
+        <span class="hljs-keyword">var</span> text_size = Math.min( Math.round(Luxe.screen.h/<span class="hljs-number">12</span>), <span class="hljs-number">48</span>);
+
+            <span class="hljs-comment">//again, depth 3 &gt; 2, so its above everything</span>
+        text = <span class="hljs-keyword">new</span> Text({
+            pos : Luxe.screen.mid,
+            point_size : text_size,
+            depth : <span class="hljs-number">3</span>,
+            align : TextAlign.center,
+            font : montez_font,
+            text : <span class="hljs-string">'no message yet'</span>,
+            color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>).rgb(<span class="hljs-number">0x242424</span>)
+        });
+
+        messages = [];
+        messages.push({ msg:<span class="hljs-string">'An unfortunate story...'</span>, time:<span class="hljs-number">4</span> });
+        messages.push({ msg:<span class="hljs-string">'a person seeking answers'</span>, time:<span class="hljs-number">3</span>, event:<span class="hljs-string">'thunder'</span> });
+        messages.push({ msg:<span class="hljs-string">'searching the edges of time'</span>, time:<span class="hljs-number">5.5</span>, event:<span class="hljs-string">'darkness'</span> });
+        messages.push({ msg:<span class="hljs-string">'but finding only darkness.'</span>, time:<span class="hljs-number">6</span>, event:<span class="hljs-string">'music'</span> });
+        messages.push({ msg:<span class="hljs-string">'as the tale is written...'</span>, time:<span class="hljs-number">3</span> });
+        messages.push({ msg:<span class="hljs-string">'it all started with a backpack'</span>, time:<span class="hljs-number">5</span>, event:<span class="hljs-string">'finish'</span> });
+
+    } <span class="hljs-comment">//create_text</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">create_apartment</span><span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-comment">//fetch the previously loaded texture</span>
+        <span class="hljs-keyword">var</span> image = Luxe.resources.texture(<span class="hljs-string">'assets/apartment.png'</span>);
+
+            <span class="hljs-comment">//this makes sure the pixels stay crisp when scaling, like in guide 3</span>
+        image.filter_min = image.filter_mag = FilterType.nearest;
+
+            <span class="hljs-comment">//this calculates how wide the image should be on screen,</span>
+            <span class="hljs-comment">//if we make the image as high as the view itself</span>
+
+        <span class="hljs-keyword">var</span> height = Luxe.screen.h;
+        <span class="hljs-keyword">var</span> width = (height/image.height) * image.width;
+
+            <span class="hljs-comment">//we also set the alpha to zero, so it can be faded in</span>
+        apartment = <span class="hljs-keyword">new</span> Sprite({
+            name: <span class="hljs-string">'apartment'</span>,
+            texture: image,
+            size: <span class="hljs-keyword">new</span> Vector( width, height ),
+            centered: <span class="hljs-literal">false</span>,
+            color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>)
+        });
+
+    } <span class="hljs-comment">//create_apartment</span>
+
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">show_message</span><span class="hljs-params">()</span> </span>{
+
+        <span class="hljs-keyword">if</span>(messages.length == <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+            <span class="hljs-comment">//take the first message off the list</span>
+        <span class="hljs-keyword">var</span> message = messages[<span class="hljs-number">0</span>];
+            <span class="hljs-comment">//update the text itself</span>
+        text.text = message.msg;
+            <span class="hljs-comment">//schedule the timer for on complete,</span>
+            <span class="hljs-comment">//we use the + here because the fade in time is added</span>
+            <span class="hljs-comment">//so that the text has its whole time shown</span>
+        Luxe.timer.schedule( message.time + <span class="hljs-number">0.45</span>, message_done);
+
+        text.color.tween(<span class="hljs-number">0.45</span>, { a:<span class="hljs-number">1</span> });
+
+    } <span class="hljs-comment">//show_message</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">message_done</span><span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-comment">//make sure we remove the message we used</span>
+        <span class="hljs-keyword">var</span> message = messages.shift();
+
+            <span class="hljs-comment">//hide the text, and when done,</span>
+        text.color.tween(<span class="hljs-number">0.55</span>, { a:<span class="hljs-number">0</span> }).onComplete(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+
+                <span class="hljs-comment">//if it has an event, fire it</span>
+            <span class="hljs-keyword">if</span>(message.event != <span class="hljs-literal">null</span>) {
+                Luxe.events.fire(<span class="hljs-string">'intro.'</span> + message.event);
+            }
+
+                <span class="hljs-comment">//continue the queue (if any)</span>
+            show_message();
+
+        }); <span class="hljs-comment">//tween</span>
+
+    } <span class="hljs-comment">//message_done</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">connect_events</span><span class="hljs-params">()</span> </span>{
+
+        Luxe.events.listen(<span class="hljs-string">'intro.darkness'</span>, ondarkness);
+        Luxe.events.listen(<span class="hljs-string">'intro.thunder'</span>, onthunder);
+        Luxe.events.listen(<span class="hljs-string">'intro.music'</span>, onmusic);
+        Luxe.events.listen(<span class="hljs-string">'intro.finish'</span>, onfinish);
+
+    } <span class="hljs-comment">//connect_events</span>
+
+        <span class="hljs-comment">//for web, audio might not be ready this very frame, so we only call play when its ready</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onthunder</span><span class="hljs-params">(_)</span> </span>{
+
+        Luxe.audio.on(<span class="hljs-string">"thunder"</span>, <span class="hljs-string">"load"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(_)</span> </span>{
+            Luxe.audio.play(<span class="hljs-string">"thunder"</span>);
+        });
+
+    } <span class="hljs-comment">//onthunder</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmusic</span><span class="hljs-params">(_)</span> </span>{
+
+        <span class="hljs-keyword">var</span> music = Luxe.audio.get(<span class="hljs-string">'music'</span>);
+
+            music.on(<span class="hljs-string">'load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(_)</span></span>{
+
+                music.volume = <span class="hljs-number">0.1</span>;
+                music.play();
+
+            });
+
+    } <span class="hljs-comment">//onmusic</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ondarkness</span><span class="hljs-params">(_)</span> </span>{
+
+            <span class="hljs-comment">//dramatic effect</span>
+        overlay.color.tween(<span class="hljs-number">0.3</span>, { r:<span class="hljs-number">0.05</span>, g:<span class="hljs-number">0.05</span>, b:<span class="hljs-number">0.05</span> });
+        text.color = <span class="hljs-keyword">new</span> Color().rgb(<span class="hljs-number">0xefefef</span>);
+
+    } <span class="hljs-comment">//ondarkness</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onfinish</span><span class="hljs-params">(_)</span> </span>{
+
+        overlay.color.tween( <span class="hljs-number">4</span>, { a:<span class="hljs-number">0</span> });
+
+    } <span class="hljs-comment">//onfinish</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">( e:KeyEvent )</span> </span>{
+
+        <span class="hljs-keyword">if</span>(e.keycode == Key.key_r) {
+            reset();
+        }
+
+        <span class="hljs-keyword">if</span>(e.keycode == Key.escape) {
+            Luxe.shutdown();
+        }
+
+    } <span class="hljs-comment">//onkeyup</span>
+
+} <span class="hljs-comment">//Main</span>
+</code></pre>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-to-the-prev-guide-guide-one-html-"><a href="guide.one.html">To the prev guide</a></h3>
+<h3 id="-to-the-next-guide-guide-three-html-"><a href="guide.three.html">To the next guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<hr>
+<h4 id="output-image">Output image</h4>
+<p><img src="images/guide.two.gif" alt="sprites screenshot"></p>
+<h2 id="drawing-images-instead-of-blocks">Drawing images instead of blocks</h2>
+<p><em>This tutorial follows on the previous guide. Read that one first.</em></p>
+<p>Below is a list of what we will cover, and a demo:</p>
+<ul>
+<li>image loading</li>
+<li>sprite flipping</li>
+<li>pixel art scaling</li>
+<li>mapping input</li>
+</ul>
+<h3 id="live-demo">Live demo</h3>
+<p>Press A/left to move left<br>Press D/right to move right   </p>
+<hr>
+<div data-content="./samples/2_sprites/index.html" class="sample"> <p>Click to run example</p> </div>
+
+<p><a href="#code">code listing</a></p>
+<hr>
+<h3 id="loading-an-image-asset">Loading an image asset</h3>
+<p><strong>Assets are async</strong>   </p>
+<p>Asset loading is inherently asynchronous, and luxe treats them this way. This just means that you have to <em>load</em> an asset before you can use it - and it will be ready when it’s done loading. You can’t use it before it’s loaded, right?</p>
+<p>luxe facilitates working this way by providing simple to use API’s for loading and pre loading your assets and data. The following API’s are available:</p>
+<ul>
+<li>The config preload parcel</li>
+<li>The <code>Parcel</code> loader</li>
+<li>The <code>load_*</code> api which returns a <code>Promise</code></li>
+</ul>
+<p>Don’t worry if these don’t make a whole lot of sense yet, they will be introduced as the tutorials progress.</p>
+<p><strong>Some notes on words</strong></p>
+<p>In luxe, the word <code>Texture</code> is used, it’s just another way to say image - It’s a more formal word that the hardware APIs use.</p>
+<p>Also you will notice the <code>phoenix</code> package pop up. <code>phoenix</code> is the name of the rendering backend that luxe is built on.</p>
+<p><strong>Actually loading an image</strong></p>
+<p>Let’s start by loading the image of a player sprite, so we can move it around later. To do that, we will use the <code>config</code> preload parcel, which is simply a list of assets and things to load before <code>ready</code> gets called!</p>
+<p>Because this happens before ready, it doesn’t have a preloader progress bar, so if you did want to have one of those the next tutorial will show you how to add one.</p>
+<p>Just like <code>ready</code> - the config function is an overridden function in the game class, and is where we can configure our application, window, and more before it starts up. This happens first, and before ready - so be aware of that.</p>
+<pre><code>        <span class="hljs-comment">//The config function is simple: It hands us a default config,</span>
+        <span class="hljs-comment">//we modify the values that we want to change, and then we</span>
+        <span class="hljs-comment">//return it with the modifications.</span>
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">config</span><span class="hljs-params">( config:luxe.AppConfig )</span> </span>{
+
+            <span class="hljs-comment">//This time, we are going to modify the preload parcel texture list,</span>
+            <span class="hljs-comment">//and add our texture for the sprite, so that it will exist when we</span>
+            <span class="hljs-comment">//try to use it during `ready`</span>
+        config.preload.textures.push({ id:<span class="hljs-string">'assets/stand.png'</span> });
+
+        <span class="hljs-keyword">return</span> config;
+
+    } <span class="hljs-comment">//config</span>
+</code></pre><p>&nbsp;
+And then when ready happens, we now have access to the loaded texture via the resources API. We simply fetch the existing texture like this:</p>
+<pre><code>    <span class="hljs-comment">//fetch the previously loaded texture!</span>
+<span class="hljs-keyword">var</span> image = Luxe.resources.texture(<span class="hljs-string">'assets/stand.png'</span>);
+</code></pre><hr>
+<h3 id="using-the-image">Using the image</h3>
+<p>In <code>ready</code>, the image is available as show above, so now we can set the filtering for pixel art. We can also calculate a good size that fits the current window, and create the player sprite to display it.</p>
+<p>Like in the <a href="guide.one.html">previous guide</a>, Sprites are imported as <strong>luxe.Sprite</strong>, and created with the <strong>new Sprite( options )</strong> pattern.  You will notice that we give the texture to the sprite this time. If you don’t specify the <em>size</em> parameter, the texture size will be used.</p>
+<p>&nbsp;</p>
+<pre><code> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+        <span class="hljs-comment">//fetch the previously loaded texture!</span>
+    <span class="hljs-keyword">var</span> image = Luxe.resources.texture(<span class="hljs-string">'assets/stand.png'</span>);
+
+        <span class="hljs-comment">//keep pixels crisp when scaling them, for pixel art</span>
+    image.filter_min = image.filter_mag = FilterType.nearest;
+
+        <span class="hljs-comment">//work out the correct size based on a ratio</span>
+    <span class="hljs-keyword">var</span> height = Luxe.screen.h/<span class="hljs-number">1.75</span>;
+    <span class="hljs-keyword">var</span> width = (height/image.height) * image.width;
+
+        <span class="hljs-comment">//this is an arbitrary ratio I made up :)</span>
+    move_speed = width*<span class="hljs-number">3</span>;
+
+        <span class="hljs-comment">//create the actual visible player, give it the texture</span>
+    player = <span class="hljs-keyword">new</span> Sprite({
+        name: <span class="hljs-string">'player'</span>,
+        texture: image,
+        pos : <span class="hljs-keyword">new</span> Vector(Luxe.screen.mid.x, Luxe.screen.h - (height/<span class="hljs-number">1.75</span>)),
+        size: <span class="hljs-keyword">new</span> Vector(width, height)
+    });
+
+        <span class="hljs-comment">//set up keys for moving around</span>
+    connect_input();
+
+} <span class="hljs-comment">//ready</span>
+</code></pre><hr>
+<h3 id="basic-input-handling">Basic input handling</h3>
+<p>To move the player around a bit, we will use one of a few methods to handle input. This type of input handling is called “immediate query” style handling, as you check every frame for input and process it. There are also the event based callbacks as well.</p>
+<p>To make this type of input less hardcoded, i.e you don’t want to hardcode which key is being used for which action, we will use a feature of luxe called “named input binding”.</p>
+<p>This let’s us bind multiple keys to a single <em>name</em>, and then we can check if that name is in a down state. That way, if for example you were making a game with customizable controls (which you should always aim to do) this makes it easier to do.</p>
+<p>&nbsp;</p>
+<pre><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">connect_input</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-comment">//here, we are going to bind A/left and D/right into a single named</span>
+    <span class="hljs-comment">//input event, so that we can keep our movement code the same</span>
+
+    Luxe.input.bind_key(<span class="hljs-string">'left'</span>, Key.left);
+    Luxe.input.bind_key(<span class="hljs-string">'left'</span>, Key.key_a);
+
+    Luxe.input.bind_key(<span class="hljs-string">'right'</span>, Key.right);
+    Luxe.input.bind_key(<span class="hljs-string">'right'</span>, Key.key_d);
+
+} <span class="hljs-comment">//connect_input</span>
+</code></pre><hr>
+<h3 id="the-movement-logic">The movement logic</h3>
+<p>In this case, we will use extremely simple movement logic by shifting the player along the x axis (in the next guide, we will add animations as well).</p>
+<p>As you can see, we ask luxe if the input named “left” is pressed down. If that is true, we move left, and flip the image so it faces the correct way. If they are pressing right, we flip it the other direction and move along that direction.</p>
+<p>&nbsp;</p>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">( delta:Float )</span> </span>{
+
+    <span class="hljs-keyword">if</span>(Luxe.input.inputdown(<span class="hljs-string">'left'</span>)) {
+
+        player.pos.x -= move_speed * delta;
+        player.flipx = <span class="hljs-literal">true</span>;
+
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(Luxe.input.inputdown(<span class="hljs-string">'right'</span>)) {
+
+        player.pos.x += move_speed * delta;
+        player.flipx = <span class="hljs-literal">false</span>;
+
+    }
+
+} <span class="hljs-comment">//update</span>
+</code></pre><h3 id="notes">Notes</h3>
+<hr>
+<ul>
+<li><strong>Where do I find a list of all the <code>Sprite</code> options?</strong><br>Read the <a href="api/luxe/options/SpriteOptions.html">Sprite options</a> documentation.   </li>
+<li><p><strong>Other forms of input handling?</strong>   </p>
+<ul>
+<li>Event based: These functions are available in <code>Game</code>, <code>State</code>, <code>Component</code> and other classes, you override them to listen for the events.</li>
+</ul>
+</li>
+<li><p>mouse: <code>onmousedown</code>, <code>onmouseup</code>, <code>onmousemove</code>, <code>onmousewheel</code></p>
+</li>
+<li>touch:  <code>ontouchdown</code>, <code>ontouchup</code>, <code>ontouchmove</code></li>
+<li>keys: <code>onkeydown</code>, <code>onkeyup</code>, <code>ontextinput</code></li>
+<li>gamepad: <code>ongamepaddown</code>, <code>ongamepadup</code>, <code>ongamepadaxis</code></li>
+<li>named binding: <code>oninputup</code>, <code>oninputdown</code></li>
+</ul>
+<p>You can see more information in <a href="guide.input.html">the input guide</a>.</p>
+<hr>
+<h3 id="-to-the-prev-guide-guide-one-html-"><a href="guide.one.html">To the prev guide</a></h3>
+<h3 id="-to-the-next-guide-guide-three-html-"><a href="guide.three.html">To the next guide</a></h3>
+<h3 id="-back-to-guides-guide-html-"><a href="guide.html">Back to guides</a></h3>
+<hr>
+<p><a name="code"></p>
+<h4 id="code-listing-2">Code listing 2</h4>
+<p></a></p>
+<p><em>(found in samples/guides/2_sprites/)</em></p>
+<pre><code>
+<span class="hljs-keyword">import</span> luxe.Input;
+<span class="hljs-keyword">import</span> luxe.Sprite;
+<span class="hljs-keyword">import</span> luxe.Vector;
+<span class="hljs-keyword">import</span> phoenix.Texture;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
+
+    <span class="hljs-keyword">var</span> player : Sprite;
+        <span class="hljs-comment">//set by the screen size later</span>
+    <span class="hljs-keyword">var</span> move_speed : Float = <span class="hljs-number">0</span>;
+
+        <span class="hljs-comment">//The config function is simple: It hands us a default config,</span>
+        <span class="hljs-comment">//we modify the values that we want to change, and then we</span>
+        <span class="hljs-comment">//return it with the modifications.</span>
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">config</span><span class="hljs-params">( config:luxe.AppConfig )</span> </span>{
+
+            <span class="hljs-comment">//This time, we are going to modify the preload parcel texture list,</span>
+            <span class="hljs-comment">//and add our texture for the sprite, so that it will exist when we</span>
+            <span class="hljs-comment">//try to use it during `ready`</span>
+        config.preload.textures.push({ id:<span class="hljs-string">'assets/stand.png'</span> });
+
+        <span class="hljs-keyword">return</span> config;
+
+    } <span class="hljs-comment">//config</span>
+
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-comment">//fetch the previously loaded texture!</span>
+        <span class="hljs-keyword">var</span> image = Luxe.resources.texture(<span class="hljs-string">'assets/stand.png'</span>);
+
+            <span class="hljs-comment">//keep pixels crisp when scaling them, for pixel art</span>
+        image.filter_min = image.filter_mag = FilterType.nearest;
+
+            <span class="hljs-comment">//work out the correct size based on a ratio</span>
+        <span class="hljs-keyword">var</span> height = Luxe.screen.h/<span class="hljs-number">1.75</span>;
+        <span class="hljs-keyword">var</span> width = (height/image.height) * image.width;
+
+            <span class="hljs-comment">//this is an arbitrary ratio I made up :)</span>
+        move_speed = width*<span class="hljs-number">3</span>;
+
+            <span class="hljs-comment">//create the actual visible player, give it the texture</span>
+        player = <span class="hljs-keyword">new</span> Sprite({
+            name: <span class="hljs-string">'player'</span>,
+            texture: image,
+            pos : <span class="hljs-keyword">new</span> Vector(Luxe.screen.mid.x, Luxe.screen.h - (height/<span class="hljs-number">1.75</span>)),
+            size: <span class="hljs-keyword">new</span> Vector(width, height)
+        });
+
+        connect_input();
+
+    } <span class="hljs-comment">//ready</span>
+
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">connect_input</span><span class="hljs-params">()</span> </span>{
+
+        <span class="hljs-comment">//here, we are going to bind A/left and D/right into a single named</span>
+        <span class="hljs-comment">//input event, so that we can keep our movement code the same when changing keys</span>
+
+        Luxe.input.bind_key(<span class="hljs-string">'left'</span>, Key.left);
+        Luxe.input.bind_key(<span class="hljs-string">'left'</span>, Key.key_a);
+
+        Luxe.input.bind_key(<span class="hljs-string">'right'</span>, Key.right);
+        Luxe.input.bind_key(<span class="hljs-string">'right'</span>, Key.key_d);
+
+    } <span class="hljs-comment">//connect_input</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">( delta:Float )</span> </span>{
+
+            <span class="hljs-comment">//This is using the "immediate query" api</span>
+            <span class="hljs-comment">//there is also oninputdown like onkeydown and onmousedown</span>
+
+        <span class="hljs-keyword">if</span>(Luxe.input.inputdown(<span class="hljs-string">'left'</span>)) {
+
+            player.pos.x -= move_speed * delta;
+            player.flipx = <span class="hljs-literal">true</span>;
+
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(Luxe.input.inputdown(<span class="hljs-string">'right'</span>)) {
+
+            player.pos.x += move_speed * delta;
+            player.flipx = <span class="hljs-literal">false</span>;
+
+        }
+
+    } <span class="hljs-comment">//update</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">( e:KeyEvent )</span> </span>{
+
+        <span class="hljs-keyword">if</span>(e.keycode == Key.escape) {
+            Luxe.shutdown();
+        }
+
+    } <span class="hljs-comment">//onkeyup</span>
+
+
+} <span class="hljs-comment">//Main</span>
+</code></pre>
+        </div>
+    </body>
+
+</html>

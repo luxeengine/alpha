@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<hr>
+<h2 id="sprite-feature-guide">Sprite feature guide</h2>
+<hr>
+<p>The <a href="guide.html#beginnersguide">beginners guides</a> cover the basic sprite usage.</p>
+<p>The <code>Sprite</code> class extends the <code>Visual</code> class, which is a geometry container.</p>
+<p><code>Sprite</code> is also an <code>Entity</code>, so it can accept <code>Component</code> attachments.</p>
+<p>The sprite class is a Quad based geometry, and facilitates common actions with a quad based, textured sprite.
+If you want other geometrical control, use <code>Visual</code> instead, as sprite is specific to a quad.</p>
+<p>In concept a sprite is 2D, but no restriction on 3D rotation or positioning is employed. All 2D helpers will only affect x/y properties of the sprite.</p>
+<h3 id="list-specific-features">list specific features</h3>
+<h4 id="centered">centered</h4>
+<p>By default, the sprite origin will be centered. By setting the centered flag to false, it will be top left instead.
+The centered flag is used only when a custom origin is not specified, it will not override the explicit origin.</p>
+<p>The centered flag sets the origin to <code>size/2</code> essentially.</p>
+<h4 id="flipx-flipy">flipx/flipy</h4>
+<p>The flipx and flipy flags will flip the geometry along it’s own x or y axis respectively.<br>Flipping works by changing the UV coordinates of the texture, based on their existing coordinates.</p>
+<p>If the flip flag is already setting, setting it twice has no effect, so you can safely do so.</p>
+<h4 id="size">size</h4>
+<p>The size of the geometry in units, which allows setting a baseline size of the geometry. This differs from the scale transform as it is in units, allowing simpler scaling through a preset size.</p>
+<h4 id="uv">uv</h4>
+<p>A rectangle in texture pixels for the UV coordinates of this sprite. Can be animated through setting the properties of the UV or assigning a new UV.</p>
+<h4 id="rotation_z">rotation_z</h4>
+<p>A convenience for setting the 2D rotation (around the z axis) <em>in degrees</em>. Will reflect changes to <em>radians</em>.</p>
+<h4 id="radians">radians</h4>
+<p>A convenience for setting the 2D rotation (around the z axis) <em>in radians</em>. Will reflect changes to <em>rotation_z</em>.</p>
+<hr>
+<p>&nbsp;   </p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+          insertBefore(d,q)}(window,document,'script','_gs');
+          _gs('GSN-518437-J');
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<hr>
+<h2 id="manipulating-color-in-luxe">Manipulating color in luxe</h2>
+<hr>
+<p>Color is a very useful tool in games, and being able to smoothly transition colors is important.   </p>
+<p>When dealing with <strong>RGB</strong> color as is the default color type, it tends to break when you try and animate between two colors.   </p>
+<p>The solution to this, is different color models, such as <strong>HSV</strong> (Hue, Saturation, Value) and <strong>HSL</strong> (Hue, Saturation, Lightness).</p>
+<p>luxe supports both HSL and HSV interchangeably with the default of RGB (and each support alpha as well).</p>
+<h2 id="what-is-the-difference-">What is the difference?</h2>
+<hr>
+<p>HSV and HSL are cylindrical in nature, that means that they are <em>round</em> and their color value works in degrees(º) rather than separate color components. </p>
+<p>Take a look at the image below, this is the color wheel (Hue only), mapped to degrees.</p>
+<p><img src="images/color_wheel.png" alt="color wheel"></p>
+<h3 id="how-this-helps">How this helps</h3>
+<hr>
+<p>Notice how if we want to transition from red (danger!) to orange (warning) on a flashing UI element, it’s around 30º of movement?    </p>
+<p>To animate that using Hue (the above color wheel) it is simple, we animate the hue value.</p>
+<h3 id="color-classes-have-their-own-convenience-tween-function">Color classes have their own convenience tween function</h3>
+<hr>
+<p>One thing you will notice is that the color classes have their own tween function for convenience which acts a lot like the tweening from the <a href="guide.tween.html">tween guide</a>.</p>
+<pre><code>    <span class="hljs-comment">//We create our red color using 0º Hue (red), </span>
+    <span class="hljs-comment">//the second and third argument are saturation and value, </span>
+    <span class="hljs-comment">//which we set to "maximum" right now.</span>
+
+<span class="hljs-keyword">var</span> color = <span class="hljs-keyword">new</span> ColorHSV( <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+
+    <span class="hljs-comment">//Now we want to animate to orange, just change the hue</span>
+    <span class="hljs-comment">//over two seconds, to orange</span>
+
+color.tween( <span class="hljs-number">2</span>, { h:<span class="hljs-number">30</span> } );
+</code></pre><p>By mapping the colors to a round cylinder it affords much smoother transitions between colors, much smoother than RGB can do.</p>
+<h2 id="saturation-lightness-and-value">Saturation, Lightness and Value</h2>
+<p>Color can be quite a complex system, and has mathematical properties outside of the scope of this simple guide. If you want to get in depth details into the mechanics of color , <a href="http://en.wikipedia.org/wiki/HSL_and_HSV">this article on wikipedia is quite thorough</a>.</p>
+<p>Now - for simplicity sake - we will define the terms in a less exact way. Take a solid color at hue 30º like above. </p>
+<ul>
+<li>Value - The color approaches black when value is lowest</li>
+<li>Lightness - The color approaches white when the lightness is highest</li>
+<li>Saturation - The amount of color present (like draining the color away)</li>
+</ul>
+<p>Have a look at these graphs <a href="http://en.wikipedia.org/wiki/HSL_and_HSV">from Wikipedia</a> for a clearer view.</p>
+<p><img src="images/color_hsvl.png" alt="HSL/HSV"></p>
+<h2 id="creating-and-using-the-different-types">Creating and using the different types</h2>
+<hr>
+<p>Now that you hopefully understand the purpose and differences, we can look at how to work with them in luxe.</p>
+<pre><code>    <span class="hljs-comment">//defaults for r g b and a are 1 (full white)</span>
+<span class="hljs-keyword">var</span> color : Color = <span class="hljs-keyword">new</span> Color( r, g, b, a );
+
+    <span class="hljs-comment">//Defaults for h = 0, s = 0, v = 1, a = 1 (full white)</span>
+<span class="hljs-keyword">var</span> colorhsv : ColorHSV = <span class="hljs-keyword">new</span> ColorHSV( h, s, v, a );
+
+    <span class="hljs-comment">//Defaults for h = 0, s = 1, l = 1, a = 1 (full white)</span>
+<span class="hljs-keyword">var</span> colorhsl : ColorHSL = <span class="hljs-keyword">new</span> ColorHSL( h, s, l, a );
+</code></pre><p>This is for creating, but how about switching between? </p>
+<h2 id="changing-color-type">Changing color type</h2>
+<p>All types are extended from the <code>Color</code> class, so they automatically work where <code>Color</code> is expected. For example, a sprite color is typed as <code>Color</code> but a <code>ColorHSL</code> or <code>ColorHSV</code> can be given in place - <code>sprite.color = colorhsl;</code></p>
+<p><strong>This makes all types interchangeable automatically</strong>,<br>but the following functions are exposed as well.</p>
+<pre><code>    <span class="hljs-comment">// helpers on Color</span>
+color.toColorHSL        <span class="hljs-comment">//returns ColorHSL</span>
+color.toColorHSV        <span class="hljs-comment">//returns ColorHSV</span>
+color.fromColorHSL      <span class="hljs-comment">//changes color</span>
+color.fromColorHSV      <span class="hljs-comment">//changes color</span>
+
+    <span class="hljs-comment">//helpers on ColorHSL</span>
+colorhsl.toColor        <span class="hljs-comment">//returns Color</span>
+colorhsl.toColorHSV     <span class="hljs-comment">//returns ColorHSV</span>
+colorhsl.fromColor      <span class="hljs-comment">//changes colorhsl</span>
+colorhsl.fromColorHSV   <span class="hljs-comment">//changes colorhsv</span>
+
+    <span class="hljs-comment">//helpers on ColorHSV</span>
+colorhsv.toColor        <span class="hljs-comment">//returns Color</span>
+colorhsv.toColorHSL     <span class="hljs-comment">//returns ColorHSV</span>
+colorhsv.fromColor      <span class="hljs-comment">//changes colorhsv</span>
+colorhsv.fromColorHSL   <span class="hljs-comment">//changes colorhsv</span>
+</code></pre><hr>
+<h3 id="live-demo">Live demo</h3>
+<hr>
+<p>Click to tween the box following the mouse randomly.<br>Move the mouse on the x axis to change Hue of the bars.<br>Move the mouse on the y axis to change Value of the bars.<br>The blocks shown with text are from an image editor, the others from luxe.</p>
+<div data-content="samples/test_colors/index.html" class="sample"> <p>Click to run example</p> </div>
+
+<hr>
+<h3 id="code-from-the-live-demo">Code from the live demo</h3>
+<pre><code>
+<span class="hljs-keyword">import</span> luxe.Vector;
+<span class="hljs-keyword">import</span> luxe.Input;
+<span class="hljs-keyword">import</span> luxe.Sprite;
+<span class="hljs-keyword">import</span> luxe.Color;
+
+<span class="hljs-keyword">import</span> luxe.utils.Maths;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
+
+
+    <span class="hljs-keyword">var</span> sprite : Sprite;
+    <span class="hljs-keyword">var</span> hsv_blue : Sprite;
+    <span class="hljs-keyword">var</span> hsl_pink : Sprite;
+
+    <span class="hljs-keyword">var</span> hsb_strip_top : Sprite;
+    <span class="hljs-keyword">var</span> hsb_strip_bottom : Sprite;
+
+    <span class="hljs-keyword">var</span> sprite_test_pad : Sprite;
+    <span class="hljs-keyword">var</span> mouse : Vector;
+
+    <span class="hljs-keyword">var</span> bar_color : ColorHSV;
+
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+        sprite = <span class="hljs-keyword">new</span> Sprite({
+            pos : <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">480</span>,<span class="hljs-number">320</span>),
+            size : <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">128</span>,<span class="hljs-number">128</span>),
+            color : <span class="hljs-keyword">new</span> Color(),
+            depth : <span class="hljs-number">2</span>
+        });
+
+        hsv_blue = <span class="hljs-keyword">new</span> Sprite({
+            pos : <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">60</span>,<span class="hljs-number">100</span>),
+            size : <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">128</span>,<span class="hljs-number">128</span>),
+            color : <span class="hljs-keyword">new</span> ColorHSV(<span class="hljs-number">200</span>, <span class="hljs-number">0.61</span>, <span class="hljs-number">1</span>),
+            depth : <span class="hljs-number">0</span>,
+            centered : <span class="hljs-literal">false</span>
+        });
+
+        hsl_pink = <span class="hljs-keyword">new</span> Sprite({
+            pos : <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">316</span>,<span class="hljs-number">100</span>),
+            size : <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">128</span>,<span class="hljs-number">128</span>),
+            color : <span class="hljs-keyword">new</span> ColorHSL(<span class="hljs-number">330</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0.48</span>),
+            depth : <span class="hljs-number">0</span>,
+            centered : <span class="hljs-literal">false</span>
+        });
+
+        hsb_strip_top = <span class="hljs-keyword">new</span> Sprite({
+            pos : <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>),
+            size : <span class="hljs-keyword">new</span> Vector(Luxe.screen.w,Luxe.screen.h*<span class="hljs-number">0.1</span>),
+            color : <span class="hljs-keyword">new</span> ColorHSV(<span class="hljs-number">0</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>),
+            depth : <span class="hljs-number">0</span>,
+            centered : <span class="hljs-literal">false</span>
+        });
+
+        hsb_strip_bottom = <span class="hljs-keyword">new</span> Sprite({
+            pos : <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">0</span>,Luxe.screen.h-(Luxe.screen.h*<span class="hljs-number">0.1</span>)),
+            size : <span class="hljs-keyword">new</span> Vector(Luxe.screen.w, Luxe.screen.h*<span class="hljs-number">0.1</span>),
+            color : <span class="hljs-keyword">new</span> ColorHSV(<span class="hljs-number">0</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>),
+            depth : <span class="hljs-number">0</span>,
+            centered : <span class="hljs-literal">false</span>
+        });
+
+        sprite_test_pad = <span class="hljs-keyword">new</span> Sprite({
+            centered : <span class="hljs-literal">false</span>,
+            pos : <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">60</span>,<span class="hljs-number">100</span>),
+            texture : Luxe.resources.texture(<span class="hljs-string">'assets/test.png'</span>),
+            depth : <span class="hljs-number">1</span>
+        });
+
+        mouse = <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">480</span>,<span class="hljs-number">320</span>);
+        bar_color = <span class="hljs-keyword">new</span> ColorHSV(<span class="hljs-number">0</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">1</span>);
+
+    } <span class="hljs-comment">//ready</span>
+
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( e:MouseEvent )</span> </span>{
+
+        mouse.set(e.x, e.y);
+
+        sprite.pos = mouse;
+
+        bar_color.h = <span class="hljs-number">360</span> * (mouse.x/Luxe.screen.w);
+        bar_color.v = <span class="hljs-number">1.0</span> - (mouse.y/Luxe.screen.h);
+
+        hsb_strip_top.color = bar_color;
+        hsb_strip_bottom.color = bar_color;
+
+    } <span class="hljs-comment">//onmousemove</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousedown</span><span class="hljs-params">( e:MouseEvent )</span> </span>{
+
+        sprite.color.tween(<span class="hljs-number">1.5</span>, {
+            r:Math.random(),
+            g:Math.random(),
+            b:Math.random(),
+            a: Maths.clamp(<span class="hljs-number">0.5</span>+(Math.random()),<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)
+        }); <span class="hljs-comment">//tween</span>
+
+    } <span class="hljs-comment">//onmousedown</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">( e:KeyEvent )</span> </span>{
+
+        <span class="hljs-keyword">if</span>(e.keycode == Key.space) {
+            bar_color.tween( <span class="hljs-number">1</span>, { h : <span class="hljs-number">0.5</span>, v : <span class="hljs-number">0</span> } ).onUpdate(
+                <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+                    hsb_strip_top.color = bar_color;
+                    hsb_strip_bottom.color = bar_color;
+                }
+            );
+        }
+
+        <span class="hljs-keyword">if</span>(e.keycode == Key.escape) {
+            Luxe.shutdown();
+        }
+
+    } <span class="hljs-comment">//onkeyup</span>
+
+
+} <span class="hljs-comment">//Main</span>
+</code></pre><hr>
+<p>&nbsp;   </p>
+<h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>
