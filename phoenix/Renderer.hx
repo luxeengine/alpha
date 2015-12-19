@@ -86,6 +86,8 @@ class Renderer {
             GL.clearDepth(1.0);
             GL.clearColor(0,0,0,1);
             GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
+            core.app.runtime.window_swap();
+            GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
 
         _debug("default Framebuffer set to " + default_fbo);
         _debug("default Renderbuffer set to " + default_rbo);
