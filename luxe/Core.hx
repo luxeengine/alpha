@@ -27,7 +27,7 @@ import phoenix.Shader;
 import luxe.Game;
 import luxe.Log.*;
 
-typedef UserConfig = {}
+typedef UserConfig = Dynamic
 
 @:keep
 @:noCompletion
@@ -952,6 +952,8 @@ class Core extends snow.App {
 
         /** return what the game decides for runtime config */
     override function config( config: snow.types.Types.AppConfig ) : snow.types.Types.AppConfig {
+
+        config.user = {};
 
             //start with the snow default config
         appconfig = cast config;
