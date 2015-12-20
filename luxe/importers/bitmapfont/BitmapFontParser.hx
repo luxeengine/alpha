@@ -22,10 +22,12 @@ class BitmapFontParser {
 
             var _lines : Array<String> = _font_data.split("\n");
 
-            if(_lines.length == 0) throw "BitmapFont; invalid font data specified for parser.";
+            if(_lines.length == 0) {
+                throw "BitmapFont; invalid font data specified for parser.";
+            }
 
             var _first = _lines[0];
-            if( StringTools.ltrim(_first).substr(0, 4) != 'info') {
+            if(StringTools.ltrim(_first).substr(0, 4) != 'info') {
                 throw "BitmapFont; invalid font data specified for parser. Format should be plain ascii text .fnt file only currently.";
             }
 
@@ -34,7 +36,10 @@ class BitmapFontParser {
                 for(_current in _tokens) {
                     parse_token(_current, _tokens, _info);
                 }
+                _tokens = null;
             }
+
+            _lines = null;
 
             return _info;
 
@@ -109,6 +114,8 @@ class BitmapFontParser {
                 default:
             }
 
+            _items = null;
+
         } //parse_token
 
         static function tokenize_line( _tokens:Array<String> ) {
@@ -118,6 +125,7 @@ class BitmapFontParser {
                 for(_token in _tokens) {
                     var _items = _token.split("=");
                     _item_map.set( _items[0], _items[1] );
+                    _items = null;
                 }
 
             return _item_map;
