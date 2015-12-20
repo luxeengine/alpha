@@ -161,20 +161,53 @@ class StatsDebugView extends luxe.debug.DebugView  {
         var shader_lists = '';
         var audio_lists = '';
 
+        var _total_txt = 0;
+        var _total_tex = 0;
+        var _total_rtt = 0;
+        var _total_snd = 0;
+
         inline function _res(res:Resource) return '${res.id} • ${res.ref}\t\n';
-        inline function _tex(tex:Texture) return '(${tex.width_actual}x${tex.height_actual} ~${Luxe.utils.bytes_to_string(tex.memory_use())})    ${tex.id} • ${tex.ref}\t\n';
         inline function _shd(res:Shader) return '(${res.vert_id}, ${res.frag_id})    ${res.id} • ${res.ref}\t\n';
+        inline function _txt(res:TextResource) {
+            _total_txt += res.asset.text.length;
+            return '(~${Luxe.utils.bytes_to_string(res.asset.text.length)}) ${res.id} • ${res.ref}\t\n';
+        }
+        inline function _tex(tex:Texture) {
+            if(tex.resource_type == ResourceType.render_texture) {
+                _total_rtt += tex.memory_use();
+            } else {
+                _total_tex += tex.memory_use();
+            }
+            return '(${tex.width_actual}x${tex.height_actual} ~${Luxe.utils.bytes_to_string(tex.memory_use())})    ${tex.id} • ${tex.ref}\t\n';
+        }
+        inline function _snd(res:AudioResource) return {
+            var _s = '';
+                _s += res.source.is_stream ? 'STREAM •' : '';
+                _s += ' ${res.id} • ${res.ref}\t\n';
+                if(!res.source.is_stream && res.source.info.data.samples != null) {
+                    _s += '~${Luxe.utils.bytes_to_string(res.source.info.data.samples.byteLength)}';
+                    _total_snd += res.source.info.data.samples.byteLength;
+                }
+                _s += ' ${res.source.info.data.bits_per_sample}bit';
+                _s += ' ${res.source.info.data.channels}ch';
+                _s += ' ${luxe.utils.Maths.fixed(res.source.info.data.rate/1000,1)}khz';
+                _s += ' ${res.source.info.format}';
+                _s += ' ${luxe.utils.Maths.fixed(res.source.duration(),4)}s';
+                _s += '\t\t\n\n';
+
+            return _s;
+        }
 
         for(res in Luxe.resources.cache) {
             switch(res.resource_type) {
                 case ResourceType.bytes:            bytes_lists += _res(res);
-                case ResourceType.text:             text_lists += _res(res);
+                case ResourceType.text:             text_lists += _txt(cast res);
                 case ResourceType.json:             json_lists += _res(res);
                 case ResourceType.texture:          texture_lists += _tex(cast res);
                 case ResourceType.render_texture:   rtt_lists += _tex(cast res);
                 case ResourceType.font:             font_lists += _res(res);
                 case ResourceType.shader:           shader_lists += _shd(cast res);
-                case ResourceType.audio:            audio_lists += _res(res);
+                case ResourceType.audio:            audio_lists += _snd(cast res);
                 default:
             }
         }
@@ -185,19 +218,19 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
             lists += 'Bytes (${Luxe.resources.stats.bytes})\n';
                 lists += orblank(bytes_lists);
-            lists += '\nText (${Luxe.resources.stats.texts})\n';
+            lists += '\nText (${Luxe.resources.stats.texts} • ${Luxe.utils.bytes_to_string(_total_txt)})\n';
                 lists += orblank(text_lists);
             lists += '\nJSON (${Luxe.resources.stats.jsons})\n';
                 lists += orblank(json_lists);
-            lists += '\nTexture (${Luxe.resources.stats.textures})\n';
+            lists += '\nTexture (${Luxe.resources.stats.textures} • ${Luxe.utils.bytes_to_string(_total_tex)})\n';
                 lists += orblank(texture_lists);
-            lists += '\nRenderTexture (${Luxe.resources.stats.rtt})\n';
+            lists += '\nRenderTexture (${Luxe.resources.stats.rtt} • ${Luxe.utils.bytes_to_string(_total_rtt)})\n';
                 lists += orblank(rtt_lists);
             lists += '\nFont (${Luxe.resources.stats.fonts})\n';
                 lists += orblank(font_lists);
             lists += '\nShader (${Luxe.resources.stats.shaders})\n';
                 lists += orblank(shader_lists);
-            lists += '\nAudio (${Luxe.resources.stats.audios})\n';
+            lists += '\nAudio (${Luxe.resources.stats.audios} • ${Luxe.utils.bytes_to_string(_total_snd)})\n';
                 lists += orblank(audio_lists);
 
         resource_list_text.text = lists;
