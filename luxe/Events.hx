@@ -12,20 +12,22 @@ import luxe.Log.*;
     will recieve the event notifications. Don't forget to disconnect events. */
 class Events {
 
-    @:noCompletion public var event_queue : Map< String, EventObject>;
-    @:noCompletion public var event_connections : Map< String, EventConnection>; //event id, connect
-    @:noCompletion public var event_slots : Map< String, Array<EventConnection> >; //event name, array of connections
-    @:noCompletion public var event_filters : Map< String, Array<EventConnection> >; //event name, array of connections
-    @:noCompletion public var event_schedules : Map< String, snow.api.Timer >; //event id, timer
+    @:noCompletion public var event_queue : Array<EventObject>;
+    @:noCompletion public var event_connections : Map<String, EventConnection>; //event id, connect
+    @:noCompletion public var event_slots : Map<String, Array<EventConnection> >; //event name, array of connections
+    @:noCompletion public var event_filters : Map<String, Array<EventConnection> >; //event name, array of connections
+    @:noCompletion public var event_schedules : Map<String, snow.api.Timer>; //event id, timer
+
+    var event_queue_count = 0;
 
         /** Create a new instance for sending/receiving events. */
-    public function new( ) {
+    public inline function new( ) {
 
             //create the queue, lists and map
         event_connections = new Map();
         event_slots = new Map();
         event_filters = new Map();
-        event_queue = new Map();
+        event_queue = [];
         event_schedules = new Map();
 
     } //new
@@ -57,8 +59,10 @@ class Events {
             event_slots.remove(slot);
         }
 
-        for(event in event_queue.keys()) {
-            event_queue.remove(event);
+        var _count = event_queue.length;
+        while(_count > 0) {
+            event_queue.pop();
+            _count--;
         }
 
     }
@@ -66,23 +70,23 @@ class Events {
         /** Convenience. Exposed for learning/testing the filtering API. */
     public function does_filter_event( _filter:String, _event:String ) {
 
-        var _replace_stars : EReg = ~/\*/gi;
-        var _final_filter : String = _replace_stars.replace( _filter, '.*?' );
-        var _final_search : EReg = new EReg(_final_filter, 'gi');
+        var _replace_stars = ~/\*/gi;
+        var _final_filter = _replace_stars.replace( _filter, '.*?' );
+        var _final_search = new EReg(_final_filter, 'gi');
 
         return _final_search.match( _event );
 
     } //does_filter_event
 
 
-        /** Bind a signal (listener) to a slot (event_name)   
-            event_name : The event id   
+        /** Bind a signal (listener) to a slot (event_name)
+            event_name : The event id
             listener : A function handler that should get called on event firing */
     public function listen<T>( _event_name : String, _listener : T -> Void ):String {
 
             //we need an ID and a connection to store
-        var id : String = Luxe.utils.uniqueid();
-        var connection : EventConnection = new EventConnection( id, _event_name, _listener );
+        var id = Luxe.utils.uniqueid();
+        var connection = new EventConnection( id, _event_name, _listener );
 
             //now we store it in the map
         event_connections.set( id, connection );
@@ -90,7 +94,7 @@ class Events {
             //first check if the event name in question has a * wildcard,
             //if it does we have to store it as a filtered event so it's more optimal
             //to search through when events are fired
-        var _has_stars : EReg = ~/\*/gi;
+        var _has_stars = ~/\*/gi;
         if(_has_stars.match(_event_name)) {
 
                 //also store the listener inside the slots
@@ -120,8 +124,8 @@ class Events {
 
     } //listen
 
-        /**Disconnect a bound signal   
-            The event connection id is returned from listen()   
+        /**Disconnect a bound signal
+            The event connection id is returned from listen()
             and returns true if the event existed and was removed. */
     public function unlisten( event_id : String ) : Bool {
 
@@ -151,21 +155,16 @@ class Events {
 
     } //unlisten
 
-        /*Queue an event in the next update loop   
-            event_name : The event (register listeners with listen())   
-            properties : A dynamic pass-through value to hand off data   
+        /*Queue an event in the next update loop
+            event_name : The event (register listeners with listen())
+            properties : A dynamic pass-through value to hand off data
             returns : a String, the unique ID of the event */
     public function queue<T>( event_name : String, ?properties : T ) : String {
 
-        var id : String = Luxe.utils.uniqueid();
+        var id = Luxe.utils.uniqueid();
 
-                //store it in case we want to manipulate it
-            var event:EventObject = new EventObject(id, event_name, properties);
+            event_queue.push(new EventObject(id, event_name, properties));
 
-                //stash it away
-            event_queue.set(id, event);
-
-            //return the user the id
         return id;
 
     } //queue
@@ -173,16 +172,19 @@ class Events {
         /** Remove an event from the queue by id returned from queue. */
     public function dequeue( event_id: String ) {
 
-        if(event_queue.exists(event_id)) {
+        //:todo: proper search, not string id's, etc
+        var i = 0;
+        var _count = event_queue.length;
+        do {
 
-            var event = event_queue.get(event_id);
-                event = null;
+            if(event_queue[i].id == event_id) {
+                event_queue.splice(i, 1);
+                return true;
+            }
 
-            event_queue.remove( event_id );
+            ++i;
 
-            return true;
-
-        } //if exists in the queue
+        } while(i < _count);
 
         return false;
 
@@ -193,15 +195,11 @@ class Events {
     public function process() {
 
             //fire each event in the queue
-        for(event in event_queue) {
-            fire( event.name, event.properties );
-        }
-
-            //if we actually have any events, clear the queue
-        if(event_queue.keys().hasNext()) {
-                //clear out the queue
-            event_queue = null;
-            event_queue = new Map();
+        var _count = event_queue.length;
+        while(_count > 0) {
+            var _event = event_queue.shift();
+            fire(_event.name, _event.properties);
+            _count--;
         }
 
     } //update
@@ -241,7 +239,7 @@ class Events {
         if(event_slots.exists( _event_name )) {
 
                 //we have an event by this name
-            var connections:Array<EventConnection> = event_slots.get(_event_name);
+            var connections = event_slots.get(_event_name);
 
             if(_tag) {
                 _properties = tag_properties(_properties, _event_name, connections.length);
