@@ -290,6 +290,8 @@ class BitmapFont extends Resource {
 
                     //parse the data
                 info = BitmapFontParser.parse( _asset.text );
+                _asset.destroy();
+                _asset = null;
 
                 assertnull(info);
 
