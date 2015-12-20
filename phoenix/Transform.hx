@@ -232,7 +232,7 @@ class Transform extends ID {
         if(parent != null) {
             world.matrix = world.matrix.multiplyMatrices( parent.world.matrix, local.matrix );
         } else {
-            world.matrix = local.matrix.clone();
+            world.matrix.copy(local.matrix);
         }
 
             //update world spatial,

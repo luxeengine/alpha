@@ -65,7 +65,7 @@ class Batcher {
         geometry = new BalancedBST<GeometryKey,Geometry>( geometry_compare );
         emitter = new Emitter();
 
-        max_verts = Std.int(Math.pow(2, 16));
+        max_verts = Std.int(Math.pow(2, 19));
             //4 floats per vert, i.e x y z w
         max_floats = max_verts * 4;
 
