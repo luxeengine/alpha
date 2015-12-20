@@ -1,6 +1,7 @@
 
 import luxe.Color;
 import luxe.Input;
+import luxe.resource.Resource.AudioResource;
 import luxe.Sprite;
 import luxe.Text;
 import luxe.utils.Maths;
@@ -20,8 +21,8 @@ class Main extends luxe.Game {
 
     var dragging : Sprite;
 
-    var music: luxe.resource.Resource.AudioResource;
-    var sound: luxe.resource.Resource.AudioResource;
+    var music: AudioResource;
+    var sound: AudioResource;
 
     var music_handle: luxe.Audio.AudioHandle;
     var last_played: luxe.Audio.AudioHandle;
@@ -229,6 +230,18 @@ class Main extends luxe.Game {
 
         if(e.keycode == Key.key_l) {
             music_handle = Luxe.audio.loop(music.source);
+        }
+
+        if(e.keycode == Key.key_k) {
+            var l = Luxe.resources.load_audio('assets/ambience.ogg');
+            l.then(function(a:AudioResource){
+                trace('created: now at ${a.ref} refs');
+            });
+        }
+
+        if(e.keycode == Key.key_d) {
+            var f = Luxe.resources.destroy('assets/ambience.ogg');
+            trace('destroy: $f');
         }
 
         if(e.keycode == Key.key_s) {
