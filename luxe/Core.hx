@@ -65,6 +65,7 @@ class Core extends snow.App {
     public var inited : Bool = false;
 
     var init_config: luxe.AppConfig;
+    var headless = false;
 
     @:noCompletion
     public function new( _game:Game, _config:luxe.AppConfig ) {
@@ -107,7 +108,8 @@ class Core extends snow.App {
 
         #else
 
-            if(!appconfig.headless) {
+            headless = appconfig.headless;
+            if(!headless) {
 
                 var _font_name = 'default.png';
                 var _font_image = Uint8Array.fromBytes(haxe.Resource.getBytes(_font_name));
@@ -189,7 +191,7 @@ class Core extends snow.App {
         resources = new Resources();
         Luxe.resources = resources;
 
-        if(!appconfig.headless) {
+        if(!headless) {
             renderer = new Renderer(this, asset);
             Luxe.renderer = renderer;
         }
@@ -205,7 +207,7 @@ class Core extends snow.App {
         audio.init();
         input.init();
 
-        if(!appconfig.headless) {
+        if(!headless) {
             renderer.init();
         }
 
@@ -217,7 +219,7 @@ class Core extends snow.App {
         Luxe.timer  = timer;
         Luxe.input  = input;
 
-        if(!appconfig.headless) {
+        if(!headless) {
             Luxe.camera = new luxe.Camera({ name:'default camera', view:renderer.camera });
         }
 
@@ -226,7 +228,7 @@ class Core extends snow.App {
         scene = new Scene('default scene');
         Luxe.scene = scene;
 
-        if(!appconfig.headless) {
+        if(!headless) {
             scene.add(Luxe.camera);
             debug.create_debug_console();
         }
@@ -237,7 +239,7 @@ class Core extends snow.App {
 
     function internal_pre_ready() {
 
-        if(!appconfig.headless) {
+        if(!headless) {
                 //:todo:GL context query
                 //Don't remove this,
                 //it's a catch for crashing because
@@ -279,11 +281,13 @@ class Core extends snow.App {
 
             //and even more finally, tell snow we want to
             //know when it's rendering the window so we can draw
-        if(!appconfig.headless) {
+        if(!headless) {
 
-                //start here because end is called first below
-            debug.start(Tag.update, 50);
-            debug.start(Tag.renderdt, 50);
+            #if !luxe_noprofile 
+                    //start here because end is called first below
+                debug.start(Tag.update, 50);
+                debug.start(Tag.renderdt, 50);
+            #end
 
         } //app.window != null && !headless
 
@@ -316,16 +320,19 @@ class Core extends snow.App {
 
     } //shutdown
 
+    // @:generic
     inline
     public function on<T>(event:Ev, handler:T->Void ) {
         emitter.on(event, handler);
     }
 
+    // @:generic
     inline
     public function off<T>(event:Ev, handler:T->Void ) {
         return emitter.off(event, handler);
     }
 
+    // @:generic
     inline
     public function emit<T>(event:Ev, ?data:T) {
         return emitter.emit(event, data);
@@ -347,6 +354,8 @@ class Core extends snow.App {
 
         game.onevent( event );
 
+        event = null;
+
     } //onevent
 
     override function tick(delta:Float) {
@@ -365,8 +374,10 @@ class Core extends snow.App {
         if(has_shutdown) return;
         if(!inited) return;
 
-        debug.end(Tag.update);
-        debug.start(Tag.update);
+        #if !luxe_noprofile 
+            debug.end(Tag.update);
+            debug.start(Tag.update);
+        #end
 
             //Update all the subsystems, again, order important
 //Timers first
@@ -390,14 +401,14 @@ class Core extends snow.App {
         physics.process();
 
 //Run update callbacks
-            debug.start(Tag.updates);
+            #if !luxe_noprofile debug.start(Tag.updates); #end
         emitter.emit(Ev.update, dt);
-            debug.end(Tag.updates);
+            #if !luxe_noprofile debug.end(Tag.updates); #end
 
 //Update the game class for the game
-            debug.start( Tag.game_update );
+            #if !luxe_noprofile debug.start( Tag.game_update ); #end
         game.update(dt);
-            debug.end( Tag.game_update );
+            #if !luxe_noprofile debug.end( Tag.game_update ); #end
 
 //And finally the debug stuff
             #if luxe_fullprofile debug.start(Tag.debug); #end
@@ -448,6 +459,8 @@ class Core extends snow.App {
 
         } //switch
 
+        _event = null;
+
     } //window_event
 
     function render() {
@@ -455,12 +468,14 @@ class Core extends snow.App {
         if(shutting_down) return;
         if(!inited) return;
 
-        debug.end(Tag.renderdt);
-        debug.start(Tag.renderdt);
+        #if !luxe_noprofile
+            debug.end(Tag.renderdt); 
+            debug.start(Tag.renderdt);
+        #end
 
-        if(!appconfig.headless) {
+        if(!headless) {
 
-            debug.start(Tag.render);
+            #if !luxe_noprofile debug.start(Tag.render); #end
 
             emitter.emit(Ev.prerender);
             game.onprerender();
@@ -472,7 +487,7 @@ class Core extends snow.App {
             emitter.emit(Ev.postrender);
             game.onpostrender();
 
-            debug.end(Tag.render);
+            #if !luxe_noprofile debug.end(Tag.render); #end
 
             #if !no_debug_console
 
@@ -480,7 +495,7 @@ class Core extends snow.App {
 
                 if(_batch.enabled) {
 
-                    debug.start(Tag.debug_batch);
+                    #if !luxe_noprofile debug.start(Tag.debug_batch); #end
 
                         _batch.draw();
 
@@ -491,13 +506,13 @@ class Core extends snow.App {
                         renderer.stats.draw_calls += _batch.draw_calls;
                         renderer.stats.vert_count += _batch.vert_count;
 
-                    debug.end(Tag.debug_batch);
+                    #if !luxe_noprofile debug.end(Tag.debug_batch); #end
 
                 } //_batch.enabled
 
             #end
 
-        } //!appconfig.headless
+        } //!headless
 
     } //render
 
@@ -538,6 +553,8 @@ class Core extends snow.App {
 
         } //!shutting down
 
+        event = null;
+
     } //onkeydown
 
     override function onkeyup( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
@@ -563,6 +580,8 @@ class Core extends snow.App {
             game.onkeyup(event);
 
         } //!shutting down
+
+        event = null;
 
     } //onkeyup
 
@@ -597,6 +616,8 @@ class Core extends snow.App {
 
         } //!shutting_down
 
+        event = null;
+
     } //ontextinput
 
 //input
@@ -607,11 +628,16 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit(Ev.inputdown, { name:name, event:event });
+            //:todo:
+            var ev = { name:name, event:event };
+            emitter.emit(Ev.inputdown, ev);
+            ev = null;
 
             game.oninputdown( name, event );
 
         } //!shutting_down
+
+        event = null;
 
     } //oninputdown
 
@@ -621,11 +647,16 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit(Ev.inputup, { name:name, event:event });
+            //:todo:
+            var ev = { name:name, event:event };
+            emitter.emit(Ev.inputup, ev);
+            ev = null;
 
             game.oninputup( name, event );
 
         } //!shutting_down
+
+        event = null;
 
     } //oninputup
 
@@ -657,6 +688,8 @@ class Core extends snow.App {
 
         } //!shutting_down
 
+        event = null;
+
     } //onmousedown
 
     override function onmouseup( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
@@ -685,6 +718,8 @@ class Core extends snow.App {
 
         } //!shutting_down
 
+        event = null;
+
     } //onmouseup
 
     override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
@@ -712,6 +747,8 @@ class Core extends snow.App {
 
         } //!shutting_down
 
+        event = null;
+
     } //onmousemove
 
     override function onmousewheel( x:Int, y:Int, timestamp:Float, window_id:Int ) {
@@ -737,6 +774,8 @@ class Core extends snow.App {
             game.onmousewheel(event);
 
         } //!shutting_down
+
+        event = null;
 
     } //onmousewheel
 
@@ -785,6 +824,8 @@ class Core extends snow.App {
 
         } //!shutting_down
 
+        event = null;
+
     } //ontouchdown
 
     override function ontouchup( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
@@ -810,6 +851,8 @@ class Core extends snow.App {
             game.ontouchup(event);
 
         } //!shutting_down
+
+        event = null;
 
     } //ontouchup
 
@@ -837,6 +880,8 @@ class Core extends snow.App {
 
         } //!shutting_down
 
+        event = null;
+
     } //ontouchmove
 
 //gamepad
@@ -863,6 +908,8 @@ class Core extends snow.App {
 
         } //!shutting_down
 
+        event = null;
+
     } //ongamepadaxis
 
     override function ongamepaddown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
@@ -888,6 +935,8 @@ class Core extends snow.App {
 
         } //!shutting_down
 
+        event = null;
+
     } //ongamepadbuttondown
 
     override function ongamepadup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
@@ -912,6 +961,8 @@ class Core extends snow.App {
             game.ongamepadup(event);
 
         } //!shutting_down
+
+        event = null;
 
     } //ongamepadup
 
@@ -947,6 +998,8 @@ class Core extends snow.App {
             game.ongamepaddevice(event);
 
         } //!shutting_down
+
+        event = null;
 
     } //ongamepaddevice
 
