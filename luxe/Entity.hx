@@ -407,7 +407,7 @@ class Entity extends Objects {
         }
 
         _emitter_destroy();
-        name = null;
+        // name = null;
         id = null;
 
     } //destroy
