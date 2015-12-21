@@ -165,6 +165,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         var _total_tex = 0;
         var _total_rtt = 0;
         var _total_snd = 0;
+        var _total_all = 0;
 
         inline function _res(res:Resource) return '${res.id} • ${res.ref}\t\n';
         inline function _shd(res:Shader) return '(${res.vert_id}, ${res.frag_id})    ${res.id} • ${res.ref}\t\n';
@@ -214,23 +215,28 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
         inline function orblank(v:String) return (v == '') ? '-\t\n' : v;
 
-        var lists = 'Resource list (${Luxe.resources.stats.total})\n\n';
+        _total_all += _total_txt;
+        _total_all += _total_tex;
+        _total_all += _total_rtt;
+        _total_all += _total_snd;
+
+        var lists = 'Resource list (${Luxe.resources.stats.total} • ~${Luxe.utils.bytes_to_string(_total_all)})\n\n';
 
             lists += 'Bytes (${Luxe.resources.stats.bytes})\n';
                 lists += orblank(bytes_lists);
-            lists += '\nText (${Luxe.resources.stats.texts} • ${Luxe.utils.bytes_to_string(_total_txt)})\n';
+            lists += '\nText (${Luxe.resources.stats.texts} • ~${Luxe.utils.bytes_to_string(_total_txt)})\n';
                 lists += orblank(text_lists);
             lists += '\nJSON (${Luxe.resources.stats.jsons})\n';
                 lists += orblank(json_lists);
-            lists += '\nTexture (${Luxe.resources.stats.textures} • ${Luxe.utils.bytes_to_string(_total_tex)})\n';
+            lists += '\nTexture (${Luxe.resources.stats.textures} • ~${Luxe.utils.bytes_to_string(_total_tex)})\n';
                 lists += orblank(texture_lists);
-            lists += '\nRenderTexture (${Luxe.resources.stats.rtt} • ${Luxe.utils.bytes_to_string(_total_rtt)})\n';
+            lists += '\nRenderTexture (${Luxe.resources.stats.rtt} • ~${Luxe.utils.bytes_to_string(_total_rtt)})\n';
                 lists += orblank(rtt_lists);
             lists += '\nFont (${Luxe.resources.stats.fonts})\n';
                 lists += orblank(font_lists);
             lists += '\nShader (${Luxe.resources.stats.shaders})\n';
                 lists += orblank(shader_lists);
-            lists += '\nAudio (${Luxe.resources.stats.audios} • ${Luxe.utils.bytes_to_string(_total_snd)})\n';
+            lists += '\nAudio (${Luxe.resources.stats.audios} • ~${Luxe.utils.bytes_to_string(_total_snd)})\n';
                 lists += orblank(audio_lists);
 
         resource_list_text.text = lists;
