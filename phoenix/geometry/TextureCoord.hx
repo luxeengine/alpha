@@ -44,6 +44,17 @@ class TextureCoordSet {
 
     } //clone
 
+    public inline function destroy() {
+        uv0 = null;
+        uv1 = null;
+        uv2 = null;
+        uv3 = null;
+        uv4 = null;
+        uv5 = null;
+        uv6 = null;
+        uv7 = null;
+    }
+
 
 } //TextureCoordSet
 
