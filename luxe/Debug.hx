@@ -98,23 +98,26 @@ class Debug {
 
     } //get_view
 
-        /** start a profiling section for the profiler debug view */
-    public function start(_name:String, ?_max:Float) {
-        #if !no_debug_console
-            if(!core.appconfig.headless) {
-                ProfilerDebugView.start(_name, _max);
-            }
-        #end
-    }
+    #if !luxe_noprofile
+            /** start a profiling section for the profiler debug view */
+        public function start(_name:String, ?_max:Float) {
+            #if !no_debug_console
+                if(!core.appconfig.headless) {
+                    ProfilerDebugView.start(_name, _max);
+                }
+            #end
+        }
 
-        /** end a profiling section for the profiler debug view */
-    public function end(_name:String) {
-        #if !no_debug_console
-            if(!core.appconfig.headless) {
-                ProfilerDebugView.end(_name);
-            }
-        #end
-    }
+            /** end a profiling section for the profiler debug view */
+        public function end(_name:String) {
+            #if !no_debug_console
+                if(!core.appconfig.headless) {
+                    ProfilerDebugView.end(_name);
+                }
+            #end
+        }
+    #end
+
         /** remove a trace listener added via add_trace_listener */
     public function remove_trace_listener( _name:String ) {
         trace_callbacks.remove(_name);
