@@ -78,11 +78,11 @@ class Physics {
         //called by the timer at a fixed rate
     function fixed_update() {
 
-            Luxe.debug.start(tag_physics);
+            #if !luxe_noprofile Luxe.debug.start(tag_physics); #end
 
         update();
 
-            Luxe.debug.end(tag_physics);
+            #if !luxe_noprofile Luxe.debug.end(tag_physics); #end
 
     } //fixed_update
 
