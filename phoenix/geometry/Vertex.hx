@@ -34,5 +34,13 @@ class Vertex {
 
 	} //clone
 
+	public inline function destroy() {
+		pos = null;
+		color = null;
+		normal = null;
+		uv.destroy();
+		uv = null;
+	}
+
 
 } //Vertex
