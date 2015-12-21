@@ -52,6 +52,10 @@
 
     "no_default_font" : {
       build: { defines:['no_debug_console'] }
+    },  
+
+    "no_debug_console": {
+      build: { defines:['luxe_noprofile'] }
     },
 
     profiler : {
