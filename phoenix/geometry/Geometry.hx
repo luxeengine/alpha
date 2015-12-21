@@ -248,6 +248,11 @@ class Geometry {
             transform = null;
         }
 
+        if(uniforms != null) {
+            uniforms.destroy();
+            uniforms = null;
+        }
+
         destroy_vbos();
         if(buffer_pos != null) {
             buffer_pos = null;
