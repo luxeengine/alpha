@@ -131,13 +131,14 @@ class Scene extends Objects {
 
         if(entity.scene == this) {
 
+            _debug('${name} / removing ${entity.name} with id : ${entity.id}');
             entity.scene = null;
             entity_count--;
             return entities.remove( entity.name );
 
         } else {
 
-            log("can't remove the entity from this scene, it is not mine (entity.scene != this)");
+            log('can\'t remove the entity(`${entity.name}`) from this scene(`$name`), it is not mine (entity.scene != this)');
             return false;
 
         }
