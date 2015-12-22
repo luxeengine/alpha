@@ -57,17 +57,40 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
     } //get_resource_stats_string
 
+    inline function get_batcher_info(b:phoenix.Batcher) {
+        var _s = '  ${b.name} (enabled ${b.enabled}, layer ${b.layer})\n';
+            _s += '    max verts/batch: ${b.max_verts}\n';
+            _s += '    verts: ${b.vert_count}\n';
+            _s += '    visible geom: ${b.visible_count}\n';
+            _s += '    draw calls: ${b.draw_calls}\n';
+            _s += '    batched: ${b.dynamic_batched_count}\n';
+            _s += '    static: ${b.static_batched_count}\n';
+            _s += '    shader: ' + (b.shader == null ? 'none' : b.shader.id) + '\n';
+        return _s;
+    }
+
     public function get_render_stats_string() {
+
+        var _bs = '';
+
+        #if !no_debug_console
+            if(!hide_debug) {
+                _bs += get_batcher_info(Luxe.debug.batcher);
+            }
+        #end
+
+        for(b in Luxe.renderer.batchers) _bs += get_batcher_info(b);
 
         return
             'Renderer Statistics\n\n' +
-            'batcher count : ' + _render_stats.batchers + '\n' +
             'total geometry : ' + _render_stats.geometry_count + '\n' +
             'visible geometry : ' + _render_stats.visible_count + '\n' +
             'dynamic batch count : ' + _render_stats.dynamic_batched_count + '\n' +
             'static batch count : ' + _render_stats.static_batched_count + '\n' +
             'total draw calls : ' + _render_stats.draw_calls + '\n' +
-            'total vert count : ' + _render_stats.vert_count;
+            'total vert count : ' + _render_stats.vert_count + '\n' +
+            'batchers : ' + _render_stats.batchers + '\n'+ 
+            _bs;
 
     } //get_render_stats_string
 
@@ -170,8 +193,9 @@ class StatsDebugView extends luxe.debug.DebugView  {
         inline function _res(res:Resource) return '${res.id} • ${res.ref}\t\n';
         inline function _shd(res:Shader) return '(${res.vert_id}, ${res.frag_id})    ${res.id} • ${res.ref}\t\n';
         inline function _txt(res:TextResource) {
-            _total_txt += res.asset.text.length;
-            return '(~${Luxe.utils.bytes_to_string(res.asset.text.length)}) ${res.id} • ${res.ref}\t\n';
+            var _l = if(res.asset != null  && res.asset.text != null) res.asset.text.length else 0;
+            _total_txt += _l;
+            return '(~${Luxe.utils.bytes_to_string(_l)}) ${res.id} • ${res.ref}\t\n';
         }
         inline function _tex(tex:Texture) {
             if(tex.resource_type == ResourceType.render_texture) {
@@ -181,20 +205,27 @@ class StatsDebugView extends luxe.debug.DebugView  {
             }
             return '(${tex.width_actual}x${tex.height_actual} ~${Luxe.utils.bytes_to_string(tex.memory_use())})    ${tex.id} • ${tex.ref}\t\n';
         }
-        inline function _snd(res:AudioResource) return {
+        // inline 
+        function _snd(res:AudioResource) return {
             var _s = '';
+            if(res.source != null) {
                 _s += res.source.is_stream ? 'STREAM •' : '';
                 _s += ' ${res.id} • ${res.ref}\t\n';
-                if(!res.source.is_stream && res.source.info.data.samples != null) {
+                if(!res.source.is_stream && res.source.info != null && res.source.info.data.samples != null) {
                     _s += '~${Luxe.utils.bytes_to_string(res.source.info.data.samples.byteLength)}';
                     _total_snd += res.source.info.data.samples.byteLength;
                 }
-                _s += ' ${res.source.info.data.bits_per_sample}bit';
-                _s += ' ${res.source.info.data.channels}ch';
-                _s += ' ${luxe.utils.Maths.fixed(res.source.info.data.rate/1000,1)}khz';
-                _s += ' ${res.source.info.format}';
-                _s += ' ${luxe.utils.Maths.fixed(res.source.duration(),4)}s';
+                if(res.source.info != null && res.source.info.data != null) {
+                    _s += ' ${res.source.info.data.bits_per_sample}bit';
+                    _s += ' ${res.source.info.data.channels}ch';
+                    _s += ' ${luxe.utils.Maths.fixed(res.source.info.data.rate/1000,1)}khz';
+                    _s += ' ${res.source.info.format}';
+                    _s += ' ${luxe.utils.Maths.fixed(res.source.duration(),4)}s';
+                }
                 _s += '\t\t\n\n';
+            } else {
+                _s += '${res.id} • ${res.ref}\t\n';
+            }
 
             return _s;
         }
@@ -284,22 +315,46 @@ class StatsDebugView extends luxe.debug.DebugView  {
     override function onmousewheel(e:MouseEvent) {
 
         Actuate.stop(resource_list_text.pos);
+        Actuate.stop(render_stats_text.pos);
 
-        var h = resource_list_text.text_bounds.h;
-        var vh = Luxe.debug.inspector.size.y - margin;
-        var diff = h - vh;
+            var vh = Luxe.debug.inspector.size.y - margin;
+            var max_y = Luxe.debug.padding.y +(margin*1.5);
+            var min_y = max_y;
 
-        var new_y = resource_list_text.pos.y;
-        var max_y = Luxe.debug.padding.y +(margin*1.5);
-        var min_y = max_y;
+        var px = e.pos.x/Luxe.screen.w; 
+        if(px > 0.5) {
 
-        if(diff > 0) {
-            min_y = (max_y - (diff+(margin*2)));
+                //resource list
+            var h = resource_list_text.text_bounds.h;
+            var diff = h - vh;
+            var new_y = resource_list_text.pos.y;
+
+            if(diff > 0) {
+                min_y = (max_y - (diff+(margin*2)));
+            }
+
+            new_y -= (margin/2) * e.y;
+            new_y = Maths.clamp(new_y, min_y, max_y);
+            resource_list_text.pos.y = new_y;
+            resource_list_text.geometry.dirty = true;
+
+        } else {
+
+                //render list
+            var h = render_stats_text.text_bounds.h;
+            var diff = h - vh;
+            var new_y = render_stats_text.pos.y;
+
+            if(diff > 0) {
+                min_y = (max_y - (diff+(margin*2)));
+            }
+
+            new_y -= (margin/2) * e.y;
+            new_y = Maths.clamp(new_y, min_y, max_y);
+            render_stats_text.pos.y = new_y;
+            render_stats_text.geometry.dirty = true;
+
         }
-
-        new_y -= (margin/2) * e.y;
-        new_y = Maths.clamp(new_y, min_y, max_y);
-        resource_list_text.pos.y = new_y;
 
     }
 #end
@@ -327,23 +382,36 @@ class StatsDebugView extends luxe.debug.DebugView  {
         render_stats_text.visible = false;
         resource_list_text.visible = false;
         Actuate.stop(resource_list_text.pos);
+        Actuate.stop(render_stats_text.pos);
 
     } //hide
 
     function reset_tween() {
 
         Actuate.stop(resource_list_text.pos);
+        Actuate.stop(render_stats_text.pos);
+
+        var vh = Luxe.debug.inspector.size.y - margin;
+        var start_y = Luxe.debug.padding.y +(margin*1.5);
 
         var h = resource_list_text.text_bounds.h;
-        var vh = Luxe.debug.inspector.size.y - margin;
         var diff = h - vh;
-
-        var start_y = Luxe.debug.padding.y +(margin*1.5);
         resource_list_text.pos.y = start_y;
 
         if(diff > 0) {
             var end_y = (start_y - (diff+(margin*2)));
-            Actuate.tween(resource_list_text.pos, 8, { y:end_y }).repeat().delay(4).reflect().ease(luxe.tween.easing.Linear.easeNone);
+            Actuate.tween(resource_list_text.pos, 8, { y:end_y }).repeat().delay(4).reflect().ease(luxe.tween.easing.Linear.easeNone)
+            .onUpdate(function(){ resource_list_text.geometry.dirty = true; });
+        }
+
+        h = render_stats_text.text_bounds.h;
+        diff = h - vh;
+        render_stats_text.pos.y = start_y;
+
+        if(diff > 0) {
+            var end_y = (start_y - (diff+(margin*2)));
+            Actuate.tween(render_stats_text.pos, 8, { y:end_y }).repeat().delay(4).reflect().ease(luxe.tween.easing.Linear.easeNone)
+            .onUpdate(function(){ render_stats_text.geometry.dirty = true; });
         }
 
     }
@@ -376,7 +444,8 @@ class StatsDebugView extends luxe.debug.DebugView  {
         debug_geometry_count = Luxe.debug.batcher.geometry.size();
         debug_draw_call_count = Luxe.debug.batcher.draw_calls;
 
-        _render_stats.batchers = Luxe.renderer.stats.batchers;
+            //:todo: +1 here, debug batcher was hidden recently
+        _render_stats.batchers = Luxe.renderer.stats.batchers + 1;
         _render_stats.geometry_count = Luxe.renderer.stats.geometry_count;
         _render_stats.visible_count = Luxe.renderer.stats.visible_count;
         _render_stats.dynamic_batched_count = Luxe.renderer.stats.dynamic_batched_count;
@@ -385,7 +454,8 @@ class StatsDebugView extends luxe.debug.DebugView  {
         _render_stats.vert_count = Luxe.renderer.stats.vert_count;
 
         if(hide_debug) {
-
+                
+            _render_stats.batchers -= 1;
             _render_stats.geometry_count = _render_stats.geometry_count - debug_geometry_count;
             _render_stats.visible_count = _render_stats.visible_count - Luxe.debug.batcher.visible_count;
             _render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count - Luxe.debug.batcher.dynamic_batched_count;// - Luxe.debug.batcher.static_batched_count;
