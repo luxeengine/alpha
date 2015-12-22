@@ -83,6 +83,10 @@ class Geometry {
     @:isVar public var dirty        (get, set) : Bool = false;
     @:isVar public var color        (default, set) : Color;
 
+        //:voltile:wip: whether or not the dirty flag is used or not
+        //if this is false, the geometry will submit even when not dirty
+    public var dirty_based = true;
+
         //internal bool flag for clip sorting and clipping state
     @:noCompletion @:isVar public var clip (get, set) : Bool;
 
@@ -268,10 +272,6 @@ class Geometry {
     public function add( v : Vertex ) {
 
         vertices.push( v );
-
-        if(vertices.length > Luxe.renderer.batcher.max_verts) {
-            throw '$id / Currently a single geometry cannot exceed the maximum vert count of ' + Luxe.renderer.batcher.max_verts;
-        }
 
     } //add
 
@@ -504,7 +504,7 @@ class Geometry {
     var _prev_count = 0;
     function update_buffers() : Bool {
 
-        if(!dirty) return false;
+        if(!dirty && dirty_based) return false;
 
         var _verts = vertices.length;
 
