@@ -303,6 +303,7 @@ class SpriteAnimation extends Component {
                 } else {
                     stop();
                     emit_anim_event('end');
+                    _frame = frame;
                 }
 
             } //if end
