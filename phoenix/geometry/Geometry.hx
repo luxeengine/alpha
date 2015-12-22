@@ -17,6 +17,10 @@ import snow.api.buffers.Float32Array;
 
 import snow.modules.opengl.GL;
 
+#if cpp
+using cpp.NativeArray;
+#end
+
 @:allow(phoenix.Batcher)
 class Geometry {
 
@@ -286,17 +290,35 @@ class Geometry {
                            vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array
         ) {
 
-        for(v in vertices) {
+        var _mat = transform.world.matrix;
+        var _el = _mat.elements;
 
-                //the base position of the vert
-            _final_vert_position.set( v.pos.x, v.pos.y, v.pos.z, v.pos.w );
-                //apply the transform to the vert
-            _final_vert_position.transform( transform.world.matrix );
+        #if cpp
+            inline function tx(_x:Float,_y:Float,_z:Float) : Float return _el.unsafeGet(0) * _x + _el.unsafeGet(4) * _y + _el.unsafeGet(8)  * _z + _el.unsafeGet(12);
+            inline function ty(_x:Float,_y:Float,_z:Float) : Float return _el.unsafeGet(1) * _x + _el.unsafeGet(5) * _y + _el.unsafeGet(9)  * _z + _el.unsafeGet(13);
+            inline function tz(_x:Float,_y:Float,_z:Float) : Float return _el.unsafeGet(2) * _x + _el.unsafeGet(6) * _y + _el.unsafeGet(10) * _z + _el.unsafeGet(14);
+        #else
+            inline function tx(_x:Float,_y:Float,_z:Float) : Float return _el[0] * _x + _el[4] * _y + _el[8]  * _z + _el[12];
+            inline function ty(_x:Float,_y:Float,_z:Float) : Float return _el[1] * _x + _el[5] * _y + _el[9]  * _z + _el[13];
+            inline function tz(_x:Float,_y:Float,_z:Float) : Float return _el[2] * _x + _el[6] * _y + _el[10] * _z + _el[14];
+        #end
 
-                vertlist[(vert_index+0)] = _final_vert_position.x;
-                vertlist[(vert_index+1)] = _final_vert_position.y;
-                vertlist[(vert_index+2)] = _final_vert_position.z;
-                vertlist[(vert_index+3)] = _final_vert_position.w;
+        var _count = vertices.length;
+        var _idx = 0;
+
+        while(_idx < _count) {
+            var v = vertices[_idx];
+            var _vx = v.pos.x;
+            var _vy = v.pos.y;
+            var _vz = v.pos.z;
+            _vx = tx(_vx, _vy, _vz);
+            _vy = ty(_vx, _vy, _vz);
+            _vz = tz(_vx, _vy, _vz);
+
+                vertlist[(vert_index+0)] = _vx;
+                vertlist[(vert_index+1)] = _vy;
+                vertlist[(vert_index+2)] = _vz;
+                vertlist[(vert_index+3)] = v.pos.w;
 
             vert_index += 4;
 
@@ -325,6 +347,9 @@ class Geometry {
             #end
 
             normal_index += 4;
+
+
+            _idx++;
 
         } //each vertex
 
