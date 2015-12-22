@@ -182,16 +182,18 @@ class Renderer {
             def(options.name, 'batcher');
             def(options.layer, _new_batcher_layer);
             def(options.camera, new phoenix.Camera());
+            def(options.max_verts, 16384);
 
         } else {
             options = {
                 name : 'batcher',
                 camera : new phoenix.Camera(),
-                layer : _new_batcher_layer
+                layer : _new_batcher_layer,
+                max_verts : 16384
             }
         }
 
-        var _batcher = new Batcher( this, options.name );
+        var _batcher = new Batcher( this, options.name, options.max_verts );
             _batcher.view = options.camera;
             _batcher.layer = options.layer;
 

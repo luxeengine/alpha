@@ -12,5 +12,9 @@ typedef BatcherOptions = {
     @:optional var camera : Camera;
         /** the order/layer for this batcher in the renderer. */
     @:optional var layer : Int;
+        /** The maximum number of vertices to fit into a single batch.
+            This controls how much preallocated memory a single batcher will use.
+            The default is 2^14 (16k), which is around 1mb for the batcher preallocation */
+    @:optional var max_verts : Int;
 
 } //BatcherOptions
