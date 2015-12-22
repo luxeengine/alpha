@@ -185,7 +185,7 @@ class Debug {
             core.on(Ev.mousewheel, mousewheel);
 
                 //create the debug renderer and view
-            batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
+            batcher = new Batcher( Luxe.renderer, 'debug_batcher', Math.floor(Math.pow(2, 20)));
                 //create a camera
             view = new Camera({ camera_name:'debug_batcher_camera' });
                 //set the camera of the batcher
