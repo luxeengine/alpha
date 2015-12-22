@@ -163,6 +163,7 @@ class Parcel {
             _debug('   sounds: ${list.sounds.length}');
 
             if(length == 0) {
+                _debug('nothing to load: ${list.sounds.length}');
                 do_complete(_load_id);
                 return;
             }
@@ -347,6 +348,7 @@ class Parcel {
     public function unload( ?_empty_list:Bool = false ) {
 
         inline function _remove(_id) {
+            log('$_id / removing');
             system.destroy(_id);
             loaded.remove(_id);
         }
@@ -493,7 +495,7 @@ class Parcel {
 
     function one_loaded( _item_id:String, _load_id:String, _resource:Resource, _index:Int, _total:Int ) {
 
-        _debug('loaded $_index / $_item_id / $_total for $_load_id / ' + (_resource == null ? 'sound' : Std.string(_resource)) );
+        _debug('loaded $_index / $_item_id / $_total for $_load_id / ' + Std.string(_resource) );
 
         var _state : ParcelChange = {
             id: _item_id,
