@@ -56,7 +56,7 @@ class Batcher {
     var color_floats   : Int = 0;
     var normal_floats  : Int = 0;
 
-    public function new( _r : Renderer, ?_name:String = '' ) {
+    public function new( _r : Renderer, ?_name:String = '', ?_max_verts:Int=16384 ) {
 
         id = Luxe.utils.uniqueid();
         renderer = _r;
@@ -65,7 +65,7 @@ class Batcher {
         geometry = new BalancedBST<GeometryKey,Geometry>( geometry_compare );
         emitter = new Emitter();
 
-        max_verts = Std.int(Math.pow(2, 14));
+        max_verts = _max_verts;
             //4 floats per vert, i.e x y z w
         max_floats = max_verts * 4;
 
@@ -538,6 +538,14 @@ class Batcher {
 
     inline
     function geometry_batch( geom:Geometry ) {
+
+        if(geom.vertices.length > max_verts) {
+            geom.locked = true;
+            geom.dirty_based = false;
+            luxe.Log.log('WARNING batcher `$name` trying to batch a geometry `${geom.id}` that has more verts than the batcher has preallocated, (${geom.vertices.length} vs max of $max_verts)');
+            luxe.Log.log('WARNING geometry has been marked as direct submit, and will be submitted independently!');
+            return;
+        }
 
             //pos_floats is in element count (so/4)
         var _count_after = geom.vertices.length+(pos_floats/4);
