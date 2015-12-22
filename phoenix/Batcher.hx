@@ -472,12 +472,12 @@ class Batcher {
 
     @:noCompletion
     inline
-    public function submit_static_geometry( geom:Geometry ) {
+    public function submit_static_geometry( geom:Geometry ) : Bool {
 
         var _length = geom.vertices.length;
 
         if( _length == 0 ) {
-            return;
+            return false;
         }
 
         var _updated = geom.update_buffers();
@@ -497,14 +497,16 @@ class Batcher {
             //clear the geometry flags
         geom.dirty = false;
 
+        return true;
+
     } //submit_static_geometry
 
     @:noCompletion
     inline
-    public function submit_current_vertex_list( type : PrimitiveType ) {
+    public function submit_current_vertex_list( type : PrimitiveType ) : Bool {
 
         if( pos_floats == 0 ) {
-            return;
+            return false;
         }
 
         if( pos_floats > max_floats ) {
@@ -531,6 +533,8 @@ class Batcher {
         tcoord_floats = 0;
         color_floats = 0;
         normal_floats = 0;
+
+        return true;
 
     } //submit_current_vertex_list
 
