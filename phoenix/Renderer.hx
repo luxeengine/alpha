@@ -303,10 +303,22 @@ class Renderer {
 
         _debug('creating default shaders...');
 
-        var vert = haxe.Resource.getString('default.vert.glsl');
-        var frag = haxe.Resource.getString('default.frag.glsl');
-        var frag_textured = haxe.Resource.getString('default.frag.textured.glsl');
-        var frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.glsl');
+        var vert = null;
+        var frag = null;
+        var frag_textured = null;
+        var frag_bitmapfont = null;
+
+        if(Luxe.snow.config.render.opengl.profile == snow.types.Types.OpenGLProfile.core) {
+            vert = haxe.Resource.getString('default.vert.gl3.glsl');
+            frag = haxe.Resource.getString('default.frag.gl3.glsl');
+            frag_textured = haxe.Resource.getString('default.frag.textured.gl3.glsl');
+            frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.gl3.glsl');
+        } else {
+            vert = haxe.Resource.getString('default.vert.glsl');
+            frag = haxe.Resource.getString('default.frag.glsl');
+            frag_textured = haxe.Resource.getString('default.frag.textured.glsl');
+            frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.glsl');
+        }
 
         #if luxe_web
             var ext = snow.modules.opengl.GL.current_context.getExtension('OES_standard_derivatives');
