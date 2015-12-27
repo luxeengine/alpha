@@ -751,7 +751,7 @@ class Core extends snow.App {
 
     } //onmousemove
 
-    override function onmousewheel( x:Int, y:Int, timestamp:Float, window_id:Int ) {
+    override function onmousewheel( x:Float, y:Float, timestamp:Float, window_id:Int ) {
 
         if(!inited) return;
 
@@ -760,10 +760,10 @@ class Core extends snow.App {
             window_id : window_id,
             state : InteractState.wheel,
             button : MouseButton.none,
-            x : x,
-            y : y,
-            xrel : x,
-            yrel : y,
+            x : Math.floor(x),
+            y : Math.floor(y), //:todo: mouse wheel float value
+            xrel : Math.floor(x),
+            yrel : Math.floor(y),
             pos : screen.cursor.pos
         }
 
