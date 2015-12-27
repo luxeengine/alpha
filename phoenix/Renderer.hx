@@ -83,11 +83,13 @@ class Renderer {
 
         //also clear the garbage for first swap
 
+        #if luxe_native
             GL.clearDepth(1.0);
             GL.clearColor(0,0,0,1);
             GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
             core.app.runtime.window_swap();
             GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
+        #end
 
         _debug("default Framebuffer set to " + default_fbo);
         _debug("default Renderbuffer set to " + default_rbo);
@@ -123,7 +125,7 @@ class Renderer {
 
         #end //no_default_font
 
-        if(Luxe.core.app.config.render.depth) {
+        if(Luxe.core.app.config.render.depth > 0) {
                 // Enable z buffer use
             state.enable(GL.DEPTH_TEST);
                 // Accept fragment if it closer or equal away from the other
@@ -212,11 +214,11 @@ class Renderer {
 
         GL.clearColor( _color.r, _color.g, _color.b, _color.a );
 
-        if( Luxe.core.app.config.render.depth ) {
-            GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
+        if(Luxe.core.app.config.render.depth > 0) {
+            GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
             GL.clearDepth(1.0);
         } else {
-            GL.clear( GL.COLOR_BUFFER_BIT );
+            GL.clear(GL.COLOR_BUFFER_BIT);
         }
 
     } //clear
@@ -321,7 +323,7 @@ class Renderer {
         }
 
         #if luxe_web
-            var ext = snow.modules.opengl.GL.current_context.getExtension('OES_standard_derivatives');
+            var ext = snow.modules.opengl.GL.gl.getExtension('OES_standard_derivatives');
         #end
 
             //for web + mobile, these are required
