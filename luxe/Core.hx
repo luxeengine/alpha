@@ -592,8 +592,8 @@ class Core extends snow.App {
         var _type : TextEventType = TextEventType.unknown;
 
         switch(type) {
-            case edit: _type = TextEventType.edit;
-            case input: _type = TextEventType.input;
+            case te_edit: _type = TextEventType.edit;
+            case te_input: _type = TextEventType.input;
             default: {
                 return;
             }
@@ -973,11 +973,11 @@ class Core extends snow.App {
         var _event_type : GamepadEventType = GamepadEventType.unknown;
 
         switch(type) {
-            case GamepadDeviceEventType.device_added:
+            case GamepadDeviceEventType.ge_device_added:
                 _event_type = GamepadEventType.device_added;
-            case GamepadDeviceEventType.device_removed:
+            case GamepadDeviceEventType.ge_device_removed:
                 _event_type = GamepadEventType.device_removed;
-            case GamepadDeviceEventType.device_remapped:
+            case GamepadDeviceEventType.ge_device_remapped:
                 _event_type = GamepadEventType.device_remapped;
             default:
         }
