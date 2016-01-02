@@ -308,16 +308,20 @@ class Geometry {
 
         while(_idx < _count) {
             var v = vertices[_idx];
+
             var _vx = v.pos.x;
             var _vy = v.pos.y;
             var _vz = v.pos.z;
-            _vx = tx(_vx, _vy, _vz);
-            _vy = ty(_vx, _vy, _vz);
-            _vz = tz(_vx, _vy, _vz);
 
-                vertlist[(vert_index+0)] = _vx;
-                vertlist[(vert_index+1)] = _vy;
-                vertlist[(vert_index+2)] = _vz;
+                //the old positions must be used to
+                // transform correctly, for each of the components
+            var _tvx = tx(_vx, _vy, _vz);
+            var _tvy = ty(_vx, _vy, _vz);
+            var _tvz = tz(_vx, _vy, _vz);
+
+                vertlist[(vert_index+0)] = _tvx;
+                vertlist[(vert_index+1)] = _tvy;
+                vertlist[(vert_index+2)] = _tvz;
                 vertlist[(vert_index+3)] = v.pos.w;
 
             vert_index += 4;
