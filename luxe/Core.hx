@@ -1006,7 +1006,7 @@ class Core extends snow.App {
         /** return what the game decides for runtime config */
     override function config( config: snow.types.Types.AppConfig ) : snow.types.Types.AppConfig {
 
-        config.user = {};
+        if(config.user == null) config.user = {};
 
             //start with the snow default config
         appconfig = cast config;
