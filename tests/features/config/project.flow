@@ -1,0 +1,46 @@
+{
+
+  snow : {
+    config: {
+      config_path: 'config.json'
+    }
+  },
+
+  luxe:{
+    window:{
+      width:960,
+      height:640,
+      title:'luxe test config',
+      fullscreen:false,
+      resizable:true,
+      borderless:false
+    }
+  },
+
+  project : {
+    name : 'config',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_config',
+      package : 'com.luxeengine.config'
+    },
+
+    build : {
+      dependencies : {
+        luxedev : '*',
+      }
+    },
+
+    files : {
+        //The config file is copied to the build output folder,
+        //and is copied to the same path (so <output>/config.json).
+        //That's where snow looks for it with that name, by default. 
+        //(You can change that with config_path, as above in the snow.config node)
+      config : 'config.json'
+    }
+
+  }
+
+}
