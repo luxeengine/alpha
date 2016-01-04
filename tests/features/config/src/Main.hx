@@ -6,6 +6,7 @@ class Main extends luxe.Game {
 
     override function config(config:luxe.AppConfig) {
 
+        assert(config.user != null);
         assert(config.user.int == 12);
         assert(config.user.float == 1.2);
         assert(config.user.string == 'luxe');
