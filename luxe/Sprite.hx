@@ -80,7 +80,7 @@ class Sprite extends Visual {
 
     } //set_geometry
 
-    override function ondestroy() {
+    override public function ondestroy() {
 
         uv = null;
         geometry_quad = null;

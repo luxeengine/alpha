@@ -36,6 +36,11 @@ class Screen {
     public var w (get,null) : Int;
         /** Returns the screen height as an Int */
     public var h (get,null) : Int;
+        /** Returns the screen device pixel ratio, a scaling factor for high DPI devices.
+            Note that Luxe.screen (and the snow framework below it) only deals with real pixels, not device pixels.
+            Luxe and snow only ever deal with drawable area in real pixels. Which is to say: If you need device pixels, you divide the real pixel size by this value. */
+    public var device_pixel_ratio (get,null) : Float;
+
         /** Convenience: Returns the screen width as a Float */
     @:isVar public var width (default,null) : Float;
         /** Convenience: Returns the screen height as a Float */
@@ -105,6 +110,7 @@ class Screen {
     function get_bounds() : Rectangle return new Rectangle( 0, 0, w, h );
     function get_w() : Int return Std.int(width);
     function get_h() : Int return Std.int(height);
+    function get_device_pixel_ratio() return core.app.runtime.window_device_pixel_ratio();
 
 } //Screen
 
