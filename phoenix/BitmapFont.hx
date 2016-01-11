@@ -273,7 +273,7 @@ class BitmapFont extends Resource {
 
     } //clear
 
-    override function reload() {
+    override public function reload() {
 
         assert(state != ResourceState.destroyed);
 
