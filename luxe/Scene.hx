@@ -370,13 +370,13 @@ class Scene extends Objects {
 
 //Input
 
-    function inputdown( event:{ _name:String, event:InputEvent } ) {
+    function inputdown( event:{ name:String, event:InputEvent } ) {
 
         emit(Ev.inputdown, event);
 
     } //oninputdown
 
-    function inputup( event:{ _name:String, event:InputEvent }) {
+    function inputup( event:{ name:String, event:InputEvent }) {
 
         emit(Ev.inputup, event);
 
