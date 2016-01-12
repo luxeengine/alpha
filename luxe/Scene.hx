@@ -17,6 +17,8 @@ class Scene extends Objects {
     public var started : Bool = false;
         /** The number of entities in this `Scene` */
     public var length(get, null) : Int = 0;
+        /** whether or not this scene has been destroyed */
+    public var destroyed : Bool = false;
 
 //internal
 
@@ -391,6 +393,12 @@ class Scene extends Objects {
     } //destroy
 
     public function destroy() {
+
+        assert(destroyed == false, 'scene / destroying repeatedly `$name`');
+        
+        _debug('destroy / `$name` with $length entities / $id');
+
+        destroyed = true;
 
         Luxe.core.off(Ev.init, init);
         Luxe.core.off(Ev.destroy, _destroy);
