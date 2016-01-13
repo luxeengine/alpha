@@ -193,7 +193,7 @@ class TiledLayer {
 
             var input_ch = input.charAt(i);
 
-            if(input_ch == " " || input_ch == "\n"){
+            if(input_ch == " " || input_ch == "\n" || input_ch == "\r") {
                 i++;
                 continue;
             }
