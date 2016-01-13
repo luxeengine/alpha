@@ -4,6 +4,7 @@ import luxe.Entity;
 import luxe.Vector;
 import luxe.Input;
 import luxe.Sprite;
+import luxe.Log.log;
 
 
 class Main extends luxe.Game {
@@ -27,10 +28,10 @@ class Main extends luxe.Game {
         var go = new FakeGameObject({name:'go'});
 
             //what we want to test is that more than one layer deep affect the parent transform
-        var child1_comp = new Child1('child1', 'Test string 1');
+        var comp1_comp = new Comp1('comp1', 'Test string 1');
 
-        go.add(child1_comp);
-        child1_comp.add(new Child2('child2', 123));
+        go.add(comp1_comp);
+        comp1_comp.add(new Comp2('comp2', 123));
 
             //Actual entity classes (Sprite, Camera atm)
         sprite = new Sprite({
@@ -49,11 +50,11 @@ class Main extends luxe.Game {
         sprite2.rotation_z = 90;
         sprite2.radians = Math.PI;
 
-        var child1_comp2 = new Child1('child1', 'Test String 2');
+        var comp1_comp2 = new Comp1('comp1', 'Test String 2');
 
-            sprite.add(child1_comp2);
+            sprite.add(comp1_comp2);
 
-        child1_comp2.add(new Child2('child2', 565));
+        comp1_comp2.add(new Comp2('comp2', 565));
 
             //default camera is an entity, so give it a component!
         Luxe.camera.add(new RandomCameraShaker({'name': 'shaker'}));
@@ -87,7 +88,7 @@ class Main extends luxe.Game {
     override function update(dt:Float) {
 
         if(spam) {
-            trace(dt);
+            log(dt);
         }
 
     } //update
@@ -137,20 +138,20 @@ class FakeGameObject extends Entity {
 
 
     override function init() {
-        trace('\tgameobject init');
+        log('\tgameobject init');
     } //init
 
     override function onreset() {
-        trace('\tgameobject reset');
+        log('\tgameobject reset');
     } //onreset
 
     override function ondestroy() {
-        trace('\tgameobject destroyed');
+        log('\tgameobject destroyed');
     } //ondestroy
 
     override function update(dt:Float) {
         if(!oncerun){
-            trace('\tgameobject first update ' + dt);
+            log('\tgameobject first update ' + dt);
             oncerun = true;
         }
     } //update
@@ -159,7 +160,7 @@ class FakeGameObject extends Entity {
 } //FakeGameObject
 
 
-class Child1 extends Component {
+class Comp1 extends Component {
 
 
     public var oncerun : Bool = false;
@@ -171,29 +172,33 @@ class Child1 extends Component {
     }
 
     override function init() {
-        trace('\t\tchild1 init with string ' + init_string);
+        log('\t\t\t\tcomp1 init with string ' + init_string);
     } //init
 
     override function onreset() {
-        trace('\t\tchild1 onreset');
+        log('\t\t\t\tcomp1 onreset');
     } //onreset
 
     override function ondestroy() {
-        trace('\t\tchild1 destroyed');
+        log('\t\t\t\tcomp1 destroyed');
     } //ondestroy
+
+    override function onremoved() {
+        log('\t\t\t\tcomp1 onremoved');
+    } //onremoved
 
     override function update(dt:Float) {
         if(!oncerun){
-            trace('\t\tchild1 first update ' + dt);
+            log('\t\tcomp1 first update ' + dt);
             oncerun = true;
         }
 
     } //update
 
 
-} //Child1
+} //Comp1
 
-class Child2 extends Component {
+class Comp2 extends Component {
 
 
     public var dir : Float = 1;
@@ -207,21 +212,25 @@ class Child2 extends Component {
     }
 
     override function init() {
-        trace('\t\t\tchild2 init with value ' + unique_value);
+        log('\t\t\t\tcomp2 init with value ' + unique_value);
     } //init
 
     override function onreset() {
-        trace('\t\t\tchild2 onreset');
+        log('\t\t\t\tcomp2 onreset');
     } //onreset
 
     override function ondestroy() {
-        trace('\t\t\tchild2 ondestroy');
+        log('\t\t\t\tcomp2 ondestroy');
     } //ondestroy
+
+    override function onremoved() {
+        log('\t\t\t\tcomp2 onremoved');
+    } //onremoved
 
     override function update(dt:Float) {
 
         if(!oncerun){
-            trace('\t\t\tchild2 first update ' + dt);
+            log('\t\t\tcomp2 first update ' + dt);
             oncerun = true;
         }
 
@@ -249,4 +258,4 @@ class Child2 extends Component {
     } //update
 
 
-} //Child2
+} //Comp2

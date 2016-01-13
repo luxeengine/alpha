@@ -358,8 +358,9 @@ class Entity extends Objects {
 
         if(component_count > 0) {
             for(_component in components) {
-                _verbose("          " + name + " calling destroy on component " + _component.name );
+                _verbose("          " + name + " calling onremoved on component " + _component.name );
                 _component.onremoved();
+                _verbose("          " + name + " calling ondestroy on component " + _component.name );
                 _component.ondestroy();
             } //for each component
         }
