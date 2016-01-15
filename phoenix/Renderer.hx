@@ -310,22 +310,26 @@ class Renderer {
         var frag_textured = null;
         var frag_bitmapfont = null;
 
-        if(Luxe.snow.config.render.opengl.profile == snow.types.Types.OpenGLProfile.core) {
+        #if !linc_opengl_GLES
+            if(Luxe.snow.config.render.opengl.profile == snow.types.Types.OpenGLProfile.core) {
+                var vaos = [0];
+                opengl.GL.glGenVertexArrays(1, vaos);
+                opengl.GL.glBindVertexArray(vaos[0]);
 
-            var vaos = [0];
-            opengl.GL.glGenVertexArrays(1, vaos);
-            opengl.GL.glBindVertexArray(vaos[0]);
+                vert = haxe.Resource.getString('default.vert.gl3.glsl');
+                frag = haxe.Resource.getString('default.frag.gl3.glsl');
+                frag_textured = haxe.Resource.getString('default.frag.textured.gl3.glsl');
+                frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.gl3.glsl');
+            } 
+        #end
 
-            vert = haxe.Resource.getString('default.vert.gl3.glsl');
-            frag = haxe.Resource.getString('default.frag.gl3.glsl');
-            frag_textured = haxe.Resource.getString('default.frag.textured.gl3.glsl');
-            frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.gl3.glsl');
-        } else {
+        if(vert == null) {
             vert = haxe.Resource.getString('default.vert.glsl');
             frag = haxe.Resource.getString('default.frag.glsl');
             frag_textured = haxe.Resource.getString('default.frag.textured.glsl');
             frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.glsl');
         }
+        
 
         #if luxe_web
             var ext = snow.modules.opengl.GL.gl.getExtension('OES_standard_derivatives');
