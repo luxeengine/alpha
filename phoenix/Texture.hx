@@ -51,6 +51,8 @@ class Texture extends Resource {
     public var width : Int = -1;
         /** The height of the texture */
     public var height : Int = -1;
+        /** The pixels of the texture, read-only (does not affect the texture if modified) */
+    public var pixels(default, null): ArrayBufferView;
 
         /** Set the minification filter type */
     @:isVar public var filter_min   (default,set) : FilterType;
@@ -158,7 +160,7 @@ class Texture extends Resource {
 
         /** Submit a pixels array to the texture id. Must match the type and format accordingly. */
     public function submit( _pixels:ArrayBufferView, ?_target:TextureSubmitTarget, ?_level:Int = 0 ) {
-
+		pixels = _pixels;
         assert(_level >= 0, 'Texture submit level cannot be negative');
 
         var _max = max_size();
