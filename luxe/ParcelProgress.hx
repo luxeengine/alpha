@@ -129,8 +129,11 @@ class ParcelProgress {
             //work out where we are out
         var amount = _state.index / _state.total;
 
-            //update the progress bar
-        set_progress( amount );
+		if (!options.no_visuals)
+		{
+				//update the progress bar
+			set_progress( amount );
+		} //no visuals?
 
     } //onprogress
 
