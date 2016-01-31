@@ -310,7 +310,7 @@ class Renderer {
         var frag_textured = null;
         var frag_bitmapfont = null;
 
-        #if !linc_opengl_GLES
+        #if (!linc_opengl_GLES && !js)
             if(Luxe.snow.config.render.opengl.profile == snow.types.Types.OpenGLProfile.core) {
                 var vaos = [0];
                 opengl.GL.glGenVertexArrays(1, vaos);
