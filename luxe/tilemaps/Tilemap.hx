@@ -74,14 +74,14 @@ class TilemapVisual {
 
     } //default_options
 
-    function create_tile_for_layer( layer:TileLayer, x:Int, y:Int ) : Geometry {
+    function create_tile_for_layer( layer:TileLayer, x:Int, y:Int, depth:Float ) : Geometry {
 
         //implemented in subclass
         return null;
 
     } //create_tile_for_layer
 
-    function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool, _flipy:Bool, _angle:Int ) {
+    function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool, _flipy:Bool, _angle:Int, _depth:Float ) {
 
         //implemented in subclass
 
@@ -111,7 +111,7 @@ class TilemapVisual {
                     if(_id != 0) {
 
                             //create the geometry, this sets the uv's also
-                        _geom = create_tile_for_layer(map.layer(_layer_name), _x, _y);
+                        _geom = create_tile_for_layer(map.layer(_layer_name), _x, _y, _tile_layer.depth);
                             //store it back in the tilemap
                         _geom_layer[_y][_x] = _geom;
 
@@ -128,7 +128,7 @@ class TilemapVisual {
 
                     } else { //id == 0
 
-                        update_tile_id(_geom, _layer_name, _x, _y, _id, _flipx, _flipy, _angle);
+                        update_tile_id(_geom, _layer_name, _x, _y, _id, _flipx, _flipy, _angle, _tile_layer.depth );
 
                     } // id == 0 else
 
@@ -286,6 +286,8 @@ class TileLayer {
     public var tiles : Array<TileArray>;
         /** layer properties */
     public var properties : Map<String,String>;
+	
+	public var depth:Float;
 
     public function new( options:TileLayerOptions ) {
 
@@ -301,6 +303,7 @@ class TileLayer {
         visible = def(options.visible, true);
         fixed = def(options.fixed, true);
         properties = def(options.properties, new Map());
+		depth = def(options.depth, 0);
 
         tiles = [];
 

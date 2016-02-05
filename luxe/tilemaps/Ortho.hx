@@ -83,7 +83,8 @@ class OrthoVisual extends TilemapVisual {
                         //because otherwise the sizes won't match
                         //and because we use it to create tiles when
                         //changing the tile gid later
-                    var _tile_geom = create_tile_for_layer( layer, x, y );
+                    var _tile_geom = create_tile_for_layer( layer, x, y, layer.depth );
+					
 
                     _geom_row.push( _tile_geom );
 
@@ -127,7 +128,7 @@ class OrthoVisual extends TilemapVisual {
 
     } //create
 
-    override function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool, _flipy:Bool, _angle:Int ) {
+    override function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool, _flipy:Bool, _angle:Int, _depth:Float ) {
 
         var tileset = map.tileset_from_id( _id );
         var image_coord = tileset.pos_in_texture( _id );
@@ -146,10 +147,11 @@ class OrthoVisual extends TilemapVisual {
         g.flipx = _flipx;
         g.flipy = _flipy;
         g.uv_angle = _angle;
+		g.depth = _depth;
 
     } //update_tile_id
 
-    override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int ) {
+    override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int, depth:Float ) {
 
         var _map_scaled_tw = map.tile_width*options.scale;
         var _map_scaled_th = map.tile_height*options.scale;
@@ -180,7 +182,7 @@ class OrthoVisual extends TilemapVisual {
             visible : layer.visible,
             texture : (tileset != null) ? tileset.texture : null,
             color : new Color(1,1,1, layer.opacity),
-            depth : options.depth,
+            depth : depth,
             batcher : options.batcher
         });
 
@@ -201,6 +203,7 @@ class OrthoVisual extends TilemapVisual {
             _tile_geom.uv_angle = tile.angle;
             _tile_geom.flipx = tile.flipx;
             _tile_geom.flipy = tile.flipy;
+			_tile_geom.depth = depth;
 
             tileset.texture.filter_min = tileset.texture.filter_mag = options.filter;
 

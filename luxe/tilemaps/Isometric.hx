@@ -90,7 +90,7 @@ class IsometricVisual extends TilemapVisual {
 
                 for( x in 0 ... map.width ) {
 
-                    var _tile_geom = create_tile_for_layer(layer, x, y);
+                    var _tile_geom = create_tile_for_layer(layer, x, y, options.depth);
 
                         //we want to push nulls into here,
                         //because otherwise the sizes won't match
@@ -146,7 +146,7 @@ class IsometricVisual extends TilemapVisual {
 
     } //create
 
-    override function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool, _flipy:Bool, _angle:Int ) {
+    override function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool, _flipy:Bool, _angle:Int, _depth:Float ) {
 
         var tileset = map.tileset_from_id( _id );
         var image_coord = tileset.pos_in_texture( _id );
@@ -164,7 +164,7 @@ class IsometricVisual extends TilemapVisual {
 
     } //update_tile_id
 
-    override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int ) {
+    override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int, depth:Float ) {
 
             //map tile size scaled up
         var _scaled_tilewidth = map.tile_width*options.scale;
