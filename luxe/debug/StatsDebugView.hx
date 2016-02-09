@@ -209,17 +209,16 @@ class StatsDebugView extends luxe.debug.DebugView  {
         function _snd(res:AudioResource) return {
             var _s = '';
             if(res.source != null) {
-                _s += res.source.is_stream ? 'STREAM •' : '';
+                _s += res.source.data.is_stream ? 'STREAM •' : '';
                 _s += ' ${res.id} • ${res.ref}\t\n';
-                if(!res.source.is_stream && res.source.info != null && res.source.info.data.samples != null) {
-                    _s += '~${Luxe.utils.bytes_to_string(res.source.info.data.samples.byteLength)}';
-                    _total_snd += res.source.info.data.samples.byteLength;
+                if(res.source.data != null && !res.source.data.is_stream) {
+                    _s += '~${Luxe.utils.bytes_to_string(res.source.data.length)}';
+                    _total_snd += res.source.data.length;
                 }
-                if(res.source.info != null && res.source.info.data != null) {
-                    _s += ' ${res.source.info.data.bits_per_sample}bit';
-                    _s += ' ${res.source.info.data.channels}ch';
-                    _s += ' ${luxe.utils.Maths.fixed(res.source.info.data.rate/1000,1)}khz';
-                    _s += ' ${res.source.info.format}';
+                if(res.source.data != null) {
+                    _s += ' ${res.source.data.channels}ch';
+                    _s += ' ${luxe.utils.Maths.fixed(res.source.data.rate/1000,1)}khz';
+                    _s += ' ${res.source.data.format}';
                     _s += ' ${luxe.utils.Maths.fixed(res.source.duration(),4)}s';
                 }
                 _s += '\t\t\n\n';

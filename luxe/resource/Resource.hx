@@ -379,7 +379,7 @@ class AudioResource extends Resource {
         is_stream = def(_options.is_stream,false);
         
         if(asset != null) {
-            source = new AudioSource(Luxe.snow, asset.audio, is_stream);
+            source = new AudioSource(Luxe.snow, asset.audio);
         }
 
     } //new
@@ -399,7 +399,7 @@ class AudioResource extends Resource {
             get.then(function(_asset:AssetAudio) {
 
                 asset = _asset;
-                source = new AudioSource(Luxe.snow, asset.audio, is_stream);
+                source = new AudioSource(Luxe.snow, asset.audio);
                 state = ResourceState.loaded;
                 resolve(this);
 
