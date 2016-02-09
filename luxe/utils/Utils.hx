@@ -271,8 +271,8 @@ class Utils {
     #if release inline #end
     public function bytes_to_string( bytes:Int, ?precision:Int=3 ) : String {
 
-        var index : Int = Math.floor( Math.log(bytes) / Math.log(1024) );
-        var _byte_value = ( bytes / Math.pow(1024, index));
+        var index = bytes == 0 ? 0 : Math.floor(Math.log(bytes) / Math.log(1024));
+        var _byte_value = bytes / Math.pow(1024, index);
             _byte_value = luxe.utils.Maths.fixed(_byte_value, precision);
 
         return _byte_value + ' ' + _byte_levels[index];
