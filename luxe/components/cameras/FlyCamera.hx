@@ -167,16 +167,19 @@ class FlyCamera extends luxe.Camera {
 
     } //move_look
 
+    var locked = false;
     override function onmouseup(e:MouseEvent) {
 
         if(e.button == MouseButton.left && !ready) {
             enable();
         }
 
-        if(e.button == MouseButton.left && !Luxe.screen.cursor.lock) {
-            Luxe.screen.cursor.lock = true;
-        } else if(e.button == MouseButton.right && Luxe.screen.cursor.lock) {
-            Luxe.screen.cursor.lock = false;
+        if(e.button == MouseButton.left && !locked) {
+            locked = true;
+            Luxe.snow.runtime.window_grab(locked);
+        } else if(e.button == MouseButton.right && locked) {
+            locked = false;
+            Luxe.snow.runtime.window_grab(locked);
             ready = false;
         }
 

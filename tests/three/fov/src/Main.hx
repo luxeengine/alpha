@@ -7,8 +7,7 @@ class Main extends luxe.Game {
 
      override function config(config:luxe.AppConfig) {
 
-        config.render.depth_bits = 24;
-        config.render.depth = true;
+        config.render.depth = 24;
 
         return config;
 

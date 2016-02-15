@@ -17,8 +17,7 @@ class Main extends luxe.Game {
         config.preload.textures.push({ id:'assets/tower.jpg' });
         config.preload.texts.push({ id:'assets/tower.obj' });
 
-        config.render.depth_bits = 24;
-        config.render.depth = true;
+        config.render.depth = 24;
 
         return config;
 
