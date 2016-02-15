@@ -90,9 +90,12 @@ You should see something similar to this open in your browser
 Once everything is set up, there are further steps for working with luxe.
 
 - You can and should set up [IDE/Editor support](#step5).
+
+###  Setup for windows, mac, linux, iOS or Android
+
 - Setup native platforms (mac/windows/linux/ios/android), [go to step 4](#step4).
 
-Additionally,
+### Additionally,
 
 - Always visit http://snowkit.org for the latest news and user posts.
 - You can follow news on http://twitter.com/snowkitorg
@@ -107,37 +110,31 @@ Additionally,
 ###Step 4: Setup Native targets
 </a>
 
+**Step 4.0 - Install snow native dependencies**
+
+###### `hxcpp` is required 
+
+Run `haxelib install hxcpp`
+
+###### As of snow alpha-2.0 there are a few dependencies for snow.
+
+Run the following commands to install them.
+
+`haxelib git linc_openal https://github.com/snowkit/linc_openal.git`
+`haxelib git linc_timestamp https://github.com/snowkit/linc_timestamp.git`
+`haxelib git linc_stb https://github.com/snowkit/linc_stb.git`
+`haxelib git linc_ogg https://github.com/snowkit/linc_ogg.git`
+`haxelib git linc_sdl https://github.com/snowkit/linc_sdl.git`
+`haxelib git linc_opengl https://github.com/snowkit/linc_opengl.git`
+
 **Step 4.1 - Install C++**   
 To build the native targets, you must have c++ installed.
 
-- Windows : [Visual C++ 2013](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx)   
+- Windows : [Visual C++](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx)   
 - Linux : GCC/G++   
 - Mac : [Xcode](https://developer.apple.com/xcode/downloads/) (and command line tools)   
 - iOS : Xcode, [iOS SDK](https://developer.apple.com/ios/) (comes with xcode)
-- Android : [Android SDK](http://developer.android.com/sdk/index.html), [Android NDK](https://developer.android.com/tools/sdk/ndk/index.html), [Continued setup](http://snowkit.org/2014/10/29/quick-setup-guides-and-help/#androidspecificsetup)
-
-**Step 4.2 - Download the snow prebuilt binary**   
-
-snow is the underlying framework that handles the platform specifics for luxe.
-
-Since snow interacts with the platform, it has prebuilt c++ components.   
-These prebuilt binaries are compiled by an automated build server,   
-and _currently_, **need to be copied manually into your snow folder.**
-
-Download the prebuilt files for your target platforms here:
-
-#### http://build.luxeengine.com/snow
-
-- Find out where snow is stored by running `haxelib path snow`.
-- Copy the contents of the zip file into the `<snow root>/ndll/` folder.
-- For history and details, [read this dev log](http://snowkit.org/2015/03/23/snowkit-dev-log-2-history/#buildkitestatusanddownloads).
-
-It should look like this (note: mine includes all platforms inside the ndll folder,   
-you only need the ones for the targets that you are using currently).
-
-![](images/snowndllfolder.png)
-
----
+- Android : [Android Studio](http://developer.android.com/tools/studio/index.html), [Android NDK](https://developer.android.com/tools/sdk/ndk/index.html), [Continued setup here](http://snowkit.org/2014/10/29/quick-setup-guides-and-help/#androidspecificsetup)
 
 <a id="step5" name="step5">
 ###Step 5: Editor Setup
@@ -171,7 +168,7 @@ http://atom.io/packages/flow
 
 When using the flash develop template provided, you also get project management, building and running, and full code completion.
 
-![](images/plugins/5.png)
+![](images/plugins/fd.png)
 
 The FD template is located at [snowkit-fd](https://github.com/Chman/Snowkit-FD),   
 and here is a direct [Download link](https://github.com/Chman/Snowkit-FD/blob/master/SnowkitTemplate.fdz?raw=true)
