@@ -18,12 +18,6 @@
 
         <script>
 
-          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
-          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
-          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
-          insertBefore(d,q)}(window,document,'script','_gs');
-          _gs('GSN-518437-J');
-
             $(document).ready(function() {
 
                 $('.section').css('display','none');
@@ -152,7 +146,7 @@ This allows <em>encapsulation</em> and <em>decoupling</em> systems from each oth
 <span class="hljs-keyword">var</span> listen_id = events.listen(<span class="hljs-string">'event'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{ } );
 
         <span class="hljs-comment">//this will remove just this listener</span>
-    events.unlisten( listen_id );
+    events.disconnect( listen_id );
 </code></pre><h2 id="being-more-specific">Being more specific</h2>
 <hr>
 <p>This example could use some more specifics, for example, the player will handle a ‘takes_damage’ event from more than just arrow projectiles.   </p>
@@ -354,7 +348,7 @@ Luxe.events.listen(<span class="hljs-string">'game.player.damage'</span>, on_pla
     });
 
         <span class="hljs-comment">//remove one of them</span>
-    Luxe.events.unlisten( event_id );
+    Luxe.events.disconnect( event_id );
 
         <span class="hljs-comment">//now only two listeners</span>
     Luxe.events.fire(<span class="hljs-string">'debug:event1'</span>, {

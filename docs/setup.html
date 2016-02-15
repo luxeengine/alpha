@@ -18,12 +18,6 @@
 
         <script>
 
-          !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
-          arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
-          d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
-          insertBefore(d,q)}(window,document,'script','_gs');
-          _gs('GSN-518437-J');
-
             $(document).ready(function() {
 
                 $('.section').css('display','none');
@@ -114,9 +108,12 @@ To use the alpha of luxe, you must have git installed.<br>If you don’t have gi
 <p>Once everything is set up, there are further steps for working with luxe.</p>
 <ul>
 <li>You can and should set up <a href="#step5">IDE/Editor support</a>.</li>
+</ul>
+<h3 id="setup-for-windows-mac-linux-ios-or-android">Setup for windows, mac, linux, iOS or Android</h3>
+<ul>
 <li>Setup native platforms (mac/windows/linux/ios/android), <a href="#step4">go to step 4</a>.</li>
 </ul>
-<p>Additionally,</p>
+<h3 id="additionally-">Additionally,</h3>
 <ul>
 <li>Always visit <a href="http://snowkit.org">http://snowkit.org</a> for the latest news and user posts.</li>
 <li>You can follow news on <a href="http://twitter.com/snowkitorg">http://twitter.com/snowkitorg</a></li>
@@ -129,27 +126,25 @@ To use the alpha of luxe, you must have git installed.<br>If you don’t have gi
 <p><a id="step4" name="step4"></p>
 <h3 id="step-4-setup-native-targets">Step 4: Setup Native targets</h3>
 <p></a></p>
+<p><strong>Step 4.0 - Install snow native dependencies</strong></p>
+<h6 id="-hxcpp-is-required"><code>hxcpp</code> is required</h6>
+<p>Run <code>haxelib install hxcpp</code></p>
+<h6 id="as-of-snow-alpha-2-0-there-are-a-few-dependencies-for-snow-">As of snow alpha-2.0 there are a few dependencies for snow.</h6>
+<p>Run the following commands to install them.</p>
+<p><code>haxelib git linc_openal https://github.com/snowkit/linc_openal.git</code>
+<code>haxelib git linc_timestamp https://github.com/snowkit/linc_timestamp.git</code>
+<code>haxelib git linc_stb https://github.com/snowkit/linc_stb.git</code>
+<code>haxelib git linc_ogg https://github.com/snowkit/linc_ogg.git</code>
+<code>haxelib git linc_sdl https://github.com/snowkit/linc_sdl.git</code>
+<code>haxelib git linc_opengl https://github.com/snowkit/linc_opengl.git</code></p>
 <p><strong>Step 4.1 - Install C++</strong><br>To build the native targets, you must have c++ installed.</p>
 <ul>
-<li>Windows : <a href="https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx">Visual C++ 2013</a>   </li>
+<li>Windows : <a href="https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx">Visual C++</a>   </li>
 <li>Linux : GCC/G++   </li>
 <li>Mac : <a href="https://developer.apple.com/xcode/downloads/">Xcode</a> (and command line tools)   </li>
 <li>iOS : Xcode, <a href="https://developer.apple.com/ios/">iOS SDK</a> (comes with xcode)</li>
-<li>Android : <a href="http://developer.android.com/sdk/index.html">Android SDK</a>, <a href="https://developer.android.com/tools/sdk/ndk/index.html">Android NDK</a>, <a href="http://snowkit.org/2014/10/29/quick-setup-guides-and-help/#androidspecificsetup">Continued setup</a></li>
+<li>Android : <a href="http://developer.android.com/tools/studio/index.html">Android Studio</a>, <a href="https://developer.android.com/tools/sdk/ndk/index.html">Android NDK</a>, <a href="http://snowkit.org/2014/10/29/quick-setup-guides-and-help/#androidspecificsetup">Continued setup here</a></li>
 </ul>
-<p><strong>Step 4.2 - Download the snow prebuilt binary</strong>   </p>
-<p>snow is the underlying framework that handles the platform specifics for luxe.</p>
-<p>Since snow interacts with the platform, it has prebuilt c++ components.<br>These prebuilt binaries are compiled by an automated build server,<br>and <em>currently</em>, <strong>need to be copied manually into your snow folder.</strong></p>
-<p>Download the prebuilt files for your target platforms here:</p>
-<h4 id="http-build-luxeengine-com-snow"><a href="http://build.luxeengine.com/snow">http://build.luxeengine.com/snow</a></h4>
-<ul>
-<li>Find out where snow is stored by running <code>haxelib path snow</code>.</li>
-<li>Copy the contents of the zip file into the <code>&lt;snow root&gt;/ndll/</code> folder.</li>
-<li>For history and details, <a href="http://snowkit.org/2015/03/23/snowkit-dev-log-2-history/#buildkitestatusanddownloads">read this dev log</a>.</li>
-</ul>
-<p>It should look like this (note: mine includes all platforms inside the ndll folder,<br>you only need the ones for the targets that you are using currently).</p>
-<p><img src="images/snowndllfolder.png" alt=""></p>
-<hr>
 <p><a id="step5" name="step5"></p>
 <h3 id="step-5-editor-setup">Step 5: Editor Setup</h3>
 <p></a></p>
