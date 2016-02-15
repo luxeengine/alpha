@@ -56,26 +56,26 @@ class Main extends luxe.Game {
                     }
                 #end
 
-                #if web
+                // #if web
 
-                    var event = ev.input.event;
-                    if(event.type == 'orientation') {
-                        // available:
-                        // event.alpha;
-                        // event.beta;
-                        // event.gamma;
-                    } else
-                    if(event.type == 'motion') {
-                        // available:
-                        // event.acceleration (.x, .y, .z)
-                        // event.accelerationIncludingGravity (.x, .y, .z)
-                        // event.rotationRate (.alpha, .beta, .gamma)
-                        accel_x = event.acceleration.x;
-                        accel_y = event.acceleration.y;
-                        accel_z = event.acceleration.z;
-                    }
+                //     var event = ev.input.event;
+                //     if(event.type == 'orientation') {
+                //         // available:
+                //         // event.alpha;
+                //         // event.beta;
+                //         // event.gamma;
+                //     } else
+                //     if(event.type == 'motion') {
+                //         // available:
+                //         // event.acceleration (.x, .y, .z)
+                //         // event.accelerationIncludingGravity (.x, .y, .z)
+                //         // event.rotationRate (.alpha, .beta, .gamma)
+                //         accel_x = event.acceleration.x;
+                //         accel_y = event.acceleration.y;
+                //         accel_z = event.acceleration.z;
+                //     }
 
-                #end
+                // #end
 
             } //if joystick
         } //if input
