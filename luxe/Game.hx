@@ -6,11 +6,12 @@ import luxe.Input;
 import luxe.Screen;
 import snow.App;
 
-@:noCompletion
+@:noCompletion 
+@:keep
 @:keepSub
 class Game extends Emitter<Int> {
 
-    @:noCompletion public var app : Core;
+    public var app : Core;
 
         /** Empty constructor. Use `ready` instead. */
     public function new() {

@@ -2,8 +2,7 @@ package luxe;
 
 import snow.Snow;
 import snow.types.Types;
-import snow.system.window.Window;
-import snow.system.assets.Asset;
+import snow.systems.assets.Asset;
 import snow.api.buffers.Uint8Array;
 
 import Luxe;
@@ -28,19 +27,12 @@ import phoenix.Shader;
 import luxe.Game;
 import luxe.Log.*;
 
+typedef UserConfig = Dynamic
 
 @:keep
 @:noCompletion
 @:log_as('luxe')
-
-class Core
-extends
-    #if luxe_appfixedtimestep
-        snow.App.AppFixedTimestep
-    #else
-        snow.App
-    #end
-{
+class Core extends snow.App {
 
         //the game object running the core
     public var game : Game;
@@ -48,8 +40,6 @@ extends
 
         //if the console is displayed atm
     public var console_visible : Bool = false;
-        /** Set to true if the app is running without a window */
-    public var headless : Bool = false;
 
 
 //Sub Systems, mostly in order of importance
@@ -75,10 +65,10 @@ extends
     public var inited : Bool = false;
 
     var init_config: luxe.AppConfig;
+    var headless = false;
 
-    @:noCompletion public function new( _game:Game, _config:luxe.AppConfig ) {
-
-        super();
+    @:noCompletion
+    public function new( _game:Game, _config:luxe.AppConfig ) {
 
         init_config = _config;
         game = _game;
@@ -111,9 +101,6 @@ extends
 
         log(runtime_info());
 
-            //flag for later
-        headless = (app.window == null);
-
             //:todo: I'm not happy about this but for now it will do
         #if no_default_font
 
@@ -121,6 +108,7 @@ extends
 
         #else
 
+            headless = appconfig.headless;
             if(!headless) {
 
                 var _font_name = 'default.png';
@@ -193,44 +181,28 @@ extends
         Luxe.debug = debug = new Debug( this );
         Luxe.io = io = new IO( this );
 
-        draw = new Draw( this );
-        timer = new Timer( this );
-        events = new Events();
-        audio = new Audio( this );
-        input = new Input( this );
-        physics = new Physics( this );
+        draw    = new Draw(this);
+        timer   = new Timer(this);
+        events  = new Events();
+        audio   = new Audio(this);
+        input   = new Input(this);
+        physics = new Physics(this);
 
-            //should be up earlier
         resources = new Resources();
         Luxe.resources = resources;
 
         if(!headless) {
-                //listen for window events
-            app.window.onevent = window_event;
-                //create the renderer
-            renderer = new Renderer( this, asset );
-                //assign the globals
+            renderer = new Renderer(this, asset);
             Luxe.renderer = renderer;
         }
 
-            //if there is a window,
-            //store the size
-        var _window_w = 0;
-        var _window_h = 0;
+        var _window_w = app.runtime.window_width();
+        var _window_h = app.runtime.window_height();
 
-        if(app.window != null) {
-            _window_w = app.window.width;
-            _window_h = app.window.height;
-        }
-
-            //store the size for access from API
-        screen = new luxe.Screen( this, _window_w, _window_h );
-
-            //Now make sure
-            //they start up
+        screen = new luxe.Screen(this, _window_w, _window_h);
 
         debug.init();
-        io.init();
+           io.init();
         timer.init();
         audio.init();
         input.init();
@@ -241,11 +213,11 @@ extends
 
         physics.init();
 
-        Luxe.audio = audio;
-        Luxe.draw = draw;
+        Luxe.audio  = audio;
+        Luxe.draw   = draw;
         Luxe.events = events;
-        Luxe.timer = timer;
-        Luxe.input = input;
+        Luxe.timer  = timer;
+        Luxe.input  = input;
 
         if(!headless) {
             Luxe.camera = new luxe.Camera({ name:'default camera', view:renderer.camera });
@@ -261,7 +233,6 @@ extends
             debug.create_debug_console();
         }
 
-            //
         internal_pre_ready();
 
     } //init
@@ -269,7 +240,8 @@ extends
     function internal_pre_ready() {
 
         if(!headless) {
-                //Don't remove this, :todo:
+                //:todo:GL context query
+                //Don't remove this,
                 //it's a catch for crashing because
                 //we don't have a valid GL context, until the query
                 //is finalized on snow side
@@ -309,13 +281,13 @@ extends
 
             //and even more finally, tell snow we want to
             //know when it's rendering the window so we can draw
-        if(app.window != null && !headless) {
+        if(!headless) {
 
-            app.window.onrender = render;
-
-                //start here because end is called first below
-            debug.start(Tag.update, 50);
-            debug.start(Tag.renderdt, 50);
+            #if !luxe_noprofile 
+                    //start here because end is called first below
+                debug.start(Tag.update, 50);
+                debug.start(Tag.renderdt, 50);
+            #end
 
         } //app.window != null && !headless
 
@@ -334,11 +306,6 @@ extends
                 //Reset the physics (starts the timer etc)
             physics.reset();
 
-                //Now, if no main loop is requested we should immediately shutdown
-            if(!app.snow_config.has_loop) {
-                shutdown();
-            }
-
         } //!shutting down
 
     } //internal_ready
@@ -353,16 +320,19 @@ extends
 
     } //shutdown
 
+    // @:generic
     inline
     public function on<T>(event:Ev, handler:T->Void ) {
         emitter.on(event, handler);
     }
 
+    // @:generic
     inline
     public function off<T>(event:Ev, handler:T->Void ) {
         return emitter.off(event, handler);
     }
 
+    // @:generic
     inline
     public function emit<T>(event:Ev, ?data:T) {
         return emitter.emit(event, data);
@@ -376,12 +346,23 @@ extends
         if(!has_shutdown) emitter.emit(Ev.tickend);
     }
 
-        //called by snow
     override function onevent( event:snow.types.Types.SystemEvent ) {
+
+        if(event.window != null) {
+            window_event(event.window);
+        }
 
         game.onevent( event );
 
+        event = null;
+
     } //onevent
+
+    override function tick(delta:Float) {
+
+        render();
+
+    } //tick
 
         //called by snow
     override function update( dt:Float ) {
@@ -393,8 +374,10 @@ extends
         if(has_shutdown) return;
         if(!inited) return;
 
-        debug.end(Tag.update);
-        debug.start(Tag.update);
+        #if !luxe_noprofile 
+            debug.end(Tag.update);
+            debug.start(Tag.update);
+        #end
 
             //Update all the subsystems, again, order important
 //Timers first
@@ -418,14 +401,14 @@ extends
         physics.process();
 
 //Run update callbacks
-            debug.start(Tag.updates);
+            #if !luxe_noprofile debug.start(Tag.updates); #end
         emitter.emit(Ev.update, dt);
-            debug.end(Tag.updates);
+            #if !luxe_noprofile debug.end(Tag.updates); #end
 
 //Update the game class for the game
-            debug.start( Tag.game_update );
+            #if !luxe_noprofile debug.start( Tag.game_update ); #end
         game.update(dt);
-            debug.end( Tag.game_update );
+            #if !luxe_noprofile debug.end( Tag.game_update ); #end
 
 //And finally the debug stuff
             #if luxe_fullprofile debug.start(Tag.debug); #end
@@ -439,56 +422,60 @@ extends
         if(shutting_down) return;
         if(!inited) return;
 
-        emitter.emit(Ev.window, _event );
+        emitter.emit(Ev.window, _event);
 
         switch(_event.type) {
 
-            case WindowEventType.moved : {
-                emitter.emit(Ev.windowmoved, _event );
-                game.onwindowmoved( _event );
+            case we_moved : {
+                emitter.emit(Ev.windowmoved, _event);
+                game.onwindowmoved(_event);
             } //moved
 
-            case WindowEventType.resized : {
-                screen.internal_resized(_event.event.x, _event.event.y);
-                renderer.internal_resized(_event.event.x, _event.event.y);
-                emitter.emit(Ev.windowresized, _event );
-                game.onwindowresized( _event );
+            case we_resized : {
+                screen.internal_resized(_event.x, _event.y);
+                renderer.internal_resized(_event.x, _event.y);
+                emitter.emit(Ev.windowresized, _event);
+                game.onwindowresized(_event);
             } //resized
 
-            case WindowEventType.size_changed : {
-                screen.internal_resized(_event.event.x, _event.event.y);
-                renderer.internal_resized(_event.event.x, _event.event.y);
-                emitter.emit(Ev.windowsized, _event );
-                game.onwindowsized( _event );
+            case we_size_changed : {
+                screen.internal_resized(_event.x, _event.y);
+                renderer.internal_resized(_event.x, _event.y);
+                emitter.emit(Ev.windowsized, _event);
+                game.onwindowsized(_event);
             } //size_changed
 
-            case WindowEventType.minimized : {
-                emitter.emit(Ev.windowminimized, _event );
-                game.onwindowminimized( _event );
+            case we_minimized : {
+                emitter.emit(Ev.windowminimized, _event);
+                game.onwindowminimized(_event);
             } //minimized
 
-            case WindowEventType.restored : {
-                emitter.emit(Ev.windowrestored, _event );
-                game.onwindowrestored( _event );
+            case we_restored : {
+                emitter.emit(Ev.windowrestored, _event);
+                game.onwindowrestored(_event);
             } //restored
 
-            default: {}
+            case _:
 
         } //switch
 
+        _event = null;
+
     } //window_event
 
-    function render( window:Window ) {
+    function render() {
 
         if(shutting_down) return;
         if(!inited) return;
 
-        debug.end(Tag.renderdt);
-        debug.start(Tag.renderdt);
+        #if !luxe_noprofile
+            debug.end(Tag.renderdt); 
+            debug.start(Tag.renderdt);
+        #end
 
         if(!headless) {
 
-            debug.start(Tag.render);
+            #if !luxe_noprofile debug.start(Tag.render); #end
 
             emitter.emit(Ev.prerender);
             game.onprerender();
@@ -500,16 +487,16 @@ extends
             emitter.emit(Ev.postrender);
             game.onpostrender();
 
-            debug.end(Tag.render);
+            #if !luxe_noprofile debug.end(Tag.render); #end
 
             #if !no_debug_console
 
                 var _batch = debug.batcher;
-                
-                if(_batch.enabled) {                
-                
-                    debug.start(Tag.debug_batch);
-                        
+
+                if(_batch.enabled) {
+
+                    #if !luxe_noprofile debug.start(Tag.debug_batch); #end
+
                         _batch.draw();
 
                         renderer.stats.geometry_count += _batch.geometry.size();
@@ -519,7 +506,7 @@ extends
                         renderer.stats.draw_calls += _batch.draw_calls;
                         renderer.stats.vert_count += _batch.vert_count;
 
-                    debug.end(Tag.debug_batch);
+                    #if !luxe_noprofile debug.end(Tag.debug_batch); #end
 
                 } //_batch.enabled
 
@@ -566,6 +553,8 @@ extends
 
         } //!shutting down
 
+        event = null;
+
     } //onkeydown
 
     override function onkeyup( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
@@ -592,6 +581,8 @@ extends
 
         } //!shutting down
 
+        event = null;
+
     } //onkeyup
 
     override function ontextinput( text:String, start:Int, length:Int, type:snow.types.TextEventType, timestamp:Float, window_id:Int ) {
@@ -601,8 +592,8 @@ extends
         var _type : TextEventType = TextEventType.unknown;
 
         switch(type) {
-            case edit: _type = TextEventType.edit;
-            case input: _type = TextEventType.input;
+            case te_edit: _type = TextEventType.edit;
+            case te_input: _type = TextEventType.input;
             default: {
                 return;
             }
@@ -625,6 +616,8 @@ extends
 
         } //!shutting_down
 
+        event = null;
+
     } //ontextinput
 
 //input
@@ -635,11 +628,16 @@ extends
 
         if(!shutting_down) {
 
-            emitter.emit(Ev.inputdown, { name:name, event:event });
+            //:todo:
+            var ev = { name:name, event:event };
+            emitter.emit(Ev.inputdown, ev);
+            ev = null;
 
             game.oninputdown( name, event );
 
         } //!shutting_down
+
+        event = null;
 
     } //oninputdown
 
@@ -649,11 +647,16 @@ extends
 
         if(!shutting_down) {
 
-            emitter.emit(Ev.inputup, { name:name, event:event });
+            //:todo:
+            var ev = { name:name, event:event };
+            emitter.emit(Ev.inputup, ev);
+            ev = null;
 
             game.oninputup( name, event );
 
         } //!shutting_down
+
+        event = null;
 
     } //oninputup
 
@@ -663,9 +666,7 @@ extends
 
         if(!inited) return;
 
-            //this has to be a new value because if it's cached it sends in references that get kept by user code
-            //until :todo:immutable: Vector types
-        screen.cursor.set_internal(new luxe.Vector( x, y ));
+        screen.cursor.set_internal(x, y);
 
         var event : MouseEvent = {
             timestamp : timestamp,
@@ -687,14 +688,15 @@ extends
 
         } //!shutting_down
 
+        event = null;
+
     } //onmousedown
 
     override function onmouseup( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
 
         if(!inited) return;
 
-            //see notes on new in mousedown
-        screen.cursor.set_internal(new luxe.Vector( x, y ));
+        screen.cursor.set_internal(x, y);
 
         var event : MouseEvent = {
             timestamp : timestamp,
@@ -716,14 +718,15 @@ extends
 
         } //!shutting_down
 
+        event = null;
+
     } //onmouseup
 
     override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
         if(!inited) return;
 
-            //see notes on new in mousedown
-        screen.cursor.set_internal(new luxe.Vector( x, y ));
+        screen.cursor.set_internal(x, y);
 
         var event : MouseEvent = {
             timestamp : timestamp,
@@ -744,9 +747,11 @@ extends
 
         } //!shutting_down
 
+        event = null;
+
     } //onmousemove
 
-    override function onmousewheel( x:Int, y:Int, timestamp:Float, window_id:Int ) {
+    override function onmousewheel( x:Float, y:Float, timestamp:Float, window_id:Int ) {
 
         if(!inited) return;
 
@@ -755,10 +760,10 @@ extends
             window_id : window_id,
             state : InteractState.wheel,
             button : MouseButton.none,
-            x : x,
-            y : y,
-            xrel : x,
-            yrel : y,
+            x : Math.floor(x),
+            y : Math.floor(y), //:todo: mouse wheel float value
+            xrel : Math.floor(x),
+            yrel : Math.floor(y),
             pos : screen.cursor.pos
         }
 
@@ -770,13 +775,15 @@ extends
 
         } //!shutting_down
 
+        event = null;
+
     } //onmousewheel
 
 //touch
         //cached touch pos
     var _touch_pos : Vector;
 
-    override function ontouchdown( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
+    override function ontouchdown( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
 
         if(!inited) return;
 
@@ -817,9 +824,11 @@ extends
 
         } //!shutting_down
 
+        event = null;
+
     } //ontouchdown
 
-    override function ontouchup( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
+    override function ontouchup( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
 
         if(!inited) return;
 
@@ -842,6 +851,8 @@ extends
             game.ontouchup(event);
 
         } //!shutting_down
+
+        event = null;
 
     } //ontouchup
 
@@ -869,6 +880,8 @@ extends
 
         } //!shutting_down
 
+        event = null;
+
     } //ontouchmove
 
 //gamepad
@@ -895,6 +908,8 @@ extends
 
         } //!shutting_down
 
+        event = null;
+
     } //ongamepadaxis
 
     override function ongamepaddown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
@@ -919,6 +934,8 @@ extends
             game.ongamepaddown(event);
 
         } //!shutting_down
+
+        event = null;
 
     } //ongamepadbuttondown
 
@@ -945,6 +962,8 @@ extends
 
         } //!shutting_down
 
+        event = null;
+
     } //ongamepadup
 
     override function ongamepaddevice( gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float ) {
@@ -954,11 +973,11 @@ extends
         var _event_type : GamepadEventType = GamepadEventType.unknown;
 
         switch(type) {
-            case GamepadDeviceEventType.device_added:
+            case GamepadDeviceEventType.ge_device_added:
                 _event_type = GamepadEventType.device_added;
-            case GamepadDeviceEventType.device_removed:
+            case GamepadDeviceEventType.ge_device_removed:
                 _event_type = GamepadEventType.device_removed;
-            case GamepadDeviceEventType.device_remapped:
+            case GamepadDeviceEventType.ge_device_remapped:
                 _event_type = GamepadEventType.device_remapped;
             default:
         }
@@ -980,10 +999,14 @@ extends
 
         } //!shutting_down
 
+        event = null;
+
     } //ongamepaddevice
 
         /** return what the game decides for runtime config */
     override function config( config: snow.types.Types.AppConfig ) : snow.types.Types.AppConfig {
+
+        if(config.user == null) config.user = {};
 
             //start with the snow default config
         appconfig = cast config;
@@ -995,6 +1018,7 @@ extends
         appconfig.window.borderless = init_config.window.borderless;
         appconfig.window.resizable =  init_config.window.resizable;
         appconfig.window.title =      init_config.window.title;
+        appconfig.headless =          init_config.headless;
 
         appconfig.preload = {
             bytes:      [],

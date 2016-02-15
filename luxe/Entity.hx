@@ -125,7 +125,7 @@ class Entity extends Objects {
 
 
         /** Create a new entity with the given options */
-    public function new( ?_options:EntityOptions #if debug, ?_pos_info:haxe.PosInfos #end ) {
+    public function new( ?_options:EntityOptions #if luxe_entity_pos, ?_pos_info:haxe.PosInfos #end ) {
 
         super('entity');
 
@@ -224,7 +224,7 @@ class Entity extends Objects {
 
             _verbose(" \tadding to scene " + scene.name);
 
-            scene.add( this #if debug, _pos_info #end );
+            scene.add( this #if luxe_entity_pos, _pos_info #end );
 
                 //we also want to listen for scene events
 
@@ -342,6 +342,8 @@ class Entity extends Objects {
         /** destroy this entity. removes it from the scene if any, from the parent etc. */
     public function destroy( ?_from_parent:Bool=false ) {
 
+        assert(destroyed == false, 'entity / destroying repeatedly $name');
+
         _debug('destroy ' + name + ' with ' + children.length + ' children and ' + Lambda.count(components) + " components / " + id);
 
             //first destroy children
@@ -349,12 +351,9 @@ class Entity extends Objects {
             for(_child in children) {
                 _verbose('     calling destroy on child ' + _child.name);
                 _child.destroy(true);
+                _child = null;
             } //for each child
         }
-
-            //clear the list
-        children = null;
-        children = [];
 
         if(component_count > 0) {
             for(_component in components) {
@@ -362,8 +361,13 @@ class Entity extends Objects {
                 _component.onremoved();
                 _verbose("          " + name + " calling ondestroy on component " + _component.name );
                 _component.ondestroy();
+                _component = null;
             } //for each component
         }
+
+        children = null;
+        _components.destroy();
+        _components = null;
 
             //tell listeners
         emit(Ev.destroy);
@@ -396,6 +400,15 @@ class Entity extends Objects {
             events.destroy();
             events = null;
         }
+
+        if(transform != null) {
+            transform.destroy();
+            transform = null;
+        }
+
+        _emitter_destroy();
+        // name = null;
+        id = null;
 
     } //destroy
 
@@ -988,7 +1001,7 @@ class Entity extends Objects {
 
     } //_stop_fixed_rate_timer
 
-    inline function _set_fixed_rate_timer( _rate:Float #if debug , ?_pos:haxe.PosInfos #end ) {
+    inline function _set_fixed_rate_timer( _rate:Float #if luxe_entity_pos , ?_pos:haxe.PosInfos #end ) {
 
         _stop_fixed_rate_timer();
 
@@ -1223,11 +1236,9 @@ class Entity extends Objects {
 
     override function set_name(_name:String) : String {
 
-        assertnull(_name);
-
         var _scene = scene;
 
-        if(_scene != null) {
+        if(_scene != null && name != null) {
             _scene.entities.remove(name);
             _scene.handle_duplicate_warning(_name);
             _scene.entities.set(_name, this);

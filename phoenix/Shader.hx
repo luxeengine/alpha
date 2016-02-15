@@ -15,7 +15,7 @@ import snow.api.Promise;
 import snow.api.buffers.Float32Array;
 import snow.modules.opengl.GL;
 import snow.types.Types.Error;
-import snow.system.assets.Asset;
+import snow.systems.assets.Asset;
 
 
 @:allow(phoenix.Shader)
@@ -507,7 +507,7 @@ class Shader extends Resource {
 
     } //clear
 
-    override function reload() {
+    override public function reload() {
 
         assert(state != ResourceState.destroyed);
 
@@ -633,14 +633,14 @@ class Shader extends Resource {
 
 } //Shader
 
-@:allow(phoenix.Uniforms)
-class Uniform<T> {
+@:generic
+private class Uniform<T> {
 
-    var name : String;
-    var value : T;
-    var location : Location;
+    public var name : String;
+    public var value : T;
+    public var location : Location;
 
-    inline function new(_name:String, _value:T, _location:Location) {
+    inline public function new(_name:String, _value:T, _location:Location) {
         name = _name;
         value = _value;
         location = _location;

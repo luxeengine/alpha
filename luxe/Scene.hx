@@ -17,6 +17,8 @@ class Scene extends Objects {
     public var started : Bool = false;
         /** The number of entities in this `Scene` */
     public var length(get, null) : Int = 0;
+        /** whether or not this scene has been destroyed */
+    public var destroyed : Bool = false;
 
 //internal
 
@@ -95,7 +97,7 @@ class Scene extends Objects {
 
         /** add given entity to this scene */
     var entity_count : Int = 0;
-    public function add( entity:Entity #if debug, ?pos:haxe.PosInfos #end ) {
+    public function add( entity:Entity #if luxe_scene_pos, ?pos:haxe.PosInfos #end ) {
 
         assertnull(entity, 'can\'t put entity in a scene if the entity is null.');
 
@@ -131,13 +133,14 @@ class Scene extends Objects {
 
         if(entity.scene == this) {
 
+            _debug('${name} / removing ${entity.name} with id : ${entity.id}');
             entity.scene = null;
             entity_count--;
             return entities.remove( entity.name );
 
         } else {
 
-            log("can't remove the entity from this scene, it is not mine (entity.scene != this)");
+            log('can\'t remove the entity(`${entity.name}`) from this scene(`$name`), it is not mine (entity.scene != this)');
             return false;
 
         }
@@ -159,11 +162,13 @@ class Scene extends Objects {
             but saves a lot of confusion for and improves workflow. */
     public function empty() {
 
+        _debug('$name / empty');
+        
         if(entity_count > 0) {
             #if luxe_camera_is_not_special
                 for(entity in entities) {
                     if(entity != null) {
-                        remove( entity );
+                        // remove( entity );
                         entity.destroy();
                         entity = null;
                     }
@@ -171,7 +176,7 @@ class Scene extends Objects {
             #else
                 for(entity in entities) {
                     if(entity != null && entity != Luxe.camera) {
-                        remove( entity );
+                        // remove( entity );
                         entity.destroy();
                         entity = null;
                     }
@@ -367,13 +372,13 @@ class Scene extends Objects {
 
 //Input
 
-    function inputdown( event:{ _name:String, event:InputEvent } ) {
+    function inputdown( event:{ name:String, event:InputEvent } ) {
 
         emit(Ev.inputdown, event);
 
     } //oninputdown
 
-    function inputup( event:{ _name:String, event:InputEvent }) {
+    function inputup( event:{ name:String, event:InputEvent }) {
 
         emit(Ev.inputup, event);
 
@@ -388,6 +393,12 @@ class Scene extends Objects {
     } //destroy
 
     public function destroy() {
+
+        assert(destroyed == false, 'scene / destroying repeatedly `$name`');
+        
+        _debug('destroy / `$name` with $length entities / $id');
+
+        destroyed = true;
 
         Luxe.core.off(Ev.init, init);
         Luxe.core.off(Ev.destroy, _destroy);
@@ -484,7 +495,7 @@ class Scene extends Objects {
 
     function update(dt:Float) {
 
-        Luxe.core.debug.start('scene.' + name);
+        #if !luxe_noprofile Luxe.core.debug.start('scene.' + name); #end
 
             //late scene additions get init'ed and start'ed
         handle_delayed_additions();
@@ -500,7 +511,7 @@ class Scene extends Objects {
             } //for each entity
         }
 
-        Luxe.core.debug.end('scene.' + name);
+        #if !luxe_noprofile Luxe.core.debug.end('scene.' + name); #end
 
     } //update
 
@@ -512,6 +523,7 @@ class Scene extends Objects {
 
         if(_delayed_init_entities.length > 0) {
             for(entity in _delayed_init_entities) {
+                if(entity.destroyed) continue;
                 if(!entity.inited) {
                     _debug('\t handling late entity init ' + entity.name);
                     entity._init();
@@ -519,15 +531,18 @@ class Scene extends Objects {
                     _debug('\t skipped late entity init, already inited ' + entity.name);
                 }
             }
-            _delayed_init_entities.splice(0, _delayed_init_entities.length);
+            _delayed_init_entities = null;
+            _delayed_init_entities = [];
         }
 
         if(_delayed_reset_entities.length > 0) {
             for(entity in _delayed_reset_entities) {
+                if(entity.destroyed) continue;
                 _debug('\t handling late entity reset ' + entity.name);
                 entity._reset(null);
             }
-            _delayed_reset_entities.splice(0, _delayed_reset_entities.length);
+            _delayed_reset_entities = null;
+            _delayed_reset_entities = [];
         }
 
     } //handle_delayed_additions

@@ -22,6 +22,14 @@ import luxe.Log._verbose;
 
     } //new
 
+    public function destroy() {
+        
+        components.map = null;
+        components = null;
+        entity = null;
+
+    }
+
     public function add<T:Component>( _component:T ) : T {
 
         if(_component == null) {

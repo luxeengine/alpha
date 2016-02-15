@@ -98,23 +98,26 @@ class Debug {
 
     } //get_view
 
-        /** start a profiling section for the profiler debug view */
-    public function start(_name:String, ?_max:Float) {
-        #if !no_debug_console
-        if(!core.headless) {
-            ProfilerDebugView.start(_name, _max);
+    #if !luxe_noprofile
+            /** start a profiling section for the profiler debug view */
+        public function start(_name:String, ?_max:Float) {
+            #if !no_debug_console
+                if(!core.appconfig.headless) {
+                    ProfilerDebugView.start(_name, _max);
+                }
+            #end
         }
-        #end
-    }
 
-        /** end a profiling section for the profiler debug view */
-    public function end(_name:String) {
-        #if !no_debug_console
-        if(!core.headless) {
-            ProfilerDebugView.end(_name);
+            /** end a profiling section for the profiler debug view */
+        public function end(_name:String) {
+            #if !no_debug_console
+                if(!core.appconfig.headless) {
+                    ProfilerDebugView.end(_name);
+                }
+            #end
         }
-        #end
-    }
+    #end
+
         /** remove a trace listener added via add_trace_listener */
     public function remove_trace_listener( _name:String ) {
         trace_callbacks.remove(_name);
@@ -182,7 +185,7 @@ class Debug {
             core.on(Ev.mousewheel, mousewheel);
 
                 //create the debug renderer and view
-            batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
+            batcher = new Batcher( Luxe.renderer, 'debug_batcher', Math.floor(Math.pow(2, 20)));
                 //create a camera
             view = new Camera({ camera_name:'debug_batcher_camera' });
                 //set the camera of the batcher
@@ -215,8 +218,8 @@ class Debug {
 
             core.on(Ev.windowsized, function( _event:luxe.Screen.WindowEvent ){
 
-                var _w = _event.event.x;
-                var _h = _event.event.y;
+                var _w = _event.x;
+                var _h = _event.y;
 
                 padding.set_xy(_w*0.05,_h*0.05);
 
@@ -350,7 +353,6 @@ class Debug {
 
     } //switch_view
 
-    var last_cursor_shown : Bool = true;
     var last_cursor_grab : Bool = false;
 
     @:noCompletion public function show_console(_show:Bool = true) {
@@ -361,17 +363,11 @@ class Debug {
 
         if(_show) {
 
-            last_cursor_shown = Luxe.screen.cursor.visible;
             last_cursor_grab = Luxe.screen.cursor.grab;
 
-            Luxe.screen.cursor.visible = true;
             Luxe.screen.cursor.grab = false;
 
         } else {
-
-            if(last_cursor_shown!=true) {
-                Luxe.screen.cursor.visible = last_cursor_shown;
-            }
 
             if(last_cursor_grab!=false) {
                 Luxe.screen.cursor.grab = last_cursor_grab;

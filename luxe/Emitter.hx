@@ -10,7 +10,7 @@ import luxe.Log.log;
 @:noCompletion typedef EmitHandler = Dynamic->Void;
 @:noCompletion typedef HandlerList = Array<EmitHandler>;
 
-@:noCompletion private typedef EmitNode<T> = { event : T, handler:EmitHandler #if debug, ?pos:haxe.PosInfos #end }
+@:noCompletion private typedef EmitNode<T> = { event : T, handler:EmitHandler #if luxe_emitter_pos, ?pos:haxe.PosInfos #end }
 
 
 /** A simple event emitter, used as a base class for systems that want to handle direct connections to named events */
@@ -35,15 +35,38 @@ class Emitter<ET:Int> {
 
     } //new
 
+    @:noCompletion public function _emitter_destroy() {
+        while(_to_remove.length > 0) {
+            var n = _to_remove.pop();
+            n.event = null;
+            n.handler = null;
+            n = null;
+        }
+
+        while(connected.length > 0) {
+            var n = connected.pop();
+            n.event = null;
+            n.handler = null;
+            n = null;
+        }
+
+        _to_remove = null;
+        connected = null;
+        bindings = null;
+    }
+
         /** Emit a named event */
-    @:noCompletion public function emit<T>( event:ET, ?data:T #if debug, ?pos:haxe.PosInfos #end ) {
+    // @:generic
+    @:noCompletion public function emit<T>( event:ET, ?data:T #if luxe_emitter_pos, ?pos:haxe.PosInfos #end ) {
+
+        if(bindings == null) return;
 
         _check();
 
         var list = bindings.get(event);
         if(list != null && list.length > 0) {
             for(handler in list) {
-                #if debug _verboser('emit / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}'); #end
+                #if luxe_emitter_pos _verboser('emit / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}'); #end
                 handler(data);
             }
         }
@@ -55,29 +78,35 @@ class Emitter<ET:Int> {
     } //emit
 
         /** connect a named event to a handler */
-    @:noCompletion public function on<T>(event:ET, handler: T->Void #if debug, ?pos:haxe.PosInfos #end ) {
+    // @:generic
+    @:noCompletion public function on<T>(event:ET, handler: T->Void #if luxe_emitter_pos, ?pos:haxe.PosInfos #end ) {
+
+        if(bindings == null) return;
 
         _check();
 
-        #if debug _verbose('on / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}'); #end
+        #if luxe_emitter_pos _verbose('on / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}'); #end
 
         if(!bindings.exists(event)) {
 
             bindings.set(event, [handler]);
-            connected.push({ handler:handler, event:event #if debug, pos:pos #end });
+            connected.push({ handler:handler, event:event #if luxe_emitter_pos, pos:pos #end });
 
         } else {
             var list = bindings.get(event);
             if(list.indexOf(handler) == -1) {
                 list.push(handler);
-                connected.push({ handler:handler, event:event #if debug, pos:pos #end });
+                connected.push({ handler:handler, event:event #if luxe_emitter_pos, pos:pos #end });
             }
         }
 
     } //on
 
         /** disconnect a named event and handler. returns true on success, or false if event or handler not found */
-    @:noCompletion public function off<T>(event:ET, handler: T->Void #if debug, ?pos:haxe.PosInfos #end ) : Bool {
+    // @:generic
+    @:noCompletion public function off<T>(event:ET, handler: T->Void #if luxe_emitter_pos, ?pos:haxe.PosInfos #end ) : Bool {
+
+        if(bindings == null) return false;
 
         _check();
 
@@ -85,7 +114,7 @@ class Emitter<ET:Int> {
 
         if(bindings.exists(event)) {
 
-            #if debug _verbose('off / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}'); #end
+            #if luxe_emitter_pos _verbose('off / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}'); #end
 
             _to_remove.push({ event:event, handler:handler });
 
@@ -106,6 +135,8 @@ class Emitter<ET:Int> {
 
     @:noCompletion public function connections( handler:EmitHandler ) {
 
+        if(connected == null) return null;
+
         var list : Array<EmitNode<ET>> = [];
 
         for(_info in connected) {
@@ -122,7 +153,7 @@ class Emitter<ET:Int> {
 
     function _check() {
 
-        if(_checking) {
+        if(_checking || _to_remove == null) {
             return;
         }
 

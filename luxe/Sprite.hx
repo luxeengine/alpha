@@ -80,6 +80,15 @@ class Sprite extends Visual {
 
     } //set_geometry
 
+    override public function ondestroy() {
+
+        uv = null;
+        geometry_quad = null;
+        
+        super.ondestroy();
+
+    }
+
 //Helper functions
 
         /** Returns true if a point is inside the sprite, takes into account the sprite transform,
@@ -126,6 +135,8 @@ class Sprite extends Visual {
 //UV / source rect
 
     function set_uv(_uv:Rectangle) : Rectangle {
+
+        if(_uv == null) return uv = _uv;
 
         if(geometry_quad != null) {
             geometry_quad.uv(_uv);

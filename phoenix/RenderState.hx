@@ -26,7 +26,7 @@ class RenderState {
                     GL.enable(GL.CULL_FACE);
                 } //!cull_face
             case GL.DEPTH_TEST:
-                if(Luxe.core.app.config.render.depth) {
+                if(Luxe.core.app.config.render.depth > 0) {
                     if(!depth_test) {
                         depth_test = true;
                         GL.enable(GL.DEPTH_TEST);
@@ -43,7 +43,7 @@ class RenderState {
                     GL.disable(GL.CULL_FACE);
                 } //cull_face
             case GL.DEPTH_TEST:
-                if(Luxe.core.app.config.render.depth) {
+                if(Luxe.core.app.config.render.depth > 0) {
                     if(depth_test) {
                         depth_test = false;
                         GL.disable(GL.DEPTH_TEST);
@@ -117,7 +117,7 @@ class RenderState {
     public function useProgram( program:GLProgram ) {
         if(_used_program != program) {
             _used_program = program;
-            GL.useProgram( program );
+            GL.useProgram( program ); 
         }
     } //useProgram
 
@@ -142,7 +142,7 @@ class RenderState {
     public function bindTexture2D( tex:TextureID ) {
         if(bound_texture_2D != tex) {
             bound_texture_2D = tex;
-            GL.bindTexture(GL.TEXTURE_2D, tex);
+            GL.bindTexture(GL.TEXTURE_2D, tex); 
         }
     }
 

@@ -17,18 +17,7 @@ typedef WindowEventData = {
 
 
 /** A window event */
-typedef WindowEvent = {
-
-        /** The type of window event this was. Use WindowEventType */
-    @:optional var type : WindowEventType;
-        /** The time in seconds that this event occured, useful for deltas */
-    @:optional var timestamp : Float;
-        /** The window id from which this event originated */
-    @:optional var window_id : Int;
-        /** The event data, where applicable. For example, with move, resized or sized events the data contains the new information as a result of the event. */
-    @:optional var event : WindowEventData;
-
-} //WindowEvent
+typedef WindowEvent = snow.types.Types.WindowEvent;
 
 
 
@@ -47,6 +36,11 @@ class Screen {
     public var w (get,null) : Int;
         /** Returns the screen height as an Int */
     public var h (get,null) : Int;
+        /** Returns the screen device pixel ratio, a scaling factor for high DPI devices.
+            Note that Luxe.screen (and the snow framework below it) only deals with real pixels, not device pixels.
+            Luxe and snow only ever deal with drawable area in real pixels. Which is to say: If you need device pixels, you divide the real pixel size by this value. */
+    public var device_pixel_ratio (get,null) : Float;
+
         /** Convenience: Returns the screen width as a Float */
     @:isVar public var width (default,null) : Float;
         /** Convenience: Returns the screen height as a Float */
@@ -58,7 +52,7 @@ class Screen {
     var core : Core;
 
     @:allow(luxe.Core)
-    function new( ?_core:Core, _w:Int, _h:Int ) {
+    function new(_core:Core, _w:Int, _h:Int) {
 
         core = _core;
         cursor = new Cursor(this);
@@ -116,6 +110,7 @@ class Screen {
     function get_bounds() : Rectangle return new Rectangle( 0, 0, w, h );
     function get_w() : Int return Std.int(width);
     function get_h() : Int return Std.int(height);
+    function get_device_pixel_ratio() return core.app.runtime.window_device_pixel_ratio();
 
 } //Screen
 
@@ -126,17 +121,13 @@ class Screen {
 
 class Cursor {
 
-        /** The visibility of the cursor. (get/set) */
-    @:isVar public var visible (get,set): Bool = true;
-        /** Grabbing the cursor locks it to the window bounds. On web this is analogous to `lock`. (get/set) */
-    @:isVar public var grab (get,set): Bool = false;
         /** Locking the cursor hides it, and enables the `xrel`/`yrel`   
             values on the mouse move events. This changes the mouse to   
             allow movement without it stopping at the bounds.   
             On `web`, this must come from a user initiated action, and asks their permission. (get/set) */
-    @:isVar public var lock (get,set): Bool = false;
-        /** The current mouse position. Setting this has no effect on `web` (and cannot). */
-    @:isVar public var pos (get,set): Vector;
+    @:isVar public var grab (get,set): Bool = false;
+        /** The current mouse position. `read only` */
+    @:isVar public var pos (get,null): Vector;
 
         /** The screen this cursor relates to. */
     var screen : Screen;
@@ -151,29 +142,22 @@ class Cursor {
     } //new
 
     @:allow(luxe.Core)
-    function set_internal( _pos:Vector ) {
+    inline function set_internal(_x:Float, _y:Float) {
 
+            //this has to be a new value because if it's cached, 
+            //it sends in references that get kept by user code
+            //or accidentally modified by .operation calls
+            //this is temporary till embers immutable stuff
+            //:todo:immutable: Vector types
         ignore = true;
-            pos = _pos;
+
+            pos = new luxe.Vector(_x, _y);
+
         ignore = false;
 
     } //set_internal
 
 //getters/setters
-
-    function get_visible() : Bool {
-
-        return visible;
-
-    } //get_visible
-
-    function set_visible( _visible:Bool ) : Bool {
-
-        screen.core.app.windowing.enable_cursor( _visible );
-
-        return visible = _visible;
-
-    } //set_visible
 
     function get_grab() : Bool {
 
@@ -181,43 +165,18 @@ class Cursor {
 
     } //get_grab
 
-    function get_lock() : Bool {
-
-        return lock;
-
-    } //get_lock
-
     function set_grab( _grab:Bool ) : Bool {
 
-        screen.core.app.window.grab = _grab;
+        screen.core.app.runtime.window_grab(_grab);
 
         return grab = _grab;
 
     } //set_grab
-
-    function set_lock( _lock:Bool ) : Bool {
-
-        screen.core.app.windowing.enable_cursor_lock(_lock);
-
-        return lock = _lock;
-
-    } //set_lock
 
     function get_pos() : Vector {
 
         return pos;
 
     } //get_pos
-
-    function set_pos( _p:Vector ) : Vector {
-
-        if(pos != null && _p != null && !ignore) {
-            screen.core.app.window.set_cursor_position( Std.int(_p.x), Std.int(_p.y) );
-        }
-
-        return pos = _p;
-
-    } //set_pos
-
 
 } //Cursor

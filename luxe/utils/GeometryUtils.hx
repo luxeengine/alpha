@@ -10,7 +10,9 @@ class GeometryUtils {
     static inline var two_pi : Float = 6.283185307179586;
 
     @:allow(luxe.utils.Utils)
-    function new() {}
+    function new() {
+        _v_cache = new Vector();
+    }
 
     public function segments_for_smooth_circle( _radius:Float, _smooth:Float = 5 ) : Int {
 
@@ -55,27 +57,44 @@ class GeometryUtils {
 
     } //point_in_polygon
 
-        //Note this function assumes _geometry is a 2D polygon,
+        //:todo : Note this function assumes _geometry is a 2D polygon,
         //and is currently slightly less efficient due to geometry not keeping
-        //a transformed vert cache in it, which will be needed later :todo :
+        //a transformed vert cache in it, which will be needed later
+    var _v_cache : Vector;
     public function point_in_geometry( _point:Vector, _geometry:Geometry ) : Bool {
 
-        var c : Bool = false;
-        var nvert : Int = _geometry.vertices.length;
-        var j : Int = nvert - 1;
+        var c = false;
+        var nvert = _geometry.vertices.length;
+        var j = nvert - 1;
+
+        var _px = _point.x; 
+        var _py = _point.y; 
 
         for(i in 0 ... nvert) {
 
-            var _vert_i_pos = _geometry.vertices[i].pos.clone().transform( _geometry.transform.world.matrix );
-            var _vert_j_pos = _geometry.vertices[j].pos.clone().transform( _geometry.transform.world.matrix );
+            var _vert_i = _geometry.vertices[i].pos;
+            var _vert_j = _geometry.vertices[j].pos;
+            
+            _v_cache.set_xy(_vert_i.x, _vert_i.y);
+            _v_cache.transform(_geometry.transform.world.matrix);
 
-            if ((( (_vert_i_pos.y) > _point.y) != ((_vert_j_pos.y) > _point.y)) &&
-               (_point.x < ( (_vert_j_pos.x) - (_vert_i_pos.x)) * (_point.y - (_vert_i_pos.y))
-                 / ( (_vert_j_pos.y) - (_vert_i_pos.y)) + (_vert_i_pos.x)) ) {
+            var _vert_i_x = _v_cache.x;
+            var _vert_i_y = _v_cache.y;
+
+            _v_cache.set_xy(_vert_j.x, _vert_j.y);
+            _v_cache.transform(_geometry.transform.world.matrix);
+
+            var _vert_j_x = _v_cache.x;
+            var _vert_j_y = _v_cache.y;
+
+            if ((( (_vert_i_y) > _point.y) != ((_vert_j_y) > _point.y)) &&
+               (_point.x < ( (_vert_j_x) - (_vert_i_x)) * (_point.y - (_vert_i_y))
+                 / ( (_vert_j_y) - (_vert_i_y)) + (_vert_i_x)) ) {
                 c = !c;
             }
 
             j = i;
+
         }
 
         return c;

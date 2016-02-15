@@ -1,6 +1,7 @@
 
 import luxe.Color;
 import luxe.Input;
+import luxe.resource.Resource.AudioResource;
 import luxe.Sprite;
 import luxe.Text;
 import luxe.utils.Maths;
@@ -20,12 +21,18 @@ class Main extends luxe.Game {
 
     var dragging : Sprite;
 
+    var music: AudioResource;
+    var sound: AudioResource;
+
+    var music_handle: luxe.Audio.AudioHandle;
+    var last_played: luxe.Audio.AudioHandle;
+
     override function ready() {
 
             //for this we'll use the promise "all" api which returns a list of the promised values
         var load = snow.api.Promise.all([
-            Luxe.audio.create('assets/sound.ogg', 'sound'),
-            Luxe.audio.create('assets/ambience.ogg', 'music')
+            Luxe.resources.load_audio('assets/sound.ogg'),
+            Luxe.resources.load_audio('assets/ambience.ogg')
         ]);
 
         var loading = new Text({
@@ -43,8 +50,11 @@ class Main extends luxe.Game {
                 //make the ui
             create_controls();
 
+            sound = Luxe.resources.audio('assets/sound.ogg');
+            music = Luxe.resources.audio('assets/ambience.ogg');
+
                 //start playing the music
-            Luxe.audio.loop('music');
+            music_handle = Luxe.audio.loop(music.source);
 
                 //set that loading is done
             waiting = false;
@@ -154,8 +164,8 @@ class Main extends luxe.Game {
                     pan_text.text = 'pan: $pan_amount';
                     pan_handle.pos.x = amount;
 
-                    Luxe.audio.pan('music', pan_amount);
-                    Luxe.audio.pan('sound', pan_amount);
+                    Luxe.audio.pan(music_handle, pan_amount);
+                    Luxe.audio.pan(last_played, pan_amount);
 
                 } else if(dragging == pitch_handle) {
 
@@ -167,8 +177,8 @@ class Main extends luxe.Game {
                     pitch_text.text = 'pitch: $pitch_amount';
                     pitch_handle.pos.x = amount;
 
-                    Luxe.audio.pitch('music', pitch_amount);
-                    Luxe.audio.pitch('sound', pitch_amount);
+                    Luxe.audio.pitch(music_handle, pitch_amount);
+                    Luxe.audio.pitch(last_played, pitch_amount);
 
                 }
 
@@ -184,8 +194,8 @@ class Main extends luxe.Game {
 
                 volume_text.text = 'volume: $volume_amount';
 
-                Luxe.audio.volume('music', volume_amount);
-                Luxe.audio.volume('sound', volume_amount);
+                Luxe.audio.volume(music_handle, volume_amount);
+                Luxe.audio.volume(last_played, volume_amount);
 
                 volume_handle.pos.y = amount;
 
@@ -202,7 +212,10 @@ class Main extends luxe.Game {
         dragging = null;
 
         if(e.button == MouseButton.right) {
-            Luxe.audio.play('sound');
+            last_played = Luxe.audio.play(sound.source);
+            Luxe.audio.pan(last_played, Luxe.audio.pan_of(music_handle));
+            Luxe.audio.pitch(last_played, Luxe.audio.pitch_of(music_handle));
+            Luxe.audio.volume(last_played, Luxe.audio.volume_of(music_handle));
         }
 
     }
@@ -212,18 +225,35 @@ class Main extends luxe.Game {
         if(waiting) return;
 
         if(e.keycode == Key.key_r) {
-            Luxe.audio.position('music', 0);
+            Luxe.audio.position(music_handle, 0);
         }
 
         if(e.keycode == Key.key_l) {
-            Luxe.audio.loop('music');
+            music_handle = Luxe.audio.loop(music.source);
+        }
+
+        if(e.keycode == Key.key_k) {
+            var l = Luxe.resources.load_audio('assets/ambience.ogg');
+            l.then(function(a:AudioResource){
+                trace('created: now at ${a.ref} refs');
+            });
+        }
+
+        if(e.keycode == Key.key_d) {
+            var f = Luxe.resources.destroy('assets/ambience.ogg');
+            trace('destroy: $f');
         }
 
         if(e.keycode == Key.key_s) {
-            Luxe.audio.stop('music');
+            Luxe.audio.stop(music_handle);
         }
+
         if(e.keycode == Key.key_p) {
-            Luxe.audio.toggle('music');
+            if(Luxe.audio.state_of(music_handle) == as_paused) {
+                Luxe.audio.unpause(music_handle);
+            } else {
+                Luxe.audio.pause(music_handle);
+            }
         }
 
         if(e.keycode == Key.escape) {

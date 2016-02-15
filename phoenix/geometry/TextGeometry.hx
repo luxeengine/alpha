@@ -186,6 +186,44 @@ class TextGeometry extends Geometry {
 
 //Internal
 
+    override function drop( ?remove:Bool = true ) {
+
+        text = null;
+        font = null;
+        bounds = null;
+        outline_color = null;
+        glow_color = null;
+        if(line_widths != null) {
+            line_widths.splice(0,line_widths.length);
+            line_widths = null;
+        }
+        if(line_offsets != null) {
+            line_offsets.splice(0,line_offsets.length);
+            line_offsets = null;
+        }
+        if(lines != null) {
+            lines.splice(0,lines.length);
+            lines = null;
+        }
+        emitter = null;
+        options = null;
+        if(cache != null) {
+            while(cache.length > 0) {
+                var c = cache.pop();
+                while(c.length > 0) {
+                    var v = c.pop();
+                    v.destroy();
+                    v = null;
+                }
+                c = null;
+            }
+            cache = null;
+        }
+
+        super.drop(remove);
+
+    } //drop
+
 
     function default_options() {
 
@@ -237,7 +275,7 @@ class TextGeometry extends Geometry {
     function set_text(_text:String) : String {
 
         if(_text == null) {
-            log('null text passed into TextGeometry!');
+            _debug('null text passed into TextGeometry!');
             _text = '';
         }
 
@@ -532,8 +570,10 @@ class TextGeometry extends Geometry {
 
         bounds = _bounds;
 
-            dirty_sizing = true;
-            update_text();
+        if(bounds == null) return bounds;
+
+        dirty_sizing = true;
+        update_text();
 
         return bounds;
 
@@ -684,6 +724,8 @@ class TextGeometry extends Geometry {
     #if release inline #end
     function set_outline_color(c:Color) {
 
+        if(c == null) return outline_color = c;
+
         if(shader != null && sdf && unique) {
             shader.set_color('outline_color', c);
         }
@@ -694,6 +736,8 @@ class TextGeometry extends Geometry {
 
     #if release inline #end
     function set_glow_color(c:Color) {
+
+        if(c == null) return glow_color = c;
 
         if(shader != null && sdf && unique) {
             shader.set_color('glow_color', c);

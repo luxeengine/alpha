@@ -1,9 +1,8 @@
 package phoenix;
 
 import snow.api.Promise;
-import snow.system.assets.Asset;
+import snow.systems.assets.Asset;
 import snow.modules.opengl.GL;
-import snow.api.Libs;
 
 import snow.api.buffers.Uint8Array;
 import snow.api.buffers.ArrayBufferView;
@@ -272,7 +271,7 @@ class Texture extends Resource {
 
 //Internal
 
-        //:todo:
+        //:todo:refactor:gl:
     function create_texture_id() {
 
         return GL.createTexture();

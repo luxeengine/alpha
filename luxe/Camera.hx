@@ -172,7 +172,7 @@ class Camera extends Entity {
         if(size != null) {
                 //:todo: set_xy handlers on viewport etc
                 //:todo: disconnect on destroy when destroy exists for camera
-            viewport = new Rectangle(viewport.x, viewport.y, _event.event.x, _event.event.y );
+            viewport = new Rectangle(viewport.x, viewport.y, _event.x, _event.y );
             set_size(size);
         }
     }

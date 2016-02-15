@@ -9,7 +9,6 @@ import snow.types.Types;
 class LuxeApp {
 
     public static var _game : {{project.app.main}};
-    public static var _core : Core;
     public static var _snow : Snow;
     public static var _conf : luxe.AppConfig;
 
@@ -18,6 +17,7 @@ class LuxeApp {
         //Start with sane defaults
 
         _conf = {
+            headless: false,
             window: {
                 width: 960,
                 height: 640,
@@ -45,21 +45,10 @@ class LuxeApp {
           {{~/window~}}
         {{/luxe}}
 
-            //Create the runtime
-        _snow = new Snow();
             //Create the app class, give it to the bootstrapper
         _game = new {{project.app.main}}();
-            //Create the core luxe runtime
-        _core = new Core( _game, _conf );
-
-        var _snow_config : SnowConfig = {
-            has_loop : {{toString snow.config.has_loop}},
-            config_path : '{{toString snow.config.config_path}}',
-            app_package : '{{toString project.app.package}}'
-        };
-
-            //Start up, giving luxe as the host
-        _snow.init( _snow_config, _core );
+            //Create the snow + luxe runtime
+        _snow = new Snow(new Core(_game, _conf));
 
     } //main
 

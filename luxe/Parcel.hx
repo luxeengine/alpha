@@ -45,7 +45,6 @@ typedef ShaderInfo = {
 
 typedef SoundInfo = {
     > ItemInfo,
-    name: String,
     is_stream: Bool
 }
 
@@ -164,6 +163,7 @@ class Parcel {
             _debug('   sounds: ${list.sounds.length}');
 
             if(length == 0) {
+                _debug('nothing to load: ${list.sounds.length}');
                 do_complete(_load_id);
                 return;
             }
@@ -315,32 +315,26 @@ class Parcel {
 
                 } //each shaders
 
-            //sound
+            //audio
 
                 for(_sound in list.sounds) {
 
-                    if(!Luxe.audio.exists(_sound.name)) {
+                    if(!is_loaded(_sound.id)) {
 
-                        // loaded.push(_sound.id); //:todo: this is not a resource, so it gets weird
+                        loaded.push(_sound.id);
                         Luxe.timer.schedule(load_time_spacing*_index, function() {
 
-                            var _load = Luxe.audio.create(
-                                _sound.id,
-                                _sound.name,
-                                _sound.is_stream
-                            );
-
-                            _load.then(function(_) {
-                                one_loaded(_sound.id, _load_id, null, ++_index, length);
-                            }, function(_err:Dynamic){
-                                one_failed(_sound.id, _load_id, _err, ++_index, length);
+                            var _load = system.load_audio( _sound.id, {
+                                is_stream: _sound.is_stream
                             });
+
+                            _handle(_sound.id, _load);
 
                         }); //timer
 
                     } else { //!loaded
-                        log('$id / already had ${_sound.id} (${_sound.name}) loaded, skipped');
-                        one_loaded(_sound.id, _load_id, null, ++_index, length);
+                        log('$id / already had ${_sound.id} loaded, skipped');
+                        one_loaded(_sound.id, _load_id, system.get(_sound.id), ++_index, length);
                     }
 
                 } //each sounds
@@ -354,6 +348,7 @@ class Parcel {
     public function unload( ?_empty_list:Bool = false ) {
 
         inline function _remove(_id) {
+            log('$_id / removing');
             system.destroy(_id);
             loaded.remove(_id);
         }
@@ -364,7 +359,7 @@ class Parcel {
         for(item in list.textures)  _remove(item.id);
         for(item in list.fonts)     _remove(item.id);
         for(item in list.shaders)   _remove(item.id);
-        for(item in list.sounds)    Luxe.audio.uncreate(item.name);
+        for(item in list.sounds)    _remove(item.id);
 
         if(_empty_list) {
             list = null;
@@ -486,7 +481,6 @@ class Parcel {
                 if(item != null) {
                     assertnull(item);
                     assertnull(item.id);
-                    assertnull(item.name);
 
                     // if(item.is_stream == null) item.is_stream = false;
 
@@ -501,7 +495,7 @@ class Parcel {
 
     function one_loaded( _item_id:String, _load_id:String, _resource:Resource, _index:Int, _total:Int ) {
 
-        _debug('loaded $_index / $_item_id / $_total for $_load_id / ' + (_resource == null ? 'sound' : Std.string(_resource)) );
+        _debug('loaded $_index / $_item_id / $_total for $_load_id / ' + Std.string(_resource) );
 
         var _state : ParcelChange = {
             id: _item_id,
@@ -553,8 +547,7 @@ class Parcel {
         for(item in list.textures)  _result.push(item.id);
         for(item in list.fonts)     _result.push(item.id);
         for(item in list.shaders)   _result.push(item.id);
-            //:todo: this is a list of resources, sounds aren't resources...
-        // for(item in list.sounds)    _result.push(item.id);
+        for(item in list.sounds)    _result.push(item.id);
 
         return _result;
     }

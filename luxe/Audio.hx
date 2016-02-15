@@ -1,179 +1,133 @@
 package luxe;
 
 import luxe.Core;
-
 import luxe.Log._debug;
 
+typedef AudioEvent = snow.types.Types.AudioEvent;
+typedef AudioState = snow.types.Types.AudioState;
+typedef AudioHandle = snow.types.Types.AudioHandle;
+typedef AudioSource = snow.systems.audio.AudioSource;
+typedef AudioInstance = snow.systems.audio.AudioInstance;
+
+@:allow(luxe.Core)
 class Audio {
 
-    @:noCompletion public var core : Core;
+    public var core : Core;
+    public var active (get,set) : Bool;
 
-    @:noCompletion public function new( _core:Core ) {
+    function new( _core:Core ) {
 
         core = _core;
 
     } //new
 
-    @:noCompletion public function init() {
-        _debug('\t audio initialized.');
-    } //init
+//events
 
-    @:noCompletion public function destroy() {
-        _debug('\t audio shut down.');
-    } //destroy
-
-        /**
-            Create a named audio reference, with optional streaming flag   
-            **id** The asset file id from which the audio is loaded/streamed.   
-            **name** The name to assign the sound for the named api    
-            **streaming** Whether or not to stream the audio, default `false`   
-            **returns** The `Sound` instance, if needed. can be manipulated through named api as well.
-        */
-    public function create( _id:String, ?_name:String = '', ?_streaming:Bool = false ) : snow.api.Promise {
-        return core.app.audio.create( _id, _name, _streaming );
-    } //create
-
-    // wip alpha-2.0
-    @:noCompletion
-    public function create_from_bytes( ?_name:String = '', _bytes:snow.api.buffers.Uint8Array, _format:snow.types.Types.AudioFormatType ) : luxe.Sound {
-        return core.app.audio.create_from_bytes( _name, _bytes, _format);
-    } //create_from_bytes
-
-
-        /**
-            Destroy a named audio reference.
-            Use the reference directly with sound.destroy if you have an instance. */
-    public function uncreate( _name:String ) {
-        return core.app.audio.uncreate( _name );
-    } //uncreate
-
-        /** Add a manually created sound instance to the audio system.
-            Once added the regular named api should apply.
-            Do not add sounds returned from `create` calls. */
-    @:noCompletion public function add( sound:luxe.Sound ) {
-        return core.app.audio.add( sound );
+    public inline function on(_event:AudioEvent, _handler:AudioHandle->Void) : Void {
+        core.app.audio.on(_event, _handler);
+    }
+    
+    public inline function off(_event:AudioEvent, _handler:AudioHandle->Void) : Bool {
+        return core.app.audio.off(_event, _handler);
+    }
+    
+    public inline function emit(_event:AudioEvent, _handle:AudioHandle) : Void {
+        core.app.audio.emit(_event, _handle);
     }
 
+    public function play(_source:AudioSource, ?_volume:Float=1.0, ?_paused:Bool=false) : AudioHandle {
+        return core.app.audio.play(_source, _volume, _paused);
+    }
 
-        /** Listen for an event on a named sound. `load` and `end` are valid */
-    public function on(_name:String, _event:String, _handler:luxe.Sound->Void) {
-        return core.app.audio.on(_name, _event, _handler);
-    } //on
+    public function loop(_source:AudioSource, ?_volume:Float=1.0, ?_paused:Bool=false) : AudioHandle {
+        return core.app.audio.loop(_source, _volume, _paused);
+    }
 
-        /** Stop listening for an event on a named sound. See `on` */
-    public function off(_name:String, _event:String, _handler:luxe.Sound->Void) {
-        return core.app.audio.off(_name, _event, _handler);
-    } //off
+    public inline function pause(_handle:AudioHandle) : Void {
+        core.app.audio.pause(_handle);
+    }
 
-        /**
-            Fetch a named audio reference   
-            **name** The name to acquire audio reference   
-            **returns** The `Sound` instance
-        */
-    public function get( _name:String ) : luxe.Sound {
-        return core.app.audio.get(_name);
-    } //get
+    public inline function unpause(_handle:AudioHandle) : Void {
+        core.app.audio.unpause(_handle);
+    }
 
-        /**
-            Determine whether a named audio reference exists   
-            **name** The audio reference name to check   
-            **returns** true/false
-        */
-    public function exists( _name:String ) : Bool {
-        return get(_name) != null;
-    } //exists
+    public inline function stop(_handle:AudioHandle) : Void {
+        core.app.audio.stop(_handle);
+    }
 
+    public inline function volume(_handle:AudioHandle, _volume:Float) : Void {
+        core.app.audio.volume(_handle, _volume);
+    }
 
-        /**
-            Loop a named audio reference indefinitely. Use `stop` if needed.   
-            **name** The audio reference name to loop   
-            **returns** nothing
-        */
-    public function loop( _name:String ) : Void {
-        return core.app.audio.loop(_name);
-    } //loop
+    public inline function pan(_handle:AudioHandle, _pan:Float) : Void {
+        core.app.audio.pan(_handle, _pan);
+    }
 
-        /**
-            Stop a named audio reference from playing (or looping)   
-            **name** The audio reference name to stop   
-            **returns** nothing
-        */
-    public function stop( _name:String ) : Void {
-        return core.app.audio.stop(_name);
-    } //stop
+    public inline function pitch(_handle:AudioHandle, _pitch:Float) : Void {
+        core.app.audio.pitch(_handle, _pitch);
+    }
 
-        /**
-            Play a named audio reference   
-            **name** The audio reference name to play   
-            **returns** nothing
-        */
-    public function play( _name:String ) {
-        return core.app.audio.play( _name );
-    } //play
+    public inline function position(_handle:AudioHandle, _position:Float) : Void {
+        core.app.audio.position(_handle, _position);
+    }
 
-        /**
-            Pause a named audio reference   
-            **name** The audio reference name to pause   
-            **returns** nothing
-        */
-    public function pause( _name:String ) {
-        return core.app.audio.pause( _name );
-    } //pause
+    public inline function state_of(_handle:AudioHandle) : AudioState {
+        return core.app.audio.state_of(_handle);
+    }
 
+    public inline function loop_of(_handle:AudioHandle) : Bool {
+        return core.app.audio.loop_of(_handle);
+    }
 
-        /** Toggle a sound instance by name, pausing the sound or resuming it */
-    public function toggle(_name:String) {
-        return core.app.audio.toggle(_name);
-    } //toggle
+    public inline function instance_of(_handle:AudioHandle) : AudioInstance {
+        return core.app.audio.instance_of(_handle); 
+    }
 
-        /**
-            get/set the volume of a named audio reference,   
-            leave the second argument empty for get   
-            **name** The audio reference name to adjust   
-            **volume** A new volume value
-        */
-    public function volume( _name:String, ?_volume:Float ) : Float {
-        return core.app.audio.volume(_name, _volume);
-    } //volume
+    public inline function volume_of(_handle:AudioHandle) : Float {
+        return core.app.audio.volume_of(_handle); 
+    }
 
-        /**
-            get/set the pan of a named audio reference,   
-            leave the second argument empty for get   
-            **name** The audio reference name to adjust   
-            **pan** A new pan value
-        */
-    public function pan( _name:String, ?_pan:Float ) : Float  {
-        return core.app.audio.pan(_name, _pan);
-    } //pan
+    public inline function pan_of(_handle:AudioHandle) : Float {
+        return core.app.audio.pan_of(_handle); 
+    }
 
-        /**
-            get/set the pitch of a named audio reference,   
-            leave the second argument empty for get   
-            **name** The audio reference name to adjust   
-            **pitch** A new pitch value
-        */
-    public function pitch( _name:String, ?_pitch:Float ) : Float {
-        return core.app.audio.pitch( _name, _pitch );
-    } //pitch
-        /**
-            get/set the position in `seconds` of a named audio reference,   
-            leave the second argument empty for get   
-            **name** The audio reference name to adjust   
-            **pan** A new pan value
-        */
-    public function position( _name:String, ?_position:Float ) : Float  {
-        return core.app.audio.position(_name, _position);
-    } //pan
+    public inline function pitch_of(_handle:AudioHandle) : Float {
+        return core.app.audio.pitch_of(_handle); 
+    }
 
-        /**
-            get the position in seconds of a named audio reference   
-            **name** The audio reference name to get   
-        */
-    public function duration( _name:String ) : Float {
-        return core.app.audio.duration( _name );
-    } //pitch
+    public inline function position_of(_handle:AudioHandle) : Float {
+        return core.app.audio.position_of(_handle); 
+    }
 
-    @:noCompletion public function process() {
+    public inline function suspend() {
+        core.app.audio.suspend();
+    }
+
+    public inline function resume() {
+        core.app.audio.resume();
+    }
+
+//properties
+
+    inline function get_active()            return core.app.audio.active;
+    inline function set_active(_val:Bool)   return core.app.audio.active = _val;
+
+//Internal
+
+    function init() {
+
+        _debug('\t audio initialized.');
+
+    } //init
+
+    function destroy() {
+
+        _debug('\t audio shut down.');
+
+    } //destroy
+
+    function process() {
+
 
     } //process
 

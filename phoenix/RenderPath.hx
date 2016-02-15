@@ -15,11 +15,14 @@ class RenderPath {
 
     public function render( _batchers: Array<Batcher>, _stats:RendererStats ) {
 
-        for(batch in _batchers) {
+        var c = _batchers.length;
+        var i = 0;
+        while(i < c) {
+            var batch = _batchers[i];
             if(batch.enabled) {
 
                     //Measure the time and graph it in the debug view
-                Luxe.debug.start('batch.' + batch.name);
+                #if !luxe_noprofile Luxe.debug.start('batch.' + batch.name); #end
 
                     //Tell the batcher to draw
                 batch.draw();
@@ -33,9 +36,12 @@ class RenderPath {
                 _stats.vert_count += batch.vert_count;
 
                     //Stop Measuring
-                Luxe.debug.end('batch.' + batch.name);
+                #if !luxe_noprofile Luxe.debug.end('batch.' + batch.name); #end
 
             } //batcher enabled
+            batch = null;
+            ++i;
+
         } //each batcher
 
     } //render

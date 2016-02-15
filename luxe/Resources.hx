@@ -36,7 +36,7 @@ class Resources {
 
 //Public `Parcel` tracking
 
-    public function track( _cache:Parcel ) {
+    public function track(_cache:Parcel) {
 
         assertnull(_cache);
         assert(parcels.indexOf(_cache) == -1);
@@ -46,7 +46,7 @@ class Resources {
 
     } //track
 
-    public function untrack( _cache:Parcel ) {
+    public function untrack(_cache:Parcel) {
 
         assertnull(_cache);
 
@@ -61,7 +61,7 @@ class Resources {
 //Public Resource list
 
         /** Add a resource to be tracked by this system. */
-    public function add( resource:Resource ) {
+    public function add(resource:Resource) {
 
         assert(!cache.exists(resource.id));
 
@@ -74,7 +74,7 @@ class Resources {
     } //add
 
         /** Remove a resource being tracked by this system. */
-    public function remove( resource:Resource #if debug, ?_pos:haxe.PosInfos #end ) : Bool {
+    public function remove(resource:Resource #if luxe_resource_pos, ?_pos:haxe.PosInfos #end) : Bool {
 
         assert(cache.exists(resource.id));
 
@@ -87,7 +87,7 @@ class Resources {
     } //remove
 
         /** Destroy a resource by id. Returns false if the resource wasn't found. */
-    public function destroy( _id:String, ?_force:Bool=false ) : Bool {
+    public function destroy(_id:String, ?_force:Bool=false) : Bool {
 
         var resource = get(_id);
 
@@ -100,7 +100,7 @@ class Resources {
     } //destroy
 
         /** Invalidate a resource by id. Returns false if the resource wasn't found. */
-    public function invalidate( _id:String ) : Bool {
+    public function invalidate(_id:String) : Bool {
 
         var resource = get(_id);
 
@@ -114,19 +114,19 @@ class Resources {
 
 //Public event handling
 
-    public function on<T>( ev:ResourceEvent, handler:T->Void ) {
+    public function on<T>(ev:ResourceEvent, handler:T->Void) {
 
         emitter.on(ev, handler);
 
     } //on
 
-    public function off<T>( ev:ResourceEvent, handler:T->Void ) {
+    public function off<T>(ev:ResourceEvent, handler:T->Void) {
 
         emitter.off(ev, handler);
 
     } //off
 
-    public function emit<T>( ev:ResourceEvent, data:T ) {
+    public function emit<T>(ev:ResourceEvent, data:T) {
 
         emitter.emit(ResourceEvent.any, data);
         emitter.emit(ev, data);
@@ -136,7 +136,7 @@ class Resources {
 
 //Public load api
 
-    public function load_bytes( _id:String ) : Promise {
+    public function load_bytes(_id:String) : Promise {
 
         assertnull(_id);
 
@@ -162,7 +162,7 @@ class Resources {
 
     } //load_bytes
 
-    public function load_text( _id:String ) : Promise {
+    public function load_text(_id:String) : Promise {
 
         assertnull(_id);
 
@@ -188,7 +188,7 @@ class Resources {
 
     } //load_text
 
-    public function load_json( _id:String ) : Promise {
+    public function load_json(_id:String) : Promise {
 
         assertnull(_id);
 
@@ -214,7 +214,7 @@ class Resources {
 
     } //load_json
 
-    public function load_texture( _id:String, ?_options:LoadTextureOptions ) : Promise {
+    public function load_texture(_id:String, ?_options:LoadTextureOptions) : Promise {
 
         assertnull(_id);
 
@@ -260,7 +260,7 @@ class Resources {
 
     } //load_texture
 
-    public function load_font( _id:String, ?_options:LoadFontOptions ) : Promise {
+    public function load_font(_id:String, ?_options:LoadFontOptions) : Promise {
 
         assertnull(_id);
 
@@ -291,7 +291,7 @@ class Resources {
 
     } //load_font
 
-    public function load_shader( _id:String, _options:LoadShaderOptions ) : Promise {
+    public function load_shader(_id:String, _options:LoadShaderOptions) : Promise {
 
         assertnull(_id);
 
@@ -319,16 +319,49 @@ class Resources {
     } //load_shader
 
 
+    public function load_audio(_id:String, ?_options:LoadAudioOptions) : Promise {
+
+        assertnull(_id);
+
+        var _resource = audio(_id);
+
+        if(_resource != null) {
+            _debug('audio / existed / $_id');
+            _resource.ref++;
+            return Promise.resolve(_resource);
+        }
+
+        _debug('audio / loading / $_id');
+
+        var _is_stream = false;
+        if(_options != null) {
+            _is_stream = _options.is_stream;
+        }
+
+        _resource = new AudioResource({
+            id: _id,
+            system: this,
+            asset: null,
+            is_stream: _is_stream
+        });
+
+        add(_resource);
+
+        return _resource.reload();
+
+    } //load_audio
+
 //Public fetch API
 
-    public inline function has( _id:String ) : Bool             return cache.exists(_id);
-    public inline function get( _id:String ) : Resource         return fetch(_id);
-    public inline function bytes( _id:String ) : BytesResource  return fetch(_id);
-    public inline function text( _id:String ) : TextResource    return fetch(_id);
-    public inline function json( _id:String ) : JSONResource    return fetch(_id);
-    public inline function texture( _id:String ) : Texture      return fetch(_id);
-    public inline function font( _id:String ) : BitmapFont      return fetch(_id);
-    public inline function shader( _id:String ) : Shader        return fetch(_id);
+    public inline function has      (_id:String) : Bool           return cache.exists(_id);
+    public inline function get      (_id:String) : Resource       return fetch(_id);
+    public inline function bytes    (_id:String) : BytesResource  return fetch(_id);
+    public inline function text     (_id:String) : TextResource   return fetch(_id);
+    public inline function json     (_id:String) : JSONResource   return fetch(_id);
+    public inline function texture  (_id:String) : Texture        return fetch(_id);
+    public inline function font     (_id:String) : BitmapFont     return fetch(_id);
+    public inline function shader   (_id:String) : Shader         return fetch(_id);
+    public inline function audio    (_id:String) : AudioResource  return fetch(_id);
 
 //Internal
 
@@ -336,7 +369,7 @@ class Resources {
         return cast cache.get(_id);
     } //fetch
 
-    inline function update_stats( _res:Resource, _offset:Int ) {
+    inline function update_stats(_res:Resource, _offset:Int) {
 
         switch(_res.resource_type) {
             case ResourceType.unknown:          stats.unknown   += _offset;
@@ -344,9 +377,10 @@ class Resources {
             case ResourceType.text:             stats.texts     += _offset;
             case ResourceType.json:             stats.jsons     += _offset;
             case ResourceType.texture:          stats.textures  += _offset;
-            case ResourceType.render_texture:   stats.render_textures += _offset;
+            case ResourceType.render_texture:   stats.rtt       += _offset;
             case ResourceType.font:             stats.fonts     += _offset;
             case ResourceType.shader:           stats.shaders   += _offset;
+            case ResourceType.audio:            stats.audios    += _offset;
         }
 
         stats.total += _offset;
@@ -421,6 +455,7 @@ abstract ResourceType(Int) from Int to Int {
     var render_texture  = 5;
     var font            = 6;
     var shader          = 7;
+    var audio           = 8;
 }
 
 
@@ -429,11 +464,12 @@ class ResourceStats {
     public var total : Int = 0;
     public var fonts : Int = 0;
     public var textures : Int = 0;
-    public var render_textures : Int = 0;
+    public var rtt : Int = 0;
     public var shaders : Int = 0;
     public var texts : Int = 0;
     public var jsons : Int = 0;
     public var bytes : Int = 0;
+    public var audios : Int = 0;
     public var unknown : Int = 0;
 
     public function new() {
@@ -446,12 +482,13 @@ class ResourceStats {
             'Resource Statistics\n' +
             '\ttotal : ' + total + '\n' +
             '\ttexture : ' + textures + ' \n' + '' +
-            '\trender texture : ' + render_textures + ' \n' +
+            '\trender texture : ' + rtt + ' \n' +
             '\tfont : ' + fonts + '\n' +
             '\tshader : ' + shaders + '\n' +
             '\ttext : ' + texts + '\n' +
             '\tjson : ' + jsons + '\n' +
             '\tbytes : ' + bytes + '\n' +
+            '\taudios : ' + audios + '\n' +
             '\tunknown : ' + unknown;
 
     } //toString
@@ -461,11 +498,12 @@ class ResourceStats {
         total = 0;
         fonts = 0;
         textures = 0;
-        render_textures = 0;
+        rtt = 0;
         shaders = 0;
         texts = 0;
         jsons = 0;
         bytes = 0;
+        audios = 0;
         unknown = 0;
 
     } //reset

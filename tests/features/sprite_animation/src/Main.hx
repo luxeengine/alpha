@@ -128,10 +128,10 @@ class Main extends luxe.Game {
         anim.remove_events('walk', 6);
 
         sprite.events.listen('foot.1', function(e){
-            Luxe.audio.play('step1'); //:todo:
+            Luxe.audio.play('step1');
         });
         sprite.events.listen('foot.2', function(e){
-            Luxe.audio.play('step2'); //:todo:
+            Luxe.audio.play('step2');
         });
         sprite.events.listen('*', function(e){
             //uncomment to see all the events remaining after the above messing

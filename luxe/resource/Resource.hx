@@ -5,11 +5,12 @@ import luxe.options.ResourceOptions;
 import luxe.Resources;
 
 import snow.api.Promise;
-import snow.system.assets.Asset;
+import snow.systems.assets.Asset;
+import snow.systems.audio.AudioSource;
 
 class Resource {
 
-        /** The unique resource ID.
+    /**     The unique resource ID.
             If the resource is loaded from disk, this matches the asset id.
             If not from disk, the id can be anything but must be unique to this resource. */
     public var id: String;
@@ -96,7 +97,7 @@ class Resource {
         return 0;
     } //memory_use
 
-//Internal
+ //Internal
 
     function set_ref( _ref:Int ) {
 
@@ -357,5 +358,76 @@ class JSONResource extends Resource {
 
     } //clear
 
-
 } //JSONResource
+
+class AudioResource extends Resource {
+
+    public var asset:AssetAudio;
+    public var source:AudioSource;
+
+    var is_stream: Bool = false;
+
+    public function new(_options:AudioResourceOptions) {
+
+        assertnull(_options);
+
+        _options.resource_type = ResourceType.audio;
+
+        super( _options );
+
+        asset = _options.asset;
+        is_stream = def(_options.is_stream,false);
+        
+        if(asset != null) {
+            source = new AudioSource(Luxe.snow, asset.audio);
+        }
+
+    } //new
+
+    override function reload() : Promise {
+
+        assert(state != ResourceState.destroyed);
+
+        clear();
+
+        return new Promise(function(resolve, reject) {
+
+            state = ResourceState.loading;
+
+            var get = Luxe.snow.assets.audio(id, is_stream);
+
+            get.then(function(_asset:AssetAudio) {
+
+                asset = _asset;
+                source = new AudioSource(Luxe.snow, asset.audio);
+                state = ResourceState.loaded;
+                resolve(this);
+
+            });
+
+            get.error(function(_error) {
+
+                state = ResourceState.failed;
+                reject(_error);
+
+            });
+
+        }); //promise
+
+    } //reload
+
+    override function clear() {
+
+        if(asset != null) {
+            asset.destroy();
+            asset = null;
+        }
+
+        if(source != null) {
+            source.destroy();
+            source = null;
+        }
+
+    } //clear
+
+} //AudioResource

@@ -6,6 +6,7 @@ package luxe.structural;
 
 import Map;
 
+@:generic
 class OrderedMapIterator<K,V> {
 
     var map : OrderedMap<K,V>;
@@ -20,9 +21,10 @@ class OrderedMapIterator<K,V> {
 
 } //OrderedMapIterator
 
+@:generic
 class OrderedMap<K, V> implements IMap<K, V> {
 
-    var map:Map<K, V>;
+    @:noCompletion public var map:Map<K, V>;
     var idx = 0;
 
     @:allow(luxe.structural.OrderedMapIterator)

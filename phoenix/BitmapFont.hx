@@ -16,7 +16,7 @@ import phoenix.Vector;
 import phoenix.Texture;
 import snow.api.Promise;
 import snow.types.Types.Error;
-import snow.system.assets.Asset;
+import snow.systems.assets.Asset;
 
 import luxe.Log.*;
 
@@ -273,7 +273,7 @@ class BitmapFont extends Resource {
 
     } //clear
 
-    override function reload() {
+    override public function reload() {
 
         assert(state != ResourceState.destroyed);
 
@@ -290,6 +290,8 @@ class BitmapFont extends Resource {
 
                     //parse the data
                 info = BitmapFontParser.parse( _asset.text );
+                _asset.destroy();
+                _asset = null;
 
                 assertnull(info);
 

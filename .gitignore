@@ -8,5 +8,7 @@ bin/
 builds/
 users/
 flow/icons/mac/luxe.icns
-**/ios.project/**
+ios.project
+android.project
+mac.project
 *.hxproj

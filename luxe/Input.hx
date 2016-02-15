@@ -7,9 +7,9 @@ import snow.types.Types;
     /** A modifier state for key events */
 typedef ModState        =   snow.types.Types.ModState;
     /** A named list of keycodes. Use to compare against key event `keycode` values */
-typedef Key             =   snow.system.input.Keycodes.Keycodes;
+typedef Key             =   snow.systems.input.Keycodes.Keycodes;
     /** A named list of scancodes. Use to compare against key event `scancode` values */
-typedef Scan            =   snow.system.input.Keycodes.Scancodes;
+typedef Scan            =   snow.systems.input.Keycodes.Scancodes;
 
 /** A typed mouse button id */
 @:enum abstract MouseButton(Int) from Int to Int {
@@ -429,12 +429,14 @@ class Input {
                     //down is true immediate, cos up removes it
                 _named_input_down.set( _f, true);
 
-                core.oninputdown( _f, {
+                var ev = {
                     name : _f,
                     type : InputType.keys,
                     state : InteractState.down,
                     key_event : e
-                });
+                };
+                core.oninputdown( _f, ev);
+                ev = null;
 
             } else {
 
@@ -443,12 +445,14 @@ class Input {
                     //remove down state
                 _named_input_down.remove( _f );
 
-                core.oninputup( _f, {
+                var ev = {
                     name : _f,
                     type : InputType.keys,
                     state : InteractState.up,
                     key_event : e
-                });
+                };
+                core.oninputup( _f, ev);
+                ev = null;
 
             } //if _down
         } //_f in _fired
@@ -477,12 +481,14 @@ class Input {
                     //down is true immediate, cos up removes it
                 _named_input_down.set( _f, true);
 
-                core.oninputdown( _f, {
+                var ev = {
                     name : _f,
                     type : InputType.mouse,
                     state : InteractState.down,
                     mouse_event : e
-                });
+                };
+                core.oninputdown( _f, ev);
+                ev = null;
 
             } else {
 
@@ -491,12 +497,14 @@ class Input {
                     //remove down state
                 _named_input_down.remove( _f );
 
-                core.oninputup( _f, {
+                var ev = {
                     name : _f,
                     type : InputType.mouse,
                     state : InteractState.up,
                     mouse_event : e
-                });
+                };
+                core.oninputup( _f, ev);
+                ev = null;
             }
         } //_f in _fired
 
@@ -525,12 +533,14 @@ class Input {
                 // down is true immediate, because up removes it
                 _named_input_down.set( _f, true);
 
-                core.oninputdown( _f, {
+                var ev = {
                     name: _f,
                     type: InputType.gamepad,
                     state: InteractState.down,
                     gamepad_event: e
-                });
+                };
+                core.oninputdown( _f, ev);
+                ev = null;
 
             } else {
 
@@ -539,12 +549,14 @@ class Input {
                 // remove down state
                 _named_input_down.remove( _f );
 
-                core.oninputup( _f, {
+                var ev = {
                     name: _f,
                     type: InputType.gamepad,
                     state: InteractState.up,
                     gamepad_event: e
-                });
+                };
+                core.oninputup( _f, ev);
+                ev = null;
 
             }
         } //_f in _fired

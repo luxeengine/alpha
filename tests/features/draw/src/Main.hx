@@ -12,7 +12,6 @@ import phoenix.geometry.LineGeometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.RectangleGeometry;
 import phoenix.Texture;
-import snow.types.Types;
 
 typedef AccelEvent = {
     timestamp:Float,
@@ -43,10 +42,10 @@ class Main extends luxe.Game {
     var accel_y: Float = 0.5;
     var accel_z: Float = 0.5;
 
-    override function onevent( ev:SystemEvent ) {
+    override function onevent( ev:snow.types.Types.SystemEvent ) {
 
-        if(ev.type == SystemEventType.input) {
-            if(ev.input.type == InputEventType.joystick) {
+        if(ev.type == se_input) {
+            if(ev.input.type == ie_joystick) {
 
                 #if mobile
                     var event : AccelEvent = ev.input.event;
@@ -57,26 +56,26 @@ class Main extends luxe.Game {
                     }
                 #end
 
-                #if web
+                // #if web
 
-                    var event = ev.input.event;
-                    if(event.type == 'orientation') {
-                        // available:
-                        // event.alpha;
-                        // event.beta;
-                        // event.gamma;
-                    } else
-                    if(event.type == 'motion') {
-                        // available:
-                        // event.acceleration (.x, .y, .z)
-                        // event.accelerationIncludingGravity (.x, .y, .z)
-                        // event.rotationRate (.alpha, .beta, .gamma)
-                        accel_x = event.acceleration.x;
-                        accel_y = event.acceleration.y;
-                        accel_z = event.acceleration.z;
-                    }
+                //     var event = ev.input.event;
+                //     if(event.type == 'orientation') {
+                //         // available:
+                //         // event.alpha;
+                //         // event.beta;
+                //         // event.gamma;
+                //     } else
+                //     if(event.type == 'motion') {
+                //         // available:
+                //         // event.acceleration (.x, .y, .z)
+                //         // event.accelerationIncludingGravity (.x, .y, .z)
+                //         // event.rotationRate (.alpha, .beta, .gamma)
+                //         accel_x = event.acceleration.x;
+                //         accel_y = event.acceleration.y;
+                //         accel_z = event.acceleration.z;
+                //     }
 
-                #end
+                // #end
 
             } //if joystick
         } //if input

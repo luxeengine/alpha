@@ -5,27 +5,36 @@
     }
   },
 
+  snow: {
+    main: 'luxe.Core'
+  },
+
   project : {
 
     name : 'luxe',
-    version : '1.0.0-alpha.1',
+    version : '1.0.0-alpha.3',
     author : 'luxeengine',
 
     app : {
       icon : 'flow/icons/ => luxe'
     },
     build : {
+      defines: ['snow_no_main'],
       flags : [
           "-resource version@version",
-          "-resource build@build",
 
           "-resource phoenix/defaults/shaders/vert.glsl@default.vert.glsl",
           "-resource phoenix/defaults/shaders/frag.glsl@default.frag.glsl",
           "-resource phoenix/defaults/shaders/frag.textured.glsl@default.frag.textured.glsl",
-          "-resource phoenix/defaults/shaders/frag.bitmapfont.glsl@default.frag.bitmapfont.glsl"
+          "-resource phoenix/defaults/shaders/frag.bitmapfont.glsl@default.frag.bitmapfont.glsl",
+
+          "-resource phoenix/defaults/shaders/vert.gl3.glsl@default.vert.gl3.glsl",
+          "-resource phoenix/defaults/shaders/frag.gl3.glsl@default.frag.gl3.glsl",
+          "-resource phoenix/defaults/shaders/frag.textured.gl3.glsl@default.frag.textured.gl3.glsl",
+          "-resource phoenix/defaults/shaders/frag.bitmapfont.gl3.glsl@default.frag.bitmapfont.gl3.glsl"
       ],
       dependencies : {
-        snow : '*'
+        snowdev : '*'
       },
       files : {
         boot : { path:'flow/boot/LuxeApp.hx => haxe/LuxeApp.hx', template:['project','snow', 'luxe'] },
@@ -47,6 +56,10 @@
 
     "no_default_font" : {
       build: { defines:['no_debug_console'] }
+    },  
+
+    "no_debug_console": {
+      build: { defines:['luxe_noprofile'] }
     },
 
     profiler : {

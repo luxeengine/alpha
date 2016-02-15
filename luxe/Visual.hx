@@ -51,7 +51,7 @@ class Visual extends Entity {
     var _has_custom_origin : Bool = false;
 
         /** Create a new visual based on the given options */
-    public function new( _options:VisualOptions #if debug, ?_pos_info:haxe.PosInfos #end ) {
+    public function new( _options:VisualOptions #if luxe_visual_pos, ?_pos_info:haxe.PosInfos #end ) {
 
         assertnull(_options, 'Visual requires non-null options');
 
@@ -61,7 +61,7 @@ class Visual extends Entity {
         _rotation_quat = new Quaternion();
 
             //call the entity constructor
-        super( _options #if debug, _pos_info #end);
+        super( _options #if luxe_visual_pos, _pos_info #end);
 
             //create the position value so we can exploit it a bit
         color = new Color();
@@ -191,8 +191,16 @@ class Visual extends Entity {
         }
 
             //clear our references to these
+        transform = null;
+        options = null;
         geometry = null;
         texture = null;
+        shader = null;
+        color = null;
+        size = null;
+        clip_rect = null;
+        _rotation_euler = null;
+        _rotation_quat = null;
 
     } //ondestroy
 

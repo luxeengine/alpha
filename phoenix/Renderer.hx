@@ -1,8 +1,7 @@
 package phoenix;
 
 import snow.modules.opengl.GL;
-import snow.api.Libs;
-import snow.system.assets.Asset;
+import snow.systems.assets.Asset;
 
 import luxe.Log.*;
 
@@ -60,7 +59,6 @@ class Renderer {
     public var render_path : RenderPath;
     public var default_render_path : RenderPath;
 
-    @:isVar public var vsync (get,set) : Bool;
     @:isVar public var target (get,set) : RenderTexture;
     public var target_size : Vector;
 
@@ -76,11 +74,22 @@ class Renderer {
         core = _core;
         font_asset = _asset;
 
-            //store the default FBO as on some platforms
-            //it is not the same as 0
+        //store the default FBO as on some platforms
+        //it is not the same as 0
+        //:todo:refactor:gl:
 
-        default_fbo = GL.getParameter(GL.FRAMEBUFFER_BINDING);
-        default_rbo = GL.getParameter(GL.RENDERBUFFER_BINDING);
+            default_fbo = GL.getParameter(GL.FRAMEBUFFER_BINDING);
+            default_rbo = GL.getParameter(GL.RENDERBUFFER_BINDING);
+
+        //also clear the garbage for first swap
+
+        #if luxe_native
+            GL.clearDepth(1.0);
+            GL.clearColor(0,0,0,1);
+            GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
+            core.app.runtime.window_swap();
+            GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
+        #end
 
         _debug("default Framebuffer set to " + default_fbo);
         _debug("default Renderbuffer set to " + default_rbo);
@@ -116,7 +125,7 @@ class Renderer {
 
         #end //no_default_font
 
-        if(Luxe.core.app.config.render.depth) {
+        if(Luxe.core.app.config.render.depth > 0) {
                 // Enable z buffer use
             state.enable(GL.DEPTH_TEST);
                 // Accept fragment if it closer or equal away from the other
@@ -175,16 +184,18 @@ class Renderer {
             def(options.name, 'batcher');
             def(options.layer, _new_batcher_layer);
             def(options.camera, new phoenix.Camera());
+            def(options.max_verts, 16384);
 
         } else {
             options = {
                 name : 'batcher',
                 camera : new phoenix.Camera(),
-                layer : _new_batcher_layer
+                layer : _new_batcher_layer,
+                max_verts : 16384
             }
         }
 
-        var _batcher = new Batcher( this, options.name );
+        var _batcher = new Batcher( this, options.name, options.max_verts );
             _batcher.view = options.camera;
             _batcher.layer = options.layer;
 
@@ -203,11 +214,11 @@ class Renderer {
 
         GL.clearColor( _color.r, _color.g, _color.b, _color.a );
 
-        if( Luxe.core.app.config.render.depth ) {
-            GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
+        if(Luxe.core.app.config.render.depth > 0) {
+            GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
             GL.clearDepth(1.0);
         } else {
-            GL.clear( GL.COLOR_BUFFER_BIT );
+            GL.clear(GL.COLOR_BUFFER_BIT);
         }
 
     } //clear
@@ -261,21 +272,8 @@ class Renderer {
 
     } //onresize
 
-    function set_vsync( _vsync:Bool ) : Bool {
 
-        Luxe.core.app.windowing.enable_vsync( _vsync );
-
-        return vsync = _vsync;
-
-    } //set_vsync
-
-    function get_vsync() : Bool {
-
-        return vsync;
-
-    } //get_vsync
-
-function get_target() : RenderTexture {
+    function get_target() : RenderTexture {
 
         return target;
 
@@ -307,13 +305,34 @@ function get_target() : RenderTexture {
 
         _debug('creating default shaders...');
 
-        var vert = haxe.Resource.getString('default.vert.glsl');
-        var frag = haxe.Resource.getString('default.frag.glsl');
-        var frag_textured = haxe.Resource.getString('default.frag.textured.glsl');
-        var frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.glsl');
+        var vert = null;
+        var frag = null;
+        var frag_textured = null;
+        var frag_bitmapfont = null;
+
+        #if (!linc_opengl_GLES && !js)
+            if(Luxe.snow.config.render.opengl.profile == snow.types.Types.OpenGLProfile.core) {
+                var vaos = [0];
+                opengl.GL.glGenVertexArrays(1, vaos);
+                opengl.GL.glBindVertexArray(vaos[0]);
+
+                vert = haxe.Resource.getString('default.vert.gl3.glsl');
+                frag = haxe.Resource.getString('default.frag.gl3.glsl');
+                frag_textured = haxe.Resource.getString('default.frag.textured.gl3.glsl');
+                frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.gl3.glsl');
+            } 
+        #end
+
+        if(vert == null) {
+            vert = haxe.Resource.getString('default.vert.glsl');
+            frag = haxe.Resource.getString('default.frag.glsl');
+            frag_textured = haxe.Resource.getString('default.frag.textured.glsl');
+            frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.glsl');
+        }
+        
 
         #if luxe_web
-            var ext = snow.modules.opengl.GL.current_context.getExtension('OES_standard_derivatives');
+            var ext = snow.modules.opengl.GL.gl.getExtension('OES_standard_derivatives');
         #end
 
             //for web + mobile, these are required
