@@ -228,7 +228,7 @@ class Text extends Visual {
     } //_update_bounds
 
 
-    override function ondestroy() {
+    override public function ondestroy() {
 
         geom = null;
         text_options = null;
