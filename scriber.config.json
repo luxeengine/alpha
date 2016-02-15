@@ -13,7 +13,7 @@
     "md_input": ["**/+(*.md)"],
     "api_input" : ["**/+(*.json)"],
 
-    "output_path" : "/Users/sven/dev/luxe_docs/",
+    "output_path" : "/Users/sven/dev/luxe_site/docs/",
     "images_output_path" : "images/",
     "samples_output_path" : "samples/",
 
