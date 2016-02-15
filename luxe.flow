@@ -34,7 +34,7 @@
           "-resource phoenix/defaults/shaders/frag.bitmapfont.gl3.glsl@default.frag.bitmapfont.gl3.glsl"
       ],
       dependencies : {
-        snowdev : '*'
+        snow : '*'
       },
       files : {
         boot : { path:'flow/boot/LuxeApp.hx => haxe/LuxeApp.hx', template:['project','snow', 'luxe'] },
