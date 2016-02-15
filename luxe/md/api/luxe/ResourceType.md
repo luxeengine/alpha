@@ -61,6 +61,10 @@ meta: @:enum</span>
             <a name="shader"><a class="lift" href="#shader">shader</a></a>
             <div class="clear"></div>
         </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="audio"><a class="lift" href="#audio">audio</a></a>
+            <div class="clear"></div>
+        </span><br/>
         <span class="small_desc_flat"></span><br/>
 
 

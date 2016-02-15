@@ -13,19 +13,17 @@
 
 
 <h1>PolygonColliderOptions</h1>
-<small>`luxe.components.physics.nape.PolygonColliderOptions`</small>
+<small>`luxe.components.physics.nape.PolygonColliderOptions` defined in `luxe.components.physics.nape.PolygonCollider`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

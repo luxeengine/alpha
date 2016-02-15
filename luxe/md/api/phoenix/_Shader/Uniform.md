@@ -13,7 +13,7 @@
 
 
 <h1>Uniform</h1>
-<small>`phoenix._Shader.Uniform`</small>
+<small>`phoenix._Shader.Uniform` defined in `phoenix.Shader`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:generic</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

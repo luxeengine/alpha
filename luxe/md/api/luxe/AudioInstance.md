@@ -13,7 +13,7 @@
 
 
 <h1>AudioInstance</h1>
-<small>`luxe.AudioInstance`</small>
+<small>`luxe.AudioInstance` defined in `luxe.Audio`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `snow.systems.audio.AudioInstance`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

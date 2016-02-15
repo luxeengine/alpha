@@ -24,7 +24,6 @@ Unifill provides Unicode-code-point-wise methods on Strings. It is
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
-<hr/>
 
 <hr/>
 

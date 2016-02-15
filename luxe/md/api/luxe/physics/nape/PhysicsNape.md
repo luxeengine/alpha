@@ -13,7 +13,7 @@
 
 
 <h1>PhysicsNape</h1>
-<small>`luxe.physics.nape.PhysicsNape`</small>
+<small>`luxe.physics.nape.PhysicsNape` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.PhysicsEngine</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

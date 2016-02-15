@@ -13,19 +13,17 @@
 
 
 <h1>BoxColliderOptions</h1>
-<small>`luxe.components.physics.nape.BoxColliderOptions`</small>
+<small>`luxe.components.physics.nape.BoxColliderOptions` defined in `luxe.components.physics.nape.BoxCollider`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

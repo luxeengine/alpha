@@ -13,7 +13,7 @@
 
 
 <h1>AudioResourceOptions</h1>
-<small>`luxe.options.AudioResourceOptions`</small>
+<small>`luxe.options.AudioResourceOptions` defined in `luxe.options.ResourceOptions`</small>
 
 Options for creating an Audio Resource instance.
         These are usually `load`ed via `Luxe.resources.load_audio(...)` and
@@ -22,12 +22,10 @@ Options for creating an Audio Resource instance.
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

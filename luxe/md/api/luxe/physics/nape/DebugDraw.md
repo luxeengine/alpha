@@ -13,7 +13,7 @@
 
 
 <h1>DebugDraw</h1>
-<small>`luxe.physics.nape.DebugDraw`</small>
+<small>`luxe.physics.nape.DebugDraw` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:allow(luxe.physics.nape.PhysicsNape)</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

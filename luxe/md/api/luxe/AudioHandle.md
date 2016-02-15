@@ -13,7 +13,7 @@
 
 
 <h1>AudioHandle</h1>
-<small>`luxe.AudioHandle`</small>
+<small>`luxe.AudioHandle` defined in `luxe.Audio`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `snow.types.AudioHandle`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

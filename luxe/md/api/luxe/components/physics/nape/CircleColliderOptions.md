@@ -13,19 +13,17 @@
 
 
 <h1>CircleColliderOptions</h1>
-<small>`luxe.components.physics.nape.CircleColliderOptions`</small>
+<small>`luxe.components.physics.nape.CircleColliderOptions` defined in `luxe.components.physics.nape.CircleCollider`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

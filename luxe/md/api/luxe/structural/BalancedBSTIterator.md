@@ -13,7 +13,7 @@
 
 
 <h1>BalancedBSTIterator</h1>
-<small>`luxe.structural.BalancedBSTIterator`</small>
+<small>`luxe.structural.BalancedBSTIterator` defined in `luxe.structural.BalancedBST`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:generic</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

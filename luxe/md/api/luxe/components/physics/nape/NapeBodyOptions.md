@@ -13,19 +13,17 @@
 
 
 <h1>NapeBodyOptions</h1>
-<small>`luxe.components.physics.nape.NapeBodyOptions`</small>
+<small>`luxe.components.physics.nape.NapeBodyOptions` defined in `luxe.components.physics.nape.NapeBody`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

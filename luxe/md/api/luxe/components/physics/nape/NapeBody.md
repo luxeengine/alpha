@@ -13,7 +13,7 @@
 
 
 <h1>NapeBody</h1>
-<small>`luxe.components.physics.nape.NapeBody`</small>
+<small>`luxe.components.physics.nape.NapeBody` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.Component</span></code><br/><span class="meta">
 meta: @:build(luxe.macros.ComponentRules.apply()), @:autoBuild(luxe.macros.ComponentRules.apply())</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

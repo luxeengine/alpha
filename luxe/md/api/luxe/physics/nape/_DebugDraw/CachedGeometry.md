@@ -13,19 +13,17 @@
 
 
 <h1>CachedGeometry</h1>
-<small>`luxe.physics.nape._DebugDraw.CachedGeometry`</small>
+<small>`luxe.physics.nape._DebugDraw.CachedGeometry` defined in `luxe.physics.nape.DebugDraw`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

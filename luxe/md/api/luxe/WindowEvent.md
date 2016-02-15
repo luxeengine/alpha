@@ -21,12 +21,10 @@ A window event
 
 `typedef`&nbsp;alias of `snow.types.WindowEvent`   
 
-<hr/>
 
 <hr/>
 
 &nbsp;
-
 
 
 

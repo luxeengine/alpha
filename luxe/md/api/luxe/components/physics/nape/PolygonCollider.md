@@ -13,7 +13,7 @@
 
 
 <h1>PolygonCollider</h1>
-<small>`luxe.components.physics.nape.PolygonCollider`</small>
+<small>`luxe.components.physics.nape.PolygonCollider` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.components.physics.nape.NapeBody</span></code><br/><span class="meta">
 meta: @:build(luxe.macros.ComponentRules.apply()), @:autoBuild(luxe.macros.ComponentRules.apply())</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

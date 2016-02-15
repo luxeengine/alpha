@@ -13,7 +13,7 @@
 
 
 <h1>UserConfig</h1>
-<small>`luxe.UserConfig`</small>
+<small>`luxe.UserConfig` defined in `luxe.Core`</small>
 
 
 
@@ -23,13 +23,10 @@
 <br/><span class="meta">
 meta: @:keep</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

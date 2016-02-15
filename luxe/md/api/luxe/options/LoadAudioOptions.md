@@ -13,19 +13,17 @@
 
 
 <h1>LoadAudioOptions</h1>
-<small>`luxe.options.LoadAudioOptions`</small>
+<small>`luxe.options.LoadAudioOptions` defined in `luxe.options.ResourceOptions`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 
