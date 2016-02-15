@@ -18,7 +18,7 @@ class Main extends luxe.Game {
     }
 
     override function onwindowsized( e:WindowEvent ) {
-        Luxe.camera.viewport = new luxe.Rectangle( 0, 0, e.event.x, e.event.y);
+        Luxe.camera.viewport = new luxe.Rectangle( 0, 0, e.x, e.y);
     }
 
     var r = 8.0;

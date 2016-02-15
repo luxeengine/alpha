@@ -29,6 +29,11 @@ class Main extends luxe.Game {
             { id:'assets/idle/swat_idle_4.png' },
         ];
 
+        config.preload.sounds = [
+            { id:'assets/samulis_footstep_on_stone_1.ogg', is_stream:false },
+            { id:'assets/samulis_footstep_on_stone_2.ogg', is_stream:false }
+        ];
+
         return config;
 
     } //config
@@ -111,8 +116,8 @@ class Main extends luxe.Game {
 		anim.play();
 
             //create the sound to use
-        Luxe.audio.create('assets/samulis_footstep_on_stone_2.ogg', 'step1');
-        Luxe.audio.create('assets/samulis_footstep_on_stone_1.ogg', 'step2');
+        var step1 = Luxe.resources.audio('assets/samulis_footstep_on_stone_1.ogg');
+        var step2 = Luxe.resources.audio('assets/samulis_footstep_on_stone_2.ogg');
 
             //create an event manually
         anim.add_event('walk', 7, 'frame7');
@@ -128,10 +133,10 @@ class Main extends luxe.Game {
         anim.remove_events('walk', 6);
 
         sprite.events.listen('foot.1', function(e){
-            Luxe.audio.play('step1');
+            Luxe.audio.play(step1.source);
         });
         sprite.events.listen('foot.2', function(e){
-            Luxe.audio.play('step2');
+            Luxe.audio.play(step2.source);
         });
         sprite.events.listen('*', function(e){
             //uncomment to see all the events remaining after the above messing

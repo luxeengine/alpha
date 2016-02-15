@@ -130,7 +130,7 @@ class Main extends luxe.Game {
             var bh = dragger.pos.y - text.bounds.y;
 
             text.bounds = new Rectangle(text.bounds.x, text.bounds.y, bw, bh );
-            bounds_rect.set({ rect:text.bounds });
+            bounds_rect.set(text.bounds);
 
             // geometry clip_rect doesn't account for zoom/camera transform,
             // since it's clip space, it should be transformed internally.

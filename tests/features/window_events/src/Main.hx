@@ -20,13 +20,6 @@ class Main extends luxe.Game {
             Luxe.shutdown();
         }
 
-        if(e.keycode == Key.key_r) {
-            Luxe.core.app.window.set_size(
-                    Luxe.utils.random.int(start.x - 50, start.x + 100 ),
-                    Luxe.utils.random.int(start.y - 50, start.y + 100 )
-            );
-        }
-
     } //onkeyup
 
     override function onrender() {
@@ -39,14 +32,14 @@ class Main extends luxe.Game {
     }
 
     override function onwindowmoved( e:WindowEvent ) {
-        trace('window moved : ${e.event.x} / ${e.event.y}');
+        trace('window moved : ${e.x} / ${e.y}');
     }
     override function onwindowresized( e:WindowEvent ) {
-        trace('window resized : ${e.event.x} / ${e.event.y}');
+        trace('window resized : ${e.x} / ${e.y}');
     }
     override function onwindowsized( e:WindowEvent ) {
-        trace('window sized : ${e.event.x} / ${e.event.y}');
-        Luxe.camera.viewport = new luxe.Rectangle(0, 0, e.event.x, e.event.y);
+        trace('window sized : ${e.x} / ${e.y}');
+        Luxe.camera.viewport = new luxe.Rectangle(0, 0, e.x, e.y);
     }
     override function onwindowminimized( e:WindowEvent ) {
         trace('window minimized');

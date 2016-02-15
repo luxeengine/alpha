@@ -13,11 +13,6 @@ import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.RectangleGeometry;
 import phoenix.Texture;
 
-typedef AccelEvent = {
-    timestamp:Float,
-    value:Float,
-    axis:Int
-}
 
 class Main extends luxe.Game {
 
@@ -37,50 +32,6 @@ class Main extends luxe.Game {
         return config;
 
     } //config
-
-    var accel_x: Float = 0.5;
-    var accel_y: Float = 0.5;
-    var accel_z: Float = 0.5;
-
-    override function onevent( ev:snow.types.Types.SystemEvent ) {
-
-        if(ev.type == se_input) {
-            if(ev.input.type == ie_joystick) {
-
-                #if mobile
-                    var event : AccelEvent = ev.input.event;
-                    switch(event.axis) {
-                        case 0: accel_x = event.value;
-                        case 1: accel_y = event.value;
-                        case 2: accel_z = event.value;
-                    }
-                #end
-
-                // #if web
-
-                //     var event = ev.input.event;
-                //     if(event.type == 'orientation') {
-                //         // available:
-                //         // event.alpha;
-                //         // event.beta;
-                //         // event.gamma;
-                //     } else
-                //     if(event.type == 'motion') {
-                //         // available:
-                //         // event.acceleration (.x, .y, .z)
-                //         // event.accelerationIncludingGravity (.x, .y, .z)
-                //         // event.rotationRate (.alpha, .beta, .gamma)
-                //         accel_x = event.acceleration.x;
-                //         accel_y = event.acceleration.y;
-                //         accel_z = event.acceleration.z;
-                //     }
-
-                // #end
-
-            } //if joystick
-        } //if input
-
-    } //onevent
 
     override function ready() {
 
@@ -285,30 +236,6 @@ class Main extends luxe.Game {
     } //onkeyup
 
     override function onrender() {
-
-        //accel
-
-            var apos = new Vector(accel_x * Luxe.screen.w, accel_y * Luxe.screen.h);
-
-            Luxe.draw.ring({
-                    //this line is important, as each frame it will create new geometry!
-                immediate : true,
-                x : apos.x,
-                y : apos.y,
-                rx : Luxe.screen.h*0.02,
-                ry : Luxe.screen.h*0.02,
-                color : new Color(1,1,1,1).rgb(0xf6007b)
-            });
-
-            Luxe.draw.text({
-                    //this line is important, as each frame it will create new geometry!
-                immediate:true,
-                align : TextAlign.center,
-                color : new Color().rgb(0xf6007b),
-                pos : apos,
-                point_size : 12,
-                text : 'accel: ${Maths.fixed(accel_x, 3)} ${Maths.fixed(accel_y, 3)} ${Maths.fixed(accel_z, 3)}'
-            });
 
         //mouse
 

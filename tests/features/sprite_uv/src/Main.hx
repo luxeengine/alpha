@@ -57,8 +57,8 @@ class Main extends luxe.Game {
 
     function on_resize( _event: snow.types.Types.WindowEvent ) {
 
-        var w = _event.event.x;
-        var h = _event.event.y;
+        var w = _event.x;
+        var h = _event.y;
         var ratio = w / h;
 
         stars.size = sky.size = new Vector(w, w / ratio);
@@ -72,10 +72,12 @@ class Main extends luxe.Game {
 
     } //onmousemove
 
+    var fs = false;
     override function onkeyup( e:KeyEvent ) {
 
         if( e.keycode == Key.enter && e.mod.alt ) {
-            app.app.window.fullscreen = !app.app.window.fullscreen;
+            fs = !fs;
+            Luxe.snow.runtime.window_fullscreen(fs);
         }
 
 
