@@ -13,7 +13,7 @@
 
 
 <h1>TextEventType</h1>
-<small>`luxe.TextEventType`</small>
+<small>`luxe.TextEventType` defined in `luxe.Input`</small>
 
 A typed text event type
 
@@ -22,12 +22,10 @@ A typed text event type
 `enum`<br/><span class="meta">
 meta: @:directlyUsed, @:flatEnum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

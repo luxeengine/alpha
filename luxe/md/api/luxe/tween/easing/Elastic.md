@@ -13,19 +13,17 @@
 
 
 <h1>Elastic</h1>
-<small>`luxe.tween.easing.Elastic`</small>
+<small>`luxe.tween.easing.Elastic` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

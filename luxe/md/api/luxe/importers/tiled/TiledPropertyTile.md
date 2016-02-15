@@ -13,7 +13,7 @@
 
 
 <h1>TiledPropertyTile</h1>
-<small>`luxe.importers.tiled.TiledPropertyTile`</small>
+<small>`luxe.importers.tiled.TiledPropertyTile` defined in `luxe.importers.tiled.TiledMapData`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

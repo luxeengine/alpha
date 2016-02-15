@@ -13,7 +13,7 @@
 
 
 <h1>ResourceState</h1>
-<small>`luxe.ResourceState`</small>
+<small>`luxe.ResourceState` defined in `luxe.Resources`</small>
 
 The state a resource can be in. The state is
     mutually exclusive (only one at a time), and states
@@ -23,18 +23,50 @@ The state a resource can be in. The state is
 
 <hr/>
 
-`abstract`<br/><span class="meta">
+`abstract`&nbsp;of `Int`<br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span>
+
 
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 
-
-
+ <hr/><span class="member apipage">
+            <a name="unknown"><a class="lift" href="#unknown">unknown</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">This resource id is not known to the system,
+            either it wasn't added or was subsequently removed</span><br/><span class="member apipage">
+            <a name="listed"><a class="lift" href="#listed">listed</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">This id is known, but is not loaded.
+            unloaded resources go back to this state unless removed.</span><br/><span class="member apipage">
+            <a name="loading"><a class="lift" href="#loading">loading</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">The resource is pending a load completion or timeout.</span><br/><span class="member apipage">
+            <a name="loaded"><a class="lift" href="#loaded">loaded</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">The resource is loaded and stored for query/fetching.</span><br/><span class="member apipage">
+            <a name="failed"><a class="lift" href="#failed">failed</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">The resource has failed to be created.</span><br/><span class="member apipage">
+            <a name="invalidated"><a class="lift" href="#invalidated">invalidated</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">The resource has been invalidated, either manually or
+            from an event (change on disk, graphics context lost, etc)
+            and needs to be reloaded from the source data if desired.</span><br/><span class="member apipage">
+            <a name="destroyed"><a class="lift" href="#destroyed">destroyed</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">The resource has been destroyed. If the asset is in this
+            state it should not be considered for reuse and will assert on use it</span><br/>
 
 
 

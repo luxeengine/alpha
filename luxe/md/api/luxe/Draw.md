@@ -13,7 +13,7 @@
 
 
 <h1>Draw</h1>
-<small>`luxe.Draw`</small>
+<small>`luxe.Draw` defined in ``</small>
 
 The `Luxe.draw` API class implementation.
     This class handles quick access to drawing common geometry options,
@@ -25,12 +25,10 @@ The `Luxe.draw` API class implementation.
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

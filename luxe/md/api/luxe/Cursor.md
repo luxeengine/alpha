@@ -13,7 +13,7 @@
 
 
 <h1>Cursor</h1>
-<small>`luxe.Cursor`</small>
+<small>`luxe.Cursor` defined in `luxe.Screen`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

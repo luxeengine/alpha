@@ -13,19 +13,17 @@
 
 
 <h1>PhysicsEngine</h1>
-<small>`luxe.PhysicsEngine`</small>
+<small>`luxe.PhysicsEngine` defined in `luxe.Physics`</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

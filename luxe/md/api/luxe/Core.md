@@ -13,7 +13,7 @@
 
 
 <h1>Core</h1>
-<small>`luxe.Core`</small>
+<small>`luxe.Core` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>snow.App</span></code><br/><span class="meta">
 meta: @:directlyUsed, @:keep, @:keep, @:noCompletion, @:log_as(&quot;luxe&quot;)</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

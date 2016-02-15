@@ -13,7 +13,7 @@
 
 
 <h1>MouseButton_Impl_</h1>
-<small>`luxe._Input.MouseButton_Impl_`</small>
+<small>`luxe._Input.MouseButton_Impl_` defined in `luxe.Input`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

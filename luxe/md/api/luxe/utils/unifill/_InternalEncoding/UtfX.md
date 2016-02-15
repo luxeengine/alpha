@@ -13,7 +13,7 @@
 
 
 <h1>UtfX</h1>
-<small>`luxe.utils.unifill._InternalEncoding.UtfX`</small>
+<small>`luxe.utils.unifill._InternalEncoding.UtfX` defined in `luxe.utils.unifill.InternalEncoding`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `luxe.utils.unifill.Utf8`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

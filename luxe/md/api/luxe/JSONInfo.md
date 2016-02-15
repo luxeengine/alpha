@@ -13,7 +13,7 @@
 
 
 <h1>JSONInfo</h1>
-<small>`luxe.JSONInfo`</small>
+<small>`luxe.JSONInfo` defined in `luxe.Parcel`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `luxe.ItemInfo`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

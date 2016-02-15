@@ -13,7 +13,7 @@
 
 
 <h1>MatrixTransform</h1>
-<small>`phoenix.MatrixTransform`</small>
+<small>`phoenix.MatrixTransform` defined in `phoenix.Matrix`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

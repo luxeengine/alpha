@@ -13,19 +13,18 @@
 
 
 <h1>Utf32</h1>
-<small>`luxe.utils.unifill.Utf32`</small>
+<small>`luxe.utils.unifill.Utf32` defined in ``</small>
 
 Utf32 provides a UTF-32-encoded string.
 
 <hr/>
 
-`abstract`
+`abstract`&nbsp;of `Array`<br/><span class="meta"></span>&nbsp;<span class="meta"></span>
+
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

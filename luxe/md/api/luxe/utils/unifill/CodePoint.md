@@ -13,19 +13,18 @@
 
 
 <h1>CodePoint</h1>
-<small>`luxe.utils.unifill.CodePoint`</small>
+<small>`luxe.utils.unifill.CodePoint` defined in ``</small>
 
 
 
 <hr/>
 
-`abstract`
+`abstract`&nbsp;of `Int`<br/><span class="meta"></span>&nbsp;<span class="meta"></span>
+
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

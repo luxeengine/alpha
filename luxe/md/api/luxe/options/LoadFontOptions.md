@@ -13,19 +13,17 @@
 
 
 <h1>LoadFontOptions</h1>
-<small>`luxe.options.LoadFontOptions`</small>
+<small>`luxe.options.LoadFontOptions` defined in `luxe.options.ResourceOptions`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

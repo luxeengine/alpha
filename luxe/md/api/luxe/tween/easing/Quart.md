@@ -13,19 +13,17 @@
 
 
 <h1>Quart</h1>
-<small>`luxe.tween.easing.Quart`</small>
+<small>`luxe.tween.easing.Quart` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

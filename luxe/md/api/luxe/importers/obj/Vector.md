@@ -13,19 +13,17 @@
 
 
 <h1>Vector</h1>
-<small>`luxe.importers.obj.Vector`</small>
+<small>`luxe.importers.obj.Vector` defined in `luxe.importers.obj.Data`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

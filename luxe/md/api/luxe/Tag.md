@@ -13,7 +13,7 @@
 
 
 <h1>Tag</h1>
-<small>`luxe.Tag`</small>
+<small>`luxe.Tag` defined in `luxe.Core`</small>
 
 A tag class for the string based values in the core.
 Note that these values are not inline intentionally, they avoid
@@ -24,12 +24,10 @@ allocating strings each frame.
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:keep, @:noCompletion, @:allow(luxe.Core)</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>Utf16Impl</h1>
-<small>`luxe.utils.unifill._Utf16.Utf16Impl`</small>
+<small>`luxe.utils.unifill._Utf16.Utf16Impl` defined in `luxe.utils.unifill.Utf16`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

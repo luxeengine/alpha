@@ -13,19 +13,17 @@
 
 
 <h1>RenderProperties</h1>
-<small>`luxe.options.RenderProperties`</small>
+<small>`luxe.options.RenderProperties` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

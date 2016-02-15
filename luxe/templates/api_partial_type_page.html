@@ -1,5 +1,5 @@
 
-{{#if type '==' 'typedef'}}
+{{~#if type '==' 'typedef'}}
     {{~^if members}}
         {{~>type_page (find_type types.cpp.name)}}
     {{/if}}
@@ -28,6 +28,21 @@
         no public members
     {{~/each~}}
 
+{{/if}}
+
+{{~#if type '==' 'abstract'}}
+{{#if impl.members.length}}
+ <hr/>
+    {{~#each impl.members~}}
+        <span class="member apipage">
+            <a name="{{~name~}}"><a class="lift" href="#{{name}}">
+             {{~escape_markdown name~}}
+            </a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">{{{doc}}}</span><br/>
+    {{~/each~}}
+{{/if}}
 {{/if}}
 
 {{~#if constructors.length~}}

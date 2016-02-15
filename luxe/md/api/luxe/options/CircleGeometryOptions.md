@@ -13,19 +13,17 @@
 
 
 <h1>CircleGeometryOptions</h1>
-<small>`luxe.options.CircleGeometryOptions`</small>
+<small>`luxe.options.CircleGeometryOptions` defined in `luxe.options.GeometryOptions`</small>
 
 Options for drawing or creating circle based geometry, phoenix.geometry.CircleGeometry
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

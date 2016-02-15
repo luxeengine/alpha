@@ -13,7 +13,7 @@
 
 
 <h1>ResourceEvent_Impl_</h1>
-<small>`luxe._Resources.ResourceEvent_Impl_`</small>
+<small>`luxe._Resources.ResourceEvent_Impl_` defined in `luxe.Resources`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

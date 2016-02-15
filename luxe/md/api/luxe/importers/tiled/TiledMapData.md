@@ -13,7 +13,7 @@
 
 
 <h1>TiledMapData</h1>
-<small>`luxe.importers.tiled.TiledMapData`</small>
+<small>`luxe.importers.tiled.TiledMapData` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

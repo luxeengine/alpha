@@ -13,7 +13,7 @@
 
 
 <h1>RendererStats</h1>
-<small>`phoenix.RendererStats`</small>
+<small>`phoenix.RendererStats` defined in `phoenix.Renderer`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

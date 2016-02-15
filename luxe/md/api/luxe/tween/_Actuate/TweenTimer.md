@@ -13,7 +13,7 @@
 
 
 <h1>TweenTimer</h1>
-<small>`luxe.tween._Actuate.TweenTimer`</small>
+<small>`luxe.tween._Actuate.TweenTimer` defined in `luxe.tween.Actuate`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

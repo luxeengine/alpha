@@ -13,19 +13,17 @@
 
 
 <h1>RectangleGeometryOptions</h1>
-<small>`luxe.options.RectangleGeometryOptions`</small>
+<small>`luxe.options.RectangleGeometryOptions` defined in `luxe.options.GeometryOptions`</small>
 
 Options for drawing or creating rectangle based geometry, phoenix.geometry.RectangleGeometry
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

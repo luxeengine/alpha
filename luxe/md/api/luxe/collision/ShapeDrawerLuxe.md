@@ -13,7 +13,7 @@
 
 
 <h1>ShapeDrawerLuxe</h1>
-<small>`luxe.collision.ShapeDrawerLuxe`</small>
+<small>`luxe.collision.ShapeDrawerLuxe` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.collision.ShapeDrawer</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

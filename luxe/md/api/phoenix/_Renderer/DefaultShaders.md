@@ -13,19 +13,17 @@
 
 
 <h1>DefaultShaders</h1>
-<small>`phoenix._Renderer.DefaultShaders`</small>
+<small>`phoenix._Renderer.DefaultShaders` defined in `phoenix.Renderer`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,19 +13,17 @@
 
 
 <h1>Bounce</h1>
-<small>`luxe.tween.easing.Bounce`</small>
+<small>`luxe.tween.easing.Bounce` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

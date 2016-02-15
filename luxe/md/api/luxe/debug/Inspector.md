@@ -13,7 +13,7 @@
 
 
 <h1>Inspector</h1>
-<small>`luxe.debug.Inspector`</small>
+<small>`luxe.debug.Inspector` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

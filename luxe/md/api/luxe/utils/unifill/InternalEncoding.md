@@ -13,7 +13,7 @@
 
 
 <h1>InternalEncoding</h1>
-<small>`luxe.utils.unifill.InternalEncoding`</small>
+<small>`luxe.utils.unifill.InternalEncoding` defined in ``</small>
 
 InternalEncoding provides primitive API to deal with strings across
    all platforms. You should consider adopting Unifill before this.
@@ -21,12 +21,10 @@ InternalEncoding provides primitive API to deal with strings across
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,19 +13,17 @@
 
 
 <h1>RayCollisionHelper</h1>
-<small>`luxe.collision.data.RayCollisionHelper`</small>
+<small>`luxe.collision.data.RayCollisionHelper` defined in `luxe.collision.data.RayCollision`</small>
 
 A static extension class helper for RayCollision
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

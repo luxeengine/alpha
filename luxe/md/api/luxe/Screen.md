@@ -13,7 +13,7 @@
 
 
 <h1>Screen</h1>
-<small>`luxe.Screen`</small>
+<small>`luxe.Screen` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:allow(luxe.Core), @:allow(luxe.Cursor)</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

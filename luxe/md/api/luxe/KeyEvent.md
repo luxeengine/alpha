@@ -13,19 +13,17 @@
 
 
 <h1>KeyEvent</h1>
-<small>`luxe.KeyEvent`</small>
+<small>`luxe.KeyEvent` defined in `luxe.Input`</small>
 
 Information about a keyboard event
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

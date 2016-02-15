@@ -13,7 +13,7 @@
 
 
 <h1>DrawArcOptions</h1>
-<small>`luxe.options.DrawArcOptions`</small>
+<small>`luxe.options.DrawArcOptions` defined in `luxe.options.DrawOptions`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `luxe.options.CircleGeometryOptions`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

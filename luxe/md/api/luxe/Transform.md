@@ -13,7 +13,7 @@
 
 
 <h1>Transform</h1>
-<small>`luxe.Transform`</small>
+<small>`luxe.Transform` defined in ``</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `phoenix.Transform`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

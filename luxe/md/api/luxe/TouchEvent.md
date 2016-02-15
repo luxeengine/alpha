@@ -13,19 +13,17 @@
 
 
 <h1>TouchEvent</h1>
-<small>`luxe.TouchEvent`</small>
+<small>`luxe.TouchEvent` defined in `luxe.Input`</small>
 
 Information about a touch event
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

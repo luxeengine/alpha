@@ -13,7 +13,7 @@
 
 
 <h1>Emitter</h1>
-<small>`luxe.Emitter`</small>
+<small>`luxe.Emitter` defined in ``</small>
 
 A simple event emitter, used as a base class for systems that want to handle direct connections to named events
 
@@ -22,12 +22,10 @@ A simple event emitter, used as a base class for systems that want to handle dir
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

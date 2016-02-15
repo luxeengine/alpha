@@ -13,19 +13,17 @@
 
 
 <h1>DrawNgonOptions</h1>
-<small>`luxe.options.DrawNgonOptions`</small>
+<small>`luxe.options.DrawNgonOptions` defined in `luxe.options.DrawOptions`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

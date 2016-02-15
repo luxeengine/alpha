@@ -13,19 +13,17 @@
 
 
 <h1>Sine</h1>
-<small>`luxe.tween.easing.Sine`</small>
+<small>`luxe.tween.easing.Sine` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

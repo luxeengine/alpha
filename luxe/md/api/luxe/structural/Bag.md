@@ -13,7 +13,7 @@
 
 
 <h1>Bag</h1>
-<small>`luxe.structural.Bag`</small>
+<small>`luxe.structural.Bag` defined in ``</small>
 
 Copyright 2014 Sven Bergström
     A simple generic linked list based Bag.
@@ -28,12 +28,10 @@ Copyright 2014 Sven Bergström
 `class`<br/><span class="meta">
 meta: @:generic</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>DrawRingOptions</h1>
-<small>`luxe.options.DrawRingOptions`</small>
+<small>`luxe.options.DrawRingOptions` defined in `luxe.options.DrawOptions`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `luxe.options.CircleGeometryOptions`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

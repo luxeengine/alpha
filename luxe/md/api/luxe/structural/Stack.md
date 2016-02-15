@@ -13,7 +13,7 @@
 
 
 <h1>Stack</h1>
-<small>`luxe.structural.Stack`</small>
+<small>`luxe.structural.Stack` defined in ``</small>
 
 Copyright 2014 Sven Bergström
     A simple generic linked list based Stack.
@@ -28,12 +28,10 @@ Copyright 2014 Sven Bergström
 `class`<br/><span class="meta">
 meta: @:generic</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

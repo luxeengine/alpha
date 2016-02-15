@@ -13,24 +13,39 @@
 
 
 <h1>ParcelEvent</h1>
-<small>`luxe.ParcelEvent`</small>
+<small>`luxe.ParcelEvent` defined in `luxe.Parcel`</small>
 
 
 
 <hr/>
 
-`abstract`<br/><span class="meta">
+`abstract`&nbsp;of `Int`<br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 
-
-
+ <hr/><span class="member apipage">
+            <a name="unknown"><a class="lift" href="#unknown">unknown</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="progress"><a class="lift" href="#progress">progress</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="complete"><a class="lift" href="#complete">complete</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="failed"><a class="lift" href="#failed">failed</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/>
 
 
 

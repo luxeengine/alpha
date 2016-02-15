@@ -13,7 +13,7 @@
 
 
 <h1>Matrix</h1>
-<small>`luxe.Matrix`</small>
+<small>`luxe.Matrix` defined in ``</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `phoenix.Matrix`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

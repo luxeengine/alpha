@@ -13,19 +13,17 @@
 
 
 <h1>Resource</h1>
-<small>`luxe.resource.Resource`</small>
+<small>`luxe.resource.Resource` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

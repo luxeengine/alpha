@@ -13,19 +13,17 @@
 
 
 <h1>BatcherKey</h1>
-<small>`phoenix.BatcherKey`</small>
+<small>`phoenix.BatcherKey` defined in `phoenix.Renderer`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

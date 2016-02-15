@@ -13,19 +13,17 @@
 
 
 <h1>ShaderInfo</h1>
-<small>`luxe.ShaderInfo`</small>
+<small>`luxe.ShaderInfo` defined in `luxe.Parcel`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>EmitNode</h1>
-<small>`luxe._Emitter.EmitNode`</small>
+<small>`luxe._Emitter.EmitNode` defined in `luxe.Emitter`</small>
 
 
 
@@ -22,12 +22,10 @@
 `typedef`<br/><span class="meta">
 meta: @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,24 +13,55 @@
 
 
 <h1>PrimitiveType</h1>
-<small>`phoenix.PrimitiveType`</small>
+<small>`phoenix.PrimitiveType` defined in `phoenix.Batcher`</small>
 
 
 
 <hr/>
 
-`abstract`<br/><span class="meta">
+`abstract`&nbsp;of `Int`<br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 
-
-
+ <hr/><span class="member apipage">
+            <a name="unknown"><a class="lift" href="#unknown">unknown</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="line_strip"><a class="lift" href="#line_strip">line\_strip</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="line_loop"><a class="lift" href="#line_loop">line\_loop</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="lines"><a class="lift" href="#lines">lines</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="triangle_strip"><a class="lift" href="#triangle_strip">triangle\_strip</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="triangles"><a class="lift" href="#triangles">triangles</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="triangle_fan"><a class="lift" href="#triangle_fan">triangle\_fan</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="points"><a class="lift" href="#points">points</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/>
 
 
 

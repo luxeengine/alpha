@@ -13,7 +13,7 @@
 
 
 <h1>ExpoEaseIn</h1>
-<small>`luxe.tween.easing.ExpoEaseIn`</small>
+<small>`luxe.tween.easing.ExpoEaseIn` defined in `luxe.tween.easing.Expo`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/>implements <code><span>luxe.tween.easing.IEasing</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

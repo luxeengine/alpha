@@ -13,7 +13,7 @@
 
 
 <h1>Texture</h1>
-<small>`phoenix.Texture`</small>
+<small>`phoenix.Texture` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.resource.Resource</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

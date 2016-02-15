@@ -13,19 +13,17 @@
 
 
 <h1>DebugView</h1>
-<small>`luxe.debug.DebugView`</small>
+<small>`luxe.debug.DebugView` defined in ``</small>
 
 
 
 <hr/>
 
 `class`extends <code><span>luxe.Objects</span></code>
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

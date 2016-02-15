@@ -13,19 +13,17 @@
 
 
 <h1>LoadShaderOptions</h1>
-<small>`luxe.options.LoadShaderOptions`</small>
+<small>`luxe.options.LoadShaderOptions` defined in `luxe.options.ResourceOptions`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

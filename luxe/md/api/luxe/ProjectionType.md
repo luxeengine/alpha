@@ -13,7 +13,7 @@
 
 
 <h1>ProjectionType</h1>
-<small>`luxe.ProjectionType`</small>
+<small>`luxe.ProjectionType` defined in `luxe.Camera`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `phoenix.ProjectionType`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

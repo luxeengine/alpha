@@ -13,7 +13,7 @@
 
 
 <h1>PropertyPathDetails</h1>
-<small>`luxe.tween.actuators.PropertyPathDetails`</small>
+<small>`luxe.tween.actuators.PropertyPathDetails` defined in `luxe.tween.actuators.MotionPathActuator`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.tween.actuators.PropertyDetails</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>TextResource</h1>
-<small>`luxe.resource.TextResource`</small>
+<small>`luxe.resource.TextResource` defined in `luxe.resource.Resource`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.resource.Resource</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

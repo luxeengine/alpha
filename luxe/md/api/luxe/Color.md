@@ -13,7 +13,7 @@
 
 
 <h1>Color</h1>
-<small>`luxe.Color`</small>
+<small>`luxe.Color` defined in ``</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `phoenix.Color`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

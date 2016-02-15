@@ -13,19 +13,17 @@
 
 
 <h1>NineSliceOptions</h1>
-<small>`luxe.options.NineSliceOptions`</small>
+<small>`luxe.options.NineSliceOptions` defined in ``</small>
 
 Options for a Nineslice scaled entity, extending from `Sprite` allowing scaleable graphics to be drawn from a small image. See the guide for examples.
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

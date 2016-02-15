@@ -13,7 +13,7 @@
 
 
 <h1>MotionPath</h1>
-<small>`luxe.tween.MotionPath`</small>
+<small>`luxe.tween.MotionPath` defined in ``</small>
 
 @author Joshua Granick   
   @author Aleš Tomeček (for RotationPath)
@@ -21,12 +21,10 @@
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,19 +13,17 @@
 
 
 <h1>SpriteOptions</h1>
-<small>`luxe.options.SpriteOptions`</small>
+<small>`luxe.options.SpriteOptions` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

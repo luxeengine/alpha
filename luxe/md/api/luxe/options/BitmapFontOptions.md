@@ -13,19 +13,17 @@
 
 
 <h1>BitmapFontOptions</h1>
-<small>`luxe.options.BitmapFontOptions`</small>
+<small>`luxe.options.BitmapFontOptions` defined in `luxe.options.ResourceOptions`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>TiledPolyObject</h1>
-<small>`luxe.importers.tiled.TiledPolyObject`</small>
+<small>`luxe.importers.tiled.TiledPolyObject` defined in `luxe.importers.tiled.TiledObjectGroup`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

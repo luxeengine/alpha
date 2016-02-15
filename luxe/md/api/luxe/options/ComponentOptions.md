@@ -13,19 +13,17 @@
 
 
 <h1>ComponentOptions</h1>
-<small>`luxe.options.ComponentOptions`</small>
+<small>`luxe.options.ComponentOptions` defined in ``</small>
 
 Options for a luxe.Component instance
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

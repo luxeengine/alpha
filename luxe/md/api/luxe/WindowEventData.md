@@ -13,19 +13,17 @@
 
 
 <h1>WindowEventData</h1>
-<small>`luxe.WindowEventData`</small>
+<small>`luxe.WindowEventData` defined in `luxe.Screen`</small>
 
 The data related to the specific window event.
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,19 +13,17 @@
 
 
 <h1>TexturePackerRect</h1>
-<small>`luxe.importers.texturepacker.TexturePackerRect`</small>
+<small>`luxe.importers.texturepacker.TexturePackerRect` defined in `luxe.importers.texturepacker.TexturePackerData`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>TextAlign_Impl_</h1>
-<small>`phoenix._BitmapFont.TextAlign_Impl_`</small>
+<small>`phoenix._BitmapFont.TextAlign_Impl_` defined in `phoenix.BitmapFont`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>Events</h1>
-<small>`luxe.Events`</small>
+<small>`luxe.Events` defined in ``</small>
 
 An event system that handles queued, immediate or
     scheduled event id's to be fired and listened for.
@@ -27,12 +27,10 @@ An event system that handles queued, immediate or
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

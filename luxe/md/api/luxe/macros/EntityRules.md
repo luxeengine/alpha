@@ -13,7 +13,7 @@
 
 
 <h1>EntityRules</h1>
-<small>`luxe.macros.EntityRules`</small>
+<small>`luxe.macros.EntityRules` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

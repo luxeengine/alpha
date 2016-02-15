@@ -13,19 +13,17 @@
 
 
 <h1>Normal</h1>
-<small>`luxe.importers.obj.Normal`</small>
+<small>`luxe.importers.obj.Normal` defined in `luxe.importers.obj.Data`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

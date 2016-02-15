@@ -13,24 +13,31 @@
 
 
 <h1>TextureType</h1>
-<small>`phoenix.TextureType`</small>
+<small>`phoenix.TextureType` defined in `phoenix.Texture`</small>
 
 
 
 <hr/>
 
-`abstract`<br/><span class="meta">
+`abstract`&nbsp;of `Int`<br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 
-
-
+ <hr/><span class="member apipage">
+            <a name="tex_2D"><a class="lift" href="#tex_2D">tex\_2D</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="tex_cube"><a class="lift" href="#tex_cube">tex\_cube</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/>
 
 
 

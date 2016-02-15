@@ -13,7 +13,7 @@
 
 
 <h1>Polygon</h1>
-<small>`luxe.collision.shapes.Polygon`</small>
+<small>`luxe.collision.shapes.Polygon` defined in ``</small>
 
 A polygon collision shape
 
@@ -22,12 +22,10 @@ A polygon collision shape
 `class`extends <code><span>luxe.collision.shapes.Shape</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

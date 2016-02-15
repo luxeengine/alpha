@@ -13,7 +13,7 @@
 
 
 <h1>Batcher</h1>
-<small>`phoenix.Batcher`</small>
+<small>`phoenix.Batcher` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:allow(phoenix.Renderer)</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>ClampSlot_Impl_</h1>
-<small>`phoenix._Texture.ClampSlot_Impl_`</small>
+<small>`phoenix._Texture.ClampSlot_Impl_` defined in `phoenix.Texture`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,19 +13,17 @@
 
 
 <h1>TexturePackerMeta</h1>
-<small>`luxe.importers.texturepacker.TexturePackerMeta`</small>
+<small>`luxe.importers.texturepacker.TexturePackerMeta` defined in `luxe.importers.texturepacker.TexturePackerData`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

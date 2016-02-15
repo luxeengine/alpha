@@ -13,7 +13,7 @@
 
 
 <h1>GeometryState</h1>
-<small>`phoenix.geometry.GeometryState`</small>
+<small>`phoenix.geometry.GeometryState` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:allow(phoenix.Batcher), @:allow(phoenix.BatchState), @:allow(phoenix.geometry.Geometry)</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

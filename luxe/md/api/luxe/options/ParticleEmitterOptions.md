@@ -13,19 +13,17 @@
 
 
 <h1>ParticleEmitterOptions</h1>
-<small>`luxe.options.ParticleEmitterOptions`</small>
+<small>`luxe.options.ParticleEmitterOptions` defined in `luxe.options.ParticleOptions`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,19 +13,17 @@
 
 
 <h1>Expo</h1>
-<small>`luxe.tween.easing.Expo`</small>
+<small>`luxe.tween.easing.Expo` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

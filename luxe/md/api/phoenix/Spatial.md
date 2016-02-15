@@ -13,7 +13,7 @@
 
 
 <h1>Spatial</h1>
-<small>`phoenix.Spatial`</small>
+<small>`phoenix.Spatial` defined in `phoenix.Transform`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

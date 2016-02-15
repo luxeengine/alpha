@@ -13,7 +13,7 @@
 
 
 <h1>TextAlign</h1>
-<small>`luxe.TextAlign`</small>
+<small>`luxe.TextAlign` defined in `luxe.Text`</small>
 
 
 
@@ -21,16 +21,33 @@
 
 `typedef`&nbsp;alias of `phoenix.TextAlign`   
 
+
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 
-
-
-
+ <hr/><span class="member apipage">
+            <a name="left"><a class="lift" href="#left">left</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="right"><a class="lift" href="#right">right</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="center"><a class="lift" href="#center">center</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="top"><a class="lift" href="#top">top</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="bottom"><a class="lift" href="#bottom">bottom</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/>
 
 
 

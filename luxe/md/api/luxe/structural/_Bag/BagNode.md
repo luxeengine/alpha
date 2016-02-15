@@ -13,7 +13,7 @@
 
 
 <h1>BagNode</h1>
-<small>`luxe.structural._Bag.BagNode`</small>
+<small>`luxe.structural._Bag.BagNode` defined in `luxe.structural.Bag`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

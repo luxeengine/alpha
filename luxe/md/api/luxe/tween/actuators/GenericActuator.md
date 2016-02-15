@@ -13,7 +13,7 @@
 
 
 <h1>GenericActuator</h1>
-<small>`luxe.tween.actuators.GenericActuator`</small>
+<small>`luxe.tween.actuators.GenericActuator` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/>implements <code><span>luxe.tween.actuators.IGenericActuator</span></code><br/><span class="meta">
 meta: @:directlyUsed, @:keepSub</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

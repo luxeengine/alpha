@@ -13,19 +13,17 @@
 
 
 <h1>BatcherOptions</h1>
-<small>`luxe.options.BatcherOptions`</small>
+<small>`luxe.options.BatcherOptions` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

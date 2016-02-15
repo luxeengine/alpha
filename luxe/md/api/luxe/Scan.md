@@ -13,7 +13,7 @@
 
 
 <h1>Scan</h1>
-<small>`luxe.Scan`</small>
+<small>`luxe.Scan` defined in `luxe.Input`</small>
 
 A named list of scancodes. Use to compare against key event `scancode` values
 
@@ -21,13 +21,10 @@ A named list of scancodes. Use to compare against key event `scancode` values
 
 `typedef`&nbsp;alias of `snow.systems.input.Scancodes`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

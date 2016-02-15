@@ -13,7 +13,7 @@
 
 
 <h1>TiledImage</h1>
-<small>`luxe.importers.tiled.TiledImage`</small>
+<small>`luxe.importers.tiled.TiledImage` defined in `luxe.importers.tiled.TiledImageLayer`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

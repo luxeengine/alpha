@@ -13,7 +13,7 @@
 
 
 <h1>Utils</h1>
-<small>`luxe.utils.Utils`</small>
+<small>`luxe.utils.Utils` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

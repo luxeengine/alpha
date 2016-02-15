@@ -13,19 +13,17 @@
 
 
 <h1>TileLayerOptions</h1>
-<small>`luxe.options.TileLayerOptions`</small>
+<small>`luxe.options.TileLayerOptions` defined in `luxe.options.TilemapOptions`</small>
 
 Options specific to a `TileLayer`, part of a `Tilemap`
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

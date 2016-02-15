@@ -13,19 +13,17 @@
 
 
 <h1>SpriteAnimationFrameSource</h1>
-<small>`luxe.components.sprite.SpriteAnimationFrameSource`</small>
+<small>`luxe.components.sprite.SpriteAnimationFrameSource` defined in `luxe.components.sprite.SpriteAnimation`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

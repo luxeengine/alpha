@@ -13,19 +13,17 @@
 
 
 <h1>LogError</h1>
-<small>`luxe._Log.LogError`</small>
+<small>`luxe._Log.LogError` defined in `luxe.Log`</small>
 
 
 
 <hr/>
 
 `enum`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

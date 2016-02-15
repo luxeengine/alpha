@@ -13,19 +13,17 @@
 
 
 <h1>TilemapOptions</h1>
-<small>`luxe.options.TilemapOptions`</small>
+<small>`luxe.options.TilemapOptions` defined in ``</small>
 
 Options specific to a `Tilemap`
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

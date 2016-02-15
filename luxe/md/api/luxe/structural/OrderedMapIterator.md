@@ -13,7 +13,7 @@
 
 
 <h1>OrderedMapIterator</h1>
-<small>`luxe.structural.OrderedMapIterator`</small>
+<small>`luxe.structural.OrderedMapIterator` defined in `luxe.structural.OrderedMap`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:generic</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

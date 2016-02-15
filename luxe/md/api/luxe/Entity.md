@@ -13,7 +13,7 @@
 
 
 <h1>Entity</h1>
-<small>`luxe.Entity`</small>
+<small>`luxe.Entity` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.Objects</span></code><br/><span class="meta">
 meta: @:autoBuild(luxe.macros.EntityRules.apply())</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,19 +13,17 @@
 
 
 <h1>TiledMap</h1>
-<small>`luxe.importers.tiled.TiledMap`</small>
+<small>`luxe.importers.tiled.TiledMap` defined in ``</small>
 
 
 
 <hr/>
 
 `class`extends <code><span>luxe.tilemaps.Tilemap</span></code>
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

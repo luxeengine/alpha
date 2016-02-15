@@ -13,7 +13,7 @@
 
 
 <h1>RingGeometry</h1>
-<small>`phoenix.geometry.RingGeometry`</small>
+<small>`phoenix.geometry.RingGeometry` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>phoenix.geometry.CircleGeometry</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

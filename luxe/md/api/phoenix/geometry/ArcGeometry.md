@@ -13,7 +13,7 @@
 
 
 <h1>ArcGeometry</h1>
-<small>`phoenix.geometry.ArcGeometry`</small>
+<small>`phoenix.geometry.ArcGeometry` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>phoenix.geometry.RingGeometry</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

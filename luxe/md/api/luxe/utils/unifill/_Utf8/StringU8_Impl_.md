@@ -13,19 +13,17 @@
 
 
 <h1>StringU8_Impl_</h1>
-<small>`luxe.utils.unifill._Utf8.StringU8_Impl_`</small>
+<small>`luxe.utils.unifill._Utf8.StringU8_Impl_` defined in `luxe.utils.unifill.Utf8`</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,19 +13,17 @@
 
 
 <h1>TexturePackerSize</h1>
-<small>`luxe.importers.texturepacker.TexturePackerSize`</small>
+<small>`luxe.importers.texturepacker.TexturePackerSize` defined in `luxe.importers.texturepacker.TexturePackerData`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>NineSlice</h1>
-<small>`luxe.NineSlice`</small>
+<small>`luxe.NineSlice` defined in ``</small>
 
 A nineslice based sprite, for scaling
 
@@ -22,12 +22,10 @@ A nineslice based sprite, for scaling
 `class`extends <code><span>luxe.Visual</span></code><br/><span class="meta">
 meta: @:build(luxe.macros.EntityRules.apply()), @:autoBuild(luxe.macros.EntityRules.apply())</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

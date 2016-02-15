@@ -13,7 +13,7 @@
 
 
 <h1>ShapeDrawer</h1>
-<small>`luxe.collision.ShapeDrawer`</small>
+<small>`luxe.collision.ShapeDrawer` defined in ``</small>
 
 To implement your own debug drawing class, you only need to override drawLine function and implement it
     the rest is handled internally. You can override specifics if you want, but it's not required
@@ -21,12 +21,10 @@ To implement your own debug drawing class, you only need to override drawLine fu
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

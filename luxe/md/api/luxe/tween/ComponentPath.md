@@ -13,7 +13,7 @@
 
 
 <h1>ComponentPath</h1>
-<small>`luxe.tween.ComponentPath`</small>
+<small>`luxe.tween.ComponentPath` defined in `luxe.tween.MotionPath`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/>implements <code><span>luxe.tween.IComponentPath</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

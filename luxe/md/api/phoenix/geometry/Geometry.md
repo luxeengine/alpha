@@ -13,7 +13,7 @@
 
 
 <h1>Geometry</h1>
-<small>`phoenix.geometry.Geometry`</small>
+<small>`phoenix.geometry.Geometry` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:allow(phoenix.Batcher)</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

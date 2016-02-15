@@ -13,7 +13,7 @@
 
 
 <h1>SpriteAnimationData</h1>
-<small>`luxe.components.sprite.SpriteAnimationData`</small>
+<small>`luxe.components.sprite.SpriteAnimationData` defined in `luxe.components.sprite.SpriteAnimation`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

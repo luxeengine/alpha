@@ -13,7 +13,7 @@
 
 
 <h1>IO</h1>
-<small>`luxe.IO`</small>
+<small>`luxe.IO` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed, @:allow(luxe.Core)</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

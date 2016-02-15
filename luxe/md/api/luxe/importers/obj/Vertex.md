@@ -13,19 +13,17 @@
 
 
 <h1>Vertex</h1>
-<small>`luxe.importers.obj.Vertex`</small>
+<small>`luxe.importers.obj.Vertex` defined in `luxe.importers.obj.Data`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

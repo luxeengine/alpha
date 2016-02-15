@@ -13,7 +13,7 @@
 
 
 <h1>WindowEvent</h1>
-<small>`luxe.WindowEvent`</small>
+<small>`luxe.WindowEvent` defined in `luxe.Screen`</small>
 
 A window event
 
@@ -23,10 +23,9 @@ A window event
 
 <hr/>
 
+<hr/>
 
 &nbsp;
-&nbsp;
-
 
 
 

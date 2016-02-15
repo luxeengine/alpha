@@ -13,7 +13,7 @@
 
 
 <h1>CodePointIter</h1>
-<small>`luxe.utils.unifill.CodePointIter`</small>
+<small>`luxe.utils.unifill.CodePointIter` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

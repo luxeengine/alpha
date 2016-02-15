@@ -13,7 +13,7 @@
 
 
 <h1>WindowEventType</h1>
-<small>`luxe.WindowEventType`</small>
+<small>`luxe.WindowEventType` defined in `luxe.Screen`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `snow.types.WindowEventType`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

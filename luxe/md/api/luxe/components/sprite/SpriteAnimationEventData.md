@@ -13,19 +13,17 @@
 
 
 <h1>SpriteAnimationEventData</h1>
-<small>`luxe.components.sprite.SpriteAnimationEventData`</small>
+<small>`luxe.components.sprite.SpriteAnimationEventData` defined in `luxe.components.sprite.SpriteAnimation`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

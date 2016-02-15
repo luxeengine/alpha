@@ -13,7 +13,7 @@
 
 
 <h1>IGenericActuator</h1>
-<small>`luxe.tween.actuators.IGenericActuator`</small>
+<small>`luxe.tween.actuators.IGenericActuator` defined in `luxe.tween.actuators.GenericActuator`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:noCompletion</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

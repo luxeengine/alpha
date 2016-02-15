@@ -13,19 +13,17 @@
 
 
 <h1>TransformProperties</h1>
-<small>`luxe.options.TransformProperties`</small>
+<small>`luxe.options.TransformProperties` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

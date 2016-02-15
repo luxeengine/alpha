@@ -13,7 +13,7 @@
 
 
 <h1>ObjectHash</h1>
-<small>`luxe.tween.ObjectHash`</small>
+<small>`luxe.tween.ObjectHash` defined in `luxe.tween.Actuate`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `haxe.ds.ObjectMap`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

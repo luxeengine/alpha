@@ -13,19 +13,17 @@
 
 
 <h1>InternalEncodingBackwardIter</h1>
-<small>`luxe.utils.unifill.InternalEncodingBackwardIter`</small>
+<small>`luxe.utils.unifill.InternalEncodingBackwardIter` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

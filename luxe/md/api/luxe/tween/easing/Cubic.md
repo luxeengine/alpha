@@ -13,19 +13,17 @@
 
 
 <h1>Cubic</h1>
-<small>`luxe.tween.easing.Cubic`</small>
+<small>`luxe.tween.easing.Cubic` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

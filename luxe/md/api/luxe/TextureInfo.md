@@ -13,19 +13,17 @@
 
 
 <h1>TextureInfo</h1>
-<small>`luxe.TextureInfo`</small>
+<small>`luxe.TextureInfo` defined in `luxe.Parcel`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

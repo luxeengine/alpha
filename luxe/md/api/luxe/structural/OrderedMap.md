@@ -13,7 +13,7 @@
 
 
 <h1>OrderedMap</h1>
-<small>`luxe.structural.OrderedMap`</small>
+<small>`luxe.structural.OrderedMap` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/>implements <code><span>haxe.IMap</span></code><br/><span class="meta">
 meta: @:generic</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

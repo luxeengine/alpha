@@ -13,24 +13,47 @@
 
 
 <h1>MouseButton</h1>
-<small>`luxe.MouseButton`</small>
+<small>`luxe.MouseButton` defined in `luxe.Input`</small>
 
 A typed mouse button id
 
 <hr/>
 
-`abstract`<br/><span class="meta">
+`abstract`&nbsp;of `Int`<br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span>
+
 
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 
-
-
+ <hr/><span class="member apipage">
+            <a name="none"><a class="lift" href="#none">none</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">no mouse buttons</span><br/><span class="member apipage">
+            <a name="left"><a class="lift" href="#left">left</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">left mouse button</span><br/><span class="member apipage">
+            <a name="middle"><a class="lift" href="#middle">middle</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">middle mouse button</span><br/><span class="member apipage">
+            <a name="right"><a class="lift" href="#right">right</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">right mouse button</span><br/><span class="member apipage">
+            <a name="extra1"><a class="lift" href="#extra1">extra1</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">extra button pressed (4)</span><br/><span class="member apipage">
+            <a name="extra2"><a class="lift" href="#extra2">extra2</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">extra button pressed (5)</span><br/>
 
 
 

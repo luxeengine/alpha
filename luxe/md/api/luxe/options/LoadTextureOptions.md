@@ -13,19 +13,17 @@
 
 
 <h1>LoadTextureOptions</h1>
-<small>`luxe.options.LoadTextureOptions`</small>
+<small>`luxe.options.LoadTextureOptions` defined in `luxe.options.ResourceOptions`</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

@@ -13,7 +13,7 @@
 
 
 <h1>OrthoVisual</h1>
-<small>`luxe.tilemaps.OrthoVisual`</small>
+<small>`luxe.tilemaps.OrthoVisual` defined in `luxe.tilemaps.Ortho`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>luxe.tilemaps.TilemapVisual</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

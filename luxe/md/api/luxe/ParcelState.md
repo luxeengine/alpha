@@ -13,24 +13,35 @@
 
 
 <h1>ParcelState</h1>
-<small>`luxe.ParcelState`</small>
+<small>`luxe.ParcelState` defined in `luxe.Parcel`</small>
 
 
 
 <hr/>
 
-`abstract`<br/><span class="meta">
+`abstract`&nbsp;of `Int`<br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span>
 
+
 <hr/>
 
-
-&nbsp;
 &nbsp;
 
 
-
-
+ <hr/><span class="member apipage">
+            <a name="unloaded"><a class="lift" href="#unloaded">unloaded</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="loading"><a class="lift" href="#loading">loading</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="loaded"><a class="lift" href="#loaded">loaded</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/>
 
 
 

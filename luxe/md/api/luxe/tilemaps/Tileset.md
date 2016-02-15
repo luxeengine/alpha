@@ -13,7 +13,7 @@
 
 
 <h1>Tileset</h1>
-<small>`luxe.tilemaps.Tileset`</small>
+<small>`luxe.tilemaps.Tileset` defined in `luxe.tilemaps.Tilemap`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

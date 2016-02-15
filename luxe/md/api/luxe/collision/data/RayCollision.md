@@ -13,7 +13,7 @@
 
 
 <h1>RayCollision</h1>
-<small>`luxe.collision.data.RayCollision`</small>
+<small>`luxe.collision.data.RayCollision` defined in ``</small>
 
 Ray collision intersection data, obtained by testing a shape and a ray.
 
@@ -22,12 +22,10 @@ Ray collision intersection data, obtained by testing a shape and a ray.
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

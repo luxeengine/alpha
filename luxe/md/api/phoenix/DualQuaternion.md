@@ -13,7 +13,7 @@
 
 
 <h1>DualQuaternion</h1>
-<small>`phoenix.DualQuaternion`</small>
+<small>`phoenix.DualQuaternion` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

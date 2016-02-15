@@ -13,19 +13,17 @@
 
 
 <h1>ColorOptions</h1>
-<small>`luxe.options.ColorOptions`</small>
+<small>`luxe.options.ColorOptions` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

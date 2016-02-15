@@ -13,19 +13,17 @@
 
 
 <h1>ParcelProgress</h1>
-<small>`luxe.ParcelProgress`</small>
+<small>`luxe.ParcelProgress` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

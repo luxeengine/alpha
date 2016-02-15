@@ -13,19 +13,17 @@
 
 
 <h1>MeshOptions</h1>
-<small>`luxe.options.MeshOptions`</small>
+<small>`luxe.options.MeshOptions` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

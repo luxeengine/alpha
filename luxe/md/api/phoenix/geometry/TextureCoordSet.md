@@ -13,7 +13,7 @@
 
 
 <h1>TextureCoordSet</h1>
-<small>`phoenix.geometry.TextureCoordSet`</small>
+<small>`phoenix.geometry.TextureCoordSet` defined in `phoenix.geometry.TextureCoord`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

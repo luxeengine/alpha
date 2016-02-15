@@ -13,7 +13,7 @@
 
 
 <h1>ProfilerBar</h1>
-<small>`luxe.debug._ProfilerDebugView.ProfilerBar`</small>
+<small>`luxe.debug._ProfilerDebugView.ProfilerBar` defined in `luxe.debug.ProfilerDebugView`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

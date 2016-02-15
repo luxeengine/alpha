@@ -13,7 +13,7 @@
 
 
 <h1>TilemapOrientation</h1>
-<small>`luxe.tilemaps.TilemapOrientation`</small>
+<small>`luxe.tilemaps.TilemapOrientation` defined in `luxe.tilemaps.Tilemap`</small>
 
 
 
@@ -22,12 +22,10 @@
 `enum`<br/><span class="meta">
 meta: @:directlyUsed, @:flatEnum</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 <h3>Values</h3> <hr/><span class="member signature apipage">

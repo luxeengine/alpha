@@ -13,19 +13,17 @@
 
 
 <h1>BatcherDebugView</h1>
-<small>`luxe.debug.BatcherDebugView`</small>
+<small>`luxe.debug.BatcherDebugView` defined in ``</small>
 
 
 
 <hr/>
 
 `class`extends <code><span>luxe.debug.DebugView</span></code>
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

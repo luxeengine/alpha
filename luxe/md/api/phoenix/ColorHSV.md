@@ -13,7 +13,7 @@
 
 
 <h1>ColorHSV</h1>
-<small>`phoenix.ColorHSV`</small>
+<small>`phoenix.ColorHSV` defined in `phoenix.Color`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`extends <code><span>phoenix.Color</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

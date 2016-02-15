@@ -13,7 +13,7 @@
 
 
 <h1>RotationPath</h1>
-<small>`luxe.tween.RotationPath`</small>
+<small>`luxe.tween.RotationPath` defined in `luxe.tween.MotionPath`</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/>implements <code><span>luxe.tween.IComponentPath</span></code><br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

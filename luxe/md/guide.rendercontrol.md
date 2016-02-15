@@ -48,32 +48,33 @@ These are for _all_ rendering that happens, not a specific subset of geometry. T
 
 ### Group render callbacks
 
-In luxe, in phoenix (the rendering engine in luxe) you can give geometry (and therefore sprites etc) a group number.
+In luxe, with phoenix (the rendering engine in luxe) you can listen for events from the batcher that geometry is in, in order to alter render state.
 
-The group number is a simple integer, and allows you to group geometry such that a pre/post render callback can be triggered. This allows you to specify custom render state (like blend modes) or control rendering into textures explicitly through the use of a group number.
+This allows you to specify render state (like blend modes) or control rendering into textures explicitly through the use of the callbacks.
 
-Take a look at this example, we ask the default batcher to tell us when group 3 is rendered.
+Take a look at this example, we ask the default batcher to tell us when it is being rendered.
 
 ```
 override function ready() {
 
-    Luxe.renderer.batcher.add_group( 3, pre_group3, post_group3 );
+    Luxe.renderer.batcher.on(prerender, before);
+    Luxe.renderer.batcher.on(postrender, after);
 
 } //ready
 
-function pre_group3(_) {
+function before(_) {
 
         //change how this group is blended
     Luxe.renderer.blend_mode( BlendMode.dst_color, BlendMode.one_minus_src_alpha );
 
-} //pre_group3
+} //before
 
-function post_group3(_) {
+function after(_) {
 
-        //reset to default
+        //reset to default blend mode
     Luxe.renderer.blend_mode();
 
-} //post_group3
+} //after
 ```
 
 And the results would be similar to :
@@ -81,9 +82,31 @@ And the results would be similar to :
 ![](images/guide.rendercontrol.1.png)
 
 
-Blending and blendmodes are a very frequent topic in rendering and you can explore the different types here :
+Blending and blendmodes are a frequent topic in rendering and you can explore the different types here :
 
 [Anders Riggelsen blend modes online tool](http://www.andersriggelsen.dk/glblendfunc.php)
+
+**Rendering a batcher to a texture**
+
+You could also use the render callbacks to switch the rendering target.
+If you listen for the callbacks as above, you can set and unset the target easily.
+
+```
+function before(_) {
+
+    Luxe.renderer.target = my_render_target;
+
+} //before
+
+function after(_) {
+
+        //reset to default render target
+    Luxe.renderer.target = null;
+
+} //after
+```
+
+For a clearer example of rendering to a texture, see `tests/rendering/rendertexture`
 
 ---
 

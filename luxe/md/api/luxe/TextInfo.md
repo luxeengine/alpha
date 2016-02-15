@@ -13,7 +13,7 @@
 
 
 <h1>TextInfo</h1>
-<small>`luxe.TextInfo`</small>
+<small>`luxe.TextInfo` defined in `luxe.Parcel`</small>
 
 
 
@@ -21,13 +21,10 @@
 
 `typedef`&nbsp;alias of `luxe.ItemInfo`   
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
-
 
 
 

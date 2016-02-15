@@ -13,7 +13,7 @@
 
 
 <h1>Random</h1>
-<small>`luxe.utils.Random`</small>
+<small>`luxe.utils.Random` defined in ``</small>
 
 Given an `initial` value for the seed, subsequent generated numbers will be predictable,
  and the `seed` value updated to reflect the current seed which can be used to resume predictability
@@ -26,12 +26,10 @@ Given an `initial` value for the seed, subsequent generated numbers will be pred
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

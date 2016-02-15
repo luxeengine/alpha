@@ -13,7 +13,7 @@
 
 
 <h1>BST</h1>
-<small>`luxe.structural.BST`</small>
+<small>`luxe.structural.BST` defined in ``</small>
 
 Copyright 2014 Sven Bergström
 
@@ -32,12 +32,10 @@ Copyright 2014 Sven Bergström
 `class`<br/><span class="meta">
 meta: @:generic</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

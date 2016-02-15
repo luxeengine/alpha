@@ -13,7 +13,7 @@
 
 
 <h1>Mesh</h1>
-<small>`luxe.Mesh`</small>
+<small>`luxe.Mesh` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

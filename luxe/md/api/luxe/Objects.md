@@ -13,19 +13,17 @@
 
 
 <h1>Objects</h1>
-<small>`luxe.Objects`</small>
+<small>`luxe.Objects` defined in ``</small>
 
 A simple base object, event emitter, and ID.
 
 <hr/>
 
 `class`extends <code><span>luxe.Emitter</span></code>
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

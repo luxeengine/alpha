@@ -13,19 +13,17 @@
 
 
 <h1>CodePoint_Impl_</h1>
-<small>`luxe.utils.unifill._CodePoint.CodePoint_Impl_`</small>
+<small>`luxe.utils.unifill._CodePoint.CodePoint_Impl_` defined in `luxe.utils.unifill.CodePoint`</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

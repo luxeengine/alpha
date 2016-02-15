@@ -13,19 +13,17 @@
 
 
 <h1>Maths</h1>
-<small>`luxe.utils.Maths`</small>
+<small>`luxe.utils.Maths` defined in ``</small>
 
 
 
 <hr/>
 
 `class`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

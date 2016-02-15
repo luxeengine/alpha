@@ -13,19 +13,17 @@
 
 
 <h1>ParcelOptions</h1>
-<small>`luxe.options.ParcelOptions`</small>
+<small>`luxe.options.ParcelOptions` defined in ``</small>
 
 
 
 <hr/>
 
 `typedef`
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 

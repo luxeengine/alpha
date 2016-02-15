@@ -13,7 +13,7 @@
 
 
 <h1>Physics</h1>
-<small>`luxe.Physics`</small>
+<small>`luxe.Physics` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 
@@ -37,9 +35,6 @@ meta: @:directlyUsed</span>
             <span class="small_desc_flat"></span><br/><span class="member apipage">
                 <a name="engines"><a class="lift" href="#engines">engines</a></a><div class="clear"></div>
                 <code class="signature apipage">engines : [Array](http://api.haxe.org/Array.html)&lt;[luxe.PhysicsEngine](../../api/luxe/PhysicsEngine.html)&gt;</code><br/></span>
-            <span class="small_desc_flat"></span><br/><span class="member apipage">
-                <a name="nape"><a class="lift" href="#nape">nape</a></a><div class="clear"></div>
-                <code class="signature apipage">nape : [luxe.physics.nape.PhysicsNape](../../api/luxe/physics/nape/PhysicsNape.html)</code><br/></span>
             <span class="small_desc_flat"></span><br/><span class="member apipage">
                 <a name="step_delta"><a class="lift" href="#step_delta">step\_delta</a></a><div class="clear"></div>
                 <code class="signature apipage">step\_delta : [Float](http://api.haxe.org/Float.html)</code><br/></span>

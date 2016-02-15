@@ -13,7 +13,7 @@
 
 
 <h1>Linear</h1>
-<small>`luxe.tween.easing.Linear`</small>
+<small>`luxe.tween.easing.Linear` defined in ``</small>
 
 
 
@@ -22,12 +22,10 @@
 `class`<br/><span class="meta">
 meta: @:directlyUsed</span>
 
+
 <hr/>
 
-
 &nbsp;
-&nbsp;
-
 
 
 
