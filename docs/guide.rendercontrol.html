@@ -93,32 +93,49 @@
 <p>In your <a href="api/luxe/Game.html">game class</a> you can override the <code>onprerender</code>, <code>onrender</code> and <code>onpostrender</code> events.</p>
 <p>These are for <em>all</em> rendering that happens, not a specific subset of geometry. This is useful if you want to do some explicit rendering into render targets before the rest is processed.</p>
 <h3 id="group-render-callbacks">Group render callbacks</h3>
-<p>In luxe, in phoenix (the rendering engine in luxe) you can give geometry (and therefore sprites etc) a group number.</p>
-<p>The group number is a simple integer, and allows you to group geometry such that a pre/post render callback can be triggered. This allows you to specify custom render state (like blend modes) or control rendering into textures explicitly through the use of a group number.</p>
-<p>Take a look at this example, we ask the default batcher to tell us when group 3 is rendered.</p>
+<p>In luxe, with phoenix (the rendering engine in luxe) you can listen for events from the batcher that geometry is in, in order to alter render state.</p>
+<p>This allows you to specify render state (like blend modes) or control rendering into textures explicitly through the use of the callbacks.</p>
+<p>Take a look at this example, we ask the default batcher to tell us when it is being rendered.</p>
 <pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
 
-    Luxe.renderer.batcher.add_group( <span class="hljs-number">3</span>, pre_group3, post_group3 );
+    Luxe.renderer.batcher.on(prerender, before);
+    Luxe.renderer.batcher.on(postrender, after);
 
 } <span class="hljs-comment">//ready</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pre_group3</span><span class="hljs-params">(_)</span> </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">before</span><span class="hljs-params">(_)</span> </span>{
 
         <span class="hljs-comment">//change how this group is blended</span>
     Luxe.renderer.blend_mode( BlendMode.dst_color, BlendMode.one_minus_src_alpha );
 
-} <span class="hljs-comment">//pre_group3</span>
+} <span class="hljs-comment">//before</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post_group3</span><span class="hljs-params">(_)</span> </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">after</span><span class="hljs-params">(_)</span> </span>{
 
-        <span class="hljs-comment">//reset to default</span>
+        <span class="hljs-comment">//reset to default blend mode</span>
     Luxe.renderer.blend_mode();
 
-} <span class="hljs-comment">//post_group3</span>
+} <span class="hljs-comment">//after</span>
 </code></pre><p>And the results would be similar to :</p>
 <p><img src="images/guide.rendercontrol.1.png" alt=""></p>
-<p>Blending and blendmodes are a very frequent topic in rendering and you can explore the different types here :</p>
+<p>Blending and blendmodes are a frequent topic in rendering and you can explore the different types here :</p>
 <p><a href="http://www.andersriggelsen.dk/glblendfunc.php">Anders Riggelsen blend modes online tool</a></p>
+<p><strong>Rendering a batcher to a texture</strong></p>
+<p>You could also use the render callbacks to switch the rendering target.
+If you listen for the callbacks as above, you can set and unset the target easily.</p>
+<pre><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">before</span><span class="hljs-params">(_)</span> </span>{
+
+    Luxe.renderer.target = my_render_target;
+
+} <span class="hljs-comment">//before</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">after</span><span class="hljs-params">(_)</span> </span>{
+
+        <span class="hljs-comment">//reset to default render target</span>
+    Luxe.renderer.target = <span class="hljs-literal">null</span>;
+
+} <span class="hljs-comment">//after</span>
+</code></pre><p>For a clearer example of rendering to a texture, see <code>tests/rendering/rendertexture</code></p>
 <hr>
 <p>&nbsp;</p>
 <h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
