@@ -266,16 +266,14 @@ class Camera extends Entity {
 
         var vw = view.viewport.w;
         var vh = view.viewport.h;
-        var hvw = vw/2;
-        var hvh = vh/2;
 
         var _px = _pos.x; var _py = _pos.y;
 
         if(bounds != null) {
             if(_px < bounds.x)        _px = bounds.x;
             if(_py < bounds.y)        _py = bounds.y;
-            if(_px+hvw > bounds.w-vw) _px = bounds.w-vw-hvw;
-            if(_py+hvh > bounds.h-vh) _py = bounds.h-vh-hvh;
+            if(_px+vw > bounds.x+bounds.w) _px = bounds.x+bounds.w-vw;
+            if(_py+vh > bounds.y+bounds.h) _py = bounds.y+bounds.h-vh;
         }
 
         var prev = _pos.ignore_listeners;
