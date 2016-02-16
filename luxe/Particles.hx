@@ -16,7 +16,7 @@ class ParticleSystem extends Entity {
     public var emitters : Map<String, ParticleEmitter>;
 
 
-    override function init( ) {
+    override public function init( ) {
 
         def(emitters, new Map());
 
