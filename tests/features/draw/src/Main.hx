@@ -16,27 +16,23 @@ import phoenix.Texture;
 
 class Main extends luxe.Game {
 
-
-    public var mouse    : Vector;
     public var line     : LineGeometry;
     public var rect     : RectangleGeometry;
     public var box      : QuadGeometry;
     public var circle   : CircleGeometry;
     public var ring     : RingGeometry;
 
-
     override function config(config:luxe.AppConfig) {
 
         config.preload.textures.push({ id:'assets/logo.png' });
+
+        config.render.antialiasing = 2;
 
         return config;
 
     } //config
 
     override function ready() {
-
-
-        mouse = new Vector();
 
         line = Luxe.draw.line({
             p0 : new Vector( 0, Luxe.screen.h/2 ),
@@ -191,20 +187,30 @@ class Main extends luxe.Game {
             x : Luxe.screen.w/2,
             y : Luxe.screen.h/2,
             r : 70,
-            end_angle:70,
-            color : new Color(1,1,1,1)
+            start_angle:140,
+            end_angle:220,
+            color: new Color(1,1,1,0.8)
+        });
+
+        Luxe.draw.arc({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            r : 70,
+            start_angle:-40,
+            end_angle:40,
+            color: new Color(1,1,1,0.7)
         });
 
         Luxe.draw.text({
-            color : new Color(1,1,1,1),
-            pos : Luxe.screen.mid.add(new Vector(0,50)),
-            point_size : 24,
+            color : new Color(1,1,1,0.5),
+            pos : new Vector(45,45),
+            point_size : 12,
             text :
 "Luxe.draw.ring({
+        color : new Color(1,1,1,1)
         x : Luxe.screen.mid.x,
         y : Luxe.screen.mid.y,
         r : 70,
-        color : new Color(1,1,1,1)
 });\n"
 
         });
@@ -217,18 +223,6 @@ class Main extends luxe.Game {
 
     } //ready
 
-    override function onmousemove( e:MouseEvent ) {
-        mouse.set_xy(e.x,e.y);
-    } //onmousemove
-
-    override function onmousedown( e:MouseEvent ) {
-        mouse.set_xy(e.x,e.y);
-    } //onmousedown
-
-    override function onmouseup( e:MouseEvent ) {
-        mouse.set_xy(e.x,e.y);
-    } //onmouseup
-
     override function onkeyup( e:KeyEvent ) {
         if(e.keycode == Key.escape) {
             Luxe.shutdown();
@@ -237,25 +231,26 @@ class Main extends luxe.Game {
 
     override function onrender() {
 
-        //mouse
+        var mouse = Luxe.screen.cursor.pos;
 
-            Luxe.draw.rectangle({
+            var r = Luxe.draw.rectangle({
                     //this line is important, as each frame it will create new geometry!
                 immediate : true,
                 x : mouse.x-85, y : mouse.y+5,
                 w : 170,
-                h : 32,
-                color : new Color(Math.random(),Math.random(),Math.random(),0.5)
+                h : 32
             });
 
-            Luxe.draw.text({
+            var t = Luxe.draw.text({
                     //this line is important, as each frame it will create new geometry!
                 immediate:true,
                 align : TextAlign.center,
-                color : new Color(Math.random(),Math.random(),Math.random(),0.5),
                 pos : mouse,
                 text : Std.string(luxe.utils.Maths.fixed(Luxe.dt, 6))
             });
+
+            r.color.a = 0.5;
+            t.color.a = 0.3;
 
     } //onrender
 

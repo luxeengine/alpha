@@ -1,31 +1,61 @@
 package phoenix.geometry;
 
-import phoenix.geometry.Vertex ;
+import luxe.Log.*;
 import phoenix.Vector;
+import phoenix.geometry.Vertex;
 import phoenix.geometry.Geometry;
-import phoenix.geometry.TextureCoord;
-import phoenix.Batcher;
-import phoenix.Circle;
-
+import phoenix.Batcher.PrimitiveType;
 import luxe.options.GeometryOptions.CircleGeometryOptions;
 
-class RingGeometry extends CircleGeometry {
 
-	public function new( ?options : CircleGeometryOptions ) {
+class RingGeometry extends Geometry {
 
-		super(options);
+	public function new(_options:CircleGeometryOptions) {
 
-			//set to line type
-		primitive_type = PrimitiveType.lines;
+        _options.primitive_type = PrimitiveType.lines;
+
+        super(_options);
+
+            //some default values so that the circle is visible with no values
+        var _radius_x = 32.0;
+        var _radius_y = 32.0;
+
+        def(_options.end_angle, 360);
+        def(_options.start_angle, 0);
+
+        if(_options.r != null) {
+            _radius_x = _options.r;
+            _radius_y = _options.r;
+        }
+
+        if(_options.rx != null) {
+            _radius_x = _options.rx;
+        }
+
+        if(_options.ry != null) {
+            _radius_y = _options.ry;
+        }
+
+        if(_options.steps == null) {
+            if(_options.smooth == null) {
+                var _max = Math.max(_radius_x, _radius_y);
+                _options.steps = Luxe.utils.geometry.segments_for_smooth_circle( _max );
+            } else {
+                var _smooth = _options.smooth;
+                var _max = Math.max(_radius_x, _radius_y);
+                _options.steps = Luxe.utils.geometry.segments_for_smooth_circle( _max, _smooth );
+            }
+        }
+
+            //Apply the new options
+        set( _options.x, _options.y, _radius_x, _radius_y, _options.steps, _options.start_angle, _options.end_angle );
 
 	} //new
 
-	override public function set( _x:Float, _y:Float, _rx:Float, _ry:Float, _steps:Int, _start_angle_degrees:Float=0, _end_angle_degrees:Float=360 ) {
+	public function set( _x:Float, _y:Float, _rx:Float, _ry:Float, _steps:Int, _start_angle_degrees:Float=0, _end_angle_degrees:Float=360 ) {
 
             //adapted from
             //http://slabode.exofire.net/circle_draw.shtml
-
-        primitive_type = PrimitiveType.triangles;
 
             var _start_angle_rad = luxe.utils.Maths.radians(_start_angle_degrees);
             var _end_angle_rad = luxe.utils.Maths.radians(_end_angle_degrees);

@@ -1,29 +1,24 @@
 package phoenix.geometry;
 
-import phoenix.geometry.Vertex ;
-import phoenix.geometry.RingGeometry;
+import luxe.Log.*;
 import phoenix.Vector;
+import phoenix.geometry.Vertex;
 import phoenix.geometry.Geometry;
-import phoenix.geometry.TextureCoord;
-import phoenix.Batcher;
-import phoenix.Circle;
-
+import phoenix.Batcher.PrimitiveType;
 import luxe.options.GeometryOptions.CircleGeometryOptions;
+
 
 class ArcGeometry extends RingGeometry {
 
-	public function new( ?options : CircleGeometryOptions ) {
+    public function new(_options:CircleGeometryOptions) {
 
-		super(options);
+        super(_options);
 
-			//remove the first center point
-			//and the last extra vert
-		vertices.pop();
-		vertices.pop();
+            //remove the first center point
+            //and the last extra vert
+        vertices.pop();
+        vertices.pop();
 
-			//set to line type
-		primitive_type = PrimitiveType.lines;
+    } //new
 
-	} //new
-
-} //RingGeometry
+} //ArcGeometry
