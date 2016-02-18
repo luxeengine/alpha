@@ -224,7 +224,7 @@ class SimpleActuator extends GenericActuator {
 
             paused = false;
 
-            timeOffset += ( (timescaled ? update_timer : current_time) - pauseTime) / 1000;
+            timeOffset += ( (timescaled ? update_timer : current_time) - pauseTime);
             // timeOffset += (haxe.Timer.stamp () - pauseTime) / 1000;
 
         }
