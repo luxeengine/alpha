@@ -1,0 +1,31 @@
+{
+
+  luxe:{
+    window: {
+      title:'luxe test structural',
+    }
+  },
+
+  project : {
+    name : 'structural',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_structural',
+      package : 'com.luxeengine.structural'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
