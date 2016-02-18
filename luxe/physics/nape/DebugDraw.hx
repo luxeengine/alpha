@@ -227,7 +227,7 @@ import luxe.options.RenderProperties;
 
         function draw_shape( _shape:Shape, _active_color:Color, _inactive_color:Color) {
 
-            var geom = new Geometry( {
+            var geom = new Geometry({
                 primitive_type: phoenix.Batcher.PrimitiveType.lines,
                 immediate: options.immediate,
                 depth: options.depth,

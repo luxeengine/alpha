@@ -16,27 +16,21 @@ class LineGeometry extends Geometry {
     @:isVar public var color0(default,set) : Color;
     @:isVar public var color1(default,set) : Color;
 
-    public function new( ?options : LineGeometryOptions ) {
+    public function new(_options:LineGeometryOptions) {
 
-        if(options != null) {
-            options.primitive_type = PrimitiveType.lines;
-        }
+        _options.primitive_type = PrimitiveType.lines;
 
-        super(options);
+        super(_options);
 
-        if(options == null) {
-            return;
-        }
+        def(_options.color, new Color());
+        def(_options.color0, _options.color);
+        def(_options.color1, _options.color);
 
-        def(options.color, new Color());
-        def(options.color0, options.color);
-        def(options.color1, options.color);
+        p0 = def(_options.p0, new Vector());
+        p1 = def(_options.p1, new Vector(64,64)); //:todo: unit constant
 
-        p0 = def(options.p0, new Vector());
-        p1 = def(options.p1, new Vector(64,64)); //:todo: unit constant
-
-        add(new Vertex( p0, options.color0 ));
-        add(new Vertex( p1, options.color1 ));
+        add(new Vertex( p0, _options.color0 ));
+        add(new Vertex( p1, _options.color1 ));
 
     } //new
 

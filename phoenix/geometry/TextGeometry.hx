@@ -108,7 +108,7 @@ class TextGeometry extends Geometry {
 
         static var tab_regex : EReg = new EReg('\t','gim');
 
-    public function new( _options:TextGeometryOptions ) {
+    public function new(_options:TextGeometryOptions) {
 
         options = _options;
         emitter = new luxe.Emitter<EvTextGeometry>();

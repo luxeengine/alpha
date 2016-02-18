@@ -21,28 +21,26 @@ class QuadGeometry extends Geometry {
     var _uv_w:Float = 1;
     var _uv_h:Float = 1;
 
-	public function new( ?options : QuadGeometryOptions ) {
+	public function new(_options : QuadGeometryOptions) {
 
-        options.primitive_type = PrimitiveType.triangles;
+        _options.primitive_type = PrimitiveType.triangles;
 
-		super(options);
-
-        if(options == null) return;
+		super(_options);
 
             //Do these before set, so they can be applied
-        if(options.flipx != null) flipx = options.flipx;
-        if(options.flipy != null) flipy = options.flipy;
+        if(_options.flipx != null) flipx = _options.flipx;
+        if(_options.flipy != null) flipy = _options.flipy;
 
-        var _x : Float = options.x;
-        var _y : Float = options.y;
-        var _w : Float = options.w;
-        var _h : Float = options.h;
+        var _x : Float = _options.x;
+        var _y : Float = _options.y;
+        var _w : Float = _options.w;
+        var _h : Float = _options.h;
 
-        if(options.rect != null) {
-            _x = options.rect.x;
-            _y = options.rect.y;
-            _w = options.rect.w;
-            _h = options.rect.h;
+        if(_options.rect != null) {
+            _x = _options.rect.x;
+            _y = _options.rect.y;
+            _w = _options.rect.w;
+            _h = _options.rect.h;
         }
 
             //First triangle
@@ -63,14 +61,11 @@ class QuadGeometry extends Geometry {
 
         transform.pos = transform.pos.set_xy(_x, _y);
 
-        if(options.uv != null) {
-            uv(options.uv);
+        if(_options.uv != null) {
+            uv(_options.uv);
         } else {
             uv_space( 0, 0, 1, 1 );
         }
-
-        if(options.visible != null) visible = options.visible;
-        if(options.immediate != null) immediate = options.immediate;
 
 	} //new
 

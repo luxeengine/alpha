@@ -103,7 +103,7 @@ class Geometry {
         //causing comparisons in a binary tree to fail. This value is never reset intentionally.
     static var _sequence_key : Int = -1;
 
-    public function new( ?options:GeometryOptions ) {
+    public function new(_options:GeometryOptions) {
 
         uuid = Luxe.utils.uniqueid();
         id = uuid;
@@ -125,45 +125,37 @@ class Geometry {
             //this only applies if batcher is supplied, but is overriden with no_batcher_add
         var _do_add = true;
 
-        if(options != null) {
 
-            id                   = def(options.id,              uuid);
-            color                = def(options.color,           new Color());
-            visible              = def(options.visible,         true);
-            immediate            = def(options.immediate,       false);
+        id                   = def(_options.id,              uuid);
+        color                = def(_options.color,           new Color());
+        visible              = def(_options.visible,         true);
+        immediate            = def(_options.immediate,       false);
 
-            //:todo: This section is WIP and considered volatile/not api
-            buffer_based         = def(options.buffer_based,    false);
-            object_space         = def(options.object_space,    false);
-            //end section
+        //:todo: This section is WIP and considered volatile/not api
+        buffer_based         = def(_options.buffer_based,    false);
+        object_space         = def(_options.object_space,    false);
+        //end section
 
-            state.depth          = def(options.depth,           state.depth);
-            state.texture        = def(options.texture,         state.texture);
-            state.primitive_type = def(options.primitive_type,  state.primitive_type);
-            state.shader         = def(options.shader,          state.shader);
+        state.depth          = def(_options.depth,           state.depth);
+        state.texture        = def(_options.texture,         state.texture);
+        state.primitive_type = def(_options.primitive_type,  state.primitive_type);
+        state.shader         = def(_options.shader,          state.shader);
 
-            if(options.clip_rect != null) {
-                var _r = options.clip_rect;
-                state.clip_x = _r.x;
-                state.clip_y = _r.y;
-                state.clip_w = _r.w;
-                state.clip_h = _r.h;
-            }
+        if(_options.clip_rect != null) {
+            var _r = _options.clip_rect;
+            state.clip_x = _r.x;
+            state.clip_y = _r.y;
+            state.clip_w = _r.w;
+            state.clip_h = _r.h;
+        }
 
-            transform.pos        = def(options.pos,             transform.pos);
-            transform.rotation   = def(options.rotation,        transform.rotation);
-            transform.scale      = def(options.scale,           transform.scale);
-            transform.origin     = def(options.origin,          transform.origin);
+        transform.pos        = def(_options.pos,             transform.pos);
+        transform.rotation   = def(_options.rotation,        transform.rotation);
+        transform.scale      = def(_options.scale,           transform.scale);
+        transform.origin     = def(_options.origin,          transform.origin);
 
-            if(options.no_batcher_add != null && options.no_batcher_add == true) {
-                _do_add = false;
-            }
-
-        } else { //options != null
-
-                //assign required
-            color = new Color();
-
+        if(_options.no_batcher_add != null && _options.no_batcher_add == true) {
+            _do_add = false;
         }
 
         _sequence_key++;
@@ -184,8 +176,8 @@ class Geometry {
 
             //only add it to a batcher if explicitly requested,
             //otherwise do not add to a batcher at all
-        if(options != null && options.batcher != null && _do_add) {
-            options.batcher.add( this );
+        if(_options.batcher != null && _do_add) {
+            _options.batcher.add( this );
         }
 
             //:todo: This is WIP/volatile and not considered api
