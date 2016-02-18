@@ -806,49 +806,50 @@ class Vector {
 } //ComponentOrder
 
 
+@:forward
 abstract Vec(Vector) from Vector to Vector {
 
     public inline function new(?_x,?_y,?_z,?_w) {
         this = new Vector(_x,_y,_z,_w);
     }
 //multiply
-    @:communitative @:op(A * B) static public inline function _multiply(lhs:Vec, rhs:Vec) : Vec {
+    @:communitative @:op(A * B) static inline function _multiply(lhs:Vec, rhs:Vec) : Vec {
         return Vector.MultiplyVector(lhs, rhs);
     }
-    @:communitative @:op(A * B) static public inline function _multiply_scalar(lhs:Vec, rhs:Float) : Vec {
+    @:communitative @:op(A * B) static inline function _multiply_scalar(lhs:Vec, rhs:Float) : Vec {
         return Vector.Multiply(lhs, rhs);
     }
-    @:communitative @:op(A * B) static public inline function _multiply_scalar_int(lhs:Vec, rhs:Int) : Vec {
+    @:communitative @:op(A * B) static inline function _multiply_scalar_int(lhs:Vec, rhs:Int) : Vec {
         return Vector.Multiply(lhs, rhs);
     }
 // divide
-    @:communitative @:op(A / B) static public inline function _divide(lhs:Vec, rhs:Vec) : Vec {
+    @:communitative @:op(A / B) static inline function _divide(lhs:Vec, rhs:Vec) : Vec {
         return Vector.DivideVector(lhs, rhs);
     }
-    @:communitative @:op(A / B) static public inline function _divide_scalar(lhs:Vec, rhs:Float) : Vec {
+    @:communitative @:op(A / B) static inline function _divide_scalar(lhs:Vec, rhs:Float) : Vec {
         return Vector.Divide(lhs, rhs);
     }
-    @:communitative @:op(A / B) static public inline function _divide_scalar_int(lhs:Vec, rhs:Int) : Vec {
+    @:communitative @:op(A / B) static inline function _divide_scalar_int(lhs:Vec, rhs:Int) : Vec {
         return Vector.Divide(lhs, rhs);
     }
 // add
-    @:communitative @:op(A + B) static public inline function _add(lhs:Vec, rhs:Vec) : Vec {
+    @:communitative @:op(A + B) static inline function _add(lhs:Vec, rhs:Vec) : Vec {
         return Vector.Add(lhs, rhs);
     }
-    @:communitative @:op(A + B) static public inline function _add_scalar(lhs:Vec, rhs:Float) : Vec {
+    @:communitative @:op(A + B) static inline function _add_scalar(lhs:Vec, rhs:Float) : Vec {
         return Vector.AddScalar(lhs, rhs);
     }
-    @:communitative @:op(A + B) static public inline function _add_scalar_int(lhs:Vec, rhs:Int) : Vec {
+    @:communitative @:op(A + B) static inline function _add_scalar_int(lhs:Vec, rhs:Int) : Vec {
         return Vector.AddScalar(lhs, rhs);
     }
 // subract
-    @:communitative @:op(A - B) static public inline function _subtract(lhs:Vec, rhs:Vec) : Vec {
+    @:communitative @:op(A - B) static inline function _subtract(lhs:Vec, rhs:Vec) : Vec {
         return Vector.Subtract(lhs,rhs);
     }
-    @:communitative @:op(A - B) static public inline function _subtract_scalar(lhs:Vec, rhs:Float) : Vec {
+    @:communitative @:op(A - B) static inline function _subtract_scalar(lhs:Vec, rhs:Float) : Vec {
         return Vector.SubtractScalar(lhs,rhs);
     }
-    @:communitative @:op(A - B) static public inline function _subtract_scalar_int(lhs:Vec, rhs:Int) : Vec {
+    @:communitative @:op(A - B) static inline function _subtract_scalar_int(lhs:Vec, rhs:Int) : Vec {
         return Vector.SubtractScalar(lhs,rhs);
     }
 } //Vec
