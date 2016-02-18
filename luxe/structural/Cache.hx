@@ -3,7 +3,7 @@ package luxe.structural;
 
 /**
     Copyright 2014-2016 Sven Bergström
-    A simple cyclic cache pool type with create callback
+    A simple cyclic cache with create callback
 
     Part of the structural library for haxe
     http://github.com/underscorediscovery/structural
@@ -12,26 +12,26 @@ package luxe.structural;
 */
 
 @:generic
-class Pool<T> {
+class Cache<T> {
 
-        /** The size of the pool. */
+        /** The size of the cache. */
     public var length : Int = 0;
-        /** The items in the pool. */
+        /** The items in the cache. */
     public var items : Array<T>;
-        /** The current index in the pool. */
+        /** The current index in the cache. */
     public var index : Int = 0;
 
     var precache : Bool = true;
     var _create : Int -> Int -> T;
 
-        /** Create a new pool with fixed size,
+        /** Create a new cache with fixed size,
             on_create callback and cache flag.
-            By default precache is true. */
-    public function new( pool_size:Int, create_callback:Int->Int->T, _precache:Bool = true ){
+            By default pre_create is true. */
+    public function new( cache_size:Int, create_callback:Int->Int->T, pre_create:Bool = true ){
 
-        length = pool_size;
-        precache = _precache;
         items = [];
+        length = cache_size;
+        precache = pre_create;
         _create = create_callback;
 
         if(precache) {
@@ -42,9 +42,9 @@ class Pool<T> {
 
     } //new
 
-        /** Get the next available item from the pool.
+        /** Get the next available item from the cache.
             It will be created if needed, or returned from the cache.
-            If the pool max has been reached the pool will wrap around to the oldest item in the pool. */
+            If the cache max has been reached the cache will wrap around to the oldest item in the cache. */
     public function get() : T {
 
             //we want to make sure that we are creating items that don't exist to the max
@@ -67,4 +67,4 @@ class Pool<T> {
     } //get
 
 
-} //Pool
+} //Cache
