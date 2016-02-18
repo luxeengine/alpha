@@ -120,7 +120,9 @@ class ParcelProgress {
         if(amount < 0) amount = 0;
         if(amount > 1) amount = 1;
 
-        progress_bar.size.x = Math.ceil(width * amount);
+        if (!options.no_visuals) {
+            progress_bar.size.x = Math.ceil(width * amount);
+        }
 
     } //set_progress
 
