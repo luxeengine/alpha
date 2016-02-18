@@ -373,8 +373,9 @@ class SpriteAnimation extends Component {
         }
 
             //:todo: the frame events could be deferred
-            //and need testing but fixing quickly
-        if(entity.destroyed) {
+            //and need testing but fixing quickly,
+            //investigate this properly
+        if(entity == null || entity.destroyed) {
             return frame;
         }
 
