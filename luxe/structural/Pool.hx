@@ -2,8 +2,8 @@ package luxe.structural;
 
 
 /**
-    Copyright 2014 Sven Bergström
-    A simple cacheable pool type with on create callback
+    Copyright 2014-2016 Sven Bergström
+    A simple cyclic cache pool type with create callback
 
     Part of the structural library for haxe
     http://github.com/underscorediscovery/structural

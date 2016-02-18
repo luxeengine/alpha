@@ -1,7 +1,14 @@
 package luxe.structural;
 
 /**
-    WIP
+    Copyright 2014-2016 Sven Bergström
+
+    A simple ordered map implementation using a keys array
+
+    Part of the structural library for haxe
+    http://github.com/underscorediscovery/structural
+
+    MIT License
 */
 
 import Map;

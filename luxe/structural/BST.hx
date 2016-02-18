@@ -2,7 +2,7 @@ package luxe.structural;
 
 
 /**
-    Copyright 2014 Sven Bergström
+    Copyright 2014-2016 Sven Bergström
 
     A unbalanced binary search tree,
     implemented based on various stack overflow answers,
