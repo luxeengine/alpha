@@ -344,7 +344,7 @@ class NineSlice extends luxe.Visual {
             } //_geometry
         }
 
-        return _v;
+        return super.set_size(_v);
 
     } //set_size
 
