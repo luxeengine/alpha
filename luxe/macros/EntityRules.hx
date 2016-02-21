@@ -31,7 +31,7 @@ import haxe.macro.ExprTools;
             init_field = {
                 name: 'init',
                 doc: null, meta: [],
-                access: [AOverride],
+                access: [AOverride,APublic],
                 kind: FFun({ params:[], args:[], ret:null, expr:macro { super.init(); } }),
                 pos: Context.currentPos()
             };
@@ -43,7 +43,7 @@ import haxe.macro.ExprTools;
             ondestroy_field = {
                 name: 'ondestroy',
                 doc: null, meta: [],
-                access: [AOverride],
+                access: [AOverride,APublic],
                 kind: FFun({ params:[], args:[], ret:null, expr:macro { super.ondestroy(); } }),
                 pos: Context.currentPos()
             };

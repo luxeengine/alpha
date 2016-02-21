@@ -2,8 +2,9 @@ package luxe.structural;
 
 
 /**
-    Copyright 2014 Sven Bergström
-    A simple cacheable pool type with on create callback
+    Copyright 2014-2016 Sven Bergström
+    A simple pool with create callback, 
+    with fixed or unlimited size options
 
     Part of the structural library for haxe
     http://github.com/underscorediscovery/structural
@@ -14,57 +15,55 @@ package luxe.structural;
 @:generic
 class Pool<T> {
 
-        /** The size of the pool. */
-    public var length : Int = 0;
-        /** The items in the pool. */
+        /** The available items in the pool. */
     public var items : Array<T>;
-        /** The current index in the pool. */
-    public var index : Int = 0;
+        /** The create callback called if there are no items left in the pool */
+    public var create_func : Void->T;
+        /** The fixed size limit, or 0 if no size limit is observed */
+    public var size_limit: Int;
 
-    var precache : Bool = true;
-    var _create : Int -> Int -> T;
+        /** Create a new pool with an initial cache size, 
+            an optional fixed size limit, 
+            and create callbacks */
+    public function new( initial_size:Int, fixed_size_limit:Int=0, create_callback:Void->T){
 
-        /** Create a new pool with fixed size,
-            on_create callback and cache flag.
-            By default precache is true. */
-    public function new( pool_size:Int, create_callback:Int->Int->T, _precache:Bool = true ){
-
-        length = pool_size;
-        precache = _precache;
         items = [];
-        _create = create_callback;
+        size_limit = fixed_size_limit;
+        
+        create_func = create_callback;
 
-        if(precache) {
-            for(i in 0 ... length) {
-                items.push( _create(i, length) );
-            }
-        } //if precache
+        var make = initial_size;
+        if(size_limit > 0) make = Std.int(Math.min(make, size_limit));
+        for(i in 0 ... make) items.push(create_func());
 
     } //new
 
         /** Get the next available item from the pool.
-            It will be created if needed, or returned from the cache.
-            If the pool max has been reached the pool will wrap around to the oldest item in the pool. */
-    public function get() : T {
+            If there are no available items the function returns null. */
+    public inline function get() : T {
 
-            //we want to make sure that we are creating items that don't exist to the max
-        if(!precache && items.length < length) {
-            items.push( _create(index, length) );
-        }
+        if(items.length > 0) return items.pop();
+        if(size_limit > 0) return null;
 
-        var _item = items[index];
-
-            //after, increase the index, so that the index is always
-            //on the next free one. In other words list[index]
-            //is the next one, not the last used one
-        index++;
-        if(index > length-1) {
-            index = 0;
-        }
+        var _item = create_func();
+        items.push(_item);
 
         return _item;
 
     } //get
 
+        /** Return an item to the pool. 
+            Take note: This function doesn't care 
+            if the item was not in the pool originally,
+            and will assert if size_limit is set and would exceed this. */
+    public inline function put(item:T) {
+
+        if(size_limit > 0 && (items.length+1 > size_limit)) {
+            throw "Pool; invalid usage; putting item in will exceed size_limit";
+        }
+
+        items.push(item);
+
+    } //put
 
 } //Pool

@@ -20,8 +20,9 @@ package luxe.physics.deflect;
         public function new() {
 
         	color = new Color(1,1,1,1);
-            geometry = new Geometry();
-            geometry.primitive_type = PrimitiveType.lines;
+            geometry = new Geometry({
+                primitive_type: PrimitiveType.lines
+            });
 
         } //new
 

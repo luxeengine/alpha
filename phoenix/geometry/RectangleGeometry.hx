@@ -11,24 +11,22 @@ import luxe.options.GeometryOptions.RectangleGeometryOptions;
 class RectangleGeometry extends Geometry {
 
         /** Create a new Rectangle goemetry with given options */
-    public function new( ?options : RectangleGeometryOptions ) {
+    public function new(_options:RectangleGeometryOptions) {
 
-        options.primitive_type = PrimitiveType.lines;
+        _options.primitive_type = PrimitiveType.lines;
 
-        super(options);
+        super(_options);
 
-        if(options == null) return;
+        var _x = _options.x;
+        var _y = _options.y;
+        var _w = _options.w;
+        var _h = _options.h;
 
-        var _x : Float = options.x;
-        var _y : Float = options.y;
-        var _w : Float = options.w;
-        var _h : Float = options.h;
-
-        if(options.rect != null) {
-            _x = options.rect.x;
-            _y = options.rect.y;
-            _w = options.rect.w;
-            _h = options.rect.h;
+        if(_options.rect != null) {
+            _x = _options.rect.x;
+            _y = _options.rect.y;
+            _w = _options.rect.w;
+            _h = _options.rect.h;
         }
 
             //tl
@@ -50,9 +48,6 @@ class RectangleGeometry extends Geometry {
         add(new Vertex( new Vector( 0, _h ), color ));
             //tl
         add(new Vertex( new Vector( 0, 0 ), color ));
-
-        immediate = def(options.immediate, false);
-        visible = def(options.visible, true);
 
         transform.pos = transform.pos.set_xy( _x, _y );
 

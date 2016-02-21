@@ -3,47 +3,53 @@ package phoenix;
 
 class Circle {
 
-    public var x:Float;
-    public var y:Float;
-    public var r:Float;
+    public var x: Float;
+    public var y: Float;
+    public var r: Float;
 
-    public function new(?_x:Float = 0,?_y:Float = 0,?_r:Float = 0) {
+    public inline function new( _x:Float, _y:Float, _r:Float) {
+
         x = _x;
         y = _y;
         r = _r;
+
     } //new
 
-    function toString() {
+    inline function toString() {
+
         return "{ x:"+x + ", y:" + y + ", r:" + r + " }" ;
+
     } //toString
 
-    public function point_inside(_p:Vector) {
+    public inline function point_inside(_x:Float, _y:Float) {
 
-        var diff = new Vector(_p.x - x, _p.y - y);
+        var _dx = _x - x;
+        var _dy = _y - y;
+        var _len = Math.sqrt(_dx*_dx + _dy*_dy);
 
-        return diff.length <= r;
+        return _len <= r;
 
     } //point_inside
 
-    public function clone() {
-        return new Circle(x,y,r);
+    public inline function clone() {
+
+        return new Circle(x, y, r);
+
     } //clone
 
-    public function set(?_x:Float, ?_y:Float, ?_r:Float) {
-        var _setx = x;
-        var _sety = y;
-        var _setr = r;
+    public inline function set(_x:Float, _y:Float, _r:Float) {
 
-            //assign new values
-        if(_x != null) _setx = _x;
-        if(_y != null) _sety = _y;
-        if(_r != null) _setr = _r;
+        x = _x;
+        y = _y;
+        r = _r;
 
-        x = _setx;
-        y = _sety;
-        r = _setr;
+    } //set
 
-        return this;
+    public inline function set_xy(_x:Float, _y:Float) {
+
+        x = _x;
+        y = _y;
+
     } //set
 
 } //Circle

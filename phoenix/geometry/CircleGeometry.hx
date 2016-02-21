@@ -1,62 +1,54 @@
 package phoenix.geometry;
 
 import luxe.Log.*;
-import phoenix.geometry.Vertex ;
 import phoenix.Vector;
+import phoenix.geometry.Vertex;
 import phoenix.geometry.Geometry;
-import phoenix.geometry.TextureCoord;
-import phoenix.Batcher;
-import phoenix.Circle;
-
+import phoenix.Batcher.PrimitiveType;
 import luxe.options.GeometryOptions.CircleGeometryOptions;
 
 
 class CircleGeometry extends Geometry {
 
+    public function new(_options:CircleGeometryOptions) {
 
-    public function new( ?options : CircleGeometryOptions ) {
+        _options.primitive_type = PrimitiveType.triangles;
 
-        super(options);
-
-        if(options == null) {
-            return;
-        }
+        super(_options);
 
             //some default values so that the circle is visible with no values
-        var _radius_x : Float = 32;
-        var _radius_y : Float = 32;
+        var _radius_x = 32.0;
+        var _radius_y = 32.0;
 
-        def(options.end_angle, 360);
-        def(options.start_angle, 0);
+        def(_options.end_angle, 360);
+        def(_options.start_angle, 0);
 
-        if(options.r != null) {
-            _radius_x = options.r;
-            _radius_y = options.r;
+        if(_options.r != null) {
+            _radius_x = _options.r;
+            _radius_y = _options.r;
         }
 
-        if(options.rx != null) {
-            _radius_x = options.rx;
+        if(_options.rx != null) {
+            _radius_x = _options.rx;
         }
 
-        if(options.ry != null) {
-            _radius_y = options.ry;
+        if(_options.ry != null) {
+            _radius_y = _options.ry;
         }
 
-        if(options.steps == null) {
-            if(options.smooth == null) {
+        if(_options.steps == null) {
+            if(_options.smooth == null) {
                 var _max = Math.max(_radius_x, _radius_y);
-                options.steps = Luxe.utils.geometry.segments_for_smooth_circle( _max );
+                _options.steps = Luxe.utils.geometry.segments_for_smooth_circle( _max );
             } else {
-                var _smooth : Float = options.smooth;
+                var _smooth = _options.smooth;
                 var _max = Math.max(_radius_x, _radius_y);
-                options.steps = Luxe.utils.geometry.segments_for_smooth_circle( _max, _smooth );
+                _options.steps = Luxe.utils.geometry.segments_for_smooth_circle( _max, _smooth );
             }
         }
 
             //Apply the new options
-        set( options.x, options.y, _radius_x, _radius_y, options.steps, options.start_angle, options.end_angle );
-
-        if(options.visible != null) visible = options.visible;
+        set( _options.x, _options.y, _radius_x, _radius_y, _options.steps, _options.start_angle, _options.end_angle );
 
     } //new
 
@@ -65,9 +57,7 @@ class CircleGeometry extends Geometry {
             //adapted from
             //http://slabode.exofire.net/circle_draw.shtml
 
-        primitive_type = PrimitiveType.triangles;
-
-            var half_pi : Float = Math.PI/2;
+            var half_pi = Math.PI/2;
             var _start_angle_rad = luxe.utils.Maths.radians(_start_angle) - half_pi;
             var _end_angle_rad = luxe.utils.Maths.radians(_end_angle) - half_pi;
 
@@ -82,11 +72,11 @@ class CircleGeometry extends Geometry {
             var tangential_factor = Math.tan( theta );
             var radial_factor = Math.cos( theta );
 
-            var x : Float = _rx * Math.cos(_start_angle_rad);
-            var y : Float = _rx * Math.sin(_start_angle_rad);
+            var x = _rx * Math.cos(_start_angle_rad);
+            var y = _rx * Math.sin(_start_angle_rad);
 
             //now work out the ratio between _x and _y
-            var radial_ratio : Float = _rx / _ry;
+            var radial_ratio = _rx / _ry;
             if(radial_ratio == 0) {
                 radial_ratio = 0.000000001;
             }

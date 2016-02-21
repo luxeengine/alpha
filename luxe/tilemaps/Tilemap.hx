@@ -849,7 +849,7 @@ class Tilemap {
         width = 0;
         height = 0;
 
-        if(!_keep_visual) {
+        if(!_keep_visual && visual != null) {
             visual.destroy();
         }
 

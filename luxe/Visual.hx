@@ -183,7 +183,7 @@ class Visual extends Entity {
 
     } //create_geometry
 
-    override function ondestroy() {
+    override public function ondestroy() {
 
             //drop the geometry
         if(geometry != null && geometry.added ) {

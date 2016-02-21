@@ -327,7 +327,14 @@ class NineSlice extends luxe.Visual {
 
     override function set_size( _v : Vector ) {
 
-        if(!is_set) return _v;
+        if(_v == null) {
+            return super.set_size(_v);
+        }
+        
+        if(!is_set) {
+            return super.set_size(_v);
+        }
+
             //update the values
         update_size(_v.x, _v.y);
             //update the vertices
@@ -337,7 +344,7 @@ class NineSlice extends luxe.Visual {
             } //_geometry
         }
 
-        return _v;
+        return super.set_size(_v);
 
     } //set_size
 

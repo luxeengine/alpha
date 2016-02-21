@@ -286,18 +286,6 @@ class Draw {
 
     } //text
 
-        //hidden as 3D specifics aren't in the API yet.
-        /** Draw a plane (three dimensional quad) with options */
-    @:noCompletion public function plane( ?options:DrawPlaneOptions ) {
-
-        def(options.id, 'plane.geometry');
-        def(options.batcher, Luxe.renderer.batcher);
-
-        return new PlaneGeometry( options );
-
-    } //_plane
-
-
 //Internal API
 
     var core : Core;
