@@ -6,9 +6,11 @@ import luxe.ParcelProgress;
 import luxe.Text;
 import luxe.Vector;
 import luxe.Color;
+import luxe.resource.Resource;
 
 import phoenix.BitmapFont;
 import phoenix.Texture;
+import snow.types.Types.AudioHandle;
 
 
 //A simple message object,
@@ -35,6 +37,20 @@ class Main extends luxe.Game {
     var messages : Array<Message>;
 
 
+    var music_id = 'assets/sound/189175__triangelx__emotional-piano.ogg';
+    var thunder_id = 'assets/sound/244053__lennyboy__thunder.ogg';
+    var rain_id = 'assets/sound/244028__lennyboy__rain001.ogg';
+
+        //The audio sources
+    var thunder : AudioResource;
+    var music : AudioResource;
+    var rain : AudioResource;
+
+        //The audio instances (i.e the one that is playing)
+    var thunder_handle : AudioHandle;
+    var music_handle : AudioHandle;
+    var rain_handle : AudioHandle;
+
     override function ready() {
 
             //as with guide 3, we just create a list of assets to load
@@ -43,21 +59,9 @@ class Main extends luxe.Game {
             textures : [{ id : 'assets/apartment.png' }],
             fonts : [{ id : 'assets/montez/montez.fnt' }],
             sounds : [
-                {
-                    id : 'assets/sound/244053__lennyboy__thunder.ogg',
-                    name : 'thunder',
-                    is_stream : false
-                },
-                {
-                    id : 'assets/sound/244028__lennyboy__rain001.ogg',
-                    name : 'rain',
-                    is_stream : false
-                },
-                {
-                    id : 'assets/sound/189175__triangelx__emotional-piano.ogg',
-                    name : 'music',
-                    is_stream : false
-                }
+                { id : thunder_id, is_stream : false },
+                { id : rain_id, is_stream : false },
+                { id : music_id, is_stream : false }
             ]
         });
 
@@ -74,6 +78,10 @@ class Main extends luxe.Game {
     } //ready
 
     function assets_loaded(_) {
+
+        thunder = Luxe.resources.audio(thunder_id);
+        music = Luxe.resources.audio(music_id);
+        rain = Luxe.resources.audio(rain_id);
 
         create_apartment();
         create_overlay();
@@ -98,12 +106,7 @@ class Main extends luxe.Game {
             //now, a little after that, start the text!
         Luxe.timer.schedule(2.8, show_message);
 
-            //as the parcel has loaded the sound for us, we can use it already,
-            //but on web we have to be wary that even streamed sounds might take a few frames
-            //to start playing, so we wait till its loaded using the on load event
-        Luxe.audio.on("rain", "load", function(_){
-            Luxe.audio.loop("rain");
-        });
+        rain_handle = Luxe.audio.loop(rain.source);
 
     } //start
 
@@ -112,9 +115,9 @@ class Main extends luxe.Game {
             //flush the existing stuff
         Luxe.scene.empty();
             //kill the audio
-        Luxe.audio.stop('music');
-        Luxe.audio.stop('thunder');
-        Luxe.audio.stop('rain');
+        Luxe.audio.stop(music_handle);
+        Luxe.audio.stop(thunder_handle);
+        Luxe.audio.stop(rain_handle);
             //reset the timers
         Luxe.timer.reset();
             //start over
@@ -243,26 +246,16 @@ class Main extends luxe.Game {
 
     } //connect_events
 
-        //for web, audio might not be ready this very frame, so we only call play when its ready
-
     function onthunder(_) {
 
-        Luxe.audio.on("thunder", "load", function(_) {
-            Luxe.audio.play("thunder");
-        });
+        thunder_handle = Luxe.audio.play(thunder.source);
 
     } //onthunder
 
     function onmusic(_) {
 
-        var music = Luxe.audio.get('music');
-
-            music.on('load', function(_){
-
-                music.volume = 0.1;
-                music.play();
-
-            });
+        music_handle = Luxe.audio.play(music.source);
+        Luxe.audio.volume(music_handle, 0.1);
 
     } //onmusic
 
