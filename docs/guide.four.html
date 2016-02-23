@@ -97,9 +97,11 @@
 <span class="hljs-keyword">import</span> luxe.Text;
 <span class="hljs-keyword">import</span> luxe.Vector;
 <span class="hljs-keyword">import</span> luxe.Color;
+<span class="hljs-keyword">import</span> luxe.resource.Resource;
 
 <span class="hljs-keyword">import</span> phoenix.BitmapFont;
 <span class="hljs-keyword">import</span> phoenix.Texture;
+<span class="hljs-keyword">import</span> snow.types.Types.AudioHandle;
 
 
 <span class="hljs-comment">//A simple message object,</span>
@@ -126,6 +128,20 @@
     <span class="hljs-keyword">var</span> messages : Array&lt;Message&gt;;
 
 
+    <span class="hljs-keyword">var</span> music_id = <span class="hljs-string">'assets/sound/189175__triangelx__emotional-piano.ogg'</span>;
+    <span class="hljs-keyword">var</span> thunder_id = <span class="hljs-string">'assets/sound/244053__lennyboy__thunder.ogg'</span>;
+    <span class="hljs-keyword">var</span> rain_id = <span class="hljs-string">'assets/sound/244028__lennyboy__rain001.ogg'</span>;
+
+        <span class="hljs-comment">//The audio sources</span>
+    <span class="hljs-keyword">var</span> thunder : AudioResource;
+    <span class="hljs-keyword">var</span> music : AudioResource;
+    <span class="hljs-keyword">var</span> rain : AudioResource;
+
+        <span class="hljs-comment">//The audio instances (i.e the one that is playing)</span>
+    <span class="hljs-keyword">var</span> thunder_handle : AudioHandle;
+    <span class="hljs-keyword">var</span> music_handle : AudioHandle;
+    <span class="hljs-keyword">var</span> rain_handle : AudioHandle;
+
     <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
 
             <span class="hljs-comment">//as with guide 3, we just create a list of assets to load</span>
@@ -134,21 +150,9 @@
             textures : [{ id : <span class="hljs-string">'assets/apartment.png'</span> }],
             fonts : [{ id : <span class="hljs-string">'assets/montez/montez.fnt'</span> }],
             sounds : [
-                {
-                    id : <span class="hljs-string">'assets/sound/244053__lennyboy__thunder.ogg'</span>,
-                    name : <span class="hljs-string">'thunder'</span>,
-                    is_stream : <span class="hljs-literal">false</span>
-                },
-                {
-                    id : <span class="hljs-string">'assets/sound/244028__lennyboy__rain001.ogg'</span>,
-                    name : <span class="hljs-string">'rain'</span>,
-                    is_stream : <span class="hljs-literal">false</span>
-                },
-                {
-                    id : <span class="hljs-string">'assets/sound/189175__triangelx__emotional-piano.ogg'</span>,
-                    name : <span class="hljs-string">'music'</span>,
-                    is_stream : <span class="hljs-literal">false</span>
-                }
+                { id : thunder_id, is_stream : <span class="hljs-literal">false</span> },
+                { id : rain_id, is_stream : <span class="hljs-literal">false</span> },
+                { id : music_id, is_stream : <span class="hljs-literal">false</span> }
             ]
         });
 
@@ -165,6 +169,10 @@
     } <span class="hljs-comment">//ready</span>
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assets_loaded</span><span class="hljs-params">(_)</span> </span>{
+
+        thunder = Luxe.resources.audio(thunder_id);
+        music = Luxe.resources.audio(music_id);
+        rain = Luxe.resources.audio(rain_id);
 
         create_apartment();
         create_overlay();
@@ -189,12 +197,7 @@
             <span class="hljs-comment">//now, a little after that, start the text!</span>
         Luxe.timer.schedule(<span class="hljs-number">2.8</span>, show_message);
 
-            <span class="hljs-comment">//as the parcel has loaded the sound for us, we can use it already,</span>
-            <span class="hljs-comment">//but on web we have to be wary that even streamed sounds might take a few frames</span>
-            <span class="hljs-comment">//to start playing, so we wait till its loaded using the on load event</span>
-        Luxe.audio.on(<span class="hljs-string">"rain"</span>, <span class="hljs-string">"load"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(_)</span></span>{
-            Luxe.audio.loop(<span class="hljs-string">"rain"</span>);
-        });
+        rain_handle = Luxe.audio.loop(rain.source);
 
     } <span class="hljs-comment">//start</span>
 
@@ -203,9 +206,9 @@
             <span class="hljs-comment">//flush the existing stuff</span>
         Luxe.scene.empty();
             <span class="hljs-comment">//kill the audio</span>
-        Luxe.audio.stop(<span class="hljs-string">'music'</span>);
-        Luxe.audio.stop(<span class="hljs-string">'thunder'</span>);
-        Luxe.audio.stop(<span class="hljs-string">'rain'</span>);
+        Luxe.audio.stop(music_handle);
+        Luxe.audio.stop(thunder_handle);
+        Luxe.audio.stop(rain_handle);
             <span class="hljs-comment">//reset the timers</span>
         Luxe.timer.reset();
             <span class="hljs-comment">//start over</span>
@@ -334,26 +337,16 @@
 
     } <span class="hljs-comment">//connect_events</span>
 
-        <span class="hljs-comment">//for web, audio might not be ready this very frame, so we only call play when its ready</span>
-
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onthunder</span><span class="hljs-params">(_)</span> </span>{
 
-        Luxe.audio.on(<span class="hljs-string">"thunder"</span>, <span class="hljs-string">"load"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(_)</span> </span>{
-            Luxe.audio.play(<span class="hljs-string">"thunder"</span>);
-        });
+        thunder_handle = Luxe.audio.play(thunder.source);
 
     } <span class="hljs-comment">//onthunder</span>
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmusic</span><span class="hljs-params">(_)</span> </span>{
 
-        <span class="hljs-keyword">var</span> music = Luxe.audio.get(<span class="hljs-string">'music'</span>);
-
-            music.on(<span class="hljs-string">'load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(_)</span></span>{
-
-                music.volume = <span class="hljs-number">0.1</span>;
-                music.play();
-
-            });
+        music_handle = Luxe.audio.play(music.source);
+        Luxe.audio.volume(music_handle, <span class="hljs-number">0.1</span>);
 
     } <span class="hljs-comment">//onmusic</span>
 
