@@ -10,10 +10,12 @@ import phoenix.Texture;
 import luxe.Log.*;
 
 @:enum abstract ParcelEvent(Int) from Int to Int {
-    var unknown = 0;
-    var progress = 1;
-    var complete = 2;
-    var failed = 3;
+    var unknown     = 0;
+    var load        = 1;
+    var unload      = 2;
+    var progress    = 3;
+    var complete    = 4;
+    var failed      = 5;
 }
 
 typedef ParcelChange = {
@@ -134,9 +136,9 @@ class Parcel {
 
 //Public event handling
 
-    public function on<T>( ev:ParcelEvent, handler:T->Void ) emitter.on(ev, handler);
-    public function off<T>( ev:ParcelEvent, handler:T->Void ) emitter.off(ev, handler);
-    public function emit<T>( ev:ParcelEvent, data:T ) emitter.emit(ev, data);
+    public inline function on<T>( ev:ParcelEvent, handler:T->Void ) emitter.on(ev, handler);
+    public inline function off<T>( ev:ParcelEvent, handler:T->Void ) emitter.off(ev, handler);
+    public inline function emit<T>( ev:ParcelEvent, data:T ) emitter.emit(ev, data);
 
 //Public load API
 
@@ -144,6 +146,8 @@ class Parcel {
 
         /** Load this parcel contents with the optional load id, which is added to events. */
     public function load( ?_load_id:String ) {
+
+        emitter.emit(ParcelEvent.load, this);
 
         state = ParcelState.loading;
 
@@ -163,12 +167,13 @@ class Parcel {
             _debug('   sounds: ${list.sounds.length}');
 
             if(length == 0) {
-                _debug('nothing to load: ${list.sounds.length}');
+                _debug('nothing to load for `$id` / `$_load_id`, skip');
                 do_complete(_load_id);
                 return;
             }
 
             var _index = 0;
+            var _load_index = 0;
 
             inline function _handle(_item_id:String, _load:Promise) {
                 _load.then(function(_res) {
@@ -182,10 +187,12 @@ class Parcel {
 
                 for(_bytes in list.bytes) {
 
+                    ++_load_index;
+
                     if(!is_loaded(_bytes.id)) {
 
                         loaded.push(_bytes.id);
-                        Luxe.timer.schedule(load_time_spacing, function() {
+                        Luxe.timer.schedule(load_time_spacing*_load_index, function() {
 
                             _handle( _bytes.id, system.load_bytes( _bytes.id ) );
 
@@ -202,10 +209,12 @@ class Parcel {
 
                 for(_text in list.texts) {
 
+                    ++_load_index;
+
                     if(!is_loaded(_text.id)) {
 
                         loaded.push(_text.id);
-                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+                        Luxe.timer.schedule(load_time_spacing*_load_index, function() {
 
                             _handle( _text.id, system.load_text( _text.id ) );
 
@@ -222,10 +231,12 @@ class Parcel {
 
                 for(_json in list.jsons) {
 
+                    ++_load_index;
+
                     if(!is_loaded(_json.id)) {
 
                         loaded.push(_json.id);
-                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+                        Luxe.timer.schedule(load_time_spacing*_load_index, function() {
 
                             _handle( _json.id, system.load_json( _json.id ) );
 
@@ -242,10 +253,12 @@ class Parcel {
 
                 for(_texture in list.textures) {
 
+                    ++_load_index;
+
                     if(!is_loaded(_texture.id)) {
 
                         loaded.push(_texture.id);
-                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+                        Luxe.timer.schedule(load_time_spacing*_load_index, function() {
 
                             var _load = system.load_texture( _texture.id, {
                                 load_premultiply_alpha:_texture.load_premultiply_alpha,
@@ -270,10 +283,12 @@ class Parcel {
 
                 for(_font in list.fonts) {
 
+                    ++_load_index;
+
                     if(!is_loaded(_font.id)) {
 
                         loaded.push(_font.id);
-                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+                        Luxe.timer.schedule(load_time_spacing*_load_index, function() {
 
                             var _load = system.load_font( _font.id, {
                                 texture_path:_font.texture_path
@@ -294,10 +309,12 @@ class Parcel {
 
                 for(_shader in list.shaders) {
 
+                    ++_load_index;
+
                     if(!is_loaded(_shader.id)) {
 
                         loaded.push(_shader.id);
-                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+                        Luxe.timer.schedule(load_time_spacing*_load_index, function() {
 
                             var _load = system.load_shader( _shader.id, {
                                 frag_id: _shader.frag_id,
@@ -319,10 +336,12 @@ class Parcel {
 
                 for(_sound in list.sounds) {
 
+                    ++_load_index;
+
                     if(!is_loaded(_sound.id)) {
 
                         loaded.push(_sound.id);
-                        Luxe.timer.schedule(load_time_spacing*_index, function() {
+                        Luxe.timer.schedule(load_time_spacing*_load_index, function() {
 
                             var _load = system.load_audio( _sound.id, {
                                 is_stream: _sound.is_stream
@@ -347,8 +366,10 @@ class Parcel {
             Optionally the list can be emptied out, but will be kept around for reloading the parcel again. */
     public function unload( ?_empty_list:Bool = false ) {
 
+        emitter.emit(ParcelEvent.unload, this);
+
         inline function _remove(_id) {
-            log('$_id / removing');
+            _debug('$_id / removing');
             system.destroy(_id);
             loaded.remove(_id);
         }
