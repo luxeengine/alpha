@@ -26,6 +26,9 @@ class Main extends luxe.Game {
             id:'assets/font/proclamate.fnt'
         });
 
+        config.preload.sounds.push({ id: 'assets/181563__kingsrow__fire-crackling-01.ogg', is_stream: true });
+        config.preload.sounds.push({ id: 'assets/69509__zixem__ruin-wind.ogg', is_stream: true });
+
         return config;
 
     } //config

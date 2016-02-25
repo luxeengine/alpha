@@ -1,11 +1,13 @@
 
 import luxe.options.ParticleOptions;
+import luxe.resource.Resource.AudioResource;
 import luxe.States;
 import luxe.Input;
 import luxe.Entity;
 import luxe.Particles;
 import luxe.Vector;
 import luxe.Color;
+import snow.types.Types.AudioHandle;
 
 
 class Game extends State {
@@ -56,20 +58,22 @@ class Game extends State {
 
             //stop the particles
         snow_particles.paused = event.state;
-            //and the sound
-        Luxe.audio.toggle('wind');
+
+        if(event.state) {
+            Luxe.audio.pause(wind_handle);
+        } else {
+            Luxe.audio.unpause(wind_handle);
+        }
 
     } //pause_changed
 
+    var wind : AudioResource;
+    var wind_handle : AudioHandle;
+
     function create_wind() {
 
-            //a streaming wind sound
-        var load = Luxe.audio.create('assets/69509__zixem__ruin-wind.ogg', 'wind', true);
-
-            //wait for it to load, then loop it
-        load.then(function(wind){
-            wind.loop();
-        });
+        wind = Luxe.resources.audio('assets/69509__zixem__ruin-wind.ogg');
+        wind_handle = Luxe.audio.loop(wind.source);
 
     } //create_wind
 
@@ -108,7 +112,7 @@ class Game extends State {
 
     function cleanup() {
 
-        Luxe.audio.uncreate('wind');
+        Luxe.audio.stop(wind_handle);
         snow_particles.destroy();
 
     } //cleanup

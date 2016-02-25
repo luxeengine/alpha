@@ -1,4 +1,5 @@
 
+import luxe.resource.Resource.AudioResource;
 import luxe.tween.Actuate;
 import luxe.Sprite;
 import luxe.tween.actuators.GenericActuator.IGenericActuator;
@@ -10,6 +11,7 @@ import luxe.Entity;
 import luxe.Input;
 import luxe.Particles;
 import phoenix.Batcher;
+import snow.types.Types.AudioHandle;
 
 class Menu extends luxe.State {
 
@@ -33,6 +35,9 @@ class Menu extends luxe.State {
 
     var glow_amount: Float = 0.4;
     var prev_select: Text;
+
+    var fire: AudioResource;
+    var fire_sound: AudioHandle;
 
     static var idx = 0;
 
@@ -58,8 +63,7 @@ class Menu extends luxe.State {
 
         inline function create_sound() {
 
-                //a streaming fire sound
-            Luxe.audio.create('assets/181563__kingsrow__fire-crackling-01.ogg', 'fire', true);
+            fire = Luxe.resources.audio('assets/181563__kingsrow__fire-crackling-01.ogg');
 
         } //create_sound
 
@@ -298,15 +302,13 @@ class Menu extends luxe.State {
         Actuate.tween(this, 1.5, { glow_amount:0.65 }).repeat().reflect();
 
             //play the sound
-        Luxe.audio.on('fire', 'load', function(_){
-            Luxe.audio.loop('fire');
-        });
+        fire_sound = Luxe.audio.loop(fire.source);
 
     } //onenter
 
     override function onleave<T>(_:T) {
 
-        Luxe.audio.stop('fire');
+        Luxe.audio.stop(fire_sound);
 
             //no input when not in state
         input_ready = false;
