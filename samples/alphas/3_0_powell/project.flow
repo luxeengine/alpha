@@ -1,0 +1,34 @@
+{
+
+  luxe: {
+    window:{
+      width: 700,
+      height: 467,
+      resizable: false,
+      title: 'alpha-3.0+powell'
+    }
+  },
+  project : {
+    name : 'alpha_3_0_powell',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'alpha_3_0_powell',
+      package : 'com.luxeengine.samples.powell'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/',
+      index : { path:'custom_index.html => index.html', template:'project', not_listed:true }
+    }
+
+  }
+
+}
