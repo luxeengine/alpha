@@ -163,7 +163,7 @@ class ParcelProgress {
 
     } //onprogress
 
-    public function oncomplete( p:Parcel ) {
+    public function oncomplete( _parcel:Parcel ) {
 
         if(!options.no_visuals && options.fade_out) {
 
