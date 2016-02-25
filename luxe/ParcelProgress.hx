@@ -25,6 +25,7 @@ class ParcelProgress {
         //for now,
     var width : Float = 0;
     var height : Float = 0;
+    var fade_alpha : Float = 0;
 
     public function new( _options:ParcelProgressOptions ) {
 
@@ -52,17 +53,15 @@ class ParcelProgress {
         def(options.fade_out, true);
         def(options.fade_time, 0.3);
 
-        var fade_alpha : Float = options.background.a;
-
-        if(options.fade_in) {
-
-            options.background.a = 0;
-            options.bar.a = 0;
-            options.bar_border.a = 0;
-
-        } //fade in
+        fade_alpha = options.background.a;
 
         if(!options.no_visuals) {
+
+            if(options.fade_in) {
+                options.background.a = 0;
+                options.bar.a = 0;
+                options.bar_border.a = 0;
+            } //fade in
 
             var ypos = Math.floor(_view_height * 0.60);
             var half_width = Math.floor(width/2);
@@ -109,7 +108,8 @@ class ParcelProgress {
 
         } //no visuals?
 
-            //we intercept the onprogress and oncomplete of the parcel
+            //we intercept the begin, onprogress and oncomplete of the parcel
+        options.parcel.on(ParcelEvent.load, onbegin);
         options.parcel.on(ParcelEvent.progress, onprogress);
         options.parcel.on(ParcelEvent.complete, oncomplete);
 
@@ -125,6 +125,33 @@ class ParcelProgress {
         }
 
     } //set_progress
+
+    public function onbegin( _parcel:Parcel ) {
+
+        set_progress(0);
+
+        if(!options.no_visuals) {
+
+            if(options.fade_in) {
+
+                options.background.a = 0;
+                options.bar.a = 0;
+                options.bar_border.a = 0;
+                background.color.tween(options.fade_time,{a:fade_alpha},true);
+                progress_bar.color.tween(options.fade_time,{a:1},true);
+                progress_border.color.tween(options.fade_time,{a:1},true);
+            
+            } else {
+
+                options.background.a = 1;
+                options.bar.a = 1;
+                options.bar_border.a = 1;
+
+            }
+
+        } //not with no_visuals
+
+    } //onbegin
 
     public function onprogress( _state:ParcelChange ) {
 
