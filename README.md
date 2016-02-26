@@ -35,7 +35,7 @@ _Please note: alpha-4.0 is currently being set up, ALWAYS visit_ [http://snowkit
 ##### alpha-3.0+bennpowell
 
 **[read recap](http://snowkit.org/2016/02/25/luxe-alpha-3-0-bennpowell/)**   
-[read focus sheet](http://snowkit.org/2016/02/25/luxe-alpha-3-0-bennpowell/)
+[read focus sheet](http://snowkit.org/2016/02/25/luxe-alpha-3-0-bennpowell/)   
 [milestone on github](https://github.com/underscorediscovery/luxe/issues?utf8=%E2%9C%93&q=milestone%3Aalpha-3.0%2Bbennpowell+)
 
 
