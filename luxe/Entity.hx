@@ -445,7 +445,7 @@ class Entity extends Objects {
         }
 
             //now update our children, so they do the same
-        if(children.length > 0) {
+        if(children != null && children.length > 0) {
             for(_child in children) {
                 _child._update(dt);
             } //for each child
