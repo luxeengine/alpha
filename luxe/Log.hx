@@ -75,7 +75,7 @@ class Log {
         //and logging by injecting or not injecting code
     macro public static function log( value:Dynamic ) : Expr {
 
-        var _file = Path.withoutDirectory(_get_log_file());
+        var _file = Path.withoutDirectory(Context.getPosInfos(Context.currentPos()).file);
         var _context = Path.withoutExtension(_file).toLowerCase();
         var _spaces = _get_spacing(_file);
 
@@ -108,7 +108,7 @@ class Log {
 
     macro public static function _debug( value:Dynamic ) : Expr {
 
-        var _file = Path.withoutDirectory(_get_log_file());
+        var _file = Path.withoutDirectory(Context.getPosInfos(Context.currentPos()).file);
         var _context = Path.withoutExtension(_file).toLowerCase();
         var _spaces = _get_spacing(_file);
 
@@ -141,7 +141,7 @@ class Log {
 
     macro public static function _verbose( value:Dynamic ) : Expr {
 
-        var _file = Path.withoutDirectory(_get_log_file());
+        var _file = Path.withoutDirectory(Context.getPosInfos(Context.currentPos()).file);
         var _context = Path.withoutExtension(_file).toLowerCase();
         var _spaces = _get_spacing(_file);
 
@@ -174,7 +174,7 @@ class Log {
 
     macro public static function _verboser( value:Dynamic ) : Expr {
 
-        var _file = Path.withoutDirectory(_get_log_file());
+        var _file = Path.withoutDirectory(Context.getPosInfos(Context.currentPos()).file);
         var _context = Path.withoutExtension(_file).toLowerCase();
         var _spaces = _get_spacing(_file);
 
@@ -263,10 +263,6 @@ class Log {
         return _spaces;
 
     } //_get_spacing
-
-    macro static function _get_log_file() {
-        return macro Context.getPosInfos(Context.currentPos()).file;
-    } //get_log_context
 
 } // Debug
 
