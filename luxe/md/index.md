@@ -246,15 +246,13 @@ Either developed, or developing
 
 ---
 
-###Equilibrium (working title)
+###Operator Overload 
 [news page](https://twitter.com/bennpowell)   
-[game post](http://snowkit.org/2014/10/02/equilibrium-created-using-luxe/)
+[game post](http://snowkit.org/2016/02/25/luxe-alpha-3-0-bennpowell/)
 
 ![eq_menu](images/games/eq/eq_menu.png)
 
----
-
-![eq_ingame](images/games/eq/eq_ingame.png)
+<iframe src='https://gfycat.com/ifr/IdleWellmadeGermanspitz' frameborder='0' scrolling='no' width='420' height='504' allowfullscreen></iframe>
 
 &nbsp;
 &nbsp;

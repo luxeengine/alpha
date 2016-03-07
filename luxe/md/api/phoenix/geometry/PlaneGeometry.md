@@ -19,9 +19,7 @@
 
 <hr/>
 
-`class`extends <code><span>phoenix.geometry.Geometry</span></code><br/><span class="meta">
-meta: @:directlyUsed</span>
-
+`class`extends <code><span>phoenix.geometry.Geometry</span></code>
 
 <hr/>
 

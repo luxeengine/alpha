@@ -44,10 +44,28 @@ and [snow](https://github.com/underscorediscovery/snow) to access the platforms.
 
 ---
 
-**Using `haxelib git` to install**   
-Once you have git installed, you can use haxelib to install the libraries.
+#### automated install 
 
-Simply run the following commands:
+Please try snowfall, a new convenience to install luxe.   
+Once things are installed, continue reading for setup!   
+
+Run `haxelib install snowfall`   
+Then run `haxelib run snowfall update luxe`   
+
+[Read this for more information](https://snowkit.org/2016/02/17/snowfall/)   
+<small>Or run `haxelib run snowfall` and read your options.</small>
+
+---
+<div>
+<h4>manually installing</h4>
+<img class="readmore" style="height:3em;" src="images/more.png"/>
+<div class="section" style="color:#3c3c3c;">
+
+<br/><br/>
+**Using `haxelib git` to install**   
+Once you have git installed, you can use haxelib to install the libraries.<br/>
+<br/>
+Simply run the following commands:<br/>
 
 `haxelib git flow https://github.com/underscorediscovery/flow.git`
 
@@ -55,17 +73,30 @@ Simply run the following commands:
 
 `haxelib git luxe https://github.com/underscorediscovery/luxe.git`
 
----
+<h4>As of snow alpha-2.0 there are a few dependencies for snow.</h4>
 
+Currently these are required even for web builds.<br/>
+Run the following commands to install them.<br/>
+<br/>
+`haxelib git linc_openal https://github.com/snowkit/linc_openal.git`
+`haxelib git linc_timestamp https://github.com/snowkit/linc_timestamp.git`
+`haxelib git linc_stb https://github.com/snowkit/linc_stb.git`
+`haxelib git linc_ogg https://github.com/snowkit/linc_ogg.git`
+`haxelib git linc_sdl https://github.com/snowkit/linc_sdl.git`
+`haxelib git linc_opengl https://github.com/snowkit/linc_opengl.git`
+
+<hr/><br/>
+<br/>
 <small>
-
 **Optional: Manually cloning**   
 
 If you clone the repositories manually, tell haxelib where to find the clone.
 
 `haxelib dev <library> <path/to/library>`
-
 </small>
+
+</div>
+</div>
 
 ---
 
@@ -112,22 +143,11 @@ Once everything is set up, there are further steps for working with luxe.
 
 **Step 4.0 - Install snow native dependencies**
 
-###### `hxcpp` is required 
+**Step 4.1 - Install hxcpp**   
 
 Run `haxelib install hxcpp`
 
-###### As of snow alpha-2.0 there are a few dependencies for snow.
-
-Run the following commands to install them.
-
-`haxelib git linc_openal https://github.com/snowkit/linc_openal.git`
-`haxelib git linc_timestamp https://github.com/snowkit/linc_timestamp.git`
-`haxelib git linc_stb https://github.com/snowkit/linc_stb.git`
-`haxelib git linc_ogg https://github.com/snowkit/linc_ogg.git`
-`haxelib git linc_sdl https://github.com/snowkit/linc_sdl.git`
-`haxelib git linc_opengl https://github.com/snowkit/linc_opengl.git`
-
-**Step 4.1 - Install C++**   
+**Step 4.2 - Install C++**   
 To build the native targets, you must have c++ installed.
 
 - Windows : [Visual C++](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx)   
@@ -135,6 +155,16 @@ To build the native targets, you must have c++ installed.
 - Mac : [Xcode](https://developer.apple.com/xcode/downloads/) (and command line tools)   
 - iOS : Xcode, [iOS SDK](https://developer.apple.com/ios/) (comes with xcode)
 - Android : [Android Studio](http://developer.android.com/tools/studio/index.html), [Android NDK](https://developer.android.com/tools/sdk/ndk/index.html), [Continued setup here](http://snowkit.org/2014/10/29/quick-setup-guides-and-help/#androidspecificsetup)
+
+**Step 4.3 - Platform specific setup** 
+
+- Windows - Currently, Installing OpenAL is required https://www.openal.org/downloads/
+- Linux - some dev libs are required:
+ - `libgl1-mesa-dev`
+ - `libglu1-mesa-dev`
+ - And currently OpenAL is required `libopenal-dev`
+
+[more info](http://snowkit.org/2016/02/15/snow-alpha-2-0-changelog/)
 
 <a id="step5" name="step5">
 ###Step 5: Editor Setup

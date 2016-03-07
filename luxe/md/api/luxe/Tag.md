@@ -22,7 +22,7 @@ allocating strings each frame.
 <hr/>
 
 `class`<br/><span class="meta">
-meta: @:directlyUsed, @:keep, @:noCompletion, @:allow(luxe.Core)</span>
+meta: @:keep, @:noCompletion, @:allow(luxe.Core)</span>
 
 
 <hr/>

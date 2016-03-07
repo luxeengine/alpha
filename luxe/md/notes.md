@@ -1,3 +1,0 @@
-- resources inconsistent with types
-- resources into their own package
-- timers pause
