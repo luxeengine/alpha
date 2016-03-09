@@ -46,6 +46,7 @@ class PolygonCollider extends NapeBody {
 
             body.shapes.add(new Polygon(verts, options.material, options.filter));
             body.position.setxy(options.x, options.y);
+            body.align();
         
         post_add();
 
