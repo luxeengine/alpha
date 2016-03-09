@@ -11,6 +11,7 @@ class RenderState {
     var depth_mask : Bool = true;
     var renderer : Renderer;
     var _viewport : Rectangle;
+    var _view_target_h : Float = 0.0;
 
 
     public function new( _renderer:Renderer ) {
@@ -62,24 +63,28 @@ class RenderState {
 
     public function viewport( x:Float, y:Float, w:Float, h:Float ) {
 
+        var _target_h = renderer.target_size.y;
+
         if(
-            _viewport.x != x ||
-            _viewport.y != y ||
-            _viewport.w != w ||
-            _viewport.h != h
+            _viewport.x     != x ||
+            _viewport.y     != y ||
+            _viewport.w     != w ||
+            _viewport.h     != h || 
+            _view_target_h  != _target_h
         ) {
 
             _viewport.x = x;
             _viewport.y = y;
             _viewport.w = w;
             _viewport.h = h;
+            _view_target_h = _target_h;
 
                 //In OpenGL the viewport is bottom left origin, so we flip the y
                 //when submitting our top left based coordinates.
                 //We use the target size property of the renderer, which
                 //when rendering to the screen matches the window and when
                 //rendering to a texture/render target, matches the target.
-            var _y : Float = renderer.target_size.y - (y + h);
+            var _y : Float = _target_h - (y + h);
 
             GL.viewport( Std.int(x), Std.int(_y), Std.int(w), Std.int(h) );
 
