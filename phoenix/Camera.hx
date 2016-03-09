@@ -34,8 +34,8 @@ class Camera {
     @:isVar public var near     (default,set) : Float = 1000;
     @:isVar public var far      (default,set) : Float = -1000;
         //specific to perspective
-    @:isVar public var fov      (default, set) : Float = 60;
-    @:isVar public var fov_type (default, set) : FOVType = FOVType.horizontal;
+    @:isVar public var fov      (default,set) : Float = 60;
+    @:isVar public var fov_type (default,set) : FOVType = FOVType.horizontal;
     @:isVar public var aspect   (default,set) : Float = 1.5;
     @:isVar public var target   (default,set) : Vector;
 
@@ -47,16 +47,23 @@ class Camera {
     public var rotation (get,set) : Quaternion;
     public var transform : Transform;
 
-    public var minimum_zoom : Float = 0.01;
-    public var projection_matrix : Matrix;
-    public var view_matrix : Matrix;
-    public var view_matrix_inverse : Matrix;
-        //if any, a rotation matrix for the look at rotation
-    public var look_at_matrix : Matrix;
+    public var cull_backfaces: Bool = false;
+    public var depth_test: Bool = false;
 
-    public var options : CameraOptions;
-    public var projection : ProjectionType;
-    public var up : Vector;
+    public var minimum_zoom: Float = 0.01;
+    public var projection_matrix: Matrix;
+    public var view_matrix: Matrix;
+    public var view_matrix_inverse: Matrix;
+        //if any, a rotation matrix for the look at rotation
+    public var look_at_matrix: Matrix;
+
+    public var projection: ProjectionType;
+
+        //:todo: Camera; Exposing wip ortho options
+    public var ortho_left   (default, set): Null<Float>;
+    public var ortho_right  (default, set): Null<Float>;
+    public var ortho_top    (default, set): Null<Float>;
+    public var ortho_bottom (default, set): Null<Float>;
 
     @:noCompletion public var proj_arr : Float32Array;
     @:noCompletion public var view_inverse_arr : Float32Array;
@@ -70,66 +77,44 @@ class Camera {
         //when the target changes we can update the look at matrix
     var look_at_dirty : Bool = true;
         //when we are still busy setting up
-    var _setup : Bool = true;
+    var setup_ : Bool = true;
 
         //A phoenix camera will default to ortho set to screen size
     public function new( ?_options:CameraOptions ) {
 
         transform = new Transform();
-
-            //save for later
-        options = _options;
-
-            //have sane defaults
-        def(options, default_camera_options());
-
-            //store the name if any
-        if(options.camera_name != null) {
-            name = options.camera_name;
-        }
-
-            //default to ortho unless specified otherwise
-        if(options.projection != null) {
-            projection = options.projection;
-        } else {
-            projection = ProjectionType.ortho;
-        }
-
-        center = new Vector(Luxe.screen.w/2, Luxe.screen.h/2);
-        pos = new Vector();
-
-            //default to screensize or use given viewport
-        if(options.viewport != null) {
-            viewport = options.viewport;
-        } else {
-            viewport = new Rectangle( 0, 0, Luxe.screen.w, Luxe.screen.h );
-        }
-
-        up = new Vector(0,1,0);
-
         projection_matrix = new Matrix();
         view_matrix = new Matrix();
         view_matrix_inverse = new Matrix();
         look_at_matrix = new Matrix();
+
+            //order matters here
+        def(_options, default_camera_options());
+        projection = def(_options.projection, ProjectionType.ortho);
+        center = new Vector(Luxe.screen.w/2, Luxe.screen.h/2);
+        pos = new Vector();
+
+        viewport = def(_options.viewport, new Rectangle(0, 0, Luxe.screen.w, Luxe.screen.h));
+
+        if(_options.camera_name != null) {
+            name = _options.camera_name;
+        }
 
         transform.listen(on_transform_cleaned);
 
         switch (projection) {
 
             case ProjectionType.ortho:
-                set_ortho( options );
+                set_ortho( _options );
             case ProjectionType.perspective:
-                set_perspective( options );
-            case ProjectionType.custom: {
+                set_perspective( _options );
+            case ProjectionType.custom:
 
-            }
+        }
 
-        } //switch projection
-
-            //make sure values are valid
         process();
 
-        _setup = false;
+        setup_ = false;
 
     } //new
 
@@ -155,7 +140,6 @@ class Camera {
 
     } //set_perspective
 
-        //from 3D to 2D
     public function project( _vector:Vector ) {
 
         update_view_matrix();
@@ -165,7 +149,6 @@ class Camera {
 
     } //project
 
-        //from 2D to 3D
     public function unproject( _vector:Vector ) {
 
         update_view_matrix();
@@ -225,8 +208,8 @@ class Camera {
         update_view_matrix();
 
             //apply states
-        apply_state(GL.CULL_FACE, options.cull_backfaces);
-        apply_state(GL.DEPTH_TEST, options.depth_test);
+        apply_state(GL.CULL_FACE, cull_backfaces);
+        apply_state(GL.DEPTH_TEST, depth_test);
 
     } //process
 
@@ -239,11 +222,12 @@ class Camera {
 
     } //on_transform_cleaned
 
+    var up_: Vector = new Vector(0,1,0);
     function update_look_at() {
 
         if(look_at_dirty && target != null) {
 
-            look_at_matrix.lookAt( target, pos, up );
+            look_at_matrix.lookAt( target, pos, up_ );
 
             rotation.setFromRotationMatrix( look_at_matrix );
 
@@ -274,11 +258,25 @@ class Camera {
 
         switch(projection) {
 
+            case ProjectionType.custom: 
+                //
+
             case ProjectionType.perspective:
                 projection_matrix.makePerspective( fov_y, aspect, near, far );
+
             case ProjectionType.ortho:
-                projection_matrix.makeOrthographic( 0, viewport.w, 0, viewport.h, near, far );
-            case ProjectionType.custom: {}
+
+                var _l = 0.0;
+                var _t = 0.0;
+                var _r = viewport.w;
+                var _b = viewport.h;
+
+                if(ortho_left   != null) _l = ortho_left;
+                if(ortho_right  != null) _r = ortho_right;
+                if(ortho_top    != null) _t = ortho_top;
+                if(ortho_bottom != null) _b = ortho_bottom;
+
+                projection_matrix.makeOrthographic(_l, _r, _t, _b, near, far);
 
         } //switch
 
@@ -302,21 +300,21 @@ class Camera {
 
     } //apply_state
 
-    function apply_default_camera_options() {
+    inline function apply_default_camera_options() {
 
         switch (projection) {
 
             case ProjectionType.ortho: {
 
-                options.cull_backfaces = false;
-                options.depth_test = false;
+                cull_backfaces = false;
+                depth_test = false;
 
             } //ortho
 
             case ProjectionType.perspective: {
 
-                options.cull_backfaces = true;
-                options.depth_test = true;
+                cull_backfaces = true;
+                depth_test = true;
 
             } //perspective
 
@@ -326,7 +324,7 @@ class Camera {
 
     } //apply_default_camera_options
 
-    function default_camera_options() : CameraOptions {
+    inline function default_camera_options() : CameraOptions {
 
         return {
             projection : ProjectionType.ortho,
@@ -377,7 +375,7 @@ class Camera {
 
 //Properties
 
-    function set_target( _target:Vector ) : Vector {
+    inline function set_target( _target:Vector ) : Vector {
 
         if(_target != null) {
             look_at_dirty = true;
@@ -387,10 +385,9 @@ class Camera {
 
     } //set_target
 
-    function set_fov( _fov:Float ) : Float {
+    inline function set_fov( _fov:Float ) : Float {
 
         projection_dirty = true;
-        options.fov = _fov;
 
         if (fov_type == FOVType.horizontal) {
             fov_y = Rendering.fovx_to_y(_fov, aspect);
@@ -402,41 +399,71 @@ class Camera {
 
     } //set_fov
 
-    function set_fov_type(_fov_type:FOVType) : FOVType {
-        options.fov_type = _fov_type;
+    inline function set_fov_type(_fov_type:FOVType) : FOVType {
+        
         fov_type = _fov_type;
-        //trigger fov_y update
+            //trigger fov_y update
         set_fov(fov);
+        
         return fov_type;
-    }
+    
+    } //set_fov_type
 
-    function set_aspect( _aspect:Float ) : Float {
+    inline function set_aspect( _aspect:Float ) : Float {
 
         projection_dirty = true;
-        options.aspect = _aspect;
 
         return aspect = _aspect;
 
     } //set_aspect
 
-    function set_near( _near:Float ) : Float {
+    inline function set_near( _near:Float ) : Float {
 
         projection_dirty = true;
-        options.near = _near;
 
         return near = _near;
 
     } //set_near
 
-    function set_far( _far:Float ) : Float {
+    inline function set_far( _far:Float ) : Float {
 
         projection_dirty = true;
-        options.far = _far;
 
         return far = _far;
 
     } //set_far
 
+    inline function set_ortho_left( _val:Null<Float> ) : Null<Float> {
+
+        projection_dirty = true;
+
+        return ortho_left = _val;
+
+    } //set_ortho_left
+
+    inline function set_ortho_right( _val:Null<Float> ) : Null<Float> {
+
+        projection_dirty = true;
+
+        return ortho_right = _val;
+
+    } //set_ortho_right
+
+    inline function set_ortho_top( _val:Null<Float> ) : Null<Float> {
+
+        projection_dirty = true;
+
+        return ortho_top = _val;
+
+    } //set_ortho_top
+
+    inline function set_ortho_bottom( _val:Null<Float> ) : Null<Float> {
+
+        projection_dirty = true;
+
+        return ortho_bottom = _val;
+
+    } //set_ortho_bottom
 
         //0.5 = smaller , 2 = bigger
     function set_zoom( _z:Float ) : Float {
@@ -461,11 +488,13 @@ class Camera {
 
             case ProjectionType.perspective: {
 
-                // :todo: nothing happens when zooming perspective
+                // :todo: Camera; nothing happens when zooming perspective
 
             }
 
-            case ProjectionType.custom: {}
+            case ProjectionType.custom: {
+
+            }
 
         } //switch projection
 
@@ -474,7 +503,7 @@ class Camera {
 
     } //set_zoom
 
-    var _refresh_pos : Bool = false;
+    var refresh_pos_ : Bool = false;
     function set_center( _p:Vector ) : Vector {
 
         center = _p;
@@ -483,7 +512,7 @@ class Camera {
 
             case ProjectionType.ortho:
 
-                if(!_refresh_pos && !_setup) {
+                if(!refresh_pos_ && !setup_) {
                         //setting the center is the same as setting
                         //the position relative to the viewport
                     pos.ignore_listeners = true;
@@ -493,7 +522,7 @@ class Camera {
 
                     transform.pos.copy_from(_p);
 
-                } //!_refresh_pos && !_setup
+                } //!refresh_pos_ && !setup_
 
             case ProjectionType.perspective: {}
 
@@ -581,12 +610,12 @@ class Camera {
                 _cy = _p.y + (viewport.h/2);
             }
 
-                _refresh_pos = true;
+                refresh_pos_ = true;
                     center.ignore_listeners = true;
                         center.x = _cx;
                         center.y = _cy;
                     center.ignore_listeners = false;
-                _refresh_pos = false;
+                refresh_pos_ = false;
 
                 transform.pos.x = _cx;
                 transform.pos.y = _cy;
@@ -605,65 +634,36 @@ class Camera {
 
     } //set_pos
 
-        //:todo: use def/tidy up/etc
-    function _merge_options( _options:CameraOptions ) {
+    inline function _merge_options( _o:CameraOptions ) {
 
             //start at defaults for the type
         apply_default_camera_options();
 
-        if(_options.aspect != null) {
-            options.aspect = _options.aspect;
-            aspect = options.aspect;
-        }
+        if(_o.aspect != null) aspect = _o.aspect;
+        if(_o.far    != null) far    = _o.far;
+        if(_o.fov    != null) fov    = _o.fov;
+        if(_o.near   != null) near   = _o.near;
 
-        if(_options.far != null) {
-            options.far = _options.far;
-            far = options.far;
-        }
+        if(_o.viewport       != null) viewport       = _o.viewport;
+        if(_o.cull_backfaces != null) cull_backfaces = _o.cull_backfaces;
+        if(_o.depth_test     != null) depth_test     = _o.depth_test;
 
-
-        if(_options.fov != null) {
-            options.fov = _options.fov;
-            fov = options.fov;
-        }
-
-        if (_options.fov_type != null) {
-            options.fov_type = _options.fov_type;
-            fov_type = _options.fov_type;
-        }
-        else {
-            //apply default to make sure fov_y is set
-            options.fov_type = FOVType.horizontal;
+            //for type, re-apply default, makes sure fov_y is correct
+        if (_o.fov_type != null) {
+            fov_type = _o.fov_type;
+        } else {
             fov_type = FOVType.horizontal;
-        }
-
-        if(_options.near != null) {
-            options.near = _options.near;
-            near = options.near;
-        }
-
-        if(_options.viewport != null) {
-            options.viewport = _options.viewport;
-            viewport = options.viewport;
-        }
-
-        if(_options.cull_backfaces != null) {
-            options.cull_backfaces = _options.cull_backfaces;
-        }
-
-        if(_options.depth_test != null) {
-            options.depth_test = _options.depth_test;
         }
 
     } //_merge_options
 
-    function _pos_changed(v:Float) {
+    inline function _pos_changed(v:Float) {
 
         set_pos(pos);
 
     } //_pos_changed
 
-    function _center_changed(v:Float) {
+    inline function _center_changed(v:Float) {
 
         set_center(center);
 
