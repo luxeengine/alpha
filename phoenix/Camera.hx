@@ -193,8 +193,8 @@ class Camera {
 
 //Internal API
 
-
-    @:noCompletion public function process() {
+    @:noCompletion 
+    public function process() {
 
             //If we have a target, override the rotation
             //before we update the matrix, so it can be applied immediately if changing
@@ -216,7 +216,7 @@ class Camera {
 //Transforms
 
 
-    function on_transform_cleaned( t:Transform ) {
+    inline function on_transform_cleaned( t:Transform ) {
 
         transform_dirty = true;
 
@@ -290,7 +290,7 @@ class Camera {
 //Helpers
 
 
-    function apply_state(state:Int, value:Bool) {
+    inline function apply_state(state:Int, value:Bool) {
 
         if(value) {
             Luxe.renderer.state.enable(state);
@@ -340,7 +340,7 @@ class Camera {
 //Conversions
 
 
-    function ortho_screen_to_world( _vector:Vector ) : Vector {
+    inline function ortho_screen_to_world( _vector:Vector ) : Vector {
 
         update_view_matrix();
 
@@ -348,7 +348,7 @@ class Camera {
 
     } //ortho_screen_to_world
 
-    function ortho_world_to_screen( _vector:Vector ) : Vector {
+    inline function ortho_world_to_screen( _vector:Vector ) : Vector {
 
         update_view_matrix();
 
@@ -356,7 +356,7 @@ class Camera {
 
     } //ortho_world_to_screen
 
-    function persepective_world_to_screen( _vector:Vector, ?_viewport:Rectangle=null ) {
+    inline function persepective_world_to_screen( _vector:Vector, ?_viewport:Rectangle=null ) {
 
         def(_viewport, viewport);
 
@@ -468,7 +468,6 @@ class Camera {
         //0.5 = smaller , 2 = bigger
     function set_zoom( _z:Float ) : Float {
 
-            //a temp value to manipulate
         var _new_zoom = _z;
 
             //new zoom value shouldn't be allowed beyond a minimum
@@ -536,24 +535,34 @@ class Camera {
 
     } //set_center
 
-    function get_center() : Vector {
+    inline function get_center() : Vector {
+    
         return center;
+    
     } //get_center
 
-    function get_pos() : Vector {
+    inline function get_pos() : Vector {
+    
         return pos;
+    
     } //get_pos
 
-    function get_rotation() : Quaternion {
+    inline function get_rotation() : Quaternion {
+    
         return transform.rotation;
+    
     } //get_rotation
 
-    function get_scale() : Vector {
+    inline function get_scale() : Vector {
+    
         return transform.scale;
+    
     } //get_scale
 
-    function get_viewport() : Rectangle {
+    inline function get_viewport() : Rectangle {
+    
         return viewport;
+    
     } //get_viewport
 
     function set_viewport(_r:Rectangle) : Rectangle {
@@ -582,13 +591,13 @@ class Camera {
 
     } //set_viewport
 
-    function set_rotation( _q:Quaternion ) : Quaternion {
+    inline function set_rotation( _q:Quaternion ) : Quaternion {
 
         return transform.rotation = _q;
 
     } //set_rotation
 
-    function set_scale( _s:Vector ) : Vector {
+    inline function set_scale( _s:Vector ) : Vector {
 
         return transform.scale = _s;
 
