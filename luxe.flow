@@ -16,6 +16,7 @@
     author : 'luxeengine',
 
     app : {
+      codepaths:['./'],
       icon : 'flow/icons/ => luxe'
     },
     build : {
