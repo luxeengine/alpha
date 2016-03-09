@@ -1,13 +1,13 @@
 {
 
   project : {
-    name : 'luxe.cameraviews',
+    name : 'luxe.views',
     version : '1.0.0',
     author : 'luxeengine',
 
     app : {
-      name : 'luxe_test_cameraviews',
-      package : 'com.luxeengine.testcameraviews'
+      name : 'luxe_test_views',
+      package : 'com.luxeengine.testviews'
     },
 
     build : {
