@@ -1030,7 +1030,7 @@ class Matrix {
     } //clone
 
     public inline function up() {
-        return new Vector( elements[4], elements[5], elements[10] );
+        return new Vector( elements[4], elements[5], elements[6] );
     } //up
 
     public inline function down() : Vector {
