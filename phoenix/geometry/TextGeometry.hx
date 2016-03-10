@@ -54,7 +54,7 @@ class TextGeometry extends Geometry {
     //regular font stuff
 
         @:isVar public var text (default,set) : String = '';
-        @:isVar public var font (default,default) : BitmapFont;
+        @:isVar public var font (default,set) : BitmapFont;
         @:isVar public var point_size (default,set) : Float = 32.0;
         @:isVar public var line_spacing (default,set) : Float = 0.0;
         @:isVar public var letter_spacing (default,set) : Float = 0.0;
@@ -105,6 +105,7 @@ class TextGeometry extends Geometry {
 
         var dirty_sizing (default,set) : Bool = true;
         var dirty_align: Bool = true;
+        var setup_: Bool = true;
 
     //common
 
@@ -157,6 +158,8 @@ class TextGeometry extends Geometry {
         glow_color = new Color();
 
         default_options();
+
+        setup_ = false;
 
     } //new
 
@@ -229,8 +232,8 @@ class TextGeometry extends Geometry {
 
     function default_options() {
 
-            //:todo: currently only
-            //one page is supported
+            //:todo: TextGeometry pages
+            //currently one page is supported
             //because each vertex would
             //need to know the page it's on
             //and that would be best served
@@ -672,6 +675,23 @@ class TextGeometry extends Geometry {
         return point_size;
 
     } //set_point_size
+
+    #if release inline #end
+    function set_font( _font:BitmapFont ) {
+
+        font = _font;
+
+        if(!setup_) {
+            // :todo: TextGeometry pages
+            texture = font.pages[0];
+            dirty_sizing = true;
+            dirty_align = true;
+            update_text();
+        }
+
+        return font;
+
+    } //set_font
 
 
 //SDF specific features
