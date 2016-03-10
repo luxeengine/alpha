@@ -36,9 +36,12 @@ class Physics {
 //Physics fixed updates
     @:noCompletion public var timer : Timer;
 
+    var emitter : luxe.Emitter<PhysicsEvent>;
+
     public function new( _core:Core ) {
 
         core = _core;
+        emitter = new Emitter();
 
     } //new
 
@@ -80,7 +83,12 @@ class Physics {
 
             #if !luxe_noprofile Luxe.debug.start(tag_physics); #end
 
+            //calculated because the values will change
+        emit(ph_fixed_update, step_delta * Luxe.timescale);
+
         update();
+
+        emit(ph_fixed_update_post, step_delta * Luxe.timescale);
 
             #if !luxe_noprofile Luxe.debug.end(tag_physics); #end
 
@@ -136,6 +144,22 @@ class Physics {
 
     } //destroy
 
+//Events
+
+    public inline function on(_event:PhysicsEvent, _handler:Float->Void) : Void {
+        emitter.on(_event, _handler);
+    }
+    
+    public inline function off(_event:PhysicsEvent, _handler:Float->Void) : Bool {
+        return emitter.off(_event, _handler);
+    }
+    
+    public inline function emit(_event:PhysicsEvent, _float:Float) : Void {
+        emitter.emit(_event, _float);
+    }
+
+//Internal
+
         //on changing the fixed rate, update the physics timer
     function set_step_rate( _rate:Float ) {
 
@@ -154,6 +178,17 @@ class Physics {
 } //Physics
 
 
+/** :todo:WIP: This api is work in progress, and might change a bit */
+@:enum abstract PhysicsEvent(Int) from Int to Int {
+
+        /** An unknown physics engine event */
+    var ph_unknown           = 0;
+        /** Emitted at the start of the fixed update, before the world is updated */
+    var ph_fixed_update      = 1;
+        /** Emitted at the end of the fixed update, after the world is updated */
+    var ph_fixed_update_post = 2;
+
+} //PhysicsEvent
 
     //base class for simple physics world
     //updates and access
