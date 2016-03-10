@@ -7,6 +7,11 @@ class Main extends luxe.Game {
 
     var start : Vector;
 
+    var truefs = false;
+    var fs = false;
+    var grab = false;
+
+
     override function ready() {
 
         Luxe.renderer.clear_color.rgb(0x3e8fb1);
@@ -15,6 +20,21 @@ class Main extends luxe.Game {
     } //ready
 
     override function onkeyup( e:KeyEvent ) {
+
+        if( e.keycode == Key.enter && e.mod.alt ) {
+            fs = !fs;
+            Luxe.snow.runtime.window_fullscreen(fs);
+        }   
+
+        if( e.keycode == Key.enter && e.mod.ctrl) {
+            truefs = !truefs;
+            Luxe.snow.runtime.window_fullscreen(truefs, true);
+        }
+
+        if( e.keycode == Key.enter && e.mod.shift) {
+            grab = !grab;
+            Luxe.snow.runtime.window_grab(grab);
+        }
 
         if(e.keycode == Key.escape) {
             Luxe.shutdown();
