@@ -681,7 +681,7 @@ class TextGeometry extends Geometry {
 
         font = _font;
 
-        if(!setup_) {
+        if(!setup_ && _font != null) {
             // :todo: TextGeometry pages
             texture = font.pages[0];
             dirty_sizing = true;
