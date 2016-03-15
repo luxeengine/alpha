@@ -59,7 +59,7 @@ class TiledObject {
 
     function polyobject_from_xml( xml:Xml ) {
 
-        var points:Array<Vector> = new Array<Vector>();
+        var points:Array<Vector> = [];
         var pointsAsString:String = xml.get("points");
         var pointsAsStringArray:Array<String> = pointsAsString.split(" ");
 
@@ -76,7 +76,7 @@ class TiledObject {
 
             //json gives us the object as an array of objects with x,y properties
 
-        var points:Array<Vector> = new Array<Vector>();
+        var points:Array<Vector> = [];
         var point_list : Array<Dynamic> = cast json;
         for(point in point_list) {
             var _x = cast Reflect.field(point,"x");

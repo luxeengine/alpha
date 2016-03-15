@@ -50,7 +50,7 @@ class NineSlice extends luxe.Visual {
     public function new( _options:NineSliceOptions ) {
 
             //default to internal batcher
-        slices = new Array<Slice>();
+        slices = [];
 
             //we need to tell the visual not to create geometry ,
             //because we create our own from here.

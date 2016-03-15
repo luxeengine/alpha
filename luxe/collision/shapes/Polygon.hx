@@ -25,7 +25,7 @@ class Polygon extends Shape {
 
         name = 'polygon(sides:${vertices.length})';
 
-        _transformedVertices = new Array<Vector>();
+        _transformedVertices = [];
         _vertices = vertices;
 
     } //new
@@ -87,7 +87,7 @@ class Polygon extends Shape {
         var rotation:Float = (Math.PI * 2) / sides;
         var angle:Float;
         var vector:Vector;
-        var vertices:Array<Vector> = new Array<Vector>();
+        var vertices:Array<Vector> = []
 
         for(i in 0 ... sides) {
             angle = (i * rotation) + ((Math.PI - rotation) * 0.5);
@@ -105,7 +105,7 @@ class Polygon extends Shape {
             Centered by default. Returns a ready made `Polygon` collision `Shape` */
     public static function rectangle(x:Float, y:Float, width:Float, height:Float, centered:Bool = true):Polygon {
 
-        var vertices:Array<Vector> = new Array<Vector>();
+        var vertices:Array<Vector> = [];
 
         if(centered) {
 
@@ -148,7 +148,7 @@ class Polygon extends Shape {
     function get_transformedVertices() : Array<Vector> {
 
         if(!_transformed) {
-            _transformedVertices = new Array<Vector>();
+            _transformedVertices = [];
             _transformed = true;
 
             var _count : Int = _vertices.length;

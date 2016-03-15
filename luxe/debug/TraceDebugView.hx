@@ -17,7 +17,7 @@ class TraceDebugView extends luxe.debug.DebugView {
 
         Luxe.debug.add_trace_listener('TraceDebugView', on_trace);
 
-        logged = new Array<String>();
+        logged = [];
 
         add_line('luxe version ${Luxe.build}');
 

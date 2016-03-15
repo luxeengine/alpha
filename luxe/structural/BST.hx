@@ -175,7 +175,7 @@ class BST<K,T> {
         /** return an array of the values in this tree */
     public function toArray() : Array<T> {
 
-        var a = new Array<T>();
+        var a:Array<T> =[];
 
         traverse_node( root, order_retain, function( _node : BSTNode<K,T> ) {
             a.push( _node.value );
@@ -188,7 +188,7 @@ class BST<K,T> {
         /** Return an array of the keys in this tree */
     public function keys() : Array<K> {
 
-        var a = new Array<K>();
+        var a:Array<K> = [];
 
         traverse_node( root, order_retain, function( _node : BSTNode<K,T> ) {
             a.push( _node.key );

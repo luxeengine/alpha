@@ -94,9 +94,9 @@ class QuadPackGeometry extends Geometry {
             add( vert5 );
 
              //create the packed quad
-        var _quad = {
+        var _quad:PackedQuad = {
             uid : _uid,
-            verts : new Array<Vertex>(),
+            verts : [],
             flipx : _options.flipx,
             flipy : _options.flipx,
             visible : _options.visible,

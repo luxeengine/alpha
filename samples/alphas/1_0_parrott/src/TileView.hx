@@ -49,7 +49,7 @@ class TileView extends State {
 
     function create_map() {
 
-        map_tiles = new Array< Array<MapTile> >();
+        map_tiles = [];
 
         var tile_texture_w = 16;
         var tile_size = 16;
@@ -58,7 +58,7 @@ class TileView extends State {
 
         for(_y in 0 ... tilecy) {
 
-            var _row = new Array<MapTile>();
+            var _row:Array<MapTile> = [];
             for(_x in 0 ... tilecx) {
 
                 var map_x = _x * tile_size;

@@ -27,16 +27,16 @@ class Reader {
     function parse( lines : Array<String> )  {
 
         var data : luxe.importers.obj.Data = {
-            vertices : new Array<luxe.importers.obj.Vertex>()
+            vertices : []
         };
 
-        vertexIndices = new Array<Int>();
-        normalIndices = new Array<Int>();
-        uvIndices = new Array<Int>();
+        vertexIndices = [];
+        normalIndices = [];
+        uvIndices = [];
 
-        var temp_verts : Array<luxe.importers.obj.Vector> = new Array<luxe.importers.obj.Vector>();
-        var temp_uvs : Array<luxe.importers.obj.UV> = new Array<luxe.importers.obj.UV>();
-        var temp_normals : Array<luxe.importers.obj.Normal> = new Array<luxe.importers.obj.Normal>();
+        var temp_verts : Array<luxe.importers.obj.Vector> = [];
+        var temp_uvs : Array<luxe.importers.obj.UV> = [];
+        var temp_normals : Array<luxe.importers.obj.Normal> = [];
 
         for(line in lines) {
 

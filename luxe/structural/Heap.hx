@@ -171,7 +171,7 @@ class Heap<T> {
     }
 
     public function clear() {
-        heap = new Array();
+        heap = [];
         for (i in 0...size) heap.push(null);
         count = 0;
     }

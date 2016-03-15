@@ -126,7 +126,7 @@ class States extends Objects {
         super(_name == '' ? Luxe.utils.uniqueid() : _name);
 
         _states = new Map();
-        active_states = new Array<State>();
+        active_states = [];
 
         Luxe.core.on(Ev.init, init);
         Luxe.core.on(Ev.destroy, ondestroy);

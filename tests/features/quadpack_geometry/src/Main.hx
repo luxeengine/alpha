@@ -90,14 +90,14 @@ class Main extends luxe.Game {
 
     function create_map() {
 
-        map_tiles = new Array< Array<MapTile> >();
+        map_tiles = [];
 
         var tilew = 16;
         var tilecx : Int = Std.int(Luxe.screen.w / tilew);
         var tilecy : Int = Std.int(Luxe.screen.h / tilew);
 
         for(_y in 0 ... tilecy) {
-            var _row = new Array<MapTile>();
+            var _row:Array<MapTile> = [];
             for(_x in 0 ... tilecx) {
 
                 var map_x = _x * tilew;

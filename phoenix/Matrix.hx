@@ -55,7 +55,7 @@ class Matrix {
         n31:Float = 0, n32:Float = 0, n33:Float = 1, n34:Float = 0,
         n41:Float = 0, n42:Float = 0, n43:Float = 0, n44:Float = 1)
     {
-        elements = new Array<Float>();
+        elements = [];
 
         var i = 0;
         while (i++ < 16) {
@@ -599,7 +599,7 @@ class Matrix {
     public inline function flattenToArray( _flat:Array<Float> = null ) : Array<Float> {
 
         if (_flat == null) {
-            _flat = new Array<Float>();
+            _flat = [];
             for(i in 0 ... 16) _flat.push( 0.0 );
         }
 

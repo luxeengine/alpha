@@ -137,7 +137,7 @@ class Entity extends Objects {
         _verbose('create new entity with options ' + options);
 
         _components = new Components( this );
-        children = new Array<Entity>();
+        children = [];
         events = new luxe.Events();
 
         if(options != null && options.transform != null) {
