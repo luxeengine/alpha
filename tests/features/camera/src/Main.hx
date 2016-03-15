@@ -28,9 +28,9 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-    	var level_texture = Luxe.resources.texture('assets/level.png');
+        var level_texture = Luxe.resources.texture('assets/level.png');
 
-    	var level_sprite = new Sprite({
+        var level_sprite = new Sprite({
             texture : level_texture,
             pos : new Vector(0,0),
             centered : false
@@ -173,7 +173,7 @@ class Main extends luxe.Game {
 
     override function onmouseup( e:MouseEvent ) {
 
-    	if(e.button == MouseButton.left) {
+        if(e.button == MouseButton.left) {
             mouse_down = false;
             dragging = false;
                 //did dragging time happen?
@@ -183,9 +183,9 @@ class Main extends luxe.Game {
             } else {
                 //do nothing
             }
-    	} else if(e.button == MouseButton.right) {
+        } else if(e.button == MouseButton.right) {
             Luxe.camera.focus( world_mouse );
-    	}
+        }
     }
 
     override function onkeyup( e:KeyEvent ) {

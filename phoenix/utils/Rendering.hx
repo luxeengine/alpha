@@ -6,7 +6,7 @@ import phoenix.Batcher.BlendMode;
 
 class Rendering {
 
-	public static inline function gl_blend_mode_from_BlendMode(_b:BlendMode) {
+    public static inline function gl_blend_mode_from_BlendMode(_b:BlendMode) {
 
         switch(_b) {
             case zero:

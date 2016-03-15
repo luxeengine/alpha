@@ -12,13 +12,13 @@ import haxe.macro.ExprTools;
     static var ondestroy_field : Field;
     static var onremoved_field : Field;
 
-	macro public static function apply() : Array<Field> {
+    macro public static function apply() : Array<Field> {
 
         init_field = null;
         ondestroy_field = null;
         onremoved_field = null;
 
-		var _fields = Context.getBuildFields();
+        var _fields = Context.getBuildFields();
 
             //do this first to ensure the values are set
         for(_field in _fields) {
@@ -65,13 +65,13 @@ import haxe.macro.ExprTools;
             _fields.push(onremoved_field);
         }
 
-		for(_field in _fields) {
+        for(_field in _fields) {
 
             switch(_field.name) {
 
                 case 'new': {
-    				check_entity_touch(_field);
-    			} //new
+                    check_entity_touch(_field);
+                } //new
 
                 case
                     'ontouchmove',
@@ -102,15 +102,15 @@ import haxe.macro.ExprTools;
 
             } //switch _field.name
 
-		} //for field in fields
+        } //for field in fields
 
         init_field = null;
         ondestroy_field = null;
         onremoved_field = null;
 
-		return _fields;
+        return _fields;
 
-	} //apply
+    } //apply
 
 
     static function connect_event( _field:haxe.macro.Field ) {

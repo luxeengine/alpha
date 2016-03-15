@@ -10,7 +10,7 @@ import luxe.options.GeometryOptions.CircleGeometryOptions;
 
 class RingGeometry extends Geometry {
 
-	public function new(_options:CircleGeometryOptions) {
+    public function new(_options:CircleGeometryOptions) {
 
         _options.primitive_type = PrimitiveType.lines;
 
@@ -50,9 +50,9 @@ class RingGeometry extends Geometry {
             //Apply the new options
         set( _options.x, _options.y, _radius_x, _radius_y, _options.steps, _options.start_angle, _options.end_angle );
 
-	} //new
+    } //new
 
-	public function set( _x:Float, _y:Float, _rx:Float, _ry:Float, _steps:Int, _start_angle_degrees:Float=0, _end_angle_degrees:Float=360 ) {
+    public function set( _x:Float, _y:Float, _rx:Float, _ry:Float, _steps:Int, _start_angle_degrees:Float=0, _end_angle_degrees:Float=360 ) {
 
             //adapted from
             //http://slabode.exofire.net/circle_draw.shtml

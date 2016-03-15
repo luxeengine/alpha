@@ -8,32 +8,32 @@ import luxe.options.ComponentOptions;
 
 typedef NapeBodyOptions = {
 
-	> ComponentOptions,
+    > ComponentOptions,
 
         /** The nape BodyType (i.e DYNAMIC, STATIC, KINEMATIC) */
     @:optional var body_type : nape.phys.BodyType;
         /** The optional InteractionFilter */
     @:optional var filter : nape.dynamics.InteractionFilter;
         /** The optional nape material */
-	@:optional var material : nape.phys.Material;
+    @:optional var material : nape.phys.Material;
 
 } //NapeBodyOptions
 
 class NapeBody extends Component {
 
-	public var body(default, default) : nape.phys.Body;
+    public var body(default, default) : nape.phys.Body;
 
     var body_options : NapeBodyOptions;
     var euler : Vector;
 
-	public function new(_options : NapeBodyOptions) : Void {
+    public function new(_options : NapeBodyOptions) : Void {
 
         body_options = _options;
         euler = new Vector();
 
-		super(body_options);
+        super(body_options);
 
-	} //new
+    } //new
 
     override function onadded() : Void {
         

@@ -16,7 +16,7 @@ class Main extends luxe.Game {
 
     var sprite : Sprite;
     var sprite2 : Sprite;
-	var text : Text;
+    var text : Text;
     var textbounds : Rectangle;
 
     override function config(config:luxe.AppConfig) {
@@ -40,20 +40,20 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-    	var block_back = new Sprite({
-    		centered : false,
-    		pos : new Vector(0,0),
-    		size : new Vector(Luxe.screen.w, Luxe.screen.h),
-    		color : new Color().rgb(0xa8a79c)
-    	});
+        var block_back = new Sprite({
+            centered : false,
+            pos : new Vector(0,0),
+            size : new Vector(Luxe.screen.w, Luxe.screen.h),
+            color : new Color().rgb(0xa8a79c)
+        });
 
-    	var floory = (Luxe.screen.h/2)+92;
-    	var block_floor = new Sprite({
-    		centered : false,
-    		pos : new Vector(0,floory),
-    		size : new Vector(Luxe.screen.w, Luxe.screen.h - floory ),
-    		color : new Color().rgb(0x797d76)
-    	});
+        var floory = (Luxe.screen.h/2)+92;
+        var block_floor = new Sprite({
+            centered : false,
+            pos : new Vector(0,floory),
+            size : new Vector(Luxe.screen.w, Luxe.screen.h - floory ),
+            color : new Color().rgb(0x797d76)
+        });
 
         var _text = 'Animation by Gabriele Pala\nclick to visit http://meetcartographer.com/carapace';
         text = new Text({
@@ -69,24 +69,24 @@ class Main extends luxe.Game {
 
             textbounds = new Rectangle((Luxe.screen.w/2) - (_textsize.x/2), 90, _textsize.x, _textsize.y);
 
-    	var texture = Luxe.resources.texture('assets/carapace.png');
+        var texture = Luxe.resources.texture('assets/carapace.png');
 
-		texture.filter_min = texture.filter_mag = FilterType.nearest;
+        texture.filter_min = texture.filter_mag = FilterType.nearest;
 
-		sprite = new Sprite({
+        sprite = new Sprite({
             name : "walker",
-			texture : texture,
-			pos : new Vector( Luxe.screen.w/2, Luxe.screen.h/2 ),
-			size : new Vector(192,192)
-		});
+            texture : texture,
+            pos : new Vector( Luxe.screen.w/2, Luxe.screen.h/2 ),
+            size : new Vector(192,192)
+        });
 
-			//add a sprite animation component
-		var anim = new SpriteAnimation({ name:'anim' });
+            //add a sprite animation component
+        var anim = new SpriteAnimation({ name:'anim' });
         sprite.add( anim );
 
-		var animation_json = '
-			{
-				"walk" : {
+        var animation_json = '
+            {
+                "walk" : {
                     "frame_size":{ "x":"48", "y":"48" },
                     "frameset": ["1-12"],
                     "events" : [{"frame":8, "event":"foot.1"}, {"frame":1, "event":"foot.2"}, { "frame": 6 }],
@@ -98,22 +98,22 @@ class Main extends luxe.Game {
                     "frame_sources":[{
                         "frame":8, "x":0, "y":0, "w":96, "h":96
                     }],
-					"frame_size":{ "x":"48", "y":"48" },
-					"frameset": ["1-8","9","10","hold 10","11 hold 5", "12"],
-					"pingpong":"false",
-					"loop": "true",
-					"speed": "18"
-				}
-			}
-		';
+                    "frame_size":{ "x":"48", "y":"48" },
+                    "frameset": ["1-8","9","10","hold 10","11 hold 5", "12"],
+                    "pingpong":"false",
+                    "loop": "true",
+                    "speed": "18"
+                }
+            }
+        ';
 
-			//We can create the animation from a json string
-		anim.add_from_json( animation_json );
+            //We can create the animation from a json string
+        anim.add_from_json( animation_json );
 
-			//Or we can add them manually, using the anim.animation_list.push(new SpriteAnimationData)
+            //Or we can add them manually, using the anim.animation_list.push(new SpriteAnimationData)
 
-		anim.animation = 'walk';
-		anim.play();
+        anim.animation = 'walk';
+        anim.play();
 
             //create the sound to use
         var step1 = Luxe.resources.audio('assets/samulis_footstep_on_stone_1.ogg');

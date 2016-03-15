@@ -21,11 +21,11 @@ class QuadGeometry extends Geometry {
     var _uv_w:Float = 1;
     var _uv_h:Float = 1;
 
-	public function new(_options : QuadGeometryOptions) {
+    public function new(_options : QuadGeometryOptions) {
 
         _options.primitive_type = PrimitiveType.triangles;
 
-		super(_options);
+        super(_options);
 
             //Do these before set, so they can be applied
         if(_options.flipx != null) flipx = _options.flipx;
@@ -67,7 +67,7 @@ class QuadGeometry extends Geometry {
             uv_space( 0, 0, 1, 1 );
         }
 
-	} //new
+    } //new
 
     public inline function uv( _rect:luxe.Rectangle ) {
 
@@ -130,7 +130,7 @@ class QuadGeometry extends Geometry {
 
             var rotations:Int = Std.int(uv_angle / 90);
             rotations = rotations - 4 * Math.floor(rotations / 4);
-            
+
             for(r in 0...rotations) {
                 rotate_uvs();
             }
@@ -215,7 +215,7 @@ class QuadGeometry extends Geometry {
 
     } //set
 
- 	public function set_xywh( _x:Float, _y:Float, _w:Float, _h:Float ) {
+    public function set_xywh( _x:Float, _y:Float, _w:Float, _h:Float ) {
 
         if(vertices.length == 0) return;
 
@@ -235,7 +235,7 @@ class QuadGeometry extends Geometry {
 
         transform.pos = transform.pos.set_xy(_x, _y);
 
- 	} //set
+    } //set
 
     function set_flipx(_val:Bool) {
 

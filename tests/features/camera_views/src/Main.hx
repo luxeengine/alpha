@@ -38,7 +38,7 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-    	var level_texture = Luxe.resources.texture('assets/level.png');
+        var level_texture = Luxe.resources.texture('assets/level.png');
 
         var midx = Luxe.screen.w/2;
         var midy = Luxe.screen.h/2;
@@ -245,7 +245,7 @@ class Main extends luxe.Game {
 
     override function onmouseup( e:MouseEvent ) {
 
-    	if(e.button == MouseButton.left) {
+        if(e.button == MouseButton.left) {
             mouse_down = false;
             dragging = false;
                 //did dragging time happen?
@@ -254,9 +254,9 @@ class Main extends luxe.Game {
             } else {
                 //do nothing
             }
-    	} else if(e.button == MouseButton.right) {
+        } else if(e.button == MouseButton.right) {
             current_camera.focus( world_mouse );
-    	}
+        }
 
     } //onmouseup
 

@@ -9,8 +9,8 @@ import luxe.Color;
 class Main extends luxe.Game {
 
 
-	var logo : Sprite;
-	var rotator : Rotate;
+    var logo : Sprite;
+    var rotator : Rotate;
     var delta_time_text : Text;
 
     override function config( config:luxe.AppConfig ) {
@@ -29,7 +29,7 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-    	logo = new Sprite({
+        logo = new Sprite({
             pos : new Vector(Luxe.screen.w/2, Luxe.screen.h/2),
             texture : Luxe.resources.texture('assets/luxelogo.png'),
         });
@@ -37,7 +37,7 @@ class Main extends luxe.Game {
         rotator = new Rotate({ name:'rotator' });
         logo.add(rotator);
 
-        	//we don't need to reference the bounce component, so we just add it.
+            //we don't need to reference the bounce component, so we just add it.
         logo.add(new Bounce({ name:'bounce' }));
 
         delta_time_text = new luxe.Text({
@@ -57,10 +57,10 @@ class Main extends luxe.Game {
 
     override function onmousemove( e:MouseEvent ) {
 
-    	var percent = e.pos.x / Luxe.screen.w;
-    	var new_speed = percent * rotator.max_rotate_speed;
+        var percent = e.pos.x / Luxe.screen.w;
+        var new_speed = percent * rotator.max_rotate_speed;
 
-    		rotator.rotate_speed = new_speed;
+            rotator.rotate_speed = new_speed;
 
     } //onmousemove
 

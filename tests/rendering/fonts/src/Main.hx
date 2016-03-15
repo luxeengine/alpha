@@ -16,15 +16,15 @@ class Main extends luxe.Game {
         return config;
 
     } //config
-    
+
     var text : TextGeometry;
 
     override function ready() {
 
         Luxe.renderer.clear_color.rgb(0xffffff);
 
-    	//Fonts are currently created with BMFont compatible generators,
-    	//see http://luxeengine.com/docs/guide.fonts.html for details
+        //Fonts are currently created with BMFont compatible generators,
+        //see http://luxeengine.com/docs/guide.fonts.html for details
 
         var font = Luxe.resources.font('assets/fonts/font.fnt');
 
@@ -74,14 +74,14 @@ class Main extends luxe.Game {
                 text.shader = Luxe.renderer.shaders.textured.shader;
                 text.font = Luxe.resources.font('assets/fonts/font.fnt');
                 trace('set to custom font');
-            
+
             } else {
-            
+
                 text.sdf = true;
                 text.shader = Luxe.renderer.shaders.bitmapfont.shader;
                 text.font = Luxe.renderer.font;
                 trace('set to default font');
-            
+
             }
         }
 

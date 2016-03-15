@@ -18,9 +18,9 @@ class State1 extends State {
         value = _value;
     }
 
-	override function init() {
+    override function init() {
         trace("State1 inited with value : " + value);
-	} //init
+    } //init
 
     override function onleave<T>( _value:T ) {
         trace("State 1 LEAVE with value " + _value);
@@ -87,12 +87,12 @@ class TransientState extends State {
 class Main extends luxe.Game {
 
 
-	var machine : States;
+    var machine : States;
 
 
     override function ready() {
 
-    	machine = new States({ name:'statemachine' });
+        machine = new States({ name:'statemachine' });
 
         machine.add(new State1('state1', 5));
         machine.add(new State2({ name:'state2', int:24, game:this }) );

@@ -8,13 +8,13 @@ class RunTests extends luxe.Game {
 
     } //config
 
-	override function ready() {
+    override function ready() {
 
-			//run tests
-		new transform.Transforms();
+            //run tests
+        new transform.Transforms();
 
         Luxe.shutdown();
 
-	} //ready
+    } //ready
 
 } //RunTests

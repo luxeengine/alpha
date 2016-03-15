@@ -34,7 +34,7 @@ class Main extends luxe.Game {
         batch3 = Luxe.renderer.create_batcher({ name:'batch3', camera:Luxe.camera.view });
 
         var level_texture = Luxe.resources.texture('assets/level.png');
-    	var luxe_texture = Luxe.resources.texture('assets/luxe.png');
+        var luxe_texture = Luxe.resources.texture('assets/luxe.png');
 
         level_sprite = new Sprite({
             texture : level_texture,

@@ -348,23 +348,23 @@ class Main extends luxe.Game {
 
         tile_text.text = world + "\n" + tile;
 
-		_scale = tiled_iso.visual.options.scale;
+        _scale = tiled_iso.visual.options.scale;
         tile = tiled_iso.tile_at_pos('Tile Layer 2', mouse_pos, _scale );
         if( tile != null ) {
 
-				//  Translate the mouse position so that it is relative to the tiled map.
+                //  Translate the mouse position so that it is relative to the tiled map.
             var mouse_pos_relative = new Vector(mouse_pos.x - tiled_iso.pos.x, mouse_pos.y - tiled_iso.pos.y);
 
-				//	Get the position in world coords of the tile that is being hovered.
-			var tile_pos = Isometric.tile_coord_to_worldpos(tile.x, tile.y, tiled_iso.tile_width, tiled_iso.tile_height, _scale);
+                //  Get the position in world coords of the tile that is being hovered.
+            var tile_pos = Isometric.tile_coord_to_worldpos(tile.x, tile.y, tiled_iso.tile_width, tiled_iso.tile_height, _scale);
 
-				//	Find position of the mouse relative to the tile that is being hovered.
-			mouse_pos_relative.x -= tile_pos.x;
-			mouse_pos_relative.y -= tile_pos.y;
+                //  Find position of the mouse relative to the tile that is being hovered.
+            mouse_pos_relative.x -= tile_pos.x;
+            mouse_pos_relative.y -= tile_pos.y;
 
-			mouse_pos_relative = Isometric.worldpos_to_tile_coord(mouse_pos_relative.x, mouse_pos_relative.y, tiled_iso.tile_width, tiled_iso.tile_height, _scale);
+            mouse_pos_relative = Isometric.worldpos_to_tile_coord(mouse_pos_relative.x, mouse_pos_relative.y, tiled_iso.tile_width, tiled_iso.tile_height, _scale);
 
-				//  Create the offset depending on which corner is closest to the mouse position.
+                //  Create the offset depending on which corner is closest to the mouse position.
             var offset_x = TileOffset.right;
             var offset_y = TileOffset.bottom;
             if (mouse_pos_relative.x <= 0.33) {
@@ -381,11 +381,11 @@ class Main extends luxe.Game {
                 offset_y = TileOffset.center;
             }
 
-			tile_pos = Isometric.tile_coord_to_worldpos(tile.x, tile.y, tiled_iso.tile_width, tiled_iso.tile_height, _scale, offset_x, offset_y);
-			tile_pos.x += tiled_iso.pos.x;
-			tile_pos.y += tiled_iso.pos.y;
+            tile_pos = Isometric.tile_coord_to_worldpos(tile.x, tile.y, tiled_iso.tile_width, tiled_iso.tile_height, _scale, offset_x, offset_y);
+            tile_pos.x += tiled_iso.pos.x;
+            tile_pos.y += tiled_iso.pos.y;
 
-			tile_offset_circle.transform.pos.x = tile_pos.x;
+            tile_offset_circle.transform.pos.x = tile_pos.x;
             tile_offset_circle.transform.pos.y = tile_pos.y;
         }
 

@@ -9,7 +9,7 @@ class Main extends luxe.Game {
 
 
     var mesh : Mesh;
-	var mesh2 : Mesh;
+    var mesh2 : Mesh;
 
 
      override function config(config:luxe.AppConfig) {
@@ -26,19 +26,19 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-    	Luxe.camera.view.set_perspective({
-    		far:1000,
+        Luxe.camera.view.set_perspective({
+            far:1000,
             near:0.1,
             fov: 90,
             aspect : Luxe.screen.w/Luxe.screen.h
-    	});
+        });
 
-    		//move up and back a bit
-    	Luxe.camera.pos.set_xyz(0,1,2);
+            //move up and back a bit
+        Luxe.camera.pos.set_xyz(0,1,2);
             //load a texture
         var tex = Luxe.resources.texture('assets/tower.jpg');
-    		//create the mesh
-    	mesh = new Mesh({ file:'assets/tower.obj', texture:tex });
+            //create the mesh
+        mesh = new Mesh({ file:'assets/tower.obj', texture:tex });
 
             //create a second mesh based on the first one
         mesh2 = new Mesh({
