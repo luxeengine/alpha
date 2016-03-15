@@ -41,9 +41,11 @@ class Core extends snow.App {
         //if the console is displayed atm
     public var console_visible : Bool = false;
 
+    public var version   : String = 'dev';
+    public var build     : String = luxe.macros.BuildVersion.latest();
 
 //Sub Systems, mostly in order of importance
-    public var emitter   : Emitter<Ev>;
+    public var emitter   : Emitter<luxe.Ev>;
     public var debug     : Debug;
     public var io        : IO;
     public var draw      : Draw;
@@ -77,7 +79,7 @@ class Core extends snow.App {
         game.app = this;
 
             //Create internal stuff
-        emitter = new Emitter<Ev>();
+        emitter = new Emitter<luxe.Ev>();
 
             //Set external references
         Luxe.core = this;
@@ -95,9 +97,9 @@ class Core extends snow.App {
             log('log / exclude : ${luxe.Log.get_exclude()}');
         }
 
-        Luxe.version = haxe.Resource.getString('version');
+        version = haxe.Resource.getString('version');
             //Don't change this, it matches semantic versioning http://semver.org/
-        Luxe.build = Luxe.version + haxe.Resource.getString('build');
+        build = version + haxe.Resource.getString('build');
 
         log(runtime_info());
 
@@ -142,7 +144,7 @@ class Core extends snow.App {
         game.ondestroy();
 
             //shutdown the default scene
-        emitter.emit(Ev.destroy);
+        emitter.emit(luxe.Ev.destroy);
 
             //Order is imporant here too
         if(renderer != null) {
@@ -300,7 +302,7 @@ class Core extends snow.App {
 
                 //emit the init event
                 //so that scene and others can start up
-            emitter.emit(Ev.init);
+            emitter.emit(luxe.Ev.init);
             inited = true;
 
                 //Reset the physics (starts the timer etc)
@@ -322,28 +324,28 @@ class Core extends snow.App {
 
     // @:generic
     inline
-    public function on<T>(event:Ev, handler:T->Void ) {
+    public function on<T>(event:luxe.Ev, handler:T->Void ) {
         emitter.on(event, handler);
     }
 
     // @:generic
     inline
-    public function off<T>(event:Ev, handler:T->Void ) {
+    public function off<T>(event:luxe.Ev, handler:T->Void ) {
         return emitter.off(event, handler);
     }
 
     // @:generic
     inline
-    public function emit<T>(event:Ev, ?data:T) {
+    public function emit<T>(event:luxe.Ev, ?data:T) {
         return emitter.emit(event, data);
     }
 
     override function ontickstart() {
-        if(!has_shutdown) emitter.emit(Ev.tickstart);
+        if(!has_shutdown) emitter.emit(luxe.Ev.tickstart);
     }
 
     override function ontickend() {
-        if(!has_shutdown) emitter.emit(Ev.tickend);
+        if(!has_shutdown) emitter.emit(luxe.Ev.tickend);
     }
 
     override function onevent( event:snow.types.Types.SystemEvent ) {
@@ -402,7 +404,7 @@ class Core extends snow.App {
 
 //Run update callbacks
             #if !luxe_noprofile debug.start(Tag.updates); #end
-        emitter.emit(Ev.update, dt);
+        emitter.emit(luxe.Ev.update, dt);
             #if !luxe_noprofile debug.end(Tag.updates); #end
 
 //Update the game class for the game
@@ -422,36 +424,36 @@ class Core extends snow.App {
         if(shutting_down) return;
         if(!inited) return;
 
-        emitter.emit(Ev.window, _event);
+        emitter.emit(luxe.Ev.window, _event);
 
         switch(_event.type) {
 
             case we_moved : {
-                emitter.emit(Ev.windowmoved, _event);
+                emitter.emit(luxe.Ev.windowmoved, _event);
                 game.onwindowmoved(_event);
             } //moved
 
             case we_resized : {
                 screen.internal_resized(_event.x, _event.y);
                 renderer.internal_resized(_event.x, _event.y);
-                emitter.emit(Ev.windowresized, _event);
+                emitter.emit(luxe.Ev.windowresized, _event);
                 game.onwindowresized(_event);
             } //resized
 
             case we_size_changed : {
                 screen.internal_resized(_event.x, _event.y);
                 renderer.internal_resized(_event.x, _event.y);
-                emitter.emit(Ev.windowsized, _event);
+                emitter.emit(luxe.Ev.windowsized, _event);
                 game.onwindowsized(_event);
             } //size_changed
 
             case we_minimized : {
-                emitter.emit(Ev.windowminimized, _event);
+                emitter.emit(luxe.Ev.windowminimized, _event);
                 game.onwindowminimized(_event);
             } //minimized
 
             case we_restored : {
-                emitter.emit(Ev.windowrestored, _event);
+                emitter.emit(luxe.Ev.windowrestored, _event);
                 game.onwindowrestored(_event);
             } //restored
 
@@ -477,14 +479,14 @@ class Core extends snow.App {
 
             #if !luxe_noprofile debug.start(Tag.render); #end
 
-            emitter.emit(Ev.prerender);
+            emitter.emit(luxe.Ev.prerender);
             game.onprerender();
 
-                emitter.emit(Ev.render);
+                emitter.emit(luxe.Ev.render);
                 game.onrender();
                 renderer.process();
 
-            emitter.emit(Ev.postrender);
+            emitter.emit(luxe.Ev.postrender);
             game.onpostrender();
 
             #if !luxe_noprofile debug.end(Tag.render); #end
@@ -543,7 +545,7 @@ class Core extends snow.App {
 
                 //check for named input
             input.check_named_keys(event, true);
-            emitter.emit(Ev.keydown, event);
+            emitter.emit(luxe.Ev.keydown, event);
 
             game.onkeydown(event);
 
@@ -575,7 +577,7 @@ class Core extends snow.App {
 
                 //check for named input
             input.check_named_keys(event);
-            emitter.emit(Ev.keyup, event);
+            emitter.emit(luxe.Ev.keyup, event);
 
             game.onkeyup(event);
 

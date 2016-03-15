@@ -54,7 +54,7 @@ import sys.FileSystem;
 
 
 		#if macro
-			var git_path : String = Path.join([root,'.git/']);
+			var git_path : String = Path.join([root,'../.git/']);
 				git_path = Path.normalize(git_path);
 
 			if(FileSystem.exists(git_path) && FileSystem.isDirectory(git_path)) {
