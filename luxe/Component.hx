@@ -143,7 +143,7 @@ class Component extends ID {
     function _detach_entity() {
 
         if(entity != null) {
-            //entity.off(Ev.reset, _reset);
+            //entity.off(luxe.Ev.reset, _reset);
         }
 
     } //detach_entity
@@ -151,7 +151,7 @@ class Component extends ID {
     function _attach_entity() {
 
         if(entity != null) {
-            //entity.on(Ev.reset, _reset);
+            //entity.on(luxe.Ev.reset, _reset);
         }
 
     } //attach_entity

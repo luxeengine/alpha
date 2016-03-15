@@ -1,7 +1,7 @@
 package luxe;
 
 import luxe.Core;
-import Luxe.Ev;
+import luxe.Ev;
 
 import luxe.debug.Inspector;
 import luxe.Input.KeyEvent;

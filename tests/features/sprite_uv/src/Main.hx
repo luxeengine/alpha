@@ -51,7 +51,7 @@ class Main extends luxe.Game {
         stars.texture.filter_min = stars.texture.filter_mag = FilterType.nearest;
         stars.texture.clamp_s = stars.texture.clamp_t = ClampType.repeat;
 
-        Luxe.on(Luxe.Ev.windowresized, on_resize);
+        Luxe.on(luxe.Ev.windowresized, on_resize);
 
     } //ready
 

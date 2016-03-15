@@ -46,7 +46,7 @@ class Splash extends luxe.ParcelProgress {
         
         super.onbegin(_parcel);
 
-        Luxe.on(Luxe.Ev.update, onupdate);
+        Luxe.on(luxe.Ev.update, onupdate);
 
         spin.color.tween(0.4, { a:1 });
         info.color.tween(0.4, { a:1 });
@@ -70,7 +70,7 @@ class Splash extends luxe.ParcelProgress {
 
     override public function oncomplete( _parcel:Parcel ) {
 
-        Luxe.off(Luxe.Ev.update, onupdate);
+        Luxe.off(luxe.Ev.update, onupdate);
 
         super.oncomplete(_parcel);
 

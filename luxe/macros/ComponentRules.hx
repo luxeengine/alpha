@@ -126,7 +126,7 @@ import haxe.macro.ExprTools;
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.push( Context.parse('entity._listen( Luxe.Ev.${_event_name}, ${_field.name} )', _field.pos) );
+                            exprs.push( Context.parse('entity._listen( luxe.Ev.${_event_name}, ${_field.name} )', _field.pos) );
                     } //switch exp
             } //switch kind
 
@@ -137,7 +137,7 @@ import haxe.macro.ExprTools;
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.push( Context.parse('entity._unlisten( Luxe.Ev.${_event_name}, ${_field.name} )', _field.pos) );
+                            exprs.push( Context.parse('entity._unlisten( luxe.Ev.${_event_name}, ${_field.name} )', _field.pos) );
                     } //switch exp
             } //switch kind
 
@@ -148,7 +148,7 @@ import haxe.macro.ExprTools;
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.push( Context.parse('entity._unlisten( Luxe.Ev.${_event_name}, ${_field.name} )', _field.pos) );
+                            exprs.push( Context.parse('entity._unlisten( luxe.Ev.${_event_name}, ${_field.name} )', _field.pos) );
                     } //switch exp
             } //switch kind
 

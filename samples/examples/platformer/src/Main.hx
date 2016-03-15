@@ -88,7 +88,7 @@ class Main extends luxe.Game {
         sim.paused = false;
 
             //fade in when the init event happens
-        Luxe.on(Luxe.Ev.init, function(_){ fade.up(0.5); });
+        Luxe.on(luxe.Ev.init, function(_){ fade.up(0.5); });
 
     } //ready
 

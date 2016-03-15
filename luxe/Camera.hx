@@ -186,12 +186,12 @@ class Camera extends Entity {
             _size_factor.x = _size_factor.y = 1;
             set_zoom(zoom);
             _connected = false;
-            Luxe.off(Luxe.Ev.windowsized, _onwindowsized);
+            Luxe.off(luxe.Ev.windowsized, _onwindowsized);
             return size;
         }
 
         if(!_connected) {
-            Luxe.on(Luxe.Ev.windowsized, _onwindowsized);
+            Luxe.on(luxe.Ev.windowsized, _onwindowsized);
             _connected = true;
         }
 
