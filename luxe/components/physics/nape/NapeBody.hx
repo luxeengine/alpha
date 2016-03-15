@@ -36,7 +36,7 @@ class NapeBody extends Component {
     } //new
 
     override function onadded() : Void {
-        
+
         body = new nape.phys.Body(body_options.body_type);
 
     } //onadded
@@ -65,7 +65,7 @@ class NapeBody extends Component {
     } //update
 
 //internal
-    
+
         //stuff that should happen after being setup in onadded
     function post_add() {
 
@@ -74,7 +74,7 @@ class NapeBody extends Component {
         if(Luxe.physics.nape.debugdraw != null) {
             Luxe.physics.nape.debugdraw.add(body);
         }
-    
+
     } //post_add
 
 } //Body

@@ -110,7 +110,7 @@ class Uniforms {
     public inline function set_float( _name:String, _value:Float, _location:Location ) : Void {
 
         var _float = floats.get(_name);
-        
+
         if(_float != null) {
             _float.value = _value;
         } else {
@@ -125,7 +125,7 @@ class Uniforms {
     public inline function set_vector2( _name:String, _value:Vector, _location:Location ) : Void {
 
         var _vector2 = vector2s.get(_name);
-        
+
         if(_vector2 != null) {
             _vector2.value = _value;
         } else {
@@ -140,7 +140,7 @@ class Uniforms {
     public inline function set_vector3( _name:String, _value:Vector, _location:Location ) : Void {
 
         var _vector3 = vector3s.get(_name);
-        
+
         if(_vector3 != null) {
             _vector3.value = _value;
         } else {
@@ -155,7 +155,7 @@ class Uniforms {
     public inline function set_vector4( _name:String, _value:Vector, _location:Location ) : Void {
 
         var _vector4 = vector4s.get(_name);
-        
+
         if(_vector4 != null) {
             _vector4.value = _value;
         } else {
@@ -170,7 +170,7 @@ class Uniforms {
     public inline function set_matrix4( _name:String, _value:Matrix, _location:Location ) : Void {
 
         var _matrix4 = matrix4s.get(_name);
-        
+
         if(_matrix4 != null) {
             _matrix4.value = _value;
         } else {
@@ -185,7 +185,7 @@ class Uniforms {
     public inline function set_matrix4_arr( _name:String, _value:Float32Array, _location:Location ) : Void {
 
         var _matrix4 = matrix4arrs.get(_name);
-        
+
         if(_matrix4 != null) {
             _matrix4.value = _value;
         } else {
@@ -200,7 +200,7 @@ class Uniforms {
     public inline function set_color( _name:String, _value:Color, _location:Location ) : Void {
 
         var _color = colors.get(_name);
-        
+
         if(_color != null) {
             _color.value = _value;
         } else {
@@ -215,7 +215,7 @@ class Uniforms {
     public inline function set_texture( _name:String, _value:Texture, _location:Location ) : Void {
 
         var _texture = textures.get(_name);
-        
+
         if(_texture != null) {
             _texture.value = _value;
         } else {
@@ -230,49 +230,49 @@ class Uniforms {
     //inline
     public function apply() {
 
-        while(dirty_ints.length > 0) { 
+        while(dirty_ints.length > 0) {
             var uf = dirty_ints.pop();
-            GL.uniform1i(uf.location, uf.value); 
+            GL.uniform1i(uf.location, uf.value);
         }
 
-        while(dirty_floats.length > 0) { 
+        while(dirty_floats.length > 0) {
             var uf = dirty_floats.pop();
-            GL.uniform1f(uf.location, uf.value); 
+            GL.uniform1f(uf.location, uf.value);
         }
 
-        while(dirty_vector2s.length > 0) { 
+        while(dirty_vector2s.length > 0) {
             var uf = dirty_vector2s.pop();
-            GL.uniform2f(uf.location, uf.value.x, uf.value.y); 
+            GL.uniform2f(uf.location, uf.value.x, uf.value.y);
         }
 
-        while(dirty_vector3s.length > 0) { 
+        while(dirty_vector3s.length > 0) {
             var uf = dirty_vector3s.pop();
-            GL.uniform3f(uf.location, uf.value.x, uf.value.y, uf.value.z); 
+            GL.uniform3f(uf.location, uf.value.x, uf.value.y, uf.value.z);
         }
 
-        while(dirty_vector4s.length > 0) { 
+        while(dirty_vector4s.length > 0) {
             var uf = dirty_vector4s.pop();
-            GL.uniform4f(uf.location, uf.value.x, uf.value.y, uf.value.z, uf.value.w); 
+            GL.uniform4f(uf.location, uf.value.x, uf.value.y, uf.value.z, uf.value.w);
         }
 
-        while(dirty_colors.length > 0) { 
+        while(dirty_colors.length > 0) {
             var uf = dirty_colors.pop();
-            GL.uniform4f(uf.location, uf.value.r, uf.value.g, uf.value.b, uf.value.a); 
+            GL.uniform4f(uf.location, uf.value.r, uf.value.g, uf.value.b, uf.value.a);
         }
 
-        while(dirty_textures.length > 0) { 
+        while(dirty_textures.length > 0) {
             var uf = dirty_textures.pop();
-            GL.uniform1i(uf.location, uf.value.slot); uf.value.bind(); 
+            GL.uniform1i(uf.location, uf.value.slot); uf.value.bind();
         }
 
-        while(dirty_matrix4s.length > 0) { 
+        while(dirty_matrix4s.length > 0) {
             var uf = dirty_matrix4s.pop();
-            GL.uniformMatrix4fv(uf.location, false, uf.value.float32array()); 
+            GL.uniformMatrix4fv(uf.location, false, uf.value.float32array());
         }
 
-        while(dirty_matrix4arrs.length > 0) { 
+        while(dirty_matrix4arrs.length > 0) {
             var uf = dirty_matrix4arrs.pop();
-            GL.uniformMatrix4fv(uf.location, false, uf.value); 
+            GL.uniformMatrix4fv(uf.location, false, uf.value);
         }
 
     } //apply
@@ -327,7 +327,7 @@ class Shader extends Resource {
     } //activate
 
     public function use() {
-    
+
         if(program != null) {
             Luxe.renderer.state.useProgram( program );
         }

@@ -12,8 +12,8 @@ typedef TexturePackerMeta = {
     ?scale : Float
 }
 
-typedef TexturePackerFrame = {    
-    
+typedef TexturePackerFrame = {
+
     frame : TexturePackerRect,
     sourceSize : TexturePackerSize,
     spriteSourceSize : TexturePackerRect,
@@ -28,13 +28,13 @@ typedef TexturePackerFrame = {
 }
 
 class TexturePackerData {
-    
+
     public var meta : TexturePackerMeta;
     public var frames : Array<TexturePackerFrame>;
     public var frame_map : Map<String, TexturePackerFrame>;
 
     public function new( _meta:TexturePackerMeta, _frames:Array<TexturePackerFrame>) {
-        
+
         frames = _frames;
         meta = _meta;
         frame_map = new Map();

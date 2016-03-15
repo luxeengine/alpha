@@ -69,7 +69,7 @@ class RenderState {
             _viewport.x     != x ||
             _viewport.y     != y ||
             _viewport.w     != w ||
-            _viewport.h     != h || 
+            _viewport.h     != h ||
             _view_target_h  != _target_h
         ) {
 
@@ -122,7 +122,7 @@ class RenderState {
     public function useProgram( program:GLProgram ) {
         if(_used_program != program) {
             _used_program = program;
-            GL.useProgram( program ); 
+            GL.useProgram( program );
         }
     } //useProgram
 
@@ -147,7 +147,7 @@ class RenderState {
     public function bindTexture2D( tex:TextureID ) {
         if(bound_texture_2D != tex) {
             bound_texture_2D = tex;
-            GL.bindTexture(GL.TEXTURE_2D, tex); 
+            GL.bindTexture(GL.TEXTURE_2D, tex);
         }
     }
 

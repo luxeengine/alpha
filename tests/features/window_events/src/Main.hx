@@ -24,7 +24,7 @@ class Main extends luxe.Game {
         if( e.keycode == Key.enter && e.mod.alt ) {
             fs = !fs;
             Luxe.snow.runtime.window_fullscreen(fs);
-        }   
+        }
 
         if( e.keycode == Key.enter && e.mod.ctrl) {
             truefs = !truefs;

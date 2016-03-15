@@ -193,7 +193,7 @@ class Camera {
 
 //Internal API
 
-    @:noCompletion 
+    @:noCompletion
     public function process() {
 
             //If we have a target, override the rotation
@@ -258,7 +258,7 @@ class Camera {
 
         switch(projection) {
 
-            case ProjectionType.custom: 
+            case ProjectionType.custom:
                 //
 
             case ProjectionType.perspective:
@@ -400,13 +400,13 @@ class Camera {
     } //set_fov
 
     inline function set_fov_type(_fov_type:FOVType) : FOVType {
-        
+
         fov_type = _fov_type;
             //trigger fov_y update
         set_fov(fov);
-        
+
         return fov_type;
-    
+
     } //set_fov_type
 
     inline function set_aspect( _aspect:Float ) : Float {
@@ -536,33 +536,33 @@ class Camera {
     } //set_center
 
     inline function get_center() : Vector {
-    
+
         return center;
-    
+
     } //get_center
 
     inline function get_pos() : Vector {
-    
+
         return pos;
-    
+
     } //get_pos
 
     inline function get_rotation() : Quaternion {
-    
+
         return transform.rotation;
-    
+
     } //get_rotation
 
     inline function get_scale() : Vector {
-    
+
         return transform.scale;
-    
+
     } //get_scale
 
     inline function get_viewport() : Rectangle {
-    
+
         return viewport;
-    
+
     } //get_viewport
 
     function set_viewport(_r:Rectangle) : Rectangle {

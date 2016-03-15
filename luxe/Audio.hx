@@ -26,11 +26,11 @@ class Audio {
     public inline function on(_event:AudioEvent, _handler:AudioHandle->Void) : Void {
         core.app.audio.on(_event, _handler);
     }
-    
+
     public inline function off(_event:AudioEvent, _handler:AudioHandle->Void) : Bool {
         return core.app.audio.off(_event, _handler);
     }
-    
+
     public inline function emit(_event:AudioEvent, _handle:AudioHandle) : Void {
         core.app.audio.emit(_event, _handle);
     }
@@ -80,23 +80,23 @@ class Audio {
     }
 
     public inline function instance_of(_handle:AudioHandle) : AudioInstance {
-        return core.app.audio.instance_of(_handle); 
+        return core.app.audio.instance_of(_handle);
     }
 
     public inline function volume_of(_handle:AudioHandle) : Float {
-        return core.app.audio.volume_of(_handle); 
+        return core.app.audio.volume_of(_handle);
     }
 
     public inline function pan_of(_handle:AudioHandle) : Float {
-        return core.app.audio.pan_of(_handle); 
+        return core.app.audio.pan_of(_handle);
     }
 
     public inline function pitch_of(_handle:AudioHandle) : Float {
-        return core.app.audio.pitch_of(_handle); 
+        return core.app.audio.pitch_of(_handle);
     }
 
     public inline function position_of(_handle:AudioHandle) : Float {
-        return core.app.audio.position_of(_handle); 
+        return core.app.audio.position_of(_handle);
     }
 
     public inline function suspend() {

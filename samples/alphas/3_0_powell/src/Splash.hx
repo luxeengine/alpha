@@ -10,7 +10,7 @@ class Splash extends luxe.ParcelProgress {
     var info: luxe.Text;
 
     public function new(_parcel:Parcel, oncomplete:Void->Void) {
-        
+
         super({
             parcel      : _parcel,
             background  : new Color(0.5,0.4,0.3,0.85),
@@ -22,7 +22,7 @@ class Splash extends luxe.ParcelProgress {
             pos: Luxe.screen.mid,
             color: new Color(0,0,0,0.6).rgb(0xf94b04),
             text: '...',
-            align: center, 
+            align: center,
             point_size: 20
         });
 
@@ -43,7 +43,7 @@ class Splash extends luxe.ParcelProgress {
     }
 
     override public function onbegin( _parcel:Parcel ) {
-        
+
         super.onbegin(_parcel);
 
         Luxe.on(luxe.Ev.update, onupdate);
@@ -56,7 +56,7 @@ class Splash extends luxe.ParcelProgress {
     } //onbegin
 
     override public function onprogress( _state:ParcelChange ) {
-        
+
         super.onprogress(_state);
 
         info.text = '${_state.index} / ${_state.total}';

@@ -10,9 +10,9 @@ import luxe.utils.Maths;
 //  - physics (simulation of gravity and forces)
 //  - collision (separating colliding shapes from each other)
 //
-//   It is helpful to understand that these two concepts are distinct. 
+//   It is helpful to understand that these two concepts are distinct.
 //   Often however, since the "response" from a collision overlap
-//   will be fed directly back into the physics as a force, 
+//   will be fed directly back into the physics as a force,
 //   it is easy to see them as one concept. Be aware of the difference :)
 
 // - Collision = separating things that overlap)
@@ -61,8 +61,8 @@ class Simulation extends luxe.Physics.PhysicsEngine {
 
             //don't do anything unless we are running
         if(paused) return;
-    
-            //We start by appling the forces        
+
+            //We start by appling the forces
         handle_physics();
             //Then we make sure the colliders/shapes are moved
         update_colliders();
@@ -74,7 +74,7 @@ class Simulation extends luxe.Physics.PhysicsEngine {
     function handle_physics() {
 
             // The player is affected by gravity as a force,
-            // we scale it against the size of the physics time step 
+            // we scale it against the size of the physics time step
         player_velocity.x += gravity.x * Luxe.physics.step_delta;
         player_velocity.y += gravity.y * Luxe.physics.step_delta;
 
@@ -86,7 +86,7 @@ class Simulation extends luxe.Physics.PhysicsEngine {
             // scaled by the size of the physics time step
         player_collider.position.x += player_velocity.x * Luxe.physics.step_delta;
         player_collider.position.y += player_velocity.y * Luxe.physics.step_delta;
-    
+
     } //update_colliders
 
     function handle_collision() {
@@ -126,7 +126,7 @@ class Simulation extends luxe.Physics.PhysicsEngine {
 
         for(shape in obstacle_colliders)  draw_collider_polygon(cast shape);
         for(shape in trigger_colliders)   draw_collider_polygon(cast shape);
-            
+
         draw_collider_polygon(cast player_collider);
 
     } //render

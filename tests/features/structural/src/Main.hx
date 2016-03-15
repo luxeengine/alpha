@@ -22,7 +22,7 @@ class Main extends luxe.Game {
                 color: luxe.Color.random()
             });
         });
-        
+
         unlimited_pool = new Pool<luxe.Sprite>(2, function() {
             return new luxe.Sprite({
                 pos: Luxe.screen.mid,
@@ -47,7 +47,7 @@ class Main extends luxe.Game {
                         trace('> LIMITED return > at ${pool.items.length} items');
                     });
             }
-    
+
             trace('> LIMITED get > at ${pool.items.length} items');
 
         } else {
@@ -62,7 +62,7 @@ class Main extends luxe.Game {
                         trace('> UNLIMITED return > at ${unlimited_pool.items.length} items');
                     });
             }
-    
+
             trace('> UNLIMITED get > at ${unlimited_pool.items.length} items');
         }
 

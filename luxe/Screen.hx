@@ -144,7 +144,7 @@ class Cursor {
     @:allow(luxe.Core)
     inline function set_internal(_x:Float, _y:Float) {
 
-            //this has to be a new value because if it's cached, 
+            //this has to be a new value because if it's cached,
             //it sends in references that get kept by user code
             //or accidentally modified by .operation calls
             //this is temporary till embers immutable stuff

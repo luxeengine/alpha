@@ -285,7 +285,7 @@ class Core extends snow.App {
             //know when it's rendering the window so we can draw
         if(!headless) {
 
-            #if !luxe_noprofile 
+            #if !luxe_noprofile
                     //start here because end is called first below
                 debug.start(Tag.update, 50);
                 debug.start(Tag.renderdt, 50);
@@ -376,7 +376,7 @@ class Core extends snow.App {
         if(has_shutdown) return;
         if(!inited) return;
 
-        #if !luxe_noprofile 
+        #if !luxe_noprofile
             debug.end(Tag.update);
             debug.start(Tag.update);
         #end
@@ -471,7 +471,7 @@ class Core extends snow.App {
         if(!inited) return;
 
         #if !luxe_noprofile
-            debug.end(Tag.renderdt); 
+            debug.end(Tag.renderdt);
             debug.start(Tag.renderdt);
         #end
 

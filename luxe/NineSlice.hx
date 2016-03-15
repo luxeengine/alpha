@@ -330,7 +330,7 @@ class NineSlice extends luxe.Visual {
         if(_v == null) {
             return super.set_size(_v);
         }
-        
+
         if(!is_set) {
             return super.set_size(_v);
         }

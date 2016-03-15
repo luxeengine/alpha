@@ -17,7 +17,7 @@ typedef PolygonColliderOptions = {
         /** the x position of the circle */
     var x : Float;
         /** the y position of the circle */
-    var y : Float; 
+    var y : Float;
         /** The local vertices of the polygon */
     var polygon : Array<Vector>;
 
@@ -47,7 +47,7 @@ class PolygonCollider extends NapeBody {
             body.shapes.add(new Polygon(verts, options.material, options.filter));
             body.position.setxy(options.x, options.y);
             body.align();
-        
+
         post_add();
 
     } //onadded

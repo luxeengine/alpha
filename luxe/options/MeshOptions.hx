@@ -27,7 +27,7 @@ typedef MeshOptions = {
 
 //:todo: note this section is WIP, considered volatile/not api
 
-    @:noCompletion 
+    @:noCompletion
     @:optional var buffer_based : Bool;
     @:noCompletion
     @:optional var object_space : Bool;

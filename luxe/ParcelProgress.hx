@@ -140,7 +140,7 @@ class ParcelProgress {
                 background.color.tween(options.fade_time,{a:fade_alpha},true);
                 progress_bar.color.tween(options.fade_time,{a:1},true);
                 progress_border.color.tween(options.fade_time,{a:1},true);
-            
+
             } else {
 
                 options.background.a = 1;

@@ -105,14 +105,14 @@ class Shape {
     }
 
     inline function set_position( v : Vector ) : Vector {
-        
+
         _position = v;
         refresh_transform();
 
         if(_position != null) Vector.Listen(_position, _pos_changed);
 
         return _position;
-   
+
     } //set_position
 
 //.x

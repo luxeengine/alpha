@@ -20,7 +20,7 @@ import luxe.Vector;
       zoom_speed : Float, how much to zoom on mouse wheel
       zoomable : Bool, if zooming is enabled at the time of scrolling
       draggable : Bool, if dragging is enabled at the time of mousedown
-      button : MouseButton, the button to drag with 
+      button : MouseButton, the button to drag with
 
     Drag with button specified, zoom with scroll wheel.
 

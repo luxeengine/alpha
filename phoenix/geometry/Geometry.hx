@@ -543,7 +543,7 @@ class Geometry {
             buffer_normals = new Float32Array(_length);
             #end
         }
-        
+
         if(object_space) {
             batch_object_space(0,0,0,0,buffer_pos,buffer_tcoords,buffer_colors,buffer_normals);
         } else {

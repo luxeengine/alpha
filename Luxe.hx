@@ -89,7 +89,7 @@ class Luxe {
     public static var sim_delta (get,never) : Float;
         /** if this is non zero this will be passed in as delta time, `read/write` */
     public static var fixed_delta (get,set) : Float;
-    
+
 //Fixed time step options
 
         /** set to try, to use a "fix your timestep approach", `read/write` */
@@ -137,7 +137,7 @@ class Luxe {
     static inline function get_time()                       return core.app.time;
     static inline function get_version()                    return core.version;
     static inline function get_build()                      return core.build;
- 
+
     static inline function get_dt()                         return core.frame_delta;
     static inline function get_frame_start()                return core.frame_start;
     static inline function get_frame_start_prev()           return core.frame_start_prev;

@@ -233,7 +233,7 @@ class Text extends Visual {
         geom = null;
         text_options = null;
         text_bounds = null;
-        
+
         super.ondestroy();
 
     }

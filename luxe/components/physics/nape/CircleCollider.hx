@@ -15,7 +15,7 @@ typedef CircleColliderOptions = {
         /** the x position of the circle */
     var x : Float;
         /** the y position of the circle */
-    var y : Float;        
+    var y : Float;
         /** the radius of the circle */
     var r : Float;
 
@@ -39,7 +39,7 @@ class CircleCollider extends NapeBody {
 
             body.shapes.add(new Circle(options.r, options.material, options.filter));
             body.position.setxy(options.x, options.y);
-        
+
         post_add();
 
     } //onadded

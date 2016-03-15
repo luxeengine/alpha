@@ -307,7 +307,7 @@ import luxe.options.RenderProperties;
             });
 
             var _verts = _tmp.vertices.copy();
-            
+
             _tmp.drop();
 
             for (v in _verts) {
@@ -315,7 +315,7 @@ import luxe.options.RenderProperties;
                 v.pos.y += circle.localCOM.y;
                 v.color = _color;
             }
-            
+
                 //add a center point
             _verts.insert( 0, new Vertex(new Vector(circle.localCOM.x, circle.localCOM.y), _color) );
             _verts.insert( 1, _verts[1].clone() );

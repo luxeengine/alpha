@@ -6,7 +6,7 @@ import luxe.Input;
 import luxe.Screen;
 import snow.App;
 
-@:noCompletion 
+@:noCompletion
 @:keep
 @:keepSub
 class Game extends Emitter<Int> {

@@ -320,7 +320,7 @@ class Renderer {
                 frag = haxe.Resource.getString('default.frag.gl3.glsl');
                 frag_textured = haxe.Resource.getString('default.frag.textured.gl3.glsl');
                 frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.gl3.glsl');
-            } 
+            }
         #end
 
         if(vert == null) {
@@ -329,7 +329,7 @@ class Renderer {
             frag_textured = haxe.Resource.getString('default.frag.textured.glsl');
             frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.glsl');
         }
-        
+
 
         #if luxe_web
             var ext = snow.modules.opengl.GL.gl.getExtension('OES_standard_derivatives');

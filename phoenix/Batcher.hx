@@ -159,7 +159,7 @@ class Batcher {
     } //empty
 
         /** Destroy this batcher.
-            Drops all the geometry within it (empty). 
+            Drops all the geometry within it (empty).
             Removes itself from the renderer.
             Does not change the `view`.
             Do not use the batcher instance after calling this. */
@@ -244,7 +244,7 @@ class Batcher {
                 if( state.update(geom) ) {
 
                         //if there are verts in the last batch, it needs to be submitted
-                        //The function returns early if there are none 
+                        //The function returns early if there are none
                     submit_current_vertex_list( state.last_geom_state.primitive_type );
 
                 } // state.update(geom)
@@ -253,7 +253,7 @@ class Batcher {
                 state.activate(this);
 
                 if(geom.visible) {
-                    
+
                     //try
                     visible_count++;
 
@@ -383,7 +383,7 @@ class Batcher {
     } //update_view
 
     @:noCompletion
-    inline 
+    inline
     public function apply_default_uniforms(_shader:Shader) {
         if(!_shader.no_default_uniforms) {
             _shader.set_matrix4_arr('projectionMatrix', view.proj_arr);

@@ -20,7 +20,7 @@ class Main extends luxe.Game {
 
             //you can ignore this line
         #if luxe_doc_sample config.window.width = 640; config.window.height = 427; #end
-        
+
         return config;
 
     } //config
@@ -66,7 +66,7 @@ class Main extends luxe.Game {
             pos: Luxe.screen.mid,
             color: new Color(0,0,0,0.6),
             text: 'Press R to reload the parcel',
-            align: center, 
+            align: center,
             point_size: 20
         });
 

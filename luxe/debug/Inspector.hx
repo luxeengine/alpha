@@ -96,7 +96,7 @@ typedef DebugInspectorOptions = {
         }
 
         return pos = _pos;
-    
+
     } //set_pos
 
     function create_window() {

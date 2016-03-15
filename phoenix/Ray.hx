@@ -4,7 +4,7 @@ import phoenix.Rectangle;
 import phoenix.Vector;
 import phoenix.Camera;
 
-class Ray { 
+class Ray {
 
     public var origin : Vector;
     public var end : Vector;

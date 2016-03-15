@@ -71,7 +71,7 @@ class BST<K,T> {
 
     } //find
 
-        /** Return the number of nodes to the left of this node, by key.   
+        /** Return the number of nodes to the left of this node, by key.
             http://en.wikipedia.org/wiki/Order_statistic_tree */
     public function rank( _key:K ) : Int {
 
@@ -79,7 +79,7 @@ class BST<K,T> {
 
     } //rank
 
-        /** Find a key by rank in the tree, i.e given a number of nodes, the key at this point.   
+        /** Find a key by rank in the tree, i.e given a number of nodes, the key at this point.
             http://en.wikipedia.org/wiki/Order_statistic_tree */
     public function select( _rank:Int ) : K {
 

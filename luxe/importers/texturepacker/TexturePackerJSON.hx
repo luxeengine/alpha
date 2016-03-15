@@ -8,7 +8,7 @@ enum TexturePackerJSONType {
 }
 
 class TexturePackerJSON {
-    
+
     public static function parse( json:Dynamic, ?json_type:TexturePackerJSONType ) : TexturePackerData {
 
             //check validity if possible?
@@ -19,7 +19,7 @@ class TexturePackerJSON {
             trace("TexturePacker : No frames property on the json object given (kinda needed!)");
             return null;
         }
-            
+
         var meta : TexturePackerMeta = null;
         var frames : Array<TexturePackerFrame> = null;
 
@@ -29,7 +29,7 @@ class TexturePackerJSON {
         } // _has_meta ?
 
             //parse the frame next
-            
+
         if(json_type == null) {
 
                 //no specified type? try guessing
@@ -64,7 +64,7 @@ class TexturePackerJSON {
     } //parse
 
     static function parse_frame( name:String, json:Dynamic ) {
-        
+
         if(json == null) return null;
 
         var _frame              = parse_rect( Reflect.field(json,"frame") );
@@ -78,7 +78,7 @@ class TexturePackerJSON {
             filename            : name,
             frame               : _frame,
             sourceSize          : _sourceSize,
-            spriteSourceSize    : _spriteSourceSize,            
+            spriteSourceSize    : _spriteSourceSize,
             rotated             : _rotated,
             trimmed             : _trimmed,
             uv                  : new luxe.Rectangle(_frame.x, _frame.y, _frame.w, _frame.h),
@@ -96,9 +96,9 @@ class TexturePackerJSON {
 
             //hash uses keys
         for(_frame_name in Reflect.fields(json)) {
-            
+
             var _frame = Reflect.field(json, _frame_name);
-                
+
             _results.push( parse_frame(_frame_name, _frame) );
 
         } //for each frame in the keys
@@ -115,11 +115,11 @@ class TexturePackerJSON {
 
         var _frames_list : Array<Dynamic> = cast json;
         for(_frame in _frames_list) {
-            
+
             var _frame_name : String = Reflect.field(_frame, "filename");
 
             _results.push( parse_frame(_frame_name, _frame) );
-        
+
         } //for each frame in the array
 
         return _results;
@@ -127,14 +127,14 @@ class TexturePackerJSON {
     } //parse_frames_array
 
     static function parse_meta( json:Dynamic ) : TexturePackerMeta {
-            
+
         if(json == null) return null;
 
-        var _app        = Reflect.field( json, 'app' ); 
-        var _version    = Reflect.field( json, 'version' ); 
-        var _image      = Reflect.field( json, 'image' ); 
-        var _format     = Reflect.field( json, 'format' ); 
-        var _size       = Reflect.field( json, 'size' ); 
+        var _app        = Reflect.field( json, 'app' );
+        var _version    = Reflect.field( json, 'version' );
+        var _image      = Reflect.field( json, 'image' );
+        var _format     = Reflect.field( json, 'format' );
+        var _size       = Reflect.field( json, 'size' );
         var _scale      = Reflect.field( json, 'scale' );
 
         return {

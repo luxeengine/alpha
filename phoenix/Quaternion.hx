@@ -274,15 +274,15 @@ class Quaternion {
     public static function Add( _a:Quaternion, _b:Quaternion ):Quaternion {
         return _a.clone().add(_b);
     }
-    
+
     public static function Multiply( _a:Quaternion, _b:Quaternion ):Quaternion {
         return _a.clone().multiply(_b);
     }
-    
+
     public static function MultiplyScalar(_quaternion:Quaternion, _scalar:Float):Quaternion {
         return _quaternion.clone().multiplyScalar(_scalar);
     }
-    
+
     public function multiply( _quaternion:Quaternion ) : Quaternion {
 
         return multiplyQuaternions( this, _quaternion );

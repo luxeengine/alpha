@@ -163,7 +163,7 @@ class Scene extends Objects {
     public function empty() {
 
         _debug('$name / empty');
-        
+
         if(entity_count > 0) {
             #if luxe_camera_is_not_special
                 for(entity in entities) {
@@ -395,7 +395,7 @@ class Scene extends Objects {
     public function destroy() {
 
         assert(destroyed == false, 'scene / destroying repeatedly `$name`');
-        
+
         _debug('destroy / `$name` with $length entities / $id');
 
         destroyed = true;

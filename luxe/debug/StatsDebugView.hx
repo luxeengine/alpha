@@ -89,7 +89,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             'static batch count : ' + _render_stats.static_batched_count + '\n' +
             'total draw calls : ' + _render_stats.draw_calls + '\n' +
             'total vert count : ' + _render_stats.vert_count + '\n' +
-            'batchers : ' + _render_stats.batchers + '\n'+ 
+            'batchers : ' + _render_stats.batchers + '\n'+
             _bs;
 
     } //get_render_stats_string
@@ -205,7 +205,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             }
             return '(${tex.width_actual}x${tex.height_actual} ~${Luxe.utils.bytes_to_string(tex.memory_use())})    ${tex.id} • ${tex.ref}\t\n';
         }
-        // inline 
+        // inline
         function _snd(res:AudioResource) return {
             var _s = '';
             if(res.source != null) {
@@ -320,7 +320,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             var max_y = Luxe.debug.padding.y +(margin*1.5);
             var min_y = max_y;
 
-        var px = e.pos.x/Luxe.screen.w; 
+        var px = e.pos.x/Luxe.screen.w;
         if(px > 0.5) {
 
                 //resource list
@@ -453,7 +453,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         _render_stats.vert_count = Luxe.renderer.stats.vert_count;
 
         if(hide_debug) {
-                
+
             _render_stats.batchers -= 1;
             _render_stats.geometry_count = _render_stats.geometry_count - debug_geometry_count;
             _render_stats.visible_count = _render_stats.visible_count - Luxe.debug.batcher.visible_count;

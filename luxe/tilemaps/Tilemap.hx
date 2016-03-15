@@ -88,7 +88,7 @@ class TilemapVisual {
     } //update_tile_id
 
         /** Update the visual to match a new tile id at a given coordinate.
-            This is called automatically when you set a `Tile` ID in a map, if it has a visual assigned. 
+            This is called automatically when you set a `Tile` ID in a map, if it has a visual assigned.
             _angle has to be a multiple of 90 */
     public function refresh_tile_id( _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool = false, _flipy:Bool = false, _angle:Int = 0) {
 
@@ -307,7 +307,7 @@ class TileLayer {
     } //new
 
 
-        /** Returns a list of rectangles in tile space, 
+        /** Returns a list of rectangles in tile space,
             where any tile with id > 0 is combined into bounding regions */
     public function bounds_fitted():Array<Rectangle> {
 
@@ -885,7 +885,7 @@ class Tilemap {
     } //get_total_width
 
         /** Get the total height of the tilemap in tile height space */
-    
+
     function get_total_height() : Int {
 
         return height * tile_height;

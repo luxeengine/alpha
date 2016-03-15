@@ -67,14 +67,14 @@ class GeometryUtils {
         var nvert = _geometry.vertices.length;
         var j = nvert - 1;
 
-        var _px = _point.x; 
-        var _py = _point.y; 
+        var _px = _point.x;
+        var _py = _point.y;
 
         for(i in 0 ... nvert) {
 
             var _vert_i = _geometry.vertices[i].pos;
             var _vert_j = _geometry.vertices[j].pos;
-            
+
             _v_cache.set_xy(_vert_i.x, _vert_i.y);
             _v_cache.transform(_geometry.transform.world.matrix);
 

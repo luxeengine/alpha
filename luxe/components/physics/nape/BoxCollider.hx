@@ -12,7 +12,7 @@ import luxe.components.physics.nape.NapeBody;
 typedef BoxColliderOptions = {
 
     > NapeBodyOptions,
-    
+
         /** the x position of the box */
     var x : Float;
         /** the y position of the box */

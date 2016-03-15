@@ -61,7 +61,7 @@ class TiledImageLayer {
                     var _transparent_col = child.get("trans");
                     if(_transparent_col == null) _transparent_col = '';
                     _transparent_col = StringTools.replace(_transparent_col, '#','');
-                    
+
                     image = new TiledImage(this, _format, _source, Std.parseInt(_transparent_col));
 
                 }
@@ -76,7 +76,7 @@ class TiledImageLayer {
         y = cast Reflect.field(json, "y");
         opacity = Reflect.field(json, "opacity");
         visible = Reflect.field(json, "visible");
-        
+
         var _image:String = Reflect.field(json, "image");
         var _transparent_col:String = Reflect.field(json, "transparentcolor");
         var _w:Int = Reflect.field(json, "width");
@@ -124,5 +124,5 @@ class TiledImage {
         transparent_color = _transparent_color;
         width = _width;
         height = _height;
-    } 
+    }
 }

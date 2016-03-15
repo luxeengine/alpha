@@ -84,7 +84,7 @@ class Sprite extends Visual {
 
         uv = null;
         geometry_quad = null;
-        
+
         super.ondestroy();
 
     }

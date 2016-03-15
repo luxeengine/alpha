@@ -3,7 +3,7 @@ package luxe.structural;
 
 /**
     Copyright 2014-2016 Sven Bergström
-    A simple pool with create callback, 
+    A simple pool with create callback,
     with fixed or unlimited size options
 
     Part of the structural library for haxe
@@ -22,14 +22,14 @@ class Pool<T> {
         /** The fixed size limit, or 0 if no size limit is observed */
     public var size_limit: Int;
 
-        /** Create a new pool with an initial cache size, 
-            an optional fixed size limit, 
+        /** Create a new pool with an initial cache size,
+            an optional fixed size limit,
             and create callbacks */
     public function new( initial_size:Int, fixed_size_limit:Int=0, create_callback:Void->T){
 
         items = [];
         size_limit = fixed_size_limit;
-        
+
         create_func = create_callback;
 
         var make = initial_size;
@@ -52,8 +52,8 @@ class Pool<T> {
 
     } //get
 
-        /** Return an item to the pool. 
-            Take note: This function doesn't care 
+        /** Return an item to the pool.
+            Take note: This function doesn't care
             if the item was not in the pool originally,
             and will assert if size_limit is set and would exceed this. */
     public inline function put(item:T) {

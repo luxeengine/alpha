@@ -149,11 +149,11 @@ class Physics {
     public inline function on(_event:PhysicsEvent, _handler:Float->Void) : Void {
         emitter.on(_event, _handler);
     }
-    
+
     public inline function off(_event:PhysicsEvent, _handler:Float->Void) : Bool {
         return emitter.off(_event, _handler);
     }
-    
+
     public inline function emit(_event:PhysicsEvent, _float:Float) : Void {
         emitter.emit(_event, _float);
     }

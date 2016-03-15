@@ -218,7 +218,7 @@ class Main extends luxe.Game {
         } //each object group
 
         for(layer in map.tiledmap_data.image_layers) {
-            
+
             new luxe.Sprite({
                 name:'image_layer.${layer.name}',
                 centered: false, depth:-1,
@@ -277,7 +277,7 @@ class Main extends luxe.Game {
                 case 'exit':
 
                 case _:
-            
+
             } //switch type
 
         } //each collision
@@ -285,7 +285,7 @@ class Main extends luxe.Game {
     } //ontrigger
 
     function respawn() {
-    
+
         fade.out(function(){
             sim.player_collider.position.copy_from(spawn_pos);
             sim.player_velocity.set_xy(0,0);
@@ -357,7 +357,7 @@ class Main extends luxe.Game {
             } else {
                 sim.player_velocity.x *= damp_air;
             }
-        
+
         } //not left or right
 
     } //update_input
@@ -375,9 +375,9 @@ class Main extends luxe.Game {
         config.preload.textures.push({id:'assets/exit.png', filter_min:nearest, filter_mag:nearest });
         config.preload.textures.push({id:'assets/background.png', filter_min:nearest, filter_mag:nearest });
         config.preload.textures.push({id:'assets/tilesheet.png'});
-        
+
         config.preload.texts.push({id:'assets/tilemap.tmx'});
-        
+
         return config;
 
     } //config

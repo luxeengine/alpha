@@ -377,7 +377,7 @@ class AudioResource extends Resource {
 
         asset = _options.asset;
         is_stream = def(_options.is_stream,false);
-        
+
         if(asset != null) {
             source = new AudioSource(Luxe.snow, asset.audio);
         }
