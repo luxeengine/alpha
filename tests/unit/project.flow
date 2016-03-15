@@ -1,11 +1,5 @@
 {
 
-  snow : {
-    config : {
-      has_loop : false
-    }
-  },
-
   project : {
     name : 'luxe.unit tests',
     version : '1.0.0',

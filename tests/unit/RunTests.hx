@@ -4,8 +4,6 @@ class RunTests extends luxe.Game {
 
     override function config( config:luxe.AppConfig ) {
 
-        config.has_window = false;
-
         return config;
 
     } //config
@@ -14,6 +12,8 @@ class RunTests extends luxe.Game {
 
 			//run tests
 		new transform.Transforms();
+
+        Luxe.shutdown();
 
 	} //ready
 
