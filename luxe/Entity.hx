@@ -556,7 +556,7 @@ class Entity extends Objects {
 
         var _source = _find_emit_source();
 
-        _debug('$name / listen to $_event sourced from $source');
+        _debug('$name / listen to $_event sourced from $_source');
 
         if(_source != null) {
             switch(_event) {
@@ -600,7 +600,7 @@ class Entity extends Objects {
 
         var _source = _find_emit_source(true);
 
-        _debug('$name / unlisten to $_event from $source');
+        _debug('$name / unlisten to $_event from $_source');
 
         if(!_self) {
             off(_event, _handler);
