@@ -60,6 +60,7 @@ class Entity extends Objects {
         /** the timer for the fixed update */
     var fixed_rate_timer : snow.api.Timer;
         /** the options passed in for giving to the init function */
+        //:todo:Entity: options dynamic for passing to super()
     var options : Dynamic;
 
 
@@ -490,18 +491,18 @@ class Entity extends Objects {
 
     inline function _find_emit_source(?_from_unlisten:Bool=false) : Emitter<luxe.Ev> {
 
-        var source = null;
+        var _source = null;
 
         if(scene != null) {
 
-            source = scene;
+            _source = scene;
 
         } else if(parent != null) {
 
-            var looking = true;
+            var _looking = true;
             var _parent = parent;
 
-            while(looking) {
+            while(_looking) {
 
                     //not a root item
                 if(_parent.scene == null) {
@@ -510,7 +511,7 @@ class Entity extends Objects {
                         if(!_from_unlisten) {
                             log('entity has no parent or scene, currently no core events will reach it.');
                         }
-                        looking = false;
+                        _looking = false;
                         break;
                     } else {
                         //still has a parent,
@@ -520,8 +521,8 @@ class Entity extends Objects {
 
                 } else {
 
-                    source = _parent.scene;
-                    looking = false;
+                    _source = _parent.scene;
+                    _looking = false;
                     break;
 
                 } //no scene
@@ -534,7 +535,7 @@ class Entity extends Objects {
             }
         }
 
-        return source;
+        return _source;
 
     } //_find_emit_source
 
@@ -553,39 +554,39 @@ class Entity extends Objects {
             on(_event, _handler);
         }
 
-        var source = _find_emit_source();
+        var _source = _find_emit_source();
 
         _debug('$name / listen to $_event sourced from $source');
 
-        if(source != null) {
+        if(_source != null) {
             switch(_event) {
 
-                case Ev.keyup           : source.on(_event, _keyup);
-                case Ev.keydown         : source.on(_event, _keydown);
-                case Ev.textinput       : source.on(_event, _textinput);
+                case Ev.keyup           : _source.on(_event, _keyup);
+                case Ev.keydown         : _source.on(_event, _keydown);
+                case Ev.textinput       : _source.on(_event, _textinput);
 
-                case Ev.mousedown       : source.on(_event, _mousedown);
-                case Ev.mouseup         : source.on(_event, _mouseup);
-                case Ev.mousemove       : source.on(_event, _mousemove);
-                case Ev.mousewheel      : source.on(_event, _mousewheel);
+                case Ev.mousedown       : _source.on(_event, _mousedown);
+                case Ev.mouseup         : _source.on(_event, _mouseup);
+                case Ev.mousemove       : _source.on(_event, _mousemove);
+                case Ev.mousewheel      : _source.on(_event, _mousewheel);
 
-                case Ev.touchdown       : source.on(_event, _touchdown);
-                case Ev.touchup         : source.on(_event, _touchup);
-                case Ev.touchmove       : source.on(_event, _touchmove);
+                case Ev.touchdown       : _source.on(_event, _touchdown);
+                case Ev.touchup         : _source.on(_event, _touchup);
+                case Ev.touchmove       : _source.on(_event, _touchmove);
 
-                case Ev.inputup         : source.on(_event, _inputup);
-                case Ev.inputdown       : source.on(_event, _inputdown);
+                case Ev.inputup         : _source.on(_event, _inputup);
+                case Ev.inputdown       : _source.on(_event, _inputdown);
 
-                case Ev.gamepaddown     : source.on(_event, _gamepaddown);
-                case Ev.gamepadup       : source.on(_event, _gamepadup);
-                case Ev.gamepadaxis     : source.on(_event, _gamepadaxis);
-                case Ev.gamepaddevice   : source.on(_event, _gamepaddevice);
+                case Ev.gamepaddown     : _source.on(_event, _gamepaddown);
+                case Ev.gamepadup       : _source.on(_event, _gamepadup);
+                case Ev.gamepadaxis     : _source.on(_event, _gamepadaxis);
+                case Ev.gamepaddevice   : _source.on(_event, _gamepaddevice);
 
-                case Ev.windowmoved     : source.on(_event, _windowmoved);
-                case Ev.windowresized   : source.on(_event, _windowresized);
-                case Ev.windowsized     : source.on(_event, _windowsized);
-                case Ev.windowminimized : source.on(_event, _windowminimized);
-                case Ev.windowrestored  : source.on(_event, _windowrestored);
+                case Ev.windowmoved     : _source.on(_event, _windowmoved);
+                case Ev.windowresized   : _source.on(_event, _windowresized);
+                case Ev.windowsized     : _source.on(_event, _windowsized);
+                case Ev.windowminimized : _source.on(_event, _windowminimized);
+                case Ev.windowrestored  : _source.on(_event, _windowrestored);
 
             } //switch event
         } //source != null
@@ -597,7 +598,7 @@ class Entity extends Objects {
     @:allow(luxe.macros.ComponentRules)
     function _unlisten( _event:Int, _handler:EmitHandler, ?_self:Bool=false ) {
 
-        var source = _find_emit_source(true);
+        var _source = _find_emit_source(true);
 
         _debug('$name / unlisten to $_event from $source');
 
@@ -605,35 +606,35 @@ class Entity extends Objects {
             off(_event, _handler);
         }
 
-        if(source != null) {
+        if(_source != null) {
             switch(_event) {
 
-                case Ev.keyup           : source.off(_event, _keyup);
-                case Ev.keydown         : source.off(_event, _keydown);
-                case Ev.textinput       : source.off(_event, _textinput);
+                case Ev.keyup           : _source.off(_event, _keyup);
+                case Ev.keydown         : _source.off(_event, _keydown);
+                case Ev.textinput       : _source.off(_event, _textinput);
 
-                case Ev.mousedown       : source.off(_event, _mousedown);
-                case Ev.mouseup         : source.off(_event, _mouseup);
-                case Ev.mousemove       : source.off(_event, _mousemove);
-                case Ev.mousewheel      : source.off(_event, _mousewheel);
+                case Ev.mousedown       : _source.off(_event, _mousedown);
+                case Ev.mouseup         : _source.off(_event, _mouseup);
+                case Ev.mousemove       : _source.off(_event, _mousemove);
+                case Ev.mousewheel      : _source.off(_event, _mousewheel);
 
-                case Ev.touchdown       : source.off(_event, _touchdown);
-                case Ev.touchup         : source.off(_event, _touchup);
-                case Ev.touchmove       : source.off(_event, _touchmove);
+                case Ev.touchdown       : _source.off(_event, _touchdown);
+                case Ev.touchup         : _source.off(_event, _touchup);
+                case Ev.touchmove       : _source.off(_event, _touchmove);
 
-                case Ev.inputup         : source.off(_event, _inputup);
-                case Ev.inputdown       : source.off(_event, _inputdown);
+                case Ev.inputup         : _source.off(_event, _inputup);
+                case Ev.inputdown       : _source.off(_event, _inputdown);
 
-                case Ev.gamepaddown     : source.off(_event, _gamepaddown);
-                case Ev.gamepadup       : source.off(_event, _gamepadup);
-                case Ev.gamepadaxis     : source.off(_event, _gamepadaxis);
-                case Ev.gamepaddevice   : source.off(_event, _gamepaddevice);
+                case Ev.gamepaddown     : _source.off(_event, _gamepaddown);
+                case Ev.gamepadup       : _source.off(_event, _gamepadup);
+                case Ev.gamepadaxis     : _source.off(_event, _gamepadaxis);
+                case Ev.gamepaddevice   : _source.off(_event, _gamepaddevice);
 
-                case Ev.windowmoved     : source.off(_event, _windowmoved);
-                case Ev.windowresized   : source.off(_event, _windowresized);
-                case Ev.windowsized     : source.off(_event, _windowsized);
-                case Ev.windowminimized : source.off(_event, _windowminimized);
-                case Ev.windowrestored  : source.off(_event, _windowrestored);
+                case Ev.windowmoved     : _source.off(_event, _windowmoved);
+                case Ev.windowresized   : _source.off(_event, _windowresized);
+                case Ev.windowsized     : _source.off(_event, _windowsized);
+                case Ev.windowminimized : _source.off(_event, _windowminimized);
+                case Ev.windowrestored  : _source.off(_event, _windowrestored);
 
             } //switch event
         } //source != null
@@ -1033,7 +1034,7 @@ class Entity extends Objects {
             //children inherit the updates and such from the parent, so they shouldn't be in the root of the scene
         if(child.scene != null) {
             _debug( '' + name + " add child " + child.name + " being parented, removing from scene root of " + child.scene.name);
-            var removed = child.scene.remove( child );
+            var _removed = child.scene.remove( child );
         } else {
             _debug('' + name + " add child " + child.name + " being parented, but not from a scene");
         }

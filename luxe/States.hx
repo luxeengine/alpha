@@ -246,10 +246,10 @@ class States extends Objects {
     public function enabled( _name:String ) {
         if(_state_count == 0) return false;
 
-        var state = _states.get( _name );
+        var _state = _states.get( _name );
 
-        if(state != null) {
-            return state.enabled;
+        if(_state != null) {
+            return _state.enabled;
         }
 
         return false;
@@ -259,13 +259,13 @@ class States extends Objects {
     public function enable<T>( _name:String, ?_enable_with:T ) {
         if(_state_count == 0) return;
 
-        var state = _states.get( _name );
-        if(state != null) {
+        var _state = _states.get( _name );
+        if(_state != null) {
             _debug('$name / enabling a state ' + _name );
-            state.onenabled(_enable_with);
-            state.active = true;
-            state.enabled = true;
-            active_states.push(state);
+            _state.onenabled(_enable_with);
+            _state.active = true;
+            _state.enabled = true;
+            active_states.push(_state);
             active_count++;
             _debug('$name / now at ${active_states.length} active states');
         }
@@ -274,13 +274,13 @@ class States extends Objects {
     public function disable<T>( _name:String, ?_disable_with:T  ) {
         if(_state_count == 0) return;
 
-        var state = _states.get( _name );
-        if(state != null) {
+        var _state = _states.get( _name );
+        if(_state != null) {
             _debug('$name / disabling a state ' + _name );
-            state.ondisabled(_disable_with);
-            state.active = false;
-            state.enabled = false;
-            active_states.remove( state );
+            _state.ondisabled(_disable_with);
+            _state.active = false;
+            _state.enabled = false;
+            active_states.remove( _state );
             active_count--;
             _debug('$name / now at ${active_states.length} active states');
         }

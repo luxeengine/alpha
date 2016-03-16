@@ -1,6 +1,7 @@
 package luxe;
 
 import luxe.Component;
+import luxe.utils.Maths;
 import phoenix.Texture;
 
 import luxe.options.ParticleOptions;
@@ -338,8 +339,8 @@ class ParticleEmitter extends Component {
 
     function cache(index:Int) {
 
-        var particle = new Particle(this, index);
-            particle.sprite = new Sprite({
+        var _particle = new Particle(this, index);
+            _particle.sprite = new Sprite({
                 name: name + '_particle_'+index,
                 depth: template.depth,
                 texture: particle_image,
@@ -348,7 +349,7 @@ class ParticleEmitter extends Component {
                 pos : new Vector()
             });
 
-        particle_cache[index] = particle;
+        particle_cache[index] = _particle;
         dead_pool.push(index);
 
     } //cache
@@ -368,10 +369,10 @@ class ParticleEmitter extends Component {
             _to_cache = _to_cache - particle_cache.length;
         }
 
-        var exist = particle_cache.length;
+        var _exist = particle_cache.length;
         if(_to_cache > 0) {
             for(i in 0 ... _to_cache) {
-                cache(exist+i);
+                cache(_exist+i);
             }
         }
 
@@ -428,9 +429,9 @@ class ParticleEmitter extends Component {
 
         if(particle_cache != null) {
             while(particle_cache.length > 0) {
-                var p = particle_cache.pop();
-                p.destroy();
-                p = null;
+                var _p = particle_cache.pop();
+                    _p.destroy();
+                    _p = null;
             }
         }
 
@@ -453,8 +454,8 @@ class ParticleEmitter extends Component {
 
     function spawn() {
 
-        var max_alive = !(active_particles.length < cache_size);
-        if( max_alive ) {
+        var _max_alive = !(active_particles.length < cache_size);
+        if( _max_alive ) {
             if(cache_wrap) {
                 unspawn(active_particles[0]);
             } else {
@@ -466,20 +467,20 @@ class ParticleEmitter extends Component {
         if(dead_pool.length == 0) throw "huh, no particles in the dead_pool?!";
 
             //get the index to spawn from the oldest dead particle
-        var spawn_index = dead_pool.shift();
+        var _spawn_index = dead_pool.shift();
             //fetch it from the particle cache
-        var particle = particle_cache[spawn_index];
+        var _particle = particle_cache[_spawn_index];
             //reset it's state
-        reset_particle(particle);
+        reset_particle(_particle);
 
-        // _debug('particle ${particle.index} / spawn / ttl: ${particle.time_to_live}');
+        // _debug('particle ${_particle.index} / spawn / ttl: ${_particle.time_to_live}');
 
             //store in active list
-        active_particles.push(particle);
+        active_particles.push(_particle);
 
-        if(particle.sprite.geometry != null) {
+        if(_particle.sprite.geometry != null) {
                 //add to rendering
-            template.batcher.add(particle.sprite.geometry);
+            template.batcher.add(_particle.sprite.geometry);
         }
 
     } //spawn
@@ -493,8 +494,8 @@ class ParticleEmitter extends Component {
 
         particle.rotation = (zrotation + rotation_random * random_1_to_1()) + rotation_offset;
 
-        var new_dir = (direction + direction_random * random_1_to_1() ) * ( Math.PI / 180 ); // convert to radians
-            direction_vector.set_xy( Math.cos( new_dir ), Math.sin( new_dir ) );
+        var _new_dir = (direction + direction_random * random_1_to_1() ) * ( Math.PI / 180 ); // convert to radians
+            direction_vector.set_xy( Math.cos( _new_dir ), Math.sin( _new_dir ) );
 
         var _point_speed = speed + speed_random * random_1_to_1();
             particle.speed.set_xy(_point_speed, _point_speed);
@@ -572,8 +573,8 @@ class ParticleEmitter extends Component {
 
         } //if enabled and still emitting
 
-        var gravity_x = gravity.x;
-        var gravity_y = gravity.y;
+        var _gravity_x = gravity.x;
+        var _gravity_y = gravity.y;
 
             //update all active particles
         for(p in active_particles) {
@@ -588,29 +589,32 @@ class ParticleEmitter extends Component {
                 p.speed.x += p.speed_delta;
                 p.speed.y += p.speed_delta;
 
-                p.move_dir.x = gravity_x + (p.direction.x * p.speed.x);
-                p.move_dir.y = gravity_y + (p.direction.y * p.speed.y);
+                p.move_dir.x = _gravity_x + (p.direction.x * p.speed.x);
+                p.move_dir.y = _gravity_y + (p.direction.y * p.speed.y);
 
                     //then add that to the pos
                 p.pos.x += p.move_dir.x * dt;
                 p.pos.y += p.move_dir.y * dt;
 
                     // update colours based on delta
-                var r = p.color.r += ( p.color_delta.r * dt );
-                var g = p.color.g += ( p.color_delta.g * dt );
-                var b = p.color.b += ( p.color_delta.b * dt );
-                var a = p.color.a += ( p.color_delta.a * dt );
+                var _r = p.color.r += p.color_delta.r * dt;
+                var _g = p.color.g += p.color_delta.g * dt;
+                var _b = p.color.b += p.color_delta.b * dt;
+                var _a = p.color.a += p.color_delta.a * dt;
 
-                var xx = p.size.x += ( p.size_delta.x * dt );
-                var yy = p.size.y += ( p.size_delta.y * dt );
-                var rr = p.rotation += ( p.rotation_delta * dt );
+                var _xx = p.size.x += p.size_delta.x * dt;
+                var _yy = p.size.y += p.size_delta.y * dt;
+                    //:todo: Particles rotation not used
+                // var _rr = p.rotation += ( p.rotation_delta * dt );
 
                     //clamp colors
-                if(r < 0) { r = 0; } if(g < 0) { g = 0; } if(b < 0) { b = 0; } if(a < 0) { a = 0; }
-                if(r > 1) { r = 1; } if(g > 1) { g = 1; } if(b > 1) { b = 1; } if(a > 1) { a = 1; }
+                _r = Maths.clamp(_r, 0, 1);
+                _g = Maths.clamp(_g, 0, 1);
+                _b = Maths.clamp(_b, 0, 1);
+                _a = Maths.clamp(_a, 0, 1);
 
-                p.draw_color.set( r,g,b,a );
-                p.draw_size.set_xy( xx, yy );
+                p.draw_color.set(_r, _g, _b, _a);
+                p.draw_size.set_xy(_xx, _yy);
 
             } else {
                 _to_remove.push(p);

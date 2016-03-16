@@ -50,9 +50,9 @@ class Resources {
 
         assertnull(_cache);
 
-        var removed = parcels.remove(_cache);
+        var _removed = parcels.remove(_cache);
 
-        if(removed) {
+        if(_removed) {
             emit(ResourceEvent.cache_untracked, _cache);
         }
 
@@ -89,11 +89,11 @@ class Resources {
         /** Destroy a resource by id. Returns false if the resource wasn't found. */
     public function destroy(_id:String, ?_force:Bool=false) : Bool {
 
-        var resource = get(_id);
+        var _resource = get(_id);
 
-        if(resource == null) return false;
+        if(_resource == null) return false;
 
-        resource.destroy(_force);
+        _resource.destroy(_force);
 
         return true;
 
@@ -102,11 +102,11 @@ class Resources {
         /** Invalidate a resource by id. Returns false if the resource wasn't found. */
     public function invalidate(_id:String) : Bool {
 
-        var resource = get(_id);
+        var _resource = get(_id);
 
-        if(resource == null) return false;
+        if(_resource == null) return false;
 
-        resource.invalidate();
+        _resource.invalidate();
 
         return true;
 

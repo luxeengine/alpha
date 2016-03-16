@@ -207,7 +207,7 @@ class Log {
 
     macro public static function assert(expr:Expr, ?reason:ExprOf<String>) {
         #if !luxe_no_assertions
-            var str = haxe.macro.ExprTools.toString(expr);
+            var _str = haxe.macro.ExprTools.toString(expr);
 
             reason = switch(reason) {
                 case macro null: macro '';
@@ -215,7 +215,7 @@ class Log {
             }
 
             return macro @:pos(Context.currentPos()) {
-                if(!$expr) throw luxe.Log.DebugError.assertion( '$str' + $reason);
+                if(!$expr) throw luxe.Log.DebugError.assertion( '$_str' + $reason);
             }
         #end
         return macro null;
@@ -223,14 +223,14 @@ class Log {
 
     macro public static function assertnull(value:Expr, ?reason:ExprOf<String>) {
         #if !luxe_no_assertions
-            var str = haxe.macro.ExprTools.toString(value);
+            var _str = haxe.macro.ExprTools.toString(value);
 
             reason = switch(reason) {
                 case macro null: macro '';
                 case _: macro ' ( ' + $reason + ' )';
             }
             return macro @:pos(Context.currentPos()) {
-                if($value == null) throw luxe.Log.DebugError.null_assertion('$str was null' + $reason);
+                if($value == null) throw luxe.Log.DebugError.null_assertion('$_str was null' + $reason);
             }
         #end
         return macro null;

@@ -63,9 +63,9 @@ class ParcelProgress {
                 options.bar_border.a = 0;
             } //fade in
 
-            var ypos = Math.floor(_view_height * 0.60);
-            var half_width = Math.floor(width/2);
-            var half_height = Math.floor(height/2);
+            var _ypos = Math.floor(_view_height * 0.60);
+            var _half_width = Math.floor(width/2);
+            var _half_height = Math.floor(height/2);
 
             background = new Sprite({
                 no_scene : true,
@@ -77,7 +77,7 @@ class ParcelProgress {
             });
 
             progress_bar = new Sprite({
-                pos : new Vector(_view_mid_x - half_width, ypos - half_height),
+                pos : new Vector(_view_mid_x - _half_width, _ypos - _half_height),
                 size : new Vector( 2, height ),
                 no_scene : true,
                 centered : false,
@@ -88,7 +88,7 @@ class ParcelProgress {
             progress_border = new Visual({
                 color : options.bar,
                 no_scene : true,
-                pos : new Vector(_view_mid_x - half_width, ypos - half_height),
+                pos : new Vector(_view_mid_x - _half_width, _ypos - _half_height),
                 geometry : Luxe.draw.rectangle({
                     w : width,
                     h : height,
@@ -156,10 +156,10 @@ class ParcelProgress {
     public function onprogress( _state:ParcelChange ) {
 
             //work out where we are out
-        var amount = _state.index / _state.total;
+        var _amount = _state.index / _state.total;
 
             //update the progress bar
-        set_progress( amount );
+        set_progress( _amount );
 
     } //onprogress
 

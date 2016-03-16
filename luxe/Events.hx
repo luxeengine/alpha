@@ -85,11 +85,11 @@ class Events {
     public function listen<T>( _event_name : String, _listener : T -> Void ):String {
 
             //we need an ID and a connection to store
-        var id = Luxe.utils.uniqueid();
-        var connection = new EventConnection( id, _event_name, _listener );
+        var _id = Luxe.utils.uniqueid();
+        var _connection = new EventConnection( _id, _event_name, _listener );
 
             //now we store it in the map
-        event_connections.set( id, connection );
+        event_connections.set( _id, _connection );
 
             //first check if the event name in question has a * wildcard,
             //if it does we have to store it as a filtered event so it's more optimal
@@ -104,7 +104,7 @@ class Events {
             }
 
                 //it should exist by now, lets store the connection by event name
-            event_filters.get(_event_name).push( connection );
+            event_filters.get(_event_name).push( _connection );
 
         } else {
 
@@ -115,12 +115,12 @@ class Events {
             }
 
                 //it should exist by now, lets store the connection by event name
-            event_slots.get(_event_name).push( connection );
+            event_slots.get(_event_name).push( _connection );
 
         }
 
             //return the id for unlistening
-        return id;
+        return _id;
 
     } //listen
 
@@ -131,16 +131,16 @@ class Events {
 
         if(event_connections.exists(event_id)) {
 
-            var connection = event_connections.get(event_id);
-            var event_slot = event_slots.get(connection.event_name);
+            var _connection = event_connections.get(event_id);
+            var _event_slot = event_slots.get(_connection.event_name);
 
-            if(event_slot != null) {
-                event_slot.remove(connection);
+            if(_event_slot != null) {
+                _event_slot.remove(_connection);
                 return true;
             } else {
-                var event_filter = event_filters.get(connection.event_name);
-                if(event_filter != null) {
-                    event_filter.remove(connection);
+                var _event_filter = event_filters.get(_connection.event_name);
+                if(_event_filter != null) {
+                    _event_filter.remove(_connection);
                     return true;
                 } else {
                     return false;
@@ -161,11 +161,11 @@ class Events {
             returns : a String, the unique ID of the event */
     public function queue<T>( event_name : String, ?properties : T ) : String {
 
-        var id = Luxe.utils.uniqueid();
+        var _id = Luxe.utils.uniqueid();
 
-            event_queue.push(new EventObject(id, event_name, properties));
+            event_queue.push(new EventObject(_id, event_name, properties));
 
-        return id;
+        return _id;
 
     } //queue
 
@@ -173,18 +173,18 @@ class Events {
     public function dequeue( event_id: String ) {
 
         //:todo: proper search, not string id's, etc
-        var i = 0;
+        var _idx = 0;
         var _count = event_queue.length;
         do {
 
-            if(event_queue[i].id == event_id) {
-                event_queue.splice(i, 1);
+            if(event_queue[_idx].id == event_id) {
+                event_queue.splice(_idx, 1);
                 return true;
             }
 
-            ++i;
+            ++_idx;
 
-        } while(i < _count);
+        } while(_idx < _count);
 
         return false;
 
@@ -239,14 +239,14 @@ class Events {
         if(event_slots.exists( _event_name )) {
 
                 //we have an event by this name
-            var connections = event_slots.get(_event_name);
+            var _connections = event_slots.get(_event_name);
 
             if(_tag) {
-                _properties = tag_properties(_properties, _event_name, connections.length);
+                _properties = tag_properties(_properties, _event_name, _connections.length);
             }
 
                 //call each listener
-            for(connection in connections) {
+            for(connection in _connections) {
                 connection.listener( cast _properties );
             }
 
@@ -264,13 +264,13 @@ class Events {
             Returns the ID of the schedule (for unschedule) */
     public function schedule<T>( time:Float, event_name : String, ?properties : T ) : String {
 
-        var id : String = Luxe.utils.uniqueid();
+        var _id : String = Luxe.utils.uniqueid();
 
             var _timer = Luxe.timer.schedule(time, fire.bind(event_name, properties));
 
-            event_schedules.set( id, _timer );
+            event_schedules.set( _id, _timer );
 
-        return id;
+        return _id;
 
     } //schedule
 
@@ -281,9 +281,9 @@ class Events {
 
         if(event_schedules.exists(schedule_id)) {
                 //find the timer
-            var timer = event_schedules.get(schedule_id);
+            var _timer = event_schedules.get(schedule_id);
                 //kill it
-            timer.stop();
+            _timer.stop();
                 //remove it from the list
             event_schedules.remove(schedule_id);
                 //done

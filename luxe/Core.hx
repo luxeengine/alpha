@@ -252,7 +252,7 @@ class Core extends snow.App {
             _debug('ready. loading default parcel ' + appconfig.preload);
 
                 //pre load config parcel
-            var default_parcel = new Parcel({
+            var _default_parcel = new Parcel({
                 id:         'default_parcel',
                 system:     resources,
                 bytes:      appconfig.preload.bytes,
@@ -269,7 +269,7 @@ class Core extends snow.App {
                 }
             });
 
-            default_parcel.load();
+            _default_parcel.load();
 
         } else {
 
@@ -531,7 +531,7 @@ class Core extends snow.App {
 
         if(!inited) return;
 
-        var event : KeyEvent = {
+        var _event : KeyEvent = {
             scancode : scancode,
             keycode : keycode,
             state : InteractState.down,
@@ -544,10 +544,10 @@ class Core extends snow.App {
         if(!shutting_down) {
 
                 //check for named input
-            input.check_named_keys(event, true);
-            emitter.emit(luxe.Ev.keydown, event);
+            input.check_named_keys(_event, true);
+            emitter.emit(luxe.Ev.keydown, _event);
 
-            game.onkeydown(event);
+            game.onkeydown(_event);
 
             if(scancode == Scan.grave) {
                 show_console( !console_visible );
@@ -555,7 +555,7 @@ class Core extends snow.App {
 
         } //!shutting down
 
-        event = null;
+        _event = null;
 
     } //onkeydown
 
@@ -563,7 +563,7 @@ class Core extends snow.App {
 
         if(!inited) return;
 
-        var event : KeyEvent = {
+        var _event : KeyEvent = {
             scancode : scancode,
             keycode : keycode,
             state : InteractState.up,
@@ -576,14 +576,14 @@ class Core extends snow.App {
         if(!shutting_down) {
 
                 //check for named input
-            input.check_named_keys(event);
-            emitter.emit(luxe.Ev.keyup, event);
+            input.check_named_keys(_event);
+            emitter.emit(luxe.Ev.keyup, _event);
 
-            game.onkeyup(event);
+            game.onkeyup(_event);
 
         } //!shutting down
 
-        event = null;
+        _event = null;
 
     } //onkeyup
 
@@ -601,7 +601,7 @@ class Core extends snow.App {
             }
         }
 
-        var event : TextEvent = {
+        var _event : TextEvent = {
             text : text,
             start : start,
             length : length,
@@ -612,13 +612,13 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit(Ev.textinput, event);
+            emitter.emit(Ev.textinput, _event);
 
-            game.ontextinput(event);
+            game.ontextinput(_event);
 
         } //!shutting_down
 
-        event = null;
+        _event = null;
 
     } //ontextinput
 
@@ -631,9 +631,9 @@ class Core extends snow.App {
         if(!shutting_down) {
 
             //:todo:
-            var ev = { name:name, event:event };
-            emitter.emit(Ev.inputdown, ev);
-            ev = null;
+            var _ev = { name:name, event:event };
+            emitter.emit(Ev.inputdown, _ev);
+            _ev = null;
 
             game.oninputdown( name, event );
 
@@ -650,9 +650,9 @@ class Core extends snow.App {
         if(!shutting_down) {
 
             //:todo:
-            var ev = { name:name, event:event };
-            emitter.emit(Ev.inputup, ev);
-            ev = null;
+            var _ev = { name:name, event:event };
+            emitter.emit(Ev.inputup, _ev);
+            _ev = null;
 
             game.oninputup( name, event );
 
@@ -670,7 +670,7 @@ class Core extends snow.App {
 
         screen.cursor.set_internal(x, y);
 
-        var event : MouseEvent = {
+        var _event : MouseEvent = {
             timestamp : timestamp,
             window_id : window_id,
             state : InteractState.down,
@@ -684,13 +684,13 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            input.check_named_mouse(event, true);
-            emitter.emit(Ev.mousedown, event);
-            game.onmousedown(event);
+            input.check_named_mouse(_event, true);
+            emitter.emit(Ev.mousedown, _event);
+            game.onmousedown(_event);
 
         } //!shutting_down
 
-        event = null;
+        _event = null;
 
     } //onmousedown
 
@@ -700,7 +700,7 @@ class Core extends snow.App {
 
         screen.cursor.set_internal(x, y);
 
-        var event : MouseEvent = {
+        var _event : MouseEvent = {
             timestamp : timestamp,
             window_id : window_id,
             state : InteractState.up,
@@ -714,13 +714,13 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            input.check_named_mouse(event);
-            emitter.emit(Ev.mouseup, event);
-            game.onmouseup(event);
+            input.check_named_mouse(_event);
+            emitter.emit(Ev.mouseup, _event);
+            game.onmouseup(_event);
 
         } //!shutting_down
 
-        event = null;
+        _event = null;
 
     } //onmouseup
 
@@ -730,7 +730,7 @@ class Core extends snow.App {
 
         screen.cursor.set_internal(x, y);
 
-        var event : MouseEvent = {
+        var _event : MouseEvent = {
             timestamp : timestamp,
             window_id : window_id,
             state : InteractState.move,
@@ -744,12 +744,12 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit(Ev.mousemove, event);
-            game.onmousemove(event);
+            emitter.emit(Ev.mousemove, _event);
+            game.onmousemove(_event);
 
         } //!shutting_down
 
-        event = null;
+        _event = null;
 
     } //onmousemove
 
@@ -757,7 +757,7 @@ class Core extends snow.App {
 
         if(!inited) return;
 
-        var event : MouseEvent = {
+        var _event : MouseEvent = {
             timestamp : timestamp,
             window_id : window_id,
             state : InteractState.wheel,
@@ -771,13 +771,13 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            input.check_named_mouse(event, false);
-            emitter.emit(Ev.mousewheel, event);
-            game.onmousewheel(event);
+            input.check_named_mouse(_event, false);
+            emitter.emit(Ev.mousewheel, _event);
+            game.onmousewheel(_event);
 
         } //!shutting_down
 
-        event = null;
+        _event = null;
 
     } //onmousewheel
 
@@ -791,7 +791,7 @@ class Core extends snow.App {
 
          _touch_pos = new luxe.Vector( x, y );
 
-        var event : TouchEvent = {
+        var _event : TouchEvent = {
             state : InteractState.down,
             timestamp : timestamp,
             touch_id : touch_id,
@@ -804,9 +804,9 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit(Ev.touchdown, event);
+            emitter.emit(Ev.touchdown, _event);
 
-            game.ontouchdown(event);
+            game.ontouchdown(_event);
 
             #if (!no_debug_console && mobile)
 
@@ -826,7 +826,7 @@ class Core extends snow.App {
 
         } //!shutting_down
 
-        event = null;
+        _event = null;
 
     } //ontouchdown
 
@@ -836,7 +836,7 @@ class Core extends snow.App {
 
          _touch_pos = new luxe.Vector( x, y );
 
-        var event : TouchEvent = {
+        var _event : TouchEvent = {
             state : InteractState.up,
             timestamp : timestamp,
             touch_id : touch_id,
@@ -849,12 +849,12 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit(Ev.touchup, event);
-            game.ontouchup(event);
+            emitter.emit(Ev.touchup, _event);
+            game.ontouchup(_event);
 
         } //!shutting_down
 
-        event = null;
+        _event = null;
 
     } //ontouchup
 
@@ -864,7 +864,7 @@ class Core extends snow.App {
 
         _touch_pos = new luxe.Vector( x, y );
 
-        var event : TouchEvent = {
+        var _event : TouchEvent = {
             state : InteractState.move,
             timestamp : timestamp,
             touch_id : touch_id,
@@ -877,12 +877,12 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit(Ev.touchmove, event);
-            game.ontouchmove(event);
+            emitter.emit(Ev.touchmove, _event);
+            game.ontouchmove(_event);
 
         } //!shutting_down
 
-        event = null;
+        _event = null;
 
     } //ontouchmove
 
@@ -892,7 +892,7 @@ class Core extends snow.App {
 
         if(!inited) return;
 
-        var event : GamepadEvent = {
+        var _event : GamepadEvent = {
             timestamp : timestamp,
             type : GamepadEventType.axis,
             state : InteractState.axis,
@@ -905,12 +905,12 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            emitter.emit(Ev.gamepadaxis,event);
-            game.ongamepadaxis(event);
+            emitter.emit(Ev.gamepadaxis, _event);
+            game.ongamepadaxis(_event);
 
         } //!shutting_down
 
-        event = null;
+        _event = null;
 
     } //ongamepadaxis
 
@@ -918,7 +918,7 @@ class Core extends snow.App {
 
         if(!inited) return;
 
-        var event : GamepadEvent = {
+        var _event : GamepadEvent = {
             timestamp : timestamp,
             type : GamepadEventType.button,
             state : InteractState.down,
@@ -931,13 +931,13 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            input.check_named_gamepad_buttons(event, true);
-            emitter.emit(Ev.gamepaddown,event);
-            game.ongamepaddown(event);
+            input.check_named_gamepad_buttons(_event, true);
+            emitter.emit(Ev.gamepaddown, _event);
+            game.ongamepaddown(_event);
 
         } //!shutting_down
 
-        event = null;
+        _event = null;
 
     } //ongamepadbuttondown
 
@@ -945,7 +945,7 @@ class Core extends snow.App {
 
         if(!inited) return;
 
-        var event : GamepadEvent = {
+        var _event : GamepadEvent = {
             timestamp : timestamp,
             type : GamepadEventType.button,
             state : InteractState.up,
@@ -958,13 +958,13 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            input.check_named_gamepad_buttons(event, false);
-            emitter.emit(Ev.gamepadup, event);
-            game.ongamepadup(event);
+            input.check_named_gamepad_buttons(_event, false);
+            emitter.emit(Ev.gamepadup, _event);
+            game.ongamepadup(_event);
 
         } //!shutting_down
 
-        event = null;
+        _event = null;
 
     } //ongamepadup
 
@@ -984,7 +984,7 @@ class Core extends snow.App {
             default:
         }
 
-        var event : GamepadEvent = {
+        var _event : GamepadEvent = {
             timestamp : timestamp,
             type : _event_type,
             state : InteractState.none,
@@ -997,11 +997,11 @@ class Core extends snow.App {
 
         if(!shutting_down) {
 
-            game.ongamepaddevice(event);
+            game.ongamepaddevice(_event);
 
         } //!shutting_down
 
-        event = null;
+        _event = null;
 
     } //ongamepaddevice
 

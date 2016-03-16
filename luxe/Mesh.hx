@@ -41,14 +41,14 @@ class Mesh {
 
             _debug('loading from file ${options.file}');
 
-            var ext = haxe.io.Path.extension( options.file );
+            var _ext = haxe.io.Path.extension( options.file );
 
-            switch(ext) {
+            switch(_ext) {
 
                 case 'obj':
                     from_obj_file( options.file, options.texture, null, options.batcher );
                 default:
-                    throw 'Mesh cannot handle files with extension $ext';
+                    throw 'Mesh cannot handle files with extension $_ext';
 
             } //switch ext
 
@@ -137,13 +137,13 @@ class Mesh {
 
     function _obj_add_vert( v:luxe.importers.obj.Data.Vertex, _scale:Vector ) {
 
-        var normal : Vector = new Vector();
+        var _normal : Vector = new Vector();
 
            if(v.normal != null) {
-                normal.set_xyz(v.normal.x, v.normal.y, v.normal.z);
+                _normal.set_xyz(v.normal.x, v.normal.y, v.normal.z);
            }
 
-       var _v = new Vertex( new Vector( (v.pos.x * _scale.x) , (v.pos.y * _scale.y), (v.pos.z * _scale.z) ), new Color(), normal );
+       var _v = new Vertex( new Vector( (v.pos.x * _scale.x) , (v.pos.y * _scale.y), (v.pos.z * _scale.z) ), new Color(), _normal );
 
                 //todo;multiple uv sets
            if(v.uv != null) {
@@ -158,8 +158,8 @@ class Mesh {
 
         def(_scale, new Vector(1,1,1));
 
-        var file_input = new haxe.io.StringInput( string_data );
-        var obj_mesh_data = new luxe.importers.obj.Reader(file_input).read();
+        var _file_input = new haxe.io.StringInput( string_data );
+        var _obj_mesh_data = new luxe.importers.obj.Reader(_file_input).read();
 
         geometry = new Geometry({
             texture : texture,
@@ -173,7 +173,7 @@ class Mesh {
         });
 
 
-        for(v in obj_mesh_data.vertices) {
+        for(v in _obj_mesh_data.vertices) {
 
             _obj_add_vert(v, _scale);
 
@@ -185,11 +185,11 @@ class Mesh {
 
         def(_scale, new Vector(1,1,1));
 
-        var res = Luxe.resources.text(asset_id);
+        var _res = Luxe.resources.text(asset_id);
 
-        assertnull(res, 'Mesh cannot find text resource named $asset_id, is it loaded?');
+        assertnull(_res, 'Mesh cannot find text resource named $asset_id, is it loaded?');
 
-        from_string(res.asset.text, texture, _scale, _batcher);
+        from_string(_res.asset.text, texture, _scale, _batcher);
 
         geometry.id = asset_id;
 

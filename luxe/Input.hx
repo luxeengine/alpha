@@ -377,10 +377,10 @@ class Input {
 
         if( !key_bindings.exists(_name) ) {
             key_bindings.set(_name, new Map<Int,Bool>() );
-        } //if the map doesn't exist yet
+        }
 
-        var kb = key_bindings.get(_name);
-            kb.set( _key, true );
+        var _kb = key_bindings.get(_name);
+            _kb.set( _key, true );
 
     } //bind_key
 
@@ -389,21 +389,23 @@ class Input {
 
         if( !mouse_bindings.exists(_name) ) {
             mouse_bindings.set(_name, new Map<Int,Bool>());
-        } //if the map doesn't exist yet
+        }
 
-        var mb = mouse_bindings.get(_name);
-            mb.set( _button, true );
+        var _mb = mouse_bindings.get(_name);
+            _mb.set( _button, true );
 
     } //bind_mouse
 
     /** Bind a named input binding to a `Gamepad Button`. If no `Gamepad Id` is specified, any gamepad fires the named binding.*/
     public function bind_gamepad( _name:String, _gamepad_button:Int, ?_gamepad_id:Null<Int> = null) {
+
         if ( !gamepad_bindings.exists(_name) ) {
             gamepad_bindings.set(_name, new Map<Int, Null<Int>>());
         }
 
-        var gp = gamepad_bindings.get(_name);
-        gp.set ( _gamepad_button, _gamepad_id);
+        var _gp = gamepad_bindings.get(_name);
+            _gp.set ( _gamepad_button, _gamepad_id);
+
     } //bind_gamepad
 
     @:noCompletion public function check_named_keys( e:KeyEvent, _down:Bool=false ) {
@@ -429,14 +431,14 @@ class Input {
                     //down is true immediate, cos up removes it
                 _named_input_down.set( _f, true);
 
-                var ev = {
+                var _ev = {
                     name : _f,
                     type : InputType.keys,
                     state : InteractState.down,
                     key_event : e
                 };
-                core.oninputdown( _f, ev);
-                ev = null;
+                core.oninputdown( _f, _ev);
+                _ev = null;
 
             } else {
 
@@ -445,14 +447,14 @@ class Input {
                     //remove down state
                 _named_input_down.remove( _f );
 
-                var ev = {
+                var _ev = {
                     name : _f,
                     type : InputType.keys,
                     state : InteractState.up,
                     key_event : e
                 };
-                core.oninputup( _f, ev);
-                ev = null;
+                core.oninputup(_f, _ev);
+                _ev = null;
 
             } //if _down
         } //_f in _fired
@@ -481,14 +483,14 @@ class Input {
                     //down is true immediate, cos up removes it
                 _named_input_down.set( _f, true);
 
-                var ev = {
+                var _ev = {
                     name : _f,
                     type : InputType.mouse,
                     state : InteractState.down,
                     mouse_event : e
                 };
-                core.oninputdown( _f, ev);
-                ev = null;
+                core.oninputdown( _f, _ev);
+                _ev = null;
 
             } else {
 
@@ -497,14 +499,14 @@ class Input {
                     //remove down state
                 _named_input_down.remove( _f );
 
-                var ev = {
+                var _ev = {
                     name : _f,
                     type : InputType.mouse,
                     state : InteractState.up,
                     mouse_event : e
                 };
-                core.oninputup( _f, ev);
-                ev = null;
+                core.oninputup(_f, _ev);
+                _ev = null;
             }
         } //_f in _fired
 
@@ -533,14 +535,14 @@ class Input {
                 // down is true immediate, because up removes it
                 _named_input_down.set( _f, true);
 
-                var ev = {
+                var _ev = {
                     name: _f,
                     type: InputType.gamepad,
                     state: InteractState.down,
                     gamepad_event: e
                 };
-                core.oninputdown( _f, ev);
-                ev = null;
+                core.oninputdown(_f, _ev);
+                _ev = null;
 
             } else {
 
@@ -549,14 +551,14 @@ class Input {
                 // remove down state
                 _named_input_down.remove( _f );
 
-                var ev = {
+                var _ev = {
                     name: _f,
                     type: InputType.gamepad,
                     state: InteractState.up,
                     gamepad_event: e
                 };
-                core.oninputup( _f, ev);
-                ev = null;
+                core.oninputup(_f, _ev);
+                _ev = null;
 
             }
         } //_f in _fired

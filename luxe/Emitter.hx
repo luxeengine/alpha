@@ -37,17 +37,17 @@ class Emitter<ET:Int> {
 
     @:noCompletion public function _emitter_destroy() {
         while(_to_remove.length > 0) {
-            var n = _to_remove.pop();
-            n.event = null;
-            n.handler = null;
-            n = null;
+            var _node = _to_remove.pop();
+            _node.event = null;
+            _node.handler = null;
+            _node = null;
         }
 
         while(connected.length > 0) {
-            var n = connected.pop();
-            n.event = null;
-            n.handler = null;
-            n = null;
+            var _node = connected.pop();
+            _node.event = null;
+            _node.handler = null;
+            _node = null;
         }
 
         _to_remove = null;
@@ -63,9 +63,9 @@ class Emitter<ET:Int> {
 
         _check();
 
-        var list = bindings.get(event);
-        if(list != null && list.length > 0) {
-            for(handler in list) {
+        var _list = bindings.get(event);
+        if(_list != null && _list.length > 0) {
+            for(handler in _list) {
                 #if luxe_emitter_pos _verboser('emit / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}'); #end
                 handler(data);
             }
@@ -93,9 +93,9 @@ class Emitter<ET:Int> {
             connected.push({ handler:handler, event:event #if luxe_emitter_pos, pos:pos #end });
 
         } else {
-            var list = bindings.get(event);
-            if(list.indexOf(handler) == -1) {
-                list.push(handler);
+            var _list = bindings.get(event);
+            if(_list.indexOf(handler) == -1) {
+                _list.push(handler);
                 connected.push({ handler:handler, event:event #if luxe_emitter_pos, pos:pos #end });
             }
         }
@@ -110,7 +110,7 @@ class Emitter<ET:Int> {
 
         _check();
 
-        var success = false;
+        var _success = false;
 
         if(bindings.exists(event)) {
 
@@ -125,11 +125,11 @@ class Emitter<ET:Int> {
             }
 
                 //debateable :p
-            success = true;
+            _success = true;
 
         } //if exists
 
-        return success;
+        return _success;
 
     } //off
 
@@ -137,15 +137,15 @@ class Emitter<ET:Int> {
 
         if(connected == null) return null;
 
-        var list : Array<EmitNode<ET>> = [];
+        var _list : Array<EmitNode<ET>> = [];
 
         for(_info in connected) {
             if(_info.handler == handler) {
-                list.push(_info);
+                _list.push(_info);
             }
         }
 
-        return list;
+        return _list;
 
     } //connections
 
@@ -163,11 +163,11 @@ class Emitter<ET:Int> {
 
             for(_node in _to_remove) {
 
-                var list = bindings.get(_node.event);
-                list.remove( _node.handler );
+                var _list = bindings.get(_node.event);
+                _list.remove( _node.handler );
 
                     //clear the event list if there are no bindings
-                if(list.length == 0) {
+                if(_list.length == 0) {
                     bindings.remove(_node.event);
                 }
 

@@ -469,9 +469,10 @@ class Scene extends Objects {
         //inside of their init so we have to keep checking
     public function init(_) {
 
-        var keep_going : Bool = true;
-        while(keep_going) {
-            keep_going = _do_init();
+        var _keep_going = true;
+        
+        while(_keep_going) {
+            _keep_going = _do_init();
         }
 
         inited = true;

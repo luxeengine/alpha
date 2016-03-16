@@ -65,7 +65,7 @@ class Camera extends Entity {
     var _rotation_cache : Quaternion;
 
         /** create a new camera with the given options */
-    public function new( ?options:LuxeCameraOptions ) {
+    public function new( ?_options:LuxeCameraOptions ) {
 
             //cache for later
         _size_factor = new Vector();
@@ -75,24 +75,24 @@ class Camera extends Entity {
 
         var _name = 'untitled camera';
 
-        if(options != null) {
-            if(options.name != null) {
-                _name = options.name;
-                options.camera_name = '$_name.view';
+        if(_options != null) {
+            if(_options.name != null) {
+                _name = _options.name;
+                _options.camera_name = '$_name.view';
             }
         } else {
-            options = {
+            _options = {
                 no_scene : false
             }
         }
 
             //create or assign the underlying camera view
-        view = def(options.view, new phoenix.Camera( options ));
+        view = def(_options.view, new phoenix.Camera( _options ));
 
             //Init the entity part
         super({
             name : _name,
-            no_scene : options.no_scene
+            no_scene : _options.no_scene
         });
 
             //Start with the transform
@@ -237,10 +237,10 @@ class Camera extends Entity {
 
         /**Focus the camera on a specific point, for Ortho only.
         Use `.target` for a focus in perspective */
-    public function focus( _p:Vector, _t:Float = 0.6, ?oncomplete:Void->Void=null ) {
+    public function focus( _p:Vector, _t:Float = 0.6, ?_oncomplete:Void->Void=null ) {
 
         Actuate.tween(view.center, _t, { x:_p.x, y:_p.y }, true )
-            .onComplete( oncomplete ).ease( Quad.easeInOut )
+            .onComplete( _oncomplete ).ease( Quad.easeInOut )
             .onUpdate( function() {
                 transform.pos.set_xy(view.pos.x, view.pos.y);
             });
@@ -264,24 +264,25 @@ class Camera extends Entity {
     // var cnt = 0;
     override function set_pos_from_transform(_pos:Vector) {
 
-        var vw = view.viewport.w;
-        var vh = view.viewport.h;
-        var hvw = vw/2;
-        var hvh = vh/2;
+        var _vw = view.viewport.w;
+        var _vh = view.viewport.h;
+        var _hvw = _vw/2;
+        var _hvh = _vh/2;
 
-        var _px = _pos.x; var _py = _pos.y;
+        var _px = _pos.x; 
+        var _py = _pos.y;
 
         if(bounds != null) {
             if(_px < bounds.x)        _px = bounds.x;
             if(_py < bounds.y)        _py = bounds.y;
-            if(_px+hvw > bounds.w-vw) _px = bounds.w-vw-hvw;
-            if(_py+hvh > bounds.h-vh) _py = bounds.h-vh-hvh;
+            if(_px+_hvw > bounds.w-_vw) _px = bounds.w-_vw-_hvw;
+            if(_py+_hvh > bounds.h-_vh) _py = bounds.h-_vh-_hvh;
         }
 
-        var prev = _pos.ignore_listeners;
+        var _prev = _pos.ignore_listeners;
             _pos.ignore_listeners = true;
         _pos.set_xy(_px, _py);
-            _pos.ignore_listeners = prev;
+            _pos.ignore_listeners = _prev;
 
         super.set_pos_from_transform(_pos);
 
@@ -312,9 +313,9 @@ class Camera extends Entity {
     } //set_scale_from_transform
 
         /** Shake the camera a given amount */
-    public function shake(amount:Float) {
+    public function shake(_amount:Float) {
 
-        shake_amount = amount;
+        shake_amount = _amount;
         shaking = true;
 
     } //shake
