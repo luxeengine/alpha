@@ -87,7 +87,7 @@ class Polygon extends Shape {
         var rotation:Float = (Math.PI * 2) / sides;
         var angle:Float;
         var vector:Vector;
-        var vertices:Array<Vector> = []
+        var vertices:Array<Vector> = [];
 
         for(i in 0 ... sides) {
             angle = (i * rotation) + ((Math.PI - rotation) * 0.5);
