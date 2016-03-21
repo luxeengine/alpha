@@ -222,6 +222,10 @@ class Component extends ID {
     @:noCompletion public function entity_origin_change( _origin:Vector ) {}
     @:noCompletion public function entity_parent_change( _parent:Transform ) {}
 
+    inline function toString() {
+        return 'luxe Component: $name on ${entity.name} / id: $id';
+    }
+
 //internal api
 
 } //Component
