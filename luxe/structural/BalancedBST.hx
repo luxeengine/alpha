@@ -21,7 +21,7 @@ class BalancedBST<K,T> {
 
         /** The tree root node */
     public var root : BalancedBSTNode<K,T>;
-        /** The current comparison functoin */
+        /** The current comparison function */
     public var compare : K->K->Int;
         /** Whether or not the tree is empty (i.e root == null) */
     public var empty (get, null) : Bool;
