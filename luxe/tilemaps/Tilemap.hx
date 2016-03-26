@@ -267,7 +267,8 @@ class Tile {
 
 class TileLayer {
 
-        /** the depth/ordering value */
+        /** the depth/ordering value. 
+            (WIP: Ortho TilemapVisual uses (at create): tile render depth = tilemap.depth + (`layer`/layer count)) */
     public var layer : Int;
         /** the unique id of the layer */
     public var id : String;

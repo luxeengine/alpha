@@ -5,7 +5,8 @@ import phoenix.Batcher;
 import luxe.tilemaps.Tilemap;
 
 
-/** Options specific to a `TilemapVisual`, part of a `Tilemap` */
+/** Options specific to a `TilemapVisual`, part of a `Tilemap` 
+    On creation, layers will be drawn at and above `depth`, but below `depth + 1` (WIP)*/
 typedef TilemapVisualOptions = {
 
     > RenderProperties,

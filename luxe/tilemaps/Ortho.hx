@@ -181,7 +181,7 @@ class OrthoVisual extends TilemapVisual {
             visible : layer.visible,
             texture : (tileset != null) ? tileset.texture : null,
             color : new Color(1,1,1, layer.opacity),
-            depth : options.depth,
+            depth : options.depth + layer.layer / map.layers_ordered.length,
             batcher : options.batcher
         });
 
