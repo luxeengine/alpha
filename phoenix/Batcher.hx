@@ -812,7 +812,7 @@ class Batcher {
 
         if( a.timestamp < b.timestamp )
             { return -1; }
-        if( a.timestamp >= b.timestamp )
+        if( a.timestamp > b.timestamp )
             { return 1; }
         if( a.sequence < b.sequence )
             { return -1; }
