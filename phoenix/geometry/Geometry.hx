@@ -205,7 +205,7 @@ class Geometry {
 
         key.uuid = uuid;
         key.timestamp = Luxe.time;
-        key.sequence = _sequence_key;
+        // key.sequence = _sequence_key;
         key.primitive_type = state.primitive_type;
         key.texture = state.texture;
         key.shader = state.shader;
