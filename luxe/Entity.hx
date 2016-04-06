@@ -43,6 +43,8 @@ class Entity extends Objects {
     @:isVar public var scene            (get,set) : Scene;
         /** if the entity is active in the scene or not. set to inactive to stop scene events propogating into this entity and it's components and children */
     @:isVar public var active           (get,set) : Bool = true;
+        /** if the entity is active, as well as all of its parents. */
+    @:isVar public var active_path   (get,null) : Bool = true;
 
         /** The spatial transform of the entity. */
     @:isVar public var transform        (get,set) : Transform;
@@ -1202,6 +1204,8 @@ class Entity extends Objects {
         } else {
             transform.parent = null;
         }
+        
+        update_active_path();
 
         return parent;
 
@@ -1254,7 +1258,11 @@ class Entity extends Objects {
 
     function set_active(_active:Bool) : Bool {
 
-        return active = _active;
+        active = _active;
+
+        update_active_path();
+
+        return active;
 
     } //set_active
 
@@ -1263,6 +1271,23 @@ class Entity extends Objects {
         return active;
 
     } //get_active
+
+//active_path
+
+    function update_active_path() {
+        active_path = active && (parent == null || parent.active_path);
+	
+    	for (c in this.children)
+    	{
+    		c.update_active_path();
+    	}
+    }
+
+    function get_active_path() {
+
+        return active_path;
+
+    } //get_active_path
 
 // 
 
