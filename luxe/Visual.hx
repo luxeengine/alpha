@@ -21,6 +21,7 @@ import luxe.Log.*;
 
 class Visual extends Entity {
 
+    public static var _ACTIVE_BASED_VISIBILITY:Bool = true;
 
         /** the size of this geometry (only makes sense for QuadGeometry) */
     @:isVar public var size         (default,set) : Vector;
@@ -156,6 +157,8 @@ class Visual extends Entity {
                     //call the geometry create listener
                 on_geometry_created();
 
+                update_active_path();
+
             } //no_geometry is not present
 
         } else {
@@ -212,14 +215,22 @@ class Visual extends Entity {
 
 //Visibility properties
 
+    override function update_active_path() {
+        super.update_active_path();
+        update_geometry_visibility();
+    }
+    
+    function update_geometry_visibility() {
+        if(geometry != null) {
+            geometry.visible = visible && (!_ACTIVE_BASED_VISIBILITY || active_path);
+        }
+    }
+
     function set_visible(_v:Bool) {
 
         visible = _v;
 
-            //careful
-        if(geometry != null) {
-            geometry.visible = visible;
-        }
+        update_geometry_visibility();
 
         return visible;
 
@@ -301,7 +312,7 @@ class Visual extends Entity {
 
                         geometry.color = color;
                         geometry.depth = depth;
-                        geometry.visible = visible;
+                        update_geometry_visibility();
                         // geometry.shader = shader;
 
                         if(!ignore_texture_on_geometry_change) {
