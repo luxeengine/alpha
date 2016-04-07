@@ -82,11 +82,11 @@ class Events {
         /** Bind a signal (listener) to a slot (event_name)
             event_name : The event id
             listener : A function handler that should get called on event firing */
-    public function listen<T>( _event_name : String, _listener : T -> Void ):String {
+    public function listen<T>( _event_name : String, _listener : T -> Void, _entity:Entity = null ):String {
 
             //we need an ID and a connection to store
         var _id = Luxe.utils.uniqueid();
-        var _connection = new EventConnection( _id, _event_name, _listener );
+        var _connection = new EventConnection( _id, _event_name, _listener, _entity );
 
             //now we store it in the map
         event_connections.set( _id, _connection );
@@ -226,7 +226,9 @@ class Events {
                     }
 
                     for(_connection in _filter) {
-                        _connection.listener( cast _properties );
+                        if (_connection.entity == null || _connection.entity.active_path) {
+                            _connection.listener( cast _properties );
+                        }
                     } //each connection to this filter
 
                     _fired = true;
@@ -247,7 +249,9 @@ class Events {
 
                 //call each listener
             for(connection in _connections) {
-                connection.listener( cast _properties );
+                if (connection.entity == null || connection.entity.active_path) {
+                    connection.listener( cast _properties );
+                }
             }
 
             _fired = true;
@@ -317,14 +321,16 @@ private class EventConnection {
     public var listener : Dynamic -> Void;
     public var id : String;
     public var event_name : String;
+    public var entity : Entity;
 
 
-    public function new( _id:String, _event_name:String, _listener : Dynamic -> Void ) {
+    public function new( _id:String, _event_name:String, _listener : Dynamic -> Void, _entity:Entity = null ) {
 
         id = _id;
         listener = _listener;
         event_name = _event_name;
-
+        entity = _entity;
+        
     } //new
 
 
