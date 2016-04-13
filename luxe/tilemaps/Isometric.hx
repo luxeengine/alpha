@@ -17,17 +17,25 @@ import luxe.options.TilemapOptions;
 
 class Isometric {
 
-    public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int, ?scale:Float=1.0 ) : Vector {
+    public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int, ?scale:Float=1.0, ?rounded:Bool=true ) : Vector {
 
-        var tile_pos = new Vector();
+        var tile_coord = new Vector();
 
-            var tile_width_half = tile_width / 2;
-            var tile_height_half = tile_height / 2;
+            var _scaled_tw = tile_width * scale;
+            var _scaled_th = tile_height * scale;
 
-            tile_pos.x = ((world_x / tile_width_half) + (world_y / tile_height_half)) / 2;
-            tile_pos.y = ((world_y / tile_height_half) - (world_x / tile_width_half)) / 2;
+            var tile_width_half = _scaled_tw / 2;
+            var tile_height_half = _scaled_th / 2;
 
-        return tile_pos;
+            tile_coord.x = ((world_x / tile_width_half) + (world_y / tile_height_half)) / 2;
+            tile_coord.y = ((world_y / tile_height_half) - (world_x / tile_width_half)) / 2;
+
+            if(rounded) {
+                tile_coord.x = Math.floor(tile_coord.x);
+                tile_coord.y = Math.floor(tile_coord.y);
+            }
+
+        return tile_coord;
 
     } //worldpos_to_tile_coord
 
@@ -37,8 +45,6 @@ class Isometric {
 
         var _scaled_tw = tile_width * scale;
         var _scaled_th = tile_height * scale;
-
-
 
         var tile_width_half = _scaled_tw / 2;
         var tile_height_half = _scaled_th / 2;
@@ -51,14 +57,14 @@ class Isometric {
         var tile_offset_y : Float = 0;
 
             switch(offset_x) {
-                case TileOffset.center:    { tile_offset_x += (_scaled_tw / 2); tile_offset_x /= tile_width; }
-                case TileOffset.right:     { tile_offset_x += _scaled_tw; tile_offset_x /= tile_width; }
+                case TileOffset.center:    { tile_offset_x += (_scaled_tw / 2); tile_offset_x /= _scaled_tw; }
+                case TileOffset.right:     { tile_offset_x += _scaled_tw; tile_offset_x /= _scaled_tw; }
                 default:
             }
 
             switch(offset_y) {
-                case TileOffset.center:    { tile_offset_y += (_scaled_th/2); tile_offset_y /= tile_height; }
-                case TileOffset.bottom:    { tile_offset_y += _scaled_th; tile_offset_y /= tile_height; }
+                case TileOffset.center:    { tile_offset_y += (_scaled_th/2); tile_offset_y /= _scaled_th; }
+                case TileOffset.bottom:    { tile_offset_y += _scaled_th; tile_offset_y /= _scaled_th; }
                 default:
             }
 
