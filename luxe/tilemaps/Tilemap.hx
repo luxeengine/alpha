@@ -551,7 +551,7 @@ class Tilemap {
     } //inside
 
         /** Get the world space position of a tile coordinate, from a given layer. */
-    public function tile_pos( layer_name:String, x:Int, y:Int, ?scale:Float=1.0, ?offset_x:TileOffset, ?offset_y:TileOffset ) {
+    public function tile_pos( x:Int, y:Int, ?scale:Float=1.0, ?offset_x:TileOffset, ?offset_y:TileOffset ) {
 
         if(inside(x,y)) {
 
@@ -579,55 +579,53 @@ class Tilemap {
 
     } //tile_pos
 
-        /** Returns the tile at a given world position, or null */
-    public function tile_at_pos( layer_name:String, worldpos:Vector, ?_scale:Float = 1.0 ) {
+        /** Convert a world space position to tile space coords */
+    public function tile_coord( _world_pos_x:Float, _world_pos_y:Float, ?_scale:Float = 1.0, ?_rounded:Bool=true ) : Vector {
 
-        switch(orientation) {
+         return switch(orientation) {
+
+            case TilemapOrientation.ortho: {
+                Ortho.worldpos_to_tile_coord( _world_pos_x - pos.x, _world_pos_y - pos.y, tile_width, tile_height, _scale, _rounded );
+            }
+
+            case TilemapOrientation.isometric: {
+                Isometric.worldpos_to_tile_coord( _world_pos_x - pos.x, _world_pos_y - pos.y, tile_width, tile_height, _scale, _rounded );
+            }
+
+            default: null;
+
+        } //switch orientation
+
+    } //tile_coord
+
+        /** Returns the tile at a given world position. 
+            Returns null if not in the tilemap, or no tile exists at the position, for that layer */
+    public function tile_at_pos( layer_name:String, _world_pos_x:Float, _world_pos_y:Float, ?_scale:Float = 1.0 ) : Tile {
+
+        return switch(orientation) {
 
             case TilemapOrientation.ortho: {
 
-                var _tile_pos = Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height, _scale );
-                return tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
+                var _tile_pos = Ortho.worldpos_to_tile_coord( _world_pos_x - pos.x, _world_pos_y - pos.y, tile_width, tile_height, _scale );
+                
+                tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
 
             } //ortho
 
             case TilemapOrientation.isometric: {
 
-                var _tile_pos = Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height, _scale );
-                return tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
+                var _tile_pos = Isometric.worldpos_to_tile_coord( _world_pos_x - pos.x, _world_pos_y - pos.y, tile_width, tile_height, _scale );
+                
+                tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
 
             } //isometric
 
-            default: {
-
-            }
+            default: null;
 
         } //switch orientation
-
-        return null;
 
     } //tile_at_pos
 
-        /** Convert a world space position to map space coords */
-    public function worldpos_to_map( worldpos:Vector, ?_scale:Float = 1.0 ) {
-
-         switch(orientation) {
-
-            case TilemapOrientation.ortho: {
-                return Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height, _scale );
-            }
-
-            case TilemapOrientation.isometric: {
-                return Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height, _scale );
-            }
-
-            default:{}
-
-        } //switch orientation
-
-        return null;
-
-    } //worldpos_to_map
 
         /** Fetch a layer by name, or null if it's not found */
     public function layer( layer_name:String ) {
@@ -640,7 +638,7 @@ class Tilemap {
     }
 
         /** Return a tile from a layer, at the given tile coordinates */
-    public function tile_at( layer_name:String, x:Int, y:Int ) {
+    public function tile_at( layer_name:String, x:Int, y:Int ) : Tile {
 
         if( inside(x,y) ) {
             var _layer = layers.get(layer_name);
