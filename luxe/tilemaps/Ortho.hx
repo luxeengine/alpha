@@ -15,12 +15,17 @@ import luxe.options.TilemapOptions;
 
 class Ortho {
 
-    public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int, ?scale:Float=1.0 ) : Vector {
+    public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int, ?scale:Float=1.0, ?rounded:Bool=true ) : Vector {
 
         var tile_coord = new Vector();
 
-            tile_coord.x = Math.floor(world_x / (tile_width * scale));
-            tile_coord.y = Math.floor(world_y / (tile_height * scale));
+            tile_coord.x = world_x / (tile_width * scale);
+            tile_coord.y = world_y / (tile_height * scale);
+
+            if(rounded) {
+                tile_coord.x = Math.floor(tile_coord.x);
+                tile_coord.y = Math.floor(tile_coord.y);
+            }
 
         return tile_coord;
 
