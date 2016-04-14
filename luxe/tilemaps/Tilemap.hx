@@ -178,7 +178,6 @@ class Tile {
     public var uuid : String;
     public var x : Int;
     public var y : Int;
-    public var pos : Vector;
     public var size : Vector;
     @:isVar public var flipx(default, set):Bool;
     @:isVar public var flipy(default, set):Bool;
@@ -213,12 +212,11 @@ class Tile {
             size = new Vector( map.tile_width, map.tile_height );
         }
 
-        pos = new Vector( map.pos.x + (size.x * x), map.pos.y + (size.y * y) );
-
     } //new
 
     function toString() {
-        return 'Tile: id:$id x,y:$x,$y layer(${layer.name}) coord($x,$y) pos(${pos.x},${pos.y}) size(${size.x},${size.y}) flipx,flipy:$flipx,$flipy angle:$angle';
+        var _pos = map.tile_pos(x,y);
+        return 'Tile: id:$id x,y:$x,$y layer(${layer.name}) coord($x,$y) pos(${_pos.x},${_pos.y}) size(${size.x},${size.y}) flipx,flipy:$flipx,$flipy angle:$angle';
     }
 
     function set_id( _id:Int ) {
