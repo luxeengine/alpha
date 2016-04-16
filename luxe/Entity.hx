@@ -63,6 +63,11 @@ class Entity extends Objects {
         //:todo:Entity: options dynamic for passing to super()
     var options : Dynamic;
 
+        /** The scene that the top most parent is a part of, 
+            i.e the scene that contains this entity via the parent tree */
+    @:allow(luxe.Scene)
+    var scene_root (default, set): Scene;
+
 
         /** called when the scene is initiated. **use this instead of new** for state setup. it respects the order of creations, children, and component ordering. */
     public function init() {}
@@ -1029,14 +1034,25 @@ class Entity extends Objects {
 
         children.push(child);
 
-        _debug( '' + name + " : add child : " + child.name );
+        child.scene_root = scene_root;
+
+        _debug('$name / add child / ${child.name}');
 
             //children inherit the updates and such from the parent, so they shouldn't be in the root of the scene
         if(child.scene != null) {
-            _debug( '' + name + " add child " + child.name + " being parented, removing from scene root of " + child.scene.name);
+            _debug('$name / add child / ${child.name} being parented, removing from scene as root of ${child.scene.name}');
             var _removed = child.scene.remove( child );
         } else {
-            _debug('' + name + " add child " + child.name + " being parented, but not from a scene");
+
+            _debug('$name / add child ${child.name} being parented, but not from a scene');
+            
+            if(inited && !child.inited) {
+                scene_root._delayed_init_entities.push(child);
+            }
+            
+            if(started && !child.started) {
+                scene_root._delayed_reset_entities.push(child);
+            }
         }
 
     } //_add_child
@@ -1232,6 +1248,18 @@ class Entity extends Objects {
         return scene;
 
     } //get_scene
+
+    function set_scene_root(_scene:Scene) {
+        
+        scene_root = _scene;
+
+        for(_child in children) {
+            _child.scene_root = _scene;
+        }
+
+        return scene_root;
+
+    } //set_scene_root
 
 //name
 

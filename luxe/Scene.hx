@@ -21,8 +21,11 @@ class Scene extends Objects {
     public var destroyed : Bool = false;
 
 //internal
-
+    
+    @:allow(luxe.Entity)
     var _delayed_init_entities : Array<Entity>;
+
+    @:allow(luxe.Entity)
     var _delayed_reset_entities : Array<Entity>;
 
     @:allow(luxe.Entity)
@@ -106,6 +109,7 @@ class Scene extends Objects {
         handle_duplicate_warning(entity.name);
 
         entity.scene = this;
+        entity.scene_root = this;
         entities.set( entity.name, entity );
         entity_count++;
 
