@@ -1,6 +1,6 @@
 package luxe.utils;
 
-import luxe.Core;
+import luxe.Engine;
 
 import haxe.CallStack;
 import snow.api.buffers.Uint8Array;
@@ -10,12 +10,12 @@ class Utils {
     public var geometry : luxe.utils.GeometryUtils;
     public var random : luxe.utils.Random;
 
-    @:noCompletion public var core:Core;
+    @:noCompletion public var core:Engine;
 
     var _byte_levels : Array<String>;
 
-    @:allow(luxe.Core)
-    function new( _luxe:Core ) {
+    @:allow(luxe.Engine)
+    function new( _luxe:Engine ) {
 
             //store the reference
         core = _luxe;
@@ -39,9 +39,7 @@ class Utils {
         // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
 
         if(val == null) {
-            #if neko val = Std.random(0x3FFFFFFF);
-            #else val = Std.random(0x7fffffff);
-            #end
+            val = Std.random(0x7fffffff);
         }
 
         function to_char(value:Int) : String {

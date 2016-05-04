@@ -1,17 +1,17 @@
 package luxe;
 
-import luxe.Core;
+import luxe.Engine;
 import haxe.Timer;
 import luxe.Log._debug;
 
 class Timer {
 
 
-    @:noCompletion public var core : Core;
+    @:noCompletion public var core : Engine;
     @:noCompletion public var timers : Array<snow.api.Timer>;
 
 
-    @:noCompletion public function new( _core:Core ) {
+    @:noCompletion public function new( _core:Engine ) {
         core = _core;
         timers = [];
     } //new

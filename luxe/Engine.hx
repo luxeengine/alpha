@@ -15,7 +15,7 @@ import luxe.Scene;
 import luxe.Debug;
 import luxe.Timer;
 import luxe.Physics;
-import luxe.AppConfig;
+import luxe.GameConfig;
 import luxe.Resources;
 
 import luxe.debug.ProfilerDebugView;
@@ -32,14 +32,11 @@ typedef UserConfig = Dynamic
 @:keep
 @:noCompletion
 @:log_as('luxe')
-class Core extends snow.App {
+class Engine extends snow.App {
 
         //the game object running the core
     public var game : Game;
-    public var appconfig : AppConfig;
-
-        //if the console is displayed atm
-    public var console_visible : Bool = false;
+    public var game_config : GameConfig;
 
     public var version   : String = 'dev';
     public var build     : String = luxe.macros.BuildVersion.latest();
@@ -65,18 +62,13 @@ class Core extends snow.App {
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
     public var inited : Bool = false;
+    public var headless = false;
 
-    var init_config: luxe.AppConfig;
-    var headless = false;
+//internal
+    
+    public function new(_game:Game) {
 
-    @:noCompletion
-    public function new( _game:Game, _config:luxe.AppConfig ) {
-
-        init_config = _config;
         game = _game;
-
-            //Store the core for reference in the game
-        game.app = this;
 
             //Create internal stuff
         emitter = new Emitter<luxe.Ev>();
@@ -86,6 +78,17 @@ class Core extends snow.App {
         Luxe.utils = new luxe.utils.Utils(this);
 
     } //new
+
+    var running = false;
+    public function run() {
+        
+        assert(running == false);
+
+        running = true;
+
+        new snow.Snow(this);
+
+    } //run
 
 
         //This gets called once snow has booted us
@@ -110,7 +113,7 @@ class Core extends snow.App {
 
         #else
 
-            headless = appconfig.headless;
+            headless = game_config.headless;
             if(!headless) {
 
                 var _font_name = 'default.png';
@@ -140,11 +143,9 @@ class Core extends snow.App {
 
         log('shutting down...');
 
-            //shutdown the game class
-        game.ondestroy();
-
             //shutdown the default scene
         emitter.emit(luxe.Ev.destroy);
+        game.ondestroy();
 
             //Order is imporant here too
         if(renderer != null) {
@@ -249,19 +250,19 @@ class Core extends snow.App {
                 //is finalized on snow side
             log('opengl ${snow.modules.opengl.GL.versionString()}');
 
-            _debug('ready. loading default parcel ' + appconfig.preload);
+            _debug('ready. loading default parcel ' + game_config.preload);
 
                 //pre load config parcel
             var _default_parcel = new Parcel({
                 id:         'default_parcel',
                 system:     resources,
-                bytes:      appconfig.preload.bytes,
-                texts:      appconfig.preload.texts,
-                jsons:      appconfig.preload.jsons,
-                textures:   appconfig.preload.textures,
-                fonts:      appconfig.preload.fonts,
-                shaders:    appconfig.preload.shaders,
-                sounds:     appconfig.preload.sounds,
+                bytes:      game_config.preload.bytes,
+                texts:      game_config.preload.texts,
+                jsons:      game_config.preload.jsons,
+                textures:   game_config.preload.textures,
+                fonts:      game_config.preload.fonts,
+                shaders:    game_config.preload.shaders,
+                sounds:     game_config.preload.sounds,
                 oncomplete: internal_ready,
                 onfailed: function(_error:Dynamic) {
                     log('config / preload / failed to load');
@@ -518,492 +519,154 @@ class Core extends snow.App {
 
     } //render
 
-    public function show_console(_show:Bool = true) {
-
-        console_visible = _show;
-        debug.show_console(console_visible);
-
-    } //show_console
-
 //input events
-//keys
-    override function onkeydown( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
 
-        if(!inited) return;
+    //mouse
 
-        var _event : KeyEvent = {
-            scancode : scancode,
-            keycode : keycode,
-            state : InteractState.down,
-            mod : mod,
-            repeat : repeat,
-            timestamp : timestamp,
-            window_id : window_id
-        }
+        override function onmousedown(_x:Int, _y:Int, _button:Int, _timestamp:Float, _window_id:Int) {
 
-        if(!shutting_down) {
+            if(!inited) return;
 
-                //check for named input
-            input.check_named_keys(_event, true);
-            emitter.emit(luxe.Ev.keydown, _event);
+            screen.cursor.set_internal(_x, _y);
 
-            game.onkeydown(_event);
+            input.onmousedown(_x, _y, _button, _timestamp, _window_id);
 
-            if(scancode == Scan.grave) {
-                show_console( !console_visible );
-            }
+        } //onmousedown
 
-        } //!shutting down
+        override function onmouseup(_x:Int, _y:Int, _button:Int, _timestamp:Float, _window_id:Int) {
 
-        _event = null;
+            if(!inited) return;
 
-    } //onkeydown
+            screen.cursor.set_internal(_x, _y);
 
-    override function onkeyup( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
+            input.onmouseup(_x, _y, _button, _timestamp, _window_id);        
 
-        if(!inited) return;
+        } //onmouseup
 
-        var _event : KeyEvent = {
-            scancode : scancode,
-            keycode : keycode,
-            state : InteractState.up,
-            mod : mod,
-            repeat : repeat,
-            timestamp : timestamp,
-            window_id : window_id
-        }
+        override function onmousemove(_x:Int, _y:Int, _x_rel:Int, _y_rel:Int, _timestamp:Float, _window_id:Int) {
 
-        if(!shutting_down) {
+            if(!inited) return;
 
-                //check for named input
-            input.check_named_keys(_event);
-            emitter.emit(luxe.Ev.keyup, _event);
+            screen.cursor.set_internal(_x, _y);
 
-            game.onkeyup(_event);
+            input.onmousemove(_x, _y, _x_rel, _y_rel, _timestamp, _window_id);
 
-        } //!shutting down
+        } //onmousemove
 
-        _event = null;
+        override function onmousewheel( _x:Float, _y:Float, _timestamp:Float, _window_id:Int ) {
 
-    } //onkeyup
+            if(!inited) return;
 
-    override function ontextinput( text:String, start:Int, length:Int, type:snow.types.TextEventType, timestamp:Float, window_id:Int ) {
+            input.onmousewheel(_x, _y, _timestamp, _window_id);
 
-        if(!inited) return;
+        } //onmousewheel
 
-        var _type : TextEventType = TextEventType.unknown;
+    //keys
 
-        switch(type) {
-            case te_edit: _type = TextEventType.edit;
-            case te_input: _type = TextEventType.input;
-            default: {
-                return;
-            }
-        }
+        override function onkeydown(_keycode:Int, _scancode:Int, _repeat:Bool, _mod:ModState, _timestamp:Float, _window_id:Int) : Void {
 
-        var _event : TextEvent = {
-            text : text,
-            start : start,
-            length : length,
-            type : _type,
-            timestamp : timestamp,
-            window_id : window_id
-        }
+            if(!inited) return;
 
-        if(!shutting_down) {
+            input.onkeydown(_keycode, _scancode, _repeat, _mod, _timestamp, _window_id);
 
-            emitter.emit(Ev.textinput, _event);
+        } //onkeydown
 
-            game.ontextinput(_event);
+        override function onkeyup(_keycode:Int, _scancode:Int, _repeat:Bool, _mod:ModState, _timestamp:Float, _window_id:Int) : Void {
 
-        } //!shutting_down
+            if(!inited) return;
 
-        _event = null;
+            input.onkeyup(_keycode, _scancode, _repeat, _mod, _timestamp, _window_id);
 
-    } //ontextinput
+        } //onkeyup
 
-//input
+        override function ontextinput(_text:String, _start:Int, _length:Int, _etype:snow.types.TextEventType, _timestamp:Float, _window_id:Int) : Void {
 
-    public function oninputdown( name:String, event:InputEvent ) {
+            if(!inited) return;
 
-        if(!inited) return;
+            input.ontextinput(_text, _start, _length, _etype, _timestamp, _window_id);
 
-        if(!shutting_down) {
+        } //ontextinput
 
-            //:todo:
-            var _ev = { name:name, event:event };
-            emitter.emit(Ev.inputdown, _ev);
-            _ev = null;
+    //touch
 
-            game.oninputdown( name, event );
+        override function ontouchdown(_x:Float, _y:Float, _dx:Float, _dy:Float, _touch_id:Int, _timestamp:Float) {
 
-        } //!shutting_down
+            if(!inited) return;
 
-        event = null;
+            input.ontouchdown(_x, _y, _dx, _dy, _touch_id, _timestamp);
 
-    } //oninputdown
+        } //ontouchdown
 
-    public function oninputup( name:String, event:InputEvent ) {
+        override function ontouchup(_x:Float, _y:Float, _dx:Float, _dy:Float, _touch_id:Int, _timestamp:Float) {
 
-        if(!inited) return;
+            if(!inited) return;
 
-        if(!shutting_down) {
+             input.ontouchup(_x, _y, _dx, _dy, _touch_id, _timestamp);
 
-            //:todo:
-            var _ev = { name:name, event:event };
-            emitter.emit(Ev.inputup, _ev);
-            _ev = null;
+        } //ontouchup
 
-            game.oninputup( name, event );
+        override function ontouchmove(_x:Float, _y:Float, _dx:Float, _dy:Float, _touch_id:Int, _timestamp:Float) {
 
-        } //!shutting_down
+            if(!inited) return;
 
-        event = null;
+            input.ontouchmove(_x, _y, _dx, _dy, _touch_id, _timestamp);
 
-    } //oninputup
+        } //ontouchmove
 
-//mouse
+    //input
 
-    override function onmousedown( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
+        public function oninputdown(_name:String, ?_key_event:KeyEvent, ?_mouse_event:MouseEvent, ?_touch_event:TouchEvent, ?_gamepad_event:GamepadEvent) {
 
-        if(!inited) return;
+            if(!inited) return;
 
-        screen.cursor.set_internal(x, y);
+            input.oninputdown(_name, _key_event, _mouse_event, _touch_event, _gamepad_event);
 
-        var _event : MouseEvent = {
-            timestamp : timestamp,
-            window_id : window_id,
-            state : InteractState.down,
-            button : button,
-            x : x,
-            y : y,
-            xrel : x,
-            yrel : y,
-            pos : screen.cursor.pos,
-        }
+        } //oninputdown
 
-        if(!shutting_down) {
+        public function oninputup(_name:String, ?_key_event:KeyEvent, ?_mouse_event:MouseEvent, ?_touch_event:TouchEvent, ?_gamepad_event:GamepadEvent) {
 
-            input.check_named_mouse(_event, true);
-            emitter.emit(Ev.mousedown, _event);
-            game.onmousedown(_event);
+            if(!inited) return;
 
-        } //!shutting_down
+            input.oninputup(_name, _key_event, _mouse_event, _touch_event, _gamepad_event);
 
-        _event = null;
+        } //oninputup
 
-    } //onmousedown
+    //gamepad
 
-    override function onmouseup( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
+        override function ongamepadaxis(_gamepad:Int, _axis:Int, _value:Float, _timestamp:Float) : Void {
 
-        if(!inited) return;
+            if(!inited) return;
 
-        screen.cursor.set_internal(x, y);
+            input.ongamepadaxis(_gamepad, _axis, _value, _timestamp);
+            
+        } //ongamepadaxis
 
-        var _event : MouseEvent = {
-            timestamp : timestamp,
-            window_id : window_id,
-            state : InteractState.up,
-            button : button,
-            x : x,
-            y : y,
-            xrel : x,
-            yrel : y,
-            pos : screen.cursor.pos
-        }
+        override function ongamepaddown(_gamepad:Int, _button:Int, _value:Float, _timestamp:Float) : Void {
 
-        if(!shutting_down) {
+            if(!inited) return;
 
-            input.check_named_mouse(_event);
-            emitter.emit(Ev.mouseup, _event);
-            game.onmouseup(_event);
+            input.ongamepaddown(_gamepad, _button, _value, _timestamp);
 
-        } //!shutting_down
+        } //ongamepadbuttondown
 
-        _event = null;
+        override function ongamepadup(_gamepad:Int, _button:Int, _value:Float, _timestamp:Float) : Void {
 
-    } //onmouseup
+            if(!inited) return;
 
-    override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
+            input.ongamepadup(_gamepad, _button, _value, _timestamp);
 
-        if(!inited) return;
+        } //ongamepadup
 
-        screen.cursor.set_internal(x, y);
+        override function ongamepaddevice(_gamepad:Int, _id:String, _etype:GamepadDeviceEventType, _timestamp:Float) : Void {
 
-        var _event : MouseEvent = {
-            timestamp : timestamp,
-            window_id : window_id,
-            state : InteractState.move,
-            button : MouseButton.none,
-            x : x,
-            y : y,
-            xrel : xrel,
-            yrel : yrel,
-            pos : screen.cursor.pos
-        }
+            if(!inited) return;
 
-        if(!shutting_down) {
+            input.ongamepaddevice(_gamepad, _id, _etype, _timestamp);
 
-            emitter.emit(Ev.mousemove, _event);
-            game.onmousemove(_event);
+        } //ongamepaddevice
 
-        } //!shutting_down
 
-        _event = null;
-
-    } //onmousemove
-
-    override function onmousewheel( x:Float, y:Float, timestamp:Float, window_id:Int ) {
-
-        if(!inited) return;
-
-        var _event : MouseEvent = {
-            timestamp : timestamp,
-            window_id : window_id,
-            state : InteractState.wheel,
-            button : MouseButton.none,
-            x : Math.floor(x),
-            y : Math.floor(y), //:todo: mouse wheel float value
-            xrel : Math.floor(x),
-            yrel : Math.floor(y),
-            pos : screen.cursor.pos
-        }
-
-        if(!shutting_down) {
-
-            input.check_named_mouse(_event, false);
-            emitter.emit(Ev.mousewheel, _event);
-            game.onmousewheel(_event);
-
-        } //!shutting_down
-
-        _event = null;
-
-    } //onmousewheel
-
-//touch
-        //cached touch pos
-    var _touch_pos : Vector;
-
-    override function ontouchdown( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
-
-        if(!inited) return;
-
-         _touch_pos = new luxe.Vector( x, y );
-
-        var _event : TouchEvent = {
-            state : InteractState.down,
-            timestamp : timestamp,
-            touch_id : touch_id,
-            x : x,
-            y : y,
-            dx : x,
-            dy : y,
-            pos : _touch_pos
-        }
-
-        if(!shutting_down) {
-
-            emitter.emit(Ev.touchdown, _event);
-
-            game.ontouchdown(_event);
-
-            #if (!no_debug_console && mobile)
-
-                    //3 finger tap when console opens will switch tabs
-                if(app.input.touch_count == 3) {
-                    if(console_visible) {
-                        debug.switch_view();
-                    }
-                }
-
-                    //4 finger tap toggles console
-                if(app.input.touch_count == 4) {
-                    show_console( !console_visible );
-                }
-
-            #end //no_debug_console
-
-        } //!shutting_down
-
-        _event = null;
-
-    } //ontouchdown
-
-    override function ontouchup( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
-
-        if(!inited) return;
-
-         _touch_pos = new luxe.Vector( x, y );
-
-        var _event : TouchEvent = {
-            state : InteractState.up,
-            timestamp : timestamp,
-            touch_id : touch_id,
-            x : x,
-            y : y,
-            dx : x,
-            dy : y,
-            pos : _touch_pos
-        }
-
-        if(!shutting_down) {
-
-            emitter.emit(Ev.touchup, _event);
-            game.ontouchup(_event);
-
-        } //!shutting_down
-
-        _event = null;
-
-    } //ontouchup
-
-    override function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
-
-        if(!inited) return;
-
-        _touch_pos = new luxe.Vector( x, y );
-
-        var _event : TouchEvent = {
-            state : InteractState.move,
-            timestamp : timestamp,
-            touch_id : touch_id,
-            x : x,
-            y : y,
-            dx : dx,
-            dy : dy,
-            pos : _touch_pos
-        }
-
-        if(!shutting_down) {
-
-            emitter.emit(Ev.touchmove, _event);
-            game.ontouchmove(_event);
-
-        } //!shutting_down
-
-        _event = null;
-
-    } //ontouchmove
-
-//gamepad
-
-    override function ongamepadaxis( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
-
-        if(!inited) return;
-
-        var _event : GamepadEvent = {
-            timestamp : timestamp,
-            type : GamepadEventType.axis,
-            state : InteractState.axis,
-            gamepad : gamepad,
-            button : -1,
-            axis : axis,
-            value : value,
-            id : null
-        }
-
-        if(!shutting_down) {
-
-            emitter.emit(Ev.gamepadaxis, _event);
-            game.ongamepadaxis(_event);
-
-        } //!shutting_down
-
-        _event = null;
-
-    } //ongamepadaxis
-
-    override function ongamepaddown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
-
-        if(!inited) return;
-
-        var _event : GamepadEvent = {
-            timestamp : timestamp,
-            type : GamepadEventType.button,
-            state : InteractState.down,
-            gamepad : gamepad,
-            button : button,
-            axis : -1,
-            value : value,
-            id : null
-        }
-
-        if(!shutting_down) {
-
-            input.check_named_gamepad_buttons(_event, true);
-            emitter.emit(Ev.gamepaddown, _event);
-            game.ongamepaddown(_event);
-
-        } //!shutting_down
-
-        _event = null;
-
-    } //ongamepadbuttondown
-
-    override function ongamepadup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
-
-        if(!inited) return;
-
-        var _event : GamepadEvent = {
-            timestamp : timestamp,
-            type : GamepadEventType.button,
-            state : InteractState.up,
-            gamepad : gamepad,
-            button : button,
-            axis : -1,
-            value : value,
-            id : null
-        }
-
-        if(!shutting_down) {
-
-            input.check_named_gamepad_buttons(_event, false);
-            emitter.emit(Ev.gamepadup, _event);
-            game.ongamepadup(_event);
-
-        } //!shutting_down
-
-        _event = null;
-
-    } //ongamepadup
-
-    override function ongamepaddevice( gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float ) {
-
-        if(!inited) return;
-
-        var _event_type : GamepadEventType = GamepadEventType.unknown;
-
-        switch(type) {
-            case GamepadDeviceEventType.ge_device_added:
-                _event_type = GamepadEventType.device_added;
-            case GamepadDeviceEventType.ge_device_removed:
-                _event_type = GamepadEventType.device_removed;
-            case GamepadDeviceEventType.ge_device_remapped:
-                _event_type = GamepadEventType.device_remapped;
-            default:
-        }
-
-        var _event : GamepadEvent = {
-            timestamp : timestamp,
-            type : _event_type,
-            state : InteractState.none,
-            gamepad : gamepad,
-            button : -1,
-            axis : -1,
-            value : 0,
-            id : id
-        }
-
-        if(!shutting_down) {
-
-            game.ongamepaddevice(_event);
-
-        } //!shutting_down
-
-        _event = null;
-
-    } //ongamepaddevice
+//config handling
 
         /** return what the game decides for runtime config */
     override function config( config: snow.types.Types.AppConfig ) : snow.types.Types.AppConfig {
@@ -1011,18 +674,17 @@ class Core extends snow.App {
         if(config.user == null) config.user = {};
 
             //start with the snow default config
-        appconfig = cast config;
+        game_config = cast config;
 
-            //assign the override values from the boot/flow config
-        appconfig.window.width =      init_config.window.width;
-        appconfig.window.height =     init_config.window.height;
-        appconfig.window.fullscreen = init_config.window.fullscreen;
-        appconfig.window.borderless = init_config.window.borderless;
-        appconfig.window.resizable =  init_config.window.resizable;
-        appconfig.window.title =      init_config.window.title;
-        appconfig.headless =          init_config.headless;
+            //assign the default luxe values
+        game_config.window.title = 'luxe game';
+        game_config.window.width = 960;
+        game_config.window.height = 640;
+        game_config.window.resizable = true;
+        game_config.window.fullscreen = #if mobile true #else false #end;
+        game_config.window.borderless = #if mobile true #else false #end;
 
-        appconfig.preload = {
+        game_config.preload = {
             bytes:      [],
             texts:      [],
             jsons:      [],
@@ -1033,17 +695,17 @@ class Core extends snow.App {
         };
 
             //fetch the user updates to the config
-        appconfig = game.config( appconfig );
+        game_config = game.config( game_config );
 
             //return the snow config
-        return cast appconfig;
+        return cast game_config;
 
     } //config
 
     @:noCompletion
     public inline function runtime_info() return '${Luxe.build} / debug:${app.debug} / os:${app.os} / platform:${app.platform}';
 
-} //Core
+} //Engine
 
 
 /**
@@ -1052,7 +714,7 @@ Note that these values are not inline intentionally, they avoid
 allocating strings each frame.
 */
 @:noCompletion
-@:allow(luxe.Core)
+@:allow(luxe.Engine)
 class Tag {
     static var update       = 'update dt';
     static var renderdt     = 'render dt';

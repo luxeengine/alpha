@@ -1,6 +1,6 @@
 package luxe;
 
-import luxe.Core;
+import luxe.Engine;
 import luxe.Log.*;
 
 

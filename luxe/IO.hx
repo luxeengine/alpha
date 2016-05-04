@@ -1,13 +1,13 @@
 package luxe;
 
-import luxe.Core;
+import luxe.Engine;
 
-@:allow(luxe.Core)
+@:allow(luxe.Engine)
 class IO {
 
-    public var core : Core;
+    public var core : Engine;
 
-    function new( _core:Core ) {
+    function new( _core:Engine ) {
         core = _core;
     } //new
 

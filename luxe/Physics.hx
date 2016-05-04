@@ -1,7 +1,7 @@
 package luxe;
 
 import luxe.Ev;
-import luxe.Core;
+import luxe.Engine;
 import luxe.Vector;
 import snow.api.Timer;
 
@@ -25,7 +25,7 @@ class Physics {
         public var nape : PhysicsNape;
     #end //nape
 
-    public var core : Core;
+    public var core : Engine;
     public var engines : Array<PhysicsEngine>;
 
         //how often to update
@@ -38,7 +38,7 @@ class Physics {
 
     var emitter : luxe.Emitter<PhysicsEvent>;
 
-    public function new( _core:Core ) {
+    public function new( _core:Engine ) {
 
         core = _core;
         emitter = new Emitter();

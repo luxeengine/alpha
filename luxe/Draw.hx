@@ -288,9 +288,9 @@ class Draw {
 
 //Internal API
 
-    var core : Core;
-    @:allow(luxe.Core)
-    function new( _core:Core ) {
+    var core : Engine;
+    @:allow(luxe.Engine)
+    function new( _core:Engine ) {
 
         core = _core;
 

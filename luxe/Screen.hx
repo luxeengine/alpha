@@ -21,7 +21,7 @@ typedef WindowEvent = snow.types.Types.WindowEvent;
 
 
 
-@:allow(luxe.Core)
+@:allow(luxe.Engine)
 @:allow(luxe.Cursor)
 class Screen {
 
@@ -49,10 +49,10 @@ class Screen {
         /** Access to the mouse cursor, position, visibility, locking etc. */
     public var cursor : Cursor;
 
-    var core : Core;
+    var core : Engine;
 
-    @:allow(luxe.Core)
-    function new(_core:Core, _w:Int, _h:Int) {
+    @:allow(luxe.Engine)
+    function new(_core:Engine, _w:Int, _h:Int) {
 
         core = _core;
         cursor = new Cursor(this);
@@ -141,7 +141,7 @@ class Cursor {
 
     } //new
 
-    @:allow(luxe.Core)
+    @:allow(luxe.Engine)
     inline function set_internal(_x:Float, _y:Float) {
 
             //this has to be a new value because if it's cached,

@@ -1,6 +1,6 @@
 package luxe;
 
-import luxe.Core;
+import luxe.Engine;
 import luxe.Log._debug;
 
 typedef AudioEvent = snow.types.Types.AudioEvent;
@@ -9,13 +9,13 @@ typedef AudioHandle = snow.types.Types.AudioHandle;
 typedef AudioSource = snow.systems.audio.AudioSource;
 typedef AudioInstance = snow.systems.audio.AudioInstance;
 
-@:allow(luxe.Core)
+@:allow(luxe.Engine)
 class Audio {
 
-    public var core : Core;
+    public var core : Engine;
     public var active (get,set) : Bool;
 
-    function new( _core:Core ) {
+    function new( _core:Engine ) {
 
         core = _core;
 

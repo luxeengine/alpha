@@ -5,7 +5,7 @@ import snow.systems.assets.Asset;
 
 import luxe.Log.*;
 
-import luxe.Core;
+import luxe.Engine;
 import luxe.Rectangle;
 
 import phoenix.Batcher;
@@ -40,7 +40,7 @@ class Renderer {
 
     public var batchers : Array<Batcher>;
 
-    public var core : Core;
+    public var core : Engine;
     public var state : RenderState;
     public var default_fbo : GLFramebuffer;
     public var default_rbo : GLRenderbuffer;
@@ -69,7 +69,7 @@ class Renderer {
 
     public var stats : RendererStats;
 
-    public function new( _core:luxe.Core, _asset:AssetImage ) {
+    public function new( _core:luxe.Engine, _asset:AssetImage ) {
 
         core = _core;
         font_asset = _asset;
@@ -236,7 +236,7 @@ class Renderer {
     } //set blend equation
 
         //The resize handler
-    @:allow(luxe.Core)
+    @:allow(luxe.Engine)
     function internal_resized(_w:Int, _h:Int) {
 
         if(target == null) {
@@ -246,7 +246,7 @@ class Renderer {
     } //internal_resized
 
         //The main render function
-    @:allow(luxe.Core)
+    @:allow(luxe.Engine)
     function process() {
 
         if(stop) { return; }

@@ -17,7 +17,7 @@ import snow.Snow;
 class Luxe {
 
         /** Direct access to the core engine */
-    public static var core      : luxe.Core;
+    public static var core      : luxe.Engine;
         /** Access to the core debug features */
     public static var debug     : luxe.Debug;
         /** Access to the io features */
@@ -45,7 +45,7 @@ class Luxe {
         /** Access to the rendering system */
     public static var renderer  : phoenix.Renderer;
 
-        /** Direct access to the underlying snow app API, note that `core:luxe.Core` is a snow app in itself. */
+        /** Direct access to the underlying snow app API, note that `core:luxe.Engine` is a snow app in itself. */
     public static var snow (get, never) : snow.Snow;
         /** The current time in seconds, highest precision from the platform. */
     public static var time (get, never) : Float;
@@ -126,7 +126,7 @@ class Luxe {
         /** show/hide the debug console programmatically */
     public static inline function showConsole(_show:Bool) : Void {
 
-        core.show_console( _show );
+        core.debug.visible = _show;
 
     } //showConsole
 
