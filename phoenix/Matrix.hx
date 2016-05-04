@@ -3,6 +3,7 @@ package phoenix;
 import phoenix.Vector;
 import phoenix.Quaternion;
 import luxe.utils.Maths;
+import snow.api.buffers.Float32Array;
 
     //Ported from Three.js https://github.com/mrdoob/three.js
 
@@ -69,7 +70,7 @@ class Matrix {
             n41, n42, n43, n44
         );
 
-        _float32array = new snow.api.buffers.Float32Array( elements );
+        _float32array = Float32Array.fromArray( elements );
 
     }
 

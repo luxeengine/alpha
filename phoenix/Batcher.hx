@@ -513,13 +513,14 @@ class Batcher {
             throw "uh oh, somehow too many floats are being submitted (max:$max_floats, attempt:$pos_floats).";
         }
 
-        var _pos = new Float32Array(pos_list.buffer, 0, pos_floats);
-        var _tcoords = new Float32Array(tcoord_list.buffer, 0, tcoord_floats);
-        var _colors = new Float32Array(color_list.buffer, 0, color_floats);
+            //fromBuffer takes byte length, so floats * 4
+        var _pos = Float32Array.fromBuffer(pos_list.buffer, 0, pos_floats*4);
+        var _tcoords = Float32Array.fromBuffer(tcoord_list.buffer, 0, tcoord_floats*4);
+        var _colors = Float32Array.fromBuffer(color_list.buffer, 0, color_floats*4);
         var _normals:Float32Array = null;
 
         #if phoenix_use_normals
-            _normals = new Float32Array(normal_list.buffer, 0, normal_floats);
+            _normals = Float32Array.fromBuffer(normal_list.buffer, 0, normal_floats*4);
         #end
 
         submit_buffers(type, _pos, _tcoords, _colors, _normals);
