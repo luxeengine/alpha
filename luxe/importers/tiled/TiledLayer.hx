@@ -161,9 +161,7 @@ class TiledLayer {
 
         /** :todo: This is taken from haxe 3.2 std lib, to support 3.1.3 short term. */
     static inline function bytes_get_int32( bytes:haxe.io.Bytes, pos : Int ) : Int {
-        #if neko_v21
-            return untyped $sget32(bytes.b, pos, false);
-        #elseif (php || python)
+        #if (php || python)
             var v = bytes.get(pos) | (bytes.get(pos + 1) << 8) | (bytes.get(pos + 2) << 16) | (bytes.get(pos+3) << 24);
             return if( v & 0x80000000 != 0 ) v | 0x80000000 else v;
         #else
