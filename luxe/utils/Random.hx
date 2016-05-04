@@ -24,7 +24,8 @@ class Random {
         #end
 
         seed = initial = _initial_seed;
-    }
+
+    } //new
 
 //Public API
 

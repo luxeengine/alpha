@@ -21,7 +21,7 @@ class Utils {
         core = _luxe;
             //initialise the helpers
         geometry = new luxe.utils.GeometryUtils();
-        random = new luxe.utils.Random(Math.random()*0xFFFFFF);
+        random = new luxe.utils.Random(Math.random()*0x7FFFFFFF);
             //initialize the byte text helpers
         _byte_levels = ['bytes', 'Kb', 'MB', 'GB', 'TB'];
 

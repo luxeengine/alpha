@@ -441,7 +441,7 @@ class Debug {
 
     } //set_visible
 
-    @:noCompletion public function destroy() {
+    function destroy() {
 
         app.off(Ev.keyup, keyup);
         app.off(Ev.keydown, keydown);
@@ -455,7 +455,7 @@ class Debug {
 
     } //destroy
 
-    @:noCompletion public function process() {
+    function process() {
 
         dt_average_accum += app.frame_delta;
         dt_average_count++;
