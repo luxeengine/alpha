@@ -48,7 +48,7 @@ class Main extends luxe.Game {
         particles.add_emitter({
             name : 'flames',
             particle_image:t1,
-            pos : new Vector(0,0),
+            pos : new Vector(),
             start_size:new Vector(96,64),
             end_size:new Vector(20,20),
             gravity : new Vector(0,-90),
@@ -92,6 +92,8 @@ class Main extends luxe.Game {
             batcher: glowing,
             emit_time : 0.3
         });
+
+        particles.pos = Luxe.screen.mid;
 
         glowing.on(prerender, function(_){ Luxe.renderer.blend_mode(BlendMode.src_alpha, BlendMode.one); });
         glowing.on(postrender, function(_){ Luxe.renderer.blend_mode(); });
