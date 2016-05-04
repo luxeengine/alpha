@@ -285,7 +285,7 @@ class Main extends luxe.Game {
 
     } //onkeyup
 
-    override function config( config:luxe.AppConfig ) {
+    override function config( config:luxe.GameConfig ) {
 
         #if luxe_doc_sample
             config.window.width = 640;

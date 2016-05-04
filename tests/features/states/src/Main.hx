@@ -105,7 +105,7 @@ class Main extends luxe.Game {
 
         trace("Hit space key to enable a transient state");
 
-        Luxe.core.show_console(true);
+        Luxe.core.debug.visible = true;
 
     } //ready
 

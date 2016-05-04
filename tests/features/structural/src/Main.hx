@@ -4,7 +4,7 @@ import luxe.structural.Pool;
 
 class Main extends luxe.Game {
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         return config;
 

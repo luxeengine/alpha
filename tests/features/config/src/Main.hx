@@ -4,7 +4,7 @@ import luxe.Log.*;
 
 class Main extends luxe.Game {
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         assert(config.user != null);
         assert(config.user.int == 12);

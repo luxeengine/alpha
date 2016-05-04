@@ -21,7 +21,7 @@ class Main extends luxe.Game {
     var ss : Sprite;
 
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/flame.png' });
         config.preload.textures.push({ id:'assets/smoke.png' });

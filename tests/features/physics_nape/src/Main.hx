@@ -8,7 +8,7 @@ import nape.shape.Polygon;
 import nape.shape.Circle;
 import nape.constraint.PivotJoint;
 
-import luxe.AppConfig;
+import luxe.GameConfig;
 import luxe.physics.nape.DebugDraw;
 
 class Main extends luxe.Game {

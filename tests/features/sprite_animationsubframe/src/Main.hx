@@ -18,7 +18,7 @@ class Main extends luxe.Game {
     var subanimation : Sprite;
 
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/player_grid.png' });
         config.preload.textures.push({ id:'assets/player64_grid.png' });

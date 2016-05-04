@@ -14,7 +14,7 @@ class Main extends luxe.Game {
     var sx : Int = 500;
     var sy : Int = 260;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/tiny.ui.png' });
 

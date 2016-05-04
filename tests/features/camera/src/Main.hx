@@ -18,7 +18,7 @@ class Main extends luxe.Game {
     var line_one : LineGeometry;
     var line_two : LineGeometry;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/level.png' });
 

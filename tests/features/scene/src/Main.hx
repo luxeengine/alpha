@@ -23,7 +23,7 @@ class Main extends luxe.Game {
     var hud : Scene;
     var bg : Sprite;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/circle.png' });
 

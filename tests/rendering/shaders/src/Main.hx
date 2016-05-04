@@ -19,7 +19,7 @@ class Main extends luxe.Game {
     var hue_shader : Shader;
     var distort_shader : Shader;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/level.png' });
         config.preload.textures.push({ id:'assets/luxe.png' });

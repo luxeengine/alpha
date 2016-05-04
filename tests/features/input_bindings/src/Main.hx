@@ -22,12 +22,12 @@ class Main extends luxe.Game {
 
     } //ready
 
-    override function oninputup( _input:String, e:InputEvent ) {
-        trace( 'named input up : ' + _input );
+    override function oninputup( event:InputEvent ) {
+        trace( 'named input up : ' + event.name );
     } //oninputup
 
-    override function oninputdown( _input:String, e:InputEvent ) {
-        trace( 'named input down : ' + _input );
+    override function oninputdown( event:InputEvent ) {
+        trace( 'named input down : ' + event.name );
 
     } //oninputdown
 

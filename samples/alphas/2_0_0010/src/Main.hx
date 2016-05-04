@@ -10,7 +10,7 @@ class Main extends luxe.Game {
     public static var state: States;
     public static var font: phoenix.BitmapFont;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures = [
             { id:'assets/particles/snowflake.png' },

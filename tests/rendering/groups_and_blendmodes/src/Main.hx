@@ -17,7 +17,7 @@ class Main extends luxe.Game {
     var batch2 : Batcher;
     var batch3 : Batcher;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/level.png' });
         config.preload.textures.push({ id:'assets/luxe.png' });

@@ -2,7 +2,7 @@
 
 class RunTests extends luxe.Game {
 
-    override function config( config:luxe.AppConfig ) {
+    override function config( config:luxe.GameConfig ) {
 
         return config;
 

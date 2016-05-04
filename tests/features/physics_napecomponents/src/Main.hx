@@ -32,7 +32,7 @@ class Main extends luxe.Game {
     } //ready
 
         //overriding the built in function to configure the default window
-    override function config( config:luxe.AppConfig ) {
+    override function config( config:luxe.GameConfig ) {
 
         config.window.title = "nape physics components";
         config.render.antialiasing = 4;

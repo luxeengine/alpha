@@ -10,7 +10,7 @@ import phoenix.Camera;
 
 class Main extends luxe.Game {
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.shaders.push({ id:'object_shader', vert_id:'assets/vert.glsl', frag_id:'textured' });
         config.preload.textures.push({ id:'assets/tower.jpg' });

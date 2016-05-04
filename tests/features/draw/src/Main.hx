@@ -22,7 +22,7 @@ class Main extends luxe.Game {
     public var circle   : CircleGeometry;
     public var ring     : RingGeometry;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/logo.png' });
 

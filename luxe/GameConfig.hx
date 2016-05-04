@@ -2,7 +2,7 @@ package luxe;
 
 import luxe.Parcel;
 
-typedef AppConfig = {
+typedef GameConfig = {
     > snow.types.Types.AppConfig,
     ? headless : Bool,
     ? preload: {

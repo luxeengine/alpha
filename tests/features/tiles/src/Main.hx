@@ -30,7 +30,7 @@ class Main extends luxe.Game {
 
     var tile_offset_circle : CircleGeometry;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/isotiles.png' });
         config.preload.textures.push({ id:'assets/clouds.png' });

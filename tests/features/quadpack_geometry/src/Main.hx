@@ -28,7 +28,7 @@ class Main extends luxe.Game {
 
     var map_tiles : Array< Array<MapTile> >;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/tileset.png' });
 

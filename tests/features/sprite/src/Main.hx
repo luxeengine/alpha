@@ -9,7 +9,7 @@ class Main extends luxe.Game {
 
     var test_sprite1 : Sprite;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/luxe.png' });
 

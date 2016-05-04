@@ -12,7 +12,7 @@ class Main extends luxe.Game {
 
     var text : Text;
 
-    override function config( config:luxe.AppConfig ) {
+    override function config( config:luxe.GameConfig ) {
 
         config.window.width = 720;
         config.window.height = 420;

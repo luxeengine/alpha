@@ -44,7 +44,7 @@ class Main extends luxe.Game {
 
 //This is housekeeping stuff for the guide
 
-    override function config( config:luxe.AppConfig ) {
+    override function config( config:luxe.GameConfig ) {
 
         #if luxe_doc_sample
             config.window.width = 640;

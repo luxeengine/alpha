@@ -363,7 +363,7 @@ class Main extends luxe.Game {
     } //update_input
 
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         #if (web && sample)
             config.window.width = 720;

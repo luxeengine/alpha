@@ -20,7 +20,7 @@ class Main extends luxe.Game {
 
     var instructions : Text;
 
-    override function config( config:luxe.AppConfig ) {
+    override function config( config:luxe.GameConfig ) {
 
         config.window.title = 'alpha-1.0+parrott';
         config.window.resizable = false;

@@ -16,7 +16,7 @@ class Main extends luxe.Game {
     var sky : Sprite;
     var mousetext : Text;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/bg_sky.png' });
         config.preload.textures.push({ id:'assets/bg_stars.png' });

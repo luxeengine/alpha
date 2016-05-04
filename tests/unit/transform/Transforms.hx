@@ -61,8 +61,6 @@ class Transforms extends Mohxa {
                         log('transform world rotation ' + t1.world.rotation);
                         log('transform world scale ' + t1.world.scale);
 
-                            //watch out for round errors, especially on neko
-
                         equalfloat( t1.world.pos.x, t1.pos.x, 'world.pos.x = pos.x' );
                         equalfloat( t1.world.pos.y, t1.pos.y, 'world.pos.y = pos.y' );
                         equalfloat( t1.world.pos.z, t1.pos.z, 'world.pos.z = pos.z' );

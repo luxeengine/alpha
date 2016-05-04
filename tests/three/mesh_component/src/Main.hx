@@ -10,7 +10,7 @@ class Main extends luxe.Game {
 
     var tower:Entity;
 
-     override function config(config:luxe.AppConfig) {
+     override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/tower.jpg' });
         config.preload.texts.push({ id:'assets/tower.obj' });

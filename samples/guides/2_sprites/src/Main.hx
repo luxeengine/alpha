@@ -13,7 +13,7 @@ class Main extends luxe.Game {
         //The config function is simple: It hands us a default config,
         //we modify the values that we want to change, and then we
         //return it with the modifications.
-    override function config( config:luxe.AppConfig ) {
+    override function config( config:luxe.GameConfig ) {
 
             //This time, we are going to modify the preload parcel texture list,
             //and add our texture for the sprite, so that it will exist when we

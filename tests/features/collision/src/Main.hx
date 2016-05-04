@@ -22,7 +22,7 @@ class Main extends luxe.Game {
     var current : Int = 0;
     var count : Int = 0;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
             //if you have errors about the window being created,
             //lower this to 2, or 0. it can also be 8

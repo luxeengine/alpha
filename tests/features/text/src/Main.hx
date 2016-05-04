@@ -19,7 +19,7 @@ class Main extends luxe.Game {
     var batcher : Batcher;
 
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.fonts.push({ id:'assets/fonts/font.fnt' });
 

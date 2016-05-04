@@ -8,7 +8,7 @@ class Main extends luxe.Game {
     var colors: Array<Color>;
     var touches: Map<Int, Int>;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         #if web
         config.window.fullscreen = true;

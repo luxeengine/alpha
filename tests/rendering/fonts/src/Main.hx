@@ -9,7 +9,7 @@ import phoenix.geometry.TextGeometry;
 class Main extends luxe.Game {
 
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.fonts.push({ id:'assets/fonts/font.fnt' });
 

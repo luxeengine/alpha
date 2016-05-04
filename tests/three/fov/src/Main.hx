@@ -5,7 +5,7 @@ import phoenix.Camera;
 
 class Main extends luxe.Game {
 
-     override function config(config:luxe.AppConfig) {
+     override function config(config:luxe.GameConfig) {
 
         config.render.depth = 24;
 

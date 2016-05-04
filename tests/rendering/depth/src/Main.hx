@@ -12,7 +12,7 @@ class Main extends luxe.Game {
     var image : Texture;
     var image2 : Texture;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/image.jpg' });
         config.preload.textures.push({ id:'assets/luxe.png' });

@@ -11,7 +11,7 @@ import luxe.Vector;
 
 class Main extends luxe.Game {
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
             //The splash screen assets can be loaded up front
             //using the preload parcel. It can't show anything during

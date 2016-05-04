@@ -14,7 +14,7 @@ class Main extends luxe.Game {
     var json_1 : Dynamic;
     var json_2 : Dynamic;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/playertest.png' });
         config.preload.jsons.push({ id:'assets/player1.json' });

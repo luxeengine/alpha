@@ -43,7 +43,7 @@ class Main extends luxe.Game {
     var tex : Texture;
     var speed : Int = 2;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/luxe.png' });
 

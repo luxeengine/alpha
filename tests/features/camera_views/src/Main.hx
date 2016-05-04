@@ -28,7 +28,7 @@ class Main extends luxe.Game {
         //for mouse based control of the current view
     var current_camera : Camera;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures.push({ id:'assets/level.png' });
 

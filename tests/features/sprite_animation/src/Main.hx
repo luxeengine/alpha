@@ -19,7 +19,7 @@ class Main extends luxe.Game {
     var text : Text;
     var textbounds : Rectangle;
 
-    override function config(config:luxe.AppConfig) {
+    override function config(config:luxe.GameConfig) {
 
         config.preload.textures = [
             { id:'assets/carapace.png' },
