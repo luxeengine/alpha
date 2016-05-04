@@ -1,12 +1,12 @@
 {
   flow : {
     build : {
-      boot : 'LuxeApp'
+      boot : 'luxe.Game'
     }
   },
 
   snow: {
-    main: 'luxe.Core'
+    main: 'luxe.Engine'
   },
 
   project : {
@@ -38,7 +38,7 @@
         snow : '*'
       },
       files : {
-        boot : { path:'flow/boot/LuxeApp.hx => haxe/LuxeApp.hx', template:['project','snow', 'luxe'] },
+        luxe_types_game : { path:'flow/build/Game.hx => haxe/luxe/types/user/Game.hx', template:['project', 'luxe'] },
       }
     }
 
