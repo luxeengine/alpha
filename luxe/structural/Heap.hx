@@ -81,7 +81,8 @@ class Heap<T> {
     **/
     public function enqueue(obj : Null<T>) : Bool {
 
-        if (count + 1 < size) {
+        //:todo: the size limit here should be refactored, as it expands anyway
+        // if (count + 1 < size) {
             heap[++count] = obj;
 
             var i = count;
@@ -102,9 +103,9 @@ class Heap<T> {
 
             heap[i] = tmp;
             return true;
-        } else {
-            return false;
-        }
+        // } else {
+            // return false;
+        // }
 
     }
 
