@@ -492,28 +492,7 @@ class Engine extends snow.App {
 
             #if !luxe_noprofile debug.end(Tag.render); #end
 
-            #if !no_debug_console
-
-                var _batch = debug.batcher;
-
-                if(_batch.enabled) {
-
-                    #if !luxe_noprofile debug.start(Tag.debug_batch); #end
-
-                        _batch.draw();
-
-                        renderer.stats.geometry_count += _batch.geometry.size();
-                        renderer.stats.dynamic_batched_count += _batch.dynamic_batched_count;
-                        renderer.stats.static_batched_count += _batch.static_batched_count;
-                        renderer.stats.visible_count += _batch.visible_count;
-                        renderer.stats.draw_calls += _batch.draw_calls;
-                        renderer.stats.vert_count += _batch.vert_count;
-
-                    #if !luxe_noprofile debug.end(Tag.debug_batch); #end
-
-                } //_batch.enabled
-
-            #end
+            debug.render();            
 
         } //!headless
 
@@ -727,5 +706,4 @@ class Tag {
     static var input        = 'core.input';
     static var timer        = 'core.timer';
     static var scene        = 'core.scene';
-    static var debug_batch  = 'batcher.debug_batcher';
 }

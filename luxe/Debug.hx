@@ -181,9 +181,6 @@ class Debug {
                 }
             });
 
-                //no need to process this while we are here.
-            batcher.enabled = false;
-
             for(view in views) {
                 view.create();
             }
@@ -191,6 +188,32 @@ class Debug {
         #end //no_debug_console
 
     } //create_debug_console
+
+    static var debug_batch_tag  = 'batcher.debug_batcher';
+    function render() {
+
+        #if !no_debug_console
+
+            if(visible) {
+
+                #if !luxe_noprofile start(debug_batch_tag); #end
+
+                    batcher.draw();
+
+                    app.renderer.stats.geometry_count += batcher.geometry.size();
+                    app.renderer.stats.dynamic_batched_count += batcher.dynamic_batched_count;
+                    app.renderer.stats.static_batched_count += batcher.static_batched_count;
+                    app.renderer.stats.visible_count += batcher.visible_count;
+                    app.renderer.stats.draw_calls += batcher.draw_calls;
+                    app.renderer.stats.vert_count += batcher.vert_count;
+
+                #if !luxe_noprofile end(debug_batch_tag); #end
+
+            } //visible
+
+        #end
+
+    } //render
 
 //Trace capturing
 
@@ -392,7 +415,6 @@ class Debug {
         #end
 
         visible = _value;
-        batcher.enabled = visible;
         overlay.visible = visible;
 
         if(visible) {

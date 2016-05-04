@@ -973,4 +973,4 @@ typedef InputEvent = {
         /** null, unless type is `gamepad` */
     @:optional var gamepad_event : GamepadEvent;
 
-}
+} //InputEvent
