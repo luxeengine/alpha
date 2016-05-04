@@ -121,7 +121,7 @@ class Screen {
 
 class Cursor {
 
-        /** Locking the cursor hides it, and enables the `xrel`/`yrel`   
+        /** Locking the cursor hides it, and enables the `x_rel`/`y_rel`   
             values on the mouse move events. This changes the mouse to   
             allow movement without it stopping at the bounds.   
             On `web`, this must come from a user initiated action, and asks their permission. (get/set) */

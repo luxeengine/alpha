@@ -196,18 +196,18 @@ class FlyCamera extends luxe.Camera {
     override function onmousemove(e:MouseEvent) {
 
         if(!ready) return;
-        if(Luxe.core.console_visible) {
+        if(Luxe.core.debug.visible) {
             return;
         }
 
-        mouse_delta.set_xy(e.xrel, e.yrel);
+        mouse_delta.set_xy(e.x_rel, e.y_rel);
 
     } //onmousemove
 
     override function onkeydown(e) {
 
             //disabling console, don't allow spinning to new position
-        if(e.scancode == Scan.grave && Luxe.core.console_visible == true) {
+        if(e.scancode == Scan.grave && Luxe.core.debug.visible == true) {
             mouse_delta.set_xy(0,0);
         }
 
