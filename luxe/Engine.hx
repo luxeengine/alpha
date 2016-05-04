@@ -58,14 +58,16 @@ class Engine extends snow.App {
 
 //flags
 
-       //if we have started a shutdown
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
     public var inited : Bool = false;
     public var headless = false;
 
-//internal
-    
+    var running = false;
+
+        /** Create a new luxe engine instance.
+            Call run when you are ready for it to start up,
+            which allows you to attach to events in between. */
     public function new(_game:Game) {
 
         game = _game;
@@ -79,9 +81,12 @@ class Engine extends snow.App {
 
     } //new
 
-    var running = false;
+//Public API
+
+        /** Runs the engine. Can only be called once.
+            Does not return until engine is shut down. */
     public function run() {
-        
+
         assert(running == false);
 
         running = true;
@@ -90,8 +95,44 @@ class Engine extends snow.App {
 
     } //run
 
+        /** Shut down the engine */
+    public function shutdown() {
 
-        //This gets called once snow has booted us
+            //Make sure all systems know we are going down
+        shutting_down = true;
+
+            //shutdown snow, which calls ondestroy for us
+        Luxe.next(app.shutdown);
+
+    } //shutdown
+
+        /** Returns information about the runtime, like the build number, debug state, os, platform */
+    public inline function runtime_info() {
+
+        return '${Luxe.build} / debug:${app.debug} / os:${app.os} / platform:${app.platform}';
+
+    } //runtime_info
+
+    // @:generic
+    inline
+    public function on<T>(event:luxe.Ev, handler:T->Void ) {
+        emitter.on(event, handler);
+    }
+
+    // @:generic
+    inline
+    public function off<T>(event:luxe.Ev, handler:T->Void ) {
+        return emitter.off(event, handler);
+    }
+
+    // @:generic
+    inline
+    public function emit<T>(event:luxe.Ev, ?data:T) {
+        return emitter.emit(event, data);
+    }
+
+//Internal
+
     override function ready() {
 
         if(luxe.Log.get_level() > 1) {
@@ -173,16 +214,16 @@ class Engine extends snow.App {
 
         log('goodbye.');
 
-    }
+    } //ondestroy
 
-    public function init( asset:AssetImage ) {
+    function init(asset:AssetImage) {
 
         _debug('creating subsystems...');
 
             //Order is important here
 
-        Luxe.debug = debug = new Debug( this );
-        Luxe.io = io = new IO( this );
+        Luxe.debug = debug = new Debug(this);
+        Luxe.io = io = new IO(this);
 
         draw    = new Draw(this);
         timer   = new Timer(this);
@@ -282,17 +323,15 @@ class Engine extends snow.App {
 
     function internal_ready(_) {
 
-            //and even more finally, tell snow we want to
-            //know when it's rendering the window so we can draw
         if(!headless) {
 
             #if !luxe_noprofile
-                    //start here because end is called first below
+                    //start called here, so that end is called first, in update/tick
                 debug.start(Tag.update, 50);
                 debug.start(Tag.tick, 50);
             #end
 
-        } //app.window != null && !headless
+        } //!headless
 
             //Call the main ready function
             //and send the ready event to the game
@@ -313,55 +352,73 @@ class Engine extends snow.App {
 
     } //internal_ready
 
-    public function shutdown() {
+//System events
 
-            //Make sure all systems know we are going down
-        shutting_down = true;
+    override function onevent(_event:snow.types.Types.SystemEvent) {
 
-            //shutdown snow, which calls ondestroy for us
-        Luxe.next(app.shutdown);
-
-    } //shutdown
-
-    // @:generic
-    inline
-    public function on<T>(event:luxe.Ev, handler:T->Void ) {
-        emitter.on(event, handler);
-    }
-
-    // @:generic
-    inline
-    public function off<T>(event:luxe.Ev, handler:T->Void ) {
-        return emitter.off(event, handler);
-    }
-
-    // @:generic
-    inline
-    public function emit<T>(event:luxe.Ev, ?data:T) {
-        return emitter.emit(event, data);
-    }
-
-    override function ontickstart() {
-        if(!has_shutdown) emitter.emit(luxe.Ev.tickstart);
-    }
-
-    override function ontickend() {
-        if(!has_shutdown) emitter.emit(luxe.Ev.tickend);
-    }
-
-    override function onevent( event:snow.types.Types.SystemEvent ) {
-
-        if(event.window != null) {
-            window_event(event.window);
+        if(_event.window != null) {
+            window_event(_event.window);
         }
 
-        game.onevent( event );
-
-        event = null;
+        game.onevent(_event);
 
     } //onevent
 
-    override function tick(delta:Float) {
+//Update events
+
+    override function update(_delta:Float) {
+
+        if(has_shutdown) return;
+        if(!inited) return;
+
+        //The order of end/start matters
+
+            #if !luxe_noprofile
+                debug.end(Tag.update);
+                debug.start(Tag.update);
+            #end
+
+        //Update all the subsystems, again, order important
+
+            //Timers first
+            #if luxe_fullprofile debug.start(Tag.timer); #end
+        timer.process();
+            #if luxe_fullprofile debug.end(Tag.timer); #end
+            //Input second
+            #if luxe_fullprofile debug.start(Tag.input); #end
+        input.process();
+            #if luxe_fullprofile debug.end(Tag.input); #end
+            //Audio
+            #if luxe_fullprofile debug.start(Tag.audio); #end
+        audio.process();
+            #if luxe_fullprofile debug.end(Tag.audio); #end
+            //Events
+            #if luxe_fullprofile debug.start(Tag.events); #end
+        events.process();
+            #if luxe_fullprofile debug.end(Tag.events); #end
+
+            //Physics
+            //note that this does not update the physics, simply processes the active engines
+        physics.process();
+
+            //Run update callbacks
+            #if !luxe_noprofile debug.start(Tag.updates); #end
+        emitter.emit(luxe.Ev.update, _delta);
+            #if !luxe_noprofile debug.end(Tag.updates); #end
+
+            //Update the game
+            #if !luxe_noprofile debug.start(Tag.game_update); #end
+        game.update(_delta);
+            #if !luxe_noprofile debug.end(Tag.game_update); #end
+
+            //And finally the debug stuff
+            #if luxe_fullprofile debug.start(Tag.debug); #end
+        debug.process();
+            #if luxe_fullprofile debug.end(Tag.debug); #end
+
+    } //update
+
+    override function tick(_delta:Float) {
 
         if(shutting_down) return;
         if(!inited) return;
@@ -387,67 +444,31 @@ class Engine extends snow.App {
 
             #if !luxe_noprofile debug.end(Tag.render); #end
 
-            debug.render();            
+            debug.render();
 
         } //!headless
 
-
     } //tick
 
-        //called by snow
-    override function update( dt:Float ) {
+    override function ontickstart() {
 
-        #if luxe_fullprofile
-            _verbose('on_update ' + Luxe.time);
-        #end //luxe_fullprofile
+        if(!has_shutdown) {
+            emitter.emit(luxe.Ev.tickstart);
+        }
 
-        if(has_shutdown) return;
-        if(!inited) return;
+    } //ontickstart
 
-        #if !luxe_noprofile
-            debug.end(Tag.update);
-            debug.start(Tag.update);
-        #end
+    override function ontickend() {
 
-            //Update all the subsystems, again, order important
-//Timers first
-            #if luxe_fullprofile debug.start(Tag.timer); #end
-        timer.process();
-            #if luxe_fullprofile debug.end(Tag.timer); #end
-//Input second
-            #if luxe_fullprofile debug.start(Tag.input); #end
-        input.process();
-            #if luxe_fullprofile debug.end(Tag.input); #end
-//Audio
-            #if luxe_fullprofile debug.start(Tag.audio); #end
-        audio.process();
-            #if luxe_fullprofile debug.end(Tag.audio); #end
-//Events
-            #if luxe_fullprofile debug.start(Tag.events); #end
-        events.process();
-            #if luxe_fullprofile debug.end(Tag.events); #end
-//Physics
-            //note that this does not update the physics, simply processes the active engines
-        physics.process();
+        if(!has_shutdown) {
+            emitter.emit(luxe.Ev.tickend);
+        }
 
-//Run update callbacks
-            #if !luxe_noprofile debug.start(Tag.updates); #end
-        emitter.emit(luxe.Ev.update, dt);
-            #if !luxe_noprofile debug.end(Tag.updates); #end
+    } //ontickend
 
-//Update the game class for the game
-            #if !luxe_noprofile debug.start( Tag.game_update ); #end
-        game.update(dt);
-            #if !luxe_noprofile debug.end( Tag.game_update ); #end
+//Window events
 
-//And finally the debug stuff
-            #if luxe_fullprofile debug.start(Tag.debug); #end
-        debug.process();
-            #if luxe_fullprofile debug.end(Tag.debug); #end
-
-    } //update
-
-    function window_event( _event:snow.types.Types.WindowEvent ) {
+    function window_event(_event:snow.types.Types.WindowEvent) {
 
         if(shutting_down) return;
         if(!inited) return;
@@ -493,8 +514,7 @@ class Engine extends snow.App {
 
     } //window_event
 
-
-//input events
+//Input events
 
     //mouse
 
@@ -514,7 +534,7 @@ class Engine extends snow.App {
 
             screen.cursor.set_internal(_x, _y);
 
-            input.onmouseup(_x, _y, _button, _timestamp, _window_id);        
+            input.onmouseup(_x, _y, _button, _timestamp, _window_id);
 
         } //onmouseup
 
@@ -528,7 +548,7 @@ class Engine extends snow.App {
 
         } //onmousemove
 
-        override function onmousewheel( _x:Float, _y:Float, _timestamp:Float, _window_id:Int ) {
+        override function onmousewheel(_x:Float, _y:Float, _timestamp:Float, _window_id:Int) {
 
             if(!inited) return;
 
@@ -613,7 +633,7 @@ class Engine extends snow.App {
             if(!inited) return;
 
             input.ongamepadaxis(_gamepad, _axis, _value, _timestamp);
-            
+
         } //ongamepadaxis
 
         override function ongamepaddown(_gamepad:Int, _button:Int, _value:Float, _timestamp:Float) : Void {
@@ -644,12 +664,12 @@ class Engine extends snow.App {
 //config handling
 
         /** return what the game decides for runtime config */
-    override function config( config: snow.types.Types.AppConfig ) : snow.types.Types.AppConfig {
+    override function config(_config:snow.types.Types.AppConfig) : snow.types.Types.AppConfig {
 
-        if(config.user == null) config.user = {};
+        if(_config.user == null) _config.user = {};
 
             //start with the snow default config
-        game_config = cast config;
+        game_config = cast _config;
 
             //assign the default luxe values
         game_config.window.title = 'luxe game';
@@ -676,9 +696,6 @@ class Engine extends snow.App {
         return cast game_config;
 
     } //config
-
-    @:noCompletion
-    public inline function runtime_info() return '${Luxe.build} / debug:${app.debug} / os:${app.os} / platform:${app.platform}';
 
 } //Engine
 
