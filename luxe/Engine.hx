@@ -102,14 +102,14 @@ class Engine extends snow.App {
         shutting_down = true;
 
             //shutdown snow, which calls ondestroy for us
-        Luxe.next(app.shutdown);
+        snow.Snow.next(app.shutdown);
 
     } //shutdown
 
         /** Returns information about the runtime, like the build number, debug state, os, platform */
     public inline function runtime_info() {
 
-        return '${Luxe.build} / debug:${app.debug} / os:${app.os} / platform:${app.platform}';
+        return '${build} / debug:${app.debug} / os:${app.os} / platform:${app.platform}';
 
     } //runtime_info
 

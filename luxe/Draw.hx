@@ -12,7 +12,7 @@ import luxe.options.GeometryOptions;
 import luxe.options.DrawOptions;
 
 /**
-    The `Luxe.draw` API class implementation.
+    The `draw` API class implementation.
     This class handles quick access to drawing common geometry options,
     and is a facilitator for higher level drawing. These can be used given to a `Visual` to convert
     them into a higher level entity for use with the default scene.

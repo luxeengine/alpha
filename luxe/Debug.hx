@@ -133,7 +133,7 @@ class Debug {
             app.on(Ev.touchmove, touchmove);
 
                 //create the debug renderer and view
-            batcher = new Batcher( Luxe.renderer, 'debug_batcher', Math.floor(Math.pow(2, 20)));
+            batcher = new Batcher( app.renderer, 'debug_batcher', Math.floor(Math.pow(2, 20)));
                 //create a camera
             view = new Camera({ camera_name:'debug_batcher_camera' });
                 //set the camera of the batcher
@@ -144,7 +144,7 @@ class Debug {
             overlay = new QuadGeometry({
                 id: 'debug.overlay',
                 x:0, y:0,
-                w: Luxe.screen.w,  h: Luxe.screen.h,
+                w: app.screen.w,  h: app.screen.h,
                 color : new Color(0,0,0,0.8),
                 depth : 999,    //debug depth
                 visible : false, //default invisible
@@ -154,10 +154,10 @@ class Debug {
             overlay.locked = true;
 
                 //create the scene inspector
-            padding = new Vector(Luxe.screen.w*0.05,Luxe.screen.h*0.05);
+            padding = new Vector(app.screen.w*0.05,app.screen.h*0.05);
             inspector = new Inspector({
                 pos : new Vector(padding.x, padding.y),
-                size : new Vector(Luxe.screen.w-(padding.x*2), Luxe.screen.h-(padding.y*2)),
+                size : new Vector(app.screen.w-(padding.x*2), app.screen.h-(padding.y*2)),
                 batcher : batcher
             });
 
@@ -420,8 +420,8 @@ class Debug {
         if(visible) {
 
                 //revert cursor grab
-            last_cursor_grab = Luxe.screen.cursor.grab;
-            Luxe.screen.cursor.grab = false;
+            last_cursor_grab = app.screen.cursor.grab;
+            app.screen.cursor.grab = false;
                 //show views
             current_view.show();
             inspector.show();
@@ -429,7 +429,7 @@ class Debug {
         } else {
 
             if(last_cursor_grab != false) {
-                Luxe.screen.cursor.grab = last_cursor_grab;
+                app.screen.cursor.grab = last_cursor_grab;
             }
 
             current_view.hide();
@@ -457,7 +457,7 @@ class Debug {
 
     @:noCompletion public function process() {
 
-        dt_average_accum += Luxe.dt;
+        dt_average_accum += app.frame_delta;
         dt_average_count++;
 
         if(dt_average_count == dt_average_span - 1) {
@@ -471,7 +471,7 @@ class Debug {
         }
 
             //update the title
-        inspector.title.text = '[${current_view.name}] / ${Math.round(1/dt_average)} / ${Maths.fixed(Luxe.dt,5)} / ${Maths.fixed(dt_average,5)}';
+        inspector.title.text = '[${current_view.name}] / ${Math.round(1/dt_average)} / ${Maths.fixed(app.frame_delta,5)} / ${Maths.fixed(dt_average,5)}';
 
         for(view in views) {
             view.process();
