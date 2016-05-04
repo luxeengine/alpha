@@ -1,33 +1,40 @@
 package luxe;
 
-import luxe.Core;
-import luxe.Objects;
+import luxe.Engine;
 import luxe.Input;
 import luxe.Screen;
-import snow.App;
+import luxe.GameConfig;
 
-@:noCompletion
 @:keep
 @:keepSub
-class Game extends Emitter<Int> {
+class Game {
 
-    public var app : Core;
+    public var app : Engine;
 
-        /** Empty constructor. Use `ready` instead. */
+        //main entry point
+    #if !luxe_no_main
+        static function main() {
+
+            new luxe.types.user.Game();
+
+        } //main
+    #end
+
     public function new() {
-        super();
-    }
+
+        app = new luxe.Engine(this);
+        app.run();
+
+    } //new
 
         /** Called by luxe to request config changes, override this to change the defaults.
-            This happens before ready, so the values are available when ready is called. */
-    public function config( _config:luxe.AppConfig ) : luxe.AppConfig  { return _config; }
+            This happens before ready, so the values are available when ready is called.
+            This also means that nothing is ready yet in the engine. */
+    public function config( _config:GameConfig ) : GameConfig  { return _config; }
         /** Your entry point. Called for you when you can initialize your application */
     public function ready() {}
         /** Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the {App Guide}) */
     public function update(dt:Float) {}
-
-        /** very low level event handler from snow core. Often handled by the subsystems and by luxe, so check there first! */
-    @:noCompletion public function onevent( event:snow.types.Types.SystemEvent ) { }
 
        /** Your exit point. Called for you when you should shut down your application */
    public function ondestroy() {}
@@ -40,9 +47,9 @@ class Game extends Emitter<Int> {
    public function onpostrender() {}
 
        /** Called when a named input down event occurs */
-   public function oninputdown( _name:String, e:InputEvent ) {}
+   public function oninputdown( event:InputEvent ) {}
        /** Called when a named input up event occurs */
-   public function oninputup( _name:String, e:InputEvent ) {}
+   public function oninputup( event:InputEvent ) {}
 
        /** Called for you when a mouse button is pressed */
    public function onmousedown( event:MouseEvent ) {}
@@ -86,5 +93,8 @@ class Game extends Emitter<Int> {
    public function onwindowminimized( event:WindowEvent ) {}
        /** Called for you when a window is restored. */
    public function onwindowrestored( event:WindowEvent ) {}
+
+        /** very low level event handler from snow core. Often handled by the subsystems and by luxe, so check there first! */
+    @:noCompletion public function onevent( event:snow.types.Types.SystemEvent ) { }
 
 } //Game
