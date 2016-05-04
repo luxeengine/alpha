@@ -289,7 +289,7 @@ class Engine extends snow.App {
             #if !luxe_noprofile
                     //start here because end is called first below
                 debug.start(Tag.update, 50);
-                debug.start(Tag.renderdt, 50);
+                debug.start(Tag.tick, 50);
             #end
 
         } //app.window != null && !headless
@@ -363,7 +363,34 @@ class Engine extends snow.App {
 
     override function tick(delta:Float) {
 
-        render();
+        if(shutting_down) return;
+        if(!inited) return;
+
+        #if !luxe_noprofile
+            debug.end(Tag.tick);
+            debug.start(Tag.tick);
+        #end
+
+        if(!headless) {
+
+            #if !luxe_noprofile debug.start(Tag.render); #end
+
+            emitter.emit(luxe.Ev.prerender);
+            game.onprerender();
+
+                emitter.emit(luxe.Ev.render);
+                game.onrender();
+                renderer.process();
+
+            emitter.emit(luxe.Ev.postrender);
+            game.onpostrender();
+
+            #if !luxe_noprofile debug.end(Tag.render); #end
+
+            debug.render();            
+
+        } //!headless
+
 
     } //tick
 
@@ -466,37 +493,6 @@ class Engine extends snow.App {
 
     } //window_event
 
-    function render() {
-
-        if(shutting_down) return;
-        if(!inited) return;
-
-        #if !luxe_noprofile
-            debug.end(Tag.renderdt);
-            debug.start(Tag.renderdt);
-        #end
-
-        if(!headless) {
-
-            #if !luxe_noprofile debug.start(Tag.render); #end
-
-            emitter.emit(luxe.Ev.prerender);
-            game.onprerender();
-
-                emitter.emit(luxe.Ev.render);
-                game.onrender();
-                renderer.process();
-
-            emitter.emit(luxe.Ev.postrender);
-            game.onpostrender();
-
-            #if !luxe_noprofile debug.end(Tag.render); #end
-
-            debug.render();            
-
-        } //!headless
-
-    } //render
 
 //input events
 
@@ -696,7 +692,7 @@ allocating strings each frame.
 @:allow(luxe.Engine)
 class Tag {
     static var update       = 'update dt';
-    static var renderdt     = 'render dt';
+    static var tick         = 'tick dt';
     static var game_update  = 'game.update';
     static var render       = 'core.render';
     static var debug        = 'core.debug';
