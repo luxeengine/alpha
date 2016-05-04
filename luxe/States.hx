@@ -70,8 +70,8 @@ class State extends ID {
     @:noCompletion public function onkeydown( event:KeyEvent ) {}
     @:noCompletion public function ontextinput( event:TextEvent ) {}
 
-    @:noCompletion public function oninputdown( name:String, event:InputEvent ) {}
-    @:noCompletion public function oninputup( name:String, event:InputEvent ) {}
+    @:noCompletion public function oninputdown( event:InputEvent ) {}
+    @:noCompletion public function oninputup( event:InputEvent ) {}
 
     @:noCompletion public function onmousedown( event:MouseEvent ) {}
     @:noCompletion public function onmouseup( event:MouseEvent ) {}
@@ -459,180 +459,180 @@ class States extends Objects {
 
 //Internal helper functions
 
-    function keydown( e:KeyEvent ) {
+    function keydown(_event:KeyEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.onkeydown(e);
+                state.onkeydown(_event);
             }
         }
     } //onkeydown
 
-    function keyup( e:KeyEvent ) {
+    function keyup(_event:KeyEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.onkeyup(e);
+                state.onkeyup(_event);
             }
         }
     } //onkeyup
 
-    function textinput( e:TextEvent ) {
+    function textinput(_event:TextEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.ontextinput(e);
+                state.ontextinput(_event);
             }
         }
     } //ontextinput
 
 //inputbindings
 
-    function inputup( _event:{ name:String, event:InputEvent } ) {
+    function inputup(_event:InputEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.oninputup( _event.name, _event.event );
+                state.oninputup(_event);
             }
         }
     } //oninputup
 
-    function inputdown( _event:{ name:String, event:InputEvent } ) {
+    function inputdown(_event:InputEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.oninputdown( _event.name, _event.event );
+                state.oninputdown(_event);
             }
         }
     } //oninputdown
 
 //mouse
 
-    function mousedown( e:MouseEvent ) {
+    function mousedown(_event:MouseEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.onmousedown(e);
+                state.onmousedown(_event);
             }
         }
     } //onmousedown
 
-    function mousewheel( e:MouseEvent ) {
+    function mousewheel(_event:MouseEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.onmousewheel(e);
+                state.onmousewheel(_event);
             }
         }
     } //onmousewheel
 
-    function mouseup( e:MouseEvent ) {
+    function mouseup(_event:MouseEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.onmouseup(e);
+                state.onmouseup(_event);
             }
         }
     } //onmouseup
 
-    function mousemove( e:MouseEvent ) {
+    function mousemove(_event:MouseEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.onmousemove(e);
+                state.onmousemove(_event);
             }
         }
     } //onmousemove
 
 //touch
 
-    function touchdown( e:TouchEvent ) {
+    function touchdown(_event:TouchEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.ontouchdown(e);
+                state.ontouchdown(_event);
             }
         }
     } //ontouchdown
 
-    function touchup( e:TouchEvent ) {
+    function touchup(_event:TouchEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.ontouchup(e);
+                state.ontouchup(_event);
             }
         }
     } //ontouchup
 
-    function touchmove( e:TouchEvent ) {
+    function touchmove(_event:TouchEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.ontouchmove(e);
+                state.ontouchmove(_event);
             }
         }
     } //ontouchmove
 
 //gamepad
 
-    function gamepadaxis( e:GamepadEvent ) {
+    function gamepadaxis(_event:GamepadEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.ongamepadaxis(e);
+                state.ongamepadaxis(_event);
             }
         }
     } //ongamepadaxis
 
-    function gamepadup( e:GamepadEvent ) {
+    function gamepadup(_event:GamepadEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.ongamepadup(e);
+                state.ongamepadup(_event);
             }
         }
     } //ongamepadup
 
-    function gamepaddown( e:GamepadEvent ) {
+    function gamepaddown(_event:GamepadEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.ongamepaddown(e);
+                state.ongamepaddown(_event);
             }
         }
     } //ongamepaddown
 
-    function gamepaddevice( e:GamepadEvent ) {
+    function gamepaddevice(_event:GamepadEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.ongamepaddevice(e);
+                state.ongamepaddevice(_event);
             }
         }
     } //ongamepaddevice
 
 //windowing
 
-    function windowmoved( e:WindowEvent ) {
+    function windowmoved(_event:WindowEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.onwindowmoved(e);
+                state.onwindowmoved(_event);
             }
         }
     } //windowmoved
 
-    function windowresized( e:WindowEvent ) {
+    function windowresized(_event:WindowEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.onwindowresized(e);
+                state.onwindowresized(_event);
             }
         }
     } //windowresized
 
-    function windowsized( e:WindowEvent ) {
+    function windowsized(_event:WindowEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.onwindowsized(e);
+                state.onwindowsized(_event);
             }
         }
     } //windowsized
 
-    function windowminimized( e:WindowEvent ) {
+    function windowminimized(_event:WindowEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.onwindowminimized(e);
+                state.onwindowminimized(_event);
             }
         }
     } //windowminimized
 
-    function windowrestored( e:WindowEvent ) {
+    function windowrestored(_event:WindowEvent) {
         if(active_count > 0) {
             for (state in active_states) {
-                state.onwindowrestored(e);
+                state.onwindowrestored(_event);
             }
         }
     } //windowrestored

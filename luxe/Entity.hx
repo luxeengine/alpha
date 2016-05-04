@@ -89,9 +89,9 @@ class Entity extends Objects {
     @:noCompletion public function ontextinput( event:TextEvent ) {}
 
         /** override this to get notified when a named input event happens. only called if overridden. */
-    @:noCompletion public function oninputdown( name:String, event:InputEvent ) {}
+    @:noCompletion public function oninputdown( event:InputEvent ) {}
         /** override this to get notified when a named input event happens. only called if overridden. */
-    @:noCompletion public function oninputup( name:String, event:InputEvent ) {}
+    @:noCompletion public function oninputup( event:InputEvent ) {}
 
         /** override this to get notified when a mouse button is pressed. only called if overridden. */
     @:noCompletion public function onmousedown( event:MouseEvent ) {}
@@ -700,7 +700,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _keyup on ' + name);
+        _debug('calling _keyup on `$name`');
 
         onkeyup(_event);
         emit(Ev.keyup, _event);
@@ -713,7 +713,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _keydown on ' + name);
+        _debug('calling _keydown on `$name`');
 
         onkeydown(_event);
         emit(Ev.keydown, _event);
@@ -726,7 +726,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _textinput on ' + name);
+        _debug('calling _textinput on `$name`');
 
         ontextinput(_event);
         emit(Ev.textinput, _event);
@@ -742,7 +742,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _mousedown on ' + name );
+        _debug('calling _mousedown on `$name`');
 
         onmousedown(_event);
         emit(Ev.mousedown, _event);
@@ -756,7 +756,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _mouseup on ' + name);
+        _debug('calling _mouseup on `$name`');
 
         onmouseup(_event);
         emit(Ev.mouseup, _event);
@@ -769,7 +769,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _mousewheel on ' + name);
+        _debug('calling _mousewheel on `$name`');
 
         onmousewheel(_event);
         emit(Ev.mousewheel, _event);
@@ -782,7 +782,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _mousemove on ' + name);
+        _debug('calling _mousemove on `$name`');
 
         onmousemove(_event);
         emit(Ev.mousemove, _event);
@@ -796,7 +796,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _touchdown on ' + name);
+        _debug('calling _touchdown on `$name`');
 
         ontouchdown(_event);
         emit(Ev.touchdown, _event);
@@ -809,7 +809,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _touchup on ' + name);
+        _debug('calling _touchup on `$name`');
 
         ontouchup(_event);
         emit(Ev.touchup, _event);
@@ -822,7 +822,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _touchmove on ' + name);
+        _debug('calling _touchmove on `$name`');
 
         ontouchmove(_event);
         emit(Ev.touchmove, _event);
@@ -836,7 +836,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _gamepadaxis on ' + name);
+        _debug('calling _gamepadaxis on `$name`');
 
         ongamepadaxis(_event);
         emit(Ev.gamepadaxis, _event);
@@ -849,7 +849,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _gamepaddown on ' + name);
+        _debug('calling _gamepaddown on `$name`');
 
         ongamepaddown(_event);
         emit(Ev.gamepaddown, _event);
@@ -862,7 +862,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _gamepadup on ' + name);
+        _debug('calling _gamepadup on `$name`');
 
         ongamepadup(_event);
         emit(Ev.gamepadup, _event);
@@ -875,7 +875,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _gamepaddevice on ' + name);
+        _debug('calling _gamepaddevice on `$name`');
 
         ongamepaddevice(_event);
         emit(Ev.gamepaddevice, _event);
@@ -890,7 +890,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _windowmoved on ' + name);
+        _debug('calling _windowmoved on `$name`');
 
         onwindowmoved(_event);
         emit(Ev.windowmoved, _event);
@@ -903,7 +903,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _windowresized on ' + name);
+        _debug('calling _windowresized on `$name`');
 
         onwindowresized(_event);
         emit(Ev.windowresized, _event);
@@ -916,7 +916,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _windowsized on ' + name);
+        _debug('calling _windowsized on `$name`');
 
         onwindowsized(_event);
         emit(Ev.windowsized, _event);
@@ -929,7 +929,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _windowminimized on ' + name);
+        _debug('calling _windowminimized on `$name`');
 
         onwindowminimized(_event);
         emit(Ev.windowminimized, _event);
@@ -942,7 +942,7 @@ class Entity extends Objects {
             return;
         }
 
-        _debug('calling _windowrestored on ' + name);
+        _debug('calling _windowrestored on `$name`');
 
         onwindowrestored(_event);
         emit(Ev.windowrestored, _event);
@@ -951,29 +951,29 @@ class Entity extends Objects {
 
 //Input
 
-    function _inputdown( _event : { name:String, event:InputEvent } ) {
+    function _inputdown( _event:InputEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _debug('calling _inputdown on ' + name);
+        _debug('calling _inputdown on `$name`');
 
-        oninputdown(_event.name, _event.event);
+        oninputdown(_event);
         emit(Ev.inputdown, _event);
 
     } //_inputdown
 
-    function _inputup( _event : { name:String, event:InputEvent } ) {
+    function _inputup( _event:InputEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _debug('calling _inputup on ' + name);
+        _debug('calling _inputup on `$name`');
 
-        oninputup(_event.name, _event.event);
-        emit(Ev.inputup, _event );
+        oninputup(_event);
+        emit(Ev.inputup, _event);
 
     } //_inputup
 
