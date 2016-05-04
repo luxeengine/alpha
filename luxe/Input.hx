@@ -131,7 +131,7 @@ class Input {
 //Named event handlers
     //
 
-        /** Bind a named input binding to a `Key` */
+        /** Bind a named input binding to a `Key` keycode */
     public function bind_key(_name:String, _key:Int) {
 
         if( !key_bindings.exists(_name) ) {
@@ -950,7 +950,7 @@ enum InputType {
     touch;
         /** A key input event */
     keys;
-        /** A gampad input event */
+        /** A gamepad input event */
     gamepad;
 
 } //InputType
