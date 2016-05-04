@@ -9,27 +9,29 @@ class TraceDebugView extends luxe.debug.DebugView {
     public var lines : luxe.Text;
     public var max_lines : Int = 35;
 
-    public function new() {
+    public function new(_debug:luxe.Debug) {
 
-        super();
+        super(_debug);
 
         name = 'Log';
 
-        Luxe.debug.add_trace_listener('TraceDebugView', on_trace);
+        luxe.Debug.trace_callbacks.push(on_trace);
 
         logged = [];
 
-        add_line('luxe version ${Luxe.build}');
+        add_line('luxe version ${debug.app.runtime_info()}');
+
 
     } //new
 
     public function on_trace( v : Dynamic, ?inf : haxe.PosInfos ) {
+
         add_line( inf.fileName + ':' + inf.lineNumber + ' ' + v );
-    }
+
+    } //on_trace
 
     public override function create() {
 
-        var debug = Luxe.debug;
         var text_bounds = new luxe.Rectangle( debug.padding.x+20, debug.padding.y+40, Luxe.screen.w-(debug.padding.x*2)-20, Luxe.screen.h-(debug.padding.y*2)-40 );
 
         lines = new luxe.Text({

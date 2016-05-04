@@ -11,9 +11,9 @@ class SceneDebugView extends luxe.debug.DebugView  {
 
     var items_list : luxe.Text;
 
-    public function new() {
+    public function new(_debug:luxe.Debug) {
 
-        super();
+        super(_debug);
 
         name = 'Scenes';
         scenes = [];

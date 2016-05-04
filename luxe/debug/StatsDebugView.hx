@@ -23,9 +23,9 @@ class StatsDebugView extends luxe.debug.DebugView  {
     public var render_stats_text : luxe.Text;
     public var resource_list_text : luxe.Text;
 
-    public function new() {
+    public function new(_debug:luxe.Debug) {
 
-        super();
+        super(_debug);
 
         name = 'Statistics';
 

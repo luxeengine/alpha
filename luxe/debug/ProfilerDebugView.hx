@@ -26,9 +26,9 @@ class ProfilerDebugView extends luxe.debug.DebugView {
         public var memtext:Text;
     #end //cpp
 
-    public function new() {
+    public function new(_debug:luxe.Debug) {
 
-        super();
+        super(_debug);
 
         name = 'Profiler';
         lists = new Map();

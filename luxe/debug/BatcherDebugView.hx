@@ -9,9 +9,12 @@ import phoenix.geometry.Geometry;
 
 class BatcherDebugView extends luxe.debug.DebugView {
 
-    public function new(  ) {
-        super();
+
+    public function new(_debug:luxe.Debug) {
+
+        super(_debug);
         name = 'Batcher Debug';
+
     }
 
     var batcher : Batcher;

@@ -1,32 +1,29 @@
 package luxe;
 
-import luxe.Core;
+import luxe.Engine;
+import luxe.Input;
 import luxe.Ev;
 
 import luxe.debug.Inspector;
-import luxe.Input.KeyEvent;
-import luxe.Input;
+import luxe.debug.DebugView;
+
+import phoenix.Camera;
 import phoenix.Batcher;
 import phoenix.BitmapFont;
-import phoenix.Camera;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
+
 import luxe.utils.Maths;
-
-import luxe.debug.DebugView;
-import luxe.debug.TraceDebugView;
-import luxe.debug.ProfilerDebugView;
-import luxe.debug.SceneDebugView;
-import luxe.debug.StatsDebugView;
-import luxe.debug.BatcherDebugView;
-
 import luxe.Log._debug;
+import luxe.Log.assert;
 
+using StringTools;
+
+@:allow(luxe.Engine)
 class Debug {
 
-    public var core : Core;
-    public var visible : Bool = false;
-    public static var shut_down : Bool = false;
+    public var app : Engine;
+    public var visible (default, set) : Bool = false;
 
     public var inspector : Inspector;
     public var overlay : QuadGeometry;
@@ -35,12 +32,13 @@ class Debug {
     public var view : Camera;
     public var debug_font : BitmapFont;
 
-        //track a 10 frame average
+        //track a delta frame average
     public var dt_average : Float = 0;
     public var dt_average_accum : Float = 0;
     public var dt_average_span : Int = 60;
     public var dt_average_count : Int = 0;
 
+//views
     public var current_view_index = 0;
     public var last_view_index = 0;
     public var current_view : DebugView;
@@ -48,40 +46,17 @@ class Debug {
 
     public var padding : Vector;
 
-    public var started = false;
-
 //Profile path
     public var profile_path : String = "profile.txt";
     public var profiling : Bool = false;
 
-    static var trace_callbacks : Map<String, Dynamic->?haxe.PosInfos->Void>;
+    function new( _app:Engine ) {
 
-    @:noCompletion public function new( _core:Core ) {
-        core = _core;
+        app = _app;
+
     } //new
 
-    @:noCompletion public function init() {
-
-        trace_callbacks = new Map();
-        views = [];
-
-        #if !no_debug_console
-
-            views.push(new TraceDebugView());
-            views.push(new StatsDebugView());
-            //views.push(new BatcherDebugView());
-            views.push(new ProfilerDebugView());
-            views.push(new SceneDebugView());
-
-            current_view = views[0];
-
-        #end
-
-        haxe.Log.trace = internal_trace;
-
-        _debug('\t debug initialized.');
-
-    } //init
+//public API
 
         /** Fetch the instance of the debug view for manipulation by name */
     public function get_view<T>(_name:String) : T {
@@ -99,11 +74,12 @@ class Debug {
     } //get_view
 
     #if !luxe_noprofile
-            /** start a profiling section for the profiler debug view */
+
+        /** start a profiling section for the profiler debug view */
         public function start(_name:String, ?_max:Float) {
             #if !no_debug_console
-                if(!core.appconfig.headless) {
-                    ProfilerDebugView.start(_name, _max);
+                if(!app.headless) {
+                    luxe.debug.ProfilerDebugView.start(_name, _max);
                 }
             #end
         }
@@ -111,78 +87,50 @@ class Debug {
             /** end a profiling section for the profiler debug view */
         public function end(_name:String) {
             #if !no_debug_console
-                if(!core.appconfig.headless) {
-                    ProfilerDebugView.end(_name);
+                if(!app.headless) {
+                    luxe.debug.ProfilerDebugView.end(_name);
                 }
             #end
         }
     #end
 
-        /** remove a trace listener added via add_trace_listener */
-    public function remove_trace_listener( _name:String ) {
-        trace_callbacks.remove(_name);
-    }
+//Internal
 
-        /** since luxe captures the haxe `trace` log, you can add listeners to catch trace values for yourself. */
-    public function add_trace_listener( _name:String, _callback: Dynamic->?haxe.PosInfos->Void ) {
-        trace_callbacks.set(_name, _callback);
-    }
+    function init() {
 
-
-    //Taken from haxe std lib
-#if cpp
-    static function default_cpp_trace( v : Dynamic, ?infos : haxe.PosInfos ) {
-        if (infos!=null && infos.customParams!=null) {
-            var extra:String = "";
-            for( v in infos.customParams ) { extra += "," + v; }
-            untyped __trace(v + extra,infos);
-        } else {
-            untyped __trace(v,infos);
-        }
-    } //default_native_trace
-#end //cpp
-#if neko
-    static function default_neko_trace(v:Dynamic, ?infos:haxe.PosInfos) {
-        untyped {
-            $print(infos.fileName + ":" + infos.lineNumber + ": ", v);
-            if( infos.customParams != null ) for( v in infos.customParams ) $print(",", v);
-            $print("\n");
-        }
-    }
-#end //neko
-
-    @:noCompletion public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos ) {
-
-        var _line = StringTools.rpad(Std.string(inf.lineNumber), ' ', 4);
-
-        #if neko default_neko_trace(v, inf);
-        #elseif cpp default_cpp_trace(v, inf);
-        #end
-
-        #if luxe_web untyped console.log('${inf.fileName}::$_line $v');
-        #end
-
-        if(shut_down) {
-            return;
-        }
-
-            //call listeners
-        for(_callback in trace_callbacks) {
-            _callback(v, inf);
-        }
-
-    } //internal_trace
-
-    @:noCompletion public function create_debug_console() {
+        views = [];
 
         #if !no_debug_console
 
-            core.on(Ev.keyup, keyup);
-            core.on(Ev.keydown, keydown);
-            core.on(Ev.mouseup, mouseup);
-            core.on(Ev.mousedown, mousedown);
-            core.on(Ev.mousemove, mousemove);
-            core.on(Ev.mousewheel, mousewheel);
+            views.push(new luxe.debug.TraceDebugView(this));
+            views.push(new luxe.debug.StatsDebugView(this));
+            //views.push(new luxe.debug.BatcherDebugView(this));
+            views.push(new luxe.debug.ProfilerDebugView(this));
+            views.push(new luxe.debug.SceneDebugView(this));
+
+            current_view = views[0];
+
+        #end
+
+        haxe.Log.trace = internal_trace;
+
+        _debug('\t debug initialized.');
+
+    } //init
+
+    function create_debug_console() {
+
+        #if !no_debug_console
+
+            app.on(Ev.keyup, keyup);
+            app.on(Ev.keydown, keydown);
+            app.on(Ev.mouseup, mouseup);
+            app.on(Ev.mousedown, mousedown);
+            app.on(Ev.mousemove, mousemove);
+            app.on(Ev.mousewheel, mousewheel);
+            app.on(Ev.touchup, touchup);
+            app.on(Ev.touchdown, touchdown);
+            app.on(Ev.touchmove, touchmove);
 
                 //create the debug renderer and view
             batcher = new Batcher( Luxe.renderer, 'debug_batcher', Math.floor(Math.pow(2, 20)));
@@ -216,7 +164,7 @@ class Debug {
 
             inspector.onrefresh = refresh;
 
-            core.on(Ev.windowsized, function( _event:luxe.Screen.WindowEvent ){
+            app.on(Ev.windowsized, function( _event:luxe.Screen.WindowEvent ){
 
                 var _w = _event.x;
                 var _h = _event.y;
@@ -244,6 +192,42 @@ class Debug {
 
     } //create_debug_console
 
+//Trace capturing
+
+    public static var trace_callbacks : Array<Dynamic->?haxe.PosInfos->Void> = [];
+
+    static var shut_down : Bool = false;
+    static var tracing : Bool = false;
+
+    static function internal_trace(_value:Dynamic, ?_info:haxe.PosInfos) {
+
+        assert(tracing == false, 'luxe.Debug: calling trace from a trace callback is an infinite loop!');
+        tracing = true;
+
+            var _out = '$_value';
+
+            if(_info != null && _info.customParams != null) {
+                _out += ' ' + _info.customParams.join(' ');
+            }
+
+            #if cpp 
+                untyped __trace(_out, _info);
+            #elseif luxe_web 
+                untyped console.log('${_info.fileName}::${Std.string(_info.lineNumber).rpad(" ", 4)} $_out'); 
+            #end
+
+            if(!shut_down) {
+                for(_callback in trace_callbacks) {
+                    _callback(_value, _info);
+                }
+            }
+
+        tracing = false;
+
+    } //internal_trace
+
+//Events
+
     function mouseup(e:MouseEvent) {
         if(visible) {
             for(view in views) {
@@ -260,6 +244,14 @@ class Debug {
         }
     } //mousedown
 
+    function mousemove(e:MouseEvent) {
+        if(visible) {
+            for(view in views) {
+                view.onmousemove(e);
+            }
+        }
+    } //mousemove
+
     function mousewheel(e:MouseEvent) {
         if(visible) {
             for(view in views) {
@@ -268,13 +260,47 @@ class Debug {
         }
     } //mousewheel
 
-    function mousemove(e:MouseEvent) {
+   function touchup(e:TouchEvent) {
         if(visible) {
             for(view in views) {
-                view.onmousemove(e);
+                view.ontouchup(e);
             }
         }
-    } //mousemove
+    } //touchup
+
+    function touchdown(e:TouchEvent) {
+
+        #if (!no_debug_console && mobile)
+
+                //3 finger tap when console opens will switch tabs
+            if(app.app.input.touch_count == 3) {
+                if(visible) {
+                    switch_view();
+                }
+            }
+
+                //4 finger tap toggles console
+            if(app.app.input.touch_count == 4) {
+                visible = !visible;
+            }
+
+        #end //no_debug_console
+
+
+        if(visible) {
+            for(view in views) {
+                view.ontouchdown(e);
+            }
+        }
+    } //touchdown
+
+    function touchmove(e:TouchEvent) {
+        if(visible) {
+            for(view in views) {
+                view.ontouchmove(e);
+            }
+        }
+    } //touchmove
 
     function keyup(e:KeyEvent) {
 
@@ -298,9 +324,13 @@ class Debug {
 
     function keydown(e:KeyEvent) {
 
+        if(e.scancode == Scan.grave) {
+            visible = !visible;
+        }
+
         if(visible) {
 
-            if(e.keycode == Key.key_1 && core.console_visible) {
+            if(e.keycode == Key.key_1 && visible) {
                 switch_view();
             }
 
@@ -355,48 +385,48 @@ class Debug {
 
     var last_cursor_grab : Bool = false;
 
-    @:noCompletion public function show_console(_show:Bool = true) {
+    function set_visible(_value:Bool) {
 
         #if no_debug_console
-            return;
+            return visible = false;
         #end
 
-        if(_show) {
+        visible = _value;
+        batcher.enabled = visible;
+        overlay.visible = visible;
 
+        if(visible) {
+
+                //revert cursor grab
             last_cursor_grab = Luxe.screen.cursor.grab;
-
             Luxe.screen.cursor.grab = false;
+                //show views
+            current_view.show();
+            inspector.show();
 
         } else {
 
-            if(last_cursor_grab!=false) {
+            if(last_cursor_grab != false) {
                 Luxe.screen.cursor.grab = last_cursor_grab;
             }
-        }
 
-        visible = _show;
-        batcher.enabled = _show;
-
-        if(_show) {
-            current_view.show();
-            overlay.visible = true;
-            inspector.show();
-        } else {
             current_view.hide();
             inspector.hide();
-            overlay.visible = false;
-        }
 
-    } //show_console
+        } //visible
+
+        return visible;
+
+    } //set_visible
 
     @:noCompletion public function destroy() {
 
-        core.off(Ev.keyup, keyup);
-        core.off(Ev.keydown, keydown);
-        core.off(Ev.mouseup, mouseup);
-        core.off(Ev.mousedown, mousedown);
-        core.off(Ev.mousemove, mousemove);
-        core.off(Ev.mousewheel, mousewheel);
+        app.off(Ev.keyup, keyup);
+        app.off(Ev.keydown, keydown);
+        app.off(Ev.mouseup, mouseup);
+        app.off(Ev.mousedown, mousedown);
+        app.off(Ev.mousemove, mousemove);
+        app.off(Ev.mousewheel, mousewheel);
 
         _debug('\t debug shut down.');
         shut_down = true;
