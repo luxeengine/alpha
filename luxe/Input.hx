@@ -22,7 +22,7 @@ class Input {
     var mouse_event: MouseEvent;
     var touch_event: TouchEvent;
     var gamepad_event: GamepadEvent;
-
+    var input_event: InputEvent;
 //
 
     function new( _core:Engine ) {
@@ -34,6 +34,7 @@ class Input {
         mouse_event = new MouseEvent();
         touch_event = new TouchEvent();
         gamepad_event = new GamepadEvent();
+        input_event = new InputEvent();
 
     } //new
 
@@ -431,29 +432,25 @@ class Input {
             
             if(core.shutting_down) return;
 
-            var _type = InputType.unknown;
+            if(_key_event != null) {
+                input_event.set_key(_name, InteractState.down, _key_event);
+            }
+            else if(_mouse_event != null) {
+                input_event.set_mouse(_name, InteractState.down, _mouse_event);
+            }
+            else if(_touch_event != null) {
+                input_event.set_touch(_name, InteractState.down, _touch_event);
+            }
+            else if(_gamepad_event != null) {
+                input_event.set_gamepad(_name, InteractState.down, _gamepad_event);
+            }
+            else {
+                input_event.set_unknown(_name, InteractState.down);
+            }
 
-            if(_key_event != null)      _type = InputType.keys;
-            if(_mouse_event != null)    _type = InputType.mouse;
-            if(_touch_event != null)    _type = InputType.touch;
-            if(_gamepad_event != null)  _type = InputType.gamepad;
+            core.emit(luxe.Ev.inputdown, input_event);
 
-                //:todo: move to instance
-            var _event = {
-                name : _name,
-                type : _type,
-                state : InteractState.down,
-                key_event : _key_event,
-                mouse_event : _mouse_event,
-                touch_event : _touch_event,
-                gamepad_event : _gamepad_event
-            };
-
-            core.emit(luxe.Ev.inputdown, _event);
-
-            core.game.oninputdown(_event);
-
-            _event = null;
+            core.game.oninputdown(input_event);
 
         } //oninputdown
 
@@ -461,29 +458,25 @@ class Input {
             
             if(core.shutting_down) return;
 
-            var _type = InputType.unknown;
+            if(_key_event != null) {
+                input_event.set_key(_name, InteractState.up, _key_event);
+            }
+            else if(_mouse_event != null) {
+                input_event.set_mouse(_name, InteractState.up, _mouse_event);
+            }
+            else if(_touch_event != null) {
+                input_event.set_touch(_name, InteractState.up, _touch_event);
+            }
+            else if(_gamepad_event != null) {
+                input_event.set_gamepad(_name, InteractState.up, _gamepad_event);
+            }
+            else {
+                input_event.set_unknown(_name, InteractState.up);
+            }
 
-            if(_key_event != null)      _type = InputType.keys;
-            if(_mouse_event != null)    _type = InputType.mouse;
-            if(_touch_event != null)    _type = InputType.touch;
-            if(_gamepad_event != null)  _type = InputType.gamepad;
+            core.emit(luxe.Ev.inputup, input_event);
 
-                //:todo: move to instance
-            var _event = {
-                name : _name,
-                type : _type,
-                state : InteractState.up,
-                key_event : _key_event,
-                mouse_event : _mouse_event,
-                touch_event : _touch_event,
-                gamepad_event : _gamepad_event
-            };
-    
-            core.emit(luxe.Ev.inputup, _event);
-
-            core.game.oninputup(_event);
-
-            _event = null;
+            core.game.oninputup(input_event);
 
         } //oninputup
 
@@ -940,7 +933,7 @@ class MouseEvent {
 } //MouseEvent
 
 /** A type for a named input event */
-enum InputType {
+enum InputEventType {
 
         /** An unknown input event */
     unknown;
@@ -953,24 +946,71 @@ enum InputType {
         /** A gamepad input event */
     gamepad;
 
-} //InputType
+} //InputEventType
 
 /** Information about a named input event */
-typedef InputEvent = {
+class InputEvent {
+    
+    public function new() {
 
-        /** the name of the input event */
-    var name : String;
-        /** the type of input this event was generated for */
-    var type  : InputType;
+    } //new
+
+        /** The name of the input event */
+    public var name (default, null): String;
+        /** The type of input this event was generated for */
+    public var type (default, null): InputEventType;
         /** The state of the event */
-    var state : InteractState;
-        /** null, unless type is `touch` */
-    @:optional var touch_event : TouchEvent;
+    public var state (default, null): InteractState;
         /** null, unless type is `mouse` */
-    @:optional var mouse_event : MouseEvent;
+    public var mouse_event (default, null): MouseEvent;
         /** null, unless type is `keys` */
-    @:optional var key_event : KeyEvent;
+    public var key_event (default, null): KeyEvent;
+        /** null, unless type is `touch` */
+    public var touch_event (default, null): TouchEvent;
         /** null, unless type is `gamepad` */
-    @:optional var gamepad_event : GamepadEvent;
+    public var gamepad_event (default, null): GamepadEvent;
+
+    @:noCompletion
+    public function set_key(_name:String, _state:InteractState, _key_event:KeyEvent) {
+        set_common(_name, InputEventType.keys, _state);
+        set_events(_key_event, null, null, null);
+    } //set_key
+
+    @:noCompletion
+    public function set_mouse(_name:String, _state:InteractState, _mouse_event:MouseEvent) {
+        set_common(_name, InputEventType.mouse, _state);
+        set_events(null, _mouse_event, null, null);
+    } //set_mouse
+
+    @:noCompletion
+    public function set_touch(_name:String, _state:InteractState, _touch_event:TouchEvent) {
+        set_common(_name, InputEventType.touch, _state);
+        set_events(null, null, _touch_event, null);
+    } //set_touch
+
+    @:noCompletion
+    public function set_gamepad(_name:String, _state:InteractState, _gamepad_event:GamepadEvent) {
+        set_common(_name, InputEventType.gamepad, _state);
+        set_events(null, null, null, _gamepad_event);
+    } //set_gamepad
+
+    @:noCompletion
+    public function set_unknown(_name:String, _state:InteractState) {
+        set_common(_name, InputEventType.unknown, _state);
+        set_events(null, null, null, null);
+    } //set_unknown
+
+    function set_common(_name:String, _type:InputEventType, _state:InteractState) {
+        name = _name;
+        type = _type;
+        state = _state;
+    } //set_common
+
+    function set_events(_key_event:KeyEvent, _mouse_event:MouseEvent, _touch_event:TouchEvent, _gamepad_event:GamepadEvent) {
+        key_event = _key_event;
+        mouse_event = _mouse_event;
+        touch_event = _touch_event;
+        gamepad_event = _gamepad_event;
+    } //set_events
 
 } //InputEvent
