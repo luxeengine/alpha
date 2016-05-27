@@ -942,7 +942,7 @@ enum InputEventType {
         /** A touch input event */
     touch;
         /** A key input event */
-    keys;
+    key;
         /** A gamepad input event */
     gamepad;
 
@@ -950,7 +950,7 @@ enum InputEventType {
 
 /** Information about a named input event */
 class InputEvent {
-    
+
     public function new() {
 
     } //new
@@ -963,7 +963,7 @@ class InputEvent {
     public var state (default, null): InteractState;
         /** null, unless type is `mouse` */
     public var mouse_event (default, null): MouseEvent;
-        /** null, unless type is `keys` */
+        /** null, unless type is `key` */
     public var key_event (default, null): KeyEvent;
         /** null, unless type is `touch` */
     public var touch_event (default, null): TouchEvent;
@@ -972,7 +972,7 @@ class InputEvent {
 
     @:noCompletion
     public function set_key(_name:String, _state:InteractState, _key_event:KeyEvent) {
-        set_common(_name, InputEventType.keys, _state);
+        set_common(_name, InputEventType.key, _state);
         set_events(_key_event, null, null, null);
     } //set_key
 
