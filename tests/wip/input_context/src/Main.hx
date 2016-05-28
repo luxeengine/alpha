@@ -21,7 +21,7 @@ class Main extends luxe.Game {
         map.bind_gamepad_range('hold_trigger', 5, 0.25, 0.75, false, true, true);
 
         map.bind_touch('touch');
-        map.bind_touch_range('touch_move', ScreenAxis.X, 0.25, 0.75, true, true, true);
+        map.bind_touch_range('touch_move', ScreenAxis.X, 0.25, 0.75, false, true, true);
 
         map.on(InteractType.down, input_down);
         map.on(InteractType.up, input_up);
