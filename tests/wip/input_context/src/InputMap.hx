@@ -7,15 +7,15 @@ class InputMap extends Emitter<InteractType> implements InputContext {
 
     var mouse_button_bindings:Map<MouseButton, Array<String>>;
         //Use string as key since we have to iterate over it anyway, and for remove we can at least just search entries for one event name (as compared to an array)
-    var mouse_move_bindings:Map<String, Array<RangeBinding>>;
+    var mouse_range_bindings:Map<String, Array<RangeBinding>>;
     var mouse_wheel_bindings:Array<String>;
 
     var gamepad_button_bindings:Map<Int, Array<GamepadButtonBinding>>;
-    var gamepad_axis_bindings:Map<String, Array<RangeBinding>>;
+    var gamepad_range_bindings:Map<String, Array<RangeBinding>>;
     var gamepad_axis_values:Map<Int, Float>; //Keeps track of previous values of gamepad axes for range checks
 
     var touch_bindings:Array<String>;
-    var touch_move_bindings:Map<String, Array<RangeBinding>>;
+    var touch_range_bindings:Map<String, Array<RangeBinding>>;
 
     var input_event:InputEvent;
 
@@ -24,13 +24,13 @@ class InputMap extends Emitter<InteractType> implements InputContext {
 
         key_bindings = new Map();
         mouse_button_bindings = new Map();
-        mouse_move_bindings = new Map();
+        mouse_range_bindings = new Map();
         mouse_wheel_bindings = [];
         gamepad_button_bindings = new Map();
-        gamepad_axis_bindings = new Map();
+        gamepad_range_bindings = new Map();
         gamepad_axis_values = new Map();
         touch_bindings = [];
-        touch_move_bindings = new Map();
+        touch_range_bindings = new Map();
 
         input_event = new InputEvent();
 
@@ -105,8 +105,8 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         //:todo: default start/end to 0/1 for convenience "I want everything" mouse move binding? However possibly handled by 'default' raw events set on construction
     public function bind_mouse_range(_name:String, _axis:ScreenAxis, _start:Float, _end:Float, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool) {
         //store info here, figure out how to store it by working back from the check state
-        if(!mouse_move_bindings.exists(_name)) {
-            mouse_move_bindings.set(_name, []);
+        if(!mouse_range_bindings.exists(_name)) {
+            mouse_range_bindings.set(_name, []);
         }
         var binding = {
             axis:_axis,
@@ -117,7 +117,7 @@ class InputMap extends Emitter<InteractType> implements InputContext {
             leave_emit:_leave_emit
         }
 
-        var bindings = mouse_move_bindings.get(_name);
+        var bindings = mouse_range_bindings.get(_name);
         bindings.push(binding); //Doesn't check for duplicates, but duplicates don't mean much anyway (only possible in the rare case of all properties being equal)
     }
 
@@ -149,8 +149,8 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
     public function bind_gamepad_range(_name:String, _axis:Int, _start:Float, _end:Float, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool) { //:todo: better naming maybe?
-        if(!gamepad_axis_bindings.exists(_name)) {
-            gamepad_axis_bindings.set(_name, []);
+        if(!gamepad_range_bindings.exists(_name)) {
+            gamepad_range_bindings.set(_name, []);
         }
 
         var binding = {
@@ -162,7 +162,7 @@ class InputMap extends Emitter<InteractType> implements InputContext {
             leave_emit:_leave_emit
         }
 
-        var bindings = gamepad_axis_bindings.get(_name);
+        var bindings = gamepad_range_bindings.get(_name);
         bindings.push(binding);
 
         gamepad_axis_values.set(_axis, 0.0); //Have an initial previous value. Assuming 0.0
@@ -175,8 +175,8 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
     public function bind_touch_range(_name:String, _axis:ScreenAxis, _start:Float, _end:Float, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool) {
-        if(!touch_move_bindings.exists(_name)) {
-            touch_move_bindings.set(_name, []);
+        if(!touch_range_bindings.exists(_name)) {
+            touch_range_bindings.set(_name, []);
         }
         var binding = {
             axis:_axis,
@@ -187,7 +187,7 @@ class InputMap extends Emitter<InteractType> implements InputContext {
             leave_emit:_leave_emit
         }
 
-        var bindings = touch_move_bindings.get(_name);
+        var bindings = touch_range_bindings.get(_name);
         bindings.push(binding); //Doesn't check for duplicates, but duplicates don't mean much anyway (only possible in the rare case of all properties being equal)
     }
 
@@ -248,8 +248,8 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
     function check_mouse_move(_event:MouseEvent) {
-        for(name in mouse_move_bindings.keys()) {
-            var bindings = mouse_move_bindings.get(name);
+        for(name in mouse_range_bindings.keys()) {
+            var bindings = mouse_range_bindings.get(name);
             for(binding in bindings) {
                 if(binding.axis == ScreenAxis.X) {
                     if(_event.x_rel == 0) continue;
@@ -303,8 +303,8 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
     function check_gamepad_axis(_event:GamepadEvent) {
-        for(name in gamepad_axis_bindings.keys()) {
-            var bindings = gamepad_axis_bindings.get(name);
+        for(name in gamepad_range_bindings.keys()) {
+            var bindings = gamepad_range_bindings.get(name);
             for(binding in bindings) {
                 if(binding.axis != _event.axis) continue; //Not a binding for this axis
                 check_range_event(_event.value, gamepad_axis_values.get(binding.axis), name, binding, null, null, _event);
@@ -334,11 +334,33 @@ class InputMap extends Emitter<InteractType> implements InputContext {
                 oninputevent(name, InteractType.up, null, null, _event);
             }
         }
+
+        for(name in touch_range_bindings.keys()) { //:todo: Maybe debateable whether ranges should also be triggered by up/down events within that range.
+            var bindings = touch_range_bindings.get(name);
+            for(binding in bindings) {
+                var pos:Float;
+                if(binding.axis == ScreenAxis.X) {
+                    pos = _event.x;
+                }
+                else {
+                    pos = _event.y;
+                }
+
+                if(check_in_range(pos, binding.start, binding.end)) {
+                    if(_down && binding.enter_emit) {
+                        oninputevent(name, InteractType.down, null, null, _event);
+                    }
+                    else if(!_down && binding.leave_emit) {
+                        oninputevent(name, InteractType.up, null, null, _event);
+                    }
+                }
+            }
+        }
     }
 
-    function check_touch_move(_event:TouchEvent) { //:todo: move is actually more complex than this, since there can be multiple touches (important?), and they can teleport (-> an up within a range should also trigger leave?)
-        for(name in touch_move_bindings.keys()) {
-            var bindings = touch_move_bindings.get(name);
+    function check_touch_move(_event:TouchEvent) {
+        for(name in touch_range_bindings.keys()) {
+            var bindings = touch_range_bindings.get(name);
             for(binding in bindings) {
                 if(binding.axis == ScreenAxis.X) {
                     if(_event.dx == 0) continue;
