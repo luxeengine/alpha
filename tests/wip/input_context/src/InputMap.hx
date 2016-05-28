@@ -130,12 +130,30 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         bindings.push(binding); //Doesn't check for duplicates, but duplicates don't mean much anyway (only possible in the rare case of all properties being equal)
     }
 
+    public function unbind_mouse_range(_name:String, _axis:ScreenAxis, _start:Float, _end:Float, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool):Bool {
+        if(!mouse_range_bindings.exists(_name)) return false;
+
+        var bindings = mouse_range_bindings.get(_name);
+        var binding = Lambda.find(bindings, range_binding_compare.bind(_axis, _start, _end, _change_emit, _enter_emit, _leave_emit));
+        if(binding != null) {
+            bindings.remove(binding);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     //:todo: remaining unbind calls - You'd have to pass in all the details as passed in bind - maybe there's a better way of doing that?
 
     public function bind_mouse_wheel(_name:String) {
         if(mouse_wheel_bindings.indexOf(_name) == -1) {
             mouse_wheel_bindings.push(_name);
         }
+    }
+
+    public function unbind_mouse_wheel(_name:String):Bool {
+        return mouse_wheel_bindings.remove(_name);
     }
 
         /** Bind a named input binding to a `Gamepad Button`. If no `Gamepad Id` is specified, any gamepad fires the named binding.*/
@@ -145,15 +163,25 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         }
 
         var bindings = gamepad_button_bindings.get(_button);
-
-        var binding_compare = function(val:GamepadButtonBinding) {
-            return val.name == _name && val.gamepad_id == _id;
-        }
-        if(Lambda.find(bindings, binding_compare) == null) {
+        if(Lambda.find(bindings, gamepad_button_binding_compare.bind(_name, _id)) == null) {
             bindings.push({
                 name:_name,
                 gamepad_id:_id
             });
+        }
+    }
+
+    public function unbind_gamepad_button(_name:String, _button:Int, ?_id:Null<Int> = null):Bool {
+        if(!gamepad_button_bindings.exists(_button)) return false;
+
+        var bindings = gamepad_button_bindings.get(_button);
+        var binding = Lambda.find(bindings, gamepad_button_binding_compare.bind(_name, _id));
+        if(binding != null) {
+            bindings.remove(binding);
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
@@ -177,10 +205,28 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         gamepad_axis_values.set(_axis, 0.0); //Have an initial previous value. Assuming 0.0
     }
 
+    public function unbind_gamepad_range(_name:String, _axis:Int, _start:Float, _end:Float, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool):Bool {
+        if(!gamepad_range_bindings.exists(_name)) return false;
+
+        var bindings = gamepad_range_bindings.get(_name);
+        var binding = Lambda.find(bindings, range_binding_compare.bind(_axis, _start, _end, _change_emit, _enter_emit, _leave_emit));
+        if(binding != null) {
+            bindings.remove(binding);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function bind_touch(_name:String) {
         if(touch_bindings.indexOf(_name) == -1) {
             touch_bindings.push(_name);
         }
+    }
+
+    public function unbind_touch(_name:String):Bool {
+        return touch_bindings.remove(_name);
     }
 
     public function bind_touch_range(_name:String, _axis:ScreenAxis, _start:Float, _end:Float, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool) {
@@ -200,15 +246,29 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         bindings.push(binding); //Doesn't check for duplicates, but duplicates don't mean much anyway (only possible in the rare case of all properties being equal)
     }
 
-    public function inputdown(_name:String) : Bool {
+    public function unbind_touch_range(_name:String, _axis:ScreenAxis, _start:Float, _end:Float, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool) {
+        if(!touch_range_bindings.exists(_name)) return false;
+
+        var bindings = touch_range_bindings.get(_name);
+        var binding = Lambda.find(bindings, range_binding_compare.bind(_axis, _start, _end, _change_emit, _enter_emit, _leave_emit));
+        if(binding != null) {
+            bindings.remove(binding);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function inputdown(_name:String):Bool {
         return input_down.exists(_name);
     }
 
-    public function inputpressed(_name:String) : Bool {
+    public function inputpressed(_name:String):Bool {
         return input_pressed.exists(_name);
     }
 
-    public function inputreleased(_name:String) : Bool {
+    public function inputreleased(_name:String):Bool {
         return input_released.exists(_name);
     }
 
@@ -466,6 +526,14 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         }
 
         emit(_interact_type, input_event);
+    }
+
+    function range_binding_compare(_axis:Int, _start:Float, _end:Float, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool, _val:RangeBinding):Bool {
+        return _val.axis == _axis && _val.start == _start && _val.end == _end && _val.change_emit == _change_emit && _val.enter_emit == _enter_emit && _val.leave_emit == _leave_emit;
+    }
+
+    function gamepad_button_binding_compare(_name:String, _id:Null<Int>, _val:GamepadButtonBinding) {
+        return _val.name == _name && _val.gamepad_id == _id;
     }
 }
 
