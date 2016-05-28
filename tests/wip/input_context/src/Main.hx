@@ -24,6 +24,8 @@ class Main extends luxe.Game {
         map.bind_touch('jump');
         map.bind_touch_range('touch_move', ScreenAxis.X, 0.25, 0.75, false, true, true);
 
+        // map.bind_general_events(true, true, true, true, true, true, true, true);
+
         map.on(InteractType.down, input_down);
         map.on(InteractType.up, input_up);
         map.on(InteractType.change, analog_changed);
@@ -44,11 +46,13 @@ class Main extends luxe.Game {
     function input_down(_event:InputEvent) {
         trace('down');
         trace(_event.name);
+        trace(_event.input_type);
     }
 
     function input_up(_event:InputEvent) {
         trace('up');
         trace(_event.name);
+        trace(_event.input_type);
     }
 
     var count:Int = 0;
@@ -56,6 +60,7 @@ class Main extends luxe.Game {
         if(count % 40 == 0) {
             trace('change');
             trace(_event.name);
+            trace(_event.input_type);
         }
         count++;
     }

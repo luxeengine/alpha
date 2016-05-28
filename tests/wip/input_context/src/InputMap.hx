@@ -21,6 +21,8 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     var input_pressed:Map<String, Bool>;
     var input_released:Map<String, Bool>;
 
+    var general_events_flags:GeneralEventsFlags; //:todo: Rename with bind function
+
     var input_event:InputEvent;
 
     public function new() { //:todo: add parameters for general events (i.e. all key/touch/etc events without specific bindings)
@@ -39,6 +41,17 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         input_down = new Map();
         input_pressed = new Map();
         input_released = new Map();
+
+        general_events_flags = {
+            keys:false,
+            mouse_buttons:false,
+            mouse_move:false,
+            mouse_wheel:false,
+            touches:false,
+            touch_move:false,
+            gamepad_buttons:false,
+            gamepad_axes:false
+        }
 
         input_event = new InputEvent();
 
@@ -111,7 +124,6 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
         // Binds mouse move events to a range along an axis
-        //:todo: default start/end to 0/1 for convenience "I want everything" mouse move binding? However possibly handled by 'default' raw events set on construction
     public function bind_mouse_range(_name:String, _axis:ScreenAxis, _start:Float, _end:Float, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool) {
         //store info here, figure out how to store it by working back from the check state
         if(!mouse_range_bindings.exists(_name)) {
@@ -260,6 +272,18 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         }
     }
 
+        /** Specifies whether the map will send through all events of a certain type. The generated input events will have name "" (empty string)*/
+    public function bind_general_events(_keys:Bool, _mouse_buttons:Bool, _mouse_move:Bool, _mouse_wheel:Bool, _touches:Bool, _touch_move:Bool, _gamepad_buttons:Bool, _gamepad_axes:Bool) { //:todo: definitely rename this one, and turn into options typedef
+        general_events_flags.keys = _keys;
+        general_events_flags.mouse_buttons = _mouse_buttons;
+        general_events_flags.mouse_move = _mouse_move;
+        general_events_flags.mouse_wheel = _mouse_wheel;
+        general_events_flags.touches = _touches;
+        general_events_flags.touch_move = _touch_move;
+        general_events_flags.gamepad_buttons = _gamepad_buttons;
+        general_events_flags.gamepad_axes = _gamepad_axes;
+    }
+
     public function inputdown(_name:String):Bool {
         return input_down.exists(_name);
     }
@@ -303,17 +327,20 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
     function check_key(_event:KeyEvent, _down:Bool) {
+        if(general_events_flags.keys) {
+            if(_down) oninputevent('', InteractType.down, _event);
+            else      oninputevent('', InteractType.up, _event);
+        }
+
         if(!key_bindings.exists(_event.keycode)) return; // No bindings for this key
 
         if(_down && _event.repeat) return; //Don't re-trigger on repeat events
 
         for(name in key_bindings.get(_event.keycode)) {
             if(_down) {
-                //:todo: update pressed/down maps
                 oninputevent(name, InteractType.down, _event);
             }
             else {
-                //:todo: update released/down maps
                 oninputevent(name, InteractType.up, _event);
             }
         }
@@ -334,6 +361,11 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
     function check_mouse_button(_event:MouseEvent, _down:Bool) {
+        if(general_events_flags.mouse_buttons) {
+            if(_down) oninputevent('', InteractType.down, null, _event);
+            else      oninputevent('', InteractType.up, null, _event);
+        }
+
         if(!mouse_button_bindings.exists(_event.button)) return; // No bindings for this key
 
         for(name in mouse_button_bindings.get(_event.button)) {
@@ -349,6 +381,8 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
     function check_mouse_move(_event:MouseEvent) {
+        if(general_events_flags.mouse_move) oninputevent('', InteractType.change, null, _event);
+
         for(name in mouse_range_bindings.keys()) {
             var bindings = mouse_range_bindings.get(name);
             for(binding in bindings) {
@@ -365,6 +399,8 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
     function check_mouse_wheel(_event:MouseEvent) {
+        if(general_events_flags.mouse_wheel) oninputevent('', InteractType.change, null, _event);
+
         for(name in mouse_wheel_bindings) {
             oninputevent(name, InteractType.change, null, _event);
         }
@@ -387,6 +423,11 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
     function check_gamepad_button(_event:GamepadEvent, _down:Bool) {
+        if(general_events_flags.gamepad_buttons) {
+            if(_down) oninputevent('', InteractType.down, null, null, null, _event);
+            else      oninputevent('', InteractType.up, null, null, null, _event);
+        }
+
         if(!gamepad_button_bindings.exists(_event.button)) return;
 
         for(binding in gamepad_button_bindings.get(_event.button)) {
@@ -404,6 +445,8 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
     function check_gamepad_axis(_event:GamepadEvent) {
+        if(general_events_flags.gamepad_axes) oninputevent('', InteractType.change, null, null, null, _event);
+
         for(name in gamepad_range_bindings.keys()) {
             var bindings = gamepad_range_bindings.get(name);
             for(binding in bindings) {
@@ -427,6 +470,11 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
     function check_touch(_event:TouchEvent, _down:Bool) {
+        if(general_events_flags.touches) {
+            if(_down) oninputevent('', InteractType.down, null, null, _event);
+            else      oninputevent('', InteractType.up, null, null, _event);
+        }
+
         for(name in touch_bindings) {
             if(_down) {
                 oninputevent(name, InteractType.down, null, null, _event);
@@ -460,6 +508,8 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     }
 
     function check_touch_move(_event:TouchEvent) {
+        if(general_events_flags.touch_move) oninputevent('', InteractType.change, null, null, _event);
+
         for(name in touch_range_bindings.keys()) {
             var bindings = touch_range_bindings.get(name);
             for(binding in bindings) {
@@ -555,6 +605,17 @@ typedef RangeBinding = {
 typedef GamepadButtonBinding = {
     var name:String;
     var gamepad_id:Null<Int>;
+}
+
+typedef GeneralEventsFlags = {
+    var keys:Bool;
+    var mouse_buttons:Bool;
+    var mouse_move:Bool;
+    var mouse_wheel:Bool;
+    var touches:Bool;
+    var touch_move:Bool;
+    var gamepad_buttons:Bool;
+    var gamepad_axes:Bool;
 }
 
 @:enum
