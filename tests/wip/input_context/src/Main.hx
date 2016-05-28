@@ -5,8 +5,9 @@ import InputMap.InputEvent;
 import InputMap.ScreenAxis;
 
 class Main extends luxe.Game {
+    var map:InputMap;
     override function ready() {
-        var map = new InputMap();
+        map = new InputMap();
 
         map.bind_key('jump', Key.key_x);
         
@@ -20,12 +21,24 @@ class Main extends luxe.Game {
         map.bind_gamepad_range('run', 0, -1.0, -0.8, true, true, true);
         map.bind_gamepad_range('hold_trigger', 5, 0.25, 0.75, false, true, true);
 
-        map.bind_touch('touch');
+        map.bind_touch('jump');
         map.bind_touch_range('touch_move', ScreenAxis.X, 0.25, 0.75, false, true, true);
 
         map.on(InteractType.down, input_down);
         map.on(InteractType.up, input_up);
         map.on(InteractType.change, analog_changed);
+    }
+
+    override public function update(dt:Float) {
+        if(map.inputdown('touch_move')) {
+            trace('update | touch_move down ');
+        }
+        if(map.inputpressed('touch_move')) {
+            trace('update | touch_move pressed');
+        }
+        if(map.inputreleased('touch_move')) {
+            trace('update | touch_move released');
+        }
     }
 
     function input_down(_event:InputEvent) {
