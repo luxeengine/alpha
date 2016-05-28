@@ -17,6 +17,10 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     var touch_bindings:Array<String>;
     var touch_range_bindings:Map<String, Array<RangeBinding>>;
 
+    var input_down:Map<String, Bool>;
+    var input_pressed:Map<String, Bool>;
+    var input_released:Map<String, Bool>;
+
     var input_event:InputEvent;
 
     public function new() { //:todo: add parameters for general events (i.e. all key/touch/etc events without specific bindings)
@@ -31,6 +35,10 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         gamepad_axis_values = new Map();
         touch_bindings = [];
         touch_range_bindings = new Map();
+
+        input_down = new Map();
+        input_pressed = new Map();
+        input_released = new Map();
 
         input_event = new InputEvent();
 
@@ -50,6 +58,7 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         Luxe.on(luxe.Ev.touchdown, ontouch);
         Luxe.on(luxe.Ev.touchmove, ontouch);
         Luxe.on(luxe.Ev.touchup, ontouch);
+        Luxe.on(luxe.Ev.update, update);
     }
 
     public function unlisten():Void {
@@ -189,6 +198,38 @@ class InputMap extends Emitter<InteractType> implements InputContext {
 
         var bindings = touch_range_bindings.get(_name);
         bindings.push(binding); //Doesn't check for duplicates, but duplicates don't mean much anyway (only possible in the rare case of all properties being equal)
+    }
+
+    public function inputdown(_name:String) : Bool {
+        return input_down.exists(_name);
+    }
+
+    public function inputpressed(_name:String) : Bool {
+        return input_pressed.exists(_name);
+    }
+
+    public function inputreleased(_name:String) : Bool {
+        return input_released.exists(_name);
+    }
+
+    function update(_) {
+        for(_name in input_pressed.keys()) {
+            if(input_pressed.get(_name)) {
+                input_pressed.remove(_name);
+            }
+            else {
+                input_pressed.set(_name, true);
+            }
+        }
+
+        for(_name in input_released.keys()) {
+            if(input_released.get(_name)) {
+                input_released.remove(_name);
+            }
+            else {
+                input_released.set(_name, true);
+            }
+        }
     }
 
     function onkey(_event:KeyEvent) {
@@ -409,6 +450,19 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         }
         else {
             input_event.set_unknown(_name, InteractType.down);
+        }
+
+        if(_interact_type == InteractType.down) {
+                //down but not yet processed
+            input_pressed.set(_name, false);
+                //down is true immediately, since up removes it
+            input_down.set(_name, true);
+        }
+        else if(_interact_type == InteractType.up) {
+                //up but not yet processed
+            input_released.set(_name, false);
+                //remove down state
+            input_down.remove(_name);
         }
 
         emit(_interact_type, input_event);
