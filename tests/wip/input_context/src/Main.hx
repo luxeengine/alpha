@@ -14,18 +14,19 @@ class Main extends luxe.Game {
         
         map.bind_mouse_button('jump', MouseButton.left);
 
-        map.bind_mouse_area('bottom_left_move', new Rectangle(0, 0.5, 0.5, 0.5), true, true, true);
-        // map.bind_mouse_range('left_move', ScreenAxis.X, 0, 0.5, true, true, true);
-        // map.bind_mouse_range('middle_move', ScreenAxis.Y, 0.25, 0.75, false, true, true);
-        // map.bind_mouse_wheel('wheel_change');
-        
-        // map.bind_gamepad_button('jump', 0, null);
-        // map.bind_gamepad_range('run', 0, 0.8, 1.0, true, true, true);
-        // map.bind_gamepad_range('run', 0, -1.0, -0.8, true, true, true);
-        // map.bind_gamepad_range('hold_trigger', 5, 0.25, 0.75, false, true, true);
+        map.bind_mouse_range('left_move', ScreenAxis.X, 0, 0.5, true, true, true);
+        map.bind_mouse_range('middle_move', ScreenAxis.Y, 0.25, 0.75, false, true, true);
+        map.bind_mouse_wheel('wheel_change');
+        // map.bind_mouse_area('bottom_left_move', new Rectangle(0, 0.5, 0.5, 0.5), true, true, true);
 
-        // map.bind_touch('jump');
-        // map.bind_touch_range('touch_move', ScreenAxis.X, 0.25, 0.75, false, true, true);
+        map.bind_gamepad_button('jump', 0, null);
+        map.bind_gamepad_range('run', 0, 0.8, 1.0, true, true, true);
+        map.bind_gamepad_range('run', 0, -1.0, -0.8, true, true, true);
+        map.bind_gamepad_range('hold_trigger', 5, 0.25, 0.75, false, true, true);
+
+        map.bind_touch('jump');
+        map.bind_touch_range('touch_move', ScreenAxis.X, 0.25, 0.75, false, true, true);
+        // map.bind_touch_area('top_right_touch', new Rectangle(0.5, 0, 0.5, 0.5), true, true, true);
 
         // map.bind_general_events(true, true, true, true, true, true, true, true);
 
@@ -50,6 +51,9 @@ class Main extends luxe.Game {
         trace('down');
         trace(_event.name);
         trace(_event.input_type);
+        // if(_event.name == 'jump') {
+        //     map.unbind_mouse_area('bottom_left_move', new Rectangle(0, 0.5, 0.5, 0.5), true, true, true);
+        // }
     }
 
     function input_up(_event:InputEvent) {

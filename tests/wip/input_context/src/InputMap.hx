@@ -19,6 +19,7 @@ class InputMap extends Emitter<InteractType> implements InputContext {
 
     var touch_bindings:Array<String>;
     var touch_range_bindings:Map<String, Array<RangeBinding>>;
+    var touch_area_bindings:Map<String, Array<AreaBinding>>;
 
     var input_down:Map<String, Bool>;
     var input_pressed:Map<String, Bool>;
@@ -41,6 +42,7 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         gamepad_axis_values = new Map();
         touch_bindings = [];
         touch_range_bindings = new Map();
+        touch_area_bindings = new Map();
 
         input_down = new Map();
         input_pressed = new Map();
@@ -178,6 +180,20 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         bindings.push(binding);
     }
 
+    public function unbind_mouse_area(_name:String, _rect:Rectangle, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool) {
+        if(!mouse_area_bindings.exists(_name)) return false;
+
+        var bindings = mouse_area_bindings.get(_name);
+        var binding = Lambda.find(bindings, area_binding_compare.bind(_rect, _change_emit, _enter_emit, _leave_emit));
+        if(binding != null) {
+            bindings.remove(binding);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     //:todo: remaining unbind calls - You'd have to pass in all the details as passed in bind - maybe there's a better way of doing that?
 
     public function bind_mouse_wheel(_name:String) {
@@ -253,6 +269,8 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         }
     }
 
+        //:todo: Gamepad areas? Only makes sense for analog sticks, do these always have the same axis values?
+
     public function bind_touch(_name:String) {
         if(touch_bindings.indexOf(_name) == -1) {
             touch_bindings.push(_name);
@@ -267,6 +285,7 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         if(!touch_range_bindings.exists(_name)) {
             touch_range_bindings.set(_name, []);
         }
+
         var binding = {
             axis:_axis,
             start:_start,
@@ -285,6 +304,36 @@ class InputMap extends Emitter<InteractType> implements InputContext {
 
         var bindings = touch_range_bindings.get(_name);
         var binding = Lambda.find(bindings, range_binding_compare.bind(_axis, _start, _end, _change_emit, _enter_emit, _leave_emit));
+        if(binding != null) {
+            bindings.remove(binding);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function bind_touch_area(_name:String, _rect:Rectangle, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool) {
+        if(!touch_area_bindings.exists(_name)) {
+            touch_area_bindings.set(_name, []);
+        }
+
+        var binding = {
+            rect:_rect,
+            change_emit:_change_emit,
+            enter_emit:_enter_emit,
+            leave_emit:_leave_emit
+        }
+
+        var bindings = touch_area_bindings.get(_name);
+        bindings.push(binding);
+    }
+
+    public function unbind_touch_area(_name:String, _rect:Rectangle, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool) {
+        if(!touch_area_bindings.exists(_name)) return false;
+
+        var bindings = touch_area_bindings.get(_name);
+        var binding = Lambda.find(bindings, area_binding_compare.bind(_rect, _change_emit, _enter_emit, _leave_emit));
         if(binding != null) {
             bindings.remove(binding);
             return true;
@@ -534,6 +583,20 @@ class InputMap extends Emitter<InteractType> implements InputContext {
                 }
             }
         }
+
+        for(name in touch_area_bindings.keys()) {
+            var bindings = touch_area_bindings.get(name);
+            for(binding in bindings) {
+                if(binding.rect.point_inside(_event.pos)) {
+                    if(_down && binding.enter_emit) {
+                        oninputevent(name, InteractType.down, null, null, _event);
+                    }
+                    else if(!_down && binding.leave_emit) {
+                        oninputevent(name, InteractType.up, null, null, _event);
+                    }
+                }
+            }
+        }
     }
 
     function check_touch_move(_event:TouchEvent) {
@@ -550,6 +613,14 @@ class InputMap extends Emitter<InteractType> implements InputContext {
                     if(_event.dy == 0) continue;
                     check_range_event(_event.y, _event.y - _event.dy, name, binding, null, _event, null);
                 }
+            }
+        }
+
+        for(name in touch_area_bindings.keys()) {
+            var bindings = touch_area_bindings.get(name);
+            for(binding in bindings) {
+                var prev = _event.pos.clone().subtract_xyz(_event.dx, _event.dy);
+                check_area_event(_event.pos, prev, name, binding, null, _event, null);
             }
         }
     }
@@ -619,6 +690,10 @@ class InputMap extends Emitter<InteractType> implements InputContext {
 
     function range_binding_compare(_axis:Int, _start:Float, _end:Float, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool, _val:RangeBinding):Bool {
         return _val.axis == _axis && _val.start == _start && _val.end == _end && _val.change_emit == _change_emit && _val.enter_emit == _enter_emit && _val.leave_emit == _leave_emit;
+    }
+
+    function area_binding_compare(_rect:Rectangle, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool, _val:AreaBinding):Bool {
+        return _rect.equal(_val.rect) && _val.change_emit == _change_emit && _val.enter_emit == _enter_emit && _val.leave_emit == _leave_emit;
     }
 
     function gamepad_button_binding_compare(_name:String, _id:Null<Int>, _val:GamepadButtonBinding) {
