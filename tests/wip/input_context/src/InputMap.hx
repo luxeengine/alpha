@@ -1,6 +1,8 @@
 package ;
 import luxe.Emitter;
 import luxe.Input;
+import luxe.Rectangle;
+import luxe.Vector;
 
 class InputMap extends Emitter<InteractType> implements InputContext {
     var key_bindings:Map<Int, Array<String>>;
@@ -8,6 +10,7 @@ class InputMap extends Emitter<InteractType> implements InputContext {
     var mouse_button_bindings:Map<MouseButton, Array<String>>;
         //Use string as key since we have to iterate over it anyway, and for remove we can at least just search entries for one event name (as compared to an array)
     var mouse_range_bindings:Map<String, Array<RangeBinding>>;
+    var mouse_area_bindings:Map<String, Array<AreaBinding>>;
     var mouse_wheel_bindings:Array<String>;
 
     var gamepad_button_bindings:Map<Int, Array<GamepadButtonBinding>>;
@@ -25,12 +28,13 @@ class InputMap extends Emitter<InteractType> implements InputContext {
 
     var input_event:InputEvent;
 
-    public function new() { //:todo: add parameters for general events (i.e. all key/touch/etc events without specific bindings)
+    public function new() {
         super();
 
         key_bindings = new Map();
         mouse_button_bindings = new Map();
         mouse_range_bindings = new Map();
+        mouse_area_bindings = new Map();
         mouse_wheel_bindings = [];
         gamepad_button_bindings = new Map();
         gamepad_range_bindings = new Map();
@@ -89,6 +93,8 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         Luxe.off(luxe.Ev.touchup, ontouch);
     }
 
+    //:todo: Add text input maybe?
+
     public function bind_key(_name:String, _key:Int) {
         if(!key_bindings.exists(_key)) {
             key_bindings.set(_key, []);
@@ -129,6 +135,7 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         if(!mouse_range_bindings.exists(_name)) {
             mouse_range_bindings.set(_name, []);
         }
+
         var binding = {
             axis:_axis,
             start:_start,
@@ -154,6 +161,21 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         else {
             return false;
         }
+    }
+
+    public function bind_mouse_area(_name:String, _rect:Rectangle, _change_emit:Bool, _enter_emit:Bool, _leave_emit:Bool) {
+        if(!mouse_area_bindings.exists(_name)) {
+            mouse_area_bindings.set(_name, []);
+        }
+
+        var binding = {
+            rect:_rect,
+            change_emit:_change_emit,
+            enter_emit:_enter_emit,
+            leave_emit:_leave_emit
+        }
+        var bindings = mouse_area_bindings.get(_name);
+        bindings.push(binding);
     }
 
     //:todo: remaining unbind calls - You'd have to pass in all the details as passed in bind - maybe there's a better way of doing that?
@@ -370,11 +392,9 @@ class InputMap extends Emitter<InteractType> implements InputContext {
 
         for(name in mouse_button_bindings.get(_event.button)) {
             if(_down) {
-                //:todo: update pressed/down maps
                 oninputevent(name, InteractType.down, null, _event);
             }
             else {
-                //:todo: update released/down maps
                 oninputevent(name, InteractType.up, null, _event);
             }
         }
@@ -394,6 +414,17 @@ class InputMap extends Emitter<InteractType> implements InputContext {
                     if(_event.y_rel == 0) continue;
                     check_range_event(_event.y / Luxe.screen.h, (_event.y - _event.y_rel) / Luxe.screen.h, name, binding, _event);
                 }
+            }
+        }
+
+        for(name in mouse_area_bindings.keys()) {
+            var bindings = mouse_area_bindings.get(name);
+            for(binding in bindings) {
+                var pos = _event.pos.clone().divide_xyz(Luxe.screen.w, Luxe.screen.h);
+                var prev = _event.pos.clone().subtract_xyz(_event.x_rel, _event.y_rel);
+                prev.divide_xyz(Luxe.screen.w, Luxe.screen.h);
+
+                check_area_event(pos, prev, name, binding, _event);
             }
         }
     }
@@ -434,11 +465,9 @@ class InputMap extends Emitter<InteractType> implements InputContext {
             if(!(binding.gamepad_id == null || binding.gamepad_id == _event.gamepad)) continue; //Skip if the binding was not for this gamepad
 
             if(_down) {
-                //:todo: update pressed/down maps
                 oninputevent(binding.name, InteractType.down, null, null, null, _event);
             }
             else {
-                //:todo: update released/down maps
                 oninputevent(binding.name, InteractType.up, null, null, null, _event);
             }
         }
@@ -529,22 +558,32 @@ class InputMap extends Emitter<InteractType> implements InputContext {
         var in_range = check_in_range(_pos, _binding.start, _binding.end);
         var prev_in_range = check_in_range(_prev, _binding.start, _binding.end);
 
-        if(_binding.enter_emit && !prev_in_range && in_range) {
-            oninputevent(_name, InteractType.down, null, _mouse_event, _touch_event, _gamepad_event);
-        }
-        if(_binding.change_emit && in_range) {
-            oninputevent(_name, InteractType.change, null, _mouse_event, _touch_event, _gamepad_event); //Emit change only in the range or always?
-        }
-        else if(_binding.leave_emit && prev_in_range && !in_range) {
-            oninputevent(_name, InteractType.up, null, _mouse_event, _touch_event, _gamepad_event);
-        }
+        emit_analog_event(in_range, prev_in_range, _name, _binding, _mouse_event, _touch_event, _gamepad_event);
     }
 
     inline function check_in_range(_val:Float, _start:Float, _end:Float):Bool {
         return (_start <= _val && _val <= _end);
     }
 
-        //:todo: Handle up/down storing here? All events go through here, so would make sense
+    function check_area_event(_pos:Vector, _prev:Vector, _name:String, _binding:AreaBinding, ?_mouse_event:MouseEvent, ?_touch_event:TouchEvent, ?_gamepad_event:GamepadEvent) {
+        var in_range = _binding.rect.point_inside(_pos);
+        var prev_in_range = _binding.rect.point_inside(_prev);
+
+        emit_analog_event(in_range, prev_in_range, _name, _binding, _mouse_event, _touch_event, _gamepad_event);
+    }
+
+    function emit_analog_event(_in_range:Bool, _prev_in_range:Bool, _name:String, _binding:AnalogBindingBase, ?_mouse_event:MouseEvent, ?_touch_event:TouchEvent, ?_gamepad_event:GamepadEvent) {
+        if(_binding.enter_emit && !_prev_in_range && _in_range) {
+            oninputevent(_name, InteractType.down, null, _mouse_event, _touch_event, _gamepad_event);
+        }
+        if(_binding.change_emit && _in_range) {
+            oninputevent(_name, InteractType.change, null, _mouse_event, _touch_event, _gamepad_event); //Emit change only in the range or always?
+        }
+        else if(_binding.leave_emit && _prev_in_range && !_in_range) {
+            oninputevent(_name, InteractType.up, null, _mouse_event, _touch_event, _gamepad_event);
+        }
+    }
+
     function oninputevent(_name:String, _interact_type:InteractType, ?_key_event:KeyEvent, ?_mouse_event:MouseEvent, ?_touch_event:TouchEvent, ?_gamepad_event:GamepadEvent) {
         if(_key_event != null) {
             input_event.set_key(_name, InteractType.down, _key_event);
@@ -593,13 +632,24 @@ abstract ScreenAxis(Int) from Int to Int {
     var Y = 1;
 }
 
-typedef RangeBinding = {
-    var axis:Int;
-    var start:Float;
-    var end:Float;
+typedef AnalogBindingBase = {
     var change_emit:Bool;
     var enter_emit:Bool;
     var leave_emit:Bool;
+}
+
+typedef RangeBinding = {
+    > AnalogBindingBase,
+
+    var axis:Int;
+    var start:Float;
+    var end:Float;
+}
+
+typedef AreaBinding = {
+    > AnalogBindingBase,
+
+    var rect:Rectangle;
 }
 
 typedef GamepadButtonBinding = {
