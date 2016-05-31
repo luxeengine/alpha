@@ -3,6 +3,7 @@ import luxe.Emitter;
 import luxe.Input;
 import luxe.Rectangle;
 import luxe.Vector;
+import InputContext.InteractType;
 
 class InputMap extends Emitter<InteractType> implements InputContext {
     var key_bindings:Map<Int, Array<String>>;
@@ -741,14 +742,6 @@ typedef GeneralEventsFlags = {
     var touch_move:Bool;
     var gamepad_buttons:Bool;
     var gamepad_axes:Bool;
-}
-
-@:enum
-abstract InteractType(Int) from Int to Int { //:todo: rename
-    var down = 0;
-    var up = 1;
-    var change = 2;
-    var none = 3;
 }
 
 /** Information about a named input event */

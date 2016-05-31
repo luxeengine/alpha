@@ -1,75 +1,93 @@
 package;
 import luxe.Input;
-import InputMap.InteractType;
+import InputContext.InteractType;
 import InputMap.InputEvent;
 import InputMap.ScreenAxis;
+import luxe.Input.InputEventType;
 import luxe.Rectangle;
+import phoenix.geometry.Geometry;
+import phoenix.Color;
 
 class Main extends luxe.Game {
-    var map:InputMap;
+    var left_map:InputMap;
+
+    var right_group:InputGroup;
+
+    var square:Geometry;
+
     override function ready() {
+
+        left_map = new InputMap();
+
+        left_map.bind_mouse_range('left_range', ScreenAxis.X, 0, 0.5, false, false, true);
+        left_map.bind_key('left', Key.key_a);
+
+        left_map.on(InteractType.down, input_down);
+        left_map.on(InteractType.up, input_up);
+
+        right_group = new InputGroup();
+
+        var map = new InputMap();
+
+        map.bind_mouse_range('right_range', ScreenAxis.X, 0.5, 1, false, false, true);
+        right_group.add(map);
+
         map = new InputMap();
+        map.bind_key('right', Key.key_k);
 
-        map.bind_key('jump', Key.key_x);
-        
-        map.bind_mouse_button('jump', MouseButton.left);
+        right_group.add(map);
 
-        map.bind_mouse_range('left_move', ScreenAxis.X, 0, 0.5, true, true, true);
-        map.bind_mouse_range('middle_move', ScreenAxis.Y, 0.25, 0.75, false, true, true);
-        map.bind_mouse_wheel('wheel_change');
-        // map.bind_mouse_area('bottom_left_move', new Rectangle(0, 0.5, 0.5, 0.5), true, true, true);
+        right_group.on(InteractType.down, input_down);
+        right_group.on(InteractType.up, input_up);
+        right_group.unlisten();
 
-        map.bind_gamepad_button('jump', 0, null);
-        map.bind_gamepad_range('run', 0, 0.8, 1.0, true, true, true);
-        map.bind_gamepad_range('run', 0, -1.0, -0.8, true, true, true);
-        map.bind_gamepad_range('hold_trigger', 5, 0.25, 0.75, false, true, true);
+        Luxe.draw.rectangle({
+            x:0,
+            y:0,
+            w:Luxe.screen.w / 2,
+            h:Luxe.screen.h
+        });
 
-        map.bind_touch('jump');
-        map.bind_touch_range('touch_move', ScreenAxis.X, 0.25, 0.75, false, true, true);
-        // map.bind_touch_area('top_right_touch', new Rectangle(0.5, 0, 0.5, 0.5), true, true, true);
+        Luxe.draw.line({
+            p0:new luxe.Vector(Luxe.screen.w / 2, 0),
+            p1:new luxe.Vector(Luxe.screen.w / 2, Luxe.screen.h)
+        });
 
-        // map.bind_general_events(true, true, true, true, true, true, true, true);
-
-        map.on(InteractType.down, input_down);
-        map.on(InteractType.up, input_up);
-        map.on(InteractType.change, analog_changed);
+        square = Luxe.draw.box({
+            x:Luxe.screen.w * 0.25,
+            y:Luxe.screen.h / 2,
+            w:50,
+            h:50
+        });
     }
 
     override public function update(dt:Float) {
-        if(map.inputdown('touch_move')) {
-            trace('update | touch_move down ');
-        }
-        if(map.inputpressed('touch_move')) {
-            trace('update | touch_move pressed');
-        }
-        if(map.inputreleased('touch_move')) {
-            trace('update | touch_move released');
-        }
     }
 
     function input_down(_event:InputEvent) {
-        trace('down');
-        trace(_event.name);
-        trace(_event.input_type);
-        // if(_event.name == 'jump') {
-        //     map.unbind_mouse_area('bottom_left_move', new Rectangle(0, 0.5, 0.5, 0.5), true, true, true);
-        // }
+        switch(_event.name) {
+            case 'left':
+                trace('Left key pressed');
+                square.color = Color.random();
+            case 'right':
+                trace('Right key pressed');
+                square.color = Color.random();
+        }
     }
 
     function input_up(_event:InputEvent) {
-        trace('up');
-        trace(_event.name);
-        trace(_event.input_type);
-    }
-
-    var count:Int = 0;
-    function analog_changed(_event:InputEvent) {
-        if(count % 40 == 0) {
-            trace('change');
-            trace(_event.name);
-            trace(_event.input_type);
+        switch(_event.name) {
+            case 'left_range':
+                trace('Left left area');
+                left_map.unlisten();
+                right_group.listen();
+                square.transform.pos.x = Luxe.screen.w * 0.75;
+            case 'right_range':
+                trace('Left right area');
+                right_group.unlisten();
+                left_map.listen();
+                square.transform.pos.x = Luxe.screen.w * 0.25;
         }
-        count++;
     }
 
     override function onkeyup(e:KeyEvent) {
