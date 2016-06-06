@@ -345,10 +345,10 @@ class Quaternion {
 
         if ( cosHalfTheta < 0 ) {
 
-                w = -_qb.w;
                 x = -_qb.x;
                 y = -_qb.y;
                 z = -_qb.z;
+                w = -_qb.w;
 
                 cosHalfTheta = -cosHalfTheta;
 
@@ -371,10 +371,10 @@ class Quaternion {
 
         if ( Math.abs( sinHalfTheta ) < 0.001 ) {
 
-            set_xyzw( 0.5 * ( _w + w ),
-                      0.5 * ( _x + x ),
+            set_xyzw( 0.5 * ( _x + x ),
                       0.5 * ( _y + y ),
-                      0.5 * ( _z + z ) );
+                      0.5 * ( _z + z ),
+                      0.5 * ( _w + w ) );
 
             return this;
 
@@ -383,10 +383,10 @@ class Quaternion {
         var ratioA = Math.sin( ( 1 - _t ) * halfTheta ) / sinHalfTheta,
         ratioB = Math.sin( _t * halfTheta ) / sinHalfTheta;
 
-            set_xyzw( _w * ratioA + w * ratioB,
-                      _x * ratioA + x * ratioB,
+            set_xyzw( _x * ratioA + x * ratioB,
                       _y * ratioA + y * ratioB,
-                      _z * ratioA + z * ratioB );
+                      _z * ratioA + z * ratioB,
+                      _w * ratioA + w * ratioB );
 
         return this;
 
