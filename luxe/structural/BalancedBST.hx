@@ -674,9 +674,9 @@ class BalancedBST<K,T> {
 #if !display @:generic #end
 class BalancedBSTIterator<K,T> {
 
-    var tree : BalancedBST<K,T>;
-    var current : BalancedBSTNode<K,T>;
-    var rightest : BalancedBSTNode<K,T>;
+    var tree : BalancedBST<K,T> = null;
+    var current : BalancedBSTNode<K,T> = null;
+    var rightest : BalancedBSTNode<K,T> = null;
 
     public inline function new(_tree:BalancedBST<K,T>) {
 

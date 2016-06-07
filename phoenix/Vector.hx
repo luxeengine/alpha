@@ -5,10 +5,10 @@ import luxe.Log.*;
 
 class Vector {
 
-    @:isVar public var x (default, set) : Float = 0;
-    @:isVar public var y (default, set) : Float = 0;
-    @:isVar public var z (default, set) : Float = 0;
-    @:isVar public var w (default, default) : Float = 0;
+    @:isVar public var x (default, set) : Float = 0.0;
+    @:isVar public var y (default, set) : Float = 0.0;
+    @:isVar public var z (default, set) : Float = 0.0;
+    @:isVar public var w (default, default) : Float = 0.0;
 
     @:isVar public var length        (get, set) : Float;
     @:isVar public var lengthsq      (get, null) : Float;
