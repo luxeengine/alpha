@@ -586,8 +586,8 @@ class ParticleEmitter extends Component {
             if( p.time_to_live > 0 ) {
 
                     //start with gravity direction
-                p.speed.x += p.speed_delta;
-                p.speed.y += p.speed_delta;
+                p.speed.x += p.speed_delta * dt;
+                p.speed.y += p.speed_delta * dt;
 
                 p.move_dir.x = _gravity_x + (p.direction.x * p.speed.x);
                 p.move_dir.y = _gravity_y + (p.direction.y * p.speed.y);
