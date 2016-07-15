@@ -63,9 +63,9 @@ class Main extends luxe.Game {
 
     } //ready
 
-    override function oninputdown( name:String, e:InputEvent ) {
+    override function oninputdown( e:InputEvent ) {
 
-        if(name == 'jump') {
+        if(e.name == 'jump') {
             jump();
         } //jump pressed
 
