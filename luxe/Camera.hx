@@ -182,7 +182,7 @@ class Camera extends Entity {
             //disable size
         if( _size == null ) {
             center = new Vector(viewport.w/2, viewport.h/2);
-            size = _size;
+            size = null;
             _size_factor.x = _size_factor.y = 1;
             set_zoom(zoom);
             _connected = false;
