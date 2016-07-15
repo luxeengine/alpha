@@ -1217,6 +1217,7 @@ class Entity extends Objects {
             transform.parent = parent.transform;
         } else {
             transform.parent = null;
+            scene_root.add(this);
         }
 
         return parent;
