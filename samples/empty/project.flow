@@ -1,36 +1,33 @@
 {
 
-  luxe:{
-    window: {
-      width:960,
-      height:640,
-      title:'luxe empty project',
-      fullscreen:false,
-      resizable:true,
-      borderless:false
-    }
-  },
-
   project : {
+
+      //These first two are required
     name : 'empty',
     version : '1.0.0',
     author : 'luxeengine',
 
+      //This configures your app.
+      //The package is important, it's used 
+      //for save locations, initializing mobile project files etc
     app : {
       name : 'luxe_empty',
       package : 'com.luxeengine.empty'
     },
 
+      //This configures the build process
     build : {
       dependencies : {
-        luxe : '*',
+        luxe : '*'
       }
     },
 
+      //Copies over all the assets to the output
     files : {
       assets : 'assets/'
     }
 
-  }
+  } //project
 
 }
+

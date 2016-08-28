@@ -19,15 +19,15 @@ class Main extends luxe.Game {
 
     } //ready
 
-    override function onkeyup( e:KeyEvent ) {
+    override function onkeyup(event:KeyEvent) {
 
-        if(e.keycode == Key.escape) {
+        if(event.keycode == Key.escape) {
             Luxe.shutdown();
         }
 
     } //onkeyup
 
-    override function update(dt:Float) {
+    override function update(delta:Float) {
 
     } //update
 
