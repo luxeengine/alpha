@@ -1,127 +1,96 @@
 package luxe.collision.sat;
 
 import luxe.Vector;
+import luxe.utils.Maths.*;
 import luxe.collision.shapes.*;
 import luxe.collision.data.*;
-import luxe.collision.sat.Common;
 
 /** Implementation details for the 2D SAT collision queries.
     Used by the various shapes, and Collision API, mostly internally.  */
 class SAT2D {
 
         /** Internal api - test a circle against a polygon */
-    public static function testCircleVsPolygon( circle:Circle, polygon:Polygon, flip:Bool=false ) : ShapeCollision {
+    public static function testCircleVsPolygon( circle:Circle, polygon:Polygon, ?into:ShapeCollision, flip:Bool=false ) : ShapeCollision {
 
-        var ep : Float = 0.0000000001;
-        var test1 : Float; //numbers for testing max/mins
-        var test2 : Float;
-        var test : Float;
+        into = into == null ? new ShapeCollision() : into.reset();
 
-        var min1 : Float = 0; //same as above
-        var max1 : Float = 0x3FFFFFFF;
-        var min2 : Float = 0;
-        var max2 : Float = 0x3FFFFFFF;
-        var normalAxis:Vector = new Vector();
-        var offset : Float;
-        var vectorOffset:Vector = new Vector();
-        var vectors:Array<Vector>;
-        var shortestDistance : Float = 0x3FFFFFFF;
-        var collisionData = new ShapeCollision();
-        var distMin : Float;
+        var verts = polygon.transformedVertices;
 
-        var distance : Float = 0xFFFFFFFF;
+        var circleX = circle.x;
+        var circleY = circle.y;
+
         var testDistance : Float = 0x3FFFFFFF;
-        var closestVector:Vector = new Vector(); //the vector to use to find the normal
+        var distance = 0.0, closestX = 0.0, closestY = 0.0;
+        for(i in 0 ... verts.length) {
 
-        // find offset
-        vectorOffset = new Vector(-circle.x,-circle.y);
-        vectors = polygon.transformedVertices.copy();
+            distance = vec_lengthsq(circleX - verts[i].x, circleY - verts[i].y);
 
-        //adds some padding to make it more accurate
-        if(vectors.length == 2) {
-            var temp:Vector = new Vector(-(vectors[1].y - vectors[0].y), vectors[1].x - vectors[0].x);
-            temp.truncate(ep);
-            vectors.push( vectors[1].clone().add(temp) );
-        }
-
-        // find the closest vertex to use to find normal
-        for(i in 0 ... vectors.length) {
-
-            // trace(i + ' @ ' + vectors[i]);
-
-            distance =  (circle.x - (vectors[i].x)) * (circle.x - (vectors[i].x)) +
-                        (circle.y - (vectors[i].y)) * (circle.y - (vectors[i].y));
-
-            if(distance < testDistance) { //closest has the lowest distance
+            if(distance < testDistance) {
                 testDistance = distance;
-                closestVector.x = vectors[i].x;
-                closestVector.y = vectors[i].y;
+                closestX = verts[i].x;
+                closestY = verts[i].y;
             }
 
         } //for
 
-        //get the normal vector
-        normalAxis = new Vector(closestVector.x - circle.x, closestVector.y - circle.y);
-        normalAxis.normalize(); //normalize is(set its length to 1)
+        var normalAxisX = closestX - circleX;
+        var normalAxisY = closestY - circleY;
+        var normAxisLen = vec_length(normalAxisX, normalAxisY);
+            normalAxisX = vec_normalize(normAxisLen, normalAxisX);
+            normalAxisY = vec_normalize(normAxisLen, normalAxisY);
 
-        // project the polygon's points
-        min1 = normalAxis.dot(vectors[0]);
-        max1 = min1; //set max and min
+            //project all its points, 0 outside the loop
+        var test = 0.0;
+        var min1 = vec_dot(normalAxisX, normalAxisY, verts[0].x, verts[0].y);
+        var max1 = min1;
 
-        for(j in 1 ... vectors.length) { //project all its points, starting with the first(the 0th was done up there^)
-            test = normalAxis.dot(vectors[j]); //dot to project
-            if(test < min1) {
-                min1 = test;
-            } //smallest min is wanted
-            if(test > max1) {
-                max1 = test;
-            } //largest max is wanted
-        }
+        for(j in 1 ... verts.length) {
+            test = vec_dot(normalAxisX, normalAxisY, verts[j].x, verts[j].y);
+            if(test < min1) min1 = test;
+            if(test > max1) max1 = test;
+        } //each vert
 
-        // project the circle
-        max2 = circle.transformedRadius; //max is radius
-        min2 -= circle.transformedRadius; //min is negative radius
-
-        // offset the polygon's max/min
-        offset = normalAxis.dot(vectorOffset);
+            // project the circle
+        var max2 = circle.transformedRadius;
+        var min2 = -circle.transformedRadius;
+        var offset = vec_dot(normalAxisX, normalAxisY, -circleX, -circleY);
+            
         min1 += offset;
         max1 += offset;
 
-        // do the big test
-        test1 = min1 - max2;
-        test2 = min2 - max1;
+        var test1 = min1 - max2;
+        var test2 = min2 - max1;
 
-        if(test1 > 0 || test2 > 0) { //if either test is greater than 0, there is a gap, we can give up now.
-            return null;
-        }
+            //if either test is greater than 0, there is a gap, we can give up now.
+        if(test1 > 0 || test2 > 0) return null;
 
             // circle distance check
-        distMin = -(max2 - min1);
+        var distMin = -(max2 - min1);
         if(flip) distMin *= -1;
-        if(Math.abs(distMin) < shortestDistance) {
-            collisionData.unitVector = normalAxis;
-            collisionData.overlap = distMin;
-            shortestDistance = Math.abs(distMin);
-        }
+
+        into.overlap = distMin;
+        into.unitVectorX = normalAxisX;
+        into.unitVectorY = normalAxisY;
+        var closest = Math.abs(distMin);
 
             // find the normal axis for each point and project
-        for(i in 0 ... vectors.length) {
+        for(i in 0 ... verts.length) {
 
-            normalAxis = Common.findNormalAxis(vectors, i);
+            normalAxisX = findNormalAxisX(verts, i);
+            normalAxisY = findNormalAxisY(verts, i);
+            var aLen = vec_length(normalAxisX, normalAxisY);
+            normalAxisX = vec_normalize(aLen, normalAxisX);
+            normalAxisY = vec_normalize(aLen, normalAxisY);
 
-            // project the polygon(again? yes, circles vs. polygon require more testing...)
-            min1 = normalAxis.dot(vectors[0]); //project
+                // project the polygon(again? yes, circles vs. polygon require more testing...)
+            min1 = vec_dot(normalAxisX, normalAxisY, verts[0].x, verts[0].y);
             max1 = min1; //set max and min
 
             //project all the other points(see, cirlces v. polygons use lots of this...)
-            for(j in 1 ... vectors.length) {
-                test = normalAxis.dot(vectors[j]); //more projection
-                if(test < min1) {
-                    min1 = test;
-                } //smallest min
-                if(test > max1) {
-                    max1 = test;
-                } //largest max
+            for(j in 1 ... verts.length) {
+                test = vec_dot(normalAxisX, normalAxisY, verts[j].x, verts[j].y);
+                if(test < min1) min1 = test;
+                if(test > max1) max1 = test;
             }
 
             // project the circle(again)
@@ -129,7 +98,7 @@ class SAT2D {
             min2 = -circle.transformedRadius; //min is negative radius
 
             //offset points
-            offset = normalAxis.dot(vectorOffset);
+            offset = vec_dot(normalAxisX, normalAxisY, -circleX, -circleY);
             min1 += offset;
             max1 += offset;
 
@@ -144,364 +113,357 @@ class SAT2D {
 
             distMin = -(max2 - min1);
             if(flip) distMin *= -1;
-            if(Math.abs(distMin) < shortestDistance) {
-                collisionData.unitVector = normalAxis;
-                collisionData.overlap = distMin;
-                shortestDistance = Math.abs(distMin);
+
+            if(Math.abs(distMin) < closest) {
+                into.unitVectorX = normalAxisX;
+                into.unitVectorY = normalAxisY;
+                into.overlap = distMin;
+                closest = Math.abs(distMin);
             }
 
         } //for
 
         //if you made it here, there is a collision!!!!!
 
-        collisionData.shape2 = if(flip) polygon else circle;
-        collisionData.shape1 = if(flip) circle else polygon;
-        collisionData.separation = new Vector(-collisionData.unitVector.x * collisionData.overlap,
-                                                -collisionData.unitVector.y * collisionData.overlap); //return the separation distance
+        into.shape1 = if(flip) polygon else circle;
+        into.shape2 = if(flip) circle else polygon;
+        into.separationX = into.unitVectorX * into.overlap;
+        into.separationY = into.unitVectorY * into.overlap;
 
-        if(flip) collisionData.unitVector.invert();
+        if(!flip) {
+            into.unitVectorX = -into.unitVectorX;
+            into.unitVectorY = -into.unitVectorY;
+        }
 
-        return collisionData;
+        return into;
 
     } //testCircleVsPolygon
 
         /** Internal api - test a circle against a circle */
-    public static function testCircleVsCircle( circle1:Circle, circle2:Circle ) : ShapeCollision {
+    public static function testCircleVsCircle( circleA:Circle, circleB:Circle, ?into:ShapeCollision, flip:Bool = false ) : ShapeCollision {
         //
+
+        var circle1 = flip ? circleB : circleA;
+        var circle2 = flip ? circleA : circleB;
 
             //add both radii together to get the colliding distance
         var totalRadius = circle1.transformedRadius + circle2.transformedRadius;
             //find the distance between the two circles using Pythagorean theorem. No square roots for optimization
-        var distancesq = (circle1.x - circle2.x) * (circle1.x - circle2.x) + (circle1.y - circle2.y) * (circle1.y - circle2.y);
+        var distancesq = vec_lengthsq(circle1.x - circle2.x, circle1.y - circle2.y);
 
             //if your distance is less than the totalRadius square(because distance is squared)
         if(distancesq < totalRadius * totalRadius) {
 
+            into = (into == null) ? new ShapeCollision() : into.reset();
                 //find the difference. Square roots are needed here.
-            var difference : Float = totalRadius - Math.sqrt(distancesq);
+            var difference = totalRadius - Math.sqrt(distancesq);
 
-            var collisionData =  new ShapeCollision();
+                into.shape1 = circle1;
+                into.shape2 = circle2;
 
-                collisionData.shape1 = circle1;
-                collisionData.shape2 = circle2;
-                collisionData.unitVector = new Vector(circle1.x - circle2.x, circle1.y - circle2.y);
-                collisionData.unitVector.normalize();
+                var unitVecX = circle1.x - circle2.x;
+                var unitVecY = circle1.y - circle2.y;
+                var unitVecLen = vec_length(unitVecX, unitVecY);
+
+                unitVecX = vec_normalize(unitVecLen, unitVecX);
+                unitVecY = vec_normalize(unitVecLen, unitVecY);
+
+                into.unitVectorX = unitVecX;
+                into.unitVectorY = unitVecY;
 
                     //find the movement needed to separate the circles
-                collisionData.separation = new Vector( collisionData.unitVector.x * difference,
-                                                       collisionData.unitVector.y * difference );
+                into.separationX = into.unitVectorX * difference;
+                into.separationY = into.unitVectorY * difference;
+                into.overlap = difference;
 
-                    //the magnitude of the overlap
-                collisionData.overlap = collisionData.separation.length;
+            return into;
 
-            return collisionData;
-
-        } //if distanceSq
+        } //if distancesq < r^2
 
         return null;
 
     } //testCircleVsCircle
 
         /** Internal api - test a polygon against another polygon */
-    public static function testPolygonVsPolygon( polygon1:Polygon, polygon2:Polygon, flip:Bool=false ) : ShapeCollision {
+    static var tmp1:ShapeCollision = new ShapeCollision();
+    static var tmp2:ShapeCollision = new ShapeCollision();
 
-        var result1 = checkPolygons(polygon1, polygon2, flip);
+    public static function testPolygonVsPolygon( polygon1:Polygon, polygon2:Polygon, ?into:ShapeCollision, flip:Bool=false ) : ShapeCollision {
 
-        if(result1 == null) return null;
+        into = (into == null) ? new ShapeCollision() : into.reset();
+        
+        if(checkPolygons(polygon1, polygon2, tmp1, flip) == null) {
+            return null;
+        }
 
-        var result2 = checkPolygons(polygon2, polygon1, !flip);
+        if(checkPolygons(polygon2, polygon1, tmp2, !flip) == null) {
+            return null;
+        }
 
-        if (result2 == null) return null;
+        var result = null, other = null;
+        if(Math.abs(tmp1.overlap) < Math.abs(tmp2.overlap)) {
+            result = tmp1;
+            other = tmp2;
+        } else {
+            result = tmp2;
+            other = tmp1;
+        }
 
-            //take the closest overlap
-        (Math.abs(result1.overlap) < Math.abs(result2.overlap)) ?
-            return result1:
-            return result2;
+        result.otherOverlap = other.overlap;
+        result.otherSeparationX = other.separationX;
+        result.otherSeparationY = other.separationY;
+        result.otherUnitVectorX = other.unitVectorX;
+        result.otherUnitVectorY = other.unitVectorY;
+
+        into.copy_from(result);
+        result = other = null;
+
+        return into;
 
     } //testPolygonVsPolygon
 
         /** Internal api - test a ray against a circle */
-    public static function testRayVsCircle( ray:Ray, circle:Circle ) : RayCollision {
+    public static function testRayVsCircle( ray:Ray, circle:Circle, ?into:RayCollision ) : RayCollision {
 
-        var delta = ray.end.clone().subtract(ray.start);
-        var ray2circle = ray.start.clone().subtract(circle.position);
+        var deltaX = ray.end.x - ray.start.x;
+        var deltaY = ray.end.y - ray.start.y;
+        var ray2circleX = ray.start.x - circle.position.x;
+        var ray2circleY = ray.start.y - circle.position.y;
 
-        var a = delta.lengthsq;
-        var b = 2 * delta.dot(ray2circle);
-        var c = ray2circle.dot(ray2circle) - circle.radius * circle.radius;
-
-        var d:Float = b * b - 4 * a * c;
+        var a = vec_lengthsq(deltaX, deltaY);
+        var b = 2 * vec_dot(deltaX, deltaY, ray2circleX, ray2circleY);
+        var c = vec_dot(ray2circleX, ray2circleY, ray2circleX, ray2circleY) - (circle.radius * circle.radius);
+        var d = b * b - 4 * a * c;
 
         if (d >= 0) {
 
             d = Math.sqrt(d);
 
-            var t1:Float = (-b - d) / (2 * a);
-            var t2:Float = (-b + d) / (2 * a);
+            var t1 = (-b - d) / (2 * a);
+            var t2 = (-b + d) / (2 * a);
 
-            if (ray.infinite || ((t1 <= 1.0)&&(t1 >=0.0)) ) {
-                return new RayCollision(circle, ray, t1, t2);
+            var valid = switch(ray.infinite) {
+                case not_infinite: t1 >= 0.0 && t1 <= 1.0;
+                case infinite_from_start: t1 >= 0.0;
+                case infinite: true;
             }
 
-        } //d>=0
+            if (valid) {
+                
+                into = (into == null) ? new RayCollision() : into.reset();
+                    
+                    into.shape = circle;
+                    into.ray = ray;
+                    into.start = t1;
+                    into.end = t2;
+
+                return into;
+
+            } //
+
+        } //d >= 0
 
         return null;
 
     } //testRayVsCircle
 
         /** Internal api - test a ray against a polygon */
-    public static function testRayVsPolygon( ray:Ray, polygon:Polygon ) : RayCollision {
+    public static function testRayVsPolygon( ray:Ray, polygon:Polygon, ?into:RayCollision ) : RayCollision {
 
-        var delta = ray.end.clone().subtract(ray.start);
-        var vertices = polygon.transformedVertices;
+        var min_u = Math.POSITIVE_INFINITY;
+        var max_u = Math.NEGATIVE_INFINITY;
 
-        var min_u:Float = Math.POSITIVE_INFINITY;
-        var max_u:Float = 0.0;
+        var startX = ray.start.x;
+        var startY = ray.start.y;
+        var deltaX = ray.end.x - startX;
+        var deltaY = ray.end.y - startY;
 
-        if (vertices.length > 2) {
+        var verts = polygon.transformedVertices;
+        var v1 = verts[verts.length - 1];
+        var v2 = verts[0];
 
-            var v1 = vertices[vertices.length - 1];
-            var v2 = vertices[0];
+        var ud = (v2.y-v1.y) * deltaX - (v2.x-v1.x) * deltaY;
+        var ua = rayU(ud, startX, startY, v1.x, v1.y, v2.x - v1.x, v2.y - v1.y);
+        var ub = rayU(ud, startX, startY, v1.x, v1.y, deltaX, deltaY);
 
-            var r = intersectRayRay(ray.start, delta, v1, v2.clone().subtract(v1));
+        if(ud != 0.0 && ub >= 0.0 && ub <= 1.0) {
+            if(ua < min_u) min_u = ua;
+            if(ua > max_u) max_u = ua;
+        }
 
-            if (r != null && r.ub >= 0.0 && r.ub <= 1.0) {
-                if (r.ua < min_u) min_u = r.ua;
-                if (r.ua > max_u) max_u = r.ua;
+        for(i in 1...verts.length) {
+
+            v1 = verts[i - 1];
+            v2 = verts[i];
+
+            ud = (v2.y-v1.y) * deltaX - (v2.x-v1.x) * deltaY;
+            ua = rayU(ud, startX, startY, v1.x, v1.y, v2.x - v1.x, v2.y - v1.y);
+            ub = rayU(ud, startX, startY, v1.x, v1.y, deltaX, deltaY);
+
+            if(ud != 0.0 && ub >= 0.0 && ub <= 1.0) {
+                if(ua < min_u) min_u = ua;
+                if(ua > max_u) max_u = ua;
             }
 
-            for (i in 1...vertices.length) {
+        } //each vert
 
-                v1 = vertices[i - 1];
-                v2 = vertices[i];
+        var valid = switch(ray.infinite) {
+            case not_infinite: min_u >= 0.0 && min_u <= 1.0;
+            case infinite_from_start: min_u != Math.POSITIVE_INFINITY && min_u >= 0.0;
+            case infinite: (min_u != Math.POSITIVE_INFINITY);
+        }
 
-                r = intersectRayRay(ray.start, delta, v1, v2.clone().subtract(v1));
-
-                if (r != null && r.ub >= 0.0 && r.ub <= 1.0) {
-                    if (r.ua < min_u) min_u = r.ua;
-                    if (r.ua > max_u) max_u = r.ua;
-                }
-
-            } //each vert
-
-            if(ray.infinite || ((min_u <= 1.0) && (min_u >= 0.0)) ) {
-                return new RayCollision(polygon, ray, min_u, max_u);
-            }
-
-        } //vert length > 2
+        if(valid) {
+            into = (into == null) ? new RayCollision() : into.reset();
+                into.shape = polygon;
+                into.ray = ray;
+                into.start = min_u; 
+                into.end = max_u;
+            return into;
+        }
 
         return null;
 
     } //testRayVsPolygon
 
         /** Internal api - test a ray against another ray */
-    public static function testRayVsRay( ray1:Ray, ray2:Ray ) : RayIntersection {
+    public static function testRayVsRay( ray1:Ray, ray2:Ray, ?into:RayIntersection ) : RayIntersection {
 
-        var delta1 = ray1.end.clone().subtract(ray1.start);
-        var delta2 = ray2.end.clone().subtract(ray2.start);
+        var delta1X = ray1.end.x - ray1.start.x;
+        var delta1Y = ray1.end.y - ray1.start.y;
+        var delta2X = ray2.end.x - ray2.start.x;
+        var delta2Y = ray2.end.y - ray2.start.y;
+        var diffX = ray1.start.x - ray2.start.x;
+        var diffY = ray1.start.y - ray2.start.y;
+        var ud = delta2Y * delta1X - delta2X * delta1Y;
 
-        var dx = ray1.start.clone().subtract(ray2.start);
+        if(ud == 0.0) return null;
 
-        var d = delta2.y * delta1.x - delta2.x * delta1.y;
+        var u1 = (delta2X * diffY - delta2Y * diffX) / ud;
+        var u2 = (delta1X * diffY - delta1Y * diffX) / ud;
+    
+            //:todo: ask if ray hit condition difference is intentional (> 0 and not >= 0 like other checks)
+        var valid1 = switch(ray1.infinite) {
+            case not_infinite: (u1 > 0.0 && u1 <= 1.0);
+            case infinite_from_start: u1 > 0.0;
+            case infinite: true;
+        }
 
-        if (d == 0.0) return null;
+        var valid2 = switch(ray2.infinite) {
+            case not_infinite: (u2 > 0.0 && u2 <= 1.0);
+            case infinite_from_start: u2 > 0.0;
+            case infinite: true;
+        }
 
-        var u1 = (delta2.x * dx.y - delta2.y * dx.x) / d;
-        var u2 = (delta1.x * dx.y - delta1.y * dx.x) / d;
+        if(valid1 && valid2) {
+            
+            into = (into == null) ? new RayIntersection() : into.reset();
 
-        if ((ray1.infinite || u1 <= 1.0) && (ray2.infinite || u2 <= 1.0)) return new RayIntersection(ray1, u1, ray2, u2);
+            into.ray1 = ray1;
+            into.ray2 = ray2;
+            into.u1 = u1;
+            into.u2 = u2;
+
+            return into;
+        
+        } //both valid 
 
         return null;
 
     } //testRayVsRay
 
-//Helpers
-
-        /** Internal api - generate a bresenham line between given start and end points */
-    public static function bresenhamLine( start:Vector, end:Vector ) : Array<Vector> {
-        //
-
-            //the array of all the points on the line
-        var points:Array<Vector> = [];
-        var steep:Bool = Math.abs(end.y - start.y) > Math.abs(end.x - start.x);
-            //check if rise is greater than run
-        var swapped:Bool = false;
-
-            //reflect the line
-        if(steep) {
-            start = swap(start);
-            end = swap(end);
-        } //if steep
-
-             //make sure the line goes downward
-        if(start.x > end.x) {
-
-            var t:Float = start.x;
-
-            start.x = end.x;
-            end.x = t;
-            t = start.y;
-            start.y = end.y;
-            end.y = t;
-            swapped = true;
-
-        } //if start.x > end.x
-
-            //x slope
-        var deltax:Float = end.x - start.x;
-            //y slope, positive because the lines always go  down
-        var deltay:Float = Math.abs(end.y - start.y);
-            //error is used instead of tracking the y values.
-        var error:Float = deltax / 2;
-        var ystep:Float;
-        var y:Float = start.y;
-
-        if(start.y < end.y) {
-            ystep = 1;
-        } else {
-            ystep = -1;
-        }
-
-        var x:Int = Std.int(start.x);
-        for(x in Std.int(start.x) ... Std.int(end.x)) { //for each point
-
-            if(steep) {
-                points.push(new Vector(y, x)); //if its steep, push flipped version
-            } else {
-                points.push(new Vector(x, y)); //push normal
-            }
-
-            error -= deltay; //change the error
-
-            if(error < 0) {
-                y += ystep; //if the error is too much, adjust the ystep
-                error += deltax;
-            }
-        }
-
-        if(swapped) {
-            points.reverse();
-        }
-
-        return points;
-
-    } //bresenhamLine
-
-//Internal helpers
+//Internal implementation detail helpers
 
         /** Internal api - implementation details for testPolygonVsPolygon */
-    static function checkPolygons( polygon1:Polygon, polygon2:Polygon, flip:Bool=false ) : ShapeCollision {
+    static function checkPolygons( polygon1:Polygon, polygon2:Polygon, into:ShapeCollision, flip:Bool=false ) : ShapeCollision {
 
-        var ep : Float = 0.0000000001;
-        var test1 : Float; // numbers to use to test for overlap
-        var test2 : Float;
-        var testNum : Float; // number to test if its the new max/min
-        var min1 : Float; //current smallest(shape 1)
-        var max1 : Float; //current largest(shape 1)
-        var min2 : Float; //current smallest(shape 2)
-        var max2 : Float; //current largest(shape 2)
-        var axis:Vector; //the normal axis for projection
-        var offset : Float;
-        var vectors1:Array<Vector>; //the points
-        var vectors2:Array<Vector>; //the points
-        var shortestDistance : Float = 0x3FFFFFFF;
-        var collisionData = new ShapeCollision();
+        into.reset();
 
-        vectors1 = polygon1.transformedVertices.copy();
-        vectors2 = polygon2.transformedVertices.copy();
+        var offset = 0.0, test1 = 0.0, test2 = 0.0, testNum = 0.0;
+        var min1 = 0.0, max1 = 0.0, min2 = 0.0, max2 = 0.0;
+        var closest : Float = 0x3FFFFFFF;
 
-            // add a little padding to make the test work correctly for lines
-        if(vectors1.length == 2) {
-            var temp = new Vector(-(vectors1[1].y - vectors1[0].y), vectors1[1].x - vectors1[0].x);
-            temp.truncate(ep);
-            vectors1.push(vectors1[1].add(temp));
-        }
-
-        if(vectors2.length == 2) {
-            var temp = new Vector(-(vectors2[1].y - vectors2[0].y), vectors2[1].x - vectors2[0].x);
-            temp.truncate(ep);
-            vectors2.push(vectors2[1].add(temp));
-        }
+        var axisX = 0.0;
+        var axisY = 0.0;
+        var verts1 = polygon1.transformedVertices;
+        var verts2 = polygon2.transformedVertices;
 
             // loop to begin projection
-        for(i in 0 ... vectors1.length) {
+        for(i in 0 ... verts1.length) {
 
-                // get the normal axis, and begin projection
-            axis = Common.findNormalAxis(vectors1, i);
+            axisX = findNormalAxisX(verts1, i);
+            axisY = findNormalAxisY(verts1, i);
+            var aLen = vec_length(axisX, axisY);
+            axisX = vec_normalize(aLen, axisX);
+            axisY = vec_normalize(aLen, axisY);
 
                 // project polygon1
-            min1 = axis.dot(vectors1[0]);
-            max1 = min1; //set max and min equal
+            min1 = vec_dot(axisX, axisY, verts1[0].x, verts1[0].y);
+            max1 = min1;
 
-            for(j in 1 ... vectors1.length) {
-                testNum = axis.dot(vectors1[j]); //project each point
-                if(testNum < min1) {
-                    min1 = testNum;
-                } //test for new smallest
-                if(testNum > max1) {
-                    max1 = testNum;
-                } //test for new largest
+            for(j in 1 ... verts1.length) {
+                testNum = vec_dot(axisX, axisY, verts1[j].x, verts1[j].y);
+                if(testNum < min1) min1 = testNum;
+                if(testNum > max1) max1 = testNum;
             }
 
-            // project polygon2
-            min2 = axis.dot(vectors2[0]);
-            max2 = min2; //set 2's max and min
+                // project polygon2
+            min2 = vec_dot(axisX, axisY, verts2[0].x, verts2[0].y);
+            max2 = min2;
 
-            for(j in 1 ... vectors2.length) {
-                testNum = axis.dot(vectors2[j]); //project the point
-                if(testNum < min2) {
-                    min2 = testNum;
-                } //test for new min
-                if(testNum > max2) {
-                    max2 = testNum;
-                } //test for new max
+            for(j in 1 ... verts2.length) {
+                testNum = vec_dot(axisX, axisY, verts2[j].x, verts2[j].y);
+                if(testNum < min2) min2 = testNum;
+                if(testNum > max2) max2 = testNum;
             }
 
-            // and test if they are touching
-            test1 = min1 - max2; //test min1 and max2
-            test2 = min2 - max1; //test min2 and max1
-            if(test1 > 0 || test2 > 0) { //if they are greater than 0, there is a gap
-                return null; //just quit
-            }
+            test1 = min1 - max2;
+            test2 = min2 - max1;
 
-            var distMin : Float = -(max2 - min1);
+            if(test1 > 0 || test2 > 0) return null;
+
+            var distMin = -(max2 - min1);
             if(flip) distMin *= -1;
-            if(Math.abs(distMin) < shortestDistance) {
-                collisionData.unitVector = axis;
-                collisionData.overlap = distMin;
-                shortestDistance = Math.abs(distMin);
+
+            if(Math.abs(distMin) < closest) {
+                into.unitVectorX = axisX;
+                into.unitVectorY = axisY;
+                into.overlap = distMin;
+                closest = Math.abs(distMin);
             }
+
         }
 
-        //if you're here, there is a collision
+        into.shape1 = if(flip) polygon2 else polygon1;
+        into.shape2 = if(flip) polygon1 else polygon2;
+        into.separationX = -into.unitVectorX * into.overlap;
+        into.separationY = -into.unitVectorY * into.overlap;
 
-        collisionData.shape1 = if(flip) polygon2 else polygon1;
-        collisionData.shape2 = if(flip) polygon1 else polygon2;
-        collisionData.separation = new Vector(-collisionData.unitVector.x * collisionData.overlap,
-                                                -collisionData.unitVector.y * collisionData.overlap); //return the separation, apply it to a polygon to separate the two shapes.
-        if(flip) collisionData.unitVector.invert();
+        if(flip) {
+            into.unitVectorX = -into.unitVectorX;
+            into.unitVectorY = -into.unitVectorY;
+        }
 
-        return collisionData;
+        return into;
 
     } //checkPolygons
 
-        /** Internal api - swap x and y of a vector, returning a new vector. :todo: this is silly */
-    static inline function swap(v:Vector) : Vector return new Vector(v.y, v.x);
 
-        /** Internal api - same thing as rayRay, except without using Ray objects - saves the construction of a Ray object when testing Polygon/Ray. */
-    static function intersectRayRay(a:Vector, adelta:Vector, b:Vector, bdelta:Vector) : { ua:Float, ub:Float } {
+//Internal helpers
 
-        var dx = a.clone().subtract(b);
+        /** Internal helper for ray overlaps */
+    static inline function rayU(udelta:Float, aX:Float, aY:Float, bX:Float, bY:Float, dX:Float, dY:Float) : Float {
+        return (dX * (aY - bY) - dY * (aX - bX)) / udelta;
+    } //rayU
 
-        var d = bdelta.y * adelta.x - bdelta.x * adelta.y;
+    static inline function findNormalAxisX(verts:Array<Vector>, index:Int) : Float {
+        var v2 = (index >= verts.length - 1) ? verts[0] : verts[index + 1];
+        return -(v2.y - verts[index].y);
+    }
 
-        if (d == 0.0) return null;
-
-        var ua = (bdelta.x * dx.y - bdelta.y * dx.x) / d;
-        var ub = (adelta.x * dx.y - adelta.y * dx.x) / d;
-
-        return { ua : ua, ub : ub };
-
-    } //intersectRayRay
+    static inline function findNormalAxisY(verts:Array<Vector>, index:Int) : Float {
+        var v2 = (index >= verts.length - 1) ? verts[0] : verts[index + 1];
+        return (v2.x - verts[index].x);
+    }
 
 } //SAT2D

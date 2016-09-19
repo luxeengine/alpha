@@ -126,6 +126,26 @@ class Maths {
         return radians * _180_OVER_PI;
     } //degrees
 
+        /** Get the length squared of a vector by components */
+    static inline public function vec_lengthsq(x:Float, y:Float) : Float {
+        return x * x + y * y;
+    }
+
+        /** Get the length of a vector by components */
+    static inline public function vec_length(x:Float, y:Float) : Float {
+        return Math.sqrt(vec_lengthsq(x,y));
+    }
+
+        /** Normalize the component of a vector based on it's length */
+    static inline public function vec_normalize(length:Float, component:Float) : Float {
+        if(length == 0) return 0;
+        return component /= length;
+    }
+
+        /** Returns the dot product between two vectors by components */
+    static inline public function vec_dot(x:Float, y:Float, otherx:Float, othery:Float) : Float {
+        return x * otherx + y * othery;
+    }
 
 //Internal constants
 

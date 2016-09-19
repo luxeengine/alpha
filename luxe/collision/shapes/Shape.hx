@@ -34,6 +34,7 @@ class Shape {
     var _rotation : Float = 0;
     var _rotation_radians : Float = 0;
     var _rotation_quat : Quaternion;
+    var _rotation_euler : Vector;
     var _scale : Vector;
 
     var _scaleX : Float = 1;
@@ -46,7 +47,7 @@ class Shape {
 //Public API
 
 
-       /** Create a new shape at give position x,y */
+    /** Create a new shape at give position x,y */
     public function new( _x:Float, _y:Float ) {
 
         tags = new Map();
@@ -54,6 +55,7 @@ class Shape {
         _position = new Vector(_x,_y);
         _scale = new Vector(1,1);
         _rotation_quat = new Quaternion();
+        _rotation_euler = new Vector();
         _rotation = 0;
 
         _scaleX = 1;
@@ -69,13 +71,13 @@ class Shape {
 //Implemented in subclasses
 
         /** Test this shape against another shape. */
-    public function test( shape:Shape ) : ShapeCollision return null;
+    public function test( shape:Shape, ?into:ShapeCollision ) : ShapeCollision return null;
         /** Test this shape against a circle. */
-    public function testCircle( circle:Circle, flip:Bool = false ) : ShapeCollision return null;
+    public function testCircle( circle:Circle, ?into:ShapeCollision, flip:Bool = false ) : ShapeCollision return null;
         /** Test this shape against a polygon. */
-    public function testPolygon( polygon:Polygon, flip:Bool = false ) : ShapeCollision return null;
+    public function testPolygon( polygon:Polygon, ?into:ShapeCollision, flip:Bool = false ) : ShapeCollision return null;
         /** Test this shape against a ray. */
-    public function testRay( ray:Ray ) : RayCollision return null;
+    public function testRay( ray:Ray, ?into:RayCollision ) : RayCollision return null;
 
         /** clean up and destroy this shape */
     public function destroy():Void {
@@ -84,6 +86,7 @@ class Shape {
         _scale = null;
         _transformMatrix = null;
         _rotation_quat = null;
+        _rotation_euler = null;
 
     } //destroy
 
@@ -91,7 +94,10 @@ class Shape {
 
     function refresh_transform() {
 
-        _rotation_quat.setFromEuler( new Vector(0,0,_rotation_radians) );
+        if(_position == null) return;
+
+        _rotation_euler.z = _rotation_radians;
+        _rotation_quat.setFromEuler(_rotation_euler);
 
         _transformMatrix.compose( _position, _rotation_quat, _scale );
         _transformed = false;

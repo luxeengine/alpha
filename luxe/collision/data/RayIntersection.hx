@@ -5,26 +5,49 @@ import luxe.collision.shapes.*;
 import luxe.collision.data.*;
 
 /** Ray intersection data obtained by testing two rays for intersection. */
+@:publicFields
 class RayIntersection {
 
         /** The first ray in the test */
-    public var ray1:Ray;
+    var ray1:Ray;
         /** The second ray in the test */
-    public var ray2:Ray;
+    var ray2:Ray;
 
         /** u value for ray1. */
-    public var u1:Float;
+    var u1:Float = 0.0;
         /** u value for ray2. */
-    public var u2:Float;
+    var u2:Float = 0.0;
 
-    public function new(ray1:Ray, u1:Float, ray2:Ray, u2:Float) {
+    @:noCompletion
+    inline function new() {}
 
-        this.ray1 = ray1;
-        this.ray2 = ray2;
+    inline function reset() {
 
-        this.u1 = u1;
-        this.u2 = u2;
+        ray1 = null;
+        ray2 = null;
+        u1 = 0.0;
+        u2 = 0.0;
 
-    } //new
+        return this;
 
+    } //reset
+
+    inline function copy_from(other:RayIntersection) {
+
+        ray1 = other.ray1;
+        ray2 = other.ray2;
+        u1 = other.u1;
+        u2 = other.u2;
+
+    } //copy_from
+
+    inline function clone() {
+
+        var _clone = new RayIntersection();
+
+        _clone.copy_from(this);
+
+        return _clone;
+
+    } //copy_from
 } //RayIntersection

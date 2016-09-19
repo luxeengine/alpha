@@ -4,6 +4,8 @@ import luxe.Vector;
 import luxe.collision.shapes.*;
 import luxe.collision.data.*;
 
+/** A ray with a start, end, direction 
+    and infinite state for collision queries. */
 class Ray {
 
         /** The start point of the ray. */
@@ -15,16 +17,16 @@ class Ray {
             Updates only when the dir value is accessed. */
     public var dir (get, never):Vector;
         /** Whether or not the ray is infinite. */
-    public var infinite:Bool;
+    public var infinite:InfiniteState;
 
         /** Create a new ray with the start and end point,
             which determine the direction of the ray, and optionally specifying
-            that this ray is an infinite one. */
-    public function new(_start:Vector, _end:Vector, _infinite:Bool = true) {
+            that this ray is infinite in some way. */
+    public function new(_start:Vector, _end:Vector, ?_infinite:InfiniteState) {
 
         start = _start;
         end = _end;
-        infinite = _infinite;
+        infinite = _infinite == null ? not_infinite : _infinite;
 
         //internal
         dir_cache = new Vector(end.x - start.x, end.y - start.y);
@@ -41,3 +43,18 @@ class Ray {
     }
 
 }
+
+    /** A flag for the infinite state of a Ray. */
+enum InfiniteState {
+
+        /** The line is a fixed length 
+            between the start and end points. */
+    not_infinite;
+        /** The line is infinite 
+            from it's starting point. */
+    infinite_from_start;
+        /** The line is infinite in both 
+            directions from it's starting point. */
+    infinite;
+
+} //InfiniteState

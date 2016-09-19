@@ -40,14 +40,11 @@ class ShapeDrawerLuxe extends ShapeDrawer {
 
     }
 
-    override public function drawLine( p0:Vector, p1:Vector, ?startPoint:Bool = true ) {
-
-        assertnull(p0);
-        assertnull(p1);
+    override public function drawLine( p0x:Float, p0y:Float, p1x:Float, p1y:Float, ?startPoint:Bool = true ) {
 
         Luxe.draw.line({
-            p0 : new luxe.Vector(p0.x, p0.y),
-            p1 : new luxe.Vector(p1.x, p1.y),
+            p0 : new luxe.Vector(p0x, p0y),
+            p1 : new luxe.Vector(p1x, p1y),
             color : color,
             depth: options.depth,
             immediate: options.immediate,
