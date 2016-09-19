@@ -5,9 +5,8 @@ import luxe.collision.shapes.*;
 import luxe.collision.data.*;
 import luxe.collision.sat.*;
 
-/** A polygon collision shape */
+/** A polygonal collision shape */
 class Polygon extends Shape {
-
 
         /** The transformed (rotated/scale) vertices cache */
     public var transformedVertices ( get, never ) : Array<Vector>;
@@ -25,34 +24,34 @@ class Polygon extends Shape {
 
         name = 'polygon(sides:${vertices.length})';
 
-        _transformedVertices = [];
+        _transformedVertices = new Array<Vector>();
         _vertices = vertices;
 
     } //new
 
         /** Test for a collision with a shape. */
-    override public function test( shape:Shape ) : ShapeCollision {
+    override public function test( shape:Shape, ?into:ShapeCollision ) : ShapeCollision {
 
-        return shape.testPolygon(this, true);
+        return shape.testPolygon(this, into, true);
 
     } //test
 
         /** Test for a collision with a circle. */
-    override public function testCircle( circle:Circle, flip:Bool = false ) : ShapeCollision {
+    override public function testCircle( circle:Circle, ?into:ShapeCollision, flip:Bool = false ) : ShapeCollision {
 
-        return SAT2D.testCircleVsPolygon( circle, this, flip );
+        return SAT2D.testCircleVsPolygon( circle, this, into, !flip );
 
     } //testCircle
 
         /** Test for a collision with a polygon. */
-    override public function testPolygon( polygon:Polygon, flip:Bool = false ) : ShapeCollision {
+    override public function testPolygon( polygon:Polygon, ?into:ShapeCollision, flip:Bool = false ) : ShapeCollision {
 
-        return SAT2D.testPolygonVsPolygon( this, polygon, flip );
+        return SAT2D.testPolygonVsPolygon( this, polygon, into, flip );
 
     } //testPolygon
 
         /** Test for a collision with a ray. */
-    override public function testRay( ray:Ray ) : RayCollision {
+    override public function testRay( ray:Ray, ?into:RayCollision ) : RayCollision {
 
         return SAT2D.testRayVsPolygon(ray, this);
 
@@ -87,7 +86,7 @@ class Polygon extends Shape {
         var rotation:Float = (Math.PI * 2) / sides;
         var angle:Float;
         var vector:Vector;
-        var vertices:Array<Vector> = [];
+        var vertices:Array<Vector> = new Array<Vector>();
 
         for(i in 0 ... sides) {
             angle = (i * rotation) + ((Math.PI - rotation) * 0.5);
@@ -105,7 +104,7 @@ class Polygon extends Shape {
             Centered by default. Returns a ready made `Polygon` collision `Shape` */
     public static function rectangle(x:Float, y:Float, width:Float, height:Float, centered:Bool = true):Polygon {
 
-        var vertices:Array<Vector> = [];
+        var vertices:Array<Vector> = new Array<Vector>();
 
         if(centered) {
 
@@ -148,7 +147,7 @@ class Polygon extends Shape {
     function get_transformedVertices() : Array<Vector> {
 
         if(!_transformed) {
-            _transformedVertices = [];
+            _transformedVertices = new Array<Vector>();
             _transformed = true;
 
             var _count : Int = _vertices.length;

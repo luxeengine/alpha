@@ -15,7 +15,7 @@ class ShapeDrawer {
     } //new
 
         /** Draw a line between p0 and p1. Implement this function at minimum in custom drawing handlers */
-    public function drawLine( p0:Vector, p1:Vector, ?startPoint:Bool = true ) {
+    public function drawLine( p0x:Float, p0y:Float, p1x:Float, p1y:Float, ?startPoint:Bool = true ) {
 
     } //drawLine
 
@@ -23,11 +23,9 @@ class ShapeDrawer {
     public function drawShape( shape:Shape ) {
 
         if(Std.is(shape, Polygon)) {
-            drawPolygon(cast(shape, Polygon));
-            return;
-        } else { //circle
-            drawCircle(cast(shape, Circle));
-            return;
+            drawPolygon(cast shape);
+        } else {
+            drawCircle(cast shape);
         }
 
     } //drawShape
@@ -35,18 +33,9 @@ class ShapeDrawer {
         /** Draw a `Polygon` */
     public function drawPolygon( poly:Polygon ) {
 
-        var v : Array<Vector> = poly.transformedVertices.copy();
-
-        drawVertList( v );
+        drawVertList(poly.transformedVertices);
 
     } //drawPolygon
-
-        /** Draw a `Vector` (with magnitude) */
-    public function drawVector( v:Vector, start:Vector, ?startPoint:Bool = true ) {
-
-        drawLine( start, v );
-
-    } //drawVector
 
         /** Draw a circle `Shape` */
     public function drawCircle( circle:Circle ) {
@@ -72,7 +61,7 @@ class ShapeDrawer {
             var __x = x + circle.x;
             var __y = y + circle.y;
 
-            _verts.push( new Vector(__x,__y));
+            _verts.push(new Vector(__x,__y));
 
                 var tx = -y;
                 var ty = x;
@@ -90,44 +79,42 @@ class ShapeDrawer {
 
     } //drawCircle
 
-    public function drawPoint( point:Vector, size:Float = 4 ) {
+    public function drawPoint( x:Float, y:Float, size:Float = 4 ) {
 
-        var xs = point.x - size;
-        var xe = point.x + size;
-        var ys = point.y;
-        var ye = point.y;
+        var xs = x - size;
+        var xe = x + size;
+        var ys = y;
+        var ye = y;
 
-        drawLine( new Vector(xs, ys), new Vector(xe, ye) );
+        drawLine(xs, ys, xe, ye);
 
-        xs = xe = point.x;
-        ys = point.y - size;
-        ye = point.y + size;
+        xs = xe = x;
+        ys = y - size;
+        ye = y + size;
 
-        drawLine( new Vector(xs, ys), new Vector(xe, ye) );
+        drawLine(xs, ys, xe, ye);
 
     } //drawPoint
 
-    public function drawShapeCollision( data:ShapeCollision, ?length:Float = 30 ) {
-
-        var shape1_o = new Vector(data.shape1.position.x, data.shape1.position.y);
-        var shape2_o = new Vector(data.shape2.position.x, data.shape2.position.y);
+    public function drawShapeCollision( c:ShapeCollision, ?length:Float = 30 ) {
 
         //origins
 
-        drawPoint(shape1_o);
-        drawPoint(shape2_o);
+        drawPoint(c.shape1.position.x, c.shape1.position.y);
+        drawPoint(c.shape2.position.x, c.shape2.position.y);
 
         //unit vectors
 
-        var unit_line_end = new Vector( shape1_o.x + (data.unitVector.x * length), shape1_o.y + (data.unitVector.y * length) );
-
-        drawLine( shape1_o, unit_line_end );
+        drawLine( c.shape1.position.x, c.shape1.position.y, c.shape1.position.x + (c.unitVectorX * length), c.shape1.position.y + (c.unitVectorY * length) );
 
         //ghosts
 
-        var shape1p = shape1_o.clone().add(data.separation);
-
-        drawPoint(shape1p);
+        drawPoint(c.shape1.position.x + c.separationX, c.shape1.position.y + c.separationY);
+        
+        if(c.otherOverlap != 0.0) {
+            drawLine(c.shape1.position.x, c.shape1.position.y, c.shape1.position.x + (c.otherUnitVectorX * length), c.shape1.position.y + (c.otherUnitVectorY * length));
+            drawPoint(c.shape1.position.x + c.otherSeparationX, c.shape1.position.y + c.otherSeparationY);
+        }
 
     } //drawShapeCollision
 
@@ -139,19 +126,26 @@ class ShapeDrawer {
     function drawVertList( _verts : Array<Vector> ) {
 
         var _count : Int = _verts.length;
-        if(_count < 3) {
-            throw "cannot draw polygon with < 3 verts as this is a line or a point.";
+
+        if(_count == 2) {
+            drawLine(_verts[0].x, _verts[0].y, _verts[1].x, _verts[1].y, true);
+            return;
+        }
+
+        if(_count == 1) {
+            drawPoint(_verts[0].x, _verts[0].y);
+            return;
         }
 
             //start the polygon by drawing this start point
-        drawLine( _verts[0], _verts[1], true );
+        drawLine(_verts[0].x, _verts[0].y, _verts[1].x, _verts[1].y, true);
 
             //draw the rest of the points
         for(i in 1 ... _count-1) {
-            drawLine( _verts[i], _verts[i+1], false );
+            drawLine(_verts[i].x, _verts[i].y, _verts[i+1].x, _verts[i+1].y, false);
         }
             //join last point to first point
-        drawLine( _verts[_count-1], _verts[0], false );
+        drawLine(_verts[_count-1].x, _verts[_count-1].y, _verts[0].x, _verts[0].y, false);
 
     } //drawVertList
 

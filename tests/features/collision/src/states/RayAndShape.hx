@@ -19,18 +19,24 @@ class RayAndShape extends luxe.States.State {
     var intersect:LineGeometry;
     var before:LineGeometry;
     var after:LineGeometry;
+    var colors:Array<Color>;
 
     override function onenter<T>(_:T) {
 
-        Main.display('pink = ray\ngreen = before hit\nwhite = intersection\npurple = after hit');
+        Main.display('press space to toggle infinite state\npress 1 to move the beam start');
 
-        beam = new Ray( new Vector(450,300), new Vector(400,100), false );
+        beam = new Ray( new Vector(420,300), new Vector(400,100), not_infinite );
 
         Main.rays.push(beam);
         Main.shapes.push(new Circle(600,400,50));
         Main.shapes.push(new Circle(200,400,50));
-        Main.shapes.push( Polygon.rectangle(600,200,50,50));
-        Main.shapes.push( Polygon.rectangle(200,200,50,50));
+        Main.shapes.push(Polygon.rectangle(600,200,50,50));
+        Main.shapes.push(Polygon.rectangle(200,200,50,50));
+
+        colors = [
+            new Color().rgb(0xffffff),
+            new Color(1,1,1,0.5)
+        ];
 
         intersect = Luxe.draw.line({ depth:100, batcher: Main.thicker, p0:new Vector(), p1:new Vector(), color:new Color().rgb(0xffffff) });
         before = Luxe.draw.line({ depth:100, batcher: Main.thicker, p0:new Vector(), p1:new Vector(), color:new Color().rgb(0x00f67b) });
@@ -51,10 +57,44 @@ class RayAndShape extends luxe.States.State {
 
     } //onleave
 
+     override function onkeyup(e:KeyEvent) {
+        
+        if(e.keycode == Key.key_1) {
+            if(beam.start.y == 300) {
+                beam.start.y = 200;
+            } else if(beam.start.y == 200) {
+                beam.start.y = 380;
+            } else {
+                beam.start.y = 300;
+            }
+        }
+
+        if(e.keycode == Key.space) {
+            if(beam != null) {
+                    //cycle infinite mode
+                beam.infinite = switch(beam.infinite) {
+                    case not_infinite: infinite_from_start;
+                    case infinite_from_start: infinite;
+                    case infinite: not_infinite;
+                }
+            }
+        }
+
+    } //onkeyup
+
     override function onmousemove( e:MouseEvent ) {
         if(beam != null) {
-            beam.end.x = e.pos.x;
-            beam.end.y = e.pos.y;
+            if(beam.infinite == infinite || beam.infinite == infinite_from_start) { //:todo: check later if correct behaviour
+                var end = new Vector(e.pos.x, e.pos.y);
+                end.subtract_xyz(beam.start.x, beam.start.y);
+                end.normalize();
+                end.multiplyScalar(9999);
+                beam.end.x = end.x;
+                beam.end.y = end.y;
+            } else {
+                beam.end.x = e.pos.x;
+                beam.end.y = e.pos.y;
+            }
         }
     }
 
@@ -66,42 +106,53 @@ class RayAndShape extends luxe.States.State {
 
         Luxe.draw.text({
             point_size:15,
-            pos:new Vector(Luxe.screen.w - 10,10),
+            pos:new Vector(Luxe.screen.w - 10, 10),
             align: right,
             text: 'Hit ${colls.length} shapes',
             immediate:true,
         });
 
         var textYval = 30;
-        if(colls.length > 0) {
 
-            for (c in colls) {
-                var hitstart = c.hitStart().clone();
-                var hitend = c.hitEnd().clone();
-                var raystart = c.ray.start.clone();
-                var rayend = c.ray.end.clone();
+        for (c in colls) {
+            var hitstartx = c.hitStartX();
+            var hitstarty = c.hitStartY();
+            var hitendx = c.hitEndX();
+            var hitendy = c.hitEndY();
 
-                intersect.p0 = hitstart;
-                intersect.p1 = hitend;
+            Luxe.draw.ring({ immediate:true, x:hitstartx, y:hitstarty, r:4, color:colors[1] });
+            Luxe.draw.ring({ immediate:true, x:hitendx, y:hitendy, r:4, color:colors[1] });
 
-                before.p0 = raystart;
-                before.p1 = hitstart;
-
-                after.p0 = hitend;
-                after.p1 = rayend;
-
-                Luxe.draw.text({
-                    point_size:13,
-                    pos:new Vector(Luxe.screen.w - 10,textYval),
-                    align: right,
-                    text: 'hit start %: ${c.start}\n end %: ${c.end}',
-                    immediate:true,
+            if(c.end >= 1.0) {
+                Luxe.draw.line({
+                    p0: new Vector(hitstartx, hitstarty),
+                    p1: new Vector(c.ray.end.x, c.ray.end.y),
+                    color: colors[0],
+                    batcher: Main.thicker,
+                    immediate: true
                 });
-
-                textYval += 30;
+            } else {
+                Luxe.draw.line({
+                    p0: new Vector(hitstartx, hitstarty),
+                    p1: new Vector(hitendx, hitendy),
+                    color: colors[0],
+                    batcher: Main.thicker,
+                    immediate: true
+                });
             }
+            
 
-        }
+            Luxe.draw.text({
+                point_size:13,
+                pos:new Vector(Luxe.screen.w - 10,textYval),
+                align: right,
+                text: 'hit start %: ${c.start}\n end %: ${c.end}',
+                immediate:true,
+            });
+
+            textYval += 30;
+
+        } //each collision
 
     } //update
 

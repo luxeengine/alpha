@@ -12,9 +12,11 @@ class Circles extends luxe.States.State {
 
     var fixed : Circle;
     var mover : Circle;
+    var result : ShapeCollision;
 
     override function onenter<T>(_:T) {
 
+        result = new ShapeCollision();
         fixed = new Circle(Luxe.screen.mid.x, Luxe.screen.mid.y, 50);
         mover = new Circle(Luxe.screen.mid.x, Luxe.screen.mid.y - 100, 50);
 
@@ -32,6 +34,8 @@ class Circles extends luxe.States.State {
 
     override function onleave<T>(_:T) {
 
+        result = null;
+
         fixed.destroy();
         fixed = null;
 
@@ -48,25 +52,21 @@ class Circles extends luxe.States.State {
 
     override function onrender() {
 
-        var coll = Collision.shapeWithShape(mover, fixed);
+        var coll = Collision.shapeWithShape(mover, fixed, result);
 
         if(coll != null) {
-            Main.drawer.drawShapeCollision(coll);
+            Main.drawer.drawShapeCollision(result);
 
             //draw a ghost shape where the collision would resolve to
             //we do that by using the separation data, and add it to the "shape1"
             //position, above, that shape1 is mover
 
-            var sep = coll.separation;
-
-            var mover_separated_pos = new Vector( coll.shape1.position.x + sep.x, coll.shape1.position.y + sep.y );
-
             Luxe.draw.ring({
                 immediate: true,
                 color: new Color(1,1,1,0.4),
                 batcher: Main.thicker,
-                x: mover_separated_pos.x,
-                y: mover_separated_pos.y,
+                x: result.shape1.position.x + result.separationX,
+                y: result.shape1.position.y + result.separationY,
                 r: mover.transformedRadius
             });
 
