@@ -97,15 +97,15 @@ class Simulation extends luxe.Physics.PhysicsEngine {
 
         for(collision in collisions) {
 
-            player_collider.position = player_collider.position.add(collision.separation);
+            player_collider.position = player_collider.position.add(new Vector(collision.separationX, collision.separationY));
 
-            if(collision.unitVector.x != 0) {
+            if(collision.unitVectorX != 0) {
                 player_velocity.x = 0;
             }
 
-            if(collision.unitVector.y != 0 && Maths.sign(collision.unitVector.y) != Maths.sign(player_velocity.y)) {
+            if(collision.unitVectorY != 0 && Maths.sign(collision.unitVectorY) != Maths.sign(player_velocity.y)) {
                 player_velocity.y = 0;
-                if(collision.unitVector.y < 0) {
+                if(collision.unitVectorY < 0) {
                     player_can_jump = true;
                 }
             }
