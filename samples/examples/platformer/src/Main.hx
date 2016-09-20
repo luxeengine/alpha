@@ -9,6 +9,7 @@ import luxe.tilemaps.Ortho;
 import phoenix.Texture.FilterType;
 
 import luxe.collision.shapes.Polygon;
+import luxe.collision.Collision.Results;
 import luxe.collision.data.ShapeCollision;
 
 import luxe.importers.tiled.TiledMap;
@@ -251,7 +252,7 @@ class Main extends luxe.Game {
 
     var teleport_disabled: Bool = false;
 
-    function ontrigger(collisions:Array<ShapeCollision>) {
+    function ontrigger(collisions:Results<ShapeCollision>) {
 
         if(collisions.length == 0) teleport_disabled = false;
 
