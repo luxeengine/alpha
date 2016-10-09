@@ -63,6 +63,8 @@ class Emitter<ET:Int> {
 
         _check();
 
+        _checking = true;
+
         var _list = bindings.get(event);
         if(_list != null && _list.length > 0) {
             for(handler in _list) {
@@ -70,6 +72,8 @@ class Emitter<ET:Int> {
                 handler(data);
             }
         }
+
+        _checking = false;
 
             //needed because handlers
             //might disconnect listeners
