@@ -70,7 +70,7 @@
     },
     snow_native : {
       build:{
-        defines:['luxe_native', 'parcel_thread_disabled']
+        defines:['luxe_native']
       }
     },
     snow_web : {
