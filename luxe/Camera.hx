@@ -57,10 +57,7 @@ class Camera extends Entity {
         /** the threshold cutoff for shaking */
     @:noCompletion public var minimum_shake : Float = 0.1;
 
-    var update_view_pos : Vector;
-
     var _size_factor : Vector;
-    var _final_pos : Vector;
     var _rotation_radian : Vector;
     var _rotation_cache : Quaternion;
 
@@ -94,9 +91,6 @@ class Camera extends Entity {
             name : _name,
             no_scene : _options.no_scene
         });
-
-            //Start with the transform
-        _final_pos = view.pos;
 
     } //new
 
@@ -286,9 +280,7 @@ class Camera extends Entity {
 
         super.set_pos_from_transform(_pos);
 
-            //flag for update
-        update_view_pos = _pos;
-
+        view.pos = view.pos.set_xyz(_pos.x, _pos.y, _pos.z);
 
     } //set_pos_from_transform
 
@@ -326,9 +318,6 @@ class Camera extends Entity {
             //add camera shake
         if(shaking) {
 
-                //start at our base position
-            _final_pos.set_xyz( transform.pos.x, transform.pos.y, transform.pos.z );
-
                 //get a random direction
             shake_vector = Luxe.utils.geometry.random_point_in_unit_circle();
 
@@ -346,18 +335,10 @@ class Camera extends Entity {
                 shaking = false;
             }
 
-                //add the shake to the final position and apply it to the view
-            _final_pos.set_xyz(_final_pos.x+shake_vector.x, _final_pos.y+shake_vector.y, _final_pos.z+shake_vector.z);
-
                 //tell it to update the view
-            update_view_pos = _final_pos;
+            view.pos = view.pos.set_xyz(transform.pos.x + shake_vector.x, transform.pos.y + shake_vector.y, transform.pos.z + shake_vector.z);
 
         } //shaking
-
-        if(update_view_pos != null && view != null) {
-            view.pos = update_view_pos.clone();
-            update_view_pos = null;
-        }
 
     } //update
 
