@@ -92,15 +92,15 @@ class RenderState {
 
     } //viewport
 
-    var _current_fbo : GLFramebuffer = null;
+    @:noCompletion public var current_fbo : GLFramebuffer = null;
     public function bindFramebuffer( ?buffer:GLFramebuffer=null ) {
 
-        if(_current_fbo != buffer) {
+        if(current_fbo != buffer) {
 
             def(buffer, renderer.default_fbo);
 
             GL.bindFramebuffer( GL.FRAMEBUFFER, buffer );
-            _current_fbo = buffer;
+            current_fbo = buffer;
         }
 
     } //bindFrameBuffer
