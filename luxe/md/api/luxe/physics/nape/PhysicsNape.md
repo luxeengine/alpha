@@ -13,8 +13,8 @@
 
 
 <h1>PhysicsNape</h1>
-<small>`luxe.physics.nape.PhysicsNape`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/physics/nape/PhysicsNape.hx">luxe.physics.nape.PhysicsNape</a></code>
 </small>
 
 

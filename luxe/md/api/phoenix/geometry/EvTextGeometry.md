@@ -13,8 +13,8 @@
 
 
 <h1>EvTextGeometry</h1>
-<small>`phoenix.geometry.EvTextGeometry`
- defined in `phoenix.geometry.TextGeometry`
+<small>
+<code>phoenix.geometry.EvTextGeometry</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/TextGeometry.hx" target="_blank">phoenix.geometry.TextGeometry</a></code>
 </small>
 
 

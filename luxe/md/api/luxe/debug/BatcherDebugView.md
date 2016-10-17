@@ -13,8 +13,8 @@
 
 
 <h1>BatcherDebugView</h1>
-<small>`luxe.debug.BatcherDebugView`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/debug/BatcherDebugView.hx">luxe.debug.BatcherDebugView</a></code>
 </small>
 
 

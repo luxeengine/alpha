@@ -13,8 +13,8 @@
 
 
 <h1>CircleGeometry</h1>
-<small>`phoenix.geometry.CircleGeometry`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/CircleGeometry.hx">phoenix.geometry.CircleGeometry</a></code>
 </small>
 
 

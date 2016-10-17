@@ -13,8 +13,8 @@
 
 
 <h1>ClampSlot_Impl_</h1>
-<small>`phoenix._Texture.ClampSlot_Impl_`
- defined in `phoenix.Texture`
+<small>
+<code>phoenix._Texture.ClampSlot_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Texture.hx" target="_blank">phoenix.Texture</a></code>
 </small>
 
 

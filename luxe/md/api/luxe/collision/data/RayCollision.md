@@ -13,8 +13,8 @@
 
 
 <h1>RayCollision</h1>
-<small>`luxe.collision.data.RayCollision`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/data/RayCollision.hx">luxe.collision.data.RayCollision</a></code>
 </small>
 
 Ray collision intersection data, obtained by testing a shape and a ray.

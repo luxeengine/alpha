@@ -13,8 +13,8 @@
 
 
 <h1>CameraOptions</h1>
-<small>`luxe.options.CameraOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/CameraOptions.hx">luxe.options.CameraOptions</a></code>
 </small>
 
 

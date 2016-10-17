@@ -13,8 +13,8 @@
 
 
 <h1>Resource</h1>
-<small>`luxe.resource.Resource`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/resource/Resource.hx">luxe.resource.Resource</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>Unifill</h1>
-<small>`luxe.utils.unifill.Unifill`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/Unifill.hx">luxe.utils.unifill.Unifill</a></code>
 </small>
 
 Unifill provides Unicode-code-point-wise methods on Strings. It is

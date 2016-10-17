@@ -13,8 +13,8 @@
 
 
 <h1>DrawPlaneOptions</h1>
-<small>`luxe.options.DrawPlaneOptions`
- defined in `luxe.options.DrawOptions`
+<small>
+<code>luxe.options.DrawPlaneOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/DrawOptions.hx" target="_blank">luxe.options.DrawOptions</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>Circle</h1>
-<small>`luxe.collision.shapes.Circle`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/shapes/Circle.hx">luxe.collision.shapes.Circle</a></code>
 </small>
 
 A circle collision shape

@@ -13,8 +13,8 @@
 
 
 <h1>Cubic</h1>
-<small>`luxe.tween.easing.Cubic`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Cubic.hx">luxe.tween.easing.Cubic</a></code>
 </small>
 
 

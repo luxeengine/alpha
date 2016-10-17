@@ -13,8 +13,8 @@
 
 
 <h1>RayCollisionHelper</h1>
-<small>`luxe.collision.data.RayCollisionHelper`
- defined in `luxe.collision.data.RayCollision`
+<small>
+<code>luxe.collision.data.RayCollisionHelper</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/data/RayCollision.hx" target="_blank">luxe.collision.data.RayCollision</a></code>
 </small>
 
 A static extension class helper for RayCollision

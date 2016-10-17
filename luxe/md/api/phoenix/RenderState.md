@@ -13,8 +13,8 @@
 
 
 <h1>RenderState</h1>
-<small>`phoenix.RenderState`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/RenderState.hx">phoenix.RenderState</a></code>
 </small>
 
 

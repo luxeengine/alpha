@@ -13,8 +13,8 @@
 
 
 <h1>ParcelOptions</h1>
-<small>`luxe.options.ParcelOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ParcelOptions.hx">luxe.options.ParcelOptions</a></code>
 </small>
 
 

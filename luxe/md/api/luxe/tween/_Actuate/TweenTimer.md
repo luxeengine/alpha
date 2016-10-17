@@ -13,8 +13,8 @@
 
 
 <h1>TweenTimer</h1>
-<small>`luxe.tween._Actuate.TweenTimer`
- defined in `luxe.tween.Actuate`
+<small>
+<code>luxe.tween._Actuate.TweenTimer</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/Actuate.hx" target="_blank">luxe.tween.Actuate</a></code>
 </small>
 
 

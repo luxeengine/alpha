@@ -13,8 +13,8 @@
 
 
 <h1>DualQuaternion</h1>
-<small>`phoenix.DualQuaternion`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/DualQuaternion.hx">phoenix.DualQuaternion</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>Character</h1>
-<small>`luxe.importers.bitmapfont.Character`
- defined in `luxe.importers.bitmapfont.BitmapFontData`
+<small>
+<code>luxe.importers.bitmapfont.Character</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/bitmapfont/BitmapFontData.hx" target="_blank">luxe.importers.bitmapfont.BitmapFontData</a></code>
 </small>
 
 

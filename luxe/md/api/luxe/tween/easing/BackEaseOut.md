@@ -13,8 +13,8 @@
 
 
 <h1>BackEaseOut</h1>
-<small>`luxe.tween.easing.BackEaseOut`
- defined in `luxe.tween.easing.Back`
+<small>
+<code>luxe.tween.easing.BackEaseOut</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Back.hx" target="_blank">luxe.tween.easing.Back</a></code>
 </small>
 
 

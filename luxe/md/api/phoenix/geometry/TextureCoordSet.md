@@ -13,8 +13,8 @@
 
 
 <h1>TextureCoordSet</h1>
-<small>`phoenix.geometry.TextureCoordSet`
- defined in `phoenix.geometry.TextureCoord`
+<small>
+<code>phoenix.geometry.TextureCoordSet</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/TextureCoord.hx" target="_blank">phoenix.geometry.TextureCoord</a></code>
 </small>
 
 

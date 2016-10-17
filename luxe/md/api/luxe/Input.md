@@ -13,8 +13,8 @@
 
 
 <h1>Input</h1>
-<small>`luxe.Input`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Input.hx">luxe.Input</a></code>
 </small>
 
 

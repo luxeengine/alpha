@@ -13,8 +13,8 @@
 
 
 <h1>PropertyPathDetails</h1>
-<small>`luxe.tween.actuators.PropertyPathDetails`
- defined in `luxe.tween.actuators.MotionPathActuator`
+<small>
+<code>luxe.tween.actuators.PropertyPathDetails</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/actuators/MotionPathActuator.hx" target="_blank">luxe.tween.actuators.MotionPathActuator</a></code>
 </small>
 
 

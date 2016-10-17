@@ -13,8 +13,8 @@
 
 
 <h1>Linear</h1>
-<small>`luxe.tween.easing.Linear`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Linear.hx">luxe.tween.easing.Linear</a></code>
 </small>
 
 

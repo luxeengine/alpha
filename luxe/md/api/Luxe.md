@@ -13,8 +13,8 @@
 
 
 <h1>Luxe</h1>
-<small>`Luxe`
-
+<small>
+<code><a target="_blank" href="#">Luxe</a></code>
 </small>
 
 

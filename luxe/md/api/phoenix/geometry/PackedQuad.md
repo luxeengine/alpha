@@ -13,8 +13,8 @@
 
 
 <h1>PackedQuad</h1>
-<small>`phoenix.geometry.PackedQuad`
- defined in `phoenix.geometry.QuadPackGeometry`
+<small>
+<code>phoenix.geometry.PackedQuad</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/QuadPackGeometry.hx" target="_blank">phoenix.geometry.QuadPackGeometry</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>Entity</h1>
-<small>`luxe.Entity`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Entity.hx">luxe.Entity</a></code>
 </small>
 
 

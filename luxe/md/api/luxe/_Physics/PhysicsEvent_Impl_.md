@@ -13,8 +13,8 @@
 
 
 <h1>PhysicsEvent_Impl_</h1>
-<small>`luxe._Physics.PhysicsEvent_Impl_`
- defined in `luxe.Physics`
+<small>
+<code>luxe._Physics.PhysicsEvent_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Physics.hx" target="_blank">luxe.Physics</a></code>
 </small>
 
 

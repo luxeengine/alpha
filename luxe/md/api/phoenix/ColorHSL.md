@@ -13,8 +13,8 @@
 
 
 <h1>ColorHSL</h1>
-<small>`phoenix.ColorHSL`
- defined in `phoenix.Color`
+<small>
+<code>phoenix.ColorHSL</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Color.hx" target="_blank">phoenix.Color</a></code>
 </small>
 
 

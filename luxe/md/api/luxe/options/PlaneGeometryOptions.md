@@ -13,8 +13,8 @@
 
 
 <h1>PlaneGeometryOptions</h1>
-<small>`luxe.options.PlaneGeometryOptions`
- defined in `luxe.options.GeometryOptions`
+<small>
+<code>luxe.options.PlaneGeometryOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/GeometryOptions.hx" target="_blank">luxe.options.GeometryOptions</a></code>
 </small>
 
 

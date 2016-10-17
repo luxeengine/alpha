@@ -13,8 +13,8 @@
 
 
 <h1>CodePoint</h1>
-<small>`luxe.utils.unifill.CodePoint`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/CodePoint.hx">luxe.utils.unifill.CodePoint</a></code>
 </small>
 
 

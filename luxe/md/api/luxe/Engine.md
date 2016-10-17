@@ -13,8 +13,8 @@
 
 
 <h1>Engine</h1>
-<small>`luxe.Engine`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Engine.hx">luxe.Engine</a></code>
 </small>
 
 

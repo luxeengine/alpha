@@ -13,8 +13,8 @@
 
 
 <h1>TextureID</h1>
-<small>`phoenix.TextureID`
- defined in `phoenix.Texture`
+<small>
+<code>phoenix.TextureID</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Texture.hx" target="_blank">phoenix.Texture</a></code>
 </small>
 
 

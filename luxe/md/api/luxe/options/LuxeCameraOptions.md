@@ -13,8 +13,8 @@
 
 
 <h1>LuxeCameraOptions</h1>
-<small>`luxe.options.LuxeCameraOptions`
- defined in `luxe.options.CameraOptions`
+<small>
+<code>luxe.options.LuxeCameraOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/CameraOptions.hx" target="_blank">luxe.options.CameraOptions</a></code>
 </small>
 
 Don't like this naming here, tentative. Will have to do for now.

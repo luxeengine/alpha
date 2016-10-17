@@ -13,8 +13,8 @@
 
 
 <h1>Ev_Impl_</h1>
-<small>`luxe._Ev.Ev_Impl_`
- defined in `luxe.Ev`
+<small>
+<code>luxe._Ev.Ev_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Ev.hx" target="_blank">luxe.Ev</a></code>
 </small>
 
 

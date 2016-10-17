@@ -13,8 +13,8 @@
 
 
 <h1>Vec_Impl_</h1>
-<small>`phoenix._Vector.Vec_Impl_`
- defined in `phoenix.Vector`
+<small>
+<code>phoenix._Vector.Vec_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Vector.hx" target="_blank">phoenix.Vector</a></code>
 </small>
 
 

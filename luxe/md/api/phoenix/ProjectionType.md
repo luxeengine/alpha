@@ -13,8 +13,8 @@
 
 
 <h1>ProjectionType</h1>
-<small>`phoenix.ProjectionType`
- defined in `phoenix.Camera`
+<small>
+<code>phoenix.ProjectionType</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Camera.hx" target="_blank">phoenix.Camera</a></code>
 </small>
 
 

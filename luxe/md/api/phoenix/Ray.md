@@ -13,8 +13,8 @@
 
 
 <h1>Ray</h1>
-<small>`phoenix.Ray`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Ray.hx">phoenix.Ray</a></code>
 </small>
 
 

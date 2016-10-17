@@ -13,8 +13,8 @@
 
 
 <h1>ResourceType</h1>
-<small>`luxe.ResourceType`
- defined in `luxe.Resources`
+<small>
+<code>luxe.ResourceType</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Resources.hx" target="_blank">luxe.Resources</a></code>
 </small>
 
 

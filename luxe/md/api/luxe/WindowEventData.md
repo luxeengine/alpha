@@ -13,8 +13,8 @@
 
 
 <h1>WindowEventData</h1>
-<small>`luxe.WindowEventData`
- defined in `luxe.Screen`
+<small>
+<code>luxe.WindowEventData</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Screen.hx" target="_blank">luxe.Screen</a></code>
 </small>
 
 The data related to the specific window event.

@@ -13,8 +13,8 @@
 
 
 <h1>IComponentPath</h1>
-<small>`luxe.tween.IComponentPath`
- defined in `luxe.tween.MotionPath`
+<small>
+<code>luxe.tween.IComponentPath</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/MotionPath.hx" target="_blank">luxe.tween.MotionPath</a></code>
 </small>
 
 

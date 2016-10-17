@@ -13,8 +13,8 @@
 
 
 <h1>ParticleOptions</h1>
-<small>`luxe.options.ParticleOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ParticleOptions.hx">luxe.options.ParticleOptions</a></code>
 </small>
 
 

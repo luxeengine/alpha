@@ -13,8 +13,8 @@
 
 
 <h1>Emitter</h1>
-<small>`luxe.Emitter`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Emitter.hx">luxe.Emitter</a></code>
 </small>
 
 A simple event emitter, used as a base class for systems that want to handle direct connections to named events

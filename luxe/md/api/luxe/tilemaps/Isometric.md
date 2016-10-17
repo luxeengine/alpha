@@ -13,8 +13,8 @@
 
 
 <h1>Isometric</h1>
-<small>`luxe.tilemaps.Isometric`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tilemaps/Isometric.hx">luxe.tilemaps.Isometric</a></code>
 </small>
 
 

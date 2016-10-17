@@ -13,8 +13,8 @@
 
 
 <h1>Circle</h1>
-<small>`luxe.Circle`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Circle.hx">luxe.Circle</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>TilesetOptions</h1>
-<small>`luxe.options.TilesetOptions`
- defined in `luxe.options.TilemapOptions`
+<small>
+<code>luxe.options.TilesetOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/TilemapOptions.hx" target="_blank">luxe.options.TilemapOptions</a></code>
 </small>
 
 Options specific to a `Tileset`, part of a `Tilemap`

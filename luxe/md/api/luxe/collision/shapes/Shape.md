@@ -13,8 +13,8 @@
 
 
 <h1>Shape</h1>
-<small>`luxe.collision.shapes.Shape`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/shapes/Shape.hx">luxe.collision.shapes.Shape</a></code>
 </small>
 
 A base collision shape

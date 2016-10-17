@@ -13,8 +13,8 @@
 
 
 <h1>Quart</h1>
-<small>`luxe.tween.easing.Quart`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Quart.hx">luxe.tween.easing.Quart</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>Actuate</h1>
-<small>`luxe.tween.Actuate`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/Actuate.hx">luxe.tween.Actuate</a></code>
 </small>
 
 

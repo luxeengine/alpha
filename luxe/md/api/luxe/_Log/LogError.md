@@ -13,8 +13,8 @@
 
 
 <h1>LogError</h1>
-<small>`luxe._Log.LogError`
- defined in `luxe.Log`
+<small>
+<code>luxe._Log.LogError</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Log.hx" target="_blank">luxe.Log</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>BlendMode_Impl_</h1>
-<small>`phoenix._Batcher.BlendMode_Impl_`
- defined in `phoenix.Batcher`
+<small>
+<code>phoenix._Batcher.BlendMode_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Batcher.hx" target="_blank">phoenix.Batcher</a></code>
 </small>
 
 

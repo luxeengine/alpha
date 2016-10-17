@@ -13,8 +13,8 @@
 
 
 <h1>Scene</h1>
-<small>`luxe.Scene`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Scene.hx">luxe.Scene</a></code>
 </small>
 
 

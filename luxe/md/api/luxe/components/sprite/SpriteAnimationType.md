@@ -13,8 +13,8 @@
 
 
 <h1>SpriteAnimationType</h1>
-<small>`luxe.components.sprite.SpriteAnimationType`
- defined in `luxe.components.sprite.SpriteAnimation`
+<small>
+<code>luxe.components.sprite.SpriteAnimationType</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/components/sprite/SpriteAnimation.hx" target="_blank">luxe.components.sprite.SpriteAnimation</a></code>
 </small>
 
 

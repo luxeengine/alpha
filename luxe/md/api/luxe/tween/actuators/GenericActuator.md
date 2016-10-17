@@ -13,8 +13,8 @@
 
 
 <h1>GenericActuator</h1>
-<small>`luxe.tween.actuators.GenericActuator`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/actuators/GenericActuator.hx">luxe.tween.actuators.GenericActuator</a></code>
 </small>
 
 

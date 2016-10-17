@@ -13,8 +13,8 @@
 
 
 <h1>OrderedMap</h1>
-<small>`luxe.structural.OrderedMap`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/OrderedMap.hx">luxe.structural.OrderedMap</a></code>
 </small>
 
 

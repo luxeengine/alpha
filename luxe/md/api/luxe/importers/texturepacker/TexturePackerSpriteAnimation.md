@@ -13,8 +13,8 @@
 
 
 <h1>TexturePackerSpriteAnimation</h1>
-<small>`luxe.importers.texturepacker.TexturePackerSpriteAnimation`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/texturepacker/TexturePackerSpriteAnimation.hx">luxe.importers.texturepacker.TexturePackerSpriteAnimation</a></code>
 </small>
 
 

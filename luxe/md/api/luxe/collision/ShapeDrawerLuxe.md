@@ -13,8 +13,8 @@
 
 
 <h1>ShapeDrawerLuxe</h1>
-<small>`luxe.collision.ShapeDrawerLuxe`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/ShapeDrawerLuxe.hx">luxe.collision.ShapeDrawerLuxe</a></code>
 </small>
 
 

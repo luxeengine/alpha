@@ -13,8 +13,8 @@
 
 
 <h1>TexturePackerJSON</h1>
-<small>`luxe.importers.texturepacker.TexturePackerJSON`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/texturepacker/TexturePackerJSON.hx">luxe.importers.texturepacker.TexturePackerJSON</a></code>
 </small>
 
 

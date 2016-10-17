@@ -13,8 +13,8 @@
 
 
 <h1>TextureDataType</h1>
-<small>`phoenix.TextureDataType`
- defined in `phoenix.Texture`
+<small>
+<code>phoenix.TextureDataType</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Texture.hx" target="_blank">phoenix.Texture</a></code>
 </small>
 
 

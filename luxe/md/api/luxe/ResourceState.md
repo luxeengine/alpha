@@ -13,8 +13,8 @@
 
 
 <h1>ResourceState</h1>
-<small>`luxe.ResourceState`
- defined in `luxe.Resources`
+<small>
+<code>luxe.ResourceState</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Resources.hx" target="_blank">luxe.Resources</a></code>
 </small>
 
 The state a resource can be in. The state is

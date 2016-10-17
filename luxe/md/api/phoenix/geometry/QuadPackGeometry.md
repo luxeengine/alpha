@@ -13,8 +13,8 @@
 
 
 <h1>QuadPackGeometry</h1>
-<small>`phoenix.geometry.QuadPackGeometry`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/QuadPackGeometry.hx">phoenix.geometry.QuadPackGeometry</a></code>
 </small>
 
 

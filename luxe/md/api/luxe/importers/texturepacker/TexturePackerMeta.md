@@ -13,8 +13,8 @@
 
 
 <h1>TexturePackerMeta</h1>
-<small>`luxe.importers.texturepacker.TexturePackerMeta`
- defined in `luxe.importers.texturepacker.TexturePackerData`
+<small>
+<code>luxe.importers.texturepacker.TexturePackerMeta</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/texturepacker/TexturePackerData.hx" target="_blank">luxe.importers.texturepacker.TexturePackerData</a></code>
 </small>
 
 

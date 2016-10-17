@@ -13,8 +13,8 @@
 
 
 <h1>AudioResourceOptions</h1>
-<small>`luxe.options.AudioResourceOptions`
- defined in `luxe.options.ResourceOptions`
+<small>
+<code>luxe.options.AudioResourceOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ResourceOptions.hx" target="_blank">luxe.options.ResourceOptions</a></code>
 </small>
 
 Options for creating an Audio Resource instance.

@@ -13,8 +13,8 @@
 
 
 <h1>JSONResource</h1>
-<small>`luxe.resource.JSONResource`
- defined in `luxe.resource.Resource`
+<small>
+<code>luxe.resource.JSONResource</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/resource/Resource.hx" target="_blank">luxe.resource.Resource</a></code>
 </small>
 
 

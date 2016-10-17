@@ -13,8 +13,8 @@
 
 
 <h1>IGenericActuator</h1>
-<small>`luxe.tween.actuators.IGenericActuator`
- defined in `luxe.tween.actuators.GenericActuator`
+<small>
+<code>luxe.tween.actuators.IGenericActuator</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/actuators/GenericActuator.hx" target="_blank">luxe.tween.actuators.GenericActuator</a></code>
 </small>
 
 

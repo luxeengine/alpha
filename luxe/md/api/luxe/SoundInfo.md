@@ -13,8 +13,8 @@
 
 
 <h1>SoundInfo</h1>
-<small>`luxe.SoundInfo`
- defined in `luxe.Parcel`
+<small>
+<code>luxe.SoundInfo</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Parcel.hx" target="_blank">luxe.Parcel</a></code>
 </small>
 
 

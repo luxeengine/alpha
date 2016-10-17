@@ -13,8 +13,8 @@
 
 
 <h1>Screen</h1>
-<small>`luxe.Screen`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Screen.hx">luxe.Screen</a></code>
 </small>
 
 

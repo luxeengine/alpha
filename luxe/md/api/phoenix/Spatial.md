@@ -13,8 +13,8 @@
 
 
 <h1>Spatial</h1>
-<small>`phoenix.Spatial`
- defined in `phoenix.Transform`
+<small>
+<code>phoenix.Spatial</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Transform.hx" target="_blank">phoenix.Transform</a></code>
 </small>
 
 

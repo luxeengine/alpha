@@ -13,8 +13,8 @@
 
 
 <h1>Bounce</h1>
-<small>`luxe.tween.easing.Bounce`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Bounce.hx">luxe.tween.easing.Bounce</a></code>
 </small>
 
 

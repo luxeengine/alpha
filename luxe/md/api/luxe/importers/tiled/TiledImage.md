@@ -13,8 +13,8 @@
 
 
 <h1>TiledImage</h1>
-<small>`luxe.importers.tiled.TiledImage`
- defined in `luxe.importers.tiled.TiledImageLayer`
+<small>
+<code>luxe.importers.tiled.TiledImage</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/tiled/TiledImageLayer.hx" target="_blank">luxe.importers.tiled.TiledImageLayer</a></code>
 </small>
 
 

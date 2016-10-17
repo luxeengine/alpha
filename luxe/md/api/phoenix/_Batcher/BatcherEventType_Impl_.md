@@ -13,8 +13,8 @@
 
 
 <h1>BatcherEventType_Impl_</h1>
-<small>`phoenix._Batcher.BatcherEventType_Impl_`
- defined in `phoenix.Batcher`
+<small>
+<code>phoenix._Batcher.BatcherEventType_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Batcher.hx" target="_blank">phoenix.Batcher</a></code>
 </small>
 
 

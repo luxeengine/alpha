@@ -13,8 +13,8 @@
 
 
 <h1>ElasticEaseInOut</h1>
-<small>`luxe.tween.easing.ElasticEaseInOut`
- defined in `luxe.tween.easing.Elastic`
+<small>
+<code>luxe.tween.easing.ElasticEaseInOut</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Elastic.hx" target="_blank">luxe.tween.easing.Elastic</a></code>
 </small>
 
 

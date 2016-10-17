@@ -13,8 +13,8 @@
 
 
 <h1>Cursor</h1>
-<small>`luxe.Cursor`
- defined in `luxe.Screen`
+<small>
+<code>luxe.Cursor</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Screen.hx" target="_blank">luxe.Screen</a></code>
 </small>
 
 

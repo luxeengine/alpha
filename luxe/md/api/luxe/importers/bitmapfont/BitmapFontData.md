@@ -13,8 +13,8 @@
 
 
 <h1>BitmapFontData</h1>
-<small>`luxe.importers.bitmapfont.BitmapFontData`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/bitmapfont/BitmapFontData.hx">luxe.importers.bitmapfont.BitmapFontData</a></code>
 </small>
 
 

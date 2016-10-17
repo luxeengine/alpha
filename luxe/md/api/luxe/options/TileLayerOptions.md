@@ -13,8 +13,8 @@
 
 
 <h1>TileLayerOptions</h1>
-<small>`luxe.options.TileLayerOptions`
- defined in `luxe.options.TilemapOptions`
+<small>
+<code>luxe.options.TileLayerOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/TilemapOptions.hx" target="_blank">luxe.options.TilemapOptions</a></code>
 </small>
 
 Options specific to a `TileLayer`, part of a `Tilemap`

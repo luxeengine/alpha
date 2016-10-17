@@ -13,8 +13,8 @@
 
 
 <h1>QuadGeometry</h1>
-<small>`phoenix.geometry.QuadGeometry`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/QuadGeometry.hx">phoenix.geometry.QuadGeometry</a></code>
 </small>
 
 

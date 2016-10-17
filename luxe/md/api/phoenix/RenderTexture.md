@@ -13,8 +13,8 @@
 
 
 <h1>RenderTexture</h1>
-<small>`phoenix.RenderTexture`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/RenderTexture.hx">phoenix.RenderTexture</a></code>
 </small>
 
 

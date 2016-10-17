@@ -13,8 +13,8 @@
 
 
 <h1>Back</h1>
-<small>`luxe.tween.easing.Back`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Back.hx">luxe.tween.easing.Back</a></code>
 </small>
 
 

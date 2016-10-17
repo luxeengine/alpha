@@ -13,8 +13,8 @@
 
 
 <h1>LineGeometry</h1>
-<small>`phoenix.geometry.LineGeometry`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/LineGeometry.hx">phoenix.geometry.LineGeometry</a></code>
 </small>
 
 

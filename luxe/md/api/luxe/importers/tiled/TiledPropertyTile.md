@@ -13,8 +13,8 @@
 
 
 <h1>TiledPropertyTile</h1>
-<small>`luxe.importers.tiled.TiledPropertyTile`
- defined in `luxe.importers.tiled.TiledMapData`
+<small>
+<code>luxe.importers.tiled.TiledPropertyTile</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/tiled/TiledMapData.hx" target="_blank">luxe.importers.tiled.TiledMapData</a></code>
 </small>
 
 

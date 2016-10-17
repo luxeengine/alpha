@@ -13,8 +13,8 @@
 
 
 <h1>StatesOptions</h1>
-<small>`luxe.options.StatesOptions`
- defined in `luxe.options.StateOptions`
+<small>
+<code>luxe.options.StatesOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/StateOptions.hx" target="_blank">luxe.options.StateOptions</a></code>
 </small>
 
 

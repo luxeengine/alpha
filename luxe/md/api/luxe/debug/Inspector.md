@@ -13,8 +13,8 @@
 
 
 <h1>Inspector</h1>
-<small>`luxe.debug.Inspector`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/debug/Inspector.hx">luxe.debug.Inspector</a></code>
 </small>
 
 

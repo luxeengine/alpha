@@ -13,8 +13,8 @@
 
 
 <h1>FilterSlot</h1>
-<small>`phoenix._Texture.FilterSlot`
- defined in `phoenix.Texture`
+<small>
+<code>phoenix._Texture.FilterSlot</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Texture.hx" target="_blank">phoenix.Texture</a></code>
 </small>
 
 

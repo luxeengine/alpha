@@ -13,8 +13,8 @@
 
 
 <h1>NineSliceOptions</h1>
-<small>`luxe.options.NineSliceOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/NineSliceOptions.hx">luxe.options.NineSliceOptions</a></code>
 </small>
 
 Options for a Nineslice scaled entity, extending from `Sprite` allowing scaleable graphics to be drawn from a small image. See the guide for examples.

@@ -13,8 +13,8 @@
 
 
 <h1>TexturePackerFrame</h1>
-<small>`luxe.importers.texturepacker.TexturePackerFrame`
- defined in `luxe.importers.texturepacker.TexturePackerData`
+<small>
+<code>luxe.importers.texturepacker.TexturePackerFrame</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/texturepacker/TexturePackerData.hx" target="_blank">luxe.importers.texturepacker.TexturePackerData</a></code>
 </small>
 
 

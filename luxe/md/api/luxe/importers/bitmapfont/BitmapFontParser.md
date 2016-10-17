@@ -13,8 +13,8 @@
 
 
 <h1>BitmapFontParser</h1>
-<small>`luxe.importers.bitmapfont.BitmapFontParser`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/bitmapfont/BitmapFontParser.hx">luxe.importers.bitmapfont.BitmapFontParser</a></code>
 </small>
 
 

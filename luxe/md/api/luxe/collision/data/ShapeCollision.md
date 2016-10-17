@@ -13,8 +13,8 @@
 
 
 <h1>ShapeCollision</h1>
-<small>`luxe.collision.data.ShapeCollision`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/data/ShapeCollision.hx">luxe.collision.data.ShapeCollision</a></code>
 </small>
 
 Collision data, obtained by testing two shapes for a collision.

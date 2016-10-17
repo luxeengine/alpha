@@ -13,8 +13,8 @@
 
 
 <h1>InternalEncodingIter</h1>
-<small>`luxe.utils.unifill.InternalEncodingIter`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/InternalEncodingIter.hx">luxe.utils.unifill.InternalEncodingIter</a></code>
 </small>
 
 

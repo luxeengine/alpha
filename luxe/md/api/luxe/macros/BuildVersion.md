@@ -13,8 +13,8 @@
 
 
 <h1>BuildVersion</h1>
-<small>`luxe.macros.BuildVersion`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/macros/BuildVersion.hx">luxe.macros.BuildVersion</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>IEasing</h1>
-<small>`luxe.tween.easing.IEasing`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/IEasing.hx">luxe.tween.easing.IEasing</a></code>
 </small>
 
 * @author Joshua Granick

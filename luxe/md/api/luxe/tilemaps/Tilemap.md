@@ -13,8 +13,8 @@
 
 
 <h1>Tilemap</h1>
-<small>`luxe.tilemaps.Tilemap`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tilemaps/Tilemap.hx">luxe.tilemaps.Tilemap</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>ObjectHash</h1>
-<small>`luxe.tween.ObjectHash`
- defined in `luxe.tween.Actuate`
+<small>
+<code>luxe.tween.ObjectHash</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/Actuate.hx" target="_blank">luxe.tween.Actuate</a></code>
 </small>
 
 

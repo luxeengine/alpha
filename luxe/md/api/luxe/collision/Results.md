@@ -13,8 +13,8 @@
 
 
 <h1>Results</h1>
-<small>`luxe.collision.Results`
- defined in `luxe.collision.Collision`
+<small>
+<code>luxe.collision.Results</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/Collision.hx" target="_blank">luxe.collision.Collision</a></code>
 </small>
 
 A result set container.

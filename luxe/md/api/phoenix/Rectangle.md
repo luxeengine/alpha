@@ -13,8 +13,8 @@
 
 
 <h1>Rectangle</h1>
-<small>`phoenix.Rectangle`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Rectangle.hx">phoenix.Rectangle</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>Circle</h1>
-<small>`phoenix.Circle`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Circle.hx">phoenix.Circle</a></code>
 </small>
 
 

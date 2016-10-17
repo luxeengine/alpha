@@ -13,8 +13,8 @@
 
 
 <h1>EventConnection</h1>
-<small>`luxe._Events.EventConnection`
- defined in `luxe.Events`
+<small>
+<code>luxe._Events.EventConnection</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Events.hx" target="_blank">luxe.Events</a></code>
 </small>
 
 

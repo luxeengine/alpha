@@ -13,8 +13,8 @@
 
 
 <h1>DrawCircleOptions</h1>
-<small>`luxe.options.DrawCircleOptions`
- defined in `luxe.options.DrawOptions`
+<small>
+<code>luxe.options.DrawCircleOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/DrawOptions.hx" target="_blank">luxe.options.DrawOptions</a></code>
 </small>
 
 

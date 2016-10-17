@@ -13,8 +13,8 @@
 
 
 <h1>Matrix</h1>
-<small>`phoenix.Matrix`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Matrix.hx">phoenix.Matrix</a></code>
 </small>
 
 

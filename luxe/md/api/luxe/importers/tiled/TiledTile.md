@@ -13,8 +13,8 @@
 
 
 <h1>TiledTile</h1>
-<small>`luxe.importers.tiled.TiledTile`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/tiled/TiledTile.hx">luxe.importers.tiled.TiledTile</a></code>
 </small>
 
 

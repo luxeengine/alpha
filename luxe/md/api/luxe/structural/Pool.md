@@ -13,8 +13,8 @@
 
 
 <h1>Pool</h1>
-<small>`luxe.structural.Pool`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/Pool.hx">luxe.structural.Pool</a></code>
 </small>
 
 Copyright 2014-2016 Sven Bergström

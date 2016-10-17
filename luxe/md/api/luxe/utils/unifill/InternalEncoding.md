@@ -13,8 +13,8 @@
 
 
 <h1>InternalEncoding</h1>
-<small>`luxe.utils.unifill.InternalEncoding`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/InternalEncoding.hx">luxe.utils.unifill.InternalEncoding</a></code>
 </small>
 
 InternalEncoding provides primitive API to deal with strings across

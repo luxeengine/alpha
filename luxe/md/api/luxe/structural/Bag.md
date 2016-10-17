@@ -13,8 +13,8 @@
 
 
 <h1>Bag</h1>
-<small>`luxe.structural.Bag`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/Bag.hx">luxe.structural.Bag</a></code>
 </small>
 
 Copyright 2014-2016 Sven Bergström

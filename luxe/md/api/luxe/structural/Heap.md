@@ -13,8 +13,8 @@
 
 
 <h1>Heap</h1>
-<small>`luxe.structural.Heap`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/Heap.hx">luxe.structural.Heap</a></code>
 </small>
 
 Copyright (c) 2008 Chase Kernan, Laurence Taylor

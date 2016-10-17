@@ -13,8 +13,8 @@
 
 
 <h1>MouseEvent</h1>
-<small>`luxe.MouseEvent`
- defined in `luxe.Input`
+<small>
+<code>luxe.MouseEvent</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Input.hx" target="_blank">luxe.Input</a></code>
 </small>
 
 Information about a mouse event

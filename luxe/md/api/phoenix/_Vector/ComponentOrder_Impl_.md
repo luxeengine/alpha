@@ -13,8 +13,8 @@
 
 
 <h1>ComponentOrder_Impl_</h1>
-<small>`phoenix._Vector.ComponentOrder_Impl_`
- defined in `phoenix.Vector`
+<small>
+<code>phoenix._Vector.ComponentOrder_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Vector.hx" target="_blank">phoenix.Vector</a></code>
 </small>
 
 

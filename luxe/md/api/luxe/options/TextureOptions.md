@@ -13,8 +13,8 @@
 
 
 <h1>TextureOptions</h1>
-<small>`luxe.options.TextureOptions`
- defined in `luxe.options.ResourceOptions`
+<small>
+<code>luxe.options.TextureOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ResourceOptions.hx" target="_blank">luxe.options.ResourceOptions</a></code>
 </small>
 
 Options for creating a Texture instance.

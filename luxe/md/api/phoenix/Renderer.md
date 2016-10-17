@@ -13,8 +13,8 @@
 
 
 <h1>Renderer</h1>
-<small>`phoenix.Renderer`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Renderer.hx">phoenix.Renderer</a></code>
 </small>
 
 

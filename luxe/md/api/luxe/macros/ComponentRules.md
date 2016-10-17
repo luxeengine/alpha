@@ -13,8 +13,8 @@
 
 
 <h1>ComponentRules</h1>
-<small>`luxe.macros.ComponentRules`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/macros/ComponentRules.hx">luxe.macros.ComponentRules</a></code>
 </small>
 
 

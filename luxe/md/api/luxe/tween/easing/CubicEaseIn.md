@@ -13,8 +13,8 @@
 
 
 <h1>CubicEaseIn</h1>
-<small>`luxe.tween.easing.CubicEaseIn`
- defined in `luxe.tween.easing.Cubic`
+<small>
+<code>luxe.tween.easing.CubicEaseIn</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Cubic.hx" target="_blank">luxe.tween.easing.Cubic</a></code>
 </small>
 
 

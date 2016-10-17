@@ -13,8 +13,8 @@
 
 
 <h1>StackNode</h1>
-<small>`luxe.structural.StackNode`
- defined in `luxe.structural.Stack`
+<small>
+<code>luxe.structural.StackNode</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/Stack.hx" target="_blank">luxe.structural.Stack</a></code>
 </small>
 
 A single stack node holding

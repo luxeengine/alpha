@@ -13,8 +13,8 @@
 
 
 <h1>PhysicsEvent</h1>
-<small>`luxe.PhysicsEvent`
- defined in `luxe.Physics`
+<small>
+<code>luxe.PhysicsEvent</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Physics.hx" target="_blank">luxe.Physics</a></code>
 </small>
 
 :todo:WIP: This api is work in progress, and might change a bit

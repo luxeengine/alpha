@@ -13,8 +13,8 @@
 
 
 <h1>Data</h1>
-<small>`luxe.importers.obj.Data`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/obj/Data.hx">luxe.importers.obj.Data</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>BatchState</h1>
-<small>`phoenix.BatchState`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/BatchState.hx">phoenix.BatchState</a></code>
 </small>
 
 

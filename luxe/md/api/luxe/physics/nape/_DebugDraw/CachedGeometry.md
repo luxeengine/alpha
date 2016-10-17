@@ -13,8 +13,8 @@
 
 
 <h1>CachedGeometry</h1>
-<small>`luxe.physics.nape._DebugDraw.CachedGeometry`
- defined in `luxe.physics.nape.DebugDraw`
+<small>
+<code>luxe.physics.nape._DebugDraw.CachedGeometry</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/physics/nape/DebugDraw.hx" target="_blank">luxe.physics.nape.DebugDraw</a></code>
 </small>
 
 

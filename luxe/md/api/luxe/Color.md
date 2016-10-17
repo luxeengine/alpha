@@ -13,8 +13,8 @@
 
 
 <h1>Color</h1>
-<small>`luxe.Color`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Color.hx">luxe.Color</a></code>
 </small>
 
 

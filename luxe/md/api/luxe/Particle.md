@@ -13,8 +13,8 @@
 
 
 <h1>Particle</h1>
-<small>`luxe.Particle`
- defined in `luxe.Particles`
+<small>
+<code>luxe.Particle</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Particles.hx" target="_blank">luxe.Particles</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>GeometryKey</h1>
-<small>`phoenix.geometry.GeometryKey`
- defined in `phoenix.geometry.Geometry`
+<small>
+<code>phoenix.geometry.GeometryKey</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/Geometry.hx" target="_blank">phoenix.geometry.Geometry</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>Events</h1>
-<small>`luxe.Events`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Events.hx">luxe.Events</a></code>
 </small>
 
 An event system that handles queued, immediate or

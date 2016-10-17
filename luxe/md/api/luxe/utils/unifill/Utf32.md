@@ -13,8 +13,8 @@
 
 
 <h1>Utf32</h1>
-<small>`luxe.utils.unifill.Utf32`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/Utf32.hx">luxe.utils.unifill.Utf32</a></code>
 </small>
 
 Utf32 provides a UTF-32-encoded string.

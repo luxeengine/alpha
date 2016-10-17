@@ -13,8 +13,8 @@
 
 
 <h1>BST</h1>
-<small>`luxe.structural.BST`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/BST.hx">luxe.structural.BST</a></code>
 </small>
 
 Copyright 2014-2016 Sven Bergström

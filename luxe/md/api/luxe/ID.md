@@ -13,8 +13,8 @@
 
 
 <h1>ID</h1>
-<small>`luxe.ID`
- defined in `luxe.Objects`
+<small>
+<code>luxe.ID</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Objects.hx" target="_blank">luxe.Objects</a></code>
 </small>
 
 

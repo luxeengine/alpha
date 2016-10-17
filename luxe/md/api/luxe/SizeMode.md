@@ -13,8 +13,8 @@
 
 
 <h1>SizeMode</h1>
-<small>`luxe.SizeMode`
- defined in `luxe.Camera`
+<small>
+<code>luxe.SizeMode</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Camera.hx" target="_blank">luxe.Camera</a></code>
 </small>
 
 A value to use when controlling the camera size property only.

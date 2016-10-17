@@ -13,8 +13,8 @@
 
 
 <h1>InfiniteState</h1>
-<small>`luxe.collision.shapes.InfiniteState`
- defined in `luxe.collision.shapes.Ray`
+<small>
+<code>luxe.collision.shapes.InfiniteState</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/shapes/Ray.hx" target="_blank">luxe.collision.shapes.Ray</a></code>
 </small>
 
 A flag for the infinite state of a Ray.

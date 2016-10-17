@@ -13,8 +13,8 @@
 
 
 <h1>Vertex</h1>
-<small>`phoenix.geometry.Vertex`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/Vertex.hx">phoenix.geometry.Vertex</a></code>
 </small>
 
 

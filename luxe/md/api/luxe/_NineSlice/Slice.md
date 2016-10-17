@@ -13,8 +13,8 @@
 
 
 <h1>Slice</h1>
-<small>`luxe._NineSlice.Slice`
- defined in `luxe.NineSlice`
+<small>
+<code>luxe._NineSlice.Slice</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/NineSlice.hx" target="_blank">luxe.NineSlice</a></code>
 </small>
 
 

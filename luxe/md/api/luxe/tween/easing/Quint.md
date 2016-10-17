@@ -13,8 +13,8 @@
 
 
 <h1>Quint</h1>
-<small>`luxe.tween.easing.Quint`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Quint.hx">luxe.tween.easing.Quint</a></code>
 </small>
 
 

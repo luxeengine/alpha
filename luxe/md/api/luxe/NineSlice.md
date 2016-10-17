@@ -13,8 +13,8 @@
 
 
 <h1>NineSlice</h1>
-<small>`luxe.NineSlice`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/NineSlice.hx">luxe.NineSlice</a></code>
 </small>
 
 A nineslice based sprite, for scaling

@@ -13,8 +13,8 @@
 
 
 <h1>Transform</h1>
-<small>`luxe.Transform`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Transform.hx">luxe.Transform</a></code>
 </small>
 
 

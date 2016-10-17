@@ -13,8 +13,8 @@
 
 
 <h1>MotionPath</h1>
-<small>`luxe.tween.MotionPath`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/MotionPath.hx">luxe.tween.MotionPath</a></code>
 </small>
 
 @author Joshua Granick   

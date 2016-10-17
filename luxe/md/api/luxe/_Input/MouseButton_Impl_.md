@@ -13,8 +13,8 @@
 
 
 <h1>MouseButton_Impl_</h1>
-<small>`luxe._Input.MouseButton_Impl_`
- defined in `luxe.Input`
+<small>
+<code>luxe._Input.MouseButton_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Input.hx" target="_blank">luxe.Input</a></code>
 </small>
 
 

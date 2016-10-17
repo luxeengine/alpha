@@ -13,8 +13,8 @@
 
 
 <h1>GeometryUtils</h1>
-<small>`luxe.utils.GeometryUtils`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/GeometryUtils.hx">luxe.utils.GeometryUtils</a></code>
 </small>
 
 

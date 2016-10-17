@@ -13,8 +13,8 @@
 
 
 <h1>ShapeDrawer</h1>
-<small>`luxe.collision.ShapeDrawer`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/ShapeDrawer.hx">luxe.collision.ShapeDrawer</a></code>
 </small>
 
 To implement your own debug drawing class, you only need to override drawLine function and implement it

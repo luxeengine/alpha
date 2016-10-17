@@ -13,8 +13,8 @@
 
 
 <h1>TextureFormat</h1>
-<small>`phoenix.TextureFormat`
- defined in `phoenix.Texture`
+<small>
+<code>phoenix.TextureFormat</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Texture.hx" target="_blank">phoenix.Texture</a></code>
 </small>
 
 

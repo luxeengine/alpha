@@ -13,8 +13,8 @@
 
 
 <h1>OrthoVisual</h1>
-<small>`luxe.tilemaps.OrthoVisual`
- defined in `luxe.tilemaps.Ortho`
+<small>
+<code>luxe.tilemaps.OrthoVisual</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tilemaps/Ortho.hx" target="_blank">luxe.tilemaps.Ortho</a></code>
 </small>
 
 

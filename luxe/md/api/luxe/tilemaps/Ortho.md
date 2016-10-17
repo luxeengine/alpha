@@ -13,8 +13,8 @@
 
 
 <h1>Ortho</h1>
-<small>`luxe.tilemaps.Ortho`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tilemaps/Ortho.hx">luxe.tilemaps.Ortho</a></code>
 </small>
 
 

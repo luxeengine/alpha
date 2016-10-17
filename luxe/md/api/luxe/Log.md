@@ -13,8 +13,8 @@
 
 
 <h1>Log</h1>
-<small>`luxe.Log`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Log.hx">luxe.Log</a></code>
 </small>
 
 

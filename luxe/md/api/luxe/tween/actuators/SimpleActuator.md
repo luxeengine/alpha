@@ -13,8 +13,8 @@
 
 
 <h1>SimpleActuator</h1>
-<small>`luxe.tween.actuators.SimpleActuator`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/actuators/SimpleActuator.hx">luxe.tween.actuators.SimpleActuator</a></code>
 </small>
 
 @author Joshua Granick   

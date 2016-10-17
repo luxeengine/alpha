@@ -13,8 +13,8 @@
 
 
 <h1>Cache</h1>
-<small>`luxe.structural.Cache`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/Cache.hx">luxe.structural.Cache</a></code>
 </small>
 
 Copyright 2014-2016 Sven Bergström

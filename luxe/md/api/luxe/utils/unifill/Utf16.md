@@ -13,8 +13,8 @@
 
 
 <h1>Utf16</h1>
-<small>`luxe.utils.unifill.Utf16`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/Utf16.hx">luxe.utils.unifill.Utf16</a></code>
 </small>
 
 

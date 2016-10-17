@@ -13,8 +13,8 @@
 
 
 <h1>TexturePackerData</h1>
-<small>`luxe.importers.texturepacker.TexturePackerData`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/texturepacker/TexturePackerData.hx">luxe.importers.texturepacker.TexturePackerData</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>MeshOptions</h1>
-<small>`luxe.options.MeshOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/MeshOptions.hx">luxe.options.MeshOptions</a></code>
 </small>
 
 

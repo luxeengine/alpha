@@ -13,8 +13,8 @@
 
 
 <h1>SceneDebugView</h1>
-<small>`luxe.debug.SceneDebugView`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/debug/SceneDebugView.hx">luxe.debug.SceneDebugView</a></code>
 </small>
 
 

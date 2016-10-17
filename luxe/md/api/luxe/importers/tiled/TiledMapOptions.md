@@ -13,8 +13,8 @@
 
 
 <h1>TiledMapOptions</h1>
-<small>`luxe.importers.tiled.TiledMapOptions`
- defined in `luxe.importers.tiled.TiledMap`
+<small>
+<code>luxe.importers.tiled.TiledMapOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/tiled/TiledMap.hx" target="_blank">luxe.importers.tiled.TiledMap</a></code>
 </small>
 
 

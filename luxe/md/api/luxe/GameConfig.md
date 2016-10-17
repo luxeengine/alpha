@@ -13,8 +13,8 @@
 
 
 <h1>GameConfig</h1>
-<small>`luxe.GameConfig`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/GameConfig.hx">luxe.GameConfig</a></code>
 </small>
 
 

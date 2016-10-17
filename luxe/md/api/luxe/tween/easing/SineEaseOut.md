@@ -13,8 +13,8 @@
 
 
 <h1>SineEaseOut</h1>
-<small>`luxe.tween.easing.SineEaseOut`
- defined in `luxe.tween.easing.Sine`
+<small>
+<code>luxe.tween.easing.SineEaseOut</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Sine.hx" target="_blank">luxe.tween.easing.Sine</a></code>
 </small>
 
 

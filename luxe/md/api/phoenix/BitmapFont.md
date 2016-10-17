@@ -13,8 +13,8 @@
 
 
 <h1>BitmapFont</h1>
-<small>`phoenix.BitmapFont`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/BitmapFont.hx">phoenix.BitmapFont</a></code>
 </small>
 
 

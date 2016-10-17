@@ -13,8 +13,8 @@
 
 
 <h1>ProfilerDebugView</h1>
-<small>`luxe.debug.ProfilerDebugView`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/debug/ProfilerDebugView.hx">luxe.debug.ProfilerDebugView</a></code>
 </small>
 
 

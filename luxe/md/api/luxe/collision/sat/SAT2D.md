@@ -13,8 +13,8 @@
 
 
 <h1>SAT2D</h1>
-<small>`luxe.collision.sat.SAT2D`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/sat/SAT2D.hx">luxe.collision.sat.SAT2D</a></code>
 </small>
 
 Implementation details for the 2D SAT collision queries.

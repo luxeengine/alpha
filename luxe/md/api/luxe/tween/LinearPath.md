@@ -13,8 +13,8 @@
 
 
 <h1>LinearPath</h1>
-<small>`luxe.tween.LinearPath`
- defined in `luxe.tween.MotionPath`
+<small>
+<code>luxe.tween.LinearPath</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/MotionPath.hx" target="_blank">luxe.tween.MotionPath</a></code>
 </small>
 
 

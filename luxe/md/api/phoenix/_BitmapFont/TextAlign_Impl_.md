@@ -13,8 +13,8 @@
 
 
 <h1>TextAlign_Impl_</h1>
-<small>`phoenix._BitmapFont.TextAlign_Impl_`
- defined in `phoenix.BitmapFont`
+<small>
+<code>phoenix._BitmapFont.TextAlign_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/BitmapFont.hx" target="_blank">phoenix.BitmapFont</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>GeometryState</h1>
-<small>`phoenix.geometry.GeometryState`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/GeometryState.hx">phoenix.geometry.GeometryState</a></code>
 </small>
 
 

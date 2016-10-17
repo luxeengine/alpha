@@ -13,8 +13,8 @@
 
 
 <h1>TexturePackerSize</h1>
-<small>`luxe.importers.texturepacker.TexturePackerSize`
- defined in `luxe.importers.texturepacker.TexturePackerData`
+<small>
+<code>luxe.importers.texturepacker.TexturePackerSize</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/texturepacker/TexturePackerData.hx" target="_blank">luxe.importers.texturepacker.TexturePackerData</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>IsometricVisual</h1>
-<small>`luxe.tilemaps.IsometricVisual`
- defined in `luxe.tilemaps.Isometric`
+<small>
+<code>luxe.tilemaps.IsometricVisual</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tilemaps/Isometric.hx" target="_blank">luxe.tilemaps.Isometric</a></code>
 </small>
 
 

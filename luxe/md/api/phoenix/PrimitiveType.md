@@ -13,8 +13,8 @@
 
 
 <h1>PrimitiveType</h1>
-<small>`phoenix.PrimitiveType`
- defined in `phoenix.Batcher`
+<small>
+<code>phoenix.PrimitiveType</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Batcher.hx" target="_blank">phoenix.Batcher</a></code>
 </small>
 
 

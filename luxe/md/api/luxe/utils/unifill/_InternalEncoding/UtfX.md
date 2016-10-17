@@ -13,8 +13,8 @@
 
 
 <h1>UtfX</h1>
-<small>`luxe.utils.unifill._InternalEncoding.UtfX`
- defined in `luxe.utils.unifill.InternalEncoding`
+<small>
+<code>luxe.utils.unifill._InternalEncoding.UtfX</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/InternalEncoding.hx" target="_blank">luxe.utils.unifill.InternalEncoding</a></code>
 </small>
 
 

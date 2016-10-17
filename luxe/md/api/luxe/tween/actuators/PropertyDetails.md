@@ -13,8 +13,8 @@
 
 
 <h1>PropertyDetails</h1>
-<small>`luxe.tween.actuators.PropertyDetails`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/actuators/PropertyDetails.hx">luxe.tween.actuators.PropertyDetails</a></code>
 </small>
 
 

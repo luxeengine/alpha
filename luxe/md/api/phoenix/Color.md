@@ -13,8 +13,8 @@
 
 
 <h1>Color</h1>
-<small>`phoenix.Color`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Color.hx">phoenix.Color</a></code>
 </small>
 
 

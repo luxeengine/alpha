@@ -13,8 +13,8 @@
 
 
 <h1>Mesh</h1>
-<small>`luxe.Mesh`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Mesh.hx">luxe.Mesh</a></code>
 </small>
 
 

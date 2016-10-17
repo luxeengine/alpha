@@ -13,8 +13,8 @@
 
 
 <h1>CircleGeometryOptions</h1>
-<small>`luxe.options.CircleGeometryOptions`
- defined in `luxe.options.GeometryOptions`
+<small>
+<code>luxe.options.CircleGeometryOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/GeometryOptions.hx" target="_blank">luxe.options.GeometryOptions</a></code>
 </small>
 
 Options for drawing or creating circle based geometry, phoenix.geometry.CircleGeometry

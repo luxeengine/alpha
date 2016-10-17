@@ -13,8 +13,8 @@
 
 
 <h1>Shader</h1>
-<small>`phoenix.Shader`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Shader.hx">phoenix.Shader</a></code>
 </small>
 
 

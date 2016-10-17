@@ -13,8 +13,8 @@
 
 
 <h1>DefaultShader</h1>
-<small>`phoenix._Renderer.DefaultShader`
- defined in `phoenix.Renderer`
+<small>
+<code>phoenix._Renderer.DefaultShader</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Renderer.hx" target="_blank">phoenix.Renderer</a></code>
 </small>
 
 

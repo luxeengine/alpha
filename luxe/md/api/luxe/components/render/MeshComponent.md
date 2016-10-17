@@ -13,8 +13,8 @@
 
 
 <h1>MeshComponent</h1>
-<small>`luxe.components.render.MeshComponent`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/components/render/MeshComponent.hx">luxe.components.render.MeshComponent</a></code>
 </small>
 
 

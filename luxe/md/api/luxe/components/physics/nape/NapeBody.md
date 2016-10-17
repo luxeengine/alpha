@@ -13,8 +13,8 @@
 
 
 <h1>NapeBody</h1>
-<small>`luxe.components.physics.nape.NapeBody`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/components/physics/nape/NapeBody.hx">luxe.components.physics.nape.NapeBody</a></code>
 </small>
 
 

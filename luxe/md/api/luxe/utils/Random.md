@@ -13,8 +13,8 @@
 
 
 <h1>Random</h1>
-<small>`luxe.utils.Random`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/Random.hx">luxe.utils.Random</a></code>
 </small>
 
 Given an `initial` value for the seed, subsequent generated numbers will be predictable,

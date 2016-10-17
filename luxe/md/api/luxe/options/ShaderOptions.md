@@ -13,8 +13,8 @@
 
 
 <h1>ShaderOptions</h1>
-<small>`luxe.options.ShaderOptions`
- defined in `luxe.options.ResourceOptions`
+<small>
+<code>luxe.options.ShaderOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ResourceOptions.hx" target="_blank">luxe.options.ResourceOptions</a></code>
 </small>
 
 

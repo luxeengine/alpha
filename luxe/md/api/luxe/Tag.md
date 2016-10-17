@@ -13,8 +13,8 @@
 
 
 <h1>Tag</h1>
-<small>`luxe.Tag`
- defined in `luxe.Engine`
+<small>
+<code>luxe.Tag</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Engine.hx" target="_blank">luxe.Engine</a></code>
 </small>
 
 A tag class for the string based values in the core.

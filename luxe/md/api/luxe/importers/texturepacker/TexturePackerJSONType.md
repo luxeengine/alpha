@@ -13,8 +13,8 @@
 
 
 <h1>TexturePackerJSONType</h1>
-<small>`luxe.importers.texturepacker.TexturePackerJSONType`
- defined in `luxe.importers.texturepacker.TexturePackerJSON`
+<small>
+<code>luxe.importers.texturepacker.TexturePackerJSONType</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/texturepacker/TexturePackerJSON.hx" target="_blank">luxe.importers.texturepacker.TexturePackerJSON</a></code>
 </small>
 
 

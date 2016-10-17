@@ -13,8 +13,8 @@
 
 
 <h1>BounceEaseOut</h1>
-<small>`luxe.tween.easing.BounceEaseOut`
- defined in `luxe.tween.easing.Bounce`
+<small>
+<code>luxe.tween.easing.BounceEaseOut</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Bounce.hx" target="_blank">luxe.tween.easing.Bounce</a></code>
 </small>
 
 

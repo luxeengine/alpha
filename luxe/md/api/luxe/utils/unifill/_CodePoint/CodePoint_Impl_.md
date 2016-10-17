@@ -13,8 +13,8 @@
 
 
 <h1>CodePoint_Impl_</h1>
-<small>`luxe.utils.unifill._CodePoint.CodePoint_Impl_`
- defined in `luxe.utils.unifill.CodePoint`
+<small>
+<code>luxe.utils.unifill._CodePoint.CodePoint_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/CodePoint.hx" target="_blank">luxe.utils.unifill.CodePoint</a></code>
 </small>
 
 

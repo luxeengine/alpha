@@ -13,8 +13,8 @@
 
 
 <h1>RenderStats</h1>
-<small>`luxe.debug.RenderStats`
- defined in `luxe.debug.StatsDebugView`
+<small>
+<code>luxe.debug.RenderStats</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/debug/StatsDebugView.hx" target="_blank">luxe.debug.StatsDebugView</a></code>
 </small>
 
 

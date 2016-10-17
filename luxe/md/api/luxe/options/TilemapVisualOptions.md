@@ -13,8 +13,8 @@
 
 
 <h1>TilemapVisualOptions</h1>
-<small>`luxe.options.TilemapVisualOptions`
- defined in `luxe.options.TilemapOptions`
+<small>
+<code>luxe.options.TilemapVisualOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/TilemapOptions.hx" target="_blank">luxe.options.TilemapOptions</a></code>
 </small>
 
 Options specific to a `TilemapVisual`, part of a `Tilemap` 

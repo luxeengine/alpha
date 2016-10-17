@@ -13,8 +13,8 @@
 
 
 <h1>Collision</h1>
-<small>`luxe.collision.Collision`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/Collision.hx">luxe.collision.Collision</a></code>
 </small>
 
 

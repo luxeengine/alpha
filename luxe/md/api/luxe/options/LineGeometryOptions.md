@@ -13,8 +13,8 @@
 
 
 <h1>LineGeometryOptions</h1>
-<small>`luxe.options.LineGeometryOptions`
- defined in `luxe.options.GeometryOptions`
+<small>
+<code>luxe.options.LineGeometryOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/GeometryOptions.hx" target="_blank">luxe.options.GeometryOptions</a></code>
 </small>
 
 Options for drawing or creating line based geometry, phoenix.geometry.LineGeometry

@@ -13,8 +13,8 @@
 
 
 <h1>InputEventType</h1>
-<small>`luxe.InputEventType`
- defined in `luxe.Input`
+<small>
+<code>luxe.InputEventType</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Input.hx" target="_blank">luxe.Input</a></code>
 </small>
 
 A type for a named input event

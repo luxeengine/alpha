@@ -13,8 +13,8 @@
 
 
 <h1>FlyCamera</h1>
-<small>`luxe.components.cameras.FlyCamera`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/components/cameras/FlyCamera.hx">luxe.components.cameras.FlyCamera</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>WindowEvent</h1>
-<small>`luxe.WindowEvent`
- defined in `luxe.Screen`
+<small>
+<code>luxe.WindowEvent</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Screen.hx" target="_blank">luxe.Screen</a></code>
 </small>
 
 A window event

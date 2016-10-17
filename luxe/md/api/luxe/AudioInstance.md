@@ -13,8 +13,8 @@
 
 
 <h1>AudioInstance</h1>
-<small>`luxe.AudioInstance`
- defined in `luxe.Audio`
+<small>
+<code>luxe.AudioInstance</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Audio.hx" target="_blank">luxe.Audio</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>PolygonColliderOptions</h1>
-<small>`luxe.components.physics.nape.PolygonColliderOptions`
- defined in `luxe.components.physics.nape.PolygonCollider`
+<small>
+<code>luxe.components.physics.nape.PolygonColliderOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/components/physics/nape/PolygonCollider.hx" target="_blank">luxe.components.physics.nape.PolygonCollider</a></code>
 </small>
 
 

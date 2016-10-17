@@ -13,8 +13,8 @@
 
 
 <h1>TiledLayer</h1>
-<small>`luxe.importers.tiled.TiledLayer`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/tiled/TiledLayer.hx">luxe.importers.tiled.TiledLayer</a></code>
 </small>
 
 

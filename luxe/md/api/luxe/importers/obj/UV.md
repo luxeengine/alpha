@@ -13,8 +13,8 @@
 
 
 <h1>UV</h1>
-<small>`luxe.importers.obj.UV`
- defined in `luxe.importers.obj.Data`
+<small>
+<code>luxe.importers.obj.UV</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/obj/Data.hx" target="_blank">luxe.importers.obj.Data</a></code>
 </small>
 
 

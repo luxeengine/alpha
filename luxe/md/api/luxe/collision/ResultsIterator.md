@@ -13,8 +13,8 @@
 
 
 <h1>ResultsIterator</h1>
-<small>`luxe.collision.ResultsIterator`
- defined in `luxe.collision.Collision`
+<small>
+<code>luxe.collision.ResultsIterator</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/Collision.hx" target="_blank">luxe.collision.Collision</a></code>
 </small>
 
 

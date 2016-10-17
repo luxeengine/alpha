@@ -13,8 +13,8 @@
 
 
 <h1>Ray</h1>
-<small>`luxe.collision.shapes.Ray`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/shapes/Ray.hx">luxe.collision.shapes.Ray</a></code>
 </small>
 
 A ray with a start, end, direction 

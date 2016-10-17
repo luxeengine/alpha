@@ -13,8 +13,8 @@
 
 
 <h1>DebugInspectorOptions</h1>
-<small>`luxe.debug.DebugInspectorOptions`
- defined in `luxe.debug.Inspector`
+<small>
+<code>luxe.debug.DebugInspectorOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/debug/Inspector.hx" target="_blank">luxe.debug.Inspector</a></code>
 </small>
 
 

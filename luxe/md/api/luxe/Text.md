@@ -13,8 +13,8 @@
 
 
 <h1>Text</h1>
-<small>`luxe.Text`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Text.hx">luxe.Text</a></code>
 </small>
 
 

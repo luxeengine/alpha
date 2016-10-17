@@ -13,8 +13,8 @@
 
 
 <h1>Objects</h1>
-<small>`luxe.Objects`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Objects.hx">luxe.Objects</a></code>
 </small>
 
 A simple base object, event emitter, and ID.

@@ -13,8 +13,8 @@
 
 
 <h1>ArcGeometry</h1>
-<small>`phoenix.geometry.ArcGeometry`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/ArcGeometry.hx">phoenix.geometry.ArcGeometry</a></code>
 </small>
 
 

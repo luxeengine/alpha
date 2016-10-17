@@ -13,8 +13,8 @@
 
 
 <h1>BitmapFontOptions</h1>
-<small>`luxe.options.BitmapFontOptions`
- defined in `luxe.options.ResourceOptions`
+<small>
+<code>luxe.options.BitmapFontOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ResourceOptions.hx" target="_blank">luxe.options.ResourceOptions</a></code>
 </small>
 
 

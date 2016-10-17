@@ -13,8 +13,8 @@
 
 
 <h1>DrawRectangleOptions</h1>
-<small>`luxe.options.DrawRectangleOptions`
- defined in `luxe.options.DrawOptions`
+<small>
+<code>luxe.options.DrawRectangleOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/DrawOptions.hx" target="_blank">luxe.options.DrawOptions</a></code>
 </small>
 
 

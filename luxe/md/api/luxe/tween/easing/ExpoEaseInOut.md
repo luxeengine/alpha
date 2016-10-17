@@ -13,8 +13,8 @@
 
 
 <h1>ExpoEaseInOut</h1>
-<small>`luxe.tween.easing.ExpoEaseInOut`
- defined in `luxe.tween.easing.Expo`
+<small>
+<code>luxe.tween.easing.ExpoEaseInOut</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Expo.hx" target="_blank">luxe.tween.easing.Expo</a></code>
 </small>
 
 

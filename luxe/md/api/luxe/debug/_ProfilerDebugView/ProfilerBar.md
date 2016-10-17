@@ -13,8 +13,8 @@
 
 
 <h1>ProfilerBar</h1>
-<small>`luxe.debug._ProfilerDebugView.ProfilerBar`
- defined in `luxe.debug.ProfilerDebugView`
+<small>
+<code>luxe.debug._ProfilerDebugView.ProfilerBar</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/debug/ProfilerDebugView.hx" target="_blank">luxe.debug.ProfilerDebugView</a></code>
 </small>
 
 

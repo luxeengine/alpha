@@ -13,8 +13,8 @@
 
 
 <h1>Ev</h1>
-<small>`luxe.Ev`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Ev.hx">luxe.Ev</a></code>
 </small>
 
 A core event enum for the core luxe events.

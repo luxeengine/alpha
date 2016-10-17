@@ -13,8 +13,8 @@
 
 
 <h1>BlendEquation</h1>
-<small>`phoenix.BlendEquation`
- defined in `phoenix.Batcher`
+<small>
+<code>phoenix.BlendEquation</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Batcher.hx" target="_blank">phoenix.Batcher</a></code>
 </small>
 
 

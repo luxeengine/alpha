@@ -13,8 +13,8 @@
 
 
 <h1>SpriteOptions</h1>
-<small>`luxe.options.SpriteOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/SpriteOptions.hx">luxe.options.SpriteOptions</a></code>
 </small>
 
 

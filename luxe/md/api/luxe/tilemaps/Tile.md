@@ -13,8 +13,8 @@
 
 
 <h1>Tile</h1>
-<small>`luxe.tilemaps.Tile`
- defined in `luxe.tilemaps.Tilemap`
+<small>
+<code>luxe.tilemaps.Tile</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tilemaps/Tilemap.hx" target="_blank">luxe.tilemaps.Tilemap</a></code>
 </small>
 
 

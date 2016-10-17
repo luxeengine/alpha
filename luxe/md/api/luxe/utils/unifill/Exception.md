@@ -13,8 +13,8 @@
 
 
 <h1>Exception</h1>
-<small>`luxe.utils.unifill.Exception`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/Exception.hx">luxe.utils.unifill.Exception</a></code>
 </small>
 
 

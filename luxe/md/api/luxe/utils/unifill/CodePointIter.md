@@ -13,8 +13,8 @@
 
 
 <h1>CodePointIter</h1>
-<small>`luxe.utils.unifill.CodePointIter`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/CodePointIter.hx">luxe.utils.unifill.CodePointIter</a></code>
 </small>
 
 

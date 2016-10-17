@@ -10,8 +10,12 @@
 {{#item}}
 
 <h1>{{{name}}}</h1>
-<small>`{{{path}}}`
-{{#if module}} defined in `{{{module}}}`{{/if}}
+<small>
+{{#if module}}
+<code>{{{path}}}</code> defined in <code><a href="{{source_link module}}" target="_blank">{{{module}}}</a></code>
+{{else}}
+<code><a target="_blank" href="{{source_link path}}">{{{path}}}</a></code>
+{{/if}}
 </small>
 
 {{{doc}}}

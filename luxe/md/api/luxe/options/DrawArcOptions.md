@@ -13,8 +13,8 @@
 
 
 <h1>DrawArcOptions</h1>
-<small>`luxe.options.DrawArcOptions`
- defined in `luxe.options.DrawOptions`
+<small>
+<code>luxe.options.DrawArcOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/DrawOptions.hx" target="_blank">luxe.options.DrawOptions</a></code>
 </small>
 
 

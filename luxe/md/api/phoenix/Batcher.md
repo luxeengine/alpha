@@ -13,8 +13,8 @@
 
 
 <h1>Batcher</h1>
-<small>`phoenix.Batcher`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Batcher.hx">phoenix.Batcher</a></code>
 </small>
 
 

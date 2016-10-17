@@ -13,8 +13,8 @@
 
 
 <h1>BSTTraverseMethod</h1>
-<small>`luxe.structural.BSTTraverseMethod`
- defined in `luxe.structural.BST`
+<small>
+<code>luxe.structural.BSTTraverseMethod</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/BST.hx" target="_blank">luxe.structural.BST</a></code>
 </small>
 
 A traversal method for iterating a node in the tree

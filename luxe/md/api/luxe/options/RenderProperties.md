@@ -13,8 +13,8 @@
 
 
 <h1>RenderProperties</h1>
-<small>`luxe.options.RenderProperties`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/RenderProperties.hx">luxe.options.RenderProperties</a></code>
 </small>
 
 

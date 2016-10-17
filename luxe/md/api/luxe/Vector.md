@@ -13,8 +13,8 @@
 
 
 <h1>Vector</h1>
-<small>`luxe.Vector`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Vector.hx">luxe.Vector</a></code>
 </small>
 
 

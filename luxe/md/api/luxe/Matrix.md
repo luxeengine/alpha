@@ -13,8 +13,8 @@
 
 
 <h1>Matrix</h1>
-<small>`luxe.Matrix`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Matrix.hx">luxe.Matrix</a></code>
 </small>
 
 

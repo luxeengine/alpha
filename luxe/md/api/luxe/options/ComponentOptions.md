@@ -13,8 +13,8 @@
 
 
 <h1>ComponentOptions</h1>
-<small>`luxe.options.ComponentOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ComponentOptions.hx">luxe.options.ComponentOptions</a></code>
 </small>
 
 Options for a luxe.Component instance

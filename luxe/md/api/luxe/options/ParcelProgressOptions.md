@@ -13,8 +13,8 @@
 
 
 <h1>ParcelProgressOptions</h1>
-<small>`luxe.options.ParcelProgressOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ParcelProgressOptions.hx">luxe.options.ParcelProgressOptions</a></code>
 </small>
 
 

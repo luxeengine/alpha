@@ -13,8 +13,8 @@
 
 
 <h1>Camera</h1>
-<small>`luxe.Camera`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Camera.hx">luxe.Camera</a></code>
 </small>
 
 An entity based camera class

@@ -13,8 +13,8 @@
 
 
 <h1>Physics</h1>
-<small>`luxe.Physics`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Physics.hx">luxe.Physics</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>FilterType</h1>
-<small>`phoenix.FilterType`
- defined in `phoenix.Texture`
+<small>
+<code>phoenix.FilterType</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Texture.hx" target="_blank">phoenix.Texture</a></code>
 </small>
 
 

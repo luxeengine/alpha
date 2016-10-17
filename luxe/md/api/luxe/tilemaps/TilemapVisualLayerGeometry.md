@@ -13,8 +13,8 @@
 
 
 <h1>TilemapVisualLayerGeometry</h1>
-<small>`luxe.tilemaps.TilemapVisualLayerGeometry`
- defined in `luxe.tilemaps.Tilemap`
+<small>
+<code>luxe.tilemaps.TilemapVisualLayerGeometry</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tilemaps/Tilemap.hx" target="_blank">luxe.tilemaps.Tilemap</a></code>
 </small>
 
 

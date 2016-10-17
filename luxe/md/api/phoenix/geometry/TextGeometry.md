@@ -13,8 +13,8 @@
 
 
 <h1>TextGeometry</h1>
-<small>`phoenix.geometry.TextGeometry`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/TextGeometry.hx">phoenix.geometry.TextGeometry</a></code>
 </small>
 
 

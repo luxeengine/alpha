@@ -13,8 +13,8 @@
 
 
 <h1>ParcelState_Impl_</h1>
-<small>`luxe._Parcel.ParcelState_Impl_`
- defined in `luxe.Parcel`
+<small>
+<code>luxe._Parcel.ParcelState_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Parcel.hx" target="_blank">luxe.Parcel</a></code>
 </small>
 
 

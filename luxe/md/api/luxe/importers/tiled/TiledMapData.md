@@ -13,8 +13,8 @@
 
 
 <h1>TiledMapData</h1>
-<small>`luxe.importers.tiled.TiledMapData`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/tiled/TiledMapData.hx">luxe.importers.tiled.TiledMapData</a></code>
 </small>
 
 

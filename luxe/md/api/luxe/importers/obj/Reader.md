@@ -13,8 +13,8 @@
 
 
 <h1>Reader</h1>
-<small>`luxe.importers.obj.Reader`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/obj/Reader.hx">luxe.importers.obj.Reader</a></code>
 </small>
 
 

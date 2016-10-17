@@ -13,8 +13,8 @@
 
 
 <h1>BoxCollider</h1>
-<small>`luxe.components.physics.nape.BoxCollider`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/components/physics/nape/BoxCollider.hx">luxe.components.physics.nape.BoxCollider</a></code>
 </small>
 
 

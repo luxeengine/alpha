@@ -13,8 +13,8 @@
 
 
 <h1>GeometryOptions</h1>
-<small>`luxe.options.GeometryOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/GeometryOptions.hx">luxe.options.GeometryOptions</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>ClampType</h1>
-<small>`phoenix.ClampType`
- defined in `phoenix.Texture`
+<small>
+<code>phoenix.ClampType</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Texture.hx" target="_blank">phoenix.Texture</a></code>
 </small>
 
 

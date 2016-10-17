@@ -13,8 +13,8 @@
 
 
 <h1>Quaternion</h1>
-<small>`luxe.Quaternion`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Quaternion.hx">luxe.Quaternion</a></code>
 </small>
 
 

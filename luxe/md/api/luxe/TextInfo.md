@@ -13,8 +13,8 @@
 
 
 <h1>TextInfo</h1>
-<small>`luxe.TextInfo`
- defined in `luxe.Parcel`
+<small>
+<code>luxe.TextInfo</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Parcel.hx" target="_blank">luxe.Parcel</a></code>
 </small>
 
 

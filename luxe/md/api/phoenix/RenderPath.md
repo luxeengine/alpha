@@ -13,8 +13,8 @@
 
 
 <h1>RenderPath</h1>
-<small>`phoenix.RenderPath`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/RenderPath.hx">phoenix.RenderPath</a></code>
 </small>
 
 

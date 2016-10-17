@@ -13,8 +13,8 @@
 
 
 <h1>CircleCollider</h1>
-<small>`luxe.components.physics.nape.CircleCollider`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/components/physics/nape/CircleCollider.hx">luxe.components.physics.nape.CircleCollider</a></code>
 </small>
 
 

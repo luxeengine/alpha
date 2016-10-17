@@ -13,8 +13,8 @@
 
 
 <h1>PolygonCollider</h1>
-<small>`luxe.components.physics.nape.PolygonCollider`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/components/physics/nape/PolygonCollider.hx">luxe.components.physics.nape.PolygonCollider</a></code>
 </small>
 
 

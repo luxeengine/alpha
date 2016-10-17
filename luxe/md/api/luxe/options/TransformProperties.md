@@ -13,8 +13,8 @@
 
 
 <h1>TransformProperties</h1>
-<small>`luxe.options.TransformProperties`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/TransformProperties.hx">luxe.options.TransformProperties</a></code>
 </small>
 
 

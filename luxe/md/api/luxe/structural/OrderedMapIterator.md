@@ -13,8 +13,8 @@
 
 
 <h1>OrderedMapIterator</h1>
-<small>`luxe.structural.OrderedMapIterator`
- defined in `luxe.structural.OrderedMap`
+<small>
+<code>luxe.structural.OrderedMapIterator</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/OrderedMap.hx" target="_blank">luxe.structural.OrderedMap</a></code>
 </small>
 
 

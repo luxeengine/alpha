@@ -13,8 +13,8 @@
 
 
 <h1>ColorHSL</h1>
-<small>`luxe.ColorHSL`
- defined in `luxe.Color`
+<small>
+<code>luxe.ColorHSL</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Color.hx" target="_blank">luxe.Color</a></code>
 </small>
 
 

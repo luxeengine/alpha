@@ -13,8 +13,8 @@
 
 
 <h1>ResourceOptions</h1>
-<small>`luxe.options.ResourceOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ResourceOptions.hx">luxe.options.ResourceOptions</a></code>
 </small>
 
 

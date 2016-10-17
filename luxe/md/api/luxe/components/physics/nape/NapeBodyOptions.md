@@ -13,8 +13,8 @@
 
 
 <h1>NapeBodyOptions</h1>
-<small>`luxe.components.physics.nape.NapeBodyOptions`
- defined in `luxe.components.physics.nape.NapeBody`
+<small>
+<code>luxe.components.physics.nape.NapeBodyOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/components/physics/nape/NapeBody.hx" target="_blank">luxe.components.physics.nape.NapeBody</a></code>
 </small>
 
 

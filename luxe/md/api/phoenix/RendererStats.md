@@ -13,8 +13,8 @@
 
 
 <h1>RendererStats</h1>
-<small>`phoenix.RendererStats`
- defined in `phoenix.Renderer`
+<small>
+<code>phoenix.RendererStats</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Renderer.hx" target="_blank">phoenix.Renderer</a></code>
 </small>
 
 

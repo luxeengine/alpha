@@ -13,8 +13,8 @@
 
 
 <h1>Unicode</h1>
-<small>`luxe.utils.unifill.Unicode`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/Unicode.hx">luxe.utils.unifill.Unicode</a></code>
 </small>
 
 

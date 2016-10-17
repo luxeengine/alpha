@@ -13,8 +13,8 @@
 
 
 <h1>Parcel</h1>
-<small>`luxe.Parcel`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Parcel.hx">luxe.Parcel</a></code>
 </small>
 
 

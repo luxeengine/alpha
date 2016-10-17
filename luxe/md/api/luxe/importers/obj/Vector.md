@@ -13,8 +13,8 @@
 
 
 <h1>Vector</h1>
-<small>`luxe.importers.obj.Vector`
- defined in `luxe.importers.obj.Data`
+<small>
+<code>luxe.importers.obj.Vector</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/obj/Data.hx" target="_blank">luxe.importers.obj.Data</a></code>
 </small>
 
 

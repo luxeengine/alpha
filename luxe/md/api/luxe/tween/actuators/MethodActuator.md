@@ -13,8 +13,8 @@
 
 
 <h1>MethodActuator</h1>
-<small>`luxe.tween.actuators.MethodActuator`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/actuators/MethodActuator.hx">luxe.tween.actuators.MethodActuator</a></code>
 </small>
 
 * @author Joshua Granick

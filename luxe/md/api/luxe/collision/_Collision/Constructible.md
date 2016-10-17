@@ -13,8 +13,8 @@
 
 
 <h1>Constructible</h1>
-<small>`luxe.collision._Collision.Constructible`
- defined in `luxe.collision.Collision`
+<small>
+<code>luxe.collision._Collision.Constructible</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/Collision.hx" target="_blank">luxe.collision.Collision</a></code>
 </small>
 
 

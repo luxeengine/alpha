@@ -13,8 +13,8 @@
 
 
 <h1>LoadAudioOptions</h1>
-<small>`luxe.options.LoadAudioOptions`
- defined in `luxe.options.ResourceOptions`
+<small>
+<code>luxe.options.LoadAudioOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ResourceOptions.hx" target="_blank">luxe.options.ResourceOptions</a></code>
 </small>
 
 

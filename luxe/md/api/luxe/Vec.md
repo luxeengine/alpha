@@ -13,8 +13,8 @@
 
 
 <h1>Vec</h1>
-<small>`luxe.Vec`
- defined in `luxe.Vector`
+<small>
+<code>luxe.Vec</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Vector.hx" target="_blank">luxe.Vector</a></code>
 </small>
 
 

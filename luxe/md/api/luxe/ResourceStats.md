@@ -13,8 +13,8 @@
 
 
 <h1>ResourceStats</h1>
-<small>`luxe.ResourceStats`
- defined in `luxe.Resources`
+<small>
+<code>luxe.ResourceStats</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Resources.hx" target="_blank">luxe.Resources</a></code>
 </small>
 
 

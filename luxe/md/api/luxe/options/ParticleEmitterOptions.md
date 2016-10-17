@@ -13,8 +13,8 @@
 
 
 <h1>ParticleEmitterOptions</h1>
-<small>`luxe.options.ParticleEmitterOptions`
- defined in `luxe.options.ParticleOptions`
+<small>
+<code>luxe.options.ParticleEmitterOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ParticleOptions.hx" target="_blank">luxe.options.ParticleOptions</a></code>
 </small>
 
 

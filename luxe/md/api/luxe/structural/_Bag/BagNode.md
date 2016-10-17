@@ -13,8 +13,8 @@
 
 
 <h1>BagNode</h1>
-<small>`luxe.structural._Bag.BagNode`
- defined in `luxe.structural.Bag`
+<small>
+<code>luxe.structural._Bag.BagNode</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/Bag.hx" target="_blank">luxe.structural.Bag</a></code>
 </small>
 
 

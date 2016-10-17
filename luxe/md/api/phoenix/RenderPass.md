@@ -13,8 +13,8 @@
 
 
 <h1>RenderPass</h1>
-<small>`phoenix.RenderPass`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/RenderPass.hx">phoenix.RenderPass</a></code>
 </small>
 
 

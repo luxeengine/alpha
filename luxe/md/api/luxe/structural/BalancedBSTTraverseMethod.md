@@ -13,8 +13,8 @@
 
 
 <h1>BalancedBSTTraverseMethod</h1>
-<small>`luxe.structural.BalancedBSTTraverseMethod`
- defined in `luxe.structural.BalancedBST`
+<small>
+<code>luxe.structural.BalancedBSTTraverseMethod</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/BalancedBST.hx" target="_blank">luxe.structural.BalancedBST</a></code>
 </small>
 
 A traversal method for iterating a node in the tree

@@ -13,8 +13,8 @@
 
 
 <h1>QuintEaseOut</h1>
-<small>`luxe.tween.easing.QuintEaseOut`
- defined in `luxe.tween.easing.Quint`
+<small>
+<code>luxe.tween.easing.QuintEaseOut</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Quint.hx" target="_blank">luxe.tween.easing.Quint</a></code>
 </small>
 
 

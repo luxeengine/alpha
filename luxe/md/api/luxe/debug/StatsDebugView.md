@@ -13,8 +13,8 @@
 
 
 <h1>StatsDebugView</h1>
-<small>`luxe.debug.StatsDebugView`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/debug/StatsDebugView.hx">luxe.debug.StatsDebugView</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>Rectangle</h1>
-<small>`luxe.Rectangle`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Rectangle.hx">luxe.Rectangle</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>BezierPath</h1>
-<small>`luxe.tween.BezierPath`
- defined in `luxe.tween.MotionPath`
+<small>
+<code>luxe.tween.BezierPath</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/MotionPath.hx" target="_blank">luxe.tween.MotionPath</a></code>
 </small>
 
 

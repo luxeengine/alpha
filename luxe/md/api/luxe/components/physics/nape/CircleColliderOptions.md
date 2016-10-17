@@ -13,8 +13,8 @@
 
 
 <h1>CircleColliderOptions</h1>
-<small>`luxe.components.physics.nape.CircleColliderOptions`
- defined in `luxe.components.physics.nape.CircleCollider`
+<small>
+<code>luxe.components.physics.nape.CircleColliderOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/components/physics/nape/CircleCollider.hx" target="_blank">luxe.components.physics.nape.CircleCollider</a></code>
 </small>
 
 

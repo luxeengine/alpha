@@ -13,8 +13,8 @@
 
 
 <h1>Draw</h1>
-<small>`luxe.Draw`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Draw.hx">luxe.Draw</a></code>
 </small>
 
 The `draw` API class implementation.

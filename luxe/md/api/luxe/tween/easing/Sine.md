@@ -13,8 +13,8 @@
 
 
 <h1>Sine</h1>
-<small>`luxe.tween.easing.Sine`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Sine.hx">luxe.tween.easing.Sine</a></code>
 </small>
 
 

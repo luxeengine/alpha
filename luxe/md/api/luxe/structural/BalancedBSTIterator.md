@@ -13,8 +13,8 @@
 
 
 <h1>BalancedBSTIterator</h1>
-<small>`luxe.structural.BalancedBSTIterator`
- defined in `luxe.structural.BalancedBST`
+<small>
+<code>luxe.structural.BalancedBSTIterator</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/BalancedBST.hx" target="_blank">luxe.structural.BalancedBST</a></code>
 </small>
 
 

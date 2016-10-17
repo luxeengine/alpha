@@ -13,8 +13,8 @@
 
 
 <h1>IO</h1>
-<small>`luxe.IO`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/IO.hx">luxe.IO</a></code>
 </small>
 
 

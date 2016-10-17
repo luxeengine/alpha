@@ -13,8 +13,8 @@
 
 
 <h1>Location</h1>
-<small>`phoenix._Shader.Location`
- defined in `phoenix.Shader`
+<small>
+<code>phoenix._Shader.Location</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Shader.hx" target="_blank">phoenix.Shader</a></code>
 </small>
 
 

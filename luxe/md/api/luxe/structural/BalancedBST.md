@@ -13,8 +13,8 @@
 
 
 <h1>BalancedBST</h1>
-<small>`luxe.structural.BalancedBST`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/BalancedBST.hx">luxe.structural.BalancedBST</a></code>
 </small>
 
 Copyright 2014-2016 Sven Bergström

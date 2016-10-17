@@ -13,8 +13,8 @@
 
 
 <h1>TextResourceOptions</h1>
-<small>`luxe.options.TextResourceOptions`
- defined in `luxe.options.ResourceOptions`
+<small>
+<code>luxe.options.TextResourceOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ResourceOptions.hx" target="_blank">luxe.options.ResourceOptions</a></code>
 </small>
 
 Options for creating a Text Resource instance.

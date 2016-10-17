@@ -13,8 +13,8 @@
 
 
 <h1>EmitHandler</h1>
-<small>`luxe.EmitHandler`
- defined in `luxe.Emitter`
+<small>
+<code>luxe.EmitHandler</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Emitter.hx" target="_blank">luxe.Emitter</a></code>
 </small>
 
 

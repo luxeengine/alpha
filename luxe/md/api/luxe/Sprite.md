@@ -13,8 +13,8 @@
 
 
 <h1>Sprite</h1>
-<small>`luxe.Sprite`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Sprite.hx">luxe.Sprite</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>DrawOptions</h1>
-<small>`luxe.options._DrawOptions.DrawOptions`
- defined in `luxe.options.DrawOptions`
+<small>
+<code>luxe.options._DrawOptions.DrawOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/DrawOptions.hx" target="_blank">luxe.options.DrawOptions</a></code>
 </small>
 
 

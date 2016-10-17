@@ -13,8 +13,8 @@
 
 
 <h1>RectangleGeometry</h1>
-<small>`phoenix.geometry.RectangleGeometry`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/RectangleGeometry.hx">phoenix.geometry.RectangleGeometry</a></code>
 </small>
 
 

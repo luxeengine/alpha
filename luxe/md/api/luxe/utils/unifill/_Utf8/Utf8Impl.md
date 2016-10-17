@@ -13,8 +13,8 @@
 
 
 <h1>Utf8Impl</h1>
-<small>`luxe.utils.unifill._Utf8.Utf8Impl`
- defined in `luxe.utils.unifill.Utf8`
+<small>
+<code>luxe.utils.unifill._Utf8.Utf8Impl</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/Utf8.hx" target="_blank">luxe.utils.unifill.Utf8</a></code>
 </small>
 
 

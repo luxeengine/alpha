@@ -13,8 +13,8 @@
 
 
 <h1>TextAlign</h1>
-<small>`luxe.TextAlign`
- defined in `luxe.Text`
+<small>
+<code>luxe.TextAlign</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Text.hx" target="_blank">luxe.Text</a></code>
 </small>
 
 

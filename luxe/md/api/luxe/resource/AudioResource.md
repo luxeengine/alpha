@@ -13,8 +13,8 @@
 
 
 <h1>AudioResource</h1>
-<small>`luxe.resource.AudioResource`
- defined in `luxe.resource.Resource`
+<small>
+<code>luxe.resource.AudioResource</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/resource/Resource.hx" target="_blank">luxe.resource.Resource</a></code>
 </small>
 
 

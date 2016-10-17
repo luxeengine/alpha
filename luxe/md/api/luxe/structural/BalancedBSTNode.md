@@ -13,8 +13,8 @@
 
 
 <h1>BalancedBSTNode</h1>
-<small>`luxe.structural.BalancedBSTNode`
- defined in `luxe.structural.BalancedBST`
+<small>
+<code>luxe.structural.BalancedBSTNode</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/BalancedBST.hx" target="_blank">luxe.structural.BalancedBST</a></code>
 </small>
 
 A balanced binary search tree node by `K` key and `T` value (type)

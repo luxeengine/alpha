@@ -13,8 +13,8 @@
 
 
 <h1>ResourceEvent</h1>
-<small>`luxe.ResourceEvent`
- defined in `luxe.Resources`
+<small>
+<code>luxe.ResourceEvent</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Resources.hx" target="_blank">luxe.Resources</a></code>
 </small>
 
 

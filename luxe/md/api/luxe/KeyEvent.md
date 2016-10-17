@@ -13,8 +13,8 @@
 
 
 <h1>KeyEvent</h1>
-<small>`luxe.KeyEvent`
- defined in `luxe.Input`
+<small>
+<code>luxe.KeyEvent</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Input.hx" target="_blank">luxe.Input</a></code>
 </small>
 
 Information about a keyboard event

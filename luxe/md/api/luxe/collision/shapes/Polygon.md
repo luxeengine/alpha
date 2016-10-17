@@ -13,8 +13,8 @@
 
 
 <h1>Polygon</h1>
-<small>`luxe.collision.shapes.Polygon`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/collision/shapes/Polygon.hx">luxe.collision.shapes.Polygon</a></code>
 </small>
 
 A polygonal collision shape

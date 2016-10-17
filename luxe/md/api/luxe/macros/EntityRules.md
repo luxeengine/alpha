@@ -13,8 +13,8 @@
 
 
 <h1>EntityRules</h1>
-<small>`luxe.macros.EntityRules`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/macros/EntityRules.hx">luxe.macros.EntityRules</a></code>
 </small>
 
 

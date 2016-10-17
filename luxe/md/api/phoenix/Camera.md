@@ -13,8 +13,8 @@
 
 
 <h1>Camera</h1>
-<small>`phoenix.Camera`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Camera.hx">phoenix.Camera</a></code>
 </small>
 
 

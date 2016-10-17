@@ -13,8 +13,8 @@
 
 
 <h1>DebugDraw</h1>
-<small>`luxe.physics.nape.DebugDraw`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/physics/nape/DebugDraw.hx">luxe.physics.nape.DebugDraw</a></code>
 </small>
 
 

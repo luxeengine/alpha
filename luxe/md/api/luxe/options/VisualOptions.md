@@ -13,8 +13,8 @@
 
 
 <h1>VisualOptions</h1>
-<small>`luxe.options.VisualOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/VisualOptions.hx">luxe.options.VisualOptions</a></code>
 </small>
 
 

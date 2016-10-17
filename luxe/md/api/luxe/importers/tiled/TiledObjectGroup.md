@@ -13,8 +13,8 @@
 
 
 <h1>TiledObjectGroup</h1>
-<small>`luxe.importers.tiled.TiledObjectGroup`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/tiled/TiledObjectGroup.hx">luxe.importers.tiled.TiledObjectGroup</a></code>
 </small>
 
 

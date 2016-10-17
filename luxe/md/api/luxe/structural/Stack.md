@@ -13,8 +13,8 @@
 
 
 <h1>Stack</h1>
-<small>`luxe.structural.Stack`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/Stack.hx">luxe.structural.Stack</a></code>
 </small>
 
 Copyright 2014-2016 Sven Bergström

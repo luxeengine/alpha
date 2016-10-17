@@ -13,8 +13,8 @@
 
 
 <h1>ModState</h1>
-<small>`luxe.ModState`
- defined in `luxe.Input`
+<small>
+<code>luxe.ModState</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Input.hx" target="_blank">luxe.Input</a></code>
 </small>
 
 A modifier state for key events

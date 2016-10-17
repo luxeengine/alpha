@@ -13,8 +13,8 @@
 
 
 <h1>JSONResourceOptions</h1>
-<small>`luxe.options.JSONResourceOptions`
- defined in `luxe.options.ResourceOptions`
+<small>
+<code>luxe.options.JSONResourceOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ResourceOptions.hx" target="_blank">luxe.options.ResourceOptions</a></code>
 </small>
 
 Options for creating a JSON Resource instance.

@@ -13,8 +13,8 @@
 
 
 <h1>ParcelEvent_Impl_</h1>
-<small>`luxe._Parcel.ParcelEvent_Impl_`
- defined in `luxe.Parcel`
+<small>
+<code>luxe._Parcel.ParcelEvent_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Parcel.hx" target="_blank">luxe.Parcel</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>RingGeometry</h1>
-<small>`phoenix.geometry.RingGeometry`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/RingGeometry.hx">phoenix.geometry.RingGeometry</a></code>
 </small>
 
 

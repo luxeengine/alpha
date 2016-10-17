@@ -13,8 +13,8 @@
 
 
 <h1>Timer</h1>
-<small>`luxe.Timer`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Timer.hx">luxe.Timer</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>TextOptions</h1>
-<small>`luxe.options.TextOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/TextOptions.hx">luxe.options.TextOptions</a></code>
 </small>
 
 

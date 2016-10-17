@@ -13,8 +13,8 @@
 
 
 <h1>BatcherOptions</h1>
-<small>`luxe.options.BatcherOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/BatcherOptions.hx">luxe.options.BatcherOptions</a></code>
 </small>
 
 

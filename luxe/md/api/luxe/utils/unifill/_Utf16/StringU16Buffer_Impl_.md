@@ -13,8 +13,8 @@
 
 
 <h1>StringU16Buffer_Impl_</h1>
-<small>`luxe.utils.unifill._Utf16.StringU16Buffer_Impl_`
- defined in `luxe.utils.unifill.Utf16`
+<small>
+<code>luxe.utils.unifill._Utf16.StringU16Buffer_Impl_</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/unifill/Utf16.hx" target="_blank">luxe.utils.unifill.Utf16</a></code>
 </small>
 
 

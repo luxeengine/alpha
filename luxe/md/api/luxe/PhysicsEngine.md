@@ -13,8 +13,8 @@
 
 
 <h1>PhysicsEngine</h1>
-<small>`luxe.PhysicsEngine`
- defined in `luxe.Physics`
+<small>
+<code>luxe.PhysicsEngine</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Physics.hx" target="_blank">luxe.Physics</a></code>
 </small>
 
 

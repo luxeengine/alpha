@@ -13,8 +13,8 @@
 
 
 <h1>UserConfig</h1>
-<small>`luxe.UserConfig`
- defined in `luxe.Engine`
+<small>
+<code>luxe.UserConfig</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Engine.hx" target="_blank">luxe.Engine</a></code>
 </small>
 
 

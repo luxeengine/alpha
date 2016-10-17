@@ -13,8 +13,8 @@
 
 
 <h1>SpriteAnimation</h1>
-<small>`luxe.components.sprite.SpriteAnimation`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/components/sprite/SpriteAnimation.hx">luxe.components.sprite.SpriteAnimation</a></code>
 </small>
 
 A component for : luxe.Sprite

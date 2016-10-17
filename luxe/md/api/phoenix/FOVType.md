@@ -13,8 +13,8 @@
 
 
 <h1>FOVType</h1>
-<small>`phoenix.FOVType`
- defined in `phoenix.Camera`
+<small>
+<code>phoenix.FOVType</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Camera.hx" target="_blank">phoenix.Camera</a></code>
 </small>
 
 

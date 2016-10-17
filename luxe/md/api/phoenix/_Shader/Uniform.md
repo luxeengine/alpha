@@ -13,8 +13,8 @@
 
 
 <h1>Uniform</h1>
-<small>`phoenix._Shader.Uniform`
- defined in `phoenix.Shader`
+<small>
+<code>phoenix._Shader.Uniform</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Shader.hx" target="_blank">phoenix.Shader</a></code>
 </small>
 
 

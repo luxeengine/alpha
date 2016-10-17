@@ -13,8 +13,8 @@
 
 
 <h1>ParcelProgress</h1>
-<small>`luxe.ParcelProgress`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/ParcelProgress.hx">luxe.ParcelProgress</a></code>
 </small>
 
 

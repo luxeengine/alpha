@@ -13,8 +13,8 @@
 
 
 <h1>Normal</h1>
-<small>`luxe.importers.obj.Normal`
- defined in `luxe.importers.obj.Data`
+<small>
+<code>luxe.importers.obj.Normal</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/importers/obj/Data.hx" target="_blank">luxe.importers.obj.Data</a></code>
 </small>
 
 

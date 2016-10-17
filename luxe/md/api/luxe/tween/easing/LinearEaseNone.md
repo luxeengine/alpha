@@ -13,8 +13,8 @@
 
 
 <h1>LinearEaseNone</h1>
-<small>`luxe.tween.easing.LinearEaseNone`
- defined in `luxe.tween.easing.Linear`
+<small>
+<code>luxe.tween.easing.LinearEaseNone</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Linear.hx" target="_blank">luxe.tween.easing.Linear</a></code>
 </small>
 
 

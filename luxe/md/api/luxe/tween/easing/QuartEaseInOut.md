@@ -13,8 +13,8 @@
 
 
 <h1>QuartEaseInOut</h1>
-<small>`luxe.tween.easing.QuartEaseInOut`
- defined in `luxe.tween.easing.Quart`
+<small>
+<code>luxe.tween.easing.QuartEaseInOut</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Quart.hx" target="_blank">luxe.tween.easing.Quart</a></code>
 </small>
 
 

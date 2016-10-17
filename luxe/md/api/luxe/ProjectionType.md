@@ -13,8 +13,8 @@
 
 
 <h1>ProjectionType</h1>
-<small>`luxe.ProjectionType`
- defined in `luxe.Camera`
+<small>
+<code>luxe.ProjectionType</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Camera.hx" target="_blank">luxe.Camera</a></code>
 </small>
 
 

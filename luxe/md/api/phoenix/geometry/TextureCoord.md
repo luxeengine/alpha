@@ -13,8 +13,8 @@
 
 
 <h1>TextureCoord</h1>
-<small>`phoenix.geometry.TextureCoord`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/geometry/TextureCoord.hx">phoenix.geometry.TextureCoord</a></code>
 </small>
 
 

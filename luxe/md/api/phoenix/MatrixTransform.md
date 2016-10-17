@@ -13,8 +13,8 @@
 
 
 <h1>MatrixTransform</h1>
-<small>`phoenix.MatrixTransform`
- defined in `phoenix.Matrix`
+<small>
+<code>phoenix.MatrixTransform</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Matrix.hx" target="_blank">phoenix.Matrix</a></code>
 </small>
 
 

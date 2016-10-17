@@ -13,8 +13,8 @@
 
 
 <h1>EntityOptions</h1>
-<small>`luxe.options.EntityOptions`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/EntityOptions.hx">luxe.options.EntityOptions</a></code>
 </small>
 
 

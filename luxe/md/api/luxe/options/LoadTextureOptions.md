@@ -13,8 +13,8 @@
 
 
 <h1>LoadTextureOptions</h1>
-<small>`luxe.options.LoadTextureOptions`
- defined in `luxe.options.ResourceOptions`
+<small>
+<code>luxe.options.LoadTextureOptions</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/options/ResourceOptions.hx" target="_blank">luxe.options.ResourceOptions</a></code>
 </small>
 
 

@@ -13,8 +13,8 @@
 
 
 <h1>Expo</h1>
-<small>`luxe.tween.easing.Expo`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Expo.hx">luxe.tween.easing.Expo</a></code>
 </small>
 
 

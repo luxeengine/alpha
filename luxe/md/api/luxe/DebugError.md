@@ -13,8 +13,8 @@
 
 
 <h1>DebugError</h1>
-<small>`luxe.DebugError`
- defined in `luxe.Log`
+<small>
+<code>luxe.DebugError</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Log.hx" target="_blank">luxe.Log</a></code>
 </small>
 
 

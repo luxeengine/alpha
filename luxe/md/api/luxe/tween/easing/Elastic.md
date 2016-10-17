@@ -13,8 +13,8 @@
 
 
 <h1>Elastic</h1>
-<small>`luxe.tween.easing.Elastic`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/easing/Elastic.hx">luxe.tween.easing.Elastic</a></code>
 </small>
 
 

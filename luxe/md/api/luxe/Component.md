@@ -13,8 +13,8 @@
 
 
 <h1>Component</h1>
-<small>`luxe.Component`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Component.hx">luxe.Component</a></code>
 </small>
 
 

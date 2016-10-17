@@ -13,8 +13,8 @@
 
 
 <h1>States</h1>
-<small>`luxe.States`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/States.hx">luxe.States</a></code>
 </small>
 
 

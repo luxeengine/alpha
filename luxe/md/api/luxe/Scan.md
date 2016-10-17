@@ -13,8 +13,8 @@
 
 
 <h1>Scan</h1>
-<small>`luxe.Scan`
- defined in `luxe.Input`
+<small>
+<code>luxe.Scan</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Input.hx" target="_blank">luxe.Input</a></code>
 </small>
 
 A named list of scancodes. Use to compare against key event `scancode` values

@@ -13,8 +13,8 @@
 
 
 <h1>Audio</h1>
-<small>`luxe.Audio`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/Audio.hx">luxe.Audio</a></code>
 </small>
 
 

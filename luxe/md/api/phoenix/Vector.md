@@ -13,8 +13,8 @@
 
 
 <h1>Vector</h1>
-<small>`phoenix.Vector`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/Vector.hx">phoenix.Vector</a></code>
 </small>
 
 

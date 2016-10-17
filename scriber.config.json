@@ -19,6 +19,8 @@
             "suffix" : ".html"
         }
     },
+    
+    "api_source_url": "https://github.com/underscorediscovery/luxe/blob/master/",
 
     "output_path" : "/Users/sven/dev/luxe_site/docs/",
     "images_output_path" : "images/",

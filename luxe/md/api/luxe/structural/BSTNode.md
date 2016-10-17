@@ -13,8 +13,8 @@
 
 
 <h1>BSTNode</h1>
-<small>`luxe.structural.BSTNode`
- defined in `luxe.structural.BST`
+<small>
+<code>luxe.structural.BSTNode</code> defined in <code><a href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/structural/BST.hx" target="_blank">luxe.structural.BST</a></code>
 </small>
 
 A binary search tree node by `K` key and `T` value (type)

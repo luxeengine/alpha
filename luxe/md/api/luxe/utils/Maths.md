@@ -13,8 +13,8 @@
 
 
 <h1>Maths</h1>
-<small>`luxe.utils.Maths`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/utils/Maths.hx">luxe.utils.Maths</a></code>
 </small>
 
 

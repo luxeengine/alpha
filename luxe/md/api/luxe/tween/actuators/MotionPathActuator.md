@@ -13,8 +13,8 @@
 
 
 <h1>MotionPathActuator</h1>
-<small>`luxe.tween.actuators.MotionPathActuator`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/tween/actuators/MotionPathActuator.hx">luxe.tween.actuators.MotionPathActuator</a></code>
 </small>
 
 * @author Joshua Granick

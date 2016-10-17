@@ -13,8 +13,8 @@
 
 
 <h1>Rendering</h1>
-<small>`phoenix.utils.Rendering`
-
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/phoenix/utils/Rendering.hx">phoenix.utils.Rendering</a></code>
 </small>
 
 
