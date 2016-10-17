@@ -12,6 +12,13 @@
 
     "md_input": ["**/+(*.md)"],
     "api_input" : ["**/+(*.json)"],
+    "api_links" : {        
+        "snow_api": {
+            "packages": ["snow"],
+            "url": "https://snowkit.github.io/snow/api/",
+            "suffix" : ".html"
+        }
+    },
 
     "output_path" : "/Users/sven/dev/luxe_site/docs/",
     "images_output_path" : "images/",
@@ -24,7 +31,7 @@
     "api_index_template" : "api_index.html",
     "template_index" : "index.html",
     "api_packages" : ["luxe","phoenix"],
-    "api_packages_ignore" : ["luxe.macros","luxe.utils.json"],
+    "api_packages_ignore" : ["luxe.macros","luxe.types.user"],
     "api_classes" : ["Luxe"],
     "api_partials" : [
         { "name": "type", "path":"api_partial_type.html"},

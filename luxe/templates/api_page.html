@@ -10,7 +10,9 @@
 {{#item}}
 
 <h1>{{{name}}}</h1>
-<small>`{{{path}}}` defined in `{{{module}}}`</small>
+<small>`{{{path}}}`
+{{#if module}} defined in `{{{module}}}`{{/if}}
+</small>
 
 {{{doc}}}
 
@@ -21,7 +23,7 @@
 
 {{~#if type '==' 'typedef'}}
     {{~^if members~}}
-        &nbsp;alias of `{{types.cpp.name}}`   
+        &nbsp;alias of <code><a href="{{type_link types.cpp.name @root.rel_path}}">{{types.cpp.name}}</a></code>   
     {{/if~}}
 {{/if}}
 
@@ -32,13 +34,13 @@
 {{~#with superClass}}
     {{~#unless @index}}extends {{/unless~}}
     {{#if @index}}, {{/if~}}
-    <code><span>{{path}}</span></code>
+    <code><span><a href="{{type_link path @root.rel_path}}">{{path}}</a></span></code>
 {{~/with~}}
 
 {{~#each interfaces}}
     {{~#unless @index}}<br/>implements {{/unless~}}
     {{#if @index}}, {{/if~}}
-    <code><span>{{path}}</span></code>
+    <code><span><a href="{{type_link path @root.rel_path}}">{{path}}</a></span></code>
 {{~/each~}}
 
 {{~#if type '==' 'abstract'}}
