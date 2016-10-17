@@ -125,14 +125,14 @@ Especially, this tutorial uses the code from the previous tutorial as a baseline
 <p>You’ll notice that the function has a _ for an argument. You can use this when you are using a function callback (like we are, asking the progress bar to call back to us when it’s done) and you don’t need the values it’s giving you. It’s a bit like an unnamed argument, we don’t need it so we ignore it.</p>
 <p>All we do from here, is create the background imagery, create the player and it’s animations, and connect the input.</p>
 <p>&nbsp;</p>
-<pre><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assets_loaded</span><span class="hljs-params">(_)</span> </span>{
+<pre><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assets_loaded</span><span class="hljs-params">(_)</span> </span>{
 
-        create_apartment();
-        create_player();
-        create_player_animation();
-        connect_input();
+    create_apartment();
+    create_player();
+    create_player_animation();
+    connect_input();
 
-    } <span class="hljs-comment">//assets_loaded</span>
+} <span class="hljs-comment">//assets_loaded</span>
 </code></pre><h3 id="create-the-apartment-and-player">Create the apartment and player</h3>
 <p>As before, we now fetch the already loaded image using <code>Luxe.resources.texture</code>. We calculate a good size for the background, and create a sprite to display the image - as before.</p>
 <p>Much of the code is similar and will seem familiar, so the code can be viewed in the full code sample, at the end of this guide.</p>
@@ -191,17 +191,18 @@ Previously we loaded some JSON text using the parcel. Inside this JSON file, was
 <h3 id="changing-animations">Changing animations</h3>
 <p>As much of the code is similar for movement, we will look at changing the animations only. By setting the <em>animation</em> property of the component, you can change which animation is playing - like we did for the <code>idle</code> animation when creating it.</p>
 <p>This is a snippet from the update function below :</p>
-<pre><code>            <span class="hljs-comment">//set the correct animation</span>
-        <span class="hljs-keyword">if</span>(moving) {
-            <span class="hljs-keyword">if</span>(anim.animation != <span class="hljs-string">'walk'</span>) {
-                anim.animation = <span class="hljs-string">'walk'</span>;
-            }
-        } <span class="hljs-keyword">else</span> {
-            <span class="hljs-keyword">if</span>(anim.animation != <span class="hljs-string">'idle'</span>) {
-                anim.animation = <span class="hljs-string">'idle'</span>;
-            }
-        }
-</code></pre><hr>
+<pre><code class="lang-haxe">    <span class="hljs-comment">//set the correct animation</span>
+<span class="hljs-keyword">if</span>(moving) {
+    <span class="hljs-keyword">if</span>(anim.animation != <span class="hljs-string">'walk'</span>) {
+        anim.animation = <span class="hljs-string">'walk'</span>;
+    }
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">if</span>(anim.animation != <span class="hljs-string">'idle'</span>) {
+        anim.animation = <span class="hljs-string">'idle'</span>;
+    }
+}
+</code></pre>
+<hr>
 <h3 id="-to-the-prev-guide-guide-two-html-"><a href="guide.two.html">To the prev guide</a></h3>
 <h3 id="-to-the-next-guide-guide-four-html-"><a href="guide.four.html">To the next guide</a></h3>
 <h3 id="-back-to-all-guides-guide-html-"><a href="guide.html">Back to all guides</a></h3>
@@ -210,218 +211,7 @@ Previously we loaded some JSON text using the parcel. Inside this JSON file, was
 <h4 id="code-listing-3">Code listing 3</h4>
 <p></a></p>
 <p><em>(found in samples/guides/3_sprite_animation/)</em></p>
-<pre><code>
-<span class="hljs-keyword">import</span> luxe.Input;
-<span class="hljs-keyword">import</span> luxe.Color;
-<span class="hljs-keyword">import</span> luxe.Vector;
 
-<span class="hljs-keyword">import</span> luxe.Parcel;
-<span class="hljs-keyword">import</span> luxe.ParcelProgress;
-
-<span class="hljs-keyword">import</span> luxe.Sprite;
-<span class="hljs-keyword">import</span> phoenix.Texture;
-<span class="hljs-keyword">import</span> luxe.components.sprite.SpriteAnimation;
-
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
-
-    <span class="hljs-keyword">var</span> player : Sprite;
-    <span class="hljs-keyword">var</span> anim : SpriteAnimation;
-    <span class="hljs-keyword">var</span> image : Texture;
-
-        <span class="hljs-comment">//these are altered by the screen size later</span>
-    <span class="hljs-keyword">var</span> max_left : Float = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">var</span> max_right : Float = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">var</span> move_speed : Float = <span class="hljs-number">0</span>;
-
-
-    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
-
-            <span class="hljs-comment">//A parcel is a group of resources,</span>
-            <span class="hljs-comment">//which allows us to conveniently load</span>
-            <span class="hljs-comment">//them all at once and keep track. We add</span>
-            <span class="hljs-comment">//the list of resources we want to the</span>
-            <span class="hljs-comment">//parcel when creating it, and then</span>
-            <span class="hljs-comment">//tell it to load.</span>
-
-        <span class="hljs-keyword">var</span> parcel = <span class="hljs-keyword">new</span> Parcel({
-            jsons:[ { id:<span class="hljs-string">'assets/anim.json'</span> } ],
-            textures : [
-                { id: <span class="hljs-string">'assets/apartment.png'</span> },
-                { id: <span class="hljs-string">'assets/player.png'</span> }
-            ],
-        });
-
-            <span class="hljs-comment">//but, before we load it, we also want to</span>
-            <span class="hljs-comment">//display a simple progress bar for the parcel,</span>
-            <span class="hljs-comment">//this is a default one, you can create your own</span>
-        <span class="hljs-keyword">new</span> ParcelProgress({
-            parcel      : parcel,
-            background  : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0.85</span>),
-            oncomplete  : assets_loaded
-        });
-
-            <span class="hljs-comment">//go!</span>
-        parcel.load();
-
-    } <span class="hljs-comment">//ready</span>
-
-        <span class="hljs-comment">//called when assets are done loading</span>
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assets_loaded</span><span class="hljs-params">(_)</span> </span>{
-
-        create_apartment();
-        create_player();
-        create_player_animation();
-        connect_input();
-
-    } <span class="hljs-comment">//assets_loaded</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">create_apartment</span><span class="hljs-params">()</span> </span>{
-
-            <span class="hljs-comment">//fetch the previously loaded image</span>
-        <span class="hljs-keyword">var</span> apartment = Luxe.resources.texture(<span class="hljs-string">'assets/apartment.png'</span>);
-
-            <span class="hljs-comment">//this makes sure the pixels stay crisp when scaling,</span>
-            <span class="hljs-comment">//we set both at once, since they both are needed.</span>
-        apartment.filter_min = apartment.filter_mag = FilterType.nearest;
-
-            <span class="hljs-comment">//this calculates how wide the image should be on screen,</span>
-            <span class="hljs-comment">//if we make the image as high as the view itself</span>
-
-        <span class="hljs-keyword">var</span> height = Luxe.screen.h;
-        <span class="hljs-keyword">var</span> width = (height/apartment.height) * apartment.width;
-
-        <span class="hljs-keyword">new</span> Sprite({
-            name: <span class="hljs-string">'apartment'</span>,
-            texture: apartment,
-            size: <span class="hljs-keyword">new</span> Vector( width, height ),
-            centered: <span class="hljs-literal">false</span>
-        });
-
-    } <span class="hljs-comment">//create_apartment</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">create_player</span><span class="hljs-params">()</span> </span>{
-
-            <span class="hljs-comment">//fetch the player image</span>
-        image = Luxe.resources.texture(<span class="hljs-string">'assets/player.png'</span>);
-
-            <span class="hljs-comment">//keep pixels crisp, same as create_apartment</span>
-        image.filter_min = image.filter_mag = FilterType.nearest;
-
-            <span class="hljs-comment">//work out the correct size based on a ratio with the screen size</span>
-        <span class="hljs-keyword">var</span> frame_width = <span class="hljs-number">32</span>;
-        <span class="hljs-keyword">var</span> height = Luxe.screen.h/<span class="hljs-number">1.75</span>;
-        <span class="hljs-keyword">var</span> ratio = (height/image.height);
-        <span class="hljs-keyword">var</span> width = ratio * frame_width;
-
-            <span class="hljs-comment">//this is an arbitrary ratio I made up :)</span>
-        move_speed = width*<span class="hljs-number">1.5</span>;
-
-            <span class="hljs-comment">//screen edge boundary for walking</span>
-        max_right = Luxe.screen.w - (width/<span class="hljs-number">2</span>);
-        max_left = (width/<span class="hljs-number">2</span>);
-
-            <span class="hljs-comment">//start with the idle texture</span>
-        player = <span class="hljs-keyword">new</span> Sprite({
-            name: <span class="hljs-string">'player'</span>,
-            texture: image,
-            pos : <span class="hljs-keyword">new</span> Vector(Luxe.screen.mid.x, Luxe.screen.h - (height/<span class="hljs-number">1.75</span>)),
-            size: <span class="hljs-keyword">new</span> Vector(width, height)
-        });
-
-    } <span class="hljs-comment">//create_player</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">create_player_animation</span><span class="hljs-params">()</span> </span>{
-
-            <span class="hljs-comment">//create the animation from the previously loaded json,</span>
-            <span class="hljs-comment">//the frameset structure allows us to specify things like</span>
-            <span class="hljs-comment">//"animate frames 1-3 and then hold for 2 frames" etc.</span>
-        <span class="hljs-keyword">var</span> anim_object = Luxe.resources.json(<span class="hljs-string">'assets/anim.json'</span>);
-
-            <span class="hljs-comment">//create the animation component and add it to the sprite</span>
-        anim = player.add( <span class="hljs-keyword">new</span> SpriteAnimation({ name:<span class="hljs-string">'anim'</span> }) );
-
-            <span class="hljs-comment">//create the animations from the json</span>
-        anim.add_from_json_object( anim_object.asset.json );
-
-            <span class="hljs-comment">//set the idle animation to active</span>
-        anim.animation = <span class="hljs-string">'idle'</span>;
-        anim.play();
-
-    } <span class="hljs-comment">//create_player_animation</span>
-
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">connect_input</span><span class="hljs-params">()</span> </span>{
-
-        <span class="hljs-comment">//here, we are going to bind A/left and D/right into a single named</span>
-        <span class="hljs-comment">//input event, so that we can keep our movement code the same when changing keys</span>
-
-        Luxe.input.bind_key(<span class="hljs-string">'left'</span>, Key.left);
-        Luxe.input.bind_key(<span class="hljs-string">'left'</span>, Key.key_a);
-
-        Luxe.input.bind_key(<span class="hljs-string">'right'</span>, Key.right);
-        Luxe.input.bind_key(<span class="hljs-string">'right'</span>, Key.key_d);
-
-    } <span class="hljs-comment">//connect_input</span>
-
-    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">( delta:Float )</span> </span>{
-
-        <span class="hljs-comment">//this can get called while waiting, so if it's not</span>
-        <span class="hljs-comment">//ready we just return!</span>
-        <span class="hljs-keyword">if</span>(player == <span class="hljs-literal">null</span>) {
-            <span class="hljs-keyword">return</span>;
-        }
-
-        <span class="hljs-keyword">var</span> moving = <span class="hljs-literal">false</span>;
-
-        <span class="hljs-keyword">if</span>(Luxe.input.inputdown(<span class="hljs-string">'left'</span>)) {
-
-            player.pos.x -= move_speed * delta;
-            player.flipx = <span class="hljs-literal">true</span>;
-
-            moving = <span class="hljs-literal">true</span>;
-
-        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(Luxe.input.inputdown(<span class="hljs-string">'right'</span>)) {
-
-            player.pos.x += move_speed * delta;
-            player.flipx = <span class="hljs-literal">false</span>;
-
-            moving = <span class="hljs-literal">true</span>;
-
-        } <span class="hljs-comment">//left/right</span>
-
-           <span class="hljs-comment">//limit to the screen edges</span>
-        <span class="hljs-keyword">if</span>(player.pos.x &gt;= max_right) {
-            player.pos.x = max_right;
-            moving = <span class="hljs-literal">false</span>;
-        }
-        <span class="hljs-keyword">if</span>(player.pos.x &lt;= max_left) {
-            player.pos.x = max_left;
-            moving = <span class="hljs-literal">false</span>;
-        }
-
-            <span class="hljs-comment">//set the correct animation</span>
-        <span class="hljs-keyword">if</span>(moving) {
-            <span class="hljs-keyword">if</span>(anim.animation != <span class="hljs-string">'walk'</span>) {
-                anim.animation = <span class="hljs-string">'walk'</span>;
-            }
-        } <span class="hljs-keyword">else</span> {
-            <span class="hljs-keyword">if</span>(anim.animation != <span class="hljs-string">'idle'</span>) {
-                anim.animation = <span class="hljs-string">'idle'</span>;
-            }
-        }
-
-    } <span class="hljs-comment">//update</span>
-
-    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">( e:KeyEvent )</span> </span>{
-
-        <span class="hljs-keyword">if</span>(e.keycode == Key.escape) {
-            Luxe.shutdown();
-        }
-
-    } <span class="hljs-comment">//onkeyup</span>
-
-} <span class="hljs-comment">//Main</span>
-</code></pre>
         </div>
     </body>
 

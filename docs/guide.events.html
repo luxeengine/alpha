@@ -69,95 +69,110 @@
 <h2 id="events-signals-messages-">Events, Signals, Messages?</h2>
 <hr>
 <p>One common method of communicating between game systems, a very powerful method of development, is called <em>event driven design</em>.   </p>
-<p>Event drive design, often also referred to as <em>signals and slots</em>, or <em>messaging systems</em> are simple in principle. 
-They allow code to <em>listen</em> for messages/events/signals from elsewhere in the code, without needing an explicit reference to origin of the message. 
-This allows <em>encapsulation</em> and <em>decoupling</em> systems from each other, and allows quite adaptive approaches to be conceived over the regular methods of communicating between code.</p>
-<p>This may seem quite complex, but let us look at a simple example instead.</p>
+<p>Event driven design, often also referred to as <em>signals and slots</em>, or <em>messaging systems</em> and are simple in principle. They allow code to <em>listen</em> or attach to messages (also called events or signals) from elsewhere in the code.</p>
+<p>If you think about it like a radio station, it’s sent out to people who may choose to listen to a particular channel. The events are sent whether there is any code listening, and there can be multiple listeners on a single “channel”.</p>
+<p>This model allows systems some <em>encapsulation</em> and <em>decoupling</em> from one another. It also allows more adaptive changes to the code based on the changes that happen at runtime. All possible combinations don’t have to be connected in advanced or coded in place.</p>
+<p>Let’s look at a simple example.</p>
 <h2 id="the-player-is-losing-health">The player is losing health</h2>
 <hr>
 <p>Imagine a game where your player can take damage from a projectile, an arrow fired by an enemy. Here is some pseudo code to imagine what would happen, when the player has collided with the arrow.</p>
-<pre><code><span class="hljs-comment">//in the arrow update code</span>
-<span class="hljs-comment">//check if we are going to hit something?</span>
-<span class="hljs-keyword">for</span>( entity <span class="hljs-keyword">in</span> range_of_collision ) {
+<pre><code class="lang-haxe">        <span class="hljs-comment">// arrow update code:</span>
+        <span class="hljs-comment">//    check if we are going to hit something?</span>
+    <span class="hljs-keyword">for</span>(entity <span class="hljs-keyword">in</span> range_of_collision) {
 
-    <span class="hljs-keyword">if</span>( entity.collides_with( <span class="hljs-keyword">this</span> ) ) {
+        <span class="hljs-keyword">if</span>(entity.collides_with(<span class="hljs-keyword">this</span>)) {
 
-        <span class="hljs-comment">//we have hit an entity!</span>
-        <span class="hljs-comment">//we can assume this is the player and convert it</span>
-        <span class="hljs-keyword">var</span> player : Player = <span class="hljs-keyword">cast</span> entity;
-        player.take_damage( damage_amount );
+                <span class="hljs-comment">//we have hit an entity!</span>
+                <span class="hljs-comment">//we will assume this is the player and convert it</span>
+            <span class="hljs-keyword">var</span> player: Player = <span class="hljs-keyword">cast</span> entity;
+            player.take_damage( damage_amount );
 
-        <span class="hljs-comment">//... </span>
-    } 
-
-}
-</code></pre><p>Now, what if the entity was another enemy? What if we don’t want to do maximum damage to other enemies?</p>
-<pre><code><span class="hljs-keyword">if</span>( entity.collides_with( <span class="hljs-keyword">this</span> ) ) {
-
-    <span class="hljs-comment">//we have hit an entity!</span>
-
-    <span class="hljs-keyword">if</span>( Std.is(entity, Player) ) {
-
-        <span class="hljs-keyword">var</span> player : Player = <span class="hljs-keyword">cast</span> entity;
-        player.take_damage( damage_amount );
-
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( Std.is(entity, Enemy) ) {
-
-        <span class="hljs-keyword">var</span> enemy : Enemy = <span class="hljs-keyword">cast</span> entity;
-        enemy.take_damage( damage_amount * <span class="hljs-number">0.5</span> );
+            <span class="hljs-comment">//... </span>
+        } 
 
     }
+</code></pre>
+<p>Now, what if the entity was another enemy? What if we don’t want to do maximum damage to other enemies?</p>
+<pre><code class="lang-haxe">    <span class="hljs-keyword">if</span>( entity.collides_with( <span class="hljs-keyword">this</span> ) ) {
 
-} 
-</code></pre><p>Now what happens when the arrow hits a wall entity? What if there are different types of walls? Or different types of enemies? This can quickly spiral into many needless checks and make this code very “specific”, it has code to handle every single case, and if you are reaching the end of the development of a game, any possible new features might get shunned due to code complexity or risk of introducing bugs.</p>
+            <span class="hljs-comment">//we have hit an entity!</span>
+
+        <span class="hljs-keyword">if</span>( Std.is(entity, Player) ) {
+
+            <span class="hljs-keyword">var</span> player : Player = <span class="hljs-keyword">cast</span> entity;
+            player.take_damage( damage_amount );
+
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( Std.is(entity, Enemy) ) {
+
+            <span class="hljs-keyword">var</span> enemy : Enemy = <span class="hljs-keyword">cast</span> entity;
+            enemy.take_damage( damage_amount * <span class="hljs-number">0.5</span> );
+
+        }
+
+    }
+</code></pre>
+<p>Now what happens when the arrow hits a wall entity? What if there are different types of walls? Or different types of enemies? This can quickly spiral into many needless type checks and make this code very specific and hardcoded. It has to have code to handle every single case, which introduces a large amount of complexity and bug potential.</p>
+<p>Let’s try the evented approach.</p>
 <h2 id="the-player-is-losing-health-event">The player is losing health event</h2>
 <hr>
-<p>Events make this problem a lot more elegant and flexible. Instead of handlings specifics, let’s use the entity events to send it a message.</p>
-<pre><code><span class="hljs-keyword">if</span>( entity.collides_with( <span class="hljs-keyword">this</span> ) ) {
+<p>Events make this example a lot more elegant and flexible. Instead of handling specifics, we’ll use the entity specific events instance to send it a message. “Hey, whatever type of entity you are, if you are listening for this event, you are taking damage”. </p>
+<pre><code class="lang-haxe">    <span class="hljs-keyword">if</span>( entity.collides_with( <span class="hljs-keyword">this</span> ) ) {
 
-    entity.events.fire(<span class="hljs-string">'take_damage'</span>, { from:<span class="hljs-keyword">this</span>, amount:damage_amount });
+        entity.events.fire(<span class="hljs-string">'take_damage'</span>, { from:<span class="hljs-keyword">this</span>, amount:damage_amount });
 
-}
-</code></pre><p>Now, no matter what the entity is - it is up to the entity (encapsulated, decoupled from the arrow!) to handle the situation.</p>
-<pre><code>    <span class="hljs-comment">//Inside the Player class</span>
-<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{
-
-    events.listen(<span class="hljs-string">'takes_damage'</span>, on_take_damage );
-
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on_take_damage</span><span class="hljs-params">( data:DamageEvent )</span> </span>{
-    <span class="hljs-comment">//from, and amount are available</span>
-    health -= data.amount;
-    check_health();
-}
-</code></pre><p>And how about on the walls?    </p>
-<pre><code>    <span class="hljs-comment">//When taking damage, handle the arrow differently by wall type.</span>
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on_take_damage</span><span class="hljs-params">( data:DamageEvent )</span> </span>{
-    <span class="hljs-keyword">switch</span>(wall_type) {
-        <span class="hljs-keyword">case</span> <span class="hljs-string">'reflective'</span>:
-                <span class="hljs-comment">//assuming the arrow class has a reflect capability</span>
-            data.from.reflect();
-        <span class="hljs-keyword">case</span> <span class="hljs-string">'normal'</span>:
-            data.from.explode();
     }
-}
-</code></pre><h2 id="important-notes">Important notes</h2>
+</code></pre>
+<p>Now, no matter what the entity is - it is up to the entity (encapsulated, decoupled from the arrow!) to handle the situation. This includes ignoring the event as well.</p>
+<pre><code class="lang-haxe">
+        <span class="hljs-comment">//Inside the Player class</span>
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{
+
+        events.listen(<span class="hljs-string">'takes_damage'</span>, on_take_damage);
+
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on_take_damage</span><span class="hljs-params">( data:DamageEvent )</span> </span>{
+
+            <span class="hljs-comment">//from, and amount are available</span>
+            <span class="hljs-comment">//we can also handle game specific situations here, like </span>
+            <span class="hljs-comment">//if there was a invincible powerup, or damage reduction buff</span>
+        health -= data.amount;
+
+        check_health();
+
+    }
+</code></pre>
+<p>And how about on the walls? </p>
+<pre><code class="lang-haxe">
+        <span class="hljs-comment">//When taking damage, handle the arrow differently by wall type.</span>
+        <span class="hljs-comment">//In this fake example, we can reflect the arrow or make it explode</span>
+        <span class="hljs-comment">//(assuming the take damage is only from arrows here, see below)</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on_take_damage</span><span class="hljs-params">( data:DamageEvent )</span> </span>{
+        <span class="hljs-keyword">switch</span>(wall_type) {
+            <span class="hljs-keyword">case</span> WallType.reflective:
+                data.from.reflect();
+            <span class="hljs-keyword">case</span> WallType.normal:
+                data.from.explode();
+        }
+    }
+</code></pre>
+<h2 id="important-notes">Important notes</h2>
 <hr>
-<p><strong>Take note</strong> that you can of course assign many listeners to a single event! This means that when you send an event globally for example (more on that later), many listeners can be waiting for that event, and will respond to it.</p>
 <p>There are two ways to fire and event, <code>events.fire</code> will immediately call any listeners, and <code>events.queue</code> will store the event in a queue for the next frame update. The distinction is important for ordering, as well as immediacy of events (like an input event is more important than other events).</p>
 <p>You can remove a listener from an event using the unique ID that the listen function returns. This is important to manage your events so that you don’t end up accidentally handling events at the wrong time - like the player shooting arrows while the menu is open because the event remained connected.</p>
-<pre><code>    <span class="hljs-comment">//connect a listener</span>
-<span class="hljs-keyword">var</span> listen_id = events.listen(<span class="hljs-string">'event'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{ } );
+<pre><code class="lang-haxe">        <span class="hljs-comment">//connect a listener</span>
+    <span class="hljs-keyword">var</span> listen_id = events.listen(<span class="hljs-string">'event'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{ } );
 
         <span class="hljs-comment">//this will remove just this listener</span>
     events.disconnect( listen_id );
-</code></pre><h2 id="being-more-specific">Being more specific</h2>
+</code></pre>
+<h2 id="being-more-specific">Being more specific</h2>
 <hr>
 <p>This example could use some more specifics, for example, the player will handle a ‘takes_damage’ event from more than just arrow projectiles.   </p>
 <p>For this, you can use event namespaces, and wildcards in the events. Let’s make this more specific, first.</p>
-<pre><code>    <span class="hljs-comment">//From the arrow collision check</span>
+<pre><code class="lang-haxe">
+    <span class="hljs-comment">//From the arrow collision check</span>
 entity.events.fire(<span class="hljs-string">'take_damage.arrow'</span>, { from:<span class="hljs-keyword">this</span>, amount:damage_amount });
 
 ...
@@ -165,8 +180,8 @@ entity.events.fire(<span class="hljs-string">'take_damage.arrow'</span>, { from:
     <span class="hljs-comment">//Inside the Player class</span>
 <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{
 
-    events.listen(<span class="hljs-string">'takes_damage.arrow'</span>, on_take_damage_from_arrow );
-    events.listen(<span class="hljs-string">'takes_damage.explosion'</span>, on_take_damage_from_explosion );
+    events.listen(<span class="hljs-string">'takes_damage.arrow'</span>, on_take_damage_from_arrow);
+    events.listen(<span class="hljs-string">'takes_damage.explosion'</span>, on_take_damage_from_explosion);
 
 }
 
@@ -178,198 +193,208 @@ entity.events.fire(<span class="hljs-string">'take_damage.arrow'</span>, { from:
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on_take_damage_from_explosion</span><span class="hljs-params">( data:ExplosionDamageEvent )</span> </span>{
     ...
 }
-</code></pre><h2 id="being-less-specific">Being less specific</h2>
+</code></pre>
+<h2 id="being-less-specific">Being less specific</h2>
 <hr>
 <p>If you wanted to listen for all the takes_damage events , you can use wildcards.</p>
-<pre><code>events.listen(<span class="hljs-string">'takes_damage.*'</span>, on_take_damage_from_any );
-</code></pre><p>You can also use the wildcard elsewhere, like this : </p>
-<pre><code>    <span class="hljs-comment">//game.player.ui, game.menu.ui, game.health.ui </span>
-events.listen(<span class="hljs-string">'game.*.ui'</span>, on_any_ui_events );    
-</code></pre><p>They can even be used for more complex event listeners, like “player enters swamp”,</p>
-<pre><code>events.listen(<span class="hljs-string">'(player)*(swamp)'</span>, on_entering_swamp );
-</code></pre><h2 id="global-vs-local-events">Global vs Local events</h2>
+<pre><code class="lang-haxe">    events.listen(<span class="hljs-string">'takes_damage.*'</span>, on_take_damage_from_any );
+</code></pre>
+<p>You can also use the wildcard elsewhere, like this : </p>
+<pre><code class="lang-haxe">        <span class="hljs-comment">//game.player.ui, game.menu.ui, game.health.ui </span>
+    events.listen(<span class="hljs-string">'game.*.ui'</span>, on_any_ui_events );
+</code></pre>
+<p>They can even be used for more complex event listeners, like “player enters swamp”,</p>
+<pre><code class="lang-haxe">    events.listen(<span class="hljs-string">'(player)*(swamp)'</span>, on_entering_swamp );
+</code></pre>
+<h2 id="global-vs-local-events">Global vs Local events</h2>
 <hr>
 <p>A good example of a global event is when the user presses the pause key.
-This single action has ramifications across the entire code base, right down to the animation system and in the menu code and the game logic - an easy way to tell every system that want’s to know when the game is paused, is by using events.</p>
-<pre><code>Luxe.events.queue(<span class="hljs-string">'game.pause'</span>);
-Luxe.events.queue(<span class="hljs-string">'game.unpause'</span>);
+This single action has ramifications across the entire game, right down to the animation system and in the menu code and the game logic - an easy way to tell every system that want’s to know when the game is paused, is by using events.</p>
+<pre><code class="lang-haxe">    Luxe.events.queue(<span class="hljs-string">'game.pause'</span>);
+    Luxe.events.queue(<span class="hljs-string">'game.unpause'</span>);
 
-...
-
-Luxe.events.listen( <span class="hljs-string">'game.pause'</span>, on_game_pause );
-Luxe.events.listen( <span class="hljs-string">'game.unpause'</span>, on_game_unpause );
-</code></pre><p>As mentioned above, many listeners can listen for a single event, and can react accordingly.</p>
-<p>All of the above examples were sending events directly INTO an entity, only that entity would see it. There is also a way to send messages globally, for every class/function to listen for in the entire game. Let’s go back to the example of the player taking damage from anything, and tell the entire game that there was damage lost.</p>
-<pre><code>    <span class="hljs-comment">//In the player class</span>
-<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{            
-    events.listen(<span class="hljs-string">'takes_damage.*'</span>, on_take_damage_from_anything );
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on_take_damage_from_anything</span><span class="hljs-params">( e:Dynamic )</span> </span>{
-
-
-        <span class="hljs-comment">//now we use the GLOBAL events to tell the entire game</span>
-        <span class="hljs-comment">//and pass the information along</span>
-    Luxe.events.fire(<span class="hljs-string">'game.player.damage'</span>, e );
-}
-
-    <span class="hljs-comment">//In the UI class, for example</span>
-Luxe.events.listen(<span class="hljs-string">'game.player.damage'</span>, on_player_hurt );
-
-...
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on_player_hurt</span><span class="hljs-params">( e:Dynamic )</span> </span>{
-
-    <span class="hljs-comment">//Flash the screen red, etc</span>
     ...
-    <span class="hljs-comment">//shake the camera 10% of the damage amount</span>
-    Luxe.camera.shake( e.amount * <span class="hljs-number">0.1</span> ); 
-}
-</code></pre><h2 id="wrapping-up">Wrapping up</h2>
+
+    Luxe.events.listen( <span class="hljs-string">'game.pause'</span>, on_game_pause );
+    Luxe.events.listen( <span class="hljs-string">'game.unpause'</span>, on_game_unpause );
+</code></pre>
+<p>As mentioned above, many listeners can listen for a single event, and can react accordingly.</p>
+<p>All of the above examples were sending events directly INTO an entity, only that entity would see it. There is also a way to send messages globally, for every class/function to listen for in the entire game. Let’s go back to the example of the player taking damage from anything, and tell the entire game that there was damage lost.</p>
+<pre><code class="lang-haxe">        <span class="hljs-comment">//In the player class</span>
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{          
+        events.listen(<span class="hljs-string">'takes_damage.*'</span>, on_take_damage_from_anything );
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on_take_damage_from_anything</span><span class="hljs-params">( e:Dynamic )</span> </span>{
+
+
+            <span class="hljs-comment">//now we use the GLOBAL events to tell the entire game</span>
+            <span class="hljs-comment">//and pass the information along</span>
+        Luxe.events.fire(<span class="hljs-string">'game.player.damage'</span>, e );
+    }
+
+        <span class="hljs-comment">//In the UI class, for example</span>
+    Luxe.events.listen(<span class="hljs-string">'game.player.damage'</span>, on_player_hurt );
+
+    ...
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on_player_hurt</span><span class="hljs-params">( e:Dynamic )</span> </span>{
+
+        <span class="hljs-comment">//Flash the screen red, etc</span>
+        ...
+        <span class="hljs-comment">//shake the camera 10% of the damage amount</span>
+        Luxe.camera.shake( e.amount * <span class="hljs-number">0.1</span> ); 
+    }
+</code></pre>
+<h2 id="wrapping-up">Wrapping up</h2>
 <hr>
 <p>As you can see, events are powerful and meaningful and can be used for almost anything. You can always create your own instance of <code>luxe.Events</code> and have many local events systems (though, entities already have one built in!).</p>
 <h2 id="advanced-in-depth-details">Advanced in depth details</h2>
 <p>If you are wonder just exactly what happens with the filtering, here is what it is doing,</p>
-<pre><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">does_filter_event</span><span class="hljs-params">( _filter:String, _event:String )</span> </span>{
+<pre><code class="lang-haxe">    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">does_filter_event</span><span class="hljs-params">( _filter:String, _event:String )</span> </span>{
 
-    <span class="hljs-keyword">var</span> _replace_stars : EReg = ~/\*/gi;
-    <span class="hljs-keyword">var</span> _final_filter : String = _replace_stars.replace( _filter, <span class="hljs-string">'.*?'</span> );
-    <span class="hljs-keyword">var</span> _final_search : EReg = <span class="hljs-keyword">new</span> EReg(_final_filter, <span class="hljs-string">'gi'</span>);
+        <span class="hljs-keyword">var</span> _replace_stars : EReg = ~/\*/gi;
+        <span class="hljs-keyword">var</span> _final_filter : String = _replace_stars.replace( _filter, <span class="hljs-string">'.*?'</span> );
+        <span class="hljs-keyword">var</span> _final_search : EReg = <span class="hljs-keyword">new</span> EReg(_final_filter, <span class="hljs-string">'gi'</span>);
 
-    <span class="hljs-keyword">return</span> _final_search.match( _event );
+        <span class="hljs-keyword">return</span> _final_search.match( _event );
 
-} <span class="hljs-comment">//does_filter_event</span>
-</code></pre><p>Below are some more examples in a test case to demonstrate more uses of the event system.</p>
+    } <span class="hljs-comment">//does_filter_event</span>
+</code></pre>
+<p>Below are some more examples in a test case to demonstrate more uses of the event system.</p>
 <h3 id="examples">examples</h3>
 <hr>
 <p>Since event names are string, you can group events by a delimeter,<br>i.e <code>Luxe.events.listen(&#39;game.player.*&#39;)</code>, which can be used to filter events by type.</p>
-<pre><code><span class="hljs-keyword">import</span> luxe.Vector;
-<span class="hljs-keyword">import</span> luxe.Input;
-<span class="hljs-keyword">import</span> luxe.Entity;
+<pre><code class="lang-haxe">
+    <span class="hljs-keyword">import</span> luxe.Vector;
+    <span class="hljs-keyword">import</span> luxe.Input;
+    <span class="hljs-keyword">import</span> luxe.Entity;
 
-<span class="hljs-keyword">typedef</span> HealthEvent = {
-    amount : Float
-}
-<span class="hljs-keyword">typedef</span> DiedEvent = {
-    attacker : String
-}
-<span class="hljs-keyword">typedef</span> SpawnEvent = {
-    spawn_node : String
-}
+    <span class="hljs-keyword">typedef</span> HealthEvent = {
+        amount : Float
+    }
+    <span class="hljs-keyword">typedef</span> DiedEvent = {
+        attacker : String
+    }
+    <span class="hljs-keyword">typedef</span> SpawnEvent = {
+        spawn_node : String
+    }
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
 
-    <span class="hljs-keyword">var</span> entity : Entity;
+        <span class="hljs-keyword">var</span> entity : Entity;
 
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
 
-            <span class="hljs-comment">//Global events connections</span>
-        Luxe.events.listen( <span class="hljs-string">'global event'</span> , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{
-            <span class="hljs-keyword">trace</span>(<span class="hljs-string">"Global Event Fired"</span>);
-        });
+                <span class="hljs-comment">//Global events connections</span>
+            Luxe.events.listen( <span class="hljs-string">'global event'</span> , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{
+                <span class="hljs-keyword">trace</span>(<span class="hljs-string">"Global Event Fired"</span>);
+            });
 
-            <span class="hljs-comment">//Connect global to local event</span>
-        Luxe.events.listen( <span class="hljs-string">'local event'</span> , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{
-            <span class="hljs-keyword">trace</span>(<span class="hljs-string">"Should not print"</span>);
-        });
+                <span class="hljs-comment">//Connect global to local event</span>
+            Luxe.events.listen( <span class="hljs-string">'local event'</span> , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{
+                <span class="hljs-keyword">trace</span>(<span class="hljs-string">"Should not print"</span>);
+            });
 
-            <span class="hljs-comment">//Local to entity event connections</span>
-        entity = Luxe.scene.create(Entity,<span class="hljs-string">'temp'</span>);
+                <span class="hljs-comment">//Local to entity event connections</span>
+            entity = Luxe.scene.create(Entity,<span class="hljs-string">'temp'</span>);
 
 
-        entity.events.listen(<span class="hljs-string">'local event'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{
-            <span class="hljs-keyword">trace</span>(<span class="hljs-string">"Local Event Fired"</span>);
-        });
+            entity.events.listen(<span class="hljs-string">'local event'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{
+                <span class="hljs-keyword">trace</span>(<span class="hljs-string">"Local Event Fired"</span>);
+            });
 
-        entity.events.listen(<span class="hljs-string">'player.*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{
-            <span class="hljs-keyword">trace</span>(<span class="hljs-string">'player event happened! it was `'</span> + e._event_name_ + <span class="hljs-string">'` which has '</span> + e._event_connection_count_ + <span class="hljs-string">' listeners!'</span>);
-        });
+            entity.events.listen(<span class="hljs-string">'player.*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{
+                <span class="hljs-keyword">trace</span>(<span class="hljs-string">'player event happened! it was `'</span> + e._event_name_ + <span class="hljs-string">'` which has '</span> + e._event_connection_count_ + <span class="hljs-string">' listeners!'</span>);
+            });
 
-        entity.events.listen(<span class="hljs-string">'player.health.loss'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( e:HealthEvent )</span></span>{
-            <span class="hljs-keyword">trace</span>(<span class="hljs-string">' ouch! I lost '</span> + e.amount + <span class="hljs-string">' health :('</span>);
-        });
-        entity.events.listen(<span class="hljs-string">'player.health.gain'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( e:HealthEvent )</span></span>{
-            <span class="hljs-keyword">trace</span>(<span class="hljs-string">' woo! I got '</span> + e.amount + <span class="hljs-string">' hp'</span>);
-        });
-        entity.events.listen(<span class="hljs-string">'player.died'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( e:DiedEvent )</span></span>{
-            <span class="hljs-keyword">trace</span>(<span class="hljs-string">' oh snap! I was killed by '</span> + e.attacker );
-        });
-        entity.events.listen(<span class="hljs-string">'player.spawn'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( e:Main.SpawnEvent )</span></span>{
-            <span class="hljs-keyword">trace</span>(<span class="hljs-string">' ok, letsdoodis, now at '</span> + e.spawn_node );
-        });
+            entity.events.listen(<span class="hljs-string">'player.health.loss'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( e:HealthEvent )</span></span>{
+                <span class="hljs-keyword">trace</span>(<span class="hljs-string">' ouch! I lost '</span> + e.amount + <span class="hljs-string">' health :('</span>);
+            });
+            entity.events.listen(<span class="hljs-string">'player.health.gain'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( e:HealthEvent )</span></span>{
+                <span class="hljs-keyword">trace</span>(<span class="hljs-string">' woo! I got '</span> + e.amount + <span class="hljs-string">' hp'</span>);
+            });
+            entity.events.listen(<span class="hljs-string">'player.died'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( e:DiedEvent )</span></span>{
+                <span class="hljs-keyword">trace</span>(<span class="hljs-string">' oh snap! I was killed by '</span> + e.attacker );
+            });
+            entity.events.listen(<span class="hljs-string">'player.spawn'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( e:Main.SpawnEvent )</span></span>{
+                <span class="hljs-keyword">trace</span>(<span class="hljs-string">' ok, letsdoodis, now at '</span> + e.spawn_node );
+            });
 
-        <span class="hljs-keyword">trace</span>(<span class="hljs-string">'PRESS SPACE TO FIRE EVENTS'</span>);
+            <span class="hljs-keyword">trace</span>(<span class="hljs-string">'PRESS SPACE TO FIRE EVENTS'</span>);
 
-            <span class="hljs-comment">//Events class exposes this filter function to test/learn the events</span>
+                <span class="hljs-comment">//Events class exposes this filter function to test/learn the events</span>
 
-        <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'game.*'</span>, <span class="hljs-string">'game.player.test'</span>) );
-        <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'game:player:*'</span>, <span class="hljs-string">'game:player:health'</span>) );
-        <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'game.*.player'</span>, <span class="hljs-string">'game.ui.player'</span>) );
-        <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'game.*.player'</span>, <span class="hljs-string">'game.death.player'</span>) );
-        <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'game.*.player'</span>, <span class="hljs-string">'game.death.test'</span>) );
-        <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'*.player'</span>, <span class="hljs-string">'ui.player'</span>) );
-        <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'*.player'</span>, <span class="hljs-string">'health.player'</span>) );
-        <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'*.player'</span>, <span class="hljs-string">'derp.plea'</span>) );
-        <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'(player)*(house)'</span>, <span class="hljs-string">'player inside house'</span>) );
+            <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'game.*'</span>, <span class="hljs-string">'game.player.test'</span>) );
+            <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'game:player:*'</span>, <span class="hljs-string">'game:player:health'</span>) );
+            <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'game.*.player'</span>, <span class="hljs-string">'game.ui.player'</span>) );
+            <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'game.*.player'</span>, <span class="hljs-string">'game.death.player'</span>) );
+            <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'game.*.player'</span>, <span class="hljs-string">'game.death.test'</span>) );
+            <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'*.player'</span>, <span class="hljs-string">'ui.player'</span>) );
+            <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'*.player'</span>, <span class="hljs-string">'health.player'</span>) );
+            <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'*.player'</span>, <span class="hljs-string">'derp.plea'</span>) );
+            <span class="hljs-keyword">trace</span>( Luxe.events.does_filter_event(<span class="hljs-string">'(player)*(house)'</span>, <span class="hljs-string">'player inside house'</span>) );
 
-    } <span class="hljs-comment">//ready</span>
+        } <span class="hljs-comment">//ready</span>
 
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">(e)</span> </span>{
+        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">(e)</span> </span>{
 
-        <span class="hljs-keyword">if</span>(e.value == Input.Keys.escape) {
-            Luxe.shutdown();
-        }
+            <span class="hljs-keyword">if</span>(e.value == Input.Keys.escape) {
+                Luxe.shutdown();
+            }
 
-        <span class="hljs-keyword">if</span>(e.value == Input.Keys.space) {
+            <span class="hljs-keyword">if</span>(e.value == Input.Keys.space) {
 
-            Luxe.events.fire( <span class="hljs-string">'global event'</span> );
-            entity.events.fire( <span class="hljs-string">'local event'</span> );
+                Luxe.events.fire( <span class="hljs-string">'global event'</span> );
+                entity.events.fire( <span class="hljs-string">'local event'</span> );
 
-            entity.events.fire(<span class="hljs-string">'player.health.gain'</span>, {amount:<span class="hljs-number">10</span>});
-            entity.events.fire(<span class="hljs-string">'player.health.gain'</span>, {amount:<span class="hljs-number">23</span>});
-            entity.events.fire(<span class="hljs-string">'player.health.loss'</span>, {amount:<span class="hljs-number">60</span>});
-            entity.events.fire(<span class="hljs-string">'player.died'</span>, {attacker:<span class="hljs-string">'xKillerx'</span>});
-            entity.events.fire(<span class="hljs-string">'player.spawn'</span>, {spawn_node:<span class="hljs-string">'spawn12'</span>});
-            entity.events.fire(<span class="hljs-string">'player.health.gain'</span>, {amount:<span class="hljs-string">'100'</span>});
+                entity.events.fire(<span class="hljs-string">'player.health.gain'</span>, {amount:<span class="hljs-number">10</span>});
+                entity.events.fire(<span class="hljs-string">'player.health.gain'</span>, {amount:<span class="hljs-number">23</span>});
+                entity.events.fire(<span class="hljs-string">'player.health.loss'</span>, {amount:<span class="hljs-number">60</span>});
+                entity.events.fire(<span class="hljs-string">'player.died'</span>, {attacker:<span class="hljs-string">'xKillerx'</span>});
+                entity.events.fire(<span class="hljs-string">'player.spawn'</span>, {spawn_node:<span class="hljs-string">'spawn12'</span>});
+                entity.events.fire(<span class="hljs-string">'player.health.gain'</span>, {amount:<span class="hljs-string">'100'</span>});
 
-        } <span class="hljs-comment">//space</span>
+            } <span class="hljs-comment">//space</span>
 
-    } <span class="hljs-comment">//onkeyup</span>
+        } <span class="hljs-comment">//onkeyup</span>
 
-}
-</code></pre><h3 id="more-examples">More examples</h3>
+    }
+</code></pre>
+<h3 id="more-examples">More examples</h3>
 <hr>
-<pre><code>    <span class="hljs-keyword">var</span> event_id = Luxe.events.listen(<span class="hljs-string">'debug:event1'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{ <span class="hljs-keyword">trace</span>(<span class="hljs-string">'event listener 1 : '</span> + e); });
+<pre><code class="lang-haxe">        <span class="hljs-keyword">var</span> event_id = Luxe.events.listen(<span class="hljs-string">'debug:event1'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{ <span class="hljs-keyword">trace</span>(<span class="hljs-string">'event listener 1 : '</span> + e); });
 
-    Luxe.events.listen( <span class="hljs-string">'debug:event1'</span> , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{ <span class="hljs-keyword">trace</span>(<span class="hljs-string">'event listener 2 : '</span> + e); });
-    Luxe.events.listen( <span class="hljs-string">'debug:event1'</span> , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{ <span class="hljs-keyword">trace</span>(<span class="hljs-string">'event listener 3 : '</span> + e); });
+        Luxe.events.listen( <span class="hljs-string">'debug:event1'</span> , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{ <span class="hljs-keyword">trace</span>(<span class="hljs-string">'event listener 2 : '</span> + e); });
+        Luxe.events.listen( <span class="hljs-string">'debug:event1'</span> , <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{ <span class="hljs-keyword">trace</span>(<span class="hljs-string">'event listener 3 : '</span> + e); });
 
-    <span class="hljs-keyword">trace</span>( <span class="hljs-string">'registered debug:event1 '</span> + event_id ); 
+        <span class="hljs-keyword">trace</span>( <span class="hljs-string">'registered debug:event1 '</span> + event_id ); 
 
-    Luxe.events.fire(<span class="hljs-string">'debug:event1'</span>, {
+        Luxe.events.fire(<span class="hljs-string">'debug:event1'</span>, {
 
-        name : <span class="hljs-string">'test event'</span>,
-        date : Date.now()
+            name : <span class="hljs-string">'test event'</span>,
+            date : Date.now()
 
-    });
+        });
 
-        <span class="hljs-comment">//remove one of them</span>
-    Luxe.events.disconnect( event_id );
+            <span class="hljs-comment">//remove one of them</span>
+        Luxe.events.disconnect( event_id );
 
-        <span class="hljs-comment">//now only two listeners</span>
-    Luxe.events.fire(<span class="hljs-string">'debug:event1'</span>, {
+            <span class="hljs-comment">//now only two listeners</span>
+        Luxe.events.fire(<span class="hljs-string">'debug:event1'</span>, {
 
-        name : <span class="hljs-string">'test event'</span>,
-        date : Date.now()
+            name : <span class="hljs-string">'test event'</span>,
+            date : Date.now()
 
-    });
+        });
 
-        <span class="hljs-comment">//fire next frame</span>
-    Luxe.events.queue(<span class="hljs-string">'debug:event1'</span>);
+            <span class="hljs-comment">//fire next frame</span>
+        Luxe.events.queue(<span class="hljs-string">'debug:event1'</span>);
 
-        <span class="hljs-comment">//fire two seconds from now</span>
-    Luxe.events.schedule( <span class="hljs-number">2.0</span> , <span class="hljs-string">'debug:event1'</span>);
-</code></pre><hr>
+            <span class="hljs-comment">//fire two seconds from now</span>
+        Luxe.events.schedule( <span class="hljs-number">2.0</span> , <span class="hljs-string">'debug:event1'</span>);
+</code></pre>
+<hr>
 <p>&nbsp;   </p>
 <h3 id="-back-to-feature-guide-guide-html-list-"><a href="guide.html#list">Back to feature guide</a></h3>
 <h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
