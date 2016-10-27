@@ -11,4 +11,5 @@ flow/icons/mac/luxe.icns
 ios.project
 android.project
 mac.project
+tvos.project
 *.hxproj
