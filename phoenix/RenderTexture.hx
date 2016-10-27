@@ -50,7 +50,7 @@ class RenderTexture extends Texture {
         bindRenderBuffer();
 
             //Create storage for the depth buffer :todo: optionize
-        #if (web || mobile)
+        #if (web || mobile || tvos)
         GL.renderbufferStorage(GL.RENDERBUFFER, GL.DEPTH_COMPONENT16, width, height);
         #else
         GL.renderbufferStorage(GL.RENDERBUFFER, GL.DEPTH_COMPONENT, width, height);
