@@ -142,7 +142,7 @@ class Camera {
 
     public function project( _vector:Vector ) {
 
-        update_view_matrix();
+        update_matrices();
 
         var _transform = new Matrix().multiplyMatrices( projection_matrix, view_matrix_inverse );
         return _vector.clone().applyProjection( _transform );
@@ -151,7 +151,7 @@ class Camera {
 
     public function unproject( _vector:Vector ) {
 
-        update_view_matrix();
+        update_matrices();
 
         var _inverted = new Matrix().multiplyMatrices( projection_matrix, view_matrix_inverse );
         return _vector.clone().applyProjection( _inverted.getInverse(_inverted) );
@@ -196,16 +196,7 @@ class Camera {
     @:noCompletion
     public function process() {
 
-            //If we have a target, override the rotation
-            //before we update the matrix, so it can be applied immediately if changing
-            //:todo: target needs a test and should only update if the target changes
-        if(target != null) {
-            update_look_at();
-        } //target not null
-
-            //update transforms and projection
-        update_projection_matrix();
-        update_view_matrix();
+        update_matrices();
 
             //apply states
         apply_state(GL.CULL_FACE, cull_backfaces);
@@ -214,6 +205,18 @@ class Camera {
     } //process
 
 //Transforms
+
+    inline function update_matrices() {
+            
+            //If we have a target, override the rotation
+            //before we update the matrix, so it can be applied immediately if changing
+        if(target != null) update_look_at();
+        
+            //update transforms and projection
+        update_projection_matrix();
+        update_view_matrix();
+
+    } //update_matrices
 
 
     inline function on_transform_cleaned( t:Transform ) {
@@ -339,10 +342,9 @@ class Camera {
 
 //Conversions
 
-
     inline function ortho_screen_to_world( _vector:Vector ) : Vector {
 
-        update_view_matrix();
+        update_matrices();
 
         return _vector.clone().transform(view_matrix);
 
@@ -350,7 +352,7 @@ class Camera {
 
     inline function ortho_world_to_screen( _vector:Vector ) : Vector {
 
-        update_view_matrix();
+        update_matrices();
 
         return _vector.clone().transform( view_matrix_inverse );
 
