@@ -168,12 +168,19 @@ class Emitter<ET:Int> {
             for(_node in _to_remove) {
 
                 var _list = bindings.get(_node.event);
-                _list.remove( _node.handler );
+                    //since bindings.remove removes all the events of this type,
+                    //it means subsequent similar types are still in the list and
+                    //would attempt to touch the null result, so we don't allow it
+                if(_list != null) {
 
-                    //clear the event list if there are no bindings
-                if(_list.length == 0) {
-                    bindings.remove(_node.event);
-                }
+                    _list.remove( _node.handler );
+
+                        //clear the event list if there are no bindings
+                    if(_list.length == 0) {
+                        bindings.remove(_node.event);
+                    }
+
+                } //_list != null
 
             } //each node
 
