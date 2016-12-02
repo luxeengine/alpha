@@ -151,9 +151,11 @@ class Collision {
 
 //Internal helpers
 
-private typedef Constructible = {
-    public function new():Void;
-}
+#if (haxe_ver < 3.3)
+    private typedef Constructible = {
+        public function new():Void;
+    }
+#end
 
 /** 
     A result set container.
@@ -163,7 +165,11 @@ private typedef Constructible = {
     will increase the valid set.
 */
 @:generic
+#if (haxe_ver >= 3.3)
+class Results<T:haxe.Constraints.Constructible<Void->Void>> {
+#else
 class Results<T:Constructible> {
+#end
 
     public var length (get, never) : Int;
     public var total (get, never) : Int;
@@ -231,7 +237,11 @@ class Results<T:Constructible> {
 } //Results
 
 @:generic
+#if (haxe_ver >= 3.3)
+class ResultsIterator<T:haxe.Constraints.Constructible<Void->Void>> {
+#else
 class ResultsIterator<T:Constructible> {
+#end
 
     var index: Int = 0;
     var results: Results<T>;
