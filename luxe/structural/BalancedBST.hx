@@ -229,10 +229,10 @@ class BalancedBST<K,T> {
     } //keys
 
         /** returns an iterator from a conversion to array of this tree. Usable as `for(item in tree)` */
-    public inline function iterator() {
+    // inline // :todo: inlining breaks things on 3.4, https://github.com/HaxeFoundation/haxe/issues/5855
+    public function iterator() {
 
         return new BalancedBSTIterator<K,T>(this);
-        // return toArray().iterator();
 
     } //iterator
 
