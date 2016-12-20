@@ -255,7 +255,7 @@ class Renderer {
             clear( clear_color );
         }
 
-        stats.batchers = batchers.length;
+        stats.batchers = batchers.length + 1;
         stats.reset();
 
             //render
