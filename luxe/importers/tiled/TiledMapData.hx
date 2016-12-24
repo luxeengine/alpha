@@ -216,14 +216,22 @@ class TiledMapData {
 
 
 
+
+typedef TiledTileAnimationFrame = {
+    tileid: Int,
+    duration: Int
+}
+
 class TiledPropertyTile {
 
     public var id:Int;
     public var properties:Map<String, String>;
+    public var animation:Array<TiledTileAnimationFrame>;
 
-    public function new(_id:Int, _properties:Map<String, String>) {
+    public function new(_id:Int, _properties:Map<String, String>, ?_animation:Array<TiledTileAnimationFrame>) {
         id = _id;
         properties = _properties;
+        animation = _animation;
     }
 
 }
