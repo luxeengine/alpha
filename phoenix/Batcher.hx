@@ -45,6 +45,8 @@ class Batcher {
 
     public var log : Bool = false;
     public var name : String = '';
+        //Set this to 0 to hide the batcher in renderer stats
+    public var show_stats (default, set): Int = 1;
 
         //This is a failsafe against identical layer values
         //being sorted differently by target etc. Not reset intentionally.
@@ -55,6 +57,9 @@ class Batcher {
     var tcoord_floats  : Int = 0;
     var color_floats   : Int = 0;
     var normal_floats  : Int = 0;
+
+    @:allow(luxe)
+    static var all: Array<Batcher> = [];
 
     public function new( _r : Renderer, ?_name:String = '', ?_max_verts:Int=16384 ) {
 
@@ -97,6 +102,9 @@ class Batcher {
         }
 
         _dropped = [];
+
+        renderer.stats.batchers++;
+        all.push(this);
 
     } //new
 
@@ -182,6 +190,8 @@ class Batcher {
 
         renderer = null;
         view = null;
+
+        all.remove(this);
 
     } //destroy
 
@@ -354,6 +364,8 @@ class Batcher {
     inline
     public function draw( ?persist_immediate:Bool = false ) {
 
+        #if !luxe_noprofile if(name != '') Luxe.debug.start(name); #end
+
         //Reset the draw count
         draw_calls = 0;
         vert_count = 0;
@@ -365,6 +377,16 @@ class Batcher {
         batch( persist_immediate );
 
         emitter.emit(BatcherEventType.postrender, this);
+
+        var _stats = renderer.stats;
+            _stats.geometry_count += geometry.size() * show_stats;
+            _stats.dynamic_batched_count += dynamic_batched_count * show_stats;
+            _stats.static_batched_count += static_batched_count * show_stats;
+            _stats.visible_count += visible_count * show_stats;
+            _stats.draw_calls += draw_calls * show_stats;
+            _stats.vert_count += vert_count * show_stats;
+
+        #if !luxe_noprofile if(name != '') Luxe.debug.end(name); #end
 
     } //draw
 
@@ -830,6 +852,15 @@ class Batcher {
             _debug('\t   geometry: ' + geom.id  + ' / ' + geom.depth + ' / ' + geom.uuid );
             _debug('\t\t' + geom.key);
         }
+    }
+
+    function set_show_stats(_value:Int) {
+        if(_value == 0) {
+            renderer.stats.batchers--;
+        } else {
+            renderer.stats.batchers++;
+        }
+        return show_stats = _value;
     }
 
     public static inline var vert_attribute   : Int = 0;

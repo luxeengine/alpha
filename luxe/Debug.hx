@@ -134,6 +134,8 @@ class Debug {
 
                 //create the debug renderer and view
             batcher = new Batcher( app.renderer, 'debug_batcher', Math.floor(Math.pow(2, 20)));
+            batcher.show_stats = 0;
+            
                 //create a camera
             view = new Camera({ camera_name:'debug_batcher_camera' });
                 //set the camera of the batcher
@@ -199,13 +201,6 @@ class Debug {
                 #if !luxe_noprofile start(debug_batch_tag); #end
 
                     batcher.draw();
-
-                    app.renderer.stats.geometry_count += batcher.geometry.size();
-                    app.renderer.stats.dynamic_batched_count += batcher.dynamic_batched_count;
-                    app.renderer.stats.static_batched_count += batcher.static_batched_count;
-                    app.renderer.stats.visible_count += batcher.visible_count;
-                    app.renderer.stats.draw_calls += batcher.draw_calls;
-                    app.renderer.stats.vert_count += batcher.vert_count;
 
                 #if !luxe_noprofile end(debug_batch_tag); #end
 

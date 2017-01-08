@@ -21,22 +21,8 @@ class RenderPath {
             var batch = _batchers[i];
             if(batch.enabled) {
 
-                    //Measure the time and graph it in the debug view
-                #if !luxe_noprofile Luxe.debug.start('batch.' + batch.name); #end
-
                     //Tell the batcher to draw
                 batch.draw();
-
-                    //Update Render Stats
-                _stats.geometry_count += batch.geometry.size();
-                _stats.dynamic_batched_count += batch.dynamic_batched_count;
-                _stats.static_batched_count += batch.static_batched_count;
-                _stats.visible_count += batch.visible_count;
-                _stats.draw_calls += batch.draw_calls;
-                _stats.vert_count += batch.vert_count;
-
-                    //Stop Measuring
-                #if !luxe_noprofile Luxe.debug.end('batch.' + batch.name); #end
 
             } //batcher enabled
             batch = null;

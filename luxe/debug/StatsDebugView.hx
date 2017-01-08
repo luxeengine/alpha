@@ -59,13 +59,13 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
     inline function get_batcher_info(b:phoenix.Batcher) {
         var _s = '  ${b.name} (enabled ${b.enabled}, layer ${b.layer})\n';
+            _s += '    shader: ' + (b.shader == null ? 'none' : b.shader.id) + '\n';
             _s += '    max verts/batch: ${b.max_verts}\n';
-            _s += '    verts: ${b.vert_count}\n';
             _s += '    visible geom: ${b.visible_count}\n';
+            _s += '    verts: ${b.vert_count}\n';
             _s += '    draw calls: ${b.draw_calls}\n';
             _s += '    batched: ${b.dynamic_batched_count}\n';
             _s += '    static: ${b.static_batched_count}\n';
-            _s += '    shader: ' + (b.shader == null ? 'none' : b.shader.id) + '\n';
         return _s;
     }
 
@@ -73,13 +73,11 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
         var _bs = '';
 
-        #if !no_debug_console
-            if(!hide_debug) {
-                _bs += get_batcher_info(Luxe.debug.batcher);
+        for(b in phoenix.Batcher.all) {
+            if(b.show_stats != 0) {
+                _bs += get_batcher_info(b);
             }
-        #end
-
-        for(b in Luxe.renderer.batchers) _bs += get_batcher_info(b);
+        }
 
         return
             'Renderer Statistics\n\n' +
@@ -361,7 +359,11 @@ class StatsDebugView extends luxe.debug.DebugView  {
     public override function onkeydown(e:KeyEvent) {
 
         if(e.keycode == Key.key_2 && visible) {
-            toggle_debug_stats();
+            if(debug.batcher.show_stats == 0) {
+                debug.batcher.show_stats = 1;
+            } else {
+                debug.batcher.show_stats = 0;
+            }
         }
 
     } //onkeydown
@@ -431,38 +433,15 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
     } //refresh_render_stats
 
-    public var hide_debug : Bool = true;
-    public function toggle_debug_stats() {
-
-         hide_debug = !hide_debug;
-
-    } //toggle_debug_stats
-
     public function update_render_stats() {
 
-        debug_geometry_count = Luxe.debug.batcher.geometry.size();
-        debug_draw_call_count = Luxe.debug.batcher.draw_calls;
-
-            //:todo: +1 here, debug batcher was hidden recently
-        _render_stats.batchers = Luxe.renderer.stats.batchers + 1;
+        _render_stats.batchers = Luxe.renderer.stats.batchers;
         _render_stats.geometry_count = Luxe.renderer.stats.geometry_count;
         _render_stats.visible_count = Luxe.renderer.stats.visible_count;
         _render_stats.dynamic_batched_count = Luxe.renderer.stats.dynamic_batched_count;
         _render_stats.static_batched_count = Luxe.renderer.stats.static_batched_count;
         _render_stats.draw_calls = Luxe.renderer.stats.draw_calls;
         _render_stats.vert_count = Luxe.renderer.stats.vert_count;
-
-        if(hide_debug) {
-
-            _render_stats.batchers -= 1;
-            _render_stats.geometry_count = _render_stats.geometry_count - debug_geometry_count;
-            _render_stats.visible_count = _render_stats.visible_count - Luxe.debug.batcher.visible_count;
-            _render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count - Luxe.debug.batcher.dynamic_batched_count;// - Luxe.debug.batcher.static_batched_count;
-            _render_stats.static_batched_count = _render_stats.static_batched_count - Luxe.debug.batcher.static_batched_count;
-            _render_stats.draw_calls -= debug_draw_call_count;
-            _render_stats.vert_count -= Luxe.debug.batcher.vert_count;
-
-        } //hide debug stats?
 
     } //update_render_stats
 

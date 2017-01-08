@@ -203,6 +203,7 @@ class Renderer {
             add_batch( _batcher );
         }
 
+
         return _batcher;
 
     } //create_batcher
@@ -249,14 +250,11 @@ class Renderer {
     @:allow(luxe.Engine)
     function process() {
 
-        if(stop) { return; }
+        // if(stop) { return; }
 
         if(should_clear) {
             clear( clear_color );
         }
-
-        stats.batchers = batchers.length;
-        stats.reset();
 
             //render
         render_path.render( batchers, stats );
@@ -268,10 +266,12 @@ class Renderer {
 
     } //process
 
-    public function onresize(e:Dynamic) {
+    @:allow(luxe.Engine)
+    function prerender() {
 
-    } //onresize
+        stats.reset();
 
+    } //prerender
 
     function get_target() : RenderTexture {
 

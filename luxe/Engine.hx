@@ -432,6 +432,8 @@ class Engine extends snow.App {
 
             #if !luxe_noprofile debug.start(Tag.render); #end
 
+            renderer.prerender();
+
             emitter.emit(luxe.Ev.prerender);
             game.onprerender();
 
