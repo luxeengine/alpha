@@ -148,11 +148,11 @@ class Utils {
 
                 //these are not using string interpolation to prevent confusing the regex
             var _type0 = _name + _start + _ext;
-            var _type0_re : EReg = new EReg('('+_name+')(\\d\\b)', 'gi');
+            var _type0_re : EReg = new EReg('('+_name+')([0-9]{1,3}\\b)', 'gi');
             var _type1 = _name + '_' + _start + _ext;
-            var _type1_re : EReg  = new EReg('('+_name+')(_\\d\\b)', 'gi');
+            var _type1_re : EReg  = new EReg('('+_name+'_)([0-9]{1,3}\\b)', 'gi');
             var _type2 = _name + '-' + _start + _ext;
-            var _type2_re : EReg  = new EReg('('+_name+')(-\\d\\b)', 'gi');
+            var _type2_re : EReg  = new EReg('('+_name+'-)([0-9]{1,3}\\b)', 'gi');
 
                 //check name0 ->
             if(Luxe.resources.has(_type0)) {
@@ -176,7 +176,15 @@ class Utils {
                 }
             }
 
-            _final.sort(function(a:String,b:String):Int { if(a == b) return 0; if(a < b) return -1; return 1; });
+            _final.sort(function(a:String, b:String):Int { 
+                if(a == b) return 0; 
+                _pattern_regex.match(a);
+                var _a = Std.parseInt(_pattern_regex.matched(2));
+                _pattern_regex.match(b);
+                var _b = Std.parseInt(_pattern_regex.matched(2));
+                if(_a < _b) return -1; 
+                return 1; 
+            });
         }
 
         return _final;
