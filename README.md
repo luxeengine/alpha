@@ -12,7 +12,7 @@ http://luxeengine.com/
 
 ## development log
 
-[View the dev posts](https://luxeengine.com/tag/dev/)
+[View the dev posts](https://luxeengine.com/tag/dev/)   
 [View status posts](https://luxeengine.com/tag/status/)
 
 ### license
