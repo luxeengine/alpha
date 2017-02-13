@@ -216,6 +216,8 @@ class Engine extends snow.App {
 
     } //ondestroy
 
+    var pixel_scale : Float = 1;
+
     function init(asset:AssetImage) {
 
         _debug('creating subsystems...');
@@ -240,10 +242,15 @@ class Engine extends snow.App {
             Luxe.renderer = renderer;
         }
 
-        var _window_w = app.runtime.window_width();
-        var _window_h = app.runtime.window_height();
+        var _render_w = app.runtime.window_width();
+        var _render_h = app.runtime.window_height();
 
-        screen = new luxe.Screen(this, _window_w, _window_h);
+        if(game_config.use_device_pixels) {
+            pixel_scale = app.runtime.window_device_pixel_ratio();
+            screen = new luxe.Screen(this, Math.floor(_render_w/pixel_scale), Math.floor(_render_h/pixel_scale));
+        } else {
+            screen = new luxe.Screen(this, _render_w, _render_h);
+        }
 
         debug.init();
            io.init();
@@ -475,6 +482,17 @@ class Engine extends snow.App {
         if(shutting_down) return;
         if(!inited) return;
 
+            //sizes from snow are in renderable pixels
+        var _render_w = _event.x;
+        var _render_h = _event.y;
+            //first ensure our pixel scale still matches
+        if(game_config.use_device_pixels) {
+            pixel_scale = app.runtime.window_device_pixel_ratio();
+        }
+            //and then ensure that our event matches our expectations
+        _event.x = Math.floor(_render_w/pixel_scale);
+        _event.y = Math.floor(_render_h/pixel_scale);
+
         emitter.emit(luxe.Ev.window, _event);
 
         switch(_event.type) {
@@ -486,14 +504,14 @@ class Engine extends snow.App {
 
             case we_resized : {
                 screen.internal_resized(_event.x, _event.y);
-                renderer.internal_resized(_event.x, _event.y);
+                renderer.internal_resized(_render_w, _render_h);
                 emitter.emit(luxe.Ev.windowresized, _event);
                 game.onwindowresized(_event);
             } //resized
 
             case we_size_changed : {
                 screen.internal_resized(_event.x, _event.y);
-                renderer.internal_resized(_event.x, _event.y);
+                renderer.internal_resized(_render_w, _render_h);
                 emitter.emit(luxe.Ev.windowsized, _event);
                 game.onwindowsized(_event);
             } //size_changed
@@ -520,9 +538,17 @@ class Engine extends snow.App {
 
     //mouse
 
+        //input events come in renderable coord space
+        //so we take them to the right pixel scale if necessary.
+        //touch is 0...1 so that stays, and input events spawn from
+        //the input.* from the origin calls below, so they're fine
+
         override function onmousedown(_x:Int, _y:Int, _button:Int, _timestamp:Float, _window_id:Int) {
 
             if(!inited) return;
+
+            _x = Std.int(_x/pixel_scale);
+            _y = Std.int(_y/pixel_scale);
 
             screen.cursor.set_internal(_x, _y);
 
@@ -534,6 +560,9 @@ class Engine extends snow.App {
 
             if(!inited) return;
 
+            _x = Std.int(_x/pixel_scale);
+            _y = Std.int(_y/pixel_scale);
+
             screen.cursor.set_internal(_x, _y);
 
             input.onmouseup(_x, _y, _button, _timestamp, _window_id);
@@ -543,6 +572,9 @@ class Engine extends snow.App {
         override function onmousemove(_x:Int, _y:Int, _x_rel:Int, _y_rel:Int, _timestamp:Float, _window_id:Int) {
 
             if(!inited) return;
+
+            _x = Std.int(_x/pixel_scale);
+            _y = Std.int(_y/pixel_scale);
 
             screen.cursor.set_internal(_x, _y);
 
