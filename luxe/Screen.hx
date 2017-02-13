@@ -36,9 +36,12 @@ class Screen {
     public var w (get,null) : Int;
         /** Returns the screen height as an Int */
     public var h (get,null) : Int;
-        /** Returns the screen device pixel ratio, a scaling factor for high DPI devices.
-            Note that Luxe.screen (and the snow framework below it) only deals with real pixels, not device pixels.
-            Luxe and snow only ever deal with drawable area in real pixels. Which is to say: If you need device pixels, you divide the real pixel size by this value. */
+        /** Returns the device pixel ratio, a scaling factor for high DPI devices.
+            There are two sizes to consider, the "renderable pixels" that you draw, and the device pixels (i.e window size).
+            If the game config has `use_device_pixels` as true this API returns device pixels, if not it returns renderable pixels.
+            This value can be used to convert from one to the other.
+            For device -> renderable, `device * device_pixel_ratio`.
+            For renderable -> device, `pixels / device_pixel_ratio`  */
     public var device_pixel_ratio (get,null) : Float;
 
         /** Convenience: Returns the screen width as a Float */
