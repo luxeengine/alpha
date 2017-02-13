@@ -61,46 +61,60 @@ class RenderState {
         }
     } //depth_function
 
-    public function viewport( x:Float, y:Float, w:Float, h:Float ) {
+    public function scissor(x:Float, y:Float, w:Float, h:Float) {
 
-        var _target_h = renderer.target_size.y;
+            //the target may have render scaling awareness,
+            //so we take the input coordinates into the viewport scaled space
+        var _target_scale = renderer.target.viewport_scale;
 
-        if(
-            _viewport.x     != x ||
-            _viewport.y     != y ||
-            _viewport.w     != w ||
-            _viewport.h     != h ||
-            _view_target_h  != _target_h
-        ) {
+        x *= _target_scale;
+        y *= _target_scale;
+        w *= _target_scale;
+        h *= _target_scale;
 
-            _viewport.x = x;
-            _viewport.y = y;
-            _viewport.w = w;
-            _viewport.h = h;
-            _view_target_h = _target_h;
+            //the target height is in renderable pixels, so no scaling
+        var _target_h = renderer.target.height;
+            //In OpenGL the coords are bottom left origin, so we flip the y
+        var _y : Float = _target_h - (y + h);
 
-                //In OpenGL the viewport is bottom left origin, so we flip the y
-                //when submitting our top left based coordinates.
-                //We use the target size property of the renderer, which
-                //when rendering to the screen matches the window and when
-                //rendering to a texture/render target, matches the target.
-            var _y : Float = _target_h - (y + h);
+        GL.scissor(Std.int(x), Std.int(_y), Std.int(w), Std.int(h));
 
-            GL.viewport( Std.int(x), Std.int(_y), Std.int(w), Std.int(h) );
+    } //scissor
 
-        }  //if it's changed
+    public function viewport(x:Float, y:Float, w:Float, h:Float) {
+
+            //the target may have render scaling awareness,
+            //so we take the input coordinates into the viewport scaled space
+        var _target_scale = renderer.target.viewport_scale;
+
+        x *= _target_scale;
+        y *= _target_scale;
+        w *= _target_scale;
+        h *= _target_scale;
+
+            //the target height is in renderable pixels, so no scaling
+        var _target_h = renderer.target.height;
+
+            //In OpenGL the viewport is bottom left origin, so we flip the y
+            //when submitting our top left based coordinates.
+            //We use the target size property of the renderer, which
+            //when rendering to the screen matches the window and when
+            //rendering to a texture/render target, matches the target.
+        var _y : Float = _target_h - (y + h);
+
+        GL.viewport(Std.int(x), Std.int(_y), Std.int(w), Std.int(h));
 
     } //viewport
 
-    @:noCompletion public var current_fbo : GLFramebuffer = null;
+    @:noCompletion public var current_framebuffer : GLFramebuffer = null;
     public function bindFramebuffer( ?buffer:GLFramebuffer=null ) {
 
-        if(current_fbo != buffer) {
+        if(current_framebuffer != buffer) {
 
-            def(buffer, renderer.default_fbo);
+            def(buffer, renderer.default_framebuffer);
 
             GL.bindFramebuffer( GL.FRAMEBUFFER, buffer );
-            current_fbo = buffer;
+            current_framebuffer = buffer;
         }
 
     } //bindFrameBuffer
@@ -110,7 +124,7 @@ class RenderState {
 
         if(_current_rbo != buffer) {
 
-            def(buffer, renderer.default_rbo);
+            def(buffer, renderer.default_renderbuffer);
 
             GL.bindRenderbuffer( GL.RENDERBUFFER, buffer );
             _current_rbo = buffer;
