@@ -1,0 +1,23 @@
+{
+  project : {
+    name : 'luxe.input_context',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_input_context',
+      package : 'com.luxeengine.input_context',
+      main : 'Main'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      config : 'config.json'
+    }
+  }
+}
