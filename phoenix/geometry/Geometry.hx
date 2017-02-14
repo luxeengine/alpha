@@ -58,7 +58,7 @@ class Geometry {
         //state
     public var state : GeometryState;
     public var dropped : Bool = false;
-    public var uuid : String = '';
+    public var uuid : Int = 0;
     public var id : String = '';
 
         //State properties
@@ -105,8 +105,7 @@ class Geometry {
 
     public function new(_options:GeometryOptions) {
 
-        uuid = Luxe.utils.uniqueid();
-        id = uuid;
+        uuid = Luxe.utils.uniquehash();
 
         state = new GeometryState();
         vertices = [];
@@ -126,7 +125,7 @@ class Geometry {
         var _do_add = true;
 
 
-        id                   = def(_options.id,              uuid);
+        id                   = def(_options.id,              '$uuid');
         color                = def(_options.color,           new Color());
         visible              = def(_options.visible,         true);
         immediate            = def(_options.immediate,       false);
@@ -162,7 +161,7 @@ class Geometry {
 
         key = new GeometryKey();
 
-            key.uuid = Luxe.utils.hash(uuid);
+            key.uuid = uuid;
             key.timestamp = Luxe.time;
             key.sequence = _sequence_key;
             key.primitive_type = state.primitive_type;
@@ -171,7 +170,7 @@ class Geometry {
             key.depth = state.depth;
             key.clip = state.clip;
 
-        transform.id = uuid;
+        transform.id = '${uuid}.transform';
         transform.name = id;
 
             //only add it to a batcher if explicitly requested,
@@ -203,7 +202,7 @@ class Geometry {
 
         // _sequence_key++;
 
-        key.uuid = Luxe.utils.hash(uuid);
+        key.uuid = uuid;
         key.timestamp = Luxe.time;
         // key.sequence = _sequence_key;
         key.primitive_type = state.primitive_type;
@@ -237,7 +236,7 @@ class Geometry {
         state = null;
         _final_vert_position = null;
         batchers = null;
-        uuid = null;
+        uuid = 0;
         id = null;
         shadow_texture = null;
         shadow_shader = null;
