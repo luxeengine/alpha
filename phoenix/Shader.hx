@@ -25,8 +25,11 @@ class Uniforms {
     var ints        : Map<String, Uniform<Int>>;
     var floats      : Map<String, Uniform<Float>>;
     var vector2s    : Map<String, Uniform<Vector>>;
+    var vector2arrs : Map<String, Uniform<Float32Array>>;
     var vector3s    : Map<String, Uniform<Vector>>;
+    var vector3arrs : Map<String, Uniform<Float32Array>>;
     var vector4s    : Map<String, Uniform<Vector>>;
+    var vector4arrs : Map<String, Uniform<Float32Array>>;
     var matrix4s    : Map<String, Uniform<Matrix>>;
     var matrix4arrs : Map<String, Uniform<Float32Array>>;
     var colors      : Map<String, Uniform<Color>>;
@@ -35,8 +38,11 @@ class Uniforms {
     var dirty_ints          : Array<Uniform<Int>>;
     var dirty_floats        : Array<Uniform<Float>>;
     var dirty_vector2s      : Array<Uniform<Vector>>;
+    var dirty_vector2arrs   : Array<Uniform<Float32Array>>;
     var dirty_vector3s      : Array<Uniform<Vector>>;
+    var dirty_vector3arrs   : Array<Uniform<Float32Array>>;
     var dirty_vector4s      : Array<Uniform<Vector>>;
+    var dirty_vector4arrs   : Array<Uniform<Float32Array>>;
     var dirty_matrix4s      : Array<Uniform<Matrix>>;
     var dirty_matrix4arrs   : Array<Uniform<Float32Array>>;
     var dirty_colors        : Array<Uniform<Color>>;
@@ -50,16 +56,23 @@ class Uniforms {
         ints = null;
         floats = null;
         vector2s = null;
+        vector2arrs = null;
         vector3s = null;
+        vector3arrs = null;
         vector4s = null;
+        vector4arrs = null;
         matrix4s = null;
+        matrix4arrs = null;
         colors = null;
         textures = null;
         dirty_ints = null;
         dirty_floats = null;
         dirty_vector2s = null;
+        dirty_vector2arrs = null;
         dirty_vector3s = null;
+        dirty_vector3arrs = null;
         dirty_vector4s = null;
+        dirty_vector4arrs = null;
         dirty_matrix4s = null;
         dirty_matrix4arrs = null;
         dirty_colors = null;
@@ -73,8 +86,11 @@ class Uniforms {
         ints        = new Map();
         floats      = new Map();
         vector2s    = new Map();
+        vector2arrs = new Map();
         vector3s    = new Map();
+        vector3arrs = new Map();
         vector4s    = new Map();
+        vector4arrs = new Map();
         matrix4s    = new Map();
         matrix4arrs = new Map();
         colors      = new Map();
@@ -83,8 +99,11 @@ class Uniforms {
         dirty_ints          = [];
         dirty_floats        = [];
         dirty_vector2s      = [];
+        dirty_vector2arrs   = [];
         dirty_vector3s      = [];
+        dirty_vector3arrs   = [];
         dirty_vector4s      = [];
+        dirty_vector4arrs   = [];
         dirty_matrix4s      = [];
         dirty_matrix4arrs   = [];
         dirty_colors        = [];
@@ -137,6 +156,21 @@ class Uniforms {
 
     } //set_vector2
 
+    public inline function set_vector2_arr( _name:String, _value:Float32Array, _location:Location ) : Void {
+
+        var _vector2 = vector2arrs.get(_name);
+
+        if(_vector2 != null) {
+            _vector2.value = _value;
+        } else {
+            _vector2 = new Uniform<Float32Array>(_name, _value, _location);
+            vector2arrs.set(_name, _vector2);
+        }
+
+        dirty_vector2arrs.push(_vector2);
+
+    } //set_vector2_arr
+
     public inline function set_vector3( _name:String, _value:Vector, _location:Location ) : Void {
 
         var _vector3 = vector3s.get(_name);
@@ -152,6 +186,21 @@ class Uniforms {
 
     } //set_vector3
 
+    public inline function set_vector3_arr( _name:String, _value:Float32Array, _location:Location ) : Void {
+
+        var _vector3 = vector3arrs.get(_name);
+
+        if(_vector3 != null) {
+            _vector3.value = _value;
+        } else {
+            _vector3 = new Uniform<Float32Array>(_name, _value, _location);
+            vector3arrs.set(_name, _vector3);
+        }
+
+        dirty_vector3arrs.push(_vector3);
+
+    } //set_vector3_arr
+
     public inline function set_vector4( _name:String, _value:Vector, _location:Location ) : Void {
 
         var _vector4 = vector4s.get(_name);
@@ -166,6 +215,21 @@ class Uniforms {
         dirty_vector4s.push(_vector4);
 
     } //set_vector4
+
+    public inline function set_vector4_arr( _name:String, _value:Float32Array, _location:Location ) : Void {
+
+        var _vector4 = vector4arrs.get(_name);
+
+        if(_vector4 != null) {
+            _vector4.value = _value;
+        } else {
+            _vector4 = new Uniform<Float32Array>(_name, _value, _location);
+            vector4arrs.set(_name, _vector4);
+        }
+
+        dirty_vector4arrs.push(_vector4);
+
+    } //set_vector4_arr
 
     public inline function set_matrix4( _name:String, _value:Matrix, _location:Location ) : Void {
 
@@ -245,14 +309,29 @@ class Uniforms {
             GL.uniform2f(uf.location, uf.value.x, uf.value.y);
         }
 
+        while(dirty_vector2arrs.length > 0) {
+            var uf = dirty_vector2arrs.pop();
+            GL.uniform2fv(uf.location, uf.value);
+        }
+
         while(dirty_vector3s.length > 0) {
             var uf = dirty_vector3s.pop();
             GL.uniform3f(uf.location, uf.value.x, uf.value.y, uf.value.z);
         }
 
+        while(dirty_vector3arrs.length > 0) {
+            var uf = dirty_vector3arrs.pop();
+            GL.uniform3fv(uf.location, uf.value);
+        }
+
         while(dirty_vector4s.length > 0) {
             var uf = dirty_vector4s.pop();
             GL.uniform4f(uf.location, uf.value.x, uf.value.y, uf.value.z, uf.value.w);
+        }
+
+        while(dirty_vector4arrs.length > 0) {
+            var uf = dirty_vector4arrs.pop();
+            GL.uniform4fv(uf.location, uf.value);
         }
 
         while(dirty_colors.length > 0) {
@@ -367,13 +446,25 @@ class Shader extends Resource {
         uniforms.set_vector2(_name, _value, location(_name));
     } //set_vector2
 
+    public inline function set_vector2_arr( _name:String, _value:Float32Array ) : Void {
+        uniforms.set_vector2_arr(_name, _value, location(_name));
+    } //set_vector2_arr
+
     public inline function set_vector3( _name:String, _value:Vector ) : Void {
         uniforms.set_vector3(_name, _value, location(_name));
     } //set_vector3
 
+    public inline function set_vector3_arr( _name:String, _value:Float32Array ) : Void {
+        uniforms.set_vector3_arr(_name, _value, location(_name));
+    } //set_vector3_arr
+
     public inline function set_vector4( _name:String, _value:Vector ) : Void {
         uniforms.set_vector4(_name, _value, location(_name));
     } //set_vector4
+
+    public inline function set_vector4_arr( _name:String, _value:Float32Array ) : Void {
+        uniforms.set_vector4_arr(_name, _value, location(_name));
+    } //set_vector4_arr
 
     public inline function set_matrix4( _name:String, _value:Matrix ) : Void {
         uniforms.set_matrix4(_name, _value, location(_name));
