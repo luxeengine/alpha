@@ -119,15 +119,15 @@ class RenderState {
 
     } //bindFrameBuffer
 
-    var _current_rbo : GLRenderbuffer = null;
+    @:noCompletion public var current_renderbuffer : GLRenderbuffer = null;
     public function bindRenderbuffer( ?buffer:GLRenderbuffer=null ) {
 
-        if(_current_rbo != buffer) {
+        if(current_renderbuffer != buffer) {
 
             def(buffer, renderer.default_renderbuffer);
 
             GL.bindRenderbuffer( GL.RENDERBUFFER, buffer );
-            _current_rbo = buffer;
+            current_renderbuffer = buffer;
         }
 
     } //bindRenderbuffer
