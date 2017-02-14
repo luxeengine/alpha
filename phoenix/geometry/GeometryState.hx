@@ -82,7 +82,7 @@ class GeometryState {
 
     } //clean
 
-    // inline
+    #if !luxe_no_hotpath_inline @:extern inline #end
     function update( other : GeometryState ) {
 
         if(depth != other.depth) {

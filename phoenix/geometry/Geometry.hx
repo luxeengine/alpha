@@ -277,7 +277,7 @@ class Geometry {
 
     } //remove
 
-    inline
+    #if !luxe_no_hotpath_inline @:extern inline #end
     public function batch( vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int,
                            vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array
         ) {

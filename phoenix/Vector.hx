@@ -24,7 +24,7 @@ class Vector {
 
     var _construct = false;
 
-    public inline function new( _x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 0 ) {
+    inline public function new( _x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 0 ) {
 
         _construct = true;
 
@@ -37,7 +37,8 @@ class Vector {
 
     } //new
 
-    public inline function copy_from( _other:Vector ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function copy_from( _other:Vector ) {
 
         set( _other.x, _other.y, _other.z, _other.w );
 
@@ -45,7 +46,8 @@ class Vector {
 
     } //copy_from
 
-    public inline function set( _x:Float, _y:Float, _z:Float, _w:Float ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function set( _x:Float, _y:Float, _z:Float, _w:Float ) {
 
         var prev = ignore_listeners;
 
@@ -66,7 +68,8 @@ class Vector {
 
     } //set
 
-    public inline function set_xy( _x:Float, _y:Float ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function set_xy( _x:Float, _y:Float ) {
 
         var prev = ignore_listeners;
 
@@ -84,7 +87,8 @@ class Vector {
 
     } //set_xy
 
-    public inline function set_xyz( _x:Float, _y:Float, _z:Float ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function set_xyz( _x:Float, _y:Float, _z:Float ) {
 
         var prev = ignore_listeners;
 
@@ -105,7 +109,8 @@ class Vector {
     } //set_xyz
 
         //_t is between 0 and 1
-    public inline function lerp_xy( _dest_x:Float, _dest_y:Float, _t: Float ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function lerp_xy( _dest_x:Float, _dest_y:Float, _t: Float ) {
 
         set_xy(
             Maths.lerp(x, _dest_x, _t),
@@ -117,7 +122,8 @@ class Vector {
     } //lerp_xy
 
         //_t is between 0 and 1
-    public inline function lerp_xyz( _dest_x:Float, _dest_y:Float, _dest_z:Float, _t: Float ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function lerp_xyz( _dest_x:Float, _dest_y:Float, _dest_z:Float, _t: Float ) {
 
         set_xyz(
             Maths.lerp(x, _dest_x, _t),
@@ -130,7 +136,8 @@ class Vector {
     } //lerp_xyz
 
         //_t is between 0 and 1
-    public inline function lerp( _other:Vector, _t: Float ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function lerp( _other:Vector, _t: Float ) {
 
         set_xyz(
             Maths.lerp(x, _other.x, _t),
@@ -142,7 +149,8 @@ class Vector {
 
     } //lerp
 
-    public inline function weighted_average_xy( _dest_x:Float, _dest_y:Float, _slowness:Float ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function weighted_average_xy( _dest_x:Float, _dest_y:Float, _slowness:Float ) {
 
         set_xy(
             Maths.weighted_avg(x, _dest_x, _slowness),
@@ -153,7 +161,8 @@ class Vector {
 
     } //weighted_average_xy
 
-    public inline function weighted_average_xyz( _dest_x:Float, _dest_y:Float, _dest_z:Float, _slowness:Float ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function weighted_average_xyz( _dest_x:Float, _dest_y:Float, _dest_z:Float, _slowness:Float ) {
 
         set_xyz(
             Maths.weighted_avg(x, _dest_x, _slowness),
@@ -165,7 +174,8 @@ class Vector {
 
     } //weighted_average_xyz
 
-    public inline function int() {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function int() {
 
         set_xyz( Math.round(x), Math.round(y), Math.round(z) );
 
@@ -173,7 +183,8 @@ class Vector {
 
     } //int
 
-    public inline function int_x() {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function int_x() {
 
         x = Math.round(x);
 
@@ -181,7 +192,8 @@ class Vector {
 
     } //int_z
 
-    public inline function int_y() {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function int_y() {
 
         y = Math.round(y);
 
@@ -189,7 +201,8 @@ class Vector {
 
     } //int_y
 
-    public inline function int_z() {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function int_z() {
 
         z = Math.round(z);
 
@@ -203,26 +216,30 @@ class Vector {
 
     } //toString
 
-    public inline function equals(other:Vector) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function equals(other:Vector) {
         return (x == other.x && y == other.y && z == other.z && w == other.w);
     }
 
-    public inline function clone() {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function clone() {
         return new Vector(x, y, z, w);
     } //clone
 
-    public inline function normalize() {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function normalize() {
         return divideScalar( length );
     } //normalize
 
-    public inline function dot(other:Vector) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function dot(other:Vector) {
 
         return x * other.x + y * other.y + z * other.z;
 
     } //dot
 
-
-    public inline function cross( a:Vector, b:Vector ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function cross( a:Vector, b:Vector ) {
 
         set_xyz( a.y * b.z - a.z * b.y,
                  a.z * b.x - a.x * b.z,
@@ -232,6 +249,7 @@ class Vector {
 
     } //cross
 
+    #if !luxe_no_hotpath_inline @:extern inline #end
     public function invert() : Vector {
 
             set_xyz(-x, -y, -z);
@@ -242,7 +260,8 @@ class Vector {
 
 //Static Functions
 
-    public static inline function Add(a:Vector, b:Vector) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public static function Add(a:Vector, b:Vector) {
         return new Vector(
             a.x + b.x,
             a.y + b.y,
@@ -250,7 +269,8 @@ class Vector {
         );
     } //Add
 
-    public static inline function Subtract(a:Vector, b:Vector) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public static function Subtract(a:Vector, b:Vector) {
         return new Vector(
             a.x - b.x,
             a.y - b.y,
@@ -258,7 +278,8 @@ class Vector {
         );
     } //Subtract
 
-    public static inline function MultiplyVector(a:Vector, b:Vector) : Vector {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public static function MultiplyVector(a:Vector, b:Vector) : Vector {
         return new Vector(
             a.x * b.x,
             a.y * b.y,
@@ -266,7 +287,8 @@ class Vector {
         );
     } //MultiplyVector
 
-    public static inline function DivideVector(a:Vector, b:Vector) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public static function DivideVector(a:Vector, b:Vector) {
         return new Vector(
             a.x / b.x,
             a.y / b.y,
@@ -274,6 +296,7 @@ class Vector {
         );
     } //DivideVector
 
+    #if !luxe_no_hotpath_inline @:extern inline #end
     public static function Multiply(a:Vector, b:Float) {
         return new Vector(
             a.x * b,
@@ -282,7 +305,8 @@ class Vector {
         );
     } //Multiply
 
-    public static inline function Divide(a:Vector, b:Float) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public static function Divide(a:Vector, b:Float) {
         return new Vector(
             a.x / b,
             a.y / b,
@@ -290,7 +314,8 @@ class Vector {
         );
     } //Divide
 
-    public static inline function AddScalar(a:Vector, b:Float) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public static function AddScalar(a:Vector, b:Float) {
         return new Vector(
             a.x + b,
             a.y + b,
@@ -298,7 +323,8 @@ class Vector {
         );
     } //AddScalar
 
-    public static inline function SubtractScalar(a:Vector, b:Float) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public static function SubtractScalar(a:Vector, b:Float) {
         return new Vector(
             a.x - b,
             a.y - b,
@@ -306,7 +332,8 @@ class Vector {
         );
     } //SubtractScalar
 
-    public static inline function Cross(a:Vector, b:Vector) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public static function Cross(a:Vector, b:Vector) {
         return new Vector(
              a.y * b.z - a.z * b.y,
              a.z * b.x - a.x * b.z,
@@ -314,12 +341,14 @@ class Vector {
         );
     } //Cross
 
-    public static inline function RotationTo(a:Vector,b:Vector) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public static function RotationTo(a:Vector,b:Vector) {
 
         return a.rotationTo(b);
 
     } //RotationTo
 
+    #if !luxe_no_hotpath_inline @:extern inline #end
     public static function Listen( _v:Vector, listener ) {
 
         _v.listen_x = listener;
@@ -330,7 +359,8 @@ class Vector {
 
 // Operations
 
-    public inline function add(other:Vector) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function add(other:Vector) {
 
         assertnull(other);
 
@@ -340,7 +370,8 @@ class Vector {
 
     } //add
 
-    public inline function add_xyz( _x:Float = 0, _y:Float = 0, _z:Float = 0 ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function add_xyz( _x:Float = 0, _y:Float = 0, _z:Float = 0 ) {
 
         set_xyz( x + _x, y + _y, z + _z);
 
@@ -349,7 +380,8 @@ class Vector {
     } //add_xyz
 
 
-    public inline function subtract(other:Vector) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function subtract(other:Vector) {
 
         assertnull(other);
 
@@ -359,7 +391,8 @@ class Vector {
 
     } //subtract
 
-    public inline function subtract_xyz( _x:Float = 0, _y:Float = 0, _z:Float = 0 ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function subtract_xyz( _x:Float = 0, _y:Float = 0, _z:Float = 0 ) {
 
         set_xyz( x - _x, y - _y, z - _z);
 
@@ -367,7 +400,8 @@ class Vector {
 
     } //subtract_xyz
 
-    public inline function multiply(other:Vector) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function multiply(other:Vector) {
 
         assertnull(other);
 
@@ -377,7 +411,8 @@ class Vector {
 
     } //multiply
 
-    public inline function multiply_xyz( _x:Float = 1, _y:Float = 1, _z:Float = 1 ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function multiply_xyz( _x:Float = 1, _y:Float = 1, _z:Float = 1 ) {
 
         set_xyz( x * _x, y * _y, z * _z);
 
@@ -385,7 +420,8 @@ class Vector {
 
     } //multiply_xyz
 
-    public inline function divide(other:Vector) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function divide(other:Vector) {
 
         assertnull(other);
         assert(other.x != 0, 'Vector: division by zero (other.x)');
@@ -397,7 +433,8 @@ class Vector {
 
     } //divide
 
-    public inline function divide_xyz( _x:Float = 1, _y:Float = 1, _z:Float = 1 ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function divide_xyz( _x:Float = 1, _y:Float = 1, _z:Float = 1 ) {
 
         assert(_x != 0, 'Vector.divide_xyz: division by zero (x)');
         assert(_y != 0, 'Vector.divide_xyz: division by zero (y)');
@@ -410,7 +447,8 @@ class Vector {
     } //multiply_xyz
 
 
-    public inline function addScalar( v:Float ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function addScalar( v:Float ) {
 
         set_xyz( x + v, y + v, z + v );
 
@@ -418,7 +456,8 @@ class Vector {
 
     } //addScalar
 
-    public inline function subtractScalar( v:Float ) {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function subtractScalar( v:Float ) {
 
         set_xyz( x - v, y - v, z - v );
 
@@ -426,7 +465,8 @@ class Vector {
 
     } //subtractScalar
 
-     public inline function multiplyScalar( v:Float ) {
+     #if !luxe_no_hotpath_inline @:extern inline #end
+     public function multiplyScalar( v:Float ) {
 
         set_xyz( x * v, y * v, z * v );
 
@@ -434,7 +474,8 @@ class Vector {
 
     } //multiplyScalar
 
-    public inline function divideScalar( v:Float ) : Vector {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function divideScalar( v:Float ) : Vector {
 
         if ( v != 0 ) {
 
@@ -453,6 +494,7 @@ class Vector {
 
 //Properties
 
+    #if !luxe_no_hotpath_inline @:extern #end
     inline function set_length( value:Float ) : Float {
 
         normalize().multiplyScalar( value );
@@ -461,6 +503,7 @@ class Vector {
 
     } //set_length
 
+    #if !luxe_no_hotpath_inline @:extern #end
     inline function get_length() : Float {
 
         return Math.sqrt( x * x + y * y + z * z );
@@ -468,18 +511,21 @@ class Vector {
     } //get_length
 
 
+    #if !luxe_no_hotpath_inline @:extern #end
     inline function get_lengthsq() : Float {
 
         return x * x + y * y + z * z;
 
     } //get_lengthsq
 
+    #if !luxe_no_hotpath_inline @:extern #end
     inline function get_normalized() {
 
         return Vector.Divide( this, length );
 
     } //get_normalized
 
+    #if !luxe_no_hotpath_inline @:extern #end
     inline function set_x(_x:Float) : Float {
 
         x = _x;
@@ -492,6 +538,7 @@ class Vector {
 
     } //set_x
 
+    #if !luxe_no_hotpath_inline @:extern #end
     inline function set_y(_y:Float) : Float {
 
         y = _y;
@@ -504,6 +551,7 @@ class Vector {
 
     } //set_y
 
+    #if !luxe_no_hotpath_inline @:extern #end
     inline function set_z(_z:Float) : Float {
 
         z = _z;
@@ -516,6 +564,7 @@ class Vector {
 
     } //set_z
 
+    #if !luxe_no_hotpath_inline @:extern #end
     inline function get_inverted() : Vector {
 
         return new Vector(-x,-y,-z);
@@ -525,6 +574,7 @@ class Vector {
 
         //Changes the angle of the vector.
         //X and Y will change, length stays the same.
+    #if !luxe_no_hotpath_inline @:extern #end
     inline function set_angle2D( value : Float ) : Float {
 
         var len:Float = length;
@@ -535,6 +585,7 @@ class Vector {
     }
 
         //Get the angle of this vector.
+    #if !luxe_no_hotpath_inline @:extern #end
     inline function get_angle2D():Float {
 
         return Math.atan2(y, x);
@@ -546,7 +597,8 @@ class Vector {
         //Sets the length under the given value.
         //Nothing is done if the vector is already shorter.
         //max The max length this vector can be.
-    public inline function truncate( max:Float ) : Vector {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function truncate( max:Float ) : Vector {
 
         length = Math.min(max, length);
 
@@ -554,7 +606,8 @@ class Vector {
 
     } //truncate
 
-    public inline function rotationTo( other:Vector ) : Float {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function rotationTo( other:Vector ) : Float {
         var theta =  Math.atan2(  other.x - x , other.y - y );
         var r = -(180.0 + (theta*180.0/Math.PI));
         return r;
@@ -562,7 +615,8 @@ class Vector {
 
 //Transforms
 
-    public inline function applyQuaternion( q:Quaternion ) : Vector {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function applyQuaternion( q:Quaternion ) : Vector {
 
         var qx = q.x;
         var qy = q.y;
@@ -582,7 +636,8 @@ class Vector {
 
     } //applyQuaternion
 
-    public inline function applyProjection( m:Matrix ) : Vector {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function applyProjection( m:Matrix ) : Vector {
 
         var e = m.elements;
         var x = this.x, y = this.y, z = this.z;
@@ -596,7 +651,8 @@ class Vector {
 
     } //applyProjection
 
-    public inline function transform( _m:Matrix ) : Vector {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function transform( _m:Matrix ) : Vector {
 
         var _x = x;
         var _y = y;
@@ -611,8 +667,9 @@ class Vector {
         return this;
 
     } //transform
-
-    public inline function transformDirection( m:Matrix ) : Vector {
+    
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function transformDirection( m:Matrix ) : Vector {
 
         var e = m.elements;
         var x = this.x, y = this.y, z = this.z;
@@ -627,7 +684,8 @@ class Vector {
 
     } //transformDirection
 
-    public inline function setEulerFromRotationMatrix (m:Matrix, order:ComponentOrder = XYZ) : Vector {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function setEulerFromRotationMatrix (m:Matrix, order:ComponentOrder = XYZ) : Vector {
 
         var te = m.elements;
         var m11 = te[0], m12 = te[4], m13 = te[8];
@@ -719,7 +777,8 @@ class Vector {
 
     } //setEulerFromRotationMatrix
 
-    public inline function setEulerFromQuaternion (q:Quaternion, order:ComponentOrder = XYZ) : Vector {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function setEulerFromQuaternion (q:Quaternion, order:ComponentOrder = XYZ) : Vector {
 
         var sqx : Float = q.x * q.x;
         var sqy : Float = q.y * q.y;
@@ -762,7 +821,8 @@ class Vector {
 
     } //setEulerFromQuaternion
 
-    public inline function degrees() : Vector {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function degrees() : Vector {
 
         set_xyz( Maths.degrees(x), Maths.degrees(y), Maths.degrees(z) );
 
@@ -770,7 +830,8 @@ class Vector {
 
     } //degrees
 
-    public inline function radians() : Vector {
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public function radians() : Vector {
 
         set_xyz( Maths.radians(x), Maths.radians(y), Maths.radians(z) );
 
@@ -778,12 +839,14 @@ class Vector {
 
     } //radians
 
+    #if !luxe_no_hotpath_inline @:extern inline #end
     public static function Degrees( _radian_vector:Vector ) : Vector {
 
         return _radian_vector.clone().degrees();
 
     } //Degrees
 
+    #if !luxe_no_hotpath_inline @:extern inline #end
     public static function Radians( _degree_vector:Vector ) : Vector {
 
         return _degree_vector.clone().radians();
@@ -809,7 +872,7 @@ class Vector {
 @:forward
 abstract Vec(Vector) from Vector to Vector {
 
-    public inline function new(?_x,?_y,?_z,?_w) {
+    inline public function new(?_x,?_y,?_z,?_w) {
         this = new Vector(_x,_y,_z,_w);
     }
 //multiply
