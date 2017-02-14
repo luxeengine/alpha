@@ -35,7 +35,7 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-        thicker = Luxe.renderer.create_batcher({ name:'thicker', camera:Luxe.camera.view });
+        thicker = Batcher.create({ name:'thicker', camera:Luxe.camera.view });
 
         thicker.on(prerender, function(_) Luxe.renderer.state.lineWidth(3));
         thicker.on(postrender, function(_) Luxe.renderer.state.lineWidth(1));

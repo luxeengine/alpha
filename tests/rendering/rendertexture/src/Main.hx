@@ -37,7 +37,7 @@ class Main extends luxe.Game {
         target_texture = new RenderTexture({ id:'rtt', width:512, height:512 });
 
             //create a new batcher to draw from, but don't add to the main rendering
-        batcher = Luxe.renderer.create_batcher({ name:'target_batcher' });
+        batcher = Batcher.create({ name:'target_batcher' });
             //The batcher camera should match the size of the texture if we want it to look right for this example
         batcher.view.viewport = new Rectangle(0,0,512,512);
 

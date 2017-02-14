@@ -20,11 +20,6 @@ import phoenix.Texture;
 import phoenix.BitmapFont;
 import snow.types.Types.Error;
 
-typedef BatcherKey = {
-    uuid : String,
-    layer : Int
-}
-
 private typedef DefaultShader = {
     source: { vert:String, frag:String },
     shader : Shader
@@ -153,7 +148,7 @@ class Renderer {
             //create the default batcher
         batcher = new Batcher( this, 'default batcher' );
         batcher.layer = 1;
-        add_batch(batcher);
+        add(batcher);
 
         #if !no_default_font
 
@@ -401,55 +396,6 @@ class Renderer {
         _debug("done. " + _font_texture.width + 'x' + _font_texture.height );
 
     } //create_default_font
-
-    //Batchers
-
-        public function add_batch( batch:Batcher ) {
-
-            add(batch);
-
-        } //add_batch
-
-        public function remove_batch( batch:Batcher ) {
-
-            remove(batch);
-
-        } //remove_batch
-
-            /** Create a batcher, convenience for create batcher, add batcher (option), and create a camera for the batcher. */
-        public function create_batcher( ? options:luxe.options.BatcherOptions ) : Batcher {
-
-            //:todo: why is this hardcoded at 2
-            var _new_batcher_layer = 2;
-
-            if(options != null) {
-
-                def(options.name, 'batcher');
-                def(options.layer, _new_batcher_layer);
-                def(options.camera, new phoenix.Camera());
-                def(options.max_verts, 16384);
-
-            } else {
-                options = {
-                    name : 'batcher',
-                    camera : new phoenix.Camera(),
-                    layer : _new_batcher_layer,
-                    max_verts : 16384
-                }
-            }
-
-            var _batcher = new Batcher( this, options.name, options.max_verts );
-                _batcher.view = options.camera;
-                _batcher.layer = options.layer;
-
-            if( options.no_add == null || options.no_add == false ) {
-                add_batch( _batcher );
-            }
-
-
-            return _batcher;
-
-        } //create_batcher
 
 } //renderer
 

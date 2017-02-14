@@ -43,7 +43,7 @@ class Main extends luxe.Game {
 
         particles = new ParticleSystem({name:'particles'});
 
-        glowing = Luxe.renderer.create_batcher({ name:'glowing', camera:Luxe.camera.view });
+        glowing = Batcher.create({ name:'glowing', camera:Luxe.camera.view });
 
         particles.add_emitter({
             name : 'flames',

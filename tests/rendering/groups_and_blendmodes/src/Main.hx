@@ -29,9 +29,9 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-        batch1 = Luxe.renderer.create_batcher({ name:'batch1', camera:Luxe.camera.view });
-        batch2 = Luxe.renderer.create_batcher({ name:'batch2', camera:Luxe.camera.view });
-        batch3 = Luxe.renderer.create_batcher({ name:'batch3', camera:Luxe.camera.view });
+        batch1 = Batcher.create({ name:'batch1', camera:Luxe.camera.view });
+        batch2 = Batcher.create({ name:'batch2', camera:Luxe.camera.view });
+        batch3 = Batcher.create({ name:'batch3', camera:Luxe.camera.view });
 
         var level_texture = Luxe.resources.texture('assets/level.png');
         var luxe_texture = Luxe.resources.texture('assets/luxe.png');

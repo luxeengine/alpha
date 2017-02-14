@@ -179,7 +179,7 @@ class Batcher implements Renderable {
 
         empty(_drop);
 
-        renderer.remove_batch(this);
+        renderer.remove(this);
 
         emitter = null;
         geometry = null;
@@ -881,6 +881,42 @@ class Batcher implements Renderable {
     public static inline var tcoord_attribute : Int = 1;
     public static inline var color_attribute  : Int = 2;
     public static inline var normal_attribute : Int = 3;
+
+        //:todo: this shouldn't be 2, it should be 0, but prevents behavioural change at first
+        /** When using the create_batcher convenience, if no layer is specified in the options, 
+            this default value will be used instead. */
+    public static var create_batcher_default_layer = 2;
+
+        /** Create a batcher, convenience for create batcher, add batcher (optionally), and create a camera for the batcher. */
+    public static function create( ? options:luxe.options.BatcherOptions ) : Batcher {
+
+        if(options != null) {
+
+            def(options.name, 'batcher.${Luxe.utils.uniqueid()}');
+            def(options.layer, create_batcher_default_layer);
+            def(options.camera, new phoenix.Camera());
+            def(options.max_verts, 16384);
+
+        } else {
+            options = {
+                name : 'batcher',
+                camera : new phoenix.Camera(),
+                layer : create_batcher_default_layer,
+                max_verts : 16384
+            }
+        }
+
+        var _batcher = new Batcher( Luxe.renderer, options.name, options.max_verts );
+            _batcher.view = options.camera;
+            _batcher.layer = options.layer;
+
+        if( options.no_add == null || options.no_add == false ) {
+            Luxe.renderer.add( _batcher );
+        }
+
+        return _batcher;
+
+    } //create_batcher
 
 } //Batcher
 

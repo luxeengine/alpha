@@ -49,7 +49,7 @@ class Main extends luxe.Game {
 
         Luxe.renderer.clear_color = new Color().rgb(0xaf663a);
 
-        batcher = Luxe.renderer.create_batcher({ name:'separate tile view' });
+        batcher = Batcher.create({ name:'separate tile view' });
 
             //we create a custom tilemap
         generate_tilemap();

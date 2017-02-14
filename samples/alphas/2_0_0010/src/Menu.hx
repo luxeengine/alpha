@@ -45,7 +45,7 @@ class Menu extends luxe.State {
 
         super({ name:'menu' });
 
-        glowing = Luxe.renderer.create_batcher({ name:'glowing', camera:Luxe.camera.view });
+        glowing = Batcher.create({ name:'glowing', camera:Luxe.camera.view });
         left_fire = new Vector(Luxe.screen.mid.x - 180, -171);
         right_fire = new Vector(Luxe.screen.mid.x + 180, -171);
         items = new Map();

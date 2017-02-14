@@ -47,7 +47,7 @@ class Main extends luxe.Game {
             /** This is where we will draw to, the render texture, the default is screen size, but explicit for example */
         final_output = new RenderTexture({ id:'sample-rtt', width:Luxe.screen.w, height:Luxe.screen.h  });
             /** This is a batcher separate from the default rendering so we can control when it draws */
-        final_batch = Luxe.renderer.create_batcher({ no_add:true });
+        final_batch = Batcher.create({ no_add:true });
 
             /** This is the shader we will apply to the overall drawing */
         final_shader = Luxe.resources.shader('low-res');

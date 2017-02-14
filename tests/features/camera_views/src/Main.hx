@@ -58,10 +58,10 @@ class Main extends luxe.Game {
         current_camera = camera_1;
 
             //create the unique batchers
-        batcher_1 = Luxe.renderer.create_batcher({ name:'viewport1', camera:camera_1.view });
-        batcher_2 = Luxe.renderer.create_batcher({ name:'viewport2', camera:camera_2.view });
-        batcher_3 = Luxe.renderer.create_batcher({ name:'viewport3', camera:camera_3.view });
-        batcher_4 = Luxe.renderer.create_batcher({ name:'viewport4', camera:camera_4.view });
+        batcher_1 = Batcher.create({ name:'viewport1', camera:camera_1.view });
+        batcher_2 = Batcher.create({ name:'viewport2', camera:camera_2.view });
+        batcher_3 = Batcher.create({ name:'viewport3', camera:camera_3.view });
+        batcher_4 = Batcher.create({ name:'viewport4', camera:camera_4.view });
 
             //we move batcher one on top, because when holding
             //space bar it's view will follow the mouse, and
@@ -119,7 +119,7 @@ class Main extends luxe.Game {
     function create_hud() {
 
         //For the hud, it has a unique batcher, layer 4 is > the batcher_1, and the default(1)
-        hud_batcher = Luxe.renderer.create_batcher({ name:'hud_batcher', layer:4 });
+        hud_batcher = Batcher.create({ name:'hud_batcher', layer:4 });
 
             //Now draw some text and the bar
         var small_amount = Luxe.screen.h * 0.05;
@@ -296,7 +296,7 @@ class Main extends luxe.Game {
                     trace(b.name + ' / ' + b.layer);
                 }
             } else {
-                batcher_4 = Luxe.renderer.create_batcher({ name:'viewport4', camera:camera_4.view });
+                batcher_4 = Batcher.create({ name:'viewport4', camera:camera_4.view });
                 var _level_sprite:Sprite = Luxe.scene.get('level');
                 batcher_4.add( _level_sprite.geometry );
             }

@@ -46,7 +46,7 @@ class Main extends luxe.Game {
             text:'info',
             pos: new Vector(10,10),
             point_size: 14,
-            batcher: Luxe.renderer.create_batcher()
+            batcher: Batcher.create()
         });
 
     } //ready

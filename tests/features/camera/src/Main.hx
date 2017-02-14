@@ -57,7 +57,7 @@ class Main extends luxe.Game {
             //the default batcher is stored at layer 1, we want to be above it
         hud_batcher.layer = 2;
             //the add it to the renderer
-        Luxe.renderer.add_batch(hud_batcher);
+        Luxe.renderer.add(hud_batcher);
 
             //Now draw some text and the bar
         var small_amount = Luxe.screen.h * 0.05;
