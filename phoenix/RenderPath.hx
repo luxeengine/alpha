@@ -2,31 +2,30 @@ package phoenix;
 
 import snow.modules.opengl.GL;
 import phoenix.Renderer;
-import phoenix.Batcher;
 
 //Default base class will do forward rendering
 
 class RenderPath {
 
     public var renderer : Renderer;
-    public function new( _renderer:Renderer ) {
+    
+    public function new(_renderer:Renderer) {
+
         renderer = _renderer;
-    }
 
-    public function render( _batchers: Array<Batcher>, _stats:RendererStats ) {
+    } //new
 
-        var c = _batchers.length;
-        var i = 0;
-        while(i < c) {
-            var batch = _batchers[i];
-            if(batch.enabled) {
+    #if !luxe_no_hotpath_inline @:extern #end
+    inline public function render(_renderables: Array<Renderable>) {
 
-                    //Tell the batcher to draw
-                batch.draw();
+        var index = 0;
+        var count = _renderables.length;
 
-            } //batcher enabled
-            batch = null;
-            ++i;
+        while(index < count) {
+
+            _renderables[index].draw();
+
+            ++index;
 
         } //each batcher
 

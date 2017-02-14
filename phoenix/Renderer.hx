@@ -36,6 +36,11 @@ private typedef DefaultShaders = {
     bitmapfont : DefaultShader
 }
 
+interface Renderable {
+    public var layer (default, set): Int;
+    public function draw() : Void;
+}
+
 interface RenderTarget {
     public var width: Int;
     public var height: Int;
@@ -65,7 +70,7 @@ class Backbuffer implements RenderTarget {
 
 class Renderer {
 
-    public var batchers : Array<Batcher>;
+    public var renderables : Array<Renderable>;
 
     public var core : Engine;
     public var state : RenderState;
@@ -80,9 +85,9 @@ class Renderer {
     public var font : BitmapFont;
         //This will be null if there's no default font
     public var font_asset : AssetImage;
-        //Default render path is a forward renderer, and acts as a fallback for deferred
+        //Default render path is a basic forward renderer
         //render path is the active render path, can replace it to render in a different manner
-        //It will pass all batchers to be processed etc for you to do whatever with
+        //It will pass all rendergroups to be processed etc for you to do whatever with
     public var render_path : RenderPath;
     public var default_render_path : RenderPath;
 
@@ -133,7 +138,7 @@ class Renderer {
         clear_color = new Color().rgb(0x1a1a1a);
         stats = new RendererStats();
         target = default_target = backbuffer;
-        batchers = [];
+        renderables = [];
 
             //The default view
         camera = new Camera();
@@ -182,63 +187,35 @@ class Renderer {
 
     } //destroy
 
-    @:allow(phoenix.Batcher)
-    function sort_batchers( a:Batcher, b:Batcher ) {
-        if(a.layer < b.layer) return -1;
+    inline function sort_renderables(a:Renderable, b:Renderable) {
+
+        if(a.layer <= b.layer) return -1;
         if(a.layer > b.layer) return 1;
-        if(a.sequence < b.sequence) return -1;
-        if(a.sequence > b.sequence) return 1;
         return 1;
-    } //sort_batchers
 
-    public function add_batch( batch:Batcher ) {
+    } //sort_renderables
 
-        batchers.push( batch );
-        batchers.sort( sort_batchers );
+        /** Add a renderable item to the render, it will be rendered in order of it's .layer property */
+    inline public function add(renderable:Renderable) {
 
-    } //add_batch
+        renderables.push(renderable);
+        sort();
 
-    public function remove_batch( batch:Batcher ) {
+    } //add
 
-        batchers.remove( batch );
+        /** Remove a renderable item from the render */
+    inline public function remove(renderable:Renderable) {
 
-    } //remove_batch
+        renderables.remove(renderable);
 
-        /** Create a batcher, convenience for create batcher, add batcher (option), and create a camera for the batcher. */
-    public function create_batcher( ? options:luxe.options.BatcherOptions ) : Batcher {
+    } //remove
 
-            //:todo: why is this hardcoded at 2
-        var _new_batcher_layer = 2;
+        /** Make sure the list of renderable items is sorted according to their layer */
+    inline public function sort() {
 
-        if(options != null) {
+        renderables.sort(sort_renderables);
 
-            def(options.name, 'batcher');
-            def(options.layer, _new_batcher_layer);
-            def(options.camera, new phoenix.Camera());
-            def(options.max_verts, 16384);
-
-        } else {
-            options = {
-                name : 'batcher',
-                camera : new phoenix.Camera(),
-                layer : _new_batcher_layer,
-                max_verts : 16384
-            }
-        }
-
-        var _batcher = new Batcher( this, options.name, options.max_verts );
-            _batcher.view = options.camera;
-            _batcher.layer = options.layer;
-
-        if( options.no_add == null || options.no_add == false ) {
-            add_batch( _batcher );
-        }
-
-
-        return _batcher;
-
-    } //create_batcher
-
+    } //sort
 
     public function clear( _color:Color ) {
 
@@ -267,6 +244,13 @@ class Renderer {
 
     } //set blend equation
 
+    public inline function bind_target(_target:RenderTarget) {
+
+        state.bindFramebuffer(_target.framebuffer);
+        state.bindRenderbuffer(_target.renderbuffer);
+
+    } //bind_target
+
         //The resize handler
     @:allow(luxe.Engine)
     function internal_resized(_w:Int, _h:Int) {
@@ -292,7 +276,7 @@ class Renderer {
         }
 
             //render
-        render_path.render( batchers, stats );
+        render_path.render(renderables);
 
         // stop_count++;
         // if(stop_count >= 3) {
@@ -323,13 +307,6 @@ class Renderer {
         return target = _target;
 
     } //set_target
-
-    public inline function bind_target(_target:RenderTarget) {
-
-        state.bindFramebuffer(_target.framebuffer);
-        state.bindRenderbuffer(_target.renderbuffer);
-
-    } //bind_target
 
     function create_default_shaders() {
 
@@ -425,6 +402,55 @@ class Renderer {
 
     } //create_default_font
 
+    //Batchers
+
+        public function add_batch( batch:Batcher ) {
+
+            add(batch);
+
+        } //add_batch
+
+        public function remove_batch( batch:Batcher ) {
+
+            remove(batch);
+
+        } //remove_batch
+
+            /** Create a batcher, convenience for create batcher, add batcher (option), and create a camera for the batcher. */
+        public function create_batcher( ? options:luxe.options.BatcherOptions ) : Batcher {
+
+            //:todo: why is this hardcoded at 2
+            var _new_batcher_layer = 2;
+
+            if(options != null) {
+
+                def(options.name, 'batcher');
+                def(options.layer, _new_batcher_layer);
+                def(options.camera, new phoenix.Camera());
+                def(options.max_verts, 16384);
+
+            } else {
+                options = {
+                    name : 'batcher',
+                    camera : new phoenix.Camera(),
+                    layer : _new_batcher_layer,
+                    max_verts : 16384
+                }
+            }
+
+            var _batcher = new Batcher( this, options.name, options.max_verts );
+                _batcher.view = options.camera;
+                _batcher.layer = options.layer;
+
+            if( options.no_add == null || options.no_add == false ) {
+                add_batch( _batcher );
+            }
+
+
+            return _batcher;
+
+        } //create_batcher
+
 } //renderer
 
 
@@ -432,7 +458,7 @@ class Renderer {
 class RendererStats {
 
     public function new(){}
-    public var batchers : Int = 0;
+    public var renderables : Int = 0;
     public var geometry_count : Int = 0;
     public var dynamic_batched_count : Int = 0;
     public var static_batched_count : Int = 0;
@@ -452,7 +478,7 @@ class RendererStats {
     function toString() {
         return
             'Renderer Statistics\n' +
-            '\tbatcher count : ' + batchers + '\n' +
+            '\trenderable count : ' + renderables + '\n' +
             '\ttotal geometry : ' + geometry_count + '\n' +
             '\tvisible geometry : ' + visible_count + '\n' +
             '\tdynamic batched geometry : ' + dynamic_batched_count + '\n' +

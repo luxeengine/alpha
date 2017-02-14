@@ -30,7 +30,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         name = 'Statistics';
 
         _last_render_stats = {
-            batchers : 0,
+            renderables : 0,
             geometry_count : 0,
             dynamic_batched_count : 0,
             static_batched_count : 0,
@@ -40,7 +40,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         };
 
         _render_stats = {
-            batchers : 0,
+            renderables : 0,
             geometry_count : 0,
             dynamic_batched_count : 0,
             static_batched_count : 0,
@@ -87,7 +87,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             'static batch count : ' + _render_stats.static_batched_count + '\n' +
             'total draw calls : ' + _render_stats.draw_calls + '\n' +
             'total vert count : ' + _render_stats.vert_count + '\n' +
-            'batchers : ' + _render_stats.batchers + '\n'+
+            'renderables : ' + _render_stats.renderables + '\n'+
             _bs;
 
     } //get_render_stats_string
@@ -286,8 +286,8 @@ class StatsDebugView extends luxe.debug.DebugView  {
             //Update the local statistics
         update_render_stats();
 
-        if(_last_render_stats.batchers != _render_stats.batchers)
-            { dirty = true; _last_render_stats.batchers = _render_stats.batchers; }
+        if(_last_render_stats.renderables != _render_stats.renderables)
+            { dirty = true; _last_render_stats.renderables = _render_stats.renderables; }
         if(_last_render_stats.geometry_count != _render_stats.geometry_count)
             { dirty = true; _last_render_stats.geometry_count = _render_stats.geometry_count; }
         if(_last_render_stats.dynamic_batched_count != _render_stats.dynamic_batched_count)
@@ -435,7 +435,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
     public function update_render_stats() {
 
-        _render_stats.batchers = Luxe.renderer.stats.batchers;
+        _render_stats.renderables = Luxe.renderer.stats.renderables;
         _render_stats.geometry_count = Luxe.renderer.stats.geometry_count;
         _render_stats.visible_count = Luxe.renderer.stats.visible_count;
         _render_stats.dynamic_batched_count = Luxe.renderer.stats.dynamic_batched_count;
@@ -448,7 +448,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
 } //StatsDebugView
 
 typedef RenderStats = {
-    batchers : Int,
+    renderables : Int,
     geometry_count : Int,
     dynamic_batched_count : Int,
     static_batched_count : Int,

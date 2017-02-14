@@ -13,11 +13,11 @@ import luxe.Emitter;
 import luxe.structural.BalancedBST;
 
 @:allow(phoenix.Renderer)
-class Batcher {
+class Batcher implements Renderable {
 
     public var id : String;
-    public var enabled : Bool = true;
-    @:isVar public var layer (default, set) : Int = 0;
+    public var enabled (default, set) : Bool = true;
+    public var layer (default, set) : Int = 0;
 
     public var geometry : BalancedBST< GeometryKey, Geometry >;
     public var emitter : Emitter<BatcherEventType>;
@@ -31,6 +31,10 @@ class Batcher {
     public var max_verts : Int = 0;
     public var max_floats : Int = 0;
     public var vert_count : Int = 0;
+
+    /** A flag to control immediate geometry surviving a call to .draw()
+        Set this to true just before calling .draw() if needed. */
+    public var persist_immediate : Bool = false;
 
     public var renderer : Renderer;
     public var view : Camera;
@@ -103,7 +107,7 @@ class Batcher {
 
         _dropped = [];
 
-        renderer.stats.batchers++;
+        renderer.stats.renderables++;
         all.push(this);
 
     } //new
@@ -224,7 +228,7 @@ class Batcher {
     var state : phoenix.BatchState;
     var _dropped:Array<Geometry>;
 
-    public function batch( persist_immediate : Bool = false ) {
+    public function batch() {
 
         //reset render stats before we start
         dynamic_batched_count = 0;
@@ -362,7 +366,7 @@ class Batcher {
     } //prune
 
     inline
-    public function draw( ?persist_immediate:Bool = false ) {
+    public function draw() {
 
         #if !luxe_noprofile if(name != '') Luxe.debug.start(name); #end
 
@@ -374,7 +378,7 @@ class Batcher {
 
         update_view();
 
-        batch( persist_immediate );
+        batch();
 
         emitter.emit(BatcherEventType.postrender, this);
 
@@ -599,12 +603,22 @@ class Batcher {
 
 //Internal
 
+    inline function set_enabled( _enabled:Bool ) : Bool {
+
+        if(_enabled && !enabled) {
+            renderer.add(this);
+        } else if(!_enabled) {
+            renderer.remove(this);
+        }        
+
+        return enabled = _enabled;
+
+    } //set_enabled
+
     inline function set_layer( _layer:Int ) : Int {
 
-            //set the value
         layer = _layer;
-            //re-sort the list
-        renderer.batchers.sort( renderer.sort_batchers );
+        renderer.sort();
 
             //return value
         return layer;
@@ -856,9 +870,9 @@ class Batcher {
 
     function set_show_stats(_value:Int) {
         if(_value == 0) {
-            renderer.stats.batchers--;
+            renderer.stats.renderables--;
         } else {
-            renderer.stats.batchers++;
+            renderer.stats.renderables++;
         }
         return show_stats = _value;
     }
