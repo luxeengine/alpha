@@ -3,6 +3,7 @@ package phoenix;
 import snow.modules.opengl.GL;
 import phoenix.Batcher;
 import phoenix.Texture;
+import phoenix.Renderer.RenderTarget;
 
 import luxe.Log.*;
 import luxe.options.ResourceOptions;
@@ -11,10 +12,13 @@ import luxe.Resources;
 
 
     //A render texture just extends texture so it can be assigned to meshes etc
-class RenderTexture extends Texture {
+class RenderTexture extends Texture implements RenderTarget {
 
-    public var fbo : GLFramebuffer;
+        //These are for RenderTarget interface
+    public var framebuffer : GLFramebuffer;
     public var renderbuffer : GLRenderbuffer;
+        //You generally don't want this to be anything other than 0.
+    public var viewport_scale : Float = 1;
 
     public function new( _options:RenderTextureOptions ) {
 
@@ -39,12 +43,12 @@ class RenderTexture extends Texture {
             //these must be set to be texture complete
         apply_props();
 
-            //Create the FBO
-        fbo = GL.createFramebuffer();
-            //Bind the FBO
+            //Create the framebuffer
+        framebuffer = GL.createFramebuffer();
+            //Bind it
         bindBuffer();
 
-            //create the render buffer
+            //create the renderbuffer
         renderbuffer = GL.createRenderbuffer();
             //Bind it so we can attach stuff
         bindRenderBuffer();
@@ -96,19 +100,19 @@ class RenderTexture extends Texture {
 
         super.clear();
 
-        if(fbo != null) {
-            GL.deleteFramebuffer( fbo );
+        if(framebuffer != null) {
+            GL.deleteFramebuffer(framebuffer);
         }
 
         if(renderbuffer != null) {
-            GL.deleteRenderbuffer( renderbuffer );
+            GL.deleteRenderbuffer(renderbuffer);
         }
 
     } //clear
 
     @:noCompletion public function bindBuffer() {
 
-        Luxe.renderer.state.bindFramebuffer(fbo);
+        Luxe.renderer.state.bindFramebuffer(framebuffer);
 
     } //bind
 

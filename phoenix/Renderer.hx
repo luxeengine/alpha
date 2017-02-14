@@ -36,14 +36,41 @@ private typedef DefaultShaders = {
     bitmapfont : DefaultShader
 }
 
+interface RenderTarget {
+    public var width: Int;
+    public var height: Int;
+    public var viewport_scale: Float;
+    public var framebuffer: GLFramebuffer;
+    public var renderbuffer: GLRenderbuffer;
+}
+
+@:allow(phoenix.Renderer)
+class Backbuffer implements RenderTarget {
+
+    public var width: Int;
+    public var height: Int;
+    public var viewport_scale: Float;
+    public var framebuffer: GLFramebuffer;
+    public var renderbuffer: GLRenderbuffer;
+
+    function new(_render_w:Int, _render_h:Int, _render_scale:Float, _fb:GLFramebuffer, _rb:GLRenderbuffer) {
+        width = _render_w;
+        height = _render_h;
+        viewport_scale = _render_scale;
+        framebuffer = _fb;
+        renderbuffer = _rb;
+    }
+
+}
+
 class Renderer {
 
     public var batchers : Array<Batcher>;
 
     public var core : Engine;
     public var state : RenderState;
-    public var default_fbo : GLFramebuffer;
-    public var default_rbo : GLRenderbuffer;
+    public var default_framebuffer : GLFramebuffer;
+    public var default_renderbuffer : GLRenderbuffer;
         //Default rendering
     public var shaders : DefaultShaders;
         //Default view and batching renderer
@@ -59,8 +86,8 @@ class Renderer {
     public var render_path : RenderPath;
     public var default_render_path : RenderPath;
 
-    @:isVar public var target (get,set) : RenderTexture;
-    public var target_size : Vector;
+    @:isVar public var target (get,set) : RenderTarget;
+    public var backbuffer: Backbuffer;
 
     public var should_clear : Bool = true;
     public var stop : Bool = false;
@@ -74,25 +101,28 @@ class Renderer {
         core = _core;
         font_asset = _asset;
 
-        //store the default FBO as on some platforms
-        //it is not the same as 0
+        //store the default framebuffer/renderbuffer as on some platforms it is not just '0'
         //:todo:refactor:gl:
 
-            default_fbo = GL.getParameter(GL.FRAMEBUFFER_BINDING);
-            default_rbo = GL.getParameter(GL.RENDERBUFFER_BINDING);
+            default_framebuffer = GL.getParameter(GL.FRAMEBUFFER_BINDING);
+            default_renderbuffer = GL.getParameter(GL.RENDERBUFFER_BINDING);
 
-        //also clear the garbage for first swap
+            #if luxe_no_device_pixel_scaling
+                var render_scale_ratio = 1.0;
+            #else
+                var render_scale_ratio = core.app.runtime.window_device_pixel_ratio();
+            #end
 
-        #if luxe_native
-            GL.clearDepth(1.0);
-            GL.clearColor(0,0,0,1);
-            GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
-            core.app.runtime.window_swap();
-            GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
-        #end
+            backbuffer = new Backbuffer(
+                core.app.runtime.window_width(),
+                core.app.runtime.window_height(),
+                render_scale_ratio,
+                default_framebuffer,
+                default_renderbuffer
+            );
 
-        _debug("default Framebuffer set to " + default_fbo);
-        _debug("default Renderbuffer set to " + default_rbo);
+        _debug("default Framebuffer set to " + default_framebuffer);
+        _debug("default Renderbuffer set to " + default_renderbuffer);
 
     } //new
 
@@ -101,10 +131,10 @@ class Renderer {
         state = new RenderState(this);
         clear_color = new Color().rgb(0x1a1a1a);
         stats = new RendererStats();
+        target = backbuffer;
         batchers = [];
 
             //The default view
-        target_size = new Vector(Luxe.screen.w, Luxe.screen.h);
         camera = new Camera();
             //Create the default render path
         default_render_path = new RenderPath( this );
@@ -240,9 +270,13 @@ class Renderer {
     @:allow(luxe.Engine)
     function internal_resized(_w:Int, _h:Int) {
 
-        if(target == null) {
-            target_size.set_xy(_w, _h);
-        }
+        backbuffer.width = _w;
+        backbuffer.height = _h;
+
+            //if device pixels are used, update the scale factor in case they changed monitors
+        #if !luxe_no_device_pixel_scaling
+            backbuffer.viewport_scale = core.app.runtime.window_device_pixel_ratio();
+        #end
 
     } //internal_resized
 
@@ -273,29 +307,18 @@ class Renderer {
 
     } //prerender
 
-    function get_target() : RenderTexture {
+    function get_target() : RenderTarget {
 
         return target;
 
     } //get_target
 
-    function set_target( _target:RenderTexture ) {
+    function set_target( _target:RenderTarget ) {
 
-        if(_target != null) {
+        if(_target == null) _target = backbuffer;
 
-            target_size.x = _target.width;
-            target_size.y = _target.height;
-
-            state.bindFramebuffer( _target.fbo );
-
-        } else {
-
-            target_size.x = Luxe.screen.w;
-            target_size.y = Luxe.screen.h;
-
-            state.bindFramebuffer();
-
-        }
+        state.bindFramebuffer(_target.framebuffer);
+        state.bindRenderbuffer(_target.renderbuffer);
 
         return target = _target;
 
