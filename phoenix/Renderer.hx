@@ -107,10 +107,11 @@ class Renderer {
             default_framebuffer = GL.getParameter(GL.FRAMEBUFFER_BINDING);
             default_renderbuffer = GL.getParameter(GL.RENDERBUFFER_BINDING);
 
-            var render_scale_ratio = 1.0;
-            if(core.game_config.use_device_pixels) {
-                render_scale_ratio = core.app.runtime.window_device_pixel_ratio();
-            }
+            #if luxe_no_device_pixel_scaling
+                var render_scale_ratio = 1.0;
+            #else
+                var render_scale_ratio = core.app.runtime.window_device_pixel_ratio();
+            #end
 
             backbuffer = new Backbuffer(
                 core.app.runtime.window_width(),
@@ -271,6 +272,11 @@ class Renderer {
 
         backbuffer.width = _w;
         backbuffer.height = _h;
+
+            //if device pixels are used, update the scale factor in case they changed monitors
+        #if !luxe_no_device_pixel_scaling
+            backbuffer.viewport_scale = core.app.runtime.window_device_pixel_ratio();
+        #end
 
     } //internal_resized
 

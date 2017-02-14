@@ -5,7 +5,6 @@ import luxe.Parcel;
 typedef GameConfig = {
     > snow.types.Types.AppConfig,
     ? headless : Bool,
-    ? use_device_pixels : Bool,
     ? preload: {
         ? bytes: Array<BytesInfo>,
         ? texts: Array<TextInfo>,

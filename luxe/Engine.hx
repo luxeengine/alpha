@@ -245,12 +245,12 @@ class Engine extends snow.App {
         var _render_w = app.runtime.window_width();
         var _render_h = app.runtime.window_height();
 
-        if(game_config.use_device_pixels) {
+        #if luxe_no_device_pixel_scaling
+            screen = new luxe.Screen(this, _render_w, _render_h);
+        #else
             pixel_scale = app.runtime.window_device_pixel_ratio();
             screen = new luxe.Screen(this, Math.floor(_render_w/pixel_scale), Math.floor(_render_h/pixel_scale));
-        } else {
-            screen = new luxe.Screen(this, _render_w, _render_h);
-        }
+        #end
 
         debug.init();
            io.init();
@@ -485,10 +485,12 @@ class Engine extends snow.App {
             //sizes from snow are in renderable pixels
         var _render_w = _event.x;
         var _render_h = _event.y;
+
             //first ensure our pixel scale still matches
-        if(game_config.use_device_pixels) {
+        #if !luxe_no_device_pixel_scaling
             pixel_scale = app.runtime.window_device_pixel_ratio();
-        }
+        #end
+        
             //and then ensure that our event matches our expectations
         _event.x = Math.floor(_render_w/pixel_scale);
         _event.y = Math.floor(_render_h/pixel_scale);

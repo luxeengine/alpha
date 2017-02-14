@@ -38,7 +38,7 @@ class Screen {
     public var h (get,null) : Int;
         /** Returns the device pixel ratio, a scaling factor for high DPI devices.
             There are two sizes to consider, the "renderable pixels" that you draw, and the device pixels (i.e window size).
-            If the game config has `use_device_pixels` as true this API returns device pixels, if not it returns renderable pixels.
+            If `luxe_no_device_pixel_scaling` is defined,  API returns renderable pixels, if not it returns device pixels.
             This value can be used to convert from one to the other.
             For device -> renderable, `device * device_pixel_ratio`.
             For renderable -> device, `pixels / device_pixel_ratio`  */
