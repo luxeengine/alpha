@@ -87,6 +87,7 @@ class Renderer {
     public var default_render_path : RenderPath;
 
     @:isVar public var target (get,set) : RenderTarget;
+    public var default_target: RenderTarget;
     public var backbuffer: Backbuffer;
 
     public var should_clear : Bool = true;
@@ -131,7 +132,7 @@ class Renderer {
         state = new RenderState(this);
         clear_color = new Color().rgb(0x1a1a1a);
         stats = new RendererStats();
-        target = backbuffer;
+        target = default_target = backbuffer;
         batchers = [];
 
             //The default view
@@ -168,7 +169,7 @@ class Renderer {
         GL.enable(GL.BLEND);
         GL.blendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
-            //Make sure that we aren't premultiplying the backbuffer
+            //Make sure that we aren't premultiplying the back buffer
         #if luxe_web
             GL.pixelStorei(GL.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 0);
         #end //luxe_web
@@ -313,16 +314,22 @@ class Renderer {
 
     } //get_target
 
-    function set_target( _target:RenderTarget ) {
+    function set_target(_target:RenderTarget) {
 
-        if(_target == null) _target = backbuffer;
+        if(_target == null) _target = default_target;
 
-        state.bindFramebuffer(_target.framebuffer);
-        state.bindRenderbuffer(_target.renderbuffer);
+        bind_target(_target);
 
         return target = _target;
 
     } //set_target
+
+    public inline function bind_target(_target:RenderTarget) {
+
+        state.bindFramebuffer(_target.framebuffer);
+        state.bindRenderbuffer(_target.renderbuffer);
+
+    } //bind_target
 
     function create_default_shaders() {
 
