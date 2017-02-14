@@ -162,7 +162,7 @@ class Geometry {
 
         key = new GeometryKey();
 
-            key.uuid = uuid;
+            key.uuid = Luxe.utils.hash(uuid);
             key.timestamp = Luxe.time;
             key.sequence = _sequence_key;
             key.primitive_type = state.primitive_type;
@@ -203,7 +203,7 @@ class Geometry {
 
         // _sequence_key++;
 
-        key.uuid = uuid;
+        key.uuid = Luxe.utils.hash(uuid);
         key.timestamp = Luxe.time;
         // key.sequence = _sequence_key;
         key.primitive_type = state.primitive_type;
@@ -802,7 +802,7 @@ class GeometryKey {
 
     public var timestamp : Float = 0;
     public var sequence : Int = 0;
-    public var uuid : String = '';
+    public var uuid : Int = 0;
     public var primitive_type : PrimitiveType;
     public var texture : Texture;
     public var shader : Shader;
