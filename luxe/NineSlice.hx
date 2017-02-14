@@ -379,7 +379,7 @@ class NineSlice extends luxe.Visual {
 
         } //each slice
 
-        _geometry.id = 'NineSlice' + _geometry.id;
+        _geometry.id = name + '.NineSlice.' + _geometry.id;
         geometry = _geometry;
         pos = _pos;
 
