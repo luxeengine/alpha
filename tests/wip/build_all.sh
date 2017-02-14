@@ -1,3 +1,6 @@
+#!/bin/bash
+trap "exit" SIGINT SIGKILL
+set -e
 for _dir in *; do
     if [ -d "$_dir" ]; then
         echo "building $_dir"
