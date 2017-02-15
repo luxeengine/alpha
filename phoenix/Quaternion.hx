@@ -411,7 +411,7 @@ class Quaternion {
         
         var axis = new Vector();
         _from = _from.clone().normalize();
-        _from = _from.clone().normalize();
+        _to = _to.clone().normalize();
         var dot = _from.dot(_to);
         
         return if(dot < -0.999999) {
