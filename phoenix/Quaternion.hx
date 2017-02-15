@@ -405,28 +405,35 @@ class Quaternion {
     /**
         Calculate the rotation required to transform a vector to another
     **/
-    public function betweenVectors(from:Vector, to:Vector) {
+    public function betweenVectors( _from:Vector, _to:Vector ) {
         
         // from: https://github.com/toji/gl-matrix/blob/f0583ef53e94bc7e78b78c8a24f09ed5e2f7a20c/src/gl-matrix/quat.js#L54
         
         var axis = new Vector();
-		from = from.clone().normalize();
-		to = to.clone().normalize();
-		var dot = from.dot(to);
-		if(dot < -0.999999) {
-			axis.cross(X_UNIT, from);
-			if(axis.length <  0.000001) {
-				axis.cross(Y_UNIT, from);
-			}
-			axis.normalize();
-			return setFromAxisAngle(axis, Math.PI);
-		} else if(dot > 0.999999) {
-			return set(0, 0, 0, 1);
-		} else {
-			axis.cross(from, to);
-			trace('here $dot');
-			return set(axis.x, axis.y, axis.z, 1 + dot).normalize();
-		}
+        _from = _from.clone().normalize();
+        _from = _from.clone().normalize();
+        var dot = _from.dot(_to);
+        
+        return if(dot < -0.999999) {
+            
+            axis.cross(X_UNIT, _from);
+            
+            if(axis.length <  0.000001)
+                axis.cross(Y_UNIT, _from);
+            
+            axis.normalize();
+            setFromAxisAngle(axis, Math.PI);
+            
+        } else if(dot > 0.999999) {
+            
+            set(0, 0, 0, 1);
+            
+        } else {
+            
+            axis.cross(_from, _to);
+            set(axis.x, axis.y, axis.z, 1 + dot).normalize();
+            
+        }
     }
 
 
