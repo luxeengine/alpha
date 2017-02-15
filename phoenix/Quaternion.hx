@@ -19,6 +19,8 @@ class Quaternion {
     @:isVar public var listen_y(default,default) : Float -> Void;
     @:isVar public var listen_z(default,default) : Float -> Void;
     @:isVar public var listen_w(default,default) : Float -> Void;
+    
+    public var radians(get, never):Float;
 
     var _construct = false;
 
@@ -446,6 +448,10 @@ class Quaternion {
     } //update_euler
 
     var ignore_euler = false;
+    
+    inline function get_radians() {
+        return 2 * Math.acos(w);
+    }
 
     public inline function set_xyzw(_x:Float, _y:Float, _z:Float, _w:Float) {
 
