@@ -6,6 +6,7 @@ import luxe.Vector;
 
 import luxe.tilemaps.Tilemap;
 import luxe.tilemaps.Isometric;
+import luxe.Log.*;
 
 import phoenix.geometry.QuadGeometry;
 import phoenix.Texture.FilterType;
@@ -16,47 +17,62 @@ import luxe.options.TilemapOptions;
 
 class Isometric {
 
-    public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int ) : Vector {
+    public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int, ?scale:Float=1.0, ?rounded:Bool=true ) : Vector {
 
-        var tile_pos = new Vector();
+        var tile_coord = new Vector();
 
-            var tile_width_half = tile_width / 2;
-            var tile_height_half = tile_height / 2;
+            var _scaled_tw = tile_width * scale;
+            var _scaled_th = tile_height * scale;
 
-            tile_pos.x = ((world_x / tile_width_half) + (world_y / tile_height_half)) / 2;
-            tile_pos.y = ((world_y / tile_height_half) - (world_x / tile_width_half)) / 2;
+            var tile_width_half = _scaled_tw / 2;
+            var tile_height_half = _scaled_th / 2;
 
-        return tile_pos;
+            tile_coord.x = ((world_x / tile_width_half) + (world_y / tile_height_half)) / 2;
+            tile_coord.y = ((world_y / tile_height_half) - (world_x / tile_width_half)) / 2;
+
+            if(rounded) {
+                tile_coord.x = Math.floor(tile_coord.x);
+                tile_coord.y = Math.floor(tile_coord.y);
+            }
+
+        return tile_coord;
 
     } //worldpos_to_tile_coord
 
     public static function tile_coord_to_worldpos(  tile_x:Int, tile_y:Int, tile_width:Int, tile_height:Int,
-                                                   ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
+                                                   ?scale:Float=1.0, ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
         var world_pos = new Vector();
 
-            var tile_width_half = tile_width / 2;
-            var tile_height_half = tile_height / 2;
+        var _scaled_tw = tile_width * scale;
+        var _scaled_th = tile_height * scale;
 
-            world_pos.x = (tile_x - tile_y) * tile_width_half;
-            world_pos.y = (tile_x + tile_y) * tile_height_half;
+        var tile_width_half = _scaled_tw / 2;
+        var tile_height_half = _scaled_th / 2;
 
-            //:todo: conversion for offsets
+            //  Top left by default
+        def(offset_x, TileOffset.left);
+        def(offset_y, TileOffset.top);
 
-            //top left by default
-        if(offset_x == null) {  offset_x = TileOffset.left;  };
-        if(offset_y == null) {  offset_y = TileOffset.top;   };
+        var tile_offset_x : Float = 0;
+        var tile_offset_y : Float = 0;
 
-            // switch(offset_x) {
-            //     case TileOffset.center:    { _world_x += (tile_width/2) }
-            //     case TileOffset.right:     { _world_x += tile_width; }
-            //     case TileOffset.left:      { }
-            // }
+            switch(offset_x) {
+                case TileOffset.center:    { tile_offset_x += (_scaled_tw / 2); tile_offset_x /= _scaled_tw; }
+                case TileOffset.right:     { tile_offset_x += _scaled_tw; tile_offset_x /= _scaled_tw; }
+                default:
+            }
 
-            // switch(offset_y) {
-            //     case TileOffset.center:    { _world_y += (tile_height/2) }
-            //     case TileOffset.bottom:    { _world_y += tile_height; }
-            //     case TileOffset.top:       { }
-            // }
+            switch(offset_y) {
+                case TileOffset.center:    { tile_offset_y += (_scaled_th/2); tile_offset_y /= _scaled_th; }
+                case TileOffset.bottom:    { tile_offset_y += _scaled_th; tile_offset_y /= _scaled_th; }
+                default:
+            }
+
+        tile_offset_x += tile_x;
+        tile_offset_y += tile_y;
+
+        world_pos.x = (tile_offset_x - tile_offset_y) * tile_width_half;
+        world_pos.y = (tile_offset_x + tile_offset_y) * tile_height_half;
 
         return world_pos;
 
@@ -65,74 +81,58 @@ class Isometric {
 
 } //Ortho
 
-class IsometricVisuals extends TilemapVisuals {
+class IsometricVisual extends TilemapVisual {
 
-    public override function create( options:TilemapVisualOptions ) {
-
-        var _scale : Float = (options.scale != null) ? options.scale : 1;
-
-            //map tile size scaled up
-        var _scaled_tilewidth = Std.int(map.tile_width*_scale);
-        var _scaled_tileheight = Std.int(map.tile_height*_scale);
+    public override function create() {
 
         for( layer in map ) {
 
-            var _layer_geom : TilemapVisualsLayerGeometry = [];
+            //dirty hack - I always pick the first tileset because there is no mapping between Layer and TileSet right now
+            var key = "";
+            for (k in map.tilesets.keys()) {
+                key = k;
+                break;
+            }
 
-            for( y in 0 ... map.height ) {
-
-                    //the geometry row
-                var _geom_row : Array<Geometry> = [];
-
-                for( x in 0 ... map.width ) {
-
-                    var _tile_geom = create_tile_for_layer(layer, x, y, _scale, options.filter);
-
-                        //we want to push nulls into here,
-                        //because otherwise the sizes won't match
-                        //and because we use it to create tiles when
-                        //changing the tile gid later
-                    _geom_row.push( _tile_geom );
-
-                } //for each tile in the x
-
-                    //add the geometry to the bunches
-                _layer_geom.push(_geom_row);
-
-            } //for y
+            var _layer_geom : TilemapVisualLayerGeometry = new TilemapVisualLayerGeometry({
+                    texture: map.tilesets.get(key).texture,
+                    batcher: options.batcher
+                });
 
                 //add the geometry to the list
             geometry.set( layer.name, _layer_geom );
 
         } //for each layer
 
-        if(options.grid != null && options.grid == true) {
+        if(options.grid) {
 
             var color = new Color(1,1,1,0.8).rgb(0xcc0000);
 
             for(x in 0 ... map.width+1) {
 
-                var ip = Isometric.tile_coord_to_worldpos(x, 0, _scaled_tilewidth, _scaled_tileheight);
-                var ip_bot = Isometric.tile_coord_to_worldpos(x, map.height, _scaled_tilewidth, _scaled_tileheight);
+                var ip = Isometric.tile_coord_to_worldpos(x, 0, map.tile_width, map.tile_height, options.scale);
+                var ip_bot = Isometric.tile_coord_to_worldpos(x, map.height, map.tile_width, map.tile_height, options.scale);
 
                 Luxe.draw.line({
                     p0 : new Vector(map.pos.x + ip.x, map.pos.y + ip.y ),
                     p1 : new Vector(map.pos.x + ip_bot.x, map.pos.y + ip_bot.y),
                     color : color,
-                    depth : 2
+                    depth : options.depth+0.001,
+                    batcher : options.batcher
                 });
             }
 
             for(y in 0 ... map.height+1) {
 
-                var ip = Isometric.tile_coord_to_worldpos(0, y, _scaled_tilewidth, _scaled_tileheight);
-                var ip_bot = Isometric.tile_coord_to_worldpos(map.width, y, _scaled_tilewidth, _scaled_tileheight);
+                var ip = Isometric.tile_coord_to_worldpos(0, y, map.tile_width, map.tile_height, options.scale);
+                var ip_bot = Isometric.tile_coord_to_worldpos(map.width, y, map.tile_width, map.tile_height, options.scale);
 
                 Luxe.draw.line({
                     p0 : new Vector(map.pos.x + ip.x, map.pos.y + ip.y),
                     p1 : new Vector(map.pos.x + ip_bot.x, map.pos.y + ip_bot.y),
                     color : color,
-                    depth : 2
+                    depth : options.depth+0.001,
+                    batcher : options.batcher
                 });
             }
 
@@ -140,13 +140,29 @@ class IsometricVisuals extends TilemapVisuals {
 
     } //create
 
-    override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int, ?_scale:Float=1, ?_filter:FilterType ) {
+    override function update_tile_id( _quadpack_id:Int, _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool, _flipy:Bool, _angle:Int ) {
 
-        _filter = (_filter != null) ? _filter: FilterType.nearest;
+        var tileset = map.tileset_from_id( _id );
+        var image_coord = tileset.pos_in_texture( _id );
+
+        var geomlayer = geometry_for_layer(_layer_name);
+        geomlayer.quad_uv(
+             _quadpack_id,
+            new Rectangle(
+                tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
+                tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
+                tileset.tile_width,
+                tileset.tile_height
+            ) //Rectangle
+        ); //uv
+
+    } //update_tile_id
+
+    override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int ) : Null<Int> {
 
             //map tile size scaled up
-        var _scaled_tilewidth = map.tile_width*_scale;
-        var _scaled_tileheight = map.tile_height*_scale;
+        var _scaled_tilewidth = map.tile_width*options.scale;
+        var _scaled_tileheight = map.tile_height*options.scale;
 
         var tile = layer.tiles[y][x];
 
@@ -157,52 +173,48 @@ class IsometricVisuals extends TilemapVisuals {
 
         var tileset = map.tileset_from_id( tile.id );
 
+        assertnull(tileset, 'Tilemap Iso cannot find tileset for tile id ${tile.id}');
+
             //specific to each tileset
-        var _scaled_tileset_tilewidth = tileset.tile_width*_scale;
-        var _scaled_tileset_tileheight = tileset.tile_height*_scale;
+        var _scaled_tileset_tilewidth = tileset.tile_width*options.scale;
+        var _scaled_tileset_tileheight = tileset.tile_height*options.scale;
 
             //the half tile size in world space, not tile space
         var _half_world_tile_width = _scaled_tilewidth / 2;
         var _half_world_tile_height = _scaled_tileheight / 2;
 
-            //create the tile to the geometry
-        var _tile_geom = Luxe.draw.box({
-                //the positions are based on the map tile width, not the texture tilesize
-            x : (map.pos.x + ((x - y) * _half_world_tile_width)) - _half_world_tile_width,
-            y : (map.pos.y + ((x + y) * _half_world_tile_height)) - _half_world_tile_height,
-                //the geometry size is based on the texture/tileset size, not the map size
-            w : _scaled_tileset_tilewidth,
-            h : _scaled_tileset_tileheight,
-            texture : (tileset != null) ? tileset.texture : null,
-            visible : layer.visible,
-            color : new Color(1,1,1,layer.opacity)
-        });
+        //init packed quad for tile
+        var geomlayer = geometry_for_layer(layer.name);
+        var _quadpack_id = geomlayer.quad_add({
+                    //the positions are based on the map tile width, not the texture tilesize
+                x : (map.pos.x + ((x - y) * _half_world_tile_width)) - _half_world_tile_width,
+                y : (map.pos.y + ((x + y) * _half_world_tile_height)) - _half_world_tile_height,
+                    //the geometry size is based on the texture/tileset size, not the map size
+                w : _scaled_tileset_tilewidth,
+                h : _scaled_tileset_tileheight,
+                visible: layer.visible,
+                color: new Color(1,1,1, layer.opacity)
+            });
 
-        if(tileset != null) {
-            if(tileset.texture != null) {
-                tileset.texture.onload = function(t) {
+        if(tileset.texture != null) {
 
-                    var image_coord = tileset.pos_in_texture( tile.id );
+            var image_coord = tileset.pos_in_texture( tile.id );
 
-                    _tile_geom.uv(
-                        new Rectangle(
-                            tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
-                            tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
-                            tileset.tile_width,
-                            tileset.tile_height
-                        ) //Rectangle
-                    ); //uv
+            geomlayer.quad_uv(
+                 _quadpack_id,
+                new Rectangle(
+                    tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
+                    tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
+                    tileset.tile_width,
+                    tileset.tile_height
+                ) //Rectangle
+            ); //uv
 
-                    if(_filter != null) {
-                        tileset.texture.filter = _filter;
-                    } //_filter != null
-                }
-            }
-        } //tileset != null
+        } //texture != null
 
-        return _tile_geom;
+        return _quadpack_id;
 
     } //create_tile_for_layer
 
 
-} //IsometricVisuals
+} //IsometricVisual

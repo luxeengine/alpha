@@ -7,6 +7,7 @@ import phoenix.Texture.FilterType;
 import luxe.tilemaps.Tilemap;
 
 import luxe.Vector;
+import luxe.Log.*;
 
 import phoenix.geometry.Geometry;
 
@@ -14,80 +15,78 @@ import luxe.options.TilemapOptions;
 
 class Ortho {
 
-    public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int ) : Vector {
-        
+    public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int, ?scale:Float=1.0, ?rounded:Bool=true ) : Vector {
+
         var tile_coord = new Vector();
 
-            tile_coord.x = Math.floor(world_x / tile_width);
-            tile_coord.y = Math.floor(world_y / tile_height);
+            tile_coord.x = world_x / (tile_width * scale);
+            tile_coord.y = world_y / (tile_height * scale);
+
+            if(rounded) {
+                tile_coord.x = Math.floor(tile_coord.x);
+                tile_coord.y = Math.floor(tile_coord.y);
+            }
 
         return tile_coord;
 
     } //worldpos_to_tile_coord
 
-    public static function tile_coord_to_worldpos(  tile_x:Int, tile_y:Int, tile_width:Int, tile_height:Int, 
-                                                   ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
-            
+    public static function tile_coord_to_worldpos(  tile_x:Int, tile_y:Int, tile_width:Int, tile_height:Int,
+                                                    ?scale:Float=1.0, ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
+
         var world_pos = new Vector();
 
-            world_pos.x = tile_x * tile_width;
-            world_pos.y = tile_y * tile_height;
+        var _scaled_tw = tile_width * scale;
+        var _scaled_th = tile_height * scale;
+
+            world_pos.x = tile_x * _scaled_tw;
+            world_pos.y = tile_y * _scaled_th;
 
             //top left by default
-        if(offset_x == null) { offset_x = TileOffset.left; };
-        if(offset_y == null) { offset_y = TileOffset.top; };
+        def(offset_x, TileOffset.left);
+        def(offset_y, TileOffset.top);
 
             switch(offset_x) {
-                case TileOffset.center:    { world_pos.x += (tile_width/2); }            
-                case TileOffset.right:     { world_pos.x += tile_width; }
+                case TileOffset.center:    { world_pos.x += (_scaled_tw/2); }
+                case TileOffset.right:     { world_pos.x += _scaled_tw; }
                 default:
             }
 
             switch(offset_y) {
-                case TileOffset.center:    { world_pos.y += (tile_height/2); }            
-                case TileOffset.bottom:    { world_pos.y += tile_height; }
+                case TileOffset.center:    { world_pos.y += (_scaled_th/2); }
+                case TileOffset.bottom:    { world_pos.y += _scaled_th; }
                 default:
             }
 
         return world_pos;
-        
+
     } //tile_coord_to_worldpos
 
 
 } //Ortho
 
-class OrthoVisuals extends TilemapVisuals {    
+class OrthoVisual extends TilemapVisual {
 
-    public override function create( options:TilemapVisualOptions ) {
+    public override function create() {
 
-        var _scale = (options.scale != null) ? options.scale : 1;        
+        super.create();
 
-        var _map_scaled_tw = map.tile_width*_scale;
-        var _map_scaled_th = map.tile_height*_scale;
+        var _map_scaled_tw = map.tile_width*options.scale;
+        var _map_scaled_th = map.tile_height*options.scale;
 
         for( layer in map ) {
 
-            var _layer_geom : TilemapVisualsLayerGeometry = [];
+            //dirty hack - I always pick the first tileset because there is no mapping between Layer and TileSet right now
+            var key = "";
+            for (k in map.tilesets.keys()) {
+                key = k;
+                break;
+            }
 
-            for( y in 0 ... map.height ) {
-
-                var _geom_row : Array<Geometry> = [];
-
-                for( x in 0 ... map.width ) {
-
-                        //we want to push nulls into here,
-                        //because otherwise the sizes won't match
-                        //and because we use it to create tiles when
-                        //changing the tile gid later
-                    var _tile_geom = create_tile_for_layer( layer, x, y, _scale, options.filter );
-
-                    _geom_row.push( _tile_geom );
-                    
-                } //for each tile
-
-                _layer_geom.push(_geom_row);
-
-            } //for each row
+            var _layer_geom : TilemapVisualLayerGeometry = new TilemapVisualLayerGeometry({
+                    texture: map.tilesets.get(key).texture,
+                    batcher: options.batcher
+                });
 
                 //add the geometry to the list
             geometry.set( layer.name, _layer_geom );
@@ -95,25 +94,28 @@ class OrthoVisuals extends TilemapVisuals {
         } //for each map
 
 
-        if(options.grid != null && options.grid == true) {
+        if(options.grid) {
 
+            //:todo : grid for tilemap is primitive, should be a facility
             var color = new Color(1,1,1,0.8).rgb(0xcc0000);
 
             for(x in 0 ... map.width+1) {
-                Luxe.draw.line({ 
+                Luxe.draw.line({
                     p0 : new Vector(map.pos.x + (x * _map_scaled_tw), map.pos.y + 0 ),
                     p1 : new Vector(map.pos.x + (x * _map_scaled_tw), map.pos.y + (map.height * _map_scaled_th)),
                     color : color,
-                    depth : 2
+                    depth : options.depth+0.0001,
+                    batcher : options.batcher
                 });
             }
 
             for(y in 0 ... map.height+1) {
-                Luxe.draw.line({ 
+                Luxe.draw.line({
                     p0 : new Vector(map.pos.x + (0), map.pos.y + (y * _map_scaled_th)),
                     p1 : new Vector(map.pos.x + (map.width * _map_scaled_tw), map.pos.y + (y * _map_scaled_th)),
                     color : color,
-                    depth : 2
+                    depth : options.depth+0.0001,
+                    batcher : options.batcher
                 });
             }
 
@@ -121,12 +123,32 @@ class OrthoVisuals extends TilemapVisuals {
 
     } //create
 
-    override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int, ?_scale:Float=1, ?_filter:FilterType  ) {
+    override function update_tile_id( _quadpack_id:Int, _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool, _flipy:Bool, _angle:Int ) {
 
-        _filter = (_filter != null) ? _filter: FilterType.nearest;
+        var tileset = map.tileset_from_id( _id );
+        var image_coord = tileset.pos_in_texture( _id );
 
-        var _map_scaled_tw = map.tile_width*_scale;
-        var _map_scaled_th = map.tile_height*_scale;
+        var geomlayer = geometry_for_layer(_layer_name);
+        geomlayer.quad_uv(
+             _quadpack_id,
+            new Rectangle(
+                tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
+                tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
+                tileset.tile_width,
+                tileset.tile_height
+            ) //Rectangle
+        ); //uv
+
+        geomlayer.quad_flipx(_quadpack_id, _flipx);
+        geomlayer.quad_flipy(_quadpack_id, _flipy);
+        //todo uv_angle _angle
+
+    } //update_tile_id
+
+    override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int ) : Null<Int> {
+
+        var _map_scaled_tw = map.tile_width*options.scale;
+        var _map_scaled_th = map.tile_height*options.scale;
 
         var tile = layer.tiles[y][x];
 
@@ -137,48 +159,49 @@ class OrthoVisuals extends TilemapVisuals {
 
         var tileset = map.tileset_from_id( tile.id );
 
-        var _scaled_tilewidth = tileset.tile_width*_scale;
-        var _scaled_tileheight = tileset.tile_height*_scale;
+        assertnull(tileset, 'Tilemap Ortho cannot find tileset for tile id ${tile.id}');
+
+        var _scaled_tilewidth = tileset.tile_width*options.scale;
+        var _scaled_tileheight = tileset.tile_height*options.scale;
 
         var _offset_x = 0;
         var _offset_y = _scaled_tileheight - _map_scaled_th;
 
-            //create the tile geometry
-        var _tile_geom = Luxe.draw.box({
-            x: map.pos.x + (tile.x * _map_scaled_tw) - (_offset_x), 
-            y: map.pos.y + (tile.y * _map_scaled_th) - (_offset_y),
-            w: _scaled_tilewidth,
-            h: _scaled_tileheight,
-            visible : layer.visible,
-            texture : (tileset != null) ? tileset.texture : null,
-            color : new Color(1,1,1, layer.opacity)
-        });
+        //init packed quad for tile
+        var geomlayer = geometry_for_layer(layer.name);
+        var _quadpack_id = geomlayer.quad_add({
+                x: map.pos.x + (tile.x * _map_scaled_tw) - (_offset_x),
+                y: map.pos.y + (tile.y * _map_scaled_th) - (_offset_y),
+                w: _scaled_tilewidth,
+                h: _scaled_tileheight,
+                visible: layer.visible,
+                color: new Color(1,1,1, layer.opacity)
+            });
 
-        if(tileset != null) {
-            if(tileset.texture != null) {
-                tileset.texture.onload = function(t) {
-                    
-                    var image_coord = tileset.pos_in_texture( tile.id );
-                    
-                    _tile_geom.uv(
-                        new Rectangle(
-                            tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
-                            tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
-                            tileset.tile_width,
-                            tileset.tile_height
-                        ) //Rectangle
-                    ); //uv
 
-                    if(_filter != null) {
-                        tileset.texture.filter = _filter;
-                    }
-                }
-            }
-        } //tileset != null
+        if(tileset.texture != null) {
 
-        return _tile_geom;
+            var image_coord = tileset.pos_in_texture( tile.id );
+
+            geomlayer.quad_uv(
+                 _quadpack_id,
+                new Rectangle(
+                    tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
+                    tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
+                    tileset.tile_width,
+                    tileset.tile_height
+                ) //Rectangle
+            ); //uv
+
+            geomlayer.quad_flipx(_quadpack_id, tile.flipx);
+            geomlayer.quad_flipy(_quadpack_id, tile.flipy);  
+            //todo uv_angle tile.angle
+
+        } //texture != null
+
+        return _quadpack_id;
 
     } //create_tile_for_layer
 
 
-} //OrhtoVisuals
+} //OrhtoVisual

@@ -1,100 +1,141 @@
 package luxe.tilemaps;
 
-import luxe.Rectangle;
+import luxe.Log.*;
 import luxe.Vector;
-import phoenix.geometry.QuadGeometry;
+import luxe.Rectangle;
+import luxe.options.TilemapOptions;
+import luxe.tilemaps.Ortho.OrthoVisual;
+import luxe.tilemaps.Isometric.IsometricVisual;
+
 import phoenix.Texture;
 import phoenix.geometry.Geometry;
+import phoenix.geometry.QuadPackGeometry;
 
-import luxe.tilemaps.Ortho.OrthoVisuals;
-import luxe.tilemaps.Isometric.IsometricVisuals;
+typedef TilemapVisualLayerGeometry = QuadPackGeometry;
+typedef QuadPackTileIdLayer = Array< Array< Null<Int> > >;
 
-import luxe.options.TilemapOptions;
+class TilemapVisual {
 
-typedef TilemapVisualsLayerGeometry = Array< Array<Geometry> >;
-
-class TilemapVisuals {
-
-    public var geometry : Map<String, TilemapVisualsLayerGeometry>;
+    public var geometry : Map<String, TilemapVisualLayerGeometry>;
     public var map : Tilemap;
+    public var options : TilemapVisualOptions;
+    var quadpack_ids : Map<String, QuadPackTileIdLayer>;
 
-    public function new( _map:Tilemap, options:Dynamic ) {
+    public function new( _map:Tilemap, _options:TilemapVisualOptions ) {
 
         geometry = new Map();
         map = _map;
+        options = _options;
 
-        create( options );
-    }
+        default_options();
 
-    public function create( options:Dynamic ) {
+        create();
 
-        if(options.no_destroy == null) {
+    } //new
+
+    public function create() {
+
+        if(options.no_destroy != null && options.no_destroy != true) {
             destroy();
+            geometry = new Map();
+        }
+
+        quadpack_ids = new Map();
+        for (layer in map.layers_ordered) {
+            var quadpack_tile_id_layer : QuadPackTileIdLayer = [];
+            for (y in 0 ... map.height) {
+                quadpack_tile_id_layer.push([]);
+                for (x in 0 ... map.width) {
+                    quadpack_tile_id_layer[y].push(null);
+                }
+            }
+            quadpack_ids.set( layer.name, quadpack_tile_id_layer );
         }
 
         //implemented in subclass
 
     } //create
 
-    function create_tile_for_layer( layer:TileLayer, x:Int, y:Int, ?_scale:Float=1, ?_filter:FilterType  ) : QuadGeometry {
+    public function geometry_for_tile( _layer:String, x:Int, y:Int ) : PackedQuad {
+
+        if(!geometry.exists(_layer)) {
+            log('visual / geometry_for_layer / $_layer does not exist in tilemap visual');
+            return null;
+        }
+
+        var geomlayer = geometry_for_layer(_layer);
+
+        return geomlayer.quads.get( quadpack_ids.get(_layer)[x][y] );
+
+    } //geometry_for_tile
+
+    public function geometry_for_layer( _layer:String ) : TilemapVisualLayerGeometry {
+
+        if(!geometry.exists(_layer)) {
+            log('visual / geometry_for_layer / $_layer does not exist in tilemap visual');
+        }
+
+        return geometry.get(_layer);
+
+    } //geometry_for_layer
+
+    function default_options() {
+
+        def(options.batcher, Luxe.renderer.batcher);
+        def(options.depth, 0.0);
+        def(options.scale, 1);
+        def(options.grid, false);
+        def(options.filter, FilterType.nearest);
+
+    } //default_options
+
+    function create_tile_for_layer( layer:TileLayer, x:Int, y:Int ) : Null<Int> {
 
         //implemented in subclass
         return null;
 
     } //create_tile_for_layer
 
-    public function refresh_tile_id( _layer_name:String, _x:Int, _y:Int, _id:Int ) {
+    function update_tile_id( _quadpack_id:Int, _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool, _flipy:Bool, _angle:Int ) {
 
-        var _geom_layer : Array< Array<Geometry> > = geometry.get( _layer_name );
+        //implemented in subclass
+
+    } //update_tile_id
+
+        /** Update the visual to match a new tile id at a given coordinate.
+            This is called automatically when you set a `Tile` ID in a map, if it has a visual assigned.
+            _angle has to be a multiple of 90 */
+    public function refresh_tile_id( _layer_name:String, _x:Int, _y:Int, _id:Int, _flipx:Bool = false, _flipy:Bool = false, _angle:Int = 0) {
+
+        var _tile_layer = map.layer(_layer_name);
+        var _geom_layer = geometry_for_layer(_layer_name);
+
         if(_geom_layer != null) {
 
                 //we need to know if the _x/_y fits inside the map because
                 //if the geometry is actually null, we need to create it first
             if(map.inside(_x,_y)) {
 
-                var _geom : QuadGeometry = cast _geom_layer[_y][_x];
+                var _quadpack_id = quadpack_ids.get(_layer_name)[_y][_x];
 
-                    //null geometry means the tile was either destroyed
-                    //or created at 0 gid, which means we can create it now
-                if(_geom == null) {
+                if (_quadpack_id == null) {
 
-                        //don't create blank tiles, ever
-                    if(_id != 0) {
-
-                            //create the geometry, this sets the uv's also
-                        _geom = create_tile_for_layer(map.layer(_layer_name), _x, _y);
-                            //store it back in the tilemap
-                        _geom_layer[_y][_x] = _geom;
-
-                    } //id != 0
-
+                    if (_id != 0)
+                        quadpack_ids.get(_layer_name)[_y][_x] = create_tile_for_layer( map.layer(_layer_name), _x, _y );
+                
                 } else {
 
-                    //if we have a geometry and the new id is 0, we should kill the geometry
                     if(_id == 0) {
+                    
+                        _geom_layer.quad_remove(_quadpack_id);
+                    
+                    } else {
 
-                        _geom.drop();
-                        _geom = null;
-                        _geom_layer[_y][_x] = null;
+                        update_tile_id(_quadpack_id, _layer_name, _x, _y, _id, _flipx, _flipy, _angle);
 
-                    } else { //id == 0
+                    }
 
-                        //now we know the geometry is there, we just set it's uv's
-                        var tileset = map.tileset_from_id( _id );
-                        var image_coord = tileset.pos_in_texture( _id );
-
-                        _geom.uv(
-                            new Rectangle(
-                                tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
-                                tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
-                                tileset.tile_width,
-                                tileset.tile_height
-                            ) //Rectangle
-                        ); //uv
-
-                    } // id == 0 else
-
-                } // geom == null else
+                }
 
             } else { //inside
                 trace("cannot refresh tile " + _x + "," + _y + " because the coords were out of the map width/height : " + _layer_name + " and " + map.width + "," + map.height );
@@ -106,15 +147,18 @@ class TilemapVisuals {
 
     } //refresh_tile_id
 
+        /** Destroy the geometry this visual contains and clean up */
     public function destroy( ) {
 
         if(geometry != null) {
-            for(layer in geometry) {
-                for(row in layer) {
-                    for(tile in row) {
-                        tile.drop();
-                    } //tile
-                } //row
+            for(_name in geometry.keys()) {
+
+                var layer = geometry.get(_name);
+
+                layer.drop();
+
+                geometry.remove(_name);
+
             } //layer
         } //!null
 
@@ -122,15 +166,18 @@ class TilemapVisuals {
 
     } //destroy
 
-} //TilemapVisuals
+} //TilemapVisual
 
 class Tile {
 
     public var uuid : String;
     public var x : Int;
     public var y : Int;
-    public var pos : Vector;
     public var size : Vector;
+    @:isVar public var flipx(default, set):Bool;
+    @:isVar public var flipy(default, set):Bool;
+        //Has to be a multiple of 90
+    @:isVar public var angle(default, set):Int;
 
     public var layer : TileLayer;
     public var map : Tilemap;
@@ -147,6 +194,10 @@ class Tile {
         x = options.x;
         y = options.y;
 
+        flipx = def(options.flipx, false);
+        flipy = def(options.flipy, false);
+        angle = def(options.angle, 0);
+
             //size is dependent on the tileset
         var _tileset = map.tileset_from_id( id );
             //but only if it can find it (i.e 0 tile id)
@@ -156,24 +207,23 @@ class Tile {
             size = new Vector( map.tile_width, map.tile_height );
         }
 
-        pos = new Vector( map.pos.x + (size.x * x), map.pos.y + (size.y * y) );
-
     } //new
 
     function toString() {
-        return "Tile: id:"+id+" x,y:" + x + "," + y + " layer(" + layer.name + ") coord("+x+","+y+") pos("+pos.x+","+pos.y+") size("+size.x+","+size.y+")";
+        var _pos = map.tile_pos(x,y);
+        return 'Tile: id:$id x,y:$x,$y layer(${layer.name}) coord($x,$y) pos(${_pos.x},${_pos.y}) size(${size.x},${size.y}) flipx,flipy:$flipx,$flipy angle:$angle';
     }
 
     function set_id( _id:Int ) {
 
             //update first, so
-            //visuals have the latest
+            //visual have the latest
             //values
         id = _id;
 
         if(map != null) {
-            if(map.visuals != null) {
-                map.visuals.refresh_tile_id( layer.name, x, y, _id );
+            if(map.visual != null) {
+                map.visual.refresh_tile_id( layer.name, x, y, _id, flipx, flipy, angle );
             }
         }
 
@@ -181,47 +231,159 @@ class Tile {
 
     } //set_id
 
+    function set_flipx(_val:Bool):Bool {
+        flipx = _val;
+        if(map != null && map.visual != null) {
+            map.visual.refresh_tile_id( layer.name, x, y, id, flipx, flipy, angle);
+        }
+        return flipx;
+    }
+
+    function set_flipy(_val:Bool):Bool {
+        flipy = _val;
+        if(map != null && map.visual != null) {
+            map.visual.refresh_tile_id( layer.name, x, y, id, flipx, flipy, angle);
+        }
+        return flipy;
+    }
+
+    function set_angle(_val:Int):Int {
+        assert(_val % 90 == 0, 'Tile angle has to be a multiple of 90');
+        angle = _val;
+        if(map != null && map.visual != null) {
+            map.visual.refresh_tile_id( layer.name, x, y, id, flipx, flipy, angle);
+        }
+        return angle;
+    }
 } //Tile
 
 
 class TileLayer {
 
-    //the depth/ordering value
+        /** the depth/ordering value. 
+            (WIP: Ortho TilemapVisual uses (at create): tile render depth = tilemap.depth + (`layer`/layer count)) */
     public var layer : Int;
-        //the unique id of the layer
+        /** the unique id of the layer */
     public var id : String;
-        //the name of the layer
+        /** the name of the layer */
     public var name : String;
-        //the name of the layer
+        /** the layer opacity. default: 1 */
     public var opacity : Float = 1.0;
-        //the name of the layer
+        /** the layer visibility. default: true */
     public var visible : Bool = true;
-        //the map this tilemap belongs to
+        /** The layer static state.
+            When fixed, visuals can optimize the geometry */
+    public var fixed : Bool = true;
+        /** the map this tilemap belongs to */
     public var map : Tilemap;
-        //array of array of tiles
+        /** array of array of tiles */
     public var tiles : Array<TileArray>;
-        //layer properties
+        /** layer properties */
     public var properties : Map<String,String>;
 
     public function new( options:TileLayerOptions ) {
 
-        if(options.map == null) {
-            throw "TileLayer requires a Tilemap passed into the options, as map:Tilemap";
-        }
+        assertnull(options.map, 'TileLayer requires a Tilemap passed into the options, as map:Tilemap');
 
             //required options
         id = Luxe.utils.uniqueid();
         name = options.name;
         map = options.map;
-            //optional layer index
-        layer = (options.layer == null) ? 0 : options.layer;
-        opacity = (options.opacity == null) ? 1.0 : options.opacity;
-        visible = (options.visible == null) ? true : options.visible;
+
+        layer = def(options.layer, 0);
+        opacity = def(options.opacity, 1.0);
+        visible = def(options.visible, true);
+        fixed = def(options.fixed, true);
+        properties = def(options.properties, new Map());
 
         tiles = [];
-        properties = new Map();
 
     } //new
+
+
+        /** Returns a list of rectangles in tile space,
+            where any tile with id > 0 is combined into bounding regions */
+    public function bounds_fitted():Array<Rectangle> {
+
+        var checked:Array<Null<Bool>> = [];
+        var rectangles:Array<Rectangle> = [];
+        var startCol = -1;
+        var index = -1;
+        var tileID = -1;
+        var width = map.width;
+        var height = map.height;
+
+        for(y in 0...height) {
+            for(x in 0...width) {
+
+                index = y * width + x;
+                tileID = tiles[y][x].id;
+
+                if(tileID > 0 && (checked[index] == false || checked[index] == null)) {
+
+                    if(startCol == -1) {
+                        startCol = x;
+                    }
+
+                    checked[index] = true;
+
+                } else if(tileID == 0 || checked[index] == true) {
+
+                    if(startCol != -1) {
+                        rectangles.push(find_bounds_rect(y, startCol, x, checked));
+                        startCol = -1;
+                    }
+
+                }
+
+            } //x in 0...width
+
+            if(startCol != -1) {
+                rectangles.push(find_bounds_rect(y, startCol, width, checked));
+                startCol = -1;
+            }
+
+        } //each row
+
+        return rectangles;
+
+    } //bounds_fitted
+
+        /** Finds the largest bounding rect around tiles with id > 0 between start_x and end_x, starting at start_y and going down as far as possible */
+    function find_bounds_rect(start_y:Int, start_x:Int, end_x:Int, checked:Array<Null<Bool>>) {
+
+        var index = -1;
+        var tileID = -1;
+        var width = map.width;
+        var height = map.height;
+
+        for(y in (start_y + 1)... height){
+            for(x in start_x...end_x) {
+
+                index = y * width + x;
+
+                tileID = tiles[y][x].id;
+
+                if(tileID == 0 || checked[index] == true){
+
+                    //Set everything we've visited so far in this row to false again because it won't be included in the rectangle and should be checked again
+                    for(_x in start_x...x) {
+                        index = y * width + _x;
+                        checked[index] = false;
+                    }
+
+                    return new Rectangle(start_x, start_y, end_x - start_x, y - start_y);
+
+                }
+
+                checked[index] = true;
+
+            } //each x
+        } //each y
+
+        return new Rectangle(start_x, start_y, end_x - start_x, height - start_y);
+
+    } //find_bounds_rect
 
 } //TileLayer
 
@@ -240,22 +402,17 @@ class Tileset {
 
     public function new( options:TilesetOptions ) {
 
-        if(options == null) {
-            throw "Tileset requires a non-null options on new()";
-        }
-
-        if(options.texture == null) {
-            throw "Tileset requires a texture that is not null";
-        }
+        assertnull(options, 'Tileset requires a non-null options on new()');
+        assertnull(options.texture, 'Tileset requires a texture that is not null');
 
         name = options.name;
         texture = options.texture;
         tile_width = options.tile_width;
         tile_height = options.tile_height;
 
-        first_id    = (options.first_id == null) ? 1 : options.first_id;
-        margin      = (options.margin   == null) ? 0 : options.margin;
-        spacing     = (options.spacing  == null) ? 0 : options.spacing;
+        first_id    = def(options.first_id, 1);
+        margin      = def(options.margin,   0);
+        spacing     = def(options.spacing,  0);
 
     } //new
 
@@ -290,33 +447,38 @@ class Tileset {
 
 class Tilemap {
 
-    //the layers the map consists of
+        /** The layers the map consists of, stored by name */
     public var layers : Map<String,TileLayer>;
+        /** The layers in an ordered array */
     public var layers_ordered : Array<TileLayer>;
 
-        //tilesets associated with this map
+        /** Tilesets associated with this map */
     public var tilesets : Map<String,Tileset>;
-        //key:value property list for this tilemap
+        /** key:value property list for this tilemap */
     public var properties : Map<String,String>;
 
-        //the orientation if any of this map
+        /** The orientation if any of this map */
     public var orientation : TilemapOrientation;
-        //the visual representation if any of this map
-    public var visuals : TilemapVisuals;
+        /** The visual representation if any of this map */
+    public var visual : TilemapVisual;
 
-        //the position of the tilemap in world space
+        /** The position of the tilemap in world space */
     public var pos : Vector;
-        //the size of the tiles in this map
+        /** The width of a tile */
     public var tile_width : Int = 0;
+        /** The height of a tile */
     public var tile_height : Int = 0;
-        //the sizes of the layer
+        /** The width of the map in tiles */
     public var width : Int = 0;
+        /** The height of the map in tiles */
     public var height : Int = 0;
 
-        //the total width of the layer
-    @:isVar public var total_width (get,null) : Int = 0;
-    @:isVar public var total_height (get,null) : Int = 0;
-    @:isVar public var bounds (get,null) : Rectangle;
+        /** Get the total width of the tilemap in world units (tilewidth*width) */
+    public var total_width (get,null) : Int = 0;
+        /** Get the total height of the tilemap in world units (tilewidth*width) */
+    public var total_height (get,null) : Int = 0;
+        /** Get the containing bounding rectangle of the map in world units */
+    public var bounds (get,null) : Rectangle;
 
     public function new( options:TilemapOptions ) {
 
@@ -342,19 +504,19 @@ class Tilemap {
 
     } //new
 
-    public function display( options:Dynamic ) {
+    public function display( options:TilemapVisualOptions ) {
 
         switch(orientation) {
             case TilemapOrientation.ortho :
-                visuals = new OrthoVisuals( this, options );
+                visual = new OrthoVisual( this, options );
             case TilemapOrientation.isometric :
-                visuals = new IsometricVisuals( this, options );
+                visual = new IsometricVisual( this, options );
             case TilemapOrientation.none :
         } //orientation
 
     } //display
 
-        //If the position is inside the map or not
+        /** If the given tile space coordinate is inside the map or not */
     public function inside( x:Int, y:Int ) : Bool {
 
         if(width == 0 || height == 0) {
@@ -381,19 +543,20 @@ class Tilemap {
 
     } //inside
 
-    public function tile_pos( layer_name:String, x:Int, y:Int, ?offset_x:TileOffset, ?offset_y:TileOffset ) {
+        /** Get the world space position of a tile coordinate, from a given layer. */
+    public function tile_pos( x:Int, y:Int, ?scale:Float=1.0, ?offset_x:TileOffset, ?offset_y:TileOffset ) {
 
         if(inside(x,y)) {
 
             switch(orientation) {
 
                 case TilemapOrientation.ortho: {
-                    var _worldpos = Ortho.tile_coord_to_worldpos(x, y, tile_width, tile_height, offset_x, offset_y );
+                    var _worldpos = Ortho.tile_coord_to_worldpos(x, y, tile_width, tile_height, scale, offset_x, offset_y );
                     return _worldpos.add( pos );
                 }
 
                 case TilemapOrientation.isometric: {
-                    var _worldpos = Isometric.tile_coord_to_worldpos(x, y, tile_width, tile_height, offset_x, offset_y );
+                    var _worldpos = Isometric.tile_coord_to_worldpos(x, y, tile_width, tile_height, scale, offset_x, offset_y );
                     return _worldpos.add( pos );
                 }
 
@@ -409,64 +572,66 @@ class Tilemap {
 
     } //tile_pos
 
-    public function tile_at_pos( layer_name:String, worldpos:Vector ) {
+        /** Convert a world space position to tile space coords */
+    public function tile_coord( _world_pos_x:Float, _world_pos_y:Float, ?_scale:Float = 1.0, ?_rounded:Bool=true ) : Vector {
 
-        switch(orientation) {
+         return switch(orientation) {
+
+            case TilemapOrientation.ortho: {
+                Ortho.worldpos_to_tile_coord( _world_pos_x - pos.x, _world_pos_y - pos.y, tile_width, tile_height, _scale, _rounded );
+            }
+
+            case TilemapOrientation.isometric: {
+                Isometric.worldpos_to_tile_coord( _world_pos_x - pos.x, _world_pos_y - pos.y, tile_width, tile_height, _scale, _rounded );
+            }
+
+            default: null;
+
+        } //switch orientation
+
+    } //tile_coord
+
+        /** Returns the tile at a given world position. 
+            Returns null if not in the tilemap, or no tile exists at the position, for that layer */
+    public function tile_at_pos( layer_name:String, _world_pos_x:Float, _world_pos_y:Float, ?_scale:Float = 1.0 ) : Tile {
+
+        return switch(orientation) {
 
             case TilemapOrientation.ortho: {
 
-                var _tile_pos = Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
-                return tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
+                var _tile_pos = Ortho.worldpos_to_tile_coord( _world_pos_x - pos.x, _world_pos_y - pos.y, tile_width, tile_height, _scale );
+                
+                tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
 
             } //ortho
 
             case TilemapOrientation.isometric: {
 
-                var _tile_pos = Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
-                return tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
+                var _tile_pos = Isometric.worldpos_to_tile_coord( _world_pos_x - pos.x, _world_pos_y - pos.y, tile_width, tile_height, _scale );
+                
+                tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
 
             } //isometric
 
-            default: {
-
-            }
+            default: null;
 
         } //switch orientation
-
-        return null;
 
     } //tile_at_pos
 
-    public function worldpos_to_map( worldpos:Vector ) {
 
-         switch(orientation) {
-
-            case TilemapOrientation.ortho: {
-                return Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
-            }
-
-            case TilemapOrientation.isometric: {
-                return Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
-            }
-
-            default:{}
-
-        } //switch orientation
-
-        return null;
-
-    } //worldpos_to_map
-
+        /** Fetch a layer by name, or null if it's not found */
     public function layer( layer_name:String ) {
         return layers.get( layer_name );
     }
 
-    public function tileset( layer_name:String ) {
-        return tilesets.get( layer_name );
+        /** Fetch a tileset by name, or null if its not found */
+    public function tileset( tileset_name:String ) {
+        return tilesets.get( tileset_name );
     }
 
-        //return a tile from a layer, in tile coordinates
-    public function tile_at( layer_name:String, x:Int, y:Int ) {
+        /** Return a tile from a layer, at the given tile coordinates */
+    public function tile_at( layer_name:String, x:Int, y:Int ) : Tile {
 
         if( inside(x,y) ) {
             var _layer = layers.get(layer_name);
@@ -483,12 +648,14 @@ class Tilemap {
 
     } //tile_at
 
+        /** Allows iterating on the layers in order */
     public function iterator() : Iterator<TileLayer> {
 
         return layers_ordered.iterator();
 
     } //iterator
 
+        /** Add a tileset with the given options */
     public function add_tileset( options:TilesetOptions ) {
 
         var tileset = new Tileset( options );
@@ -499,16 +666,7 @@ class Tilemap {
 
     } //add_tileset
 
-    function _sort_layers( a:TileLayer,b:TileLayer ) {
-        if(a.layer < b.layer) return -1;
-        if(a.layer >= b.layer) return 1;
-        return 1;
-    } //_sort_layers
-
-    function sort_layers() {
-        layers_ordered.sort( _sort_layers );
-    } //sort_layers
-
+        /** Return the tileset for a given tile id, or null */
     public function tileset_from_id( _id:Int ) {
 
         var tileset:Tileset = null;
@@ -525,7 +683,7 @@ class Tilemap {
 
     } //tileset_from_id
 
-        //to remove the tile we can set the id to 0
+        /**  Removes the tile at the given tile coordinates. Sets the tile id to 0 */
     public function remove_tile( layer_name:String, x:Int, y:Int ) : Bool {
 
         if(inside(x,y)) {
@@ -541,6 +699,7 @@ class Tilemap {
 
     } //remove_tile
 
+        /** Remove a tileset by name */
     public function remove_tileset( name:String, _destroy_textures:Bool = false ) : Bool {
 
         var _tileset = tileset(name);
@@ -553,6 +712,7 @@ class Tilemap {
 
     } //remove_tileset
 
+        /** Remove a layer by name */
     public function remove_layer( name:String ) : Bool {
 
         var _layer = layer(name);
@@ -565,9 +725,10 @@ class Tilemap {
 
     } //remove_layer
 
+        /** Add a layer with the given options */
     public function add_layer( options:TileLayerOptions ) {
 
-        if(options.map == null) options.map = this;
+        def(options.map, this);
 
         var new_layer = new TileLayer( options );
 
@@ -582,6 +743,8 @@ class Tilemap {
 
     } //add_layer
 
+        /** Fill an entire layer with the given tile id.
+            The existing tiles are replaced. */
     public function add_tiles_fill_by_id( layer_name:String, _tileid:Int = 0 ) {
 
         var _layer = layers.get(layer_name);
@@ -617,7 +780,8 @@ class Tilemap {
 
     } //add_tiles_fill_by_id
 
-        //this will destroy previous tiles (use set to change them)
+        /** Add tiles from an array of integer tile id's to the given layer.
+            This will destroy previous tiles (use set to change them). */
     public function add_tiles_from_grid( layer_name:String, grid:Array< Array<Int> > ) {
 
         if(grid.length != height) {
@@ -663,17 +827,62 @@ class Tilemap {
 
     } //add_tiles_from_grid
 
-    function get_total_width() : Int {
-        return width * tile_width;
-    } //get_total_width
+        /** Destroys the tilemap and it's visual. */
+    public function destroy(?_keep_visual:Bool=false) {
 
-    function get_total_height() : Int {
-        return height * tile_height;
-    } //get_total_height
+        layers = null;
+        layers_ordered = null;
+        tilesets = null;
+        properties = null;
+        orientation = null;
+        pos = null;
+        tile_width = 0;
+        tile_height = 0;
+        width = 0;
+        height = 0;
+
+        if(!_keep_visual && visual != null) {
+            visual.destroy();
+        }
+
+    } //destroy
+
+//Internal
+
+    function _sort_layers( a:TileLayer,b:TileLayer ) {
+        if(a.layer < b.layer) return -1;
+        if(a.layer >= b.layer) return 1;
+        return 1;
+    } //_sort_layers
+
+    function sort_layers() {
+
+        layers_ordered.sort( _sort_layers );
+
+    } //sort_layers
+
+//Getters
 
     function get_bounds() : Rectangle {
+
         return new Rectangle( pos.x, pos.y, pos.x+total_width, pos.y + total_height );
+
     } //get_bounds
+
+        /** Get the total height of the tilemap in tile width space */
+    function get_total_width() : Int {
+
+        return width * tile_width;
+
+    } //get_total_width
+
+        /** Get the total height of the tilemap in tile height space */
+
+    function get_total_height() : Int {
+
+        return height * tile_height;
+
+    } //get_total_height
 
 } // Tilemap
 
