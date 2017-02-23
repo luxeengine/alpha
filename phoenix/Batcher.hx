@@ -176,6 +176,7 @@ class Batcher {
         empty(_drop);
 
         renderer.remove_batch(this);
+        renderer.stats.batchers--;
 
         emitter = null;
         geometry = null;
