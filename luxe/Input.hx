@@ -9,9 +9,9 @@ class Input {
 
     var core : Engine;
 
-    var key_bindings : Map<String, Map<Int,Bool> >;
-    var mouse_bindings : Map<String, Map<Int,Bool> >;
-    var gamepad_bindings: Map<String, Map<Int, Null<Int>> >;
+    @:noCompletion public var key_bindings : Map<String, Map<Int,Bool> >;
+    @:noCompletion public var mouse_bindings : Map<String, Map<Int,Bool> >;
+    @:noCompletion public var gamepad_bindings: Map<String, Map<Int, Null<Int>> >;
 
     var _named_input_released : Map<String, Bool>;
     var _named_input_pressed : Map<String, Bool>;
@@ -131,7 +131,6 @@ class Input {
 
 //Named event handlers
     //
-
         /** Bind a named input binding to a `Key` keycode */
     public function bind_key(_name:String, _key:Int) {
 
@@ -140,9 +139,19 @@ class Input {
         }
 
         var _kb = key_bindings.get(_name);
-            _kb.set( _key, true );
+            _kb.set(_key, true);
 
     } //bind_key
+
+        /** Unbind a previously bound named input binding to a `Key` keycode */
+    public function unbind_key(_name:String, _key:Int) {
+
+        if(!key_bindings.exists(_name)) return;
+
+        var _kb = key_bindings.get(_name);
+            _kb.remove(_key);
+
+    } //unbind_key
 
         /** Bind a named input binding to a `MouseButton` */
     public function bind_mouse(_name:String, _button:MouseButton) {
@@ -152,9 +161,19 @@ class Input {
         }
 
         var _mb = mouse_bindings.get(_name);
-            _mb.set( _button, true );
+            _mb.set(_button, true);
 
     } //bind_mouse
+
+        /** Unbind a previously bound named input binding to a `MouseButton` */
+    public function unbind_mouse(_name:String, _button:MouseButton) {
+
+        if(!mouse_bindings.exists(_name)) return;
+
+        var _mb = mouse_bindings.get(_name);
+            _mb.remove(_button);
+
+    } //unbind_mouse
 
     /** Bind a named input binding to a `Gamepad Button`. If no `Gamepad Id` is specified, any gamepad fires the named binding.*/
     public function bind_gamepad(_name:String, _gamepad_button:Int, ?_gamepad_id:Null<Int> = null) {
@@ -164,9 +183,19 @@ class Input {
         }
 
         var _gp = gamepad_bindings.get(_name);
-            _gp.set ( _gamepad_button, _gamepad_id);
+            _gp.set(_gamepad_button, _gamepad_id);
 
     } //bind_gamepad
+
+        /** Unbind a previously bound named input binding to a gamepad button */
+    public function unbind_gamepad(_name:String, _button:Int) {
+
+        if(!gamepad_bindings.exists(_name)) return;
+
+        var _gp = gamepad_bindings.get(_name);
+            _gp.remove(_button);
+
+    } //unbind_gamepad
 
 //Internal
 
