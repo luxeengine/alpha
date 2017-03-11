@@ -1,20 +1,16 @@
 package luxe.tween;
 
 
-/**
-  @author Joshua Granick   
-  @author Aleš Tomeček (for RotationPath)   
- */
 class MotionPath {
 
 
-    public var rotation (get_rotation, null):RotationPath;
-    public var x (get_x, null):IComponentPath;
-    public var y (get_y, null):IComponentPath;
+	public var rotation (get, null):RotationPath;
+	public var x (get, null):IComponentPath;
+	public var y (get, null):IComponentPath;
 
-    var _rotation:RotationPath;
-    var _x:ComponentPath;
-    var _y:ComponentPath;
+	private var _rotation:RotationPath;
+	private var _x:ComponentPath;
+	private var _y:ComponentPath;
 
 
     public function new () {
@@ -70,7 +66,7 @@ class MotionPath {
 
 
 
-    function get_rotation ():RotationPath {
+	private function get_rotation ():RotationPath {
 
         if (_rotation == null) {
 
@@ -83,14 +79,14 @@ class MotionPath {
     }
 
 
-    function get_x ():IComponentPath {
+	private function get_x ():IComponentPath {
 
         return _x;
 
     }
 
 
-    function get_y ():IComponentPath {
+	private function get_y ():IComponentPath {
 
         return _y;
 
@@ -104,10 +100,10 @@ class ComponentPath implements IComponentPath {
 
 
     public var start:Float;
-    public var end (get_end, null):Float;
+	public var end (get, null):Float;
 
-    var paths:Array <BezierPath>;
-    var totalStrength:Float;
+	private var paths:Array <BezierPath>;
+	private var totalStrength:Float;
 
 
     public function new () {
@@ -166,7 +162,7 @@ class ComponentPath implements IComponentPath {
 
 
 
-    function get_end ():Float {
+	private function get_end ():Float {
 
         if (paths.length > 0) {
 
@@ -185,10 +181,10 @@ class ComponentPath implements IComponentPath {
 }
 
 
-@:noCompletion interface IComponentPath {
+interface IComponentPath {
 
 
-    var end (get_end, null):Float;
+	var end (get, null):Float;
     var start:Float;
 
     function calculate (k:Float):Float;
@@ -247,13 +243,13 @@ class LinearPath extends BezierPath {
 class RotationPath implements IComponentPath {
 
 
-    public var end (get_end, null):Float;
+	public var end (get, null):Float;
     public var offset:Float;
     public var start:Float;
 
-    var step = 0.01;
-    var _x:ComponentPath;
-    var _y:ComponentPath;
+	private var step = 0.01;
+	private var _x:ComponentPath;
+	private var _y:ComponentPath;
 
 
     public function new (x:ComponentPath, y:ComponentPath) {

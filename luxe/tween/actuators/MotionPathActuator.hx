@@ -4,20 +4,17 @@ package luxe.tween.actuators;
 import luxe.tween.MotionPath;
 
 
-/**
- * @author Joshua Granick
- */
-class MotionPathActuator extends SimpleActuator {
+class MotionPathActuator<T> extends SimpleActuator<T, T> {
 
 
-    public function new (target:Dynamic, duration:Float, properties:Dynamic) {
+	public function new (target:T, duration:Float, properties:Dynamic) {
 
         super (target, duration, properties);
 
     }
 
 
-    public override function apply ():Void {
+	private override function apply ():Void {
 
         for (propertyName in Reflect.fields (properties)) {
 
@@ -36,9 +33,9 @@ class MotionPathActuator extends SimpleActuator {
     }
 
 
-    override function initialize ():Void {
+	private override function initialize ():Void {
 
-        var details:PropertyPathDetails;
+		var details:PropertyPathDetails<T>;
         var path:IComponentPath;
 
         for (propertyName in Reflect.fields (properties)) {
@@ -74,11 +71,11 @@ class MotionPathActuator extends SimpleActuator {
     }
 
 
-    override function update (currentTime:Float):Void {
+	private override function update (currentTime:Float):Void {
 
         if (!paused) {
 
-            var details:PropertyPathDetails;
+			var details:PropertyPathDetails<T>;
             var easing:Float;
 
             var tweenPosition = (currentTime - timeOffset) / duration;
@@ -103,11 +100,11 @@ class MotionPathActuator extends SimpleActuator {
 
                     if (details.isField) {
 
-                        Reflect.setField (details.target, details.propertyName, cast (details, PropertyPathDetails).path.calculate (easing));
+						Reflect.setField (details.target, details.propertyName, cast (details, PropertyPathDetails<Dynamic>).path.calculate (easing));
 
                     } else {
 
-                        Reflect.setProperty (details.target, details.propertyName, cast (details, PropertyPathDetails).path.calculate (easing));
+						Reflect.setProperty (details.target, details.propertyName, cast (details, PropertyPathDetails<Dynamic>).path.calculate (easing));
 
                     }
 
@@ -133,11 +130,11 @@ class MotionPathActuator extends SimpleActuator {
 
                         if (details.isField) {
 
-                            Reflect.setField (details.target, details.propertyName, cast (details, PropertyPathDetails).path.calculate (easing));
+							Reflect.setField (details.target, details.propertyName, cast (details, PropertyPathDetails<Dynamic>).path.calculate (easing));
 
                         } else {
 
-                            Reflect.setProperty (details.target, details.propertyName, cast (details, PropertyPathDetails).path.calculate (easing));
+							Reflect.setProperty (details.target, details.propertyName, cast (details, PropertyPathDetails<Dynamic>).path.calculate (easing));
 
                         }
 
@@ -145,11 +142,11 @@ class MotionPathActuator extends SimpleActuator {
 
                         if (details.isField) {
 
-                            Reflect.setField (details.target, details.propertyName, Math.round (cast (details, PropertyPathDetails).path.calculate (easing)));
+							Reflect.setField (details.target, details.propertyName, Math.round (cast (details, PropertyPathDetails<Dynamic>).path.calculate (easing)));
 
                         } else {
 
-                            Reflect.setProperty (details.target, details.propertyName, Math.round (cast (details, PropertyPathDetails).path.calculate (easing)));
+							Reflect.setProperty (details.target, details.propertyName, Math.round (cast (details, PropertyPathDetails<Dynamic>).path.calculate (easing)));
 
                         }
 
@@ -176,6 +173,12 @@ class MotionPathActuator extends SimpleActuator {
                     return;
 
                 } else {
+					
+					if (_onRepeat != null) {
+						
+						callMethod (_onRepeat, _onRepeatParams);
+						
+					}
 
                     if (_reflect) {
 
@@ -215,13 +218,13 @@ import com.eclecticdesignstudio.motion.MotionPath;
 #end
 
 
-class PropertyPathDetails extends PropertyDetails {
+class PropertyPathDetails<T> extends PropertyDetails<T> {
 
 
     public var path:IComponentPath;
 
 
-    public function new (target:Dynamic, propertyName:String, path:IComponentPath, isField:Bool = true) {
+	public function new (target:T, propertyName:String, path:IComponentPath, isField:Bool = true) {
 
         super (target, propertyName, 0, 0, isField);
 

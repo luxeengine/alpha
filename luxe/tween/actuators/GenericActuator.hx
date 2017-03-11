@@ -1,43 +1,41 @@
-/**
-  @author Joshua Granick   
-  @version 1.2   
- */
-
-
 package luxe.tween.actuators;
 
 
 import luxe.tween.easing.IEasing;
 import luxe.tween.Actuate;
 
-
 @:keepSub
-class GenericActuator implements IGenericActuator {
 
 
-    public var duration:Float;
-    public var id:String;
-    public var properties:Dynamic;
-    public var target:Dynamic;
+class GenericActuator<T> implements IGenericActuator {
 
-    var _autoVisible:Bool;
-    var _delay:Float;
-    var _ease:IEasing;
-    var _onComplete:Dynamic;
-    var _onCompleteParams:Array <Dynamic>;
-    var _onRepeat:Dynamic;
-    var _onRepeatParams:Array <Dynamic>;
-    var _onUpdate:Dynamic;
-    var _onUpdateParams:Array <Dynamic>;
-    var _reflect:Bool;
-    var _repeat:Int;
-    var _reverse:Bool;
-    var _smartRotation:Bool;
-    var _snapping:Bool;
-    var special:Bool;
+  
+  private var duration:Float;
+  private var id:String;
+  private var properties:Dynamic;
+  private var target:T;
+  private var _autoVisible:Bool;
+  private var _delay:Float;
+  private var _ease:IEasing;
+  private var _onComplete:Dynamic;
+  private var _onCompleteParams:Array <Dynamic>;
+  private var _onRepeat:Dynamic;
+  private var _onRepeatParams:Array <Dynamic>;
+  private var _onUpdate:Dynamic;
+  private var _onUpdateParams:Array <Dynamic>;
+  private var _onResume:Dynamic;
+  private var _onResumeParams:Array <Dynamic>;
+  private var _onPause:Dynamic;
+  private var _onPauseParams:Array <Dynamic>;
+  private var _reflect:Bool;
+  private var _repeat:Int;
+  private var _reverse:Bool;
+  private var _smartRotation:Bool;
+  private var _snapping:Bool;
+  private var special:Bool;
 
 
-    public function new (target:Dynamic, duration:Float, properties:Dynamic) {
+  public function new (target:T, duration:Float, properties:Dynamic) {
 
         _autoVisible = true;
         _delay = 0;
@@ -57,7 +55,7 @@ class GenericActuator implements IGenericActuator {
     }
 
 
-    public function apply ():Void {
+  private function apply ():Void {
 
         for (i in Reflect.fields (properties)) {
 
@@ -81,7 +79,7 @@ class GenericActuator implements IGenericActuator {
       @param   value       Whether autoVisible should be enabled (Default is true)   
       @return      The current actuator instance   
      */
-    public function autoVisible (?value:Null<Bool>):IGenericActuator {
+  public function autoVisible (?value:Null<Bool>):GenericActuator<T> {
 
         if (value == null) {
 
@@ -96,7 +94,7 @@ class GenericActuator implements IGenericActuator {
     }
 
 
-    inline function callMethod (method:Dynamic, params:Array<Dynamic> = null):Dynamic {
+  private inline function callMethod (method:Dynamic, params:Array<Dynamic> = null):Dynamic {
 
         if (params == null) {
 
@@ -127,7 +125,7 @@ class GenericActuator implements IGenericActuator {
     }
 
 
-    function change ():Void {
+  private function change ():Void {
 
         if (_onUpdate != null) {
 
@@ -138,7 +136,7 @@ class GenericActuator implements IGenericActuator {
     }
 
 
-    function complete (sendEvent:Bool = true):Void {
+  private function complete (sendEvent:Bool = true):Void {
 
         if (sendEvent) {
 
@@ -162,7 +160,7 @@ class GenericActuator implements IGenericActuator {
       @param   duration        The amount of seconds to delay   
       @return      The current actuator instance   
      */
-    public function delay (duration:Float):IGenericActuator {
+  public function delay (duration:Float):GenericActuator<T> {
 
         _delay = duration;
 
@@ -176,7 +174,7 @@ class GenericActuator implements IGenericActuator {
       @param   easing      An easing equation, like Elastic.easeIn or Quad.easeOut   
       @return      The current actuator instance   
      */
-    public function ease (easing:IEasing):IGenericActuator {
+  public function ease (easing:IEasing):GenericActuator<T> {
 
         _ease = easing;
 
@@ -185,7 +183,7 @@ class GenericActuator implements IGenericActuator {
     }
 
 
-    public function move ():Void {
+  private function move ():Void {
 
 
 
@@ -210,7 +208,7 @@ class GenericActuator implements IGenericActuator {
       @param   parameters      Parameters you would like to pass to the handler function when it is called   
       @return      The current actuator instance   
      */
-    public function onComplete (handler:Dynamic, parameters:Array <Dynamic> = null):IGenericActuator {
+  public function onComplete (handler:Dynamic, parameters:Array <Dynamic> = null):GenericActuator<T> {
 
         _onComplete = handler;
 
@@ -241,7 +239,7 @@ class GenericActuator implements IGenericActuator {
       @param   parameters      Parameters you would like to pass to the handler function when it is called   
       @return      The current actuator instance   
      */
-    public function onRepeat (handler:Dynamic, parameters:Array <Dynamic> = null):IGenericActuator {
+  public function onRepeat (handler:Dynamic, parameters:Array <Dynamic> = null):GenericActuator<T> {
 
         _onRepeat = handler;
 
@@ -266,7 +264,7 @@ class GenericActuator implements IGenericActuator {
       @param   parameters      Parameters you would like to pass to the handler function when it is called   
       @return      The current actuator instance   
      */
-    public function onUpdate (handler:Dynamic, parameters:Array <Dynamic> = null):IGenericActuator {
+  public function onUpdate (handler:Dynamic, parameters:Array <Dynamic> = null):GenericActuator<T> {
 
         _onUpdate = handler;
 
@@ -283,13 +281,62 @@ class GenericActuator implements IGenericActuator {
         return this;
 
     }
-
-
-    public function pause ():Void {
-
-
-
+    
+    /**
+     * Defines a function which will be called when the tween is paused
+     * @param handler   The function you would like to be called
+     * @param parameters    Parameters you would like to pass to the handler function when it is called
+     * @return    The current actuator instance
+     */
+    public function onPause (handler:Dynamic, parameters:Array <Dynamic> = null):GenericActuator<T> {
+      
+      _onPause = handler;
+      
+      if (parameters == null) {
+        
+        _onPauseParams = [];
+        
+      } else {
+        
+        _onPauseParams = parameters;
+        
+      }
+      
+      return this;
+      
     }
+    
+    /**
+     * Defines a function which will be called when the tween resumed after pause
+     * @param handler   The function you would like to be called
+     * @param parameters    Parameters you would like to pass to the handler function when it is called
+     * @return    The current actuator instance
+     */
+    public function onResume (handler:Dynamic, parameters:Array <Dynamic> = null):GenericActuator<T> {
+      
+      _onResume = handler;
+      
+      if (parameters == null) {
+        
+        _onResumeParams = [];
+        
+      } else {
+        
+        _onResumeParams = parameters;
+        
+      }
+      
+    return this;
+    
+  }
+      
+
+  private function pause ():Void {
+
+    if (_onPause != null)
+      callMethod(_onPause, _onPauseParams);
+
+  }
 
 
     /**
@@ -297,7 +344,7 @@ class GenericActuator implements IGenericActuator {
       @param   value       Whether reflect should be enabled (Default is true)   
       @return      The current actuator instance   
      */
-    public function reflect (?value:Null<Bool>):IGenericActuator {
+  public function reflect (?value:Null<Bool>):GenericActuator<T> {
 
         if (value == null) {
 
@@ -318,7 +365,7 @@ class GenericActuator implements IGenericActuator {
       @param   times       The number of times you would like the tween to repeat, or -1 if you would like to repeat the tween indefinitely (Default is -1)   
       @return      The current actuator instance   
      */
-    public function repeat (?times:Null<Int>):IGenericActuator {
+  public function repeat (?times:Null<Int>):GenericActuator<T> {
 
         if (times == null) {
 
@@ -333,9 +380,10 @@ class GenericActuator implements IGenericActuator {
     }
 
 
-    public function resume ():Void {
+    private function resume ():Void {
 
-
+      if (_onResume != null)
+        callMethod(_onResume, _onResumeParams);
 
     }
 
@@ -345,7 +393,7 @@ class GenericActuator implements IGenericActuator {
       @param   value       Whether the tween should be reversed (Default is true)   
       @return      The current actuator instance   
      */
-    public function reverse (?value:Null<Bool>):IGenericActuator {
+  public function reverse (?value:Null<Bool>):GenericActuator<T> {
 
         if (value == null) {
 
@@ -366,7 +414,7 @@ class GenericActuator implements IGenericActuator {
       @param   value       Whether smart rotation should be enabled (Default is true)   
       @return      The current actuator instance   
      */
-    public function smartRotation (?value:Null<Bool>):IGenericActuator {
+  public function smartRotation (?value:Null<Bool>):GenericActuator<T> {
 
         if (value == null) {
 
@@ -387,7 +435,7 @@ class GenericActuator implements IGenericActuator {
       @param   value       Whether tween values should be rounded (Default is true)   
       @return      The current actuator instance   
      */
-    public function snapping (?value:Null<Bool>):IGenericActuator {
+  public function snapping (?value:Null<Bool>):GenericActuator<T> {
 
         if (value == null) {
 
@@ -403,103 +451,120 @@ class GenericActuator implements IGenericActuator {
     }
 
 
-    public function stop (properties:Dynamic, complete:Bool, sendEvent:Bool):Void {
+  private function stop (properties:Dynamic, complete:Bool, sendEvent:Bool):Void {
 
-
-
-    }
+  }
 
 
 }
 
 
 @:noCompletion interface IGenericActuator {
-
+    
+    
     /**
-      Flash performs faster when objects are set to visible = false rather than only alpha = 0. autoVisible toggles automatically based on alpha values   
-      @param   value       Whether autoVisible should be enabled (Default is true)   
-      @return      The current actuator instance   
+     * Flash performs faster when objects are set to visible = false rather than only alpha = 0. autoVisible toggles automatically based on alpha values
+     * @param value   Whether autoVisible should be enabled (Default is true)
+     * @return    The current actuator instance
      */
     public function autoVisible (?value:Null<Bool>):IGenericActuator;
-
+    
     /**
-      Increases the delay before a tween is executed   
-      @param   duration        The amount of seconds to delay   
-      @return      The current actuator instance   
+     * Increases the delay before a tween is executed
+     * @param duration    The amount of seconds to delay
+     * @return    The current actuator instance
      */
     public function delay (duration:Float):IGenericActuator;
-
+    
     /**
-      Sets the easing which is used when running the tween   
-      @param   easing      An easing equation, like Elastic.easeIn or Quad.easeOut   
-      @return      The current actuator instance   
+     * Sets the easing which is used when running the tween
+     * @param easing    An easing equation, like Elastic.easeIn or Quad.easeOut
+     * @return    The current actuator instance
      */
     public function ease (easing:IEasing):IGenericActuator;
-
+    
     /**
-      Defines a function which will be called when the tween finishes   
-      @param   handler     The function you would like to be called   
-      @param   parameters      Parameters you would like to pass to the handler function when it is called   
-      @return      The current actuator instance   
+     * Defines a function which will be called when the tween finishes
+     * @param handler   The function you would like to be called
+     * @param parameters    Parameters you would like to pass to the handler function when it is called
+     * @return    The current actuator instance
      */
     public function onComplete (handler:Dynamic, ?parameters:Array <Dynamic>):IGenericActuator;
-
+    
     /**
-      Defines a function which will be called when the tween repeats   
-      @param   handler     The function you would like to be called   
-      @param   parameters      Parameters you would like to pass to the handler function when it is called   
-      @return      The current actuator instance   
+     * Defines a function which will be called when the tween repeats
+     * @param handler   The function you would like to be called
+     * @param parameters    Parameters you would like to pass to the handler function when it is called
+     * @return    The current actuator instance
      */
     public function onRepeat (handler:Dynamic, ?parameters:Array <Dynamic>):IGenericActuator;
-
+    
     /**
-      Defines a function which will be called when the tween updates   
-      @param   handler     The function you would like to be called   
-      @param   parameters      Parameters you would like to pass to the handler function when it is called   
-      @return      The current actuator instance   
+     * Defines a function which will be called when the tween updates
+     * @param handler   The function you would like to be called
+     * @param parameters    Parameters you would like to pass to the handler function when it is called
+     * @return    The current actuator instance
      */
     public function onUpdate (handler:Dynamic, ?parameters:Array <Dynamic>):IGenericActuator;
-
+    
     /**
-      Automatically changes the reverse value when the tween repeats. Repeat must be enabled for this to have any effect   
-      @param   value       Whether reflect should be enabled (Default is true)   
-      @return      The current actuator instance   
+     * Automatically changes the reverse value when the tween repeats. Repeat must be enabled for this to have any effect
+     * @param value   Whether reflect should be enabled (Default is true)
+     * @return    The current actuator instance
      */
     public function reflect (?value:Null<Bool>):IGenericActuator;
-
+    
     /**
-      Repeats the tween after it finishes   
-      @param   times       The number of times you would like the tween to repeat, or -1 if you would like to repeat the tween indefinitely (Default is -1)   
-      @return      The current actuator instance   
+     * Repeats the tween after it finishes
+     * @param times   The number of times you would like the tween to repeat, or -1 if you would like to repeat the tween indefinitely (Default is -1)
+     * @return    The current actuator instance
      */
     public function repeat (?times:Null<Int>):IGenericActuator;
-
+    
     /**
-      Sets if the tween should be handled in reverse   
-      @param   value       Whether the tween should be reversed (Default is true)   
-      @return      The current actuator instance   
+     * Sets if the tween should be handled in reverse
+     * @param value   Whether the tween should be reversed (Default is true)
+     * @return    The current actuator instance
      */
     public function reverse (?value:Null<Bool>):IGenericActuator;
-
+    
     /**
-      Specify whether this should be scaled by the global timescale   
-      @param   _value      Whether or not it should be   
-      @return      The current actuator instance   
-     */
-
-    public function timescale( _value:Bool = true ):IGenericActuator;
-    /**
-      Enabling smartRotation can prevent undesired results when tweening rotation values   
-      @param   value       Whether smart rotation should be enabled (Default is true)   
-      @return      The current actuator instance   
+     * Enabling smartRotation can prevent undesired results when tweening rotation values
+     * @param value   Whether smart rotation should be enabled (Default is true)
+     * @return    The current actuator instance
      */
     public function smartRotation (?value:Null<Bool>):IGenericActuator;
-
+    
     /**
-      Snapping causes tween values to be rounded automatically   
-      @param   value       Whether tween values should be rounded (Default is true)   
-      @return      The current actuator instance   
+     * Snapping causes tween values to be rounded automatically
+     * @param value   Whether tween values should be rounded (Default is true)
+     * @return    The current actuator instance
      */
     public function snapping (?value:Null<Bool>):IGenericActuator;
-
+    
+    /**
+     * Defines a function which will be called when the tween is paused
+     * @param handler   The function you would like to be called
+     * @param parameters    Parameters you would like to pass to the handler function when it is called
+     * @return    The current actuator instance
+     */
+    public function onPause (handler:Dynamic, ?parameters:Array <Dynamic>):IGenericActuator;
+    
+    /**
+     * Defines a function which will be called when the tween resumed after pause
+     * @param handler   The function you would like to be called
+     * @param parameters    Parameters you would like to pass to the handler function when it is called
+     * @return    The current actuator instance
+     */
+    public function onResume (handler:Dynamic, ?parameters:Array <Dynamic>):IGenericActuator;
+    
+    
+    //private var properties:Dynamic;
+    private function apply ():Void;
+    private function move ():Void;
+    private function pause ():Void;
+    private function resume ():Void;
+    private function stop (properties:Dynamic, complete:Bool, sendEvent:Bool):Void;
+    
+  
 }

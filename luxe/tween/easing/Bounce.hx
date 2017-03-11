@@ -15,21 +15,21 @@ class Bounce {
     static public var easeOut (get_easeOut, never):IEasing;
 
 
-    static function get_easeIn ():IEasing {
+	private static function get_easeIn ():IEasing {
 
         return new BounceEaseIn ();
 
     }
 
 
-    static function get_easeInOut ():IEasing {
+	private static function get_easeInOut ():IEasing {
 
         return new BounceEaseInOut ();
 
     }
 
 
-    static function get_easeOut ():IEasing {
+	private static function get_easeOut ():IEasing {
 
         return new BounceEaseOut ();
 
@@ -125,7 +125,7 @@ class BounceEaseOut implements IEasing {
 
     }
 
-    public static inline function _ease(t:Float, b:Float, c:Float, d:Float):Float   {
+	public static inline function _ease(t:Float, b:Float, c:Float, d:Float):Float 	{
         if ((t/=d) < (1/2.75)) {
             return c*(7.5625*t*t) + b;
         } else if (t < (2/2.75)) {

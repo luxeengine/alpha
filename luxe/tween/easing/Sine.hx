@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @author Joshua Granick
  * @author Robert Penner / http://www.robertpenner.com/easing_terms_of_use.html
  */
@@ -15,21 +15,21 @@ class Sine {
     static public var easeOut (get_easeOut, never):IEasing;
 
 
-    static function get_easeIn ():IEasing {
+	private static function get_easeIn ():IEasing {
 
         return new SineEaseIn ();
 
     }
 
 
-    static function get_easeInOut ():IEasing {
+	private static function get_easeInOut ():IEasing {
 
         return new SineEaseInOut ();
 
     }
 
 
-    static function get_easeOut ():IEasing {
+	private static function get_easeOut ():IEasing {
 
         return new SineEaseOut ();
 

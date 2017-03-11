@@ -14,7 +14,7 @@ class Linear {
     static public var easeNone (get_easeNone, never):IEasing;
 
 
-    static function get_easeNone ():IEasing {
+	private static function get_easeNone ():IEasing {
 
         return new LinearEaseNone ();
 

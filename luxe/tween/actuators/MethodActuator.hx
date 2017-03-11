@@ -1,18 +1,14 @@
 package luxe.tween.actuators;
 
 
-/**
- * @author Joshua Granick
- * @version 1.2
- */
-class MethodActuator extends SimpleActuator {
+class MethodActuator<T> extends SimpleActuator<T, T> {
 
 
-    var currentParameters:Array <Dynamic>;
-    var tweenProperties:Dynamic;
+	private var currentParameters:Array <Dynamic>;
+	private var tweenProperties:Dynamic;
 
 
-    public function new (target:Dynamic, duration:Float, properties:Dynamic) {
+	public function new (target:T, duration:Float, properties:Dynamic) {
 
         currentParameters = new Array <Dynamic> ();
         tweenProperties = { };
@@ -33,21 +29,20 @@ class MethodActuator extends SimpleActuator {
 
         for (i in 0...this.properties.start.length) {
 
-            currentParameters.push (null);
+			currentParameters.push (this.properties.start[i]);
 
         }
-
     }
 
 
-    public override function apply ():Void {
+	private override function apply ():Void {
 
         callMethod (target, properties.end);
 
     }
 
 
-    override function complete (sendEvent:Bool = true):Void {
+	private override function complete (sendEvent:Bool = true):Void {
 
         for (i in 0...properties.start.length) {
 
@@ -62,9 +57,9 @@ class MethodActuator extends SimpleActuator {
     }
 
 
-    override function initialize ():Void {
+	private override function initialize ():Void {
 
-        var details:PropertyDetails;
+		var details:PropertyDetails<T>;
         var propertyName:String;
         var start:Dynamic;
 
@@ -90,11 +85,11 @@ class MethodActuator extends SimpleActuator {
     }
 
 
-    override function update (currentTime:Float):Void {
+	private override function update (currentTime:Float):Void {
 
         super.update (currentTime);
 
-        if (active) {
+		if (active && !paused) {
 
             for (i in 0...properties.start.length) {
 

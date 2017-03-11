@@ -16,21 +16,21 @@ class Cubic {
     static public var easeOut (get_easeOut, never):IEasing;
 
 
-    static function get_easeIn ():IEasing {
+	private static function get_easeIn ():IEasing {
 
         return new CubicEaseIn ();
 
     }
 
 
-    static function get_easeInOut ():IEasing {
+	private static function get_easeInOut ():IEasing {
 
         return new CubicEaseInOut ();
 
     }
 
 
-    static function get_easeOut ():IEasing {
+	private static function get_easeOut ():IEasing {
 
         return new CubicEaseOut ();
 

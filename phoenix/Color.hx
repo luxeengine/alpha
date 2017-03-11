@@ -383,7 +383,7 @@ class ColorHSL extends Color {
             if(_change_l) _properties.l = _dest_l;
             if(_change_a) _properties.a = _dest_a;
 
-            return Actuate.tween( this, _time_in_seconds, _properties, _override );
+            return Actuate.tween( cast(this, phoenix.Color), _time_in_seconds, _properties, _override );
 
         } else { //dest is null?
             throw " Warning: Color.tween passed a null destination ";
@@ -559,7 +559,7 @@ class ColorHSV extends Color {
             if(_change_v) _properties.v = _dest_v;
             if(_change_a) _properties.a = _dest_a;
 
-            return Actuate.tween( this, _time_in_seconds, _properties, _override );
+            return Actuate.tween( cast(this, phoenix.Color), _time_in_seconds, _properties, _override );
 
         } else { //dest is null?
             throw " Warning: Color.tween passed a null destination ";
