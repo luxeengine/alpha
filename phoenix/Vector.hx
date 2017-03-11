@@ -525,7 +525,7 @@ class Vector {
 
     } //get_normalized
 
-    #if !luxe_no_hotpath_inline @:extern #end
+    // #if !luxe_no_hotpath_inline @:extern #end
     inline function set_x(_x:Float) : Float {
 
         x = _x;
@@ -538,7 +538,7 @@ class Vector {
 
     } //set_x
 
-    #if !luxe_no_hotpath_inline @:extern #end
+    // #if !luxe_no_hotpath_inline @:extern #end
     inline function set_y(_y:Float) : Float {
 
         y = _y;
@@ -551,7 +551,7 @@ class Vector {
 
     } //set_y
 
-    #if !luxe_no_hotpath_inline @:extern #end
+    // #if !luxe_no_hotpath_inline @:extern #end
     inline function set_z(_z:Float) : Float {
 
         z = _z;
@@ -574,7 +574,7 @@ class Vector {
 
         //Changes the angle of the vector.
         //X and Y will change, length stays the same.
-    #if !luxe_no_hotpath_inline @:extern #end
+    // #if !luxe_no_hotpath_inline @:extern #end
     inline function set_angle2D( value : Float ) : Float {
 
         var len:Float = length;
