@@ -12,6 +12,7 @@ class Main extends luxe.Game {
     var luxe_sprite1 : Sprite;
     var luxe_sprite2 : Sprite;
     var luxe_sprite3 : Sprite;
+    var luxe_sprite4 : Sprite;
 
     var batch1 : Batcher;
     var batch2 : Batcher;
@@ -45,41 +46,48 @@ class Main extends luxe.Game {
         level_texture.filter_min = level_texture.filter_mag = phoenix.Texture.FilterType.nearest;
         level_sprite.scale = new Vector(Luxe.screen.w/240,Luxe.screen.h/160);
 
-            //We will create 3 sprites, each with a different group
-        var a_third = Luxe.screen.w/4;
-        var half_a_third = (Luxe.screen.w/3)/2;
+        var spacing = Luxe.screen.w/5;
+        var half_spacing = (Luxe.screen.w/4)/2;
         var mid = Luxe.screen.h/2;
 
         luxe_sprite1 = new Sprite({
             texture : luxe_texture,
-            pos : new Vector( a_third * 1, mid ),
-            size : new Vector( half_a_third, half_a_third ),
+            pos : new Vector( spacing * 1, mid ),
+            size : new Vector( half_spacing, half_spacing ),
             batcher: batch1
         });
 
         luxe_sprite2 = new Sprite({
             texture : luxe_texture,
-            pos : new Vector( a_third * 2, mid ),
-            size : new Vector( half_a_third, half_a_third ),
+            pos : new Vector( spacing * 2, mid ),
+            size : new Vector( half_spacing, half_spacing ),
             batcher: batch2
         });
 
         luxe_sprite3 = new Sprite({
             texture : luxe_texture,
-            pos : new Vector( a_third * 3, mid ),
-            size : new Vector( half_a_third, half_a_third ),
+            pos : new Vector( spacing * 3, mid ),
+            size : new Vector( half_spacing, half_spacing ),
             batcher: batch3
         });
 
-            //for the first group, we set the blend mode to additive
+        luxe_sprite4 = new Sprite({
+            texture : luxe_texture,
+            pos : new Vector( spacing * 4, mid ),
+            size : new Vector( half_spacing, half_spacing ),
+            batcher: batch3
+        });
+
+            //for the group, we set the blend mode to additive
         batch1.on(prerender, function(b:Batcher){ Luxe.renderer.blend_mode(BlendMode.src_alpha, BlendMode.one); });
+            //then we reset it when this group is done rendering
+        batch1.on(postrender, function(b:Batcher){ Luxe.renderer.blend_mode(); });
 
-            //for the second, we set it to negative
-        batch2.on(prerender, function(b:Batcher){ Luxe.renderer.blend_mode(BlendMode.one_minus_src_color, BlendMode.zero); });
-
-            //for the third one, we maks sure it is reset as well
-        batch3.on(prerender, function(b:Batcher){ Luxe.renderer.blend_mode(BlendMode.dst_color, BlendMode.one_minus_src_alpha); });
-        batch3.on(postrender, function(b:Batcher){ Luxe.renderer.blend_mode(); });
+            //for this geometry, we set the blending directly
+        luxe_sprite3.blend_src_rgb = BlendMode.dst_color;
+        luxe_sprite3.blend_src_alpha = BlendMode.dst_color;
+        luxe_sprite3.blend_dest_rgb = BlendMode.one_minus_src_alpha;
+        luxe_sprite3.blend_dest_alpha = BlendMode.one_minus_src_alpha;
 
     } //ready
 

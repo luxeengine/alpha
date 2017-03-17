@@ -38,12 +38,20 @@ class Visual extends Entity {
     @:isVar public var visible      (default,set) : Bool = true;
         /** the geometry depth value (see guides)*/
     @:isVar public var depth        (default,set) : Float = 0.0;
-        /** If note null, the geometry will be clipped to this rectangle region (in world space). */
+        /** If not null, the geometry will be clipped to this rectangle region (in window viewport space). */
     @:isVar public var clip_rect    (default,set) : Rectangle;
         /** convenience: controls the rotation around the z axis, in radians. */
     @:isVar public var radians      (get,set) : Float = 0.0;
         /** convenience: controls the rotation around the z axis, in degrees. */
     public var rotation_z           (get,set) : Float;
+        /** Set the per geometry source blending, for the alpha component */
+    public var blend_src_alpha      (get, set) : BlendMode;
+        /** Set the per geometry source blending, for the rgb components */
+    public var blend_src_rgb        (get, set) : BlendMode;
+        /** Set the per geometry destination blending, for the alpha component */
+    public var blend_dest_alpha     (get, set) : BlendMode;
+        /** Set the per geometry destination blending, for the rgb components */
+    public var blend_dest_rgb       (get, set) : BlendMode;
 
         //private
     var _rotation_euler : Vector;
@@ -353,6 +361,34 @@ class Visual extends Entity {
         return size;
 
     } //set_size
+
+//Blending
+    
+    inline function get_blend_src_alpha() : BlendMode   return geometry.blend_src_alpha;
+    inline function get_blend_src_rgb() : BlendMode     return geometry.blend_src_rgb;
+    inline function get_blend_dest_alpha() : BlendMode  return geometry.blend_dest_alpha;
+    inline function get_blend_dest_rgb() : BlendMode    return geometry.blend_dest_rgb;
+
+    inline function set_blend_src_alpha(val:BlendMode)  {
+        geometry.blend_src_alpha = val;
+        return val;
+    }
+
+    inline function set_blend_src_rgb(val:BlendMode)    {
+        geometry.blend_src_rgb = val;
+        return val;
+    }
+
+    inline function set_blend_dest_alpha(val:BlendMode) {
+        geometry.blend_dest_alpha = val;
+        return val;
+    }
+
+    inline function set_blend_dest_rgb(val:BlendMode)   {
+        geometry.blend_dest_rgb = val;
+        return val;
+    }
+
 
 //Rotation
 
