@@ -44,6 +44,15 @@ class Visual extends Entity {
     @:isVar public var radians      (get,set) : Float = 0.0;
         /** convenience: controls the rotation around the z axis, in degrees. */
     public var rotation_z           (get,set) : Float;
+
+        /** Set the per geometry source blending. 
+        This sets blend_src_alpha and blend_src_rgb,
+        and returns blend_src_alpha (the get isn't really logical) */
+    public var blend_src            (get, set) : BlendMode;
+        /** Set the per geometry source blending. 
+        This sets blend_dest_alpha and blend_dest_rgb 
+        and returns blend_dest_alpha (the get isn't really logical) */
+    public var blend_dest           (get, set) : BlendMode;
         /** Set the per geometry source blending, for the alpha component */
     public var blend_src_alpha      (get, set) : BlendMode;
         /** Set the per geometry source blending, for the rgb components */
@@ -364,10 +373,24 @@ class Visual extends Entity {
 
 //Blending
     
+    inline function get_blend_src() : BlendMode         return geometry.blend_src_alpha;
+    inline function get_blend_dest() : BlendMode        return geometry.blend_dest_alpha;
     inline function get_blend_src_alpha() : BlendMode   return geometry.blend_src_alpha;
     inline function get_blend_src_rgb() : BlendMode     return geometry.blend_src_rgb;
     inline function get_blend_dest_alpha() : BlendMode  return geometry.blend_dest_alpha;
     inline function get_blend_dest_rgb() : BlendMode    return geometry.blend_dest_rgb;
+    
+    inline function set_blend_src(val:BlendMode)  {
+        geometry.blend_src_alpha = val;
+        geometry.blend_src_rgb = val;
+        return val;
+    }
+
+    inline function set_blend_dest(val:BlendMode) {
+        geometry.blend_dest_alpha = val;
+        geometry.blend_dest_rgb = val;
+        return val;
+    }
 
     inline function set_blend_src_alpha(val:BlendMode)  {
         geometry.blend_src_alpha = val;

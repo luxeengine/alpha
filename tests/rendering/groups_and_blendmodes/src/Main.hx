@@ -89,6 +89,10 @@ class Main extends luxe.Game {
         luxe_sprite3.blend_dest_rgb = BlendMode.one_minus_src_alpha;
         luxe_sprite3.blend_dest_alpha = BlendMode.one_minus_src_alpha;
 
+            //for this geometry, we set the blending using the shortcuts
+        luxe_sprite4.blend_src = BlendMode.dst_color;
+        luxe_sprite4.blend_dest = BlendMode.src_color;
+
     } //ready
 
     override function onkeyup( e:KeyEvent ) {
