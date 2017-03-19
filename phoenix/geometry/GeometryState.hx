@@ -10,34 +10,30 @@ import phoenix.Batcher;
 @:allow(phoenix.geometry.Geometry)
 class GeometryState {
 
-    var dirty:Bool;
+    var dirty = false;
+    var log = false;
+    var ignore_blend = true;
 
     @:isVar var primitive_type(default, set) : PrimitiveType;
     @:isVar var shader(default, set) : Shader;
     @:isVar var texture(default, set) : Texture;
-    @:isVar var depth(default, set) : Float;
-    @:isVar var clip(default, set) : Bool;
-    @:isVar var clip_x(default, set) : Float;
-    @:isVar var clip_y(default, set) : Float;
-    @:isVar var clip_w(default, set) : Float;
-    @:isVar var clip_h(default, set) : Float;
-
-    var log : Bool = false;
+    @:isVar var depth(default, set) : Float = 0.0;
+    @:isVar var clip(default, set) : Bool = false;
+    @:isVar var clip_x(default, set) : Float = 0;
+    @:isVar var clip_y(default, set) : Float = 0;
+    @:isVar var clip_w(default, set) : Float = 0;
+    @:isVar var clip_h(default, set) : Float = 0;
+    @:isVar var blend_src_alpha(default, set) : BlendMode = BlendMode.src_alpha;
+    @:isVar var blend_src_rgb(default, set) : BlendMode = BlendMode.src_alpha;
+    @:isVar var blend_dest_alpha(default, set) : BlendMode = BlendMode.one_minus_src_alpha;
+    @:isVar var blend_dest_rgb(default, set) : BlendMode = BlendMode.one_minus_src_alpha;
 
     inline
     function new() {
 
-        clip = false;
-        clip_x = 0.0;
-        clip_y = 0.0;
-        clip_w = 0.0;
-        clip_h = 0.0;
         texture = null;
         shader = null;
-        depth = 0.0;
         primitive_type = PrimitiveType.points;
-
-        dirty = false;
 
     } //new
 
@@ -54,6 +50,11 @@ class GeometryState {
         _other.clip_y = clip_y;
         _other.clip_w = clip_w;
         _other.clip_h = clip_h;
+        _other.blend_src_alpha = blend_src_alpha;
+        _other.blend_src_rgb = blend_src_rgb;
+        _other.blend_dest_alpha = blend_dest_alpha;
+        _other.blend_dest_rgb = blend_dest_rgb;
+        _other.ignore_blend = ignore_blend;
 
     } //clone_onto
 
@@ -71,6 +72,7 @@ class GeometryState {
             trace('\t\tprimitive_type - $primitive_type');
             trace('\t\tclip - $clip');
             trace('\t\tclip rect - $clip_x,$clip_y,$clip_w,$clip_h');
+            trace('\t\tblend - src_alpha($blend_src_alpha) src_rgb($blend_src_rgb) dest_alpha($blend_dest_alpha) dest_rgb($blend_dest_rgb)');
         trace('\t- GEOMETRYSTATE');
 
     } //str
@@ -121,6 +123,26 @@ class GeometryState {
             clip_h = other.clip_h;
         } //clip_h
 
+        if(blend_src_alpha != other.blend_src_alpha) {
+            blend_src_alpha = other.blend_src_alpha;
+        } //blend_src_alpha
+
+        if(blend_src_rgb != other.blend_src_rgb) {
+            blend_src_rgb = other.blend_src_rgb;
+        } //blend_src_rgb
+
+        if(blend_dest_alpha != other.blend_dest_alpha) {
+            blend_dest_alpha = other.blend_dest_alpha;
+        } //blend_dest_alpha
+
+        if(blend_dest_rgb != other.blend_dest_rgb) {
+            blend_dest_rgb = other.blend_dest_rgb;
+        } //blend_dest_rgb
+
+        if(ignore_blend != other.ignore_blend) {
+            ignore_blend = other.ignore_blend;
+        } //ignore_blend
+
     } //update
 
 //Primitive Type
@@ -163,6 +185,22 @@ class GeometryState {
     inline function set_clip_h(val : Float) : Float {
         dirty = true;
         return clip_h = val;
+    }
+    inline function set_blend_src_alpha(val : Int) : Int {
+        dirty = true;
+        return blend_src_alpha = val;
+    }
+    inline function set_blend_src_rgb(val : Int) : Int {
+        dirty = true;
+        return blend_src_rgb = val;
+    }
+    inline function set_blend_dest_alpha(val : Int) : Int {
+        dirty = true;
+        return blend_dest_alpha = val;
+    }
+    inline function set_blend_dest_rgb(val : Int) : Int {
+        dirty = true;
+        return blend_dest_rgb = val;
     }
 //
 

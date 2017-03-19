@@ -67,18 +67,27 @@ class Geometry {
     @:isVar public var shader (get, set) : Shader;
     @:isVar public var depth (get, set) : Float;
     @:isVar public var clip_rect (get, set) : Rectangle;
+    @:isVar public var blend_src_alpha(get, set) : Int = BlendMode.src_alpha;
+    @:isVar public var blend_src_rgb(get, set) : Int = BlendMode.src_alpha;
+    @:isVar public var blend_dest_alpha(get, set) : Int = BlendMode.one_minus_src_alpha;
+    @:isVar public var blend_dest_rgb(get, set) : Int = BlendMode.one_minus_src_alpha;
 
     var shadow_primitive_type : PrimitiveType;
     var shadow_texture : Texture;
     var shadow_shader : Shader;
     var shadow_depth : Float = 0.0;
     var shadow_clip : Bool = false;
+    var shadow_blend_src_alpha : Int = BlendMode.src_alpha;
+    var shadow_blend_src_rgb : Int = BlendMode.src_alpha;
+    var shadow_blend_dest_alpha : Int = BlendMode.one_minus_src_alpha;
+    var shadow_blend_dest_rgb : Int = BlendMode.one_minus_src_alpha;
 
     var dirty_primitive_type : Bool = false;
     var dirty_texture : Bool = false;
     var dirty_shader : Bool = false;
     var dirty_depth : Bool = false;
     var dirty_clip : Bool = false;
+    var dirty_blend : Bool = false;
 
         //Geometry properties
     @:isVar public var visible      (default, set) : Bool = true;
@@ -170,6 +179,10 @@ class Geometry {
             key.shader = state.shader;
             key.depth = state.depth;
             key.clip = state.clip;
+            key.blend_src_alpha = state.blend_src_alpha;
+            key.blend_src_rgb = state.blend_src_rgb;
+            key.blend_dest_alpha = state.blend_dest_alpha;
+            key.blend_dest_rgb = state.blend_dest_rgb;
 
         transform.id = uuid;
         transform.name = id;
@@ -211,6 +224,10 @@ class Geometry {
         key.shader = state.shader;
         key.depth = state.depth;
         key.clip = state.clip;
+        key.blend_src_alpha = state.blend_src_alpha;
+        key.blend_src_rgb = state.blend_src_rgb;
+        key.blend_dest_alpha = state.blend_dest_alpha;
+        key.blend_dest_rgb = state.blend_dest_rgb;
 
     } //refresh_key
 
@@ -636,6 +653,14 @@ class Geometry {
                 state.clip = shadow_clip;
             } //dirty_clip
 
+            if(dirty_blend) {
+                dirty_blend = false;
+                state.blend_src_alpha = shadow_blend_src_alpha;
+                state.blend_src_rgb = shadow_blend_src_rgb;
+                state.blend_dest_alpha = shadow_blend_dest_alpha;
+                state.blend_dest_rgb = shadow_blend_dest_rgb;
+            } //dirty_clip
+
                 //make sure the key is updated
            refresh_key();
 
@@ -748,6 +773,67 @@ class Geometry {
 
     } //set_depth
 
+//Blends
+
+    inline function get_blend_src_alpha() : Int {
+        return state.blend_src_alpha;
+    }
+
+    inline function get_blend_src_rgb() : Int {
+        return state.blend_src_rgb;
+    }
+
+    inline function get_blend_dest_alpha() : Int {
+        return state.blend_dest_alpha;
+    }
+
+    inline function get_blend_dest_rgb() : Int {
+        return state.blend_dest_rgb;
+    }
+
+    function set_blend_src_alpha(val:Int) : Int {
+        state.ignore_blend = false;
+        if(state.blend_src_alpha != val) {
+            shadow_blend_src_alpha = val;
+            dirty_blend = true;
+            refresh();
+        }
+        return blend_src_alpha = val;
+    }
+
+    function set_blend_src_rgb(val:Int) : Int {
+        state.ignore_blend = false;
+        if(state.blend_src_rgb != val) {
+            shadow_blend_src_rgb = val;
+            dirty_blend = true;
+            refresh();
+        }
+        return blend_src_rgb = val;
+    }
+
+    function set_blend_dest_alpha(val:Int) : Int {
+        state.ignore_blend = false;
+        if(state.blend_dest_alpha != val) {
+            shadow_blend_dest_alpha = val;
+            dirty_blend = true;
+            refresh();
+        }
+        return blend_dest_alpha = val;
+    }
+
+    function set_blend_dest_rgb(val:Int) : Int {
+        state.ignore_blend = false;
+        if(state.blend_dest_rgb != val) {
+            shadow_blend_dest_rgb = val;
+            dirty_blend = true;
+            refresh();
+        }
+        return blend_dest_rgb = val;
+    }
+
+
+
+
 //Clip
 
     inline function get_clip() : Bool {
@@ -808,5 +894,9 @@ class GeometryKey {
     public var shader : Shader;
     public var depth : Float = 0;
     public var clip : Bool = false;
+    public var blend_src_alpha : Int = 0;
+    public var blend_src_rgb : Int = 0;
+    public var blend_dest_alpha : Int = 0;
+    public var blend_dest_rgb : Int = 0;
 
 } //GeometryKey
