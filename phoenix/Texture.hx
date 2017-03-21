@@ -156,7 +156,7 @@ class Texture extends Resource {
     } //fetch
 
         /** Submit a pixels array to the texture id. Must match the type and format accordingly. */
-    public function submit( _pixels:ArrayBufferView, ?_target:TextureSubmitTarget, ?_level:Int = 0 ) {
+    public function submit( _pixels:ArrayBufferView, ?_target:TextureSubmitTarget, ?_level:Int = 0) {
 
         assert(_level >= 0, 'Texture submit level cannot be negative');
 
@@ -167,17 +167,22 @@ class Texture extends Resource {
 
         bind();
 
-        if(type == TextureType.tex_2D) {
-            def(_target, TextureSubmitTarget.tex_2D);
-        } else {
-            assertnull(_target, 'Texture submit to a non 2D texture requires the _target to be specified');
-        }
+        def(_target, TextureSubmitTarget.tex_2D);
 
-        if(compressed) {
-            GL.compressedTexImage2D(_target, _level, format, width_actual, height_actual, border, _pixels);
-        } else {
-            GL.texImage2D(_target, _level, format, width_actual, height_actual, border, format, data_type, _pixels );
-        }
+        switch(type) {
+            case TextureType.tex_2D:
+
+                if(compressed) {
+                    GL.compressedTexImage2D(_target, _level, format, width_actual, height_actual, border, _pixels);
+                } else {
+                    GL.texImage2D(_target, _level, format, width_actual, height_actual, border, format, data_type, _pixels);
+                }
+
+            case _:
+
+                _debug('Texture submit skipped for type `$type`');
+        
+        } //type
 
     } //submit
 
