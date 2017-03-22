@@ -415,12 +415,14 @@ class Camera {
 
         projection_dirty = true;
 
+        aspect = _aspect;
+
             //trigger fov_y update,
             //since if using horizontal fov, 
             //the aspect ratio factors in
         set_fov(fov);
 
-        return aspect = _aspect;
+        return aspect;
 
     } //set_aspect
 
