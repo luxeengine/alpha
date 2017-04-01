@@ -129,6 +129,13 @@ class Renderer {
 
     public function init() {
 
+            //:todo:GL context query
+            //Don't remove this,
+            //it's a catch for crashing because
+            //we don't have a valid GL context, until the query
+            //is finalized on snow side
+        log('opengl ${snow.modules.opengl.GL.versionString()}');
+
         state = new RenderState(this);
         clear_color = new Color().rgb(0x1a1a1a);
         stats = new RendererStats();

@@ -291,12 +291,6 @@ class Engine extends snow.App {
     function internal_pre_ready() {
 
         if(!headless) {
-                //:todo:GL context query
-                //Don't remove this,
-                //it's a catch for crashing because
-                //we don't have a valid GL context, until the query
-                //is finalized on snow side
-            log('opengl ${snow.modules.opengl.GL.versionString()}');
 
             _debug('ready. loading default parcel ' + game_config.preload);
 
