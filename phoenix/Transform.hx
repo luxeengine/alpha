@@ -18,6 +18,10 @@ class Transform extends ID {
         //true if the transform needs refreshing,
         //starts true since there are no values
     @:isVar public var dirty (default,set) : Bool = true;
+        //set this to true if you want to manage the transforms matrix
+        //externally, this just prevents clean from ever being called automatically.
+        //This means the dirty flag and such are self maintained.
+    public var manual_update : Bool = false;
 
         //alias to local.pos, local.rotation, local.scale
     public var pos                  (get,set) : Vector;
@@ -187,15 +191,11 @@ class Transform extends ID {
     @:noCompletion public inline function clean_check() {
 
             //make sure the parent is updated
-        if(parent != null) {
-
-            if(parent.dirty) {
-                parent.clean();
-            } //parent.dirty
-
+        if(parent != null && parent.dirty) {
+            parent.clean_check();
         } //parent != null
 
-        if(dirty && !_cleaning) {
+        if(dirty && !_cleaning && !manual_update) {
             clean();
         } //dirty
 
