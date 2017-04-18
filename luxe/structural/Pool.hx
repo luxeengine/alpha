@@ -45,10 +45,7 @@ class Pool<T> {
         if(items.length > 0) return items.pop();
         if(size_limit > 0) return null;
 
-        var _item = create_func();
-        items.push(_item);
-
-        return _item;
+        return create_func();
 
     } //get
 
