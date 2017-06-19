@@ -62,6 +62,7 @@ class Engine extends snow.App {
     public var has_shutdown : Bool = false;
     public var inited : Bool = false;
     public var headless = false;
+    public var auto_render = true;
 
     var running = false;
 
@@ -170,6 +171,7 @@ class Engine extends snow.App {
 
             } else {
 
+                auto_render = false;
                 init(null);
 
             }
@@ -429,29 +431,34 @@ class Engine extends snow.App {
             debug.start(Tag.tick);
         #end
 
-        if(!headless) {
-
-            #if !luxe_noprofile debug.start(Tag.render); #end
-
-            renderer.prerender();
-
-            emitter.emit(luxe.Ev.prerender);
-            game.onprerender();
-
-                emitter.emit(luxe.Ev.render);
-                game.onrender();
-                renderer.process();
-
-            emitter.emit(luxe.Ev.postrender);
-            game.onpostrender();
-
-            #if !luxe_noprofile debug.end(Tag.render); #end
-
-            debug.render();
-
-        } //!headless
+        if(auto_render) {
+            render();
+        }
 
     } //tick
+
+    @:noCompletion 
+    public function render() {
+
+        #if !luxe_noprofile debug.start(Tag.render); #end
+
+        renderer.prerender();
+
+        emitter.emit(luxe.Ev.prerender);
+        game.onprerender();
+
+            emitter.emit(luxe.Ev.render);
+            game.onrender();
+            renderer.process();
+
+        emitter.emit(luxe.Ev.postrender);
+        game.onpostrender();
+
+        #if !luxe_noprofile debug.end(Tag.render); #end
+
+        debug.render();
+
+    } //render
 
     override function ontickstart() {
 
