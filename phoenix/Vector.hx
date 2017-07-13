@@ -357,6 +357,18 @@ class Vector {
 
     } //Listen
 
+        //_t is between 0 and 1
+    #if !luxe_no_hotpath_inline @:extern inline #end
+    public static function Lerp( a:Vector, b:Vector, t: Float ) {
+
+        return new Vector(
+            Maths.lerp(a.x, b.x, t),
+            Maths.lerp(a.y, b.y, t),
+            Maths.lerp(a.z, b.z, t)
+        );
+
+    } //Lerp
+
 // Operations
 
     #if !luxe_no_hotpath_inline @:extern inline #end
