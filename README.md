@@ -1,10 +1,10 @@
-#luxe
+# luxe
 
-luxe is a lovingly handcrafted free, open source cross platform rapid development game engine  
+luxe is a lovingly handcrafted free, open source cross platform rapid development game engine.
 
 ## getting started
 
-http://luxeengine.com/
+[luxeengine.com](http://luxeengine.com/)
 
 ## join the community
 
@@ -13,8 +13,8 @@ http://luxeengine.com/
 ## development log
 
 [View the dev posts](https://luxeengine.com/tag/dev/)   
-[View status posts](https://luxeengine.com/tag/status/)
+[View the status posts](https://luxeengine.com/tag/status/)
 
 ### license
 
-MIT (LICENSE.md)
+MIT ([LICENSE.md](https://github.com/underscorediscovery/luxe/blob/master/LICENSE.md))
