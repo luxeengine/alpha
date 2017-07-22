@@ -374,6 +374,7 @@ class Entity extends Objects {
         children = null;
         _components.destroy();
         _components = null;
+        component_count = 0;
 
             //tell listeners
         emit(Ev.destroy);
@@ -1296,6 +1297,8 @@ class Entity extends Objects {
 // 
 
     inline function toString() {
+        if (destroyed) return 'luxe Entity: $name / DESTROYED / id: $id';
+
         //:todo:
         var _list = []; for(_c in components.keys()) _list.push(_c);
         return 'luxe Entity: $name / ${Lambda.count(components)} components:[${_list.join(", ")}] / id: $id';
