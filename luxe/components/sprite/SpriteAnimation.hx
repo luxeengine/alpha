@@ -425,6 +425,8 @@ class SpriteAnimation extends Component {
             reverse = current.reverse;
             next_frame_time = time + current.frame_time;
 
+        _debug('${entity.name} / set animation $_name / frame 1 / current $current');
+
             //set to the first frame of this animation
         frame = 1;
 
@@ -552,6 +554,8 @@ class SpriteAnimationData {
 
         assertnull(_animdata, 'Null animation object passed to from_json in SpriteAnimation');
 
+        _debug('from json - $_animdata');
+
         var _json_frameset : Array<String> = cast _animdata.frameset;
         var _json_frame_size : Dynamic = _animdata.frame_size;
         var _json_pingpong : Dynamic = _animdata.pingpong;
@@ -589,7 +593,7 @@ class SpriteAnimationData {
         //pingpong
         var _pingpong : Bool = false;
             if(_json_pingpong != null) {
-                if(_json_pingpong == 'true') {
+                if(_json_pingpong == 'true' || _json_pingpong == true) {
                     _pingpong = true;
                 } else {
                     _pingpong = false;
@@ -599,7 +603,7 @@ class SpriteAnimationData {
         //loop
         var _loop : Bool = false;
             if(_json_loop != null) {
-                if(_json_loop == 'true') {
+                if(_json_loop == 'true' || _json_loop == true) {
                     _loop = true;
                 } else {
                     _loop = false;
@@ -609,7 +613,7 @@ class SpriteAnimationData {
         //_reverse
         var _reverse : Bool = false;
             if(_json_reverse != null) {
-                if(_json_reverse == 'true') {
+                if(_json_reverse == 'true' || _json_reverse == true) {
                     _reverse = true;
                 } else {
                     _reverse = false;
