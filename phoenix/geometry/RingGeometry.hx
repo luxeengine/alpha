@@ -57,8 +57,11 @@ class RingGeometry extends Geometry {
             //adapted from
             //http://slabode.exofire.net/circle_draw.shtml
 
-            var _start_angle_rad = luxe.utils.Maths.radians(_start_angle_degrees % 360);
-            var _end_angle_rad = luxe.utils.Maths.radians(_end_angle_degrees % 360);
+            if(Math.abs(_start_angle_degrees) > 360) _start_angle_degrees %= 360;
+            if(Math.abs(_end_angle_degrees) > 360) _end_angle_degrees %= 360;
+
+            var _start_angle_rad = luxe.utils.Maths.radians(_start_angle_degrees);
+            var _end_angle_rad = luxe.utils.Maths.radians(_end_angle_degrees);
 
             var _range = _end_angle_rad - _start_angle_rad;
 
