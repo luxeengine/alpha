@@ -232,7 +232,7 @@ class SAT2D {
 
         var a = vec_lengthsq(deltaX, deltaY);
         var b = 2 * vec_dot(deltaX, deltaY, ray2circleX, ray2circleY);
-        var c = vec_dot(ray2circleX, ray2circleY, ray2circleX, ray2circleY) - (circle.radius * circle.radius);
+        var c = vec_dot(ray2circleX, ray2circleY, ray2circleX, ray2circleY) - (circle.transformedRadius * circle.transformedRadius);
         var d = b * b - 4 * a * c;
 
         if (d >= 0) {
