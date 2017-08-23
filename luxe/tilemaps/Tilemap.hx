@@ -435,7 +435,7 @@ class Tileset {
 
         //Returns the inner x-position of a texture with given _id
     public function texture_x(_id:Int):Int {
-        var _tx = Std.int(texture.width / tile_width);
+        var _tx = Std.int(texture.width / (tile_width + spacing));
         return _tx == 0 ? 0 : (_id % _tx);
     } //texture_x
 
@@ -443,7 +443,7 @@ class Tileset {
         //:todo : Is this making an assumption about the height of a tile?
     public function texture_y(_id):Int {
 
-        var _ty = Std.int(texture.width / tile_width);
+        var _ty = Std.int(texture.width / (tile_width + spacing));
         return _ty == 0 ? 0 : Std.int(_id / _ty);
 
     } //texture_y
