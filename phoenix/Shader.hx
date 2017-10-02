@@ -430,6 +430,8 @@ class Shader extends Resource {
 
         _clone.from_string( vert_source, frag_source );
 
+        Luxe.resources.add(_clone);
+
         return _clone;
 
     } //clone
