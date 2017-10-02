@@ -33,8 +33,8 @@ class TiledImageLayer {
     public function from_xml( xml:Xml ) {
 
         name = xml.get("name");
-        x = Std.parseInt(xml.get("x"));
-        y = Std.parseInt(xml.get("y"));
+        x = Std.parseInt(xml.get("offsetx"));
+        y = Std.parseInt(xml.get("offsety"));
 
         var _opacity = xml.get("opacity");
         var _visible = xml.get("visible");
@@ -72,8 +72,8 @@ class TiledImageLayer {
     public function from_json( json:Dynamic ) {
 
         name = Reflect.field(json, "name");
-        x = cast Reflect.field(json, "x");
-        y = cast Reflect.field(json, "y");
+        x = cast Reflect.field(json, "offsetx");
+        y = cast Reflect.field(json, "offsety");
         opacity = Reflect.field(json, "opacity");
         visible = Reflect.field(json, "visible");
 
