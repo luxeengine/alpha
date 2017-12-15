@@ -13,6 +13,7 @@ class Main extends luxe.Game {
     var luxe_sprite2 : Sprite;
     var luxe_sprite3 : Sprite;
     var luxe_sprite4 : Sprite;
+    var luxe_sprite5 : Sprite;
 
     var batch1 : Batcher;
     var batch2 : Batcher;
@@ -22,6 +23,7 @@ class Main extends luxe.Game {
 
         config.preload.textures.push({ id:'assets/level.png' });
         config.preload.textures.push({ id:'assets/luxe.png' });
+        config.preload.textures.push({ id:'assets/logo.png' });
 
         return config;
 
@@ -36,6 +38,7 @@ class Main extends luxe.Game {
 
         var level_texture = Luxe.resources.texture('assets/level.png');
         var luxe_texture = Luxe.resources.texture('assets/luxe.png');
+        var logo_texture = Luxe.resources.texture('assets/logo.png');
 
         level_sprite = new Sprite({
             texture : level_texture,
@@ -46,7 +49,7 @@ class Main extends luxe.Game {
         level_texture.filter_min = level_texture.filter_mag = phoenix.Texture.FilterType.nearest;
         level_sprite.scale = new Vector(Luxe.screen.w/240,Luxe.screen.h/160);
 
-        var spacing = Luxe.screen.w/5;
+        var spacing = Luxe.screen.w/6;
         var half_spacing = (Luxe.screen.w/4)/2;
         var mid = Luxe.screen.h/2;
 
@@ -78,6 +81,13 @@ class Main extends luxe.Game {
             batcher: batch3
         });
 
+        luxe_sprite5 = new Sprite({
+            texture : logo_texture,
+            pos : new Vector( spacing * 5, mid ),
+            size : new Vector( half_spacing, half_spacing ),
+            batcher: batch3
+        });
+
             //for the group, we set the blend mode to additive
         batch1.on(prerender, function(b:Batcher){ Luxe.renderer.blend_mode(BlendMode.src_alpha, BlendMode.one); });
             //then we reset it when this group is done rendering
@@ -92,6 +102,9 @@ class Main extends luxe.Game {
             //for this geometry, we set the blending using the shortcuts
         luxe_sprite4.blend_src = BlendMode.dst_color;
         luxe_sprite4.blend_dest = BlendMode.src_color;
+
+            //and this one, disable blending
+        luxe_sprite5.blend_disabled = true;
 
     } //ready
 

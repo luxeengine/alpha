@@ -6,6 +6,7 @@ import phoenix.Texture;
 
 class RenderState {
 
+    var blending : Bool = true;
     var cull_face : Bool = false;
     var depth_test : Bool = false;
     var depth_mask : Bool = true;
@@ -21,6 +22,11 @@ class RenderState {
 
     public function enable( what:Int ) {
         switch(what) {
+            case GL.BLEND:
+                if(!blending) {
+                    blending = true;
+                    GL.enable(GL.BLEND);
+                }
             case GL.CULL_FACE:
                 if(!cull_face) {
                     cull_face = true;
@@ -38,6 +44,11 @@ class RenderState {
 
     public function disable( what:Int ) {
         switch(what) {
+            case GL.BLEND:
+                if(blending) {
+                    blending = false;
+                    GL.disable(GL.BLEND);
+                }
             case GL.CULL_FACE:
                 if(cull_face) {
                     cull_face = false;

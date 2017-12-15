@@ -19,6 +19,7 @@ class BatchState {
     public var is_clipping : Bool;
     public var clip_rect : Rectangle;
     public var last_clip_rect : Rectangle;
+    public var last_blend_disabled : Bool;
     public var last_blend_src_alpha : Int;
     public var last_blend_src_rgb : Int;
     public var last_blend_dest_alpha : Int;
@@ -87,11 +88,18 @@ class BatchState {
             }
 
             var blend_dirty = last_blend_src_rgb != geom_state.blend_src_rgb;
+                blend_dirty = blend_dirty || (last_blend_disabled != geom_state.blend_disabled);
                 blend_dirty = blend_dirty || (last_blend_src_alpha != geom_state.blend_src_alpha); 
                 blend_dirty = blend_dirty || (last_blend_dest_rgb != geom_state.blend_dest_rgb); 
                 blend_dirty = blend_dirty || (last_blend_dest_alpha != geom_state.blend_dest_alpha); 
             
             if(blend_dirty && !geom_state.ignore_blend) {
+
+                last_blend_disabled = geom_state.blend_disabled;
+                last_blend_disabled ?
+                    batcher.renderer.state.disable(GL.BLEND) :
+                    batcher.renderer.state.enable(GL.BLEND);
+
                 last_blend_src_rgb = geom_state.blend_src_rgb;
                 last_blend_src_alpha = geom_state.blend_src_alpha;
                 last_blend_dest_rgb = geom_state.blend_dest_rgb;
@@ -146,17 +154,18 @@ class BatchState {
 
             //undo any textures we bound last
         if(last_texture_id != null) {
-            Luxe.renderer.state.bindTexture2D(null);
+            batcher.renderer.state.bindTexture2D(null);
         }
 
             //for now we just disable any shader because other
             //batchers are not aware of us yet.
-        Luxe.renderer.state.useProgram(null);
+        batcher.renderer.state.useProgram(null);
 
             //remove clipping
         if(is_clipping) GL.disable(GL.SCISSOR_TEST);
 
             //default blend mode
+        batcher.renderer.state.enable(GL.BLEND);
         GL.blendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
         GL.blendEquation(GL.FUNC_ADD);
 

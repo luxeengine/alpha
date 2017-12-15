@@ -45,6 +45,8 @@ class Visual extends Entity {
         /** convenience: controls the rotation around the z axis, in degrees. */
     public var rotation_z           (get,set) : Float;
 
+        /** Set whether or not blending is disabled for this visual. */
+    public var blend_disabled        (get, set) : Bool;
         /** Set the per geometry source blending. 
         This sets blend_src_alpha and blend_src_rgb,
         and returns blend_src_alpha (the get isn't really logical) */
@@ -373,6 +375,7 @@ class Visual extends Entity {
 
 //Blending
     
+    inline function get_blend_disabled() : Bool          return geometry.blend_disabled;
     inline function get_blend_src() : BlendMode         return geometry.blend_src_alpha;
     inline function get_blend_dest() : BlendMode        return geometry.blend_dest_alpha;
     inline function get_blend_src_alpha() : BlendMode   return geometry.blend_src_alpha;
@@ -380,6 +383,11 @@ class Visual extends Entity {
     inline function get_blend_dest_alpha() : BlendMode  return geometry.blend_dest_alpha;
     inline function get_blend_dest_rgb() : BlendMode    return geometry.blend_dest_rgb;
     
+    inline function set_blend_disabled(val:Bool)  {
+        geometry.blend_disabled = val;
+        return val;
+    }
+
     inline function set_blend_src(val:BlendMode)  {
         geometry.blend_src_alpha = val;
         geometry.blend_src_rgb = val;

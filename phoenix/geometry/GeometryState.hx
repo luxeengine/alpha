@@ -23,6 +23,7 @@ class GeometryState {
     @:isVar var clip_y(default, set) : Float = 0;
     @:isVar var clip_w(default, set) : Float = 0;
     @:isVar var clip_h(default, set) : Float = 0;
+    @:isVar var blend_disabled(default, set) : Bool = false;
     @:isVar var blend_src_alpha(default, set) : BlendMode = BlendMode.src_alpha;
     @:isVar var blend_src_rgb(default, set) : BlendMode = BlendMode.src_alpha;
     @:isVar var blend_dest_alpha(default, set) : BlendMode = BlendMode.one_minus_src_alpha;
@@ -50,6 +51,7 @@ class GeometryState {
         _other.clip_y = clip_y;
         _other.clip_w = clip_w;
         _other.clip_h = clip_h;
+        _other.blend_disabled = blend_disabled;
         _other.blend_src_alpha = blend_src_alpha;
         _other.blend_src_rgb = blend_src_rgb;
         _other.blend_dest_alpha = blend_dest_alpha;
@@ -72,7 +74,7 @@ class GeometryState {
             trace('\t\tprimitive_type - $primitive_type');
             trace('\t\tclip - $clip');
             trace('\t\tclip rect - $clip_x,$clip_y,$clip_w,$clip_h');
-            trace('\t\tblend - src_alpha($blend_src_alpha) src_rgb($blend_src_rgb) dest_alpha($blend_dest_alpha) dest_rgb($blend_dest_rgb)');
+            trace('\t\tblend - $blend_disabled - src_alpha($blend_src_alpha) src_rgb($blend_src_rgb) dest_alpha($blend_dest_alpha) dest_rgb($blend_dest_rgb)');
         trace('\t- GEOMETRYSTATE');
 
     } //str
@@ -122,6 +124,10 @@ class GeometryState {
         if(clip_h != other.clip_h) {
             clip_h = other.clip_h;
         } //clip_h
+
+        if(blend_disabled != other.blend_disabled) {
+            blend_disabled = other.blend_disabled;
+        } //blend_disabled
 
         if(blend_src_alpha != other.blend_src_alpha) {
             blend_src_alpha = other.blend_src_alpha;
@@ -185,6 +191,10 @@ class GeometryState {
     inline function set_clip_h(val : Float) : Float {
         dirty = true;
         return clip_h = val;
+    }
+    inline function set_blend_disabled(val : Bool) : Bool {
+        dirty = true;
+        return blend_disabled = val;
     }
     inline function set_blend_src_alpha(val : Int) : Int {
         dirty = true;

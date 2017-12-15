@@ -67,6 +67,7 @@ class Geometry {
     @:isVar public var shader (get, set) : Shader;
     @:isVar public var depth (get, set) : Float;
     @:isVar public var clip_rect (get, set) : Rectangle;
+    @:isVar public var blend_disabled(get, set) : Bool = false;
     @:isVar public var blend_src_alpha(get, set) : Int = BlendMode.src_alpha;
     @:isVar public var blend_src_rgb(get, set) : Int = BlendMode.src_alpha;
     @:isVar public var blend_dest_alpha(get, set) : Int = BlendMode.one_minus_src_alpha;
@@ -77,6 +78,7 @@ class Geometry {
     var shadow_shader : Shader;
     var shadow_depth : Float = 0.0;
     var shadow_clip : Bool = false;
+    var shadow_blend_disabled : Bool = false;
     var shadow_blend_src_alpha : Int = BlendMode.src_alpha;
     var shadow_blend_src_rgb : Int = BlendMode.src_alpha;
     var shadow_blend_dest_alpha : Int = BlendMode.one_minus_src_alpha;
@@ -179,6 +181,7 @@ class Geometry {
             key.shader = state.shader;
             key.depth = state.depth;
             key.clip = state.clip;
+            key.blend_disabled = state.blend_disabled;
             key.blend_src_alpha = state.blend_src_alpha;
             key.blend_src_rgb = state.blend_src_rgb;
             key.blend_dest_alpha = state.blend_dest_alpha;
@@ -224,6 +227,7 @@ class Geometry {
         key.shader = state.shader;
         key.depth = state.depth;
         key.clip = state.clip;
+        key.blend_disabled = state.blend_disabled;
         key.blend_src_alpha = state.blend_src_alpha;
         key.blend_src_rgb = state.blend_src_rgb;
         key.blend_dest_alpha = state.blend_dest_alpha;
@@ -655,6 +659,7 @@ class Geometry {
 
             if(dirty_blend) {
                 dirty_blend = false;
+                state.blend_disabled = shadow_blend_disabled;
                 state.blend_src_alpha = shadow_blend_src_alpha;
                 state.blend_src_rgb = shadow_blend_src_rgb;
                 state.blend_dest_alpha = shadow_blend_dest_alpha;
@@ -775,6 +780,10 @@ class Geometry {
 
 //Blends
 
+    inline function get_blend_disabled() : Bool {
+        return state.blend_disabled;
+    }
+
     inline function get_blend_src_alpha() : Int {
         return state.blend_src_alpha;
     }
@@ -789,6 +798,16 @@ class Geometry {
 
     inline function get_blend_dest_rgb() : Int {
         return state.blend_dest_rgb;
+    }
+
+    function set_blend_disabled(val:Bool) : Bool {
+        state.ignore_blend = false;
+        if(state.blend_disabled != val) {
+            shadow_blend_disabled = val;
+            dirty_blend = true;
+            refresh();
+        }
+        return blend_disabled = val;
     }
 
     function set_blend_src_alpha(val:Int) : Int {
@@ -894,6 +913,7 @@ class GeometryKey {
     public var shader : Shader;
     public var depth : Float = 0;
     public var clip : Bool = false;
+    public var blend_disabled : Bool = false;
     public var blend_src_alpha : Int = 0;
     public var blend_src_rgb : Int = 0;
     public var blend_dest_alpha : Int = 0;

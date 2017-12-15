@@ -262,6 +262,12 @@ class Renderer {
 
     } //clear
 
+    public function blend_disable(disabled_state:Bool) {
+
+        disabled_state ? state.enable(GL.BLEND) : state.disable(GL.BLEND);
+
+    } //blend_disable
+
     public function blend_mode(?_src_mode:BlendMode = BlendMode.src_alpha, _dst_mode:BlendMode = BlendMode.one_minus_src_alpha) {
 
         GL.blendFunc(_src_mode, _dst_mode);
