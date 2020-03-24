@@ -1,25 +1,21 @@
-# luxe alpha
+# luxe alpha (deprecated)
 
-luxe is a lovingly handcrafted free, open source cross platform rapid development game engine.
+luxe is a lovingly crafted free, open source cross platform rapid development game engine.
 
-## 1.0 is coming...
+## This repo is the old alpha codebase!
 
-This code base is for the previous iteration of luxe tagged `alpha`. luxe has progressed well beyond this, 
+- It is no longer maintained
+- It is not related to the new code base at all
+- It is not representative of the new engine at all
+- **The new luxe code + engine are not available yet**
 
 #### please see https://luxeengine.com for all the details!
 
-## getting started with the alpha
+There are dev logs around progress and updates, and information on the engine.
 
-[luxeengine.com/alpha](http://luxeengine.com/)
+## view alpha documentation
 
-## join the community
-
-[Find the chat, ask questions](https://luxeengine.com/alpha/#community)
-
-## development log
-
-[View the dev posts](https://luxeengine.com/tag/dev/)   
-[View the status posts](https://luxeengine.com/tag/status/)
+[luxeengine.com/alpha](http://luxeengine.com/alpha)
 
 ### license
 
