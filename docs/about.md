@@ -10,12 +10,14 @@
 luxe is a lovingly handcrafted free, open source cross platform rapid development game engine for deploying games on Mac, Windows, Linux, Android, iOS and Web. 
 
 <div style="margin:auto; display:flex; width:75%; justify-content:center;">
-![mac](./content/images/2016/08/mac.png)   
-![linux](./content/images/2016/08/linux.png)   
-![windows](./content/images/2016/08/windows.png)   
-![android](./content/images/2016/08/android.png)   
-![ios](./content/images/2016/08/iOS.png)   
-![webgl](./content/images/2016/08/webgl.png)   
+
+![](./content/images/2016/08/mac.png)   
+![](./content/images/2016/08/linux.png)   
+![](./content/images/2016/08/windows.png)   
+![](./content/images/2016/08/android.png)   
+![](./content/images/2016/08/iOS.png)   
+![](./content/images/2016/08/webgl.png)   
+
 </div>
 <br/>
 <span style="display:block;text-align:center">[Here are some games made with it](#games).</span> 
@@ -31,7 +33,7 @@ luxe is a lovingly handcrafted free, open source cross platform rapid developmen
 The transition is from <em>design</em> exploration phase to final implementation of the engine. We are busy with the <strong>execution</strong> phase, which will become available soon. 
 <br/>
 <br/>
-<h2><a href="https://luxeengine.com/">Visit the new site</a> to find out more! <br>or <a href="/news">subscribe</a> for updates </h2>
+<h2><a href="https://luxeengine.com/">Visit the new site</a> to find out more! <br></h2>
 </div>
 
 ---
