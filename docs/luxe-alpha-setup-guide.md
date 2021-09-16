@@ -150,10 +150,3 @@ The known to be stable version of hxcpp is `3.4.64`.
   - If you STILL run into errors, ask for help in the community
 
 ---
-
-# Where to find help
-
-If you get stuck with setup or something isn't listed, please feel free to ask for help.
-
-- [Ask the community!](/#community)
-- [Ask on the support repo](https://github.com/luxeengine/support/)
