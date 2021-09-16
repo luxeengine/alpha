@@ -1,4 +1,4 @@
-[![Logo](/content/images/2016/08/icon_text_dark_small.png)](/get)
+[![Logo](./content/images/2016/08/icon_text_dark_small.png)](/get)
 
 ---
 
@@ -16,7 +16,7 @@ https://www.sublimetext.com/ (version 3)
 [setup instructions](https://snowkit.github.io/flow/guide/sublimetext.html)   
 Mac / Windows / Linux
 <a href="https://snowkit.github.io/flow/guide/sublimetext.html">
-![](/content/images/2016/08/sublime.png" style="max-width:29em)
+![](./content/images/2016/08/sublime.png)
 </a>
 
 ---
@@ -26,7 +26,7 @@ https://atom.io/
 [setup instructions](https://atom.io/packages/flow)   
 Mac / Windows / Linux
 <a href="https://atom.io/packages/flow">
-![](/content/images/2016/08/atom.png" style="max-width:29em)
+![](./content/images/2016/08/atom.png)
 </a>
 
 ---
@@ -36,7 +36,7 @@ https://code.visualstudio.com/
 Setup instructions below   
 Mac / Windows / Linux
 
-![](/content/images/2017/06/vscode.png)
+![](./content/images/2017/06/vscode.png)
 
 To use VSCode with luxe:
 
@@ -89,5 +89,5 @@ Windows Only
 <small>HaxeDevelop is a build of FlashDevelop for Haxe. 
 The instructions are the same for both, but the setup page will mention FlashDevelop.</small>
 <a href="https://snowkit.github.io/flow/guide/flashdevelop.html">
-![](/content/images/2016/08/haxedevelop.png" style="max-width:29em)
+![](./content/images/2016/08/haxedevelop.png)
 </a>
