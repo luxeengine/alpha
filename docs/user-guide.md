@@ -1,8 +1,8 @@
-<a href="/"><img style="width:10em; height:10em;" src="/content/images/2017/10/luxe.logo.png"/> </a>
+<a href="/"><img style="width:10em; height:10em;" src="./content/images/2017/10/luxe.logo.png"/> </a>
 
 ---
-<small>If you are looking for the alpha setup guide, [you can find it here](/alpha/get).</small>
-<small>If you are looking for the alpha API docs, [you can find them here](/alpha/api).</small>
+<small>If you are looking for the alpha setup guide, [you can find it here](./luxe-alpha-setup-guide.md).</small>
+<small>If you are looking for the alpha API docs, [you can find them here](./api).</small>
 
 **please note** this documentation is for the luxe alpha only.   
 luxe 1.0 is coming... see https://luxeengine.com/
@@ -53,9 +53,9 @@ The feature guide is a piece by piece reference for specific features of the eng
 ---
 
 ## #1 - Getting started
-<small>code for this guide is found in [**`samples/guides/1_getting_started/`**](https://github.com/underscorediscovery/luxe/tree/master/samples/guides/1_getting_started/src/Main.hx" target="_blank)</small>
+<small>code for this guide is found in [**`samples/guides/1_getting_started/`**](https://github.com/luxeengine/luxe-alpha/tree/master/samples/guides/1_getting_started/src/Main.hx" target="_blank)</small>
 
-![getting started screenshot](/content/images/2016/08/guide-one.gif)
+![getting started screenshot](./content/images/2016/08/guide-one.gif)
 <span style="display:block;width:100%;text-align:center"> guide outcome </span>
 
 ### An empty project
@@ -78,7 +78,7 @@ Open your `project.flow` file and look inside, you'll find information specific 
 
 Here's is an example of what that looks like:
 
-![flow-file](/content/images/2016/08/flow-file.png)
+![flow-file](./content/images/2016/08/flow-file.png)
 
 #### Your game code
 
@@ -294,9 +294,9 @@ That's the basics of getting things on screen, updating things every frame, and 
 ---
 
 ## #2 - Images and sprites
-<small>code for this guide is found in [**`samples/guides/2_sprites/`**](https://github.com/underscorediscovery/luxe/tree/master/samples/guides/2_sprites/src/Main.hx" target="_blank)</small>
+<small>code for this guide is found in [**`samples/guides/2_sprites/`**](https://github.com/luxeengine/luxe-alpha/tree/master/samples/guides/2_sprites/src/Main.hx" target="_blank)</small>
 
-![sprites screenshot](/content/images/2016/08/guide-two.gif)
+![sprites screenshot](./content/images/2016/08/guide-two.gif)
 <span style="display:block;width:100%;text-align:center"> guide outcome </span>
 
 #### Drawing images instead of blocks
@@ -436,9 +436,9 @@ In the next guide we'll add some animation and more.
 ---
 
 ## #3 - Sprites and animation
-<small>code for this guide is found in [**`samples/guides/3_sprite_animation/`**](https://github.com/underscorediscovery/luxe/blob/master/samples/guides/3_sprite_animation/src/Main.hx" target="_blank)</small>
+<small>code for this guide is found in [**`samples/guides/3_sprite_animation/`**](https://github.com/luxeengine/luxe-alpha/blob/master/samples/guides/3_sprite_animation/src/Main.hx" target="_blank)</small>
 
-![sprites screenshot](/content/images/2016/08/guide-three.gif)
+![sprites screenshot](./content/images/2016/08/guide-three.gif)
 <span style="display:block;width:100%;text-align:center"> guide outcome </span>
 
 #### Animating a sprite
@@ -545,9 +545,9 @@ Sprite animations are usually stored in packed images, which puts the frames of 
 
 Here is our player sprite sheet, with an idle and walk animation stored as frames. This particular sprite was created quickly for a previous project by the talented [andrio](https://twitter.com/_andrio" target="_blank).
 
-_Note that sprite sheets aren't required, you can use separate textures but this is typically inefficient. See [**`tests/features/sprite_animation`**](https://github.com/underscorediscovery/luxe/tree/master/tests/features/sprite_animation" target="_blank)_.
+_Note that sprite sheets aren't required, you can use separate textures but this is typically inefficient. See [**`tests/features/sprite_animation`**](https://github.com/luxeengine/luxe-alpha/tree/master/tests/features/sprite_animation" target="_blank)_.
 
-![](/content/images/2016/08/player.png)
+![](./content/images/2016/08/player.png)
 
 To tell the animation component where each animation is and how it works, we will use a json file for convenience.
 
@@ -622,9 +622,9 @@ The full code sample is linked at the beginning of the guide and continues on fr
 ---
 
 ## #4 - Text and audio
-<small>code for this guide is found in [**`samples/guides/4_text_and_tweening/`**](https://github.com/underscorediscovery/luxe/blob/master/samples/guides/4_text_and_tweening/src/Main.hx" target="_blank)</small>
+<small>code for this guide is found in [**`samples/guides/4_text_and_tweening/`**](https://github.com/luxeengine/luxe-alpha/blob/master/samples/guides/4_text_and_tweening/src/Main.hx" target="_blank)</small>
 
-![sprites screenshot](/content/images/2016/08/guide-four.gif)
+![sprites screenshot](./content/images/2016/08/guide-four.gif)
 <span style="display:block;width:100%;text-align:center"> guide outcome </span>
 
 #### :todo:
@@ -872,7 +872,7 @@ HSV and HSL are cylindrical in nature, that means that they are _round_ and thei
 
 Take a look at the image below, this is the color wheel (Hue only), mapped to degrees.
 
-![color wheel](/content/images/2016/08/color_wheel.png)
+![color wheel](./content/images/2016/08/color_wheel.png)
 
 **How this helps**
 
@@ -911,7 +911,7 @@ Now - for simplicity sake - we will define the terms in a less exact way. Take a
 
 Have a look at these graphs [from Wikipedia](http://en.wikipedia.org/wiki/HSL_and_HSV) for a clearer view.
 
-![HSL/HSV](/content/images/2016/08/color_hsvl.png)
+![HSL/HSV](./content/images/2016/08/color_hsvl.png)
 
 ### Creating and using the different types
 
@@ -1037,7 +1037,7 @@ function after(_) {
 
 And the results would be similar to :
 
-![](/content/images/2016/08/guide-rendercontrol-1.png)
+![](./content/images/2016/08/guide-rendercontrol-1.png)
 
 
 Blending and blendmodes are a frequent topic in rendering and you can explore the different types here :
@@ -1064,7 +1064,7 @@ function after(_) {
 } //after
 ```
 
-For a clearer example of rendering to a texture, see [**`tests/rendering/rendertexture`**](https://github.com/underscorediscovery/luxe/tree/master/tests/rendering/rendertexture" target="_blank)
+For a clearer example of rendering to a texture, see [**`tests/rendering/rendertexture`**](https://github.com/luxeengine/luxe-alpha/tree/master/tests/rendering/rendertexture" target="_blank)
 
 
 <a name="shaders"></a> &nbsp;  
@@ -1228,7 +1228,7 @@ To do so, you use `Luxe.resources.load_font`. You can manually create a `phoenix
 To use `Luxe.resources.font` and `Luxe.resources.load_font` you should also read the [assets guide](#assets).   
 Take note that the folder is separated from the file name, because there can and often are multiple texture sheets for a font set. The name is always without a path.
 
-A more thorough example can be found in [**`tests/rendering/fonts/`**](https://github.com/underscorediscovery/luxe/tree/master/tests/rendering/fonts) and [**`tests/features/text/`**](https://github.com/underscorediscovery/luxe/tree/master/tests/features/text), [**`tests/features/text2/`**](https://github.com/underscorediscovery/luxe/tree/master/tests/features/text2)
+A more thorough example can be found in [**`tests/rendering/fonts/`**](https://github.com/luxeengine/luxe-alpha/tree/master/tests/rendering/fonts) and [**`tests/features/text/`**](https://github.com/luxeengine/luxe-alpha/tree/master/tests/features/text), [**`tests/features/text2/`**](https://github.com/luxeengine/luxe-alpha/tree/master/tests/features/text2)
 
 ```haxe
 override function ready() {
@@ -1843,9 +1843,9 @@ Luxe.events.schedule( 2.0 , 'debug:event1');
 
 ## Understanding Components
 
-<small>code for this guide is found in [**`samples/guides/5_components/`**](https://github.com/underscorediscovery/luxe/tree/master/samples/guides/5_components/src/" target="_blank)</small>
+<small>code for this guide is found in [**`samples/guides/5_components/`**](https://github.com/luxeengine/luxe-alpha/tree/master/samples/guides/5_components/src/" target="_blank)</small>
 
-![sprites screenshot](/content/images/2016/08/guide-basiccomponents.png)
+![sprites screenshot](./content/images/2016/08/guide-basiccomponents.png)
 <span style="display:block;width:100%;text-align:center"> guide outcome </span>
 
 ### What are Entities, and what are Components?
@@ -1865,7 +1865,7 @@ The terms are quite straight forward -
 
 This means that generally an entity doesn't do anything on it's own, it's a blank slate. By attaching components to it, it can become more specific at any time. This gives you the flexibility to compose dynamic items at runtime, and an entity is only defined by the components it has, not the code that is inside of it's class. If a tower wanted to fly for some reason, it can.
 
-![EntityComponentRelationship](/content/images/2016/08/entitycomponents.png)
+![EntityComponentRelationship](./content/images/2016/08/entitycomponents.png)
 
 > It's worth knowing that there are a few approaches to "entity component systems" as a concept. In current luxe the component is a class that contains code and is attached to an entity which is a container for components. 
 
@@ -2011,7 +2011,7 @@ To further demonstrate the component entity stuff, we will do the following :
 - Attach a custom component that will rotate the sprite
 - Attach a custom component that will make the sprite bounce
 
-![EntityComponentRelationship](/content/images/2016/08/entitycomponents2.png)
+![EntityComponentRelationship](./content/images/2016/08/entitycomponents2.png)
 
 You can mix and match components in this way to create a variety of behaviours with little effort, and to change the behaviour on the fly.
 
