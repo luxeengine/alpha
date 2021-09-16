@@ -19,8 +19,6 @@ luxe is a lovingly handcrafted free, open source cross platform rapid developmen
 ![](./content/images/2016/08/webgl.png)   
 
 </div>
-<br/>
-<span style="display:block;text-align:center">[Here are some games made with it](#games).</span> 
 
 ---
 
@@ -69,9 +67,9 @@ You can also find help and friends on the [**community chat**](/chat).
 
 # Getting started (alpha)
 
-## [view setup guide](/get)
-## [view luxe user guide](/guide)
-## [view API reference](/api)
+## [view setup guide](./luxe-alpha-setup-guide.md)
+## [view luxe user guide](./user-guide.md)
+## [view API reference](./api/)
 
 ---
 
@@ -163,9 +161,11 @@ Released on Mac, Windows, Linux (Steam, GOG), Android (Play, Amazon), iOS
 
 <a target="_blank" href="http://www.doublezeroonezero.com/westport.html">
 <div class="screenshot">
+
 ![westport](./content/images/2016/08/westport1.png)
 ![westport](./content/images/2016/08/westport2.png)
 ![westport](./content/images/2016/08/westport3.png)
+
 </div>
 </a>
 
@@ -176,9 +176,11 @@ Released on iOS and Android with a web based demo.
 
 <a target="_blank" href="https://topsoilgame.com">
 <div class="screenshot bigger" style="height:20em">
+
 ![topsoil](./content/images/2017/04/topsoil-1-2.png)
 ![topsoil](./content/images/2017/04/topsoil-2-1.png)
 ![topsoil](./content/images/2017/04/topsoil-3-1.png)
+
 </div>
 </a>
 
@@ -189,9 +191,11 @@ Released on Steam for Mac, Windows and Linux
 
 <a target="_blank" href="http://benn-gaming.co.uk/operatoroverload.html">
 <div class="screenshot">
+
 ![operator overload](./content/images/2016/08/oo1.jpg)
 ![operator overload](./content/images/2016/08/oo2.jpg)
 ![operator overload](./content/images/2016/08/003.jpg)
+
 </div>
 </a>
 
@@ -201,9 +205,11 @@ Released on Steam as part of [HELP: THE GAME](http://store.steampowered.com/app/
 
 <a target="_blank" href="http://store.steampowered.com/app/497380/">
 <div class="screenshot">
+
 ![rise](./content/images/2016/08/rise1.jpg)
 ![rise](./content/images/2016/08/rise2-1.jpg)
 ![rise](./content/images/2016/08/rise3-1.jpg)
+
 </div>
 </a>
 
@@ -213,9 +219,11 @@ Released as a port to WebGL to support more players (originally in Flash)
 
 <a target="_blank" href="http://www.foddy.net/Athletics.html?webgl=true">
 <div class="screenshot">
+
 ![qwop](./content/images/2016/08/qwop1.png)
 ![qwop](./content/images/2016/08/qwop3.png)
 ![qwop](./content/images/2016/08/qwop2.png)
+
 </div>
 </a>
 
@@ -225,9 +233,11 @@ Released as a port to the web platform (originally in Unity)
 
 <a target="_blank" href="http://play.threesgame.com">
 <div class="screenshot bigger">
+    
 ![threes](./content/images/2016/08/threes1.png)
 ![threes](./content/images/2016/08/threes2.png)
 ![threes](./content/images/2016/08/threes3.png)
+
 </div>
 </a>
 
