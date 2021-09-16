@@ -11,7 +11,7 @@ luxe requires Haxe 3.2.0+, and works with the latest stable release of Haxe.
 
 [**You can download and install it here**](http://haxe.org/download/version/3.4.2/)   
 
-![](./content/images/2016/08/haxe.png" style="margin:0; width:3em; border-radius:0)
+![](./content/images/2016/08/haxe.png)
 
 ---
 
@@ -23,7 +23,7 @@ To use the luxe alpha, you must have git installed. **luxe is hosted on [Github]
 **If you aren't familiar with git, try the [Github Desktop](https://desktop.github.com/" target="_blank) client.**   
 <small>The desktop client can install the command line tools if you need them.</small>   
 
-![](./content/images/2016/08/github.png" style="margin:0; width:5em; border-radius:0)
+![](./content/images/2016/08/github.png)
 
 ---
 
@@ -48,7 +48,7 @@ For convenience you can **install command shortcuts**:
 
 <small>Now you can use `snowfall` and `flow` as a command without `haxelib run` in front.</small>
 
-![](./content/images/2016/08/icon_text_dark_small.png" style="margin:0; width:5em; border-radius:0)
+![](./content/images/2016/08/icon_text_dark_small.png)
 
 ---
 
