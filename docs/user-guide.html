@@ -1,0 +1,2678 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>@font-face {
+  font-family: octicons-link;
+  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM+8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB/aFGpk3jaTY6xa8JAGMW/O62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v+k/0an2i+itHDw3v2+9+DBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3/I7AtxEJLtzzuZfI+VVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy/Lt7Kc+0vWY/gAgIIEqAN9we0pwKXreiMasxvabDQMM4riO+qxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw+ymhce7vwM9jSqO8JyVd5RH9gyTt2+J/yUmYlIR0s04n6+7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv/ocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi+W2+MjCzMIDApSwvXzC97Z4Ig8N/BxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh/8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT+AEjAwuDFpBmA9KMDEwMCh9i/v8H8sH0/4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9/lqYwOGZxeUelN2U2R6+cArgtCJpauW7UQBqnFkUsjAY/kOU1cP+DAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl+vvmM/byA48e6tWrKArm4ZJlCbdsrxksL1AwWn/yBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO//sdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd/89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF+9JOS0nbaaYDCQfwCJ7Au3AHj+LO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm+EBXuAbHmIMSRMs+4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL+hD7C1xoaHeLJSEao0FEW14ckxC+TU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13/+lm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl+9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O/AdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB///AA8AAQAAAAAAAAAAAAAAAAABAAAAAA==) format('woff');
+}
+
+body {
+    width: 980px;
+    margin-right: auto;
+    margin-left: auto;
+    color:#333;
+    background:#fff;
+}
+
+body .markdown-body {
+    padding: 45px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    word-wrap: break-word;
+}
+
+.markdown-body .octicon-link:before {
+  font: normal normal normal 16px/1 octicons-link;
+  display: inline-block;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: '\f05c';
+  vertical-align: middle;
+}
+
+.markdown-body .anchor {
+  float: left;
+  line-height: 1;
+  margin-left: -20px;
+  padding-right: 4px;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  color: #1b1f23;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.markdown-body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #24292e;
+  line-height: 1.5;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.markdown-body .pl-c {
+  color: #6a737d;
+}
+
+.markdown-body .pl-c1,
+.markdown-body .pl-s .pl-v {
+  color: #005cc5;
+}
+
+.markdown-body .pl-e,
+.markdown-body .pl-en {
+  color: #6f42c1;
+}
+
+.markdown-body .pl-s .pl-s1,
+.markdown-body .pl-smi {
+  color: #24292e;
+}
+
+.markdown-body .pl-ent {
+  color: #22863a;
+}
+
+.markdown-body .pl-k {
+  color: #d73a49;
+}
+
+.markdown-body .pl-pds,
+.markdown-body .pl-s,
+.markdown-body .pl-s .pl-pse .pl-s1,
+.markdown-body .pl-sr,
+.markdown-body .pl-sr .pl-cce,
+.markdown-body .pl-sr .pl-sra,
+.markdown-body .pl-sr .pl-sre {
+  color: #032f62;
+}
+
+.markdown-body .pl-smw,
+.markdown-body .pl-v {
+  color: #e36209;
+}
+
+.markdown-body .pl-bu {
+  color: #b31d28;
+}
+
+.markdown-body .pl-ii {
+  background-color: #b31d28;
+  color: #fafbfc;
+}
+
+.markdown-body .pl-c2 {
+  background-color: #d73a49;
+  color: #fafbfc;
+}
+
+.markdown-body .pl-c2:before {
+  content: "^M";
+}
+
+.markdown-body .pl-sr .pl-cce {
+  color: #22863a;
+  font-weight: 700;
+}
+
+.markdown-body .pl-ml {
+  color: #735c0f;
+}
+
+.markdown-body .pl-mh,
+.markdown-body .pl-mh .pl-en,
+.markdown-body .pl-ms {
+  color: #005cc5;
+  font-weight: 700;
+}
+
+.markdown-body .pl-mi {
+  color: #24292e;
+  font-style: italic;
+}
+
+.markdown-body .pl-mb {
+  color: #24292e;
+  font-weight: 700;
+}
+
+.markdown-body .pl-md {
+  background-color: #ffeef0;
+  color: #b31d28;
+}
+
+.markdown-body .pl-mi1 {
+  background-color: #f0fff4;
+  color: #22863a;
+}
+
+.markdown-body .pl-mc {
+  background-color: #ffebda;
+  color: #e36209;
+}
+
+.markdown-body .pl-mi2 {
+  background-color: #005cc5;
+  color: #f6f8fa;
+}
+
+.markdown-body .pl-mdr {
+  color: #6f42c1;
+  font-weight: 700;
+}
+
+.markdown-body .pl-ba {
+  color: #586069;
+}
+
+.markdown-body .pl-sg {
+  color: #959da5;
+}
+
+.markdown-body .pl-corl {
+  color: #032f62;
+  text-decoration: underline;
+}
+
+.markdown-body details {
+  display: block;
+}
+
+.markdown-body summary {
+  display: list-item;
+}
+
+.markdown-body a {
+  background-color: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline-width: 0;
+}
+
+.markdown-body strong {
+  font-weight: inherit;
+  font-weight: bolder;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: .67em 0;
+}
+
+.markdown-body img {
+  border-style: none;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace,monospace;
+  font-size: 1em;
+}
+
+.markdown-body hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+.markdown-body input {
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body input {
+  overflow: visible;
+}
+
+.markdown-body [type=checkbox] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body * {
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.markdown-body a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body strong {
+  font-weight: 600;
+}
+
+.markdown-body hr {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #dfe2e5;
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.markdown-body hr:before {
+  content: "";
+  display: table;
+}
+
+.markdown-body hr:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body details summary {
+  cursor: pointer;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.markdown-body h1 {
+  font-size: 32px;
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+  font-weight: 600;
+}
+
+.markdown-body h2 {
+  font-size: 24px;
+}
+
+.markdown-body h3 {
+  font-size: 20px;
+}
+
+.markdown-body h3,
+.markdown-body h4 {
+  font-weight: 600;
+}
+
+.markdown-body h4 {
+  font-size: 16px;
+}
+
+.markdown-body h5 {
+  font-size: 14px;
+}
+
+.markdown-body h5,
+.markdown-body h6 {
+  font-weight: 600;
+}
+
+.markdown-body h6 {
+  font-size: 12px;
+}
+
+.markdown-body p {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ol,
+.markdown-body ul {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ol ol ol,
+.markdown-body ol ul ol,
+.markdown-body ul ol ol,
+.markdown-body ul ul ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.markdown-body input::-webkit-inner-spin-button,
+.markdown-body input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.markdown-body .border {
+  border: 1px solid #e1e4e8!important;
+}
+
+.markdown-body .border-0 {
+  border: 0!important;
+}
+
+.markdown-body .border-bottom {
+  border-bottom: 1px solid #e1e4e8!important;
+}
+
+.markdown-body .rounded-1 {
+  border-radius: 3px!important;
+}
+
+.markdown-body .bg-white {
+  background-color: #fff!important;
+}
+
+.markdown-body .bg-gray-light {
+  background-color: #fafbfc!important;
+}
+
+.markdown-body .text-gray-light {
+  color: #6a737d!important;
+}
+
+.markdown-body .mb-0 {
+  margin-bottom: 0!important;
+}
+
+.markdown-body .my-2 {
+  margin-bottom: 8px!important;
+  margin-top: 8px!important;
+}
+
+.markdown-body .pl-0 {
+  padding-left: 0!important;
+}
+
+.markdown-body .py-0 {
+  padding-bottom: 0!important;
+  padding-top: 0!important;
+}
+
+.markdown-body .pl-1 {
+  padding-left: 4px!important;
+}
+
+.markdown-body .pl-2 {
+  padding-left: 8px!important;
+}
+
+.markdown-body .py-2 {
+  padding-bottom: 8px!important;
+  padding-top: 8px!important;
+}
+
+.markdown-body .pl-3,
+.markdown-body .px-3 {
+  padding-left: 16px!important;
+}
+
+.markdown-body .px-3 {
+  padding-right: 16px!important;
+}
+
+.markdown-body .pl-4 {
+  padding-left: 24px!important;
+}
+
+.markdown-body .pl-5 {
+  padding-left: 32px!important;
+}
+
+.markdown-body .pl-6 {
+  padding-left: 40px!important;
+}
+
+.markdown-body .f6 {
+  font-size: 12px!important;
+}
+
+.markdown-body .lh-condensed {
+  line-height: 1.25!important;
+}
+
+.markdown-body .text-bold {
+  font-weight: 600!important;
+}
+
+.markdown-body:before {
+  content: "";
+  display: table;
+}
+
+.markdown-body:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.markdown-body>:first-child {
+  margin-top: 0!important;
+}
+
+.markdown-body>:last-child {
+  margin-bottom: 0!important;
+}
+
+.markdown-body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.markdown-body blockquote,
+.markdown-body dl,
+.markdown-body ol,
+.markdown-body p,
+.markdown-body pre,
+.markdown-body table,
+.markdown-body ul {
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.markdown-body hr {
+  background-color: #e1e4e8;
+  border: 0;
+  height: .25em;
+  margin: 24px 0;
+  padding: 0;
+}
+
+.markdown-body blockquote {
+  border-left: .25em solid #dfe2e5;
+  color: #6a737d;
+  padding: 0 1em;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #fafbfc;
+  border: 1px solid #c6cbd1;
+  border-bottom-color: #959da5;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #959da5;
+  color: #444d56;
+  display: inline-block;
+  font-size: 11px;
+  line-height: 10px;
+  padding: 3px 5px;
+  vertical-align: middle;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: .3em;
+}
+
+.markdown-body h2 {
+  font-size: 1.5em;
+}
+
+.markdown-body h3 {
+  font-size: 1.25em;
+}
+
+.markdown-body h4 {
+  font-size: 1em;
+}
+
+.markdown-body h5 {
+  font-size: .875em;
+}
+
+.markdown-body h6 {
+  color: #6a737d;
+  font-size: .85em;
+}
+
+.markdown-body ol,
+.markdown-body ul {
+  padding-left: 2em;
+}
+
+.markdown-body ol ol,
+.markdown-body ol ul,
+.markdown-body ul ol,
+.markdown-body ul ul {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.markdown-body li {
+  word-wrap: break-all;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body li+li {
+  margin-top: .25em;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+  margin-top: 16px;
+  padding: 0;
+}
+
+.markdown-body dl dd {
+  margin-bottom: 16px;
+  padding: 0 16px;
+}
+
+.markdown-body table {
+  display: block;
+  overflow: auto;
+  width: 100%;
+}
+
+.markdown-body table th {
+  font-weight: 600;
+}
+
+.markdown-body table td,
+.markdown-body table th {
+  border: 1px solid #dfe2e5;
+  padding: 6px 13px;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+.markdown-body img {
+  background-color: #fff;
+  box-sizing: content-box;
+  max-width: 100%;
+}
+
+.markdown-body img[align=right] {
+  padding-left: 20px;
+}
+
+.markdown-body img[align=left] {
+  padding-right: 20px;
+}
+
+.markdown-body code {
+  background-color: rgba(27,31,35,.05);
+  border-radius: 3px;
+  font-size: 85%;
+  margin: 0;
+  padding: .2em .4em;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre>code {
+  background: transparent;
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  word-break: normal;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  background-color: #f6f8fa;
+  border-radius: 3px;
+  font-size: 85%;
+  line-height: 1.45;
+  overflow: auto;
+  padding: 16px;
+}
+
+.markdown-body pre code {
+  background-color: transparent;
+  border: 0;
+  display: inline;
+  line-height: inherit;
+  margin: 0;
+  max-width: auto;
+  overflow: visible;
+  padding: 0;
+  word-wrap: normal;
+}
+
+.markdown-body .commit-tease-sha {
+  color: #444d56;
+  display: inline-block;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 90%;
+}
+
+.markdown-body .blob-wrapper {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.markdown-body .blob-wrapper-embedded {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.markdown-body .blob-num {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  color: rgba(27,31,35,.3);
+  cursor: pointer;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 12px;
+  line-height: 20px;
+  min-width: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: right;
+  user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 1%;
+}
+
+.markdown-body .blob-num:hover {
+  color: rgba(27,31,35,.6);
+}
+
+.markdown-body .blob-num:before {
+  content: attr(data-line-number);
+}
+
+.markdown-body .blob-code {
+  line-height: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  vertical-align: top;
+}
+
+.markdown-body .blob-code-inner {
+  color: #24292e;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  font-size: 12px;
+  overflow: visible;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+.markdown-body .pl-token.active,
+.markdown-body .pl-token:hover {
+  background: #ffea7f;
+  cursor: pointer;
+}
+
+.markdown-body kbd {
+  background-color: #fafbfc;
+  border: 1px solid #d1d5da;
+  border-bottom-color: #c6cbd1;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #c6cbd1;
+  color: #444d56;
+  display: inline-block;
+  font: 11px SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+  line-height: 10px;
+  padding: 3px 5px;
+  vertical-align: middle;
+}
+
+.markdown-body :checked+.radio-label {
+  border-color: #0366d6;
+  position: relative;
+  z-index: 1;
+}
+
+.markdown-body .tab-size[data-tab-size="1"] {
+  -moz-tab-size: 1;
+  tab-size: 1;
+}
+
+.markdown-body .tab-size[data-tab-size="2"] {
+  -moz-tab-size: 2;
+  tab-size: 2;
+}
+
+.markdown-body .tab-size[data-tab-size="3"] {
+  -moz-tab-size: 3;
+  tab-size: 3;
+}
+
+.markdown-body .tab-size[data-tab-size="4"] {
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+.markdown-body .tab-size[data-tab-size="5"] {
+  -moz-tab-size: 5;
+  tab-size: 5;
+}
+
+.markdown-body .tab-size[data-tab-size="6"] {
+  -moz-tab-size: 6;
+  tab-size: 6;
+}
+
+.markdown-body .tab-size[data-tab-size="7"] {
+  -moz-tab-size: 7;
+  tab-size: 7;
+}
+
+.markdown-body .tab-size[data-tab-size="8"] {
+  -moz-tab-size: 8;
+  tab-size: 8;
+}
+
+.markdown-body .tab-size[data-tab-size="9"] {
+  -moz-tab-size: 9;
+  tab-size: 9;
+}
+
+.markdown-body .tab-size[data-tab-size="10"] {
+  -moz-tab-size: 10;
+  tab-size: 10;
+}
+
+.markdown-body .tab-size[data-tab-size="11"] {
+  -moz-tab-size: 11;
+  tab-size: 11;
+}
+
+.markdown-body .tab-size[data-tab-size="12"] {
+  -moz-tab-size: 12;
+  tab-size: 12;
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 .2em .25em -1.6em;
+  vertical-align: middle;
+}
+
+.markdown-body hr {
+  border-bottom-color: #eee;
+}
+
+.markdown-body .pl-0 {
+  padding-left: 0!important;
+}
+
+.markdown-body .pl-1 {
+  padding-left: 4px!important;
+}
+
+.markdown-body .pl-2 {
+  padding-left: 8px!important;
+}
+
+.markdown-body .pl-3 {
+  padding-left: 16px!important;
+}
+
+.markdown-body .pl-4 {
+  padding-left: 24px!important;
+}
+
+.markdown-body .pl-5 {
+  padding-left: 32px!important;
+}
+
+.markdown-body .pl-6 {
+  padding-left: 40px!important;
+}
+
+.markdown-body .pl-7 {
+  padding-left: 48px!important;
+}
+
+.markdown-body .pl-8 {
+  padding-left: 64px!important;
+}
+
+.markdown-body .pl-9 {
+  padding-left: 80px!important;
+}
+
+.markdown-body .pl-10 {
+  padding-left: 96px!important;
+}
+
+.markdown-body .pl-11 {
+  padding-left: 112px!important;
+}
+
+.markdown-body .pl-12 {
+  padding-left: 128px!important;
+}
+</style><title>user-guide</title></head><body><article class="markdown-body"><p><a href="/"><img src="/C:/dev/luxe-alpha/docs/content/images/2017/10/luxe.logo.png" style="max-width:100%;"> </a></p>
+<hr>
+<p>If you are looking for the alpha setup guide, <a href="/C:/dev/luxe-alpha/docs/luxe-alpha-setup-guide.html">you can find it here</a>.
+If you are looking for the alpha API docs, <a href="/C:/dev/luxe-alpha/docs/api">you can find them here</a>.</p>
+<p><strong>please note</strong> this documentation is for the old deprecated luxe alpha only.<br>
+luxe 1.0 is coming... see <a href="https://luxeengine.com/" rel="nofollow">https://luxeengine.com/</a></p>
+<p><a name="user-content-start"></a></p>
+<h4>
+<a id="user-content--alpha-beginners-guide-" class="anchor" href="#-alpha-beginners-guide-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#beginnersguide"> (alpha) Beginners guide </a>
+</h4>
+<p><strong>The beginners guide is a linear guide</strong>,<br>
+it follows a semi logical progression about understanding some of the core concepts while working with luxe alpha. Things like building and running, assets, input and more.</p>
+<p><a href="#gettingstarted">#1 - <strong>Getting Started</strong></a><br>
+<a href="#imagesandsprites">#2 - <strong>Images and sprites</strong></a><br>
+<a href="#spritesandanimation">#3 - <strong>Sprites and animation</strong></a><br>
+<a href="#textandaudio">#4 - <strong>Text and audio</strong></a></p>
+<p><a name="user-content-list"></a></p>
+<h4>
+<a id="user-content--feature-guide-" class="anchor" href="#-feature-guide-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="#featureguide"> Feature guide </a>
+</h4>
+<p>The feature guide is a piece by piece reference for specific features of the engine, designed to explain and teach what the engine can do.</p>
+<p><strong>gameplay</strong></p>
+<p><a href="#timers"> timers </a><br>
+wip - <del>audio</del> - <del>transforms</del> - <del>app timing</del> - <del>scene</del> - <del>physics</del> - <del>collision</del></p>
+<p><strong>rendering</strong></p>
+<p><a href="#sprite">sprites</a><br>
+<a href="#spriteanimation">sprite animation</a><br>
+<a href="#color">color</a><br>
+<a href="#rendercontrol">render control</a><br>
+<a href="#shaders">shaders</a><br>
+<a href="#drawing">drawing</a><br>
+<a href="#fonts">fonts</a><br>
+wip - <del>render batching</del> - <del>cameras</del> - <del>tilemaps</del> - <del>nineslice</del> - <del>particles</del> - <del>textures</del></p>
+<p><strong>systems</strong></p>
+<p><a href="#assets">assets</a><br>
+<a href="#events">events</a><br>
+<a href="#components">components</a><br>
+<a href="#utils">utils</a><br>
+wip - <del>maths</del> - <del>states</del></p>
+<hr>
+<p><a name="user-content-gettingstarted"></a><a name="user-content-one"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-1---getting-started" class="anchor" href="#1---getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>#1 - Getting started</h2>
+<p>code for this guide is found in <a href="https://github.com/luxeengine/luxe-alpha/tree/master/samples/guides/1_getting_started/src/Main.hx"><strong><code>samples/guides/1_getting_started/</code></strong></a></p>
+<p><a href="/C:/dev/luxe-alpha/docs/content/images/2016/08/guide-one.gif" target="_blank" rel="noopener noreferrer"><img src="/C:/dev/luxe-alpha/docs/content/images/2016/08/guide-one.gif" alt="getting started screenshot" style="max-width:100%;"></a>
+<span> guide outcome </span></p>
+<h3>
+<a id="user-content-an-empty-project" class="anchor" href="#an-empty-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>An empty project</h3>
+<p>For now, as luxe is in development,<br>
+<strong>copy the <code>luxe/samples/empty</code> folder as your starting point</strong>.</p>
+<p><em>This will be automated in future.<br>
+Some editors (like HaxeDevelop) have a new project template already.</em></p>
+<h4>
+<a id="user-content-basic-anatomy" class="anchor" href="#basic-anatomy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basic Anatomy</h4>
+<h3>
+<a id="user-content-a-flow-file" class="anchor" href="#a-flow-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A flow file?!</h3>
+<p>When you build a luxe app, it's built by flow, a build tool that reads a project file.<br>
+Your <strong>project file is called a flow file</strong>, and has the extension <code>.flow</code>.
+This is essentially the entry point to working with your project.</p>
+<p>Open your <code>project.flow</code> file and look inside, you'll find information specific to your project that you can configure.</p>
+<p>Here's is an example of what that looks like:</p>
+<p><a href="/C:/dev/luxe-alpha/docs/content/images/2016/08/flow-file.png" target="_blank" rel="noopener noreferrer"><img src="/C:/dev/luxe-alpha/docs/content/images/2016/08/flow-file.png" alt="flow-file" style="max-width:100%;"></a></p>
+<h4>
+<a id="user-content-your-game-code" class="anchor" href="#your-game-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Your game code</h4>
+<p>The second place to look, is the <code>src/Main.hx</code> file, which is where your game begins. For reference, <code>src</code> is short for <code>source</code> code. Typically you would put your game haxe code in this folder.</p>
+<p>A luxe app, in it's very basic form, is a single haxe class that extends from <code>luxe.Game</code>. It has some functions that you override, like the <code>ready</code> function, which is where you start coding your game.</p>
+<p>If you ran this code, you would see a blank window.
+We'll see how to run the game a bit further down.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">class</span> <span class="pl-en">Main</span> <span class="pl-k">extends</span> <span class="pl-c1">luxe.</span><span class="pl-en">Game</span> {
+
+	<span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">ready</span>() {
+	   <span class="pl-c"><span class="pl-c">//</span>your game starts here</span>
+	}
+
+}</pre></div>
+<p>Aside from the <code>ready</code> function, there are quite a few that you can override in order to handle luxe system events - like <code>onkeyup(event:KeyEvent)</code> or <code>update(delta:Float)</code>. The first being when a key is released, and update is called every frame for you, so you can update your game logic.</p>
+<h3>
+<a id="user-content-the-config-function" class="anchor" href="#the-config-function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The <code>config</code> function</h3>
+<p>One important function in your game is the <code>config</code> function. This function gets called for you <em>before</em> ready happens. This means that anything you configure here, will be setup when the game is ready.</p>
+<p>It is important to note, the function serves to configure your game app <em>before it launches</em>, meaning that almost all of the engine systems are unavailable in here.</p>
+<p>For now, you can see what the config options are and specify them to your liking. We'll use this function again in the next guide.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">config</span>(<span class="pl-v">config</span><span class="pl-k">:</span><span class="pl-en">GameConfig</span>) {
+
+    <span class="pl-smi">config</span>.<span class="pl-smi">window</span>.<span class="pl-smi">title</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>luxe game<span class="pl-pds">'</span></span>;
+    <span class="pl-smi">config</span>.<span class="pl-smi">window</span>.<span class="pl-smi">width</span> <span class="pl-k">=</span> <span class="pl-c1">960</span>;
+    <span class="pl-smi">config</span>.<span class="pl-smi">window</span>.<span class="pl-smi">height</span> <span class="pl-k">=</span> <span class="pl-c1">640</span>;
+    <span class="pl-smi">config</span>.<span class="pl-smi">window</span>.<span class="pl-smi">fullscreen</span> <span class="pl-k">=</span> <span class="pl-c1">false</span>;
+
+    <span class="pl-k">return</span> <span class="pl-smi">config</span>;
+
+} <span class="pl-c"><span class="pl-c">//</span>config</span></pre></div>
+<h3>
+<a id="user-content-the-empty-game-class" class="anchor" href="#the-empty-game-class" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The empty Game class</h3>
+<p>Now that we're a bit more familiar, this is how the full empty game might look.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">GameConfig</span>;
+<span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">Input</span>;
+
+<span class="pl-k">class</span> <span class="pl-en">Main</span> <span class="pl-k">extends</span> <span class="pl-c1">luxe.</span><span class="pl-en">Game</span> {
+
+    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">config</span>(<span class="pl-v">config</span><span class="pl-k">:</span><span class="pl-en">GameConfig</span>) {
+
+        <span class="pl-smi">config</span>.<span class="pl-smi">window</span>.<span class="pl-smi">title</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>luxe game<span class="pl-pds">'</span></span>;
+        <span class="pl-smi">config</span>.<span class="pl-smi">window</span>.<span class="pl-smi">width</span> <span class="pl-k">=</span> <span class="pl-c1">960</span>;
+        <span class="pl-smi">config</span>.<span class="pl-smi">window</span>.<span class="pl-smi">height</span> <span class="pl-k">=</span> <span class="pl-c1">640</span>;
+        <span class="pl-smi">config</span>.<span class="pl-smi">window</span>.<span class="pl-smi">fullscreen</span> <span class="pl-k">=</span> <span class="pl-c1">false</span>;
+
+        <span class="pl-k">return</span> <span class="pl-smi">config</span>;
+
+    } <span class="pl-c"><span class="pl-c">//</span>config</span>
+
+    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">ready</span>() {
+
+    } <span class="pl-c"><span class="pl-c">//</span>ready</span>
+
+    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">onkeyup</span>(<span class="pl-v">event</span><span class="pl-k">:</span><span class="pl-en">KeyEvent</span>) {
+
+        <span class="pl-k">if</span>(<span class="pl-smi">event</span>.<span class="pl-smi">keycode</span> <span class="pl-k">==</span> <span class="pl-en">Key</span>.<span class="pl-smi">escape</span>) {
+            <span class="pl-en">Luxe</span>.<span class="pl-en">shutdown</span>();
+        }
+
+    } <span class="pl-c"><span class="pl-c">//</span>onkeyup</span>
+
+    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">update</span>(<span class="pl-v">delta</span><span class="pl-k">:</span><span class="pl-c1">Float</span>) {
+
+    } <span class="pl-c"><span class="pl-c">//</span>update</span>
+
+} <span class="pl-c"><span class="pl-c">//</span>Main</span></pre></div>
+<hr>
+<h3>
+<a id="user-content-building-and-running-a-luxe-game" class="anchor" href="#building-and-running-a-luxe-game" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Building and running a luxe game</h3>
+<p>Your project file contains the information necessary to instruct the build tool - <code>flow</code> - on how to build your game.</p>
+<p>flow is a command line tool but is integrated into editors like so that you can work from those instead, if you prefer. You can see how to configure that here in the <a href="/C:/dev/luxe-alpha/docs/luxe-alpha-setup-guide.html">setup guide</a>.</p>
+<p>For now, we will stick with the command line for reference on what is happening.
+If you haven't installed the flow shortcut (via snowfall for example) then you need to add <code>haxelib run</code> in front of each command below.</p>
+<p><strong>flow run</strong><br>
+To run the game, you type <code>flow run</code> into the command line and hit enter, which you do from within your project folder. This will run all the steps necessary to convert your code into an application, and then launch it.</p>
+<p>If you want to build without running, use <code>flow build</code>.
+If you want to launch without building, use <code>flow launch</code>.</p>
+<p>You may need to run in debug mode to find the cause of runtime errors - to do that you would just append a <code>--debug</code> flag to the command. The final command would be <code>flow run --debug</code>.</p>
+<p><em>Note that debug mode is significantly more expensive to run, making the game run less smoothly at times. If you aren't debugging a crash you would likely be ok without the debug flag</em>.</p>
+<hr>
+<h4>
+<a id="user-content-getting-something-on-screen" class="anchor" href="#getting-something-on-screen" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting something on screen</h4>
+<p>Now that we have a blank window, let's draw a sprite and move it around!</p>
+<p>To use code classes from luxe, we usually import them first. Imports go at the top of the file. Since we are going to make a sprite with a color and a position, we need the <code>luxe.Sprite</code>, <code>luxe.Color</code> and the <code>luxe.Vector</code> class. You don't have to import them this way, since you can reference them by their full name like above if you prefer.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">Sprite</span>;
+<span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">Color</span>;
+<span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">Vector</span>;</pre></div>
+<p><strong>luxe options</strong><br>
+In luxe, most constructors of objects specify their options in an object.
+This solves many annoyances while working and allows you to succicntly specify only the arguments you care about, and let the rest be handled by sane defaults.</p>
+<p>An options object is a regular haxe "anonymous object",
+it would look like this in a simple example :</p>
+<p><code>{  name:'a sprite' }</code></p>
+<p>To hand it to the constructor, you just put it in between the parenthesis.
+You'll see a full example just below this:</p>
+<p><code>new Sprite({ name:'simple example' });</code></p>
+<p><strong>Creating a Sprite</strong><br>
+For now, we will create a small orange block in the middle of the screen and give it a color, a size and a position. The name is optional, but it will make your project infinitely easier to work with if you name things from the start.</p>
+<p>We will make our sprite and store it in a variable named <code>block</code>. This is because we want to move the sprite later when the mouse moves, so we need to hold onto the sprite we create to do that.</p>
+<p>The variable is declared inside the class, outside of the functions. Usually at the top, right under the "class Main" part.</p>
+<p>Inside the ready function, we create the sprite and store it in our variable.
+When you run this you should see an orange block in the centre of the screen!</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">block</span> <span class="pl-k">:</span> <span class="pl-en">Sprite</span>;
+
+<span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">ready</span>() {
+
+	<span class="pl-smi">block</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Sprite</span>({
+		<span class="pl-smi">name</span>: <span class="pl-s"><span class="pl-pds">'</span>block sprite<span class="pl-pds">'</span></span>,
+		<span class="pl-smi">pos</span>: <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">mid</span>,
+		<span class="pl-smi">color</span>: <span class="pl-k">new</span> <span class="pl-en">Color</span>().<span class="pl-en">rgb</span>(<span class="pl-c1">0xf94b04</span>),
+		<span class="pl-smi">size</span>: <span class="pl-k">new</span> <span class="pl-en">Vector</span>(<span class="pl-c1">128</span>, <span class="pl-c1">128</span>)
+	});
+
+} <span class="pl-c"><span class="pl-c">//</span>ready</span>
+</pre></div>
+<hr>
+<h4>
+<a id="user-content-moving-things-around" class="anchor" href="#moving-things-around" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Moving things around</h4>
+<p><strong>The <code>onmousemove</code> function</strong></p>
+<p>The Game class has a function you can override called <code>onmousemove</code>. It also has <code>onmousedown</code> and <code>onmouseup</code>. Each of them take the same argument, <code>(event:MouseEvent)</code>. We can use the mouse move event to change the position of the block to match the mouse.</p>
+<p>To do that, we can set the <code>pos</code> property of the block directly, which is a <code>Vector</code>. The vector also has an <code>x</code> and a <code>y</code> component that you can set too, for instance you can do <code>block.pos.x += 10;</code> to shift it ten units.</p>
+<p>Start by overriding the <code>onmousemove</code> function, just below <code>ready</code>, and use the event information to move the block:</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">onmousemove</span>(<span class="pl-v">event</span><span class="pl-k">:</span><span class="pl-en">MouseEvent</span>) {
+
+	<span class="pl-smi">block</span>.<span class="pl-smi">pos</span> <span class="pl-k">=</span> <span class="pl-smi">event</span>.<span class="pl-smi">pos</span>;
+
+	<span class="pl-c"><span class="pl-c">//</span> also valid:</span>
+	<span class="pl-c"><span class="pl-c">//</span> block.pos.x = event.x;</span>
+	<span class="pl-c"><span class="pl-c">//</span> block.pos.y = event.y;</span>
+
+} <span class="pl-c"><span class="pl-c">//</span>onmousemove</span></pre></div>
+<p> </p>
+<h4>
+<a id="user-content-updating-things-every-frame" class="anchor" href="#updating-things-every-frame" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Updating things every frame</h4>
+<p>The last thing to learn in this guide is the <code>update</code> event function,
+we will rotate the block a small amount each frame.</p>
+<p>To do this, the sprite class has a <code>rotation_z</code> property for convenience. It's a value set in degrees for the sprite's rotation. If we want to animate the block spinning indefinitely, we simply add a small amount to this each frame.</p>
+<p>One thing to note though, is that we want the value to update consistently over time. To make that happen, we scale the change by the delta (difference in) time. This scaling of time makes sure it adds the amount as "per second" rather than "per update", so if the game runs faster on a faster device, it won't spin faster.</p>
+<p>Run this and it should behave like the animated image above.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">update</span>(<span class="pl-v">delta</span><span class="pl-k">:</span><span class="pl-c1">Float</span>) {
+
+        <span class="pl-c"><span class="pl-c">//</span>if we add 40° each frame, and scale it by the delta,</span>
+        <span class="pl-c"><span class="pl-c">//</span>it becomes 40° per second instead of 40° per update.</span>
+
+    <span class="pl-smi">block</span>.<span class="pl-smi">rotation_z</span> <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-c1">40</span> <span class="pl-k">*</span> <span class="pl-smi">delta</span>;
+
+} <span class="pl-c"><span class="pl-c">//</span>update</span></pre></div>
+<hr>
+<p>That's the basics of getting things on screen, updating things every frame, and using the override functions from the Game class to get key, mouse and other forms of input.</p>
+<p><a name="user-content-imagesandsprites"></a><a name="user-content-two"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-2---images-and-sprites" class="anchor" href="#2---images-and-sprites" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>#2 - Images and sprites</h2>
+<p>code for this guide is found in <a href="https://github.com/luxeengine/luxe-alpha/tree/master/samples/guides/2_sprites/src/Main.hx"><strong><code>samples/guides/2_sprites/</code></strong></a></p>
+<p><a href="/C:/dev/luxe-alpha/docs/content/images/2016/08/guide-two.gif" target="_blank" rel="noopener noreferrer"><img src="/C:/dev/luxe-alpha/docs/content/images/2016/08/guide-two.gif" alt="sprites screenshot" style="max-width:100%;"></a>
+<span> guide outcome </span></p>
+<h4>
+<a id="user-content-drawing-images-instead-of-blocks" class="anchor" href="#drawing-images-instead-of-blocks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Drawing images instead of blocks</h4>
+<p>This guide covers image loading, sprite flipping, pixel art scaling and mapping input.</p>
+<h4>
+<a id="user-content-loading-an-image-asset" class="anchor" href="#loading-an-image-asset" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Loading an image asset</h4>
+<p>Loading assets is typically an asynchronous concept, on many platforms this is an literal requirement. luxe handles assets asynchronously for you, making it easy to manage. The only important thing to remember when getting started, is that <strong>you can't use an asset that you have not loaded yet.</strong></p>
+<blockquote>
+<p>In luxe, the word <code>Texture</code> is used and it just means “image”. It's just the term that the hardware rendering API's use. You will also notice the <code>phoenix</code> package used, <code>phoenix</code> is the name of the rendering backend that luxe is currently using.</p>
+</blockquote>
+<p><strong>Loading an image during preloading</strong></p>
+<blockquote>
+<p>A <strong>parcel</strong> is what luxe calls a list of assets, and is used to load and unload groups of resources.</p>
+</blockquote>
+<p>The first method of loading an image, is to load it in the <code>config</code> function. The config holds a default <strong>parcel</strong> for you, that you can quickly and conveniently put assets to be loaded <em>before your ready function is called</em>. This means you can use it right away.</p>
+<p>As mentioned in the previous guide, the config function is before the engine is ready, meaning that you can't draw things (like a progress bar). The config parcel is for iterating quickly, and for assets that are needed before your game is loaded. For instance, a splash screen image would be loaded here, the displayed in ready. If your game assets are small enough, loading all of the assets this way is not a problem.</p>
+<p>We add the image to the list of textures to be loaded in the <code>preload</code> parcel. It has a <code>textures</code> list, so we give it an object with an <code>id</code> by adding it to the list.</p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">config</span>(<span class="pl-v">config</span><span class="pl-k">:</span><span class="pl-c1">luxe.</span><span class="pl-en">GameConfig</span>) {
+
+        <span class="pl-smi">config</span>.<span class="pl-smi">preload</span>.<span class="pl-smi">textures</span>.<span class="pl-en">push</span>({ <span class="pl-smi">id</span>:<span class="pl-s"><span class="pl-pds">'</span>assets/stand.png<span class="pl-pds">'</span></span> });
+
+        <span class="pl-k">return</span> <span class="pl-smi">config</span>;
+
+    } <span class="pl-c"><span class="pl-c">//</span>config</span>
+</pre></div>
+<p> 
+When ready happens, the image is loaded, and accessed via the resources API.</p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-c"><span class="pl-c">//</span>fetch the previously loaded texture!</span>
+<span class="pl-k">var</span> <span class="pl-smi">image</span> <span class="pl-k">=</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">resources</span>.<span class="pl-en">texture</span>(<span class="pl-s"><span class="pl-pds">'</span>assets/stand.png<span class="pl-pds">'</span></span>);</pre></div>
+<hr>
+<h3>
+<a id="user-content-displaying-the-image" class="anchor" href="#displaying-the-image" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Displaying the image</h3>
+<p>In <code>ready</code>, we can set the filtering for pixel art, so that drawing it bigger doesn't blur it. We also calculate a good size that fits the current window, and create a sprite to display it.</p>
+<p>We also handle some input binding, but we will get to that next.</p>
+<div class="highlight highlight-source-hx"><pre> <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">ready</span>() {
+
+        <span class="pl-c"><span class="pl-c">//</span>fetch the previously loaded texture!</span>
+    <span class="pl-k">var</span> <span class="pl-smi">image</span> <span class="pl-k">=</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">resources</span>.<span class="pl-en">texture</span>(<span class="pl-s"><span class="pl-pds">'</span>assets/stand.png<span class="pl-pds">'</span></span>);
+
+        <span class="pl-c"><span class="pl-c">//</span>keep pixels crisp when scaling them, for pixel art</span>
+    <span class="pl-smi">image</span>.<span class="pl-smi">filter_min</span> <span class="pl-k">=</span> <span class="pl-smi">image</span>.<span class="pl-smi">filter_mag</span> <span class="pl-k">=</span> <span class="pl-en">FilterType</span>.<span class="pl-smi">nearest</span>;
+
+        <span class="pl-c"><span class="pl-c">//</span>work out the correct size based on a made up ratio</span>
+    <span class="pl-k">var</span> <span class="pl-smi">ratio</span> <span class="pl-k">=</span> <span class="pl-c1">1.75</span>;
+    <span class="pl-k">var</span> <span class="pl-smi">height</span> <span class="pl-k">=</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">h</span><span class="pl-k">/</span><span class="pl-smi">ratio</span>;
+    <span class="pl-k">var</span> <span class="pl-smi">width</span> <span class="pl-k">=</span> (<span class="pl-smi">height</span><span class="pl-k">/</span><span class="pl-smi">image</span>.<span class="pl-smi">height</span>) <span class="pl-k">*</span> <span class="pl-smi">image</span>.<span class="pl-smi">width</span>;
+
+        <span class="pl-c"><span class="pl-c">//</span>create the actual visible player, give it the texture</span>
+    <span class="pl-smi">player</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Sprite</span>({
+       <span class="pl-smi">name</span>: <span class="pl-s"><span class="pl-pds">'</span>player<span class="pl-pds">'</span></span>,
+       <span class="pl-smi">texture</span>: <span class="pl-smi">image</span>,
+       <span class="pl-smi">pos</span>: <span class="pl-k">new</span> <span class="pl-en">Vector</span>(<span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">mid</span>.<span class="pl-smi">x</span>, <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">h</span> <span class="pl-k">-</span> (<span class="pl-smi">height</span><span class="pl-k">/</span><span class="pl-smi">ratio</span>)),
+       <span class="pl-smi">size</span>: <span class="pl-k">new</span> <span class="pl-en">Vector</span>(<span class="pl-smi">width</span>, <span class="pl-smi">height</span>)
+    });
+
+        <span class="pl-c"><span class="pl-c">//</span>set up keys and values for moving around</span>
+    <span class="pl-smi">move_speed</span> <span class="pl-k">=</span> <span class="pl-smi">width</span> <span class="pl-k">*</span> <span class="pl-c1">3</span>;
+
+    <span class="pl-en">connect_input</span>();
+
+} <span class="pl-c"><span class="pl-c">//</span>ready</span></pre></div>
+<hr>
+<h3>
+<a id="user-content-basic-input-handling" class="anchor" href="#basic-input-handling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basic input handling</h3>
+<p>To move the sprite around a bit, we will use one of a few methods to handle input. We saw the direct event functions last time, and another alternative type is to check a state value every frame. This usually means putting key bindings spread out around your code, making it a bit trickier to change later.</p>
+<p>To make this type of input less hardcoded, luxe supports the notion of "named input bindings". This is what it sounds like, it binds an input event to a name. From there, you can handle the named events, rather than the raw input. This also let's us bind multiple keys to a single <em>name</em>, making our resulting code much simpler.</p>
+<p>Here is how the <code>connect_input</code> method would look. We only need left and right in this guide, so we bind two common mappings to those names:</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">function</span> <span class="pl-en">connect_input</span>() {
+
+    <span class="pl-c"><span class="pl-c">//</span>here, we are going to bind A/left and D/right into a single named</span>
+    <span class="pl-c"><span class="pl-c">//</span>input event, so that we can keep our movement code the same</span>
+
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">input</span>.<span class="pl-en">bind_key</span>(<span class="pl-s"><span class="pl-pds">'</span>left<span class="pl-pds">'</span></span>, <span class="pl-en">Key</span>.<span class="pl-smi">left</span>);
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">input</span>.<span class="pl-en">bind_key</span>(<span class="pl-s"><span class="pl-pds">'</span>left<span class="pl-pds">'</span></span>, <span class="pl-en">Key</span>.<span class="pl-smi">key_a</span>);
+
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">input</span>.<span class="pl-en">bind_key</span>(<span class="pl-s"><span class="pl-pds">'</span>right<span class="pl-pds">'</span></span>, <span class="pl-en">Key</span>.<span class="pl-smi">right</span>);
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">input</span>.<span class="pl-en">bind_key</span>(<span class="pl-s"><span class="pl-pds">'</span>right<span class="pl-pds">'</span></span>, <span class="pl-en">Key</span>.<span class="pl-smi">key_d</span>);
+
+} <span class="pl-c"><span class="pl-c">//</span>connect_input</span></pre></div>
+<h3>
+<a id="user-content-simple-movement-logic" class="anchor" href="#simple-movement-logic" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Simple movement logic</h3>
+<p>We are going to keep things simple by shifting the player along the x axis, which looks pretty strange but we'll add animation in the next guide to make it appear less rigid.</p>
+<p>To do that, we ask luxe during the update function if the input named "left" is pressed down. This type of input handling in luxe is called "immediate query", since you ask for an immediate result. If it returns true, it means the keys we bound were in a down state, so we move left.</p>
+<p>Since our image is facing the other way when moving left, we also flip the sprite so it faces the direction we're moving in. The same applies for moving to the right. Again we see that we scale the movement by time, so that the movement is consistent.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">update</span>( <span class="pl-v">delta</span><span class="pl-k">:</span><span class="pl-c1">Float</span> ) {
+
+    <span class="pl-k">if</span>(<span class="pl-en">Luxe</span>.<span class="pl-smi">input</span>.<span class="pl-en">inputdown</span>(<span class="pl-s"><span class="pl-pds">'</span>left<span class="pl-pds">'</span></span>)) {
+
+        <span class="pl-smi">player</span>.<span class="pl-smi">pos</span>.<span class="pl-smi">x</span> <span class="pl-k">-</span><span class="pl-k">=</span> <span class="pl-smi">move_speed</span> <span class="pl-k">*</span> <span class="pl-smi">delta</span>;
+        <span class="pl-smi">player</span>.<span class="pl-smi">flipx</span> <span class="pl-k">=</span> <span class="pl-c1">true</span>;
+
+    } <span class="pl-k">else</span> <span class="pl-k">if</span>(<span class="pl-en">Luxe</span>.<span class="pl-smi">input</span>.<span class="pl-en">inputdown</span>(<span class="pl-s"><span class="pl-pds">'</span>right<span class="pl-pds">'</span></span>)) {
+
+        <span class="pl-smi">player</span>.<span class="pl-smi">pos</span>.<span class="pl-smi">x</span> <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-smi">move_speed</span> <span class="pl-k">*</span> <span class="pl-smi">delta</span>;
+        <span class="pl-smi">player</span>.<span class="pl-smi">flipx</span> <span class="pl-k">=</span> <span class="pl-c1">false</span>;
+
+    }
+
+} <span class="pl-c"><span class="pl-c">//</span>update</span></pre></div>
+<p>And we're done!
+In the next guide we'll add some animation and more.</p>
+<p><a name="user-content-spritesandanimation"></a><a name="user-content-three"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-3---sprites-and-animation" class="anchor" href="#3---sprites-and-animation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>#3 - Sprites and animation</h2>
+<p>code for this guide is found in <a href="https://github.com/luxeengine/luxe-alpha/blob/master/samples/guides/3_sprite_animation/src/Main.hx"><strong><code>samples/guides/3_sprite_animation/</code></strong></a></p>
+<p><a href="/C:/dev/luxe-alpha/docs/content/images/2016/08/guide-three.gif" target="_blank" rel="noopener noreferrer"><img src="/C:/dev/luxe-alpha/docs/content/images/2016/08/guide-three.gif" alt="sprites screenshot" style="max-width:100%;"></a>
+<span> guide outcome </span></p>
+<h4>
+<a id="user-content-animating-a-sprite" class="anchor" href="#animating-a-sprite" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Animating a sprite</h4>
+<p>This guide covers sprite animation and a simple loading screen with a progress bar.</p>
+<hr>
+<h3>
+<a id="user-content-loading-with-a-progress-bar" class="anchor" href="#loading-with-a-progress-bar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Loading with a progress bar</h3>
+<p>The previous guide mentioned that a parcel is a list of assets, which are loaded and unloaded as a group. We used the built in preload parcel from the config function, this time we'll make our own parcel and we'll also track the loading progress using the built in <code>luxe.ParcelProgress</code> class. We import that and <code>luxe.Parcel</code>.</p>
+<p>We're going to load a background image, a player sprite sheet for the animation, and a json file which describes the animations for the player. We define a parcel with a list for json items, and a list for textures. When we load this parcel, it will load these items for use.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">parcel</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Parcel</span>({
+    <span class="pl-smi">jsons</span>:[ { <span class="pl-smi">id</span>:<span class="pl-s"><span class="pl-pds">'</span>assets/anim.json<span class="pl-pds">'</span></span> } ],
+    <span class="pl-smi">textures</span> : [
+        { <span class="pl-smi">id</span>: <span class="pl-s"><span class="pl-pds">'</span>assets/apartment.png<span class="pl-pds">'</span></span> },
+        { <span class="pl-smi">id</span>: <span class="pl-s"><span class="pl-pds">'</span>assets/player.png<span class="pl-pds">'</span></span> }
+    ],
+});</pre></div>
+<p>We also want a very simple progress bar, and we use the <code>ParcelProgress</code> class to get it. What happens is that the parcel emits events, telling anyone who wants to know, about what is happening with the parcel. Things like progress, failed items and completeness are sent out and the <code>luxe.ParcelProgress</code> class simply listens in and updates the visuals accordingly.</p>
+<p>To use it is simpler than that:</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">new</span> <span class="pl-en">ParcelProgress</span>({
+    <span class="pl-smi">parcel</span>      : <span class="pl-smi">parcel</span>,
+    <span class="pl-smi">background</span>  : <span class="pl-k">new</span> <span class="pl-en">Color</span>(<span class="pl-c1">1</span>,<span class="pl-c1">1</span>,<span class="pl-c1">1</span>,<span class="pl-c1">0.85</span>),
+    <span class="pl-smi">oncomplete</span>  : <span class="pl-smi">assets_loaded</span>
+});</pre></div>
+<p>The <code>oncomplete</code> field for the options object is a function to be called when the parcel has been loaded. In this case we make a function in our game class called <code>assets_loaded</code> and continue in there. This makes the execution of our game go:</p>
+<p><code>ready</code> =&gt; [ parcel loading ] =&gt; <code>assets_loaded</code></p>
+<p>And while that happens, we see the progress on screen. We can now carry on with our game code inside <code>assets_loaded</code> where our assets are now available to use. Before we do that though, inside <code>ready</code> after creating the progress bar, we have to tell the parcel to load.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-smi">parcel</span>.<span class="pl-en">load</span>();</pre></div>
+<h3>
+<a id="user-content-after-loading" class="anchor" href="#after-loading" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>after loading</h3>
+<p>The <code>assets_loaded</code> function continues what <code>ready</code> would do, so we create the world and it's contents, and connect the input like the previous guide.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">function</span> <span class="pl-en">assets_loaded</span>(<span class="pl-v">_</span>) {
+
+    <span class="pl-en">create_apartment</span>();
+    <span class="pl-en">create_player</span>();
+    <span class="pl-en">create_player_animation</span>();
+    <span class="pl-en">connect_input</span>();
+
+} <span class="pl-c"><span class="pl-c">//</span>assets_loaded</span></pre></div>
+<blockquote>
+<p>The <code>_</code> character is used to ignore arguments that you don't really care about on a function. Say you had a function like <code>add(a:Int, b:Int)</code> but you only cared about <code>a</code> you could declare the function as <code>add(a:Int, _)</code>.</p>
+</blockquote>
+<blockquote>
+<p>This is convenient when you have callbacks that give you information that you're not going to need yet, like above.</p>
+</blockquote>
+<p><strong>creating the player and the apartment</strong></p>
+<p>The background is just a sprite, and so is the player!
+We're familiar with how to create those, so you can view the code sample to see the details.</p>
+<h4>
+<a id="user-content-sprite-frame-animation" class="anchor" href="#sprite-frame-animation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sprite frame animation</h4>
+<p>In luxe currently sprite animation is handled by a <em>component</em> which gets attached to an <em>entity</em>. A <code>luxe.Sprite</code> is an entity and the <code>luxe.components.sprite.SpriteAnimation</code> is a <code>Sprite</code> specific component. You can only attach this component to a <code>Sprite</code>.</p>
+<blockquote>
+<p>A <strong>component</strong> is a design pattern that has been around for a long time, which composes game specific entity behaviours using modular pieces. For instance, a player might be composed of a <code>Health</code>, <code>Hunger</code> and <code>Thirst</code> components. A creature in this same game can also use these components, but only the first two.</p>
+</blockquote>
+<blockquote>
+<p>This makes it powerful for creating variety and flexibility where entities can be anything at anytime, simply by their composition at the time, and not the code inside their class that's baked in.</p>
+</blockquote>
+<blockquote>
+<p>Many engines employ this model, and there are quite a few variations of the pattern around. <strong><a href="#components">This guide</a> talks about components in more detail</strong>.</p>
+</blockquote>
+<p><strong>creating and attaching a sprite animation component</strong></p>
+<p>By this point, we've created a <code>player</code> variable, which is a <code>Sprite</code> and can accept the animation component. We're going to want to keep hold of the animation component that is created, because we want to change the animation playing when moving around.</p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-c"><span class="pl-c">//</span>create the animation component and name it anim</span>
+<span class="pl-k">var</span> <span class="pl-smi">anim</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">SpriteAnimation</span>({ <span class="pl-smi">name</span>:<span class="pl-s"><span class="pl-pds">'</span>anim<span class="pl-pds">'</span></span> });
+    <span class="pl-c"><span class="pl-c">//</span>add the component to the player sprite/entity</span>
+<span class="pl-smi">player</span>.<span class="pl-en">add</span>(<span class="pl-smi">anim</span>);</pre></div>
+<p>An alternative approach is to leverage the fact that <code>add</code> will return the component instance as well. They do the same thing, but offer a succinct way which clarifies code when creating multiple components in a row.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-smi">anim</span> <span class="pl-k">=</span> <span class="pl-smi">player</span>.<span class="pl-en">add</span>( <span class="pl-k">new</span> <span class="pl-en">SpriteAnimation</span>({ <span class="pl-smi">name</span>:<span class="pl-s"><span class="pl-pds">'</span>anim<span class="pl-pds">'</span></span> }) );</pre></div>
+<p><strong>Defining some animation data</strong></p>
+<p>How do we tell it what our animations look like?
+Sprite animations are usually stored in packed images, which puts the frames of the animation in a single image.</p>
+<p>Here is our player sprite sheet, with an idle and walk animation stored as frames. This particular sprite was created quickly for a previous project by the talented <a href="https://twitter.com/_andrio" rel="nofollow">andrio</a>.</p>
+<p><em>Note that sprite sheets aren't required, you can use separate textures but this is typically inefficient. See <a href="https://github.com/luxeengine/luxe-alpha/tree/master/tests/features/sprite_animation"><strong><code>tests/features/sprite_animation</code></strong></a></em>.</p>
+<p><a href="/C:/dev/luxe-alpha/docs/content/images/2016/08/player.png" target="_blank" rel="noopener noreferrer"><img src="/C:/dev/luxe-alpha/docs/content/images/2016/08/player.png" alt="" style="max-width:100%;"></a></p>
+<p>To tell the animation component where each animation is and how it works, we will use a json file for convenience.</p>
+<div class="highlight highlight-source-json"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>idle<span class="pl-pds">"</span></span> : {
+        <span class="pl-s"><span class="pl-pds">"</span>frame_size<span class="pl-pds">"</span></span>:{ <span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span>:<span class="pl-c1">32</span>, <span class="pl-s"><span class="pl-pds">"</span>y<span class="pl-pds">"</span></span>:<span class="pl-c1">73</span> },
+        <span class="pl-s"><span class="pl-pds">"</span>frameset<span class="pl-pds">"</span></span>: [<span class="pl-s"><span class="pl-pds">"</span>1-3<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>hold 2<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>4<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>2-1<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>hold 10<span class="pl-pds">"</span></span>],
+        <span class="pl-s"><span class="pl-pds">"</span>loop<span class="pl-pds">"</span></span>: <span class="pl-c1">true</span>,
+        <span class="pl-s"><span class="pl-pds">"</span>speed<span class="pl-pds">"</span></span>: <span class="pl-c1">8</span>
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>walk<span class="pl-pds">"</span></span> : {
+        <span class="pl-s"><span class="pl-pds">"</span>frame_size<span class="pl-pds">"</span></span>:{ <span class="pl-s"><span class="pl-pds">"</span>x<span class="pl-pds">"</span></span>:<span class="pl-c1">32</span>, <span class="pl-s"><span class="pl-pds">"</span>y<span class="pl-pds">"</span></span>:<span class="pl-c1">73</span> },
+        <span class="pl-s"><span class="pl-pds">"</span>frameset<span class="pl-pds">"</span></span>: [<span class="pl-s"><span class="pl-pds">"</span>5-10<span class="pl-pds">"</span></span>],
+        <span class="pl-s"><span class="pl-pds">"</span>loop<span class="pl-pds">"</span></span>: <span class="pl-c1">true</span>,
+        <span class="pl-s"><span class="pl-pds">"</span>speed<span class="pl-pds">"</span></span>: <span class="pl-c1">9</span>
+    }
+}</pre></div>
+<p>You can see that the json frame sets are quite expressive. It allows timing to be expressed through frame numbers. The speed parameter is frames per second. <em>Note that frame numbers in images always start at 1. There is no frame 0 in an animation.</em></p>
+<p><strong>finalizing the animation</strong></p>
+<p>Most of this should be self explanatory and has comments, we use the resource manager to get our parcel items we loaded, we add the component, and we define our animations using the json. Once done, we set the animation by name to the one we want, and we tell it to play!</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">function</span> <span class="pl-en">create_player_animation</span>() {
+
+        <span class="pl-c"><span class="pl-c">//</span>create the animation component and add it to the sprite</span>
+    <span class="pl-smi">anim</span> <span class="pl-k">=</span> <span class="pl-smi">player</span>.<span class="pl-en">add</span>( <span class="pl-k">new</span> <span class="pl-en">SpriteAnimation</span>({ <span class="pl-smi">name</span>:<span class="pl-s"><span class="pl-pds">'</span>anim<span class="pl-pds">'</span></span> }) );
+
+        <span class="pl-c"><span class="pl-c">//</span>create the animation from the previously loaded json</span>
+    <span class="pl-k">var</span> <span class="pl-smi">anim_data</span> <span class="pl-k">=</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">resources</span>.<span class="pl-en">json</span>(<span class="pl-s"><span class="pl-pds">'</span>assets/anim.json<span class="pl-pds">'</span></span>);
+
+        <span class="pl-c"><span class="pl-c">//</span>create the animations from the json resource</span>
+    <span class="pl-smi">anim</span>.<span class="pl-en">add_from_json_object</span>( <span class="pl-smi">anim_data</span>.<span class="pl-smi">asset</span>.<span class="pl-smi">json</span> );
+
+        <span class="pl-c"><span class="pl-c">//</span>set the idle animation to active</span>
+    <span class="pl-smi">anim</span>.<span class="pl-smi">animation</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>idle<span class="pl-pds">'</span></span>;
+
+    <span class="pl-smi">anim</span>.<span class="pl-en">play</span>();
+
+} <span class="pl-c"><span class="pl-c">//</span>create_player_animation</span></pre></div>
+<h4>
+<a id="user-content-changing-animations-for-walking" class="anchor" href="#changing-animations-for-walking" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Changing animations for walking</h4>
+<p>A lot of the movement code hasn't changed, so we'll only focus on the animation differences.</p>
+<p>We saw the <code>animation</code> property set to <code>idle</code> earlier, so we can change it to <code>walk</code> while they're moving:</p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-c"><span class="pl-c">//</span>set the correct animation</span>
+<span class="pl-k">if</span>(<span class="pl-smi">moving</span>) {
+    <span class="pl-k">if</span>(<span class="pl-smi">anim</span>.<span class="pl-smi">animation</span> <span class="pl-k">!=</span> <span class="pl-s"><span class="pl-pds">'</span>walk<span class="pl-pds">'</span></span>) {
+        <span class="pl-smi">anim</span>.<span class="pl-smi">animation</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>walk<span class="pl-pds">'</span></span>;
+    }
+} <span class="pl-k">else</span> {
+    <span class="pl-k">if</span>(<span class="pl-smi">anim</span>.<span class="pl-smi">animation</span> <span class="pl-k">!=</span> <span class="pl-s"><span class="pl-pds">'</span>idle<span class="pl-pds">'</span></span>) {
+        <span class="pl-smi">anim</span>.<span class="pl-smi">animation</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>idle<span class="pl-pds">'</span></span>;
+    }
+}</pre></div>
+<p>And that's how to animate things!
+The full code sample is linked at the beginning of the guide and continues on from the previous guide. The next guide doesn't follow the same code but uses a lot of the concepts already introduced.</p>
+<p><a name="user-content-textandaudio"></a><a name="user-content-four"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-4---text-and-audio" class="anchor" href="#4---text-and-audio" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>#4 - Text and audio</h2>
+<p>code for this guide is found in <a href="https://github.com/luxeengine/luxe-alpha/blob/master/samples/guides/4_text_and_tweening/src/Main.hx"><strong><code>samples/guides/4_text_and_tweening/</code></strong></a></p>
+<p><a href="/C:/dev/luxe-alpha/docs/content/images/2016/08/guide-four.gif" target="_blank" rel="noopener noreferrer"><img src="/C:/dev/luxe-alpha/docs/content/images/2016/08/guide-four.gif" alt="sprites screenshot" style="max-width:100%;"></a>
+<span> guide outcome </span></p>
+<h4>
+<a id="user-content-todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>:todo:</h4>
+<p><em>This guide has not been written but the code sample is commented well</em>.</p>
+<p> <br>
+ <br>
+ </p>
+<hr>
+<p>#Gameplay guides</p>
+<p><a name="user-content-timers"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-timers-and-schedules" class="anchor" href="#timers-and-schedules" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Timers and schedules</h2>
+<h3>
+<a id="user-content-luxetimer" class="anchor" href="#luxetimer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Luxe.timer</h3>
+<p>To schedule things ahead of time, you have two options.</p>
+<ul>
+<li>use <code>Luxe.timer</code> (returns a <code>Timer</code> instance)</li>
+<li>use <code>snow.utils.Timer</code> class directly</li>
+</ul>
+<p>A comprehensive example of this is demonstrated in <a href="#four">beginner's guide #4</a>.<br>
+A schedule is given a haxe function that will be called at a later time. In luxe, <strong>time is always in seconds</strong>.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">timer</span> <span class="pl-k">=</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">timer</span>.<span class="pl-en">schedule</span>(<span class="pl-smi">time</span>, <span class="pl-k">function</span>() {
+    <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">"</span>This code happens in the future<span class="pl-pds">"</span></span>);
+});</pre></div>
+<p><strong>stopping or cancelling a timer</strong><br>
+To stop the timer, you need the timer instance itself returned from <code>schedule</code>.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-smi">timer</span>.<span class="pl-en">stop</span>();</pre></div>
+<h4>
+<a id="user-content-future-goals" class="anchor" href="#future-goals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>future goals</h4>
+<ul>
+<li>pause
+<ul>
+<li>pausing all or a single timer</li>
+</ul>
+</li>
+<li>timer grouping
+<ul>
+<li>i.e controlling game specific timers vs menu specific timers</li>
+</ul>
+</li>
+</ul>
+<h1>
+<a id="user-content-rendering-guides" class="anchor" href="#rendering-guides" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rendering guides</h1>
+<p><a name="user-content-sprite"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-sprite-features" class="anchor" href="#sprite-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sprite features</h2>
+<p>The <a href="#start">beginners guides</a> cover basic sprite usage.
+The <code>Sprite</code> class extends the <code>luxe.Visual</code> class, which is a geometry container. <code>Sprite</code> is also a <code>luxe.Entity</code>, so it can accept <code>luxe.Component</code> attachments.</p>
+<p>The sprite class is a Quad based geometry, and facilitates common actions with a quad based, textured sprite. If you want non quad geometry, use <code>luxe.Visual</code> instead, as sprite is a quad specialization.</p>
+<p>In concept a sprite is 2D, but no restriction on 3D rotation or positioning is applied. All 2D helpers will only affect x/y relative properties of the sprite.</p>
+<h3>
+<a id="user-content-sprite-specific-features" class="anchor" href="#sprite-specific-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sprite specific features</h3>
+<p><strong>centered</strong></p>
+<p>By default, the sprite origin will be centered. By setting the centered flag to false, it will be top left instead. The centered flag is used only when a custom origin is not specified, it will not override the explicit origin.</p>
+<p>The centered flag sets the transform <code>origin</code> to <code>size/2</code>.</p>
+<p><strong>flipx/flipy</strong></p>
+<p>The <code>flipx</code> and <code>flipy</code> flags will flip the geometry along it's own x or y axis respectively. Flipping works by changing the UV coordinates of the texture, based on the existing uv coordinates. Comes from <code>phoenix.geometry.QuadGeometry</code>.</p>
+<p>If the flip flag is already setting, setting it twice has no effect.</p>
+<p><strong>size</strong></p>
+<p>The size of the geometry in units, which allows setting a baseline size of the geometry. This differs from the scale transform as it is in units, allowing simpler scaling through a preset size. Comes from <code>Visual</code> (note this shouldn't be there).</p>
+<p><strong>uv</strong></p>
+<p>A rectangle in texture pixels for the UV coordinates of this sprite. Can be animated through setting the properties of the UV or assigning a new UV.
+Comes from <code>phoenix.geometry.QuadGeometry</code>.</p>
+<p><strong>rotation_z</strong></p>
+<p>A convenience for setting the 2D rotation (around the z axis) <strong>in degrees</strong>. Will also change <code>radians</code> to match. Comes from <code>Visual</code>.</p>
+<p><strong>radians</strong></p>
+<p>A convenience for setting the 2D rotation (around the z axis) <strong>in radians</strong>. Will also change <code>rotation_z</code> to match. Comes from <code>Visual</code>.</p>
+<p><a name="user-content-spriteanimation"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-spriteanimation-features" class="anchor" href="#spriteanimation-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SpriteAnimation features</h2>
+<p>The <a href="/C:/dev/luxe-alpha/docs/guide.html#beginnersguide">beginners guides</a> cover the basic sprite and sprite animation usage. The <code>SpriteAnimation</code> class extends the <code>Component</code> class, allowing it to be attached to a <code>Sprite</code>. This component can only be attached to a <code>Sprite</code> or child instance.</p>
+<p><strong>Animation type</strong></p>
+<p>The <code>SpriteAnimation</code> component supports</p>
+<ul>
+<li>uv animation from a packed sprite sheet</li>
+<li>image sequence from separate textures</li>
+</ul>
+<h3>
+<a id="user-content-controlling-playback" class="anchor" href="#controlling-playback" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Controlling playback</h3>
+<p>For each example, anim is an instance of a <code>SpriteAnimation</code></p>
+<p><strong>get/set animation</strong></p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-c"><span class="pl-c">//</span>set</span>
+<span class="pl-smi">anim</span>.<span class="pl-smi">animation</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>;
+    <span class="pl-c"><span class="pl-c">//</span>get</span>
+<span class="pl-k">var</span> <span class="pl-smi">name</span> <span class="pl-k">=</span> <span class="pl-smi">anim</span>.<span class="pl-smi">animation</span>;</pre></div>
+<h3>
+<a id="user-content-current-animation" class="anchor" href="#current-animation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Current animation</h3>
+<p><strong>get/change speed</strong></p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-c"><span class="pl-c">//</span>set</span>
+<span class="pl-smi">anim</span>.<span class="pl-smi">speed</span> <span class="pl-k">=</span> <span class="pl-c1">25</span>;
+    <span class="pl-c"><span class="pl-c">//</span>get</span>
+<span class="pl-k">var</span> <span class="pl-smi">speed</span> <span class="pl-k">=</span> <span class="pl-smi">anim</span>.<span class="pl-smi">speed</span>;</pre></div>
+<p><strong>set a specific frame</strong><br>
+Uses frame index, not image frame.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-smi">anim</span>.<span class="pl-en">set_frame</span>(<span class="pl-c1">6</span>);</pre></div>
+<p><strong>control playback</strong></p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-c"><span class="pl-c">//</span>reset the animation to the first frame</span>
+<span class="pl-smi">anim</span>.<span class="pl-en">restart</span>();
+    <span class="pl-c"><span class="pl-c">//</span>play/resume the animation</span>
+<span class="pl-smi">anim</span>.<span class="pl-en">play</span>();
+    <span class="pl-c"><span class="pl-c">//</span>stop/pause the animation. Does not reset the frame.</span>
+<span class="pl-smi">anim</span>.<span class="pl-en">stop</span>();</pre></div>
+<p><strong>add/remove frame events</strong></p>
+<p>Frame events allow the animation to tell you when it reached specific key frames during playback. These can be used to spawn particles, play sounds and so on.</p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-c"><span class="pl-c">//</span>add event at frame 6</span>
+<span class="pl-smi">anim</span>.<span class="pl-en">add_event</span>(<span class="pl-s"><span class="pl-pds">'</span>animation<span class="pl-pds">'</span></span>, <span class="pl-c1">6</span>, <span class="pl-s"><span class="pl-pds">'</span>event_name<span class="pl-pds">'</span></span>); 
+    <span class="pl-c"><span class="pl-c">//</span>remove a specific event from this frame</span>
+<span class="pl-smi">anim</span>.<span class="pl-en">remove_event</span>(<span class="pl-s"><span class="pl-pds">'</span>animation<span class="pl-pds">'</span></span>, <span class="pl-c1">6</span>, <span class="pl-s"><span class="pl-pds">'</span>event_name<span class="pl-pds">'</span></span>);
+    <span class="pl-c"><span class="pl-c">//</span>remove all events from this frame</span>
+<span class="pl-smi">anim</span>.<span class="pl-en">remove_events</span>(<span class="pl-s"><span class="pl-pds">'</span>animation<span class="pl-pds">'</span></span>, <span class="pl-c1">6</span>);</pre></div>
+<h3>
+<a id="user-content-animation-json-data" class="anchor" href="#animation-json-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Animation JSON Data</h3>
+<p>The animation frame JSON data consists of the following properties :</p>
+<h4>
+<a id="user-content-uv--image-sequence-common-settings" class="anchor" href="#uv--image-sequence-common-settings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>UV &amp; Image sequence common settings</h4>
+<ul>
+<li>
+<code>pingpong</code> : Bool
+<ul>
+<li>default: false</li>
+<li>if true, the animation will reverse at the last frame</li>
+<li>1  2  3  2  1</li>
+</ul>
+</li>
+<li>
+<code>loop</code> : Bool
+<ul>
+<li>default: false</li>
+<li>if true, the animation will continue to loop</li>
+<li>1  2  3  1  2  3 etc</li>
+<li>can combine with pingpong</li>
+</ul>
+</li>
+<li>
+<code>reverse</code> : Bool
+<ul>
+<li>default: false</li>
+<li>if true, animation will play in reverse</li>
+<li>can combine with pingpong and loop</li>
+<li>3  2  1</li>
+</ul>
+</li>
+<li>
+<code>speed</code> : Float
+<ul>
+<li>default: 2</li>
+<li>frames per second to play at</li>
+<li>can be 0</li>
+</ul>
+</li>
+<li>
+<code>events</code> : Array of { frame:Int, ?event:String }
+<ul>
+<li>fires named <em>event</em> on <em>frame</em> into the attached sprite</li>
+<li>IF <em>event</em> is not given:</li>
+<li>{animation}.event.{frame}, i.e "walk.event.5"</li>
+<li>handler given <a href="/C:/dev/luxe-alpha/docs/api/luxe/components/SpriteAnimationEventData.html">SpriteAnimationEventData</a>
+</li>
+</ul>
+</li>
+<li>
+<code>frameset</code> : Array of String
+<ul>
+<li>required</li>
+<li>sequential list of frames or frame actions:</li>
+<li>range : "1-10"</li>
+<li>frame : "1"</li>
+<li>
+<code>hold n</code> hold current for <em>n</em> frames of time : "hold 10"</li>
+<li>
+<code>f hold n</code> hold specific frame <em>f</em> for <em>n</em> frames : "1 hold 10"</li>
+</ul>
+</li>
+<li>
+<code>frame_size</code> : { x:Int, y:Int }
+<ul>
+<li>the size of a frame in texture pixels</li>
+<li>acts as the default for frame_sources, if any</li>
+</ul>
+</li>
+<li>
+<code>frame_sources</code> : { frame:Int, pos:{ x:Int, y:Int }, size:{ w:Int, h:Int }, source:{ x:Int, y:Int, w:Int, h:Int } }
+<ul>
+<li>optional</li>
+<li>per frame custom size, position and source uv rect</li>
+<li>uses frame_size in place of missing info</li>
+</ul>
+</li>
+</ul>
+<h4>
+<a id="user-content-image-sequence-type-only" class="anchor" href="#image-sequence-type-only" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Image sequence type only</h4>
+<ul>
+<li>
+<code>image_sequence</code> : String
+<ul>
+<li>name of a sequence of images :</li>
+<li>i.e assets/idle =&gt; assets/idle0.png ... assets/idleN.png</li>
+<li>will search for :</li>
+<li>
+<code>name_0</code>, <code>name-0</code>, <code>name0</code> patterns</li>
+</ul>
+</li>
+<li>
+<code>filter_type</code> : String
+<ul>
+<li>"linear" or "nearest", to set when loading the sequence</li>
+</ul>
+</li>
+</ul>
+<p><a name="user-content-color"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-manipulating-color-in-luxe" class="anchor" href="#manipulating-color-in-luxe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Manipulating color in luxe</h2>
+<p>Color is a very important tool in games, and being able to smoothly transition colors is important.</p>
+<p>When dealing with <strong>RGB</strong> color as is the default color type, it tends to break when you try and animate between two colours. The solution to this, is different color models, such as <strong>HSV</strong> (Hue, Saturation, Value) and <strong>HSL</strong> (Hue, Saturation, Lightness).</p>
+<p>luxe supports both HSL and HSV interchangeably with the default of RGB (and each support alpha as well).</p>
+<h3>
+<a id="user-content-what-is-the-difference" class="anchor" href="#what-is-the-difference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is the difference?</h3>
+<p>HSV and HSL are cylindrical in nature, that means that they are <em>round</em> and their color value works in degrees(º) rather than components.</p>
+<p>Take a look at the image below, this is the color wheel (Hue only), mapped to degrees.</p>
+<p><a href="/C:/dev/luxe-alpha/docs/content/images/2016/08/color_wheel.png" target="_blank" rel="noopener noreferrer"><img src="/C:/dev/luxe-alpha/docs/content/images/2016/08/color_wheel.png" alt="color wheel" style="max-width:100%;"></a></p>
+<p><strong>How this helps</strong></p>
+<p>Notice how if we want to transition from red (danger!) to orange (warning) on a flashing UI element, it's around 30º of movement?</p>
+<p>To animate that using Hue (the above color wheel) it is simple, we animate the hue value.</p>
+<p><strong>Color classes have their own convenience tween function</strong><br>
+One thing you will notice is that the color classes have their own tween function for convenience.</p>
+<div class="highlight highlight-source-hx"><pre>
+        <span class="pl-c"><span class="pl-c">//</span>We create our red color using 0º Hue (red), </span>
+        <span class="pl-c"><span class="pl-c">//</span>the second and third argument are saturation and value, </span>
+        <span class="pl-c"><span class="pl-c">//</span>which we set to "maximum" right now.</span>
+
+    <span class="pl-k">var</span> <span class="pl-smi">color</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ColorHSV</span>(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">1</span>);
+
+        <span class="pl-c"><span class="pl-c">//</span>Now we want to animate to orange, just change the hue</span>
+        <span class="pl-c"><span class="pl-c">//</span>over two seconds, to orange</span>
+
+    <span class="pl-smi">color</span>.<span class="pl-en">tween</span>(<span class="pl-c1">2</span>, { <span class="pl-smi">h</span>:<span class="pl-c1">30</span> });</pre></div>
+<p>By mapping the colors to a round cylinder it affords much smoother transitions between colors, much smoother than RGB can do.</p>
+<h3>
+<a id="user-content-saturation-lightness-and-value" class="anchor" href="#saturation-lightness-and-value" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saturation, Lightness and Value</h3>
+<p>Color can be quite a complex system, and has mathematical properties outside of the scope of this simple guide. If you want to get in depth details into the mechanics of color , <a href="http://en.wikipedia.org/wiki/HSL_and_HSV" rel="nofollow">this article on wikipedia is quite thorough</a>.</p>
+<p>Now - for simplicity sake - we will define the terms in a less exact way. Take a solid color at hue 30º like above.</p>
+<ul>
+<li>Value - The color approaches black when value is lowest</li>
+<li>Lightness - The color approaches white when the lightness is highest</li>
+<li>Saturation - The amount of color present (like draining the color away)</li>
+</ul>
+<p>Have a look at these graphs <a href="http://en.wikipedia.org/wiki/HSL_and_HSV" rel="nofollow">from Wikipedia</a> for a clearer view.</p>
+<p><a href="/C:/dev/luxe-alpha/docs/content/images/2016/08/color_hsvl.png" target="_blank" rel="noopener noreferrer"><img src="/C:/dev/luxe-alpha/docs/content/images/2016/08/color_hsvl.png" alt="HSL/HSV" style="max-width:100%;"></a></p>
+<h3>
+<a id="user-content-creating-and-using-the-different-types" class="anchor" href="#creating-and-using-the-different-types" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating and using the different types</h3>
+<p>Now that you hopefully understand the purpose and differences, we can look at how to work with them in luxe.</p>
+<div class="highlight highlight-source-hx"><pre>        <span class="pl-c"><span class="pl-c">//</span>defaults for r g b and a are 1 (full white)</span>
+    <span class="pl-k">var</span> <span class="pl-smi">color</span><span class="pl-k">:</span> <span class="pl-en">Color</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Color</span>( <span class="pl-smi">r</span>, <span class="pl-smi">g</span>, <span class="pl-smi">b</span>, <span class="pl-smi">a</span> );
+
+        <span class="pl-c"><span class="pl-c">//</span>Defaults for h = 0, s = 0, v = 1, a = 1 (full white)</span>
+    <span class="pl-k">var</span> <span class="pl-smi">colorhsv</span><span class="pl-k">:</span> <span class="pl-en">ColorHSV</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ColorHSV</span>( <span class="pl-smi">h</span>, <span class="pl-smi">s</span>, <span class="pl-smi">v</span>, <span class="pl-smi">a</span> );
+
+        <span class="pl-c"><span class="pl-c">//</span>Defaults for h = 0, s = 1, l = 1, a = 1 (full white)</span>
+    <span class="pl-k">var</span> <span class="pl-smi">colorhsl</span><span class="pl-k">:</span> <span class="pl-en">ColorHSL</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ColorHSL</span>( <span class="pl-smi">h</span>, <span class="pl-smi">s</span>, <span class="pl-smi">l</span>, <span class="pl-smi">a</span> );</pre></div>
+<p>This is for creating, but how about switching between?</p>
+<p><strong>Changing color type</strong><br>
+All types are extended from the <code>Color</code> class, so they automatically work where <code>Color</code> is expected. For example, a sprite color is typed as <code>Color</code> but a <code>ColorHSL</code> or <code>ColorHSV</code> can be given in place - <code>sprite.color = colorhsl;</code></p>
+<p><strong>This makes all types interchangeable automatically</strong>, but the following functions are exposed as well.</p>
+<div class="highlight highlight-source-hx"><pre>        <span class="pl-c"><span class="pl-c">//</span> helpers on Color</span>
+    <span class="pl-smi">color</span>.<span class="pl-smi">toColorHSL</span>        <span class="pl-c"><span class="pl-c">//</span>returns ColorHSL</span>
+    <span class="pl-smi">color</span>.<span class="pl-smi">toColorHSV</span>        <span class="pl-c"><span class="pl-c">//</span>returns ColorHSV</span>
+    <span class="pl-smi">color</span>.<span class="pl-smi">fromColorHSL</span>      <span class="pl-c"><span class="pl-c">//</span>changes color</span>
+    <span class="pl-smi">color</span>.<span class="pl-smi">fromColorHSV</span>      <span class="pl-c"><span class="pl-c">//</span>changes color</span>
+
+        <span class="pl-c"><span class="pl-c">//</span>helpers on ColorHSL</span>
+    <span class="pl-smi">colorhsl</span>.<span class="pl-smi">toColor</span>        <span class="pl-c"><span class="pl-c">//</span>returns Color</span>
+    <span class="pl-smi">colorhsl</span>.<span class="pl-smi">toColorHSV</span>     <span class="pl-c"><span class="pl-c">//</span>returns ColorHSV</span>
+    <span class="pl-smi">colorhsl</span>.<span class="pl-smi">fromColor</span>      <span class="pl-c"><span class="pl-c">//</span>changes colorhsl</span>
+    <span class="pl-smi">colorhsl</span>.<span class="pl-smi">fromColorHSV</span>   <span class="pl-c"><span class="pl-c">//</span>changes colorhsv</span>
+
+        <span class="pl-c"><span class="pl-c">//</span>helpers on ColorHSV</span>
+    <span class="pl-smi">colorhsv</span>.<span class="pl-smi">toColor</span>        <span class="pl-c"><span class="pl-c">//</span>returns Color</span>
+    <span class="pl-smi">colorhsv</span>.<span class="pl-smi">toColorHSL</span>     <span class="pl-c"><span class="pl-c">//</span>returns ColorHSV</span>
+    <span class="pl-smi">colorhsv</span>.<span class="pl-smi">fromColor</span>      <span class="pl-c"><span class="pl-c">//</span>changes colorhsv</span>
+    <span class="pl-smi">colorhsv</span>.<span class="pl-smi">fromColorHSL</span>   <span class="pl-c"><span class="pl-c">//</span>changes colorhsv</span></pre></div>
+<p><a name="user-content-rendercontrol"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-render-order-and-sorting" class="anchor" href="#render-order-and-sorting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Render order and sorting</h2>
+<p>The rendering works by sorting items according to the following high level rules :</p>
+<ul>
+<li>Renderer</li>
+<li>batchers,
+<ul>
+<li>sorted by <code>layer</code> property</li>
+</ul>
+</li>
+<li>geometry, sorted by an order sort
+<ul>
+<li><code>depth</code></li>
+<li>shader</li>
+<li>texture</li>
+<li>primitive</li>
+<li>clipping</li>
+<li>age</li>
+</ul>
+</li>
+</ul>
+<p>In general use, you control specific batches of items using a <code>Batcher</code>, specifying it's layer for overall order. Then, you specify geometry depths, <strong>the rest is automatic</strong>.</p>
+<h3>
+<a id="user-content-geometry-depth" class="anchor" href="#geometry-depth" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Geometry depth</h3>
+<p>In luxe, "geometry depth" is not the same as the geometry z position in world space. The depth is a render tree depth, <strong>controlling render order explicitly</strong>.</p>
+<p>If you want to draw spriteA above spriteB, setting spriteA depth to 2, and spriteB depth to 1, it will always rendering second.</p>
+<p><strong>depth values</strong><br>
+The depth value <em>is a floating point number</em> which is convenient for "last minute" depth control, allowing finely grained details to matter. Some examples can be "all hud elements are between 10 and 11", where 10.1 is hud background, 10.2 is hud buttons, 10.3 is hud text and so on.</p>
+<p>Because of this, <code>10.1</code> is a valid depth and so is <code>10.142325</code>. The granularity is subject to floating point errors, so try not to go too small here or you may get different sorting.</p>
+<p><strong>uses</strong><br>
+This is especially useful when render depth is calculated dynamically. In a 2D front down view, the depth can simply be the Y position in world space, and as avatars move through the space they update their depth to their position. It also allows division to be used to calculate sorting, which is helpful in situations where depth is calculated on the fly.</p>
+<p>As the depth value is the first rule, it can also be used when working with depth testing and transparent objects. You could split transparent objects into a separate batcher, and control it as a whole, or you can separate it using the depth values, ensuring the render order is respected.</p>
+<h3>
+<a id="user-content-render-callbacks" class="anchor" href="#render-callbacks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Render callbacks</h3>
+<p>In your <a href="/C:/dev/luxe-alpha/docs/api/luxe/Game.html">game class</a> you can override the <code>onprerender</code>, <code>onrender</code> and <code>onpostrender</code> events.</p>
+<p>These are for <em>all</em> rendering that happens, not a specific subset of geometry. This is useful if you want to do some explicit rendering into render targets before the rest is processed.</p>
+<h3>
+<a id="user-content-group-render-callbacks" class="anchor" href="#group-render-callbacks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Group render callbacks</h3>
+<p>In luxe, with phoenix (the rendering engine in luxe) you can listen for events from the batcher that geometry is in, in order to alter render state.</p>
+<p>This allows you to specify render state (like blend modes) or control rendering into textures explicitly through the use of the callbacks.</p>
+<p>Take a look at this example, we ask the default batcher to tell us when it is being rendered.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">ready</span>() {
+
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">renderer</span>.<span class="pl-smi">batcher</span>.<span class="pl-en">on</span>(<span class="pl-smi">prerender</span>, <span class="pl-smi">before</span>);
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">renderer</span>.<span class="pl-smi">batcher</span>.<span class="pl-en">on</span>(<span class="pl-smi">postrender</span>, <span class="pl-smi">after</span>);
+
+} <span class="pl-c"><span class="pl-c">//</span>ready</span>
+
+<span class="pl-k">function</span> <span class="pl-en">before</span>(<span class="pl-v">_</span>) {
+
+        <span class="pl-c"><span class="pl-c">//</span>change how this group is blended</span>
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">renderer</span>.<span class="pl-en">blend_mode</span>(
+        <span class="pl-en">BlendMode</span>.<span class="pl-smi">dst_color</span>, 
+        <span class="pl-en">BlendMode</span>.<span class="pl-smi">one_minus_src_alpha</span>
+    );
+
+} <span class="pl-c"><span class="pl-c">//</span>before</span>
+
+<span class="pl-k">function</span> <span class="pl-en">after</span>(<span class="pl-v">_</span>) {
+
+        <span class="pl-c"><span class="pl-c">//</span>reset to default blend mode</span>
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">renderer</span>.<span class="pl-en">blend_mode</span>();
+
+} <span class="pl-c"><span class="pl-c">//</span>after</span></pre></div>
+<p>And the results would be similar to :</p>
+<p><a href="/C:/dev/luxe-alpha/docs/content/images/2016/08/guide-rendercontrol-1.png" target="_blank" rel="noopener noreferrer"><img src="/C:/dev/luxe-alpha/docs/content/images/2016/08/guide-rendercontrol-1.png" alt="" style="max-width:100%;"></a></p>
+<p>Blending and blendmodes are a frequent topic in rendering and you can explore the different types here :</p>
+<p><a href="http://www.andersriggelsen.dk/glblendfunc.php" rel="nofollow">Anders Riggelsen blend modes online tool</a></p>
+<p><strong>Rendering a batcher to a texture</strong></p>
+<p>You could also use the render callbacks to switch the rendering target.
+If you listen for the callbacks as above, you can set and unset the target easily.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">function</span> <span class="pl-en">before</span>(<span class="pl-v">_</span>) {
+
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">renderer</span>.<span class="pl-smi">target</span> <span class="pl-k">=</span> <span class="pl-smi">my_render_target</span>;
+
+} <span class="pl-c"><span class="pl-c">//</span>before</span>
+
+<span class="pl-k">function</span> <span class="pl-en">after</span>(<span class="pl-v">_</span>) {
+
+        <span class="pl-c"><span class="pl-c">//</span>reset to default render target</span>
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">renderer</span>.<span class="pl-smi">target</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>;
+
+} <span class="pl-c"><span class="pl-c">//</span>after</span></pre></div>
+<p>For a clearer example of rendering to a texture, see <a href="https://github.com/luxeengine/luxe-alpha/tree/master/tests/rendering/rendertexture"><strong><code>tests/rendering/rendertexture</code></strong></a></p>
+<p><a name="user-content-shaders"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-shaders-in-luxe" class="anchor" href="#shaders-in-luxe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Shaders in luxe</h2>
+<h3>
+<a id="user-content-what-are-shaders-exactly" class="anchor" href="#what-are-shaders-exactly" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What are shaders exactly?</h3>
+<p>I have written a comprehensive primer to shaders here!</p>
+<h3>
+<a id="user-content-shaders--a-primer" class="anchor" href="#shaders--a-primer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="http://notes.underscorediscovery.com/shaders-a-primer/" rel="nofollow"><strong>Shaders : A primer</strong></a>
+</h3>
+<p> <br>
+The series talks about shaders in various ways,<br>
+but for the luxe specifics, we'll look at how to use them.</p>
+<h4>
+<a id="user-content-using-shaders-in-luxe" class="anchor" href="#using-shaders-in-luxe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using shaders in luxe</h4>
+<p>luxe makes using shaders easier by wrapping up the details, allowing you to load and apply shaders to your sprites and geometry easily. It also makes it simple to send information into the shaders.</p>
+<p>Take a look at the code from the demo, and you should be able to follow along as to what is happening. As with other resources, you can't use it unless it is loaded. You can load shaders via a parcel, or via the resource manager.</p>
+<div class="highlight highlight-source-hx"><pre>        <span class="pl-c"><span class="pl-c">//</span>we create a variable to hold the shader</span>
+    <span class="pl-k">var</span> <span class="pl-smi">hue_shader</span> <span class="pl-k">:</span> <span class="pl-en">Shader</span>;
+
+        <span class="pl-c"><span class="pl-c">//</span>and then we fetch the already loaded shader </span>
+    <span class="pl-smi">hue_shader</span> <span class="pl-k">=</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">resources</span>.<span class="pl-en">shader</span>(<span class="pl-s"><span class="pl-pds">'</span>hue<span class="pl-pds">'</span></span>);
+
+        <span class="pl-c"><span class="pl-c">//</span>then we tell the sprite to use this shader when rendering</span>
+    <span class="pl-smi">hue_sprite</span>.<span class="pl-smi">shader</span> <span class="pl-k">=</span> <span class="pl-smi">hue_shader</span>;</pre></div>
+<p>In our example, when we move the mouse, we send some information to the shader to change the color.</p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">onmousemove</span>( <span class="pl-v">e</span><span class="pl-k">:</span><span class="pl-en">MouseEvent</span> ) {
+
+        <span class="pl-k">var</span> <span class="pl-smi">percent</span> <span class="pl-k">=</span> <span class="pl-smi">e</span>.<span class="pl-smi">pos</span>.<span class="pl-smi">x</span> <span class="pl-k">/</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">w</span>;
+        <span class="pl-k">var</span> <span class="pl-smi">hue</span> <span class="pl-k">=</span> (<span class="pl-c1">Math</span>.<span class="pl-smi">PI</span><span class="pl-k">*</span><span class="pl-c1">2</span>) <span class="pl-k">*</span> <span class="pl-smi">percent</span>;
+
+            <span class="pl-c"><span class="pl-c">//</span>hue based on mouse x</span>
+        <span class="pl-smi">hue_shader</span>.<span class="pl-en">set_float</span>(<span class="pl-s"><span class="pl-pds">'</span>in_hue<span class="pl-pds">'</span></span>, <span class="pl-smi">hue</span>);
+
+    }</pre></div>
+<h2>
+<a id="user-content-shader-code" class="anchor" href="#shader-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>shader code</h2>
+<p>The shaders in luxe currently use GLSL, the OpenGL Shading Language across all targets. There are many resources around for shaders and GLSL specifically so this guide won't need to cover that. The test code has some simple example shaders you can learn from.</p>
+<p><strong>built in shaders</strong><br>
+The default shaders the engine uses are in <code>phoenix/defaults/shaders</code>.</p>
+<p><a name="user-content-drawing"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-drawing-shapes-as-geometry" class="anchor" href="#drawing-shapes-as-geometry" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Drawing shapes as geometry</h2>
+<p>Luxe supports drawing a few shapes by default, each with some very similar options available. This is essentially a convenient way to draw debugging information quickly, and allows immediate (draw once) rendering.</p>
+<p>These are accessed via the <code>Luxe.draw</code> api, and return a <code>phoenix.geometry.Geometry</code> instance. Since geometry is lower level than say, a <code>Sprite</code>, it is often convenient to use the draw API as more of a factory for the geometry, that you then use in a higher level container (like a <code>Visual</code>).</p>
+<ul>
+<li>line</li>
+<li>rectangle, box</li>
+<li>ring, arc, circle, pie</li>
+<li>text</li>
+</ul>
+<p>There is a pattern here - a <code>rectangle</code> is an <strong>outline</strong>, and a <code>box</code> is <strong>filled</strong> in. A ring is an <code>outline</code>, a circle is <code>solid</code>. An arc is an <code>outline</code>, a pie is <code>solid</code>.</p>
+<p><strong>using the geometry in a visual</strong></p>
+<p>It's convenient to be able to treat the geometry as a higher level object, like an <code>Entity</code> which is what <code>Visual</code> is for. You can use the draw API to create visuals by handing it to the <code>geometry</code> property. We use 0,0 as the position because it will be centered on the visual's transform.</p>
+<p>It's important to note though, the the <em>visual</em> is what you're creating as the result of this, so there are some properties of the geometry created by the draw API that get overridden. For example, the color property is set on the visual level. If it was set on the geometry draw create step, it will have no effect.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">visual</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">luxe.</span><span class="pl-en">Visual</span>({
+    <span class="pl-smi">color</span> : <span class="pl-k">new</span> <span class="pl-c1">luxe.</span><span class="pl-en">Color</span>(<span class="pl-c1">0.8</span>, <span class="pl-c1">0.3</span>, <span class="pl-c1">0.2</span>, <span class="pl-c1">1</span>),
+    <span class="pl-smi">geometry</span>: <span class="pl-en">Luxe</span>.<span class="pl-smi">draw</span>.<span class="pl-en">ring</span>({
+        <span class="pl-smi">x</span> : <span class="pl-c1">0</span>,
+        <span class="pl-smi">y</span> : <span class="pl-c1">0</span>,
+        <span class="pl-smi">r</span> : <span class="pl-c1">50</span>
+    })
+});
+
+<span class="pl-smi">visual</span>.<span class="pl-smi">pos</span> <span class="pl-k">=</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">mid</span>;</pre></div>
+<h4>
+<a id="user-content-examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>examples</h4>
+<p>Drawing a line:</p>
+<div class="highlight highlight-source-hx"><pre>	<span class="pl-k">var</span> <span class="pl-smi">mid_y</span> <span class="pl-k">=</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">h</span><span class="pl-k">/</span><span class="pl-c1">2</span>;
+
+	<span class="pl-en">Luxe</span>.<span class="pl-smi">draw</span>.<span class="pl-en">line</span>({
+        <span class="pl-smi">p0</span> : <span class="pl-k">new</span> <span class="pl-en">Vector</span>( <span class="pl-c1">0</span>, <span class="pl-smi">mid_y</span> ),
+        <span class="pl-smi">p1</span> : <span class="pl-k">new</span> <span class="pl-en">Vector</span>( <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">w</span>, <span class="pl-smi">mid_y</span> ),
+        <span class="pl-smi">color</span> : <span class="pl-k">new</span> <span class="pl-en">Color</span>( <span class="pl-c1">0.5</span>, <span class="pl-c1">0.2</span>, <span class="pl-c1">0.2</span>, <span class="pl-c1">1</span> )
+    });</pre></div>
+<p>And a rectangle :</p>
+<div class="highlight highlight-source-hx"><pre>	<span class="pl-en">Luxe</span>.<span class="pl-smi">draw</span>.<span class="pl-en">rectangle</span>({
+        <span class="pl-smi">x</span> : <span class="pl-c1">10</span>, 
+        <span class="pl-smi">y</span> : <span class="pl-c1">10</span>,
+        <span class="pl-smi">w</span> : <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">w</span> <span class="pl-k">-</span> <span class="pl-c1">20</span>, 
+        <span class="pl-smi">h</span> : <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">h</span> <span class="pl-k">-</span> <span class="pl-c1">20</span>,
+        <span class="pl-smi">color</span> : <span class="pl-k">new</span> <span class="pl-en">Color</span>( <span class="pl-c1">0.4</span>, <span class="pl-c1">0.4</span>, <span class="pl-c1">0.4</span> )
+    });</pre></div>
+<p>And a circle :</p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-en">Luxe</span>.<span class="pl-smi">draw</span>.<span class="pl-en">circle</span>({
+        <span class="pl-smi">x</span> : <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">w</span><span class="pl-k">/</span><span class="pl-c1">2</span>,
+        <span class="pl-smi">y</span> : <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">h</span><span class="pl-k">/</span><span class="pl-c1">2</span>,
+        <span class="pl-smi">r</span> : <span class="pl-c1">50</span>,
+        <span class="pl-smi">color</span> : <span class="pl-k">new</span> <span class="pl-en">Color</span>( <span class="pl-c1">0.8</span>, <span class="pl-c1">0.3</span>, <span class="pl-c1">0.2</span>, <span class="pl-c1">1</span> )
+    });</pre></div>
+<p><a name="user-content-fonts"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-fonts-and-text" class="anchor" href="#fonts-and-text" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fonts and text</h2>
+<h3>
+<a id="user-content-creating-custom-bitmap-fonts" class="anchor" href="#creating-custom-bitmap-fonts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating custom bitmap fonts</h3>
+<p>The fonts currently supported by luxe are in a "AngelCode BMFont" format. This format has become widespread and many tools now exist to create fonts easily for it.</p>
+<p>Some tools to generate a font, but Littera is the best free choice :</p>
+<ul>
+<li>
+<a href="http://kvazars.com/littera/" rel="nofollow">Littera</a>, online, free</li>
+<li>
+<a href="http://www.bmglyph.com/" rel="nofollow">bmGlyph</a>, mac only, commercial</li>
+<li>
+<a href="https://71squared.com/en/glyphdesigner" rel="nofollow">glyphdesigner</a>, mac only, commercial</li>
+<li>
+<a href="http://www.angelcode.com/products/bmfont/" rel="nofollow">BMFont</a>, windows only, free</li>
+</ul>
+<p>If you want to color the text in luxe using geometry colors, you must create a white fill solid text, alpha.</p>
+<p><strong>Export the fonts as .fnt text based format</strong>.</p>
+<h3>
+<a id="user-content-importing-custom-fonts" class="anchor" href="#importing-custom-fonts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Importing custom fonts</h3>
+<p>To use a custom font, you can use a <a href="/C:/dev/luxe-alpha/docs/guide.parcels.html">parcel</a> (as shown in the <a href="/C:/dev/luxe-alpha/docs/guide.four.html">beginner guide</a>), or, you can manually load the font yourself.</p>
+<p>To do so, you use <code>Luxe.resources.load_font</code>. You can manually create a <code>phoenix.BitmapFont</code> and use <code>BitmapFont.load</code>, or even <code>new BitmapFont()</code> and <code>from_string</code> functions. The <a href="/C:/dev/luxe-alpha/docs/api/phoenix/BitmapFont.html">BitmapFont API docs</a> have all the details.</p>
+<p>To use <code>Luxe.resources.font</code> and <code>Luxe.resources.load_font</code> you should also read the <a href="#assets">assets guide</a>.<br>
+Take note that the folder is separated from the file name, because there can and often are multiple texture sheets for a font set. The name is always without a path.</p>
+<p>A more thorough example can be found in <a href="https://github.com/luxeengine/luxe-alpha/tree/master/tests/rendering/fonts"><strong><code>tests/rendering/fonts/</code></strong></a> and <a href="https://github.com/luxeengine/luxe-alpha/tree/master/tests/features/text"><strong><code>tests/features/text/</code></strong></a>, <a href="https://github.com/luxeengine/luxe-alpha/tree/master/tests/features/text2"><strong><code>tests/features/text2/</code></strong></a></p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">ready</span>() {
+
+    <span class="pl-k">var</span> <span class="pl-smi">get</span> <span class="pl-k">=</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">resources</span>.<span class="pl-en">load_font</span>(<span class="pl-s"><span class="pl-pds">'</span>assets/fonts/font.fnt<span class="pl-pds">'</span></span>);
+    <span class="pl-smi">get</span>.<span class="pl-en">then</span>(<span class="pl-k">function</span>(<span class="pl-v">font</span><span class="pl-k">:</span><span class="pl-en">BitmapFont</span>) {
+
+        <span class="pl-en">Luxe</span>.<span class="pl-smi">draw</span>.<span class="pl-en">text</span>({
+            <span class="pl-smi">font</span>: <span class="pl-smi">font</span>,
+            <span class="pl-smi">text</span> : <span class="pl-s"><span class="pl-pds">"</span>LUXE<span class="pl-cce">\n</span>LUXE<span class="pl-pds">"</span></span>,
+            <span class="pl-smi">bounds</span> : <span class="pl-k">new</span> <span class="pl-en">Rectangle</span>(
+                <span class="pl-c1">0</span>, <span class="pl-c1">0</span>, 
+                <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">w</span> <span class="pl-k">*</span> <span class="pl-c1">0.99</span>, <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">h</span> <span class="pl-k">*</span> <span class="pl-c1">0.98</span>
+            ),
+            <span class="pl-smi">color</span> : <span class="pl-k">new</span> <span class="pl-en">Color</span>().<span class="pl-en">rgb</span>(<span class="pl-c1">0xff4b03</span>),
+            <span class="pl-smi">align</span> : <span class="pl-en">TextAlign</span>.<span class="pl-smi">right</span>,
+            <span class="pl-smi">align_vertical</span> : <span class="pl-en">TextAlign</span>.<span class="pl-smi">bottom</span>,
+            <span class="pl-smi">point_size</span> : <span class="pl-c1">32</span>
+        });
+
+    }); <span class="pl-c"><span class="pl-c">//</span>onload</span>
+
+}</pre></div>
+<h1>
+<a id="user-content-system-guides" class="anchor" href="#system-guides" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>system guides</h1>
+<p><a name="user-content-assets"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-assets-system" class="anchor" href="#assets-system" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Assets system</h2>
+<p>The following asset types are supported directly by the API for convenience :</p>
+<ul>
+<li>
+<strong>textures</strong> ( images, png, jpg, tga, psd, gif, bmp )</li>
+<li>
+<strong>text assets</strong> ( any format, xml, txt etc )</li>
+<li>
+<strong>json assets</strong> ( parses and returns a usable json object )</li>
+<li>
+<strong>sound assets</strong> ( audio, ogg/wav/pcm )</li>
+<li>
+<strong>bitmap fonts</strong> ( a text .fnt description + image files <a href="#fonts">see font guide</a> )</li>
+<li>
+<strong>shader files</strong> ( glsl shaders, with custom vertex or fragment shaders )</li>
+<li>
+<strong>binary files</strong> ( any binary byte data )</li>
+</ul>
+<p> </p>
+<h3>
+<a id="user-content-async" class="anchor" href="#async" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Async</h3>
+<p>By design, you should always consider asset loading to be asynchronous.</p>
+<p>If you load assets in a background thread, you wait. If you load assets on web, you wait. Many game consoles load data async too. For this reason, and for portability, assets are treated as asynchronous.</p>
+<p>The separation between <em>loading</em>, and <em>using</em> an asset is important.<br>
+To use an asset, it must already be loaded. The resource manager employs the concept of Promises and Parcels to make this really simple,
+and the luxe Game class includes an easy way to quickly load dev assets for prototyping/jamming.</p>
+<h3>
+<a id="user-content-using-assets" class="anchor" href="#using-assets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using assets</h3>
+<p>Once an asset has been loaded (see below) it is stored in the resource manager.<br>
+To retrieve a stored asset by it's id, the following functions are available:</p>
+<ul>
+<li><code>Luxe.resources.bytes</code></li>
+<li><code>Luxe.resources.text</code></li>
+<li><code>Luxe.resources.json</code></li>
+<li><code>Luxe.resources.texture</code></li>
+<li><code>Luxe.resources.font</code></li>
+<li><code>Luxe.resources.shader</code></li>
+<li><code>Luxe.resources.sound</code></li>
+</ul>
+<p>If the asset does not exist (i.e is not loaded) then the function returns null.
+Since these functions return concrete types, you can make the code using the resource imperative and deterministic. For example, this code can rely on the asset being loaded, if I ensured that it was ahead of time.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">sprite</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">luxe.</span><span class="pl-en">Sprite</span>({
+    <span class="pl-smi">pos</span>: <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">mid</span>,
+    <span class="pl-smi">texture</span>: <span class="pl-en">Luxe</span>.<span class="pl-smi">resources</span>.<span class="pl-en">texture</span>(<span class="pl-s"><span class="pl-pds">'</span>assets/image.png<span class="pl-pds">'</span></span>)
+});</pre></div>
+<h3>
+<a id="user-content-loading-assets" class="anchor" href="#loading-assets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Loading assets</h3>
+<p><strong>Assets need to be loaded before they can be used.</strong></p>
+<p><code>Luxe.resources</code> has a bunch of <code>load_*</code> functions for this purpose.</p>
+<ul>
+<li><code>Luxe.resources.load_bytes</code></li>
+<li><code>Luxe.resources.load_text</code></li>
+<li><code>Luxe.resources.load_json</code></li>
+<li><code>Luxe.resources.load_texture</code></li>
+<li><code>Luxe.resources.load_font</code></li>
+<li><code>Luxe.resources.load_shader</code></li>
+<li><code>Luxe.resources.load_sound</code></li>
+</ul>
+<p>These functions return something called a Promise, which promises a value when it's ready. This just means that it will call a function for you, when the asset has finished loading.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">load</span> <span class="pl-k">=</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">resources</span>.<span class="pl-en">load_texture</span>(<span class="pl-s"><span class="pl-pds">'</span>assets/image.png<span class="pl-pds">'</span></span>);
+
+<span class="pl-smi">load</span>.<span class="pl-en">then</span>(<span class="pl-k">function</span>(<span class="pl-v">texture</span><span class="pl-k">:</span><span class="pl-c1">phoenix.</span><span class="pl-en">Texture</span>) {
+
+    <span class="pl-c"><span class="pl-c">//</span>now use the texture value</span>
+    <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">'</span>Loaded texture </span>${<span class="pl-smi">texture</span>.<span class="pl-smi">id</span>}<span class="pl-s"> with size </span>${<span class="pl-smi">texture</span>.<span class="pl-smi">width</span>}<span class="pl-s">x</span>${<span class="pl-smi">texture</span>.<span class="pl-smi">height</span>}<span class="pl-s"><span class="pl-pds">'</span></span>);
+
+});</pre></div>
+<p>To handle multiple returned load promises, you can use <code>Promise.all</code> from <code>snow.api.Promise</code>. Take note that the array returned from Promise.all will be typed as <code>Dynamic</code> if mixing resource types.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">list</span> <span class="pl-k">=</span> [
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">resources</span>.<span class="pl-en">load_texture</span>(<span class="pl-s"><span class="pl-pds">'</span>assets/image.png<span class="pl-pds">'</span></span>),
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">resources</span>.<span class="pl-en">load_texture</span>(<span class="pl-s"><span class="pl-pds">'</span>assets/image2.png<span class="pl-pds">'</span></span>),
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">resources</span>.<span class="pl-en">load_texture</span>(<span class="pl-s"><span class="pl-pds">'</span>assets/image3.png<span class="pl-pds">'</span></span>)
+];
+
+<span class="pl-k">var</span> <span class="pl-smi">load</span> <span class="pl-k">=</span> <span class="pl-en">Promise</span>.<span class="pl-en">all</span>(<span class="pl-smi">list</span>);
+
+<span class="pl-smi">load</span>.<span class="pl-en">then</span>(<span class="pl-k">function</span>(<span class="pl-v">loaded</span><span class="pl-k">:</span><span class="pl-c1">Array</span>&lt;<span class="pl-c1">phoenix.</span><span class="pl-en">Texture</span>&gt;) {
+    <span class="pl-k">for</span>(<span class="pl-smi">image</span> <span class="pl-k">in</span> <span class="pl-smi">loaded</span>) {
+        <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">'</span>Loaded texture </span>${<span class="pl-smi">image</span>.<span class="pl-smi">id</span>}<span class="pl-s"><span class="pl-pds">'</span></span>);
+    }
+});</pre></div>
+<p><strong>Resource content</strong><br>
+Some of these load functions return a Resource instance,<br>
+which contains the asset data within it.</p>
+<p>For example, to access the loaded text data from a <code>load_text</code> call, it will give you a <code>TextResource</code>, which contains a <code>TextAsset</code>. To access the value, you would use <code>loaded_text.asset.text</code>.</p>
+<p>The resource <a href="/C:/dev/luxe-alpha/docs/api">API docs</a> have further details.</p>
+<h3>
+<a id="user-content-loading-assets-in-a-parcel" class="anchor" href="#loading-assets-in-a-parcel" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Loading assets in a Parcel</h3>
+<p>A parcel is simply a related group of assets that would like to load together.<br>
+This can include all the assets for your game, or just a subsection like a specific level.</p>
+<p>A parcel includes the same default types as listed above, <code>bytes</code>, <code>texts</code>, <code>jsons</code>, <code>textures</code>, <code>fonts</code>, <code>shaders</code> and <code>sounds</code>. These are simple arrays, that you fill when creating a parcel before calling the load function.</p>
+<p>Taken from <a href="#three">a tutorial guide</a>:</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">parcel</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">luxe.</span><span class="pl-en">Parcel</span>({
+    <span class="pl-smi">jsons</span>:[ { <span class="pl-smi">id</span>:<span class="pl-s"><span class="pl-pds">'</span>assets/anim.json<span class="pl-pds">'</span></span> } ],
+    <span class="pl-smi">textures</span> : [
+        { <span class="pl-smi">id</span>: <span class="pl-s"><span class="pl-pds">'</span>assets/apartment.png<span class="pl-pds">'</span></span> },
+        { <span class="pl-smi">id</span>: <span class="pl-s"><span class="pl-pds">'</span>assets/player.png<span class="pl-pds">'</span></span> }
+    ],
+});</pre></div>
+<p>We could now call <code>parcel.load()</code> which would load the assets,<br>
+but we would probably like to see a progress bar.</p>
+<p>There is a simple default one built in, but you can feel free to implement one yourself.</p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-c"><span class="pl-c">//</span>this will call a function named assets_loaded when done</span>
+<span class="pl-k">new</span> <span class="pl-c1">luxe.</span><span class="pl-en">ParcelProgress</span>({
+    <span class="pl-smi">parcel</span>      : <span class="pl-smi">parcel</span>,
+    <span class="pl-smi">background</span>  : <span class="pl-k">new</span> <span class="pl-en">Color</span>(<span class="pl-c1">1</span>,<span class="pl-c1">1</span>,<span class="pl-c1">1</span>,<span class="pl-c1">0.85</span>),
+    <span class="pl-smi">oncomplete</span>  : <span class="pl-smi">assets_loaded</span>
+});
+
+    <span class="pl-c"><span class="pl-c">//</span>load the assets</span>
+<span class="pl-smi">parcel</span>.<span class="pl-en">load</span>();</pre></div>
+<h3>
+<a id="user-content-the-default-preload-parcel" class="anchor" href="#the-default-preload-parcel" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The default preload parcel</h3>
+<p>To aid rapid development and for convenience,<br>
+the <code>Game</code> class (your application) offers you a “default preload parcel”.<br>
+This parcel is loaded before anything happens, and assets in it will be available before <code>ready</code> is called.</p>
+<p>Take note that the preload parcel serves a simple purpose:</p>
+<ul>
+<li>Handle really early asset/data dependency</li>
+<li>Rapid development to avoid creating a parcel manually (yet)</li>
+</ul>
+<p>It is not suited for preloading game content in general,</p>
+<ul>
+<li>It does not include a progress bar (no renderer available yet)</li>
+<li>Failed assets in this early loader are fatal, the application stops</li>
+</ul>
+<p>This makes it good for early required data, less so for loading levels and menus and so on.</p>
+<p>To use the preload parcel, you fill in the parcel arrays within your config function.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">config</span>(<span class="pl-v">config</span><span class="pl-k">:</span><span class="pl-c1">luxe.</span><span class="pl-en">GameConfig</span>) {
+
+    <span class="pl-smi">config</span>.<span class="pl-smi">preload</span>.<span class="pl-smi">textures</span>.<span class="pl-en">push</span>({ <span class="pl-smi">id</span>:<span class="pl-s"><span class="pl-pds">'</span>assets/logo.png<span class="pl-pds">'</span></span> });
+
+    <span class="pl-smi">config</span>.<span class="pl-smi">preload</span>.<span class="pl-smi">jsons</span> <span class="pl-k">=</span> [
+        { <span class="pl-smi">id</span>:<span class="pl-s"><span class="pl-pds">'</span>assets/1.json<span class="pl-pds">'</span></span> },
+        { <span class="pl-smi">id</span>:<span class="pl-s"><span class="pl-pds">'</span>assets/2.json<span class="pl-pds">'</span></span> }
+    ];
+
+    <span class="pl-k">return</span> <span class="pl-smi">config</span>;
+
+} <span class="pl-c"><span class="pl-c">//</span>config</span>
+</pre></div>
+<p><a name="user-content-events"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-events-signals-messages" class="anchor" href="#events-signals-messages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Events, Signals, Messages?</h2>
+<p>One common method of communicating between game systems, a very powerful method of development, is called <em>event driven design</em>.</p>
+<p>Event driven design, often also referred to as <em>signals and slots</em>, or <em>messaging systems</em> and are simple in principle. They allow code to <em>listen</em> or attach to messages (also called events or signals) from elsewhere in the code.</p>
+<p>If you think about it like a radio station, it's sent out to people who may choose to listen to a particular channel. The events are sent whether there is any code listening, and there can be multiple listeners on a single "channel".</p>
+<p>This model allows systems some <em>encapsulation</em> and <em>decoupling</em> from one another. It also allows more adaptive changes to the code based on the changes that happen at runtime. All possible combinations don't have to be connected in advanced or coded in place.</p>
+<p>Let's look at a simple example.</p>
+<h4>
+<a id="user-content-the-player-is-losing-health" class="anchor" href="#the-player-is-losing-health" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The player is losing health</h4>
+<p>Imagine a game where your player can take damage from a projectile, an arrow fired by an enemy. Here is some pseudo code to imagine what would happen, when the player has collided with the arrow.</p>
+<div class="highlight highlight-source-hx"><pre>        <span class="pl-c"><span class="pl-c">//</span> arrow update code:</span>
+        <span class="pl-c"><span class="pl-c">//</span>    check if we are going to hit something?</span>
+    <span class="pl-k">for</span>(<span class="pl-smi">entity</span> <span class="pl-k">in</span> <span class="pl-smi">range_of_collision</span>) {
+
+        <span class="pl-k">if</span>(<span class="pl-smi">entity</span>.<span class="pl-en">collides_with</span>(<span class="pl-c1">this</span>)) {
+
+                <span class="pl-c"><span class="pl-c">//</span>we have hit an entity!</span>
+                <span class="pl-c"><span class="pl-c">//</span>we will assume this is the player and convert it</span>
+            <span class="pl-k">var</span> <span class="pl-smi">player</span><span class="pl-k">:</span> <span class="pl-en">Player</span> <span class="pl-k">=</span> <span class="pl-k">cast</span> <span class="pl-smi">entity</span>;
+            <span class="pl-smi">player</span>.<span class="pl-en">take_damage</span>( <span class="pl-smi">damage_amount</span> );
+
+            <span class="pl-c"><span class="pl-c">//</span>... </span>
+        } 
+
+    }</pre></div>
+<p>Now, what if the entity was another enemy? What if we don't want to do maximum damage to other enemies?</p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-k">if</span>( <span class="pl-smi">entity</span>.<span class="pl-en">collides_with</span>( <span class="pl-c1">this</span> ) ) {
+
+            <span class="pl-c"><span class="pl-c">//</span>we have hit an entity!</span>
+        
+        <span class="pl-k">if</span>( <span class="pl-c1">Std</span>.<span class="pl-en">is</span>(<span class="pl-smi">entity</span>, <span class="pl-en">Player</span>) ) {
+
+            <span class="pl-k">var</span> <span class="pl-smi">player</span> <span class="pl-k">:</span> <span class="pl-en">Player</span> <span class="pl-k">=</span> <span class="pl-k">cast</span> <span class="pl-smi">entity</span>;
+            <span class="pl-smi">player</span>.<span class="pl-en">take_damage</span>( <span class="pl-smi">damage_amount</span> );
+
+        } <span class="pl-k">else</span> <span class="pl-k">if</span>( <span class="pl-c1">Std</span>.<span class="pl-en">is</span>(<span class="pl-smi">entity</span>, <span class="pl-en">Enemy</span>) ) {
+
+            <span class="pl-k">var</span> <span class="pl-smi">enemy</span> <span class="pl-k">:</span> <span class="pl-en">Enemy</span> <span class="pl-k">=</span> <span class="pl-k">cast</span> <span class="pl-smi">entity</span>;
+            <span class="pl-smi">enemy</span>.<span class="pl-en">take_damage</span>( <span class="pl-smi">damage_amount</span> <span class="pl-k">*</span> <span class="pl-c1">0.5</span> );
+
+        }
+
+    } </pre></div>
+<p>Now what happens when the arrow hits a wall entity? What if there are different types of walls? Or different types of enemies? This can quickly spiral into many needless type checks and make this code very specific and hardcoded. It has to have code to handle every single case, which introduces a large amount of complexity and bug potential.</p>
+<p>Let's try the evented approach.</p>
+<h4>
+<a id="user-content-the-player-is-losing-health-event" class="anchor" href="#the-player-is-losing-health-event" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The player is losing health event</h4>
+<p>Events make this example a lot more elegant and flexible. Instead of handling specifics, we'll use the entity specific events instance to send it a message. "Hey, whatever type of entity you are, if you are listening for this event, you are taking damage".</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">if</span>(<span class="pl-smi">entity</span>.<span class="pl-en">collides_with</span>(<span class="pl-c1">this</span>)) {
+
+   <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>(<span class="pl-s"><span class="pl-pds">'</span>take_damage<span class="pl-pds">'</span></span>, { <span class="pl-smi">from</span>:<span class="pl-c1">this</span>, <span class="pl-smi">amount</span>:<span class="pl-smi">damage_amount</span> });
+
+}</pre></div>
+<p>Now, no matter what the entity is - it is up to the entity (encapsulated, decoupled from the arrow!) to handle the situation. This includes ignoring the event as well.</p>
+<div class="highlight highlight-source-hx"><pre>
+        <span class="pl-c"><span class="pl-c">//</span>Inside the Player class</span>
+    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">init</span>() {
+
+        <span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>takes_damage<span class="pl-pds">'</span></span>, <span class="pl-smi">on_take_damage</span>);
+
+    }
+
+    <span class="pl-k">function</span> <span class="pl-en">on_take_damage</span>( <span class="pl-v">data</span><span class="pl-k">:</span><span class="pl-en">DamageEvent</span> ) {
+
+            <span class="pl-c"><span class="pl-c">//</span>from, and amount are available</span>
+            <span class="pl-c"><span class="pl-c">//</span>we can also handle game specific situations here, like </span>
+            <span class="pl-c"><span class="pl-c">//</span>if there was invincibility, or a damage reduction buff</span>
+        <span class="pl-smi">health</span> <span class="pl-k">-</span><span class="pl-k">=</span> <span class="pl-smi">data</span>.<span class="pl-smi">amount</span>;
+        
+        <span class="pl-en">check_health</span>();
+
+    }</pre></div>
+<p>And how about on the walls?</p>
+<div class="highlight highlight-source-hx"><pre>
+        <span class="pl-c"><span class="pl-c">//</span>When taking damage, handle the arrow differently by wall type.</span>
+        <span class="pl-c"><span class="pl-c">//</span>In this fake example, we can reflect or explode the arrow</span>
+        <span class="pl-c"><span class="pl-c">//</span>(assuming the take damage is only from arrows here, see below)</span>
+
+    <span class="pl-k">function</span> <span class="pl-en">on_take_damage</span>( <span class="pl-v">data</span><span class="pl-k">:</span><span class="pl-en">DamageEvent</span> ) {
+        <span class="pl-k">switch</span>(<span class="pl-smi">wall_type</span>) {
+            <span class="pl-k">case</span> <span class="pl-en">WallType</span>.<span class="pl-smi">reflective</span>:
+                <span class="pl-smi">data</span>.<span class="pl-smi">from</span>.<span class="pl-en">reflect</span>();
+            <span class="pl-k">case</span> <span class="pl-en">WallType</span>.<span class="pl-smi">normal</span>:
+                <span class="pl-smi">data</span>.<span class="pl-smi">from</span>.<span class="pl-en">explode</span>();
+        }
+    }
+</pre></div>
+<h4>
+<a id="user-content-important-notes" class="anchor" href="#important-notes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Important notes</h4>
+<p>There are two ways to fire and event, <code>events.fire</code> will immediately call any listeners, and <code>events.queue</code> will store the event in a queue for the next frame update. The distinction is important for ordering, as well as immediacy of events (like an input event is more important than other events).</p>
+<p>You can remove a listener from an event using the unique ID that the listen function returns. This is important to manage your events so that you don't end up accidentally handling events at the wrong time - like the player shooting arrows while the menu is open because the event remained connected.</p>
+<div class="highlight highlight-source-hx"><pre>        <span class="pl-c"><span class="pl-c">//</span>connect a listener</span>
+    <span class="pl-k">var</span> <span class="pl-smi">listen_id</span> <span class="pl-k">=</span> <span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>event<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(){ } );
+
+        <span class="pl-c"><span class="pl-c">//</span>this will remove just this listener</span>
+    <span class="pl-smi">events</span>.<span class="pl-en">disconnect</span>( <span class="pl-smi">listen_id</span> );</pre></div>
+<h4>
+<a id="user-content-being-more-specific" class="anchor" href="#being-more-specific" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Being more specific</h4>
+<p>This example could use some more specifics, for example, the player will handle a 'takes_damage' event from more than just arrow projectiles.</p>
+<p>For this, you can use event namespaces, and wildcards in the events. Let's make this more specific, first.</p>
+<div class="highlight highlight-source-hx"><pre>    
+    <span class="pl-c"><span class="pl-c">//</span>In the arrow collision check</span>
+<span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>(<span class="pl-s"><span class="pl-pds">'</span>take_damage.arrow<span class="pl-pds">'</span></span>, 
+    { <span class="pl-smi">from</span>:<span class="pl-c1">this</span>, <span class="pl-smi">amount</span>:<span class="pl-smi">damage_amount</span> });
+
+<span class="pl-k">...</span>
+
+    <span class="pl-c"><span class="pl-c">//</span>Inside the Player class</span>
+<span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">init</span>() {
+
+  <span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>takes_damage.arrow<span class="pl-pds">'</span></span>, <span class="pl-smi">on_take_damage_from_arrow</span>);
+  <span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>takes_damage.explosion<span class="pl-pds">'</span></span>, <span class="pl-smi">on_take_damage_from_explosion</span>);
+
+}
+
+<span class="pl-k">function</span> <span class="pl-en">on_take_damage_from_arrow</span>( <span class="pl-v">data</span><span class="pl-k">:</span><span class="pl-en">ArrowDamageEvent</span> ) {
+    <span class="pl-k">...</span>
+}
+
+<span class="pl-k">function</span> <span class="pl-en">on_take_damage_from_explosion</span>( <span class="pl-v">data</span><span class="pl-k">:</span><span class="pl-en">ExplosionDamageEvent</span> ) {
+    <span class="pl-k">...</span>
+}</pre></div>
+<h4>
+<a id="user-content-being-less-specific" class="anchor" href="#being-less-specific" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Being less specific</h4>
+<p>If you wanted to listen for all the takes_damage events , you can use wildcards.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>takes_damage.*<span class="pl-pds">'</span></span>, <span class="pl-smi">on_take_damage_from_any</span> );</pre></div>
+<p>You can also use the wildcard elsewhere, like this :</p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-c"><span class="pl-c">//</span>game.player.ui, game.menu.ui, game.health.ui </span>
+<span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>game.*.ui<span class="pl-pds">'</span></span>, <span class="pl-smi">on_any_ui_events</span> );  </pre></div>
+<p>They can even be used for more complex event listeners, like "player enters swamp",</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>(player)*(swamp)<span class="pl-pds">'</span></span>, <span class="pl-smi">on_entering_swamp</span> );</pre></div>
+<h4>
+<a id="user-content-global-vs-local-events" class="anchor" href="#global-vs-local-events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Global vs Local events</h4>
+<p>A good example of a global event is when the user presses the pause key.
+This single action has ramifications across the entire game, right down to the animation system and in the menu code and the game logic - an easy way to tell every system that want's to know when the game is paused, is by using events.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">queue</span>(<span class="pl-s"><span class="pl-pds">'</span>game.pause<span class="pl-pds">'</span></span>);
+<span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">queue</span>(<span class="pl-s"><span class="pl-pds">'</span>game.unpause<span class="pl-pds">'</span></span>);
+
+<span class="pl-k">...</span>
+
+<span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>game.pause<span class="pl-pds">'</span></span>, <span class="pl-smi">on_game_pause</span>);
+<span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>game.unpause<span class="pl-pds">'</span></span>, <span class="pl-smi">on_game_unpause</span>);</pre></div>
+<p>As mentioned above, many listeners can listen for a single event, and can react accordingly.</p>
+<p>All of the above examples were sending events directly INTO an entity, only that entity would see it. There is also a way to send messages globally, for every class/function to listen for in the entire game. Let's go back to the example of the player taking damage from anything, and tell the entire game that there was damage lost.</p>
+<div class="highlight highlight-source-hx"><pre>    <span class="pl-c"><span class="pl-c">//</span>In the player class,</span>
+    <span class="pl-c"><span class="pl-c">//</span>we use the GLOBAL events to tell </span>
+    <span class="pl-c"><span class="pl-c">//</span>the rest of the game that we've taken</span>
+    <span class="pl-c"><span class="pl-c">//</span>any damage from any type of event</span>
+<span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">init</span>() {          
+    <span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>takes_damage.*<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-v">e</span>) {
+        <span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>(<span class="pl-s"><span class="pl-pds">'</span>game.player.damage<span class="pl-pds">'</span></span>, <span class="pl-smi">e</span>);
+    });
+}
+
+<span class="pl-k">...</span>
+
+    <span class="pl-c"><span class="pl-c">//</span>In the UI class, somewhere else, we can react</span>
+    <span class="pl-c"><span class="pl-c">//</span>to the player getting hurt event sent out</span>
+<span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>game.player.damage<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-v">e</span>) {
+    
+        <span class="pl-c"><span class="pl-c">//</span>Flash the screen red, etc</span>
+        <span class="pl-c"><span class="pl-c">//</span>shake the camera 10% of the damage amount</span>
+    <span class="pl-en">Luxe</span>.<span class="pl-smi">camera</span>.<span class="pl-en">shake</span>( <span class="pl-smi">e</span>.<span class="pl-smi">amount</span> <span class="pl-k">*</span> <span class="pl-c1">0.1</span> ); 
+
+});</pre></div>
+<h4>
+<a id="user-content-wrapping-up" class="anchor" href="#wrapping-up" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wrapping up</h4>
+<p>As you can see, events are powerful and meaningful and can be used for almost anything. You can always create your own instance of <code>luxe.Events</code> and have many local events systems (though, entities already have one built in!).</p>
+<h4>
+<a id="user-content-in-depth-details" class="anchor" href="#in-depth-details" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>In depth details</h4>
+<p>If you are wonder just exactly what happens with the filtering, here is what it is doing,</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">does_filter_event</span>( <span class="pl-v">_filter</span><span class="pl-k">:</span><span class="pl-c1">String</span>, <span class="pl-v">_event</span><span class="pl-k">:</span><span class="pl-c1">String</span> ) {
+
+  <span class="pl-k">var</span> <span class="pl-smi">_replace_stars</span> <span class="pl-k">:</span> <span class="pl-c1">EReg</span> <span class="pl-k">=</span> <span class="pl-sr"><span class="pl-pds">~/</span><span class="pl-cce">\*</span><span class="pl-pds">/</span><span class="pl-k">gi</span></span>;
+  <span class="pl-k">var</span> <span class="pl-smi">_final_filter</span> <span class="pl-k">:</span> <span class="pl-c1">String</span> <span class="pl-k">=</span> <span class="pl-smi">_replace_stars</span>.<span class="pl-en">replace</span>( <span class="pl-smi">_filter</span>, <span class="pl-s"><span class="pl-pds">'</span>.*?<span class="pl-pds">'</span></span> );
+  <span class="pl-k">var</span> <span class="pl-smi">_final_search</span> <span class="pl-k">:</span> <span class="pl-c1">EReg</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">EReg</span>(<span class="pl-smi">_final_filter</span>, <span class="pl-s"><span class="pl-pds">'</span>gi<span class="pl-pds">'</span></span>);
+
+  <span class="pl-k">return</span> <span class="pl-smi">_final_search</span>.<span class="pl-en">match</span>( <span class="pl-smi">_event</span> );
+
+} <span class="pl-c"><span class="pl-c">//</span>does_filter_event</span></pre></div>
+<p>Below are some more examples in a test case to demonstrate more uses of the event system.</p>
+<h4>
+<a id="user-content-examples-1" class="anchor" href="#examples-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h4>
+<p>Since event names are string, you can group events by a delimeter,<br>
+i.e <code>Luxe.events.listen('game.player.*')</code>, which can be used to filter events by type.</p>
+<div class="highlight highlight-source-hx"><pre>
+<span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">Vector</span>;
+<span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">Input</span>;
+<span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">Entity</span>;
+
+<span class="pl-k">typedef</span> <span class="pl-en">HealthEvent</span> <span class="pl-k">=</span> {
+    <span class="pl-smi">amount</span> <span class="pl-k">:</span> <span class="pl-c1">Float</span>
+}
+<span class="pl-k">typedef</span> <span class="pl-en">DiedEvent</span> <span class="pl-k">=</span> {
+    <span class="pl-smi">attacker</span> <span class="pl-k">:</span> <span class="pl-c1">String</span>
+}
+<span class="pl-k">typedef</span> <span class="pl-en">SpawnEvent</span> <span class="pl-k">=</span> {
+    <span class="pl-smi">spawn_node</span> <span class="pl-k">:</span> <span class="pl-c1">String</span>
+}
+
+<span class="pl-k">class</span> <span class="pl-en">Main</span> <span class="pl-k">extends</span> <span class="pl-c1">luxe.</span><span class="pl-en">Game</span> {
+
+    <span class="pl-k">var</span> <span class="pl-smi">entity</span> <span class="pl-k">:</span> <span class="pl-en">Entity</span>;
+
+    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">ready</span>() {
+
+            <span class="pl-c"><span class="pl-c">//</span>Global events connections</span>
+        <span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>( <span class="pl-s"><span class="pl-pds">'</span>global event<span class="pl-pds">'</span></span> , <span class="pl-k">function</span>(<span class="pl-v">e</span>){
+            <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">"</span>Global Event Fired<span class="pl-pds">"</span></span>);
+        });
+
+            <span class="pl-c"><span class="pl-c">//</span>Connect global to local event</span>
+        <span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>( <span class="pl-s"><span class="pl-pds">'</span>local event<span class="pl-pds">'</span></span> , <span class="pl-k">function</span>(<span class="pl-v">e</span>){
+            <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">"</span>Should not print<span class="pl-pds">"</span></span>);
+        });
+
+            <span class="pl-c"><span class="pl-c">//</span>Local to entity event connections</span>
+        <span class="pl-smi">entity</span> <span class="pl-k">=</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">scene</span>.<span class="pl-en">create</span>(<span class="pl-en">Entity</span>,<span class="pl-s"><span class="pl-pds">'</span>temp<span class="pl-pds">'</span></span>);
+
+        <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>local event<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-v">e</span>){
+            <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">"</span>Local Event Fired<span class="pl-pds">"</span></span>);
+        });
+
+        <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>player.*<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-v">e</span>){
+            <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">'</span>player event happened!<span class="pl-pds">'</span></span>);
+            <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">'</span>it was `<span class="pl-pds">'</span></span>   <span class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-smi">_event_name_</span> <span class="pl-k">+</span> 
+                <span class="pl-s"><span class="pl-pds">'</span>` which has <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-smi">_event_connection_count_</span> <span class="pl-k">+</span> 
+                <span class="pl-s"><span class="pl-pds">'</span> listeners!<span class="pl-pds">'</span></span>);
+        });
+
+        <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>player.health.loss<span class="pl-pds">'</span></span>, 
+            <span class="pl-k">function</span>( <span class="pl-v">e</span><span class="pl-k">:</span><span class="pl-en">HealthEvent</span> ){
+                <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">'</span> ouch! I lost <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-smi">amount</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span> health :(<span class="pl-pds">'</span></span>);
+            });
+        <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>player.health.gain<span class="pl-pds">'</span></span>, 
+            <span class="pl-k">function</span>( <span class="pl-v">e</span><span class="pl-k">:</span><span class="pl-en">HealthEvent</span> ){
+                <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">'</span> woo! I got <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-smi">amount</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span> hp<span class="pl-pds">'</span></span>);
+            });
+        <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>player.died<span class="pl-pds">'</span></span>, 
+            <span class="pl-k">function</span>( <span class="pl-v">e</span><span class="pl-k">:</span><span class="pl-en">DiedEvent</span> ){
+                <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">'</span> oh snap! I was killed by <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-smi">attacker</span> );
+            });
+        <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>player.spawn<span class="pl-pds">'</span></span>, 
+            <span class="pl-k">function</span>( <span class="pl-v">e</span><span class="pl-k">:</span><span class="pl-en">Main</span><span class="pl-c1">.</span><span class="pl-en">SpawnEvent</span> ){
+                <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">'</span> ok, letsdoodis, now at <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-smi">spawn_node</span> );
+            });
+
+        <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">'</span>PRESS SPACE TO FIRE EVENTS<span class="pl-pds">'</span></span>);
+
+            <span class="pl-c"><span class="pl-c">//</span>Events class exposes the filter function </span>
+            <span class="pl-c"><span class="pl-c">//</span>to test and learn how it works</span>
+
+        <span class="pl-k">trace</span>(<span class="pl-en">does_filter</span>(<span class="pl-s"><span class="pl-pds">'</span>game.*<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>game.player.test<span class="pl-pds">'</span></span>));
+        <span class="pl-k">trace</span>(<span class="pl-en">does_filter</span>(<span class="pl-s"><span class="pl-pds">'</span>game:player:*<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>game:player:health<span class="pl-pds">'</span></span>));
+        <span class="pl-k">trace</span>(<span class="pl-en">does_filter</span>(<span class="pl-s"><span class="pl-pds">'</span>game.*.player<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>game.ui.player<span class="pl-pds">'</span></span>));
+        <span class="pl-k">trace</span>(<span class="pl-en">does_filter</span>(<span class="pl-s"><span class="pl-pds">'</span>game.*.player<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>game.death.player<span class="pl-pds">'</span></span>));
+        <span class="pl-k">trace</span>(<span class="pl-en">does_filter</span>(<span class="pl-s"><span class="pl-pds">'</span>game.*.player<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>game.death.test<span class="pl-pds">'</span></span>));
+        <span class="pl-k">trace</span>(<span class="pl-en">does_filter</span>(<span class="pl-s"><span class="pl-pds">'</span>*.player<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>ui.player<span class="pl-pds">'</span></span>));
+        <span class="pl-k">trace</span>(<span class="pl-en">does_filter</span>(<span class="pl-s"><span class="pl-pds">'</span>*.player<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>health.player<span class="pl-pds">'</span></span>));
+        <span class="pl-k">trace</span>(<span class="pl-en">does_filter</span>(<span class="pl-s"><span class="pl-pds">'</span>*.player<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>derp.plea<span class="pl-pds">'</span></span>));
+        <span class="pl-k">trace</span>(<span class="pl-en">does_filter</span>(<span class="pl-s"><span class="pl-pds">'</span>(player)*(house)<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>player inside house<span class="pl-pds">'</span></span>));
+
+    } <span class="pl-c"><span class="pl-c">//</span>ready</span>
+
+        <span class="pl-c"><span class="pl-c">//</span>shortening the lines above</span>
+    <span class="pl-k">inline</span> <span class="pl-k">function</span> <span class="pl-en">does_filter</span>(<span class="pl-v">filter</span><span class="pl-k">:</span><span class="pl-c1">String</span>, <span class="pl-v">event</span><span class="pl-k">:</span><span class="pl-c1">String</span>) {
+        <span class="pl-k">return</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">does_filter_event</span>(<span class="pl-smi">filter</span>, <span class="pl-smi">event</span>);
+    }
+  
+    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">onkeyup</span>(<span class="pl-v">e</span>) {
+
+        <span class="pl-k">if</span>(<span class="pl-smi">e</span>.<span class="pl-smi">value</span> <span class="pl-k">==</span> <span class="pl-en">Input</span><span class="pl-c1">.</span><span class="pl-en">Keys</span>.<span class="pl-smi">escape</span>) {
+            <span class="pl-en">Luxe</span>.<span class="pl-en">shutdown</span>();
+        }
+
+        <span class="pl-k">if</span>(<span class="pl-smi">e</span>.<span class="pl-smi">value</span> <span class="pl-k">==</span> <span class="pl-en">Input</span><span class="pl-c1">.</span><span class="pl-en">Keys</span>.<span class="pl-smi">space</span>) {
+            
+            <span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>( <span class="pl-s"><span class="pl-pds">'</span>global event<span class="pl-pds">'</span></span> );
+            <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>( <span class="pl-s"><span class="pl-pds">'</span>local event<span class="pl-pds">'</span></span> );
+
+            <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>(<span class="pl-s"><span class="pl-pds">'</span>player.health.gain<span class="pl-pds">'</span></span>, {<span class="pl-smi">amount</span>:<span class="pl-c1">10</span>});
+            <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>(<span class="pl-s"><span class="pl-pds">'</span>player.health.gain<span class="pl-pds">'</span></span>, {<span class="pl-smi">amount</span>:<span class="pl-c1">23</span>});
+            <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>(<span class="pl-s"><span class="pl-pds">'</span>player.health.loss<span class="pl-pds">'</span></span>, {<span class="pl-smi">amount</span>:<span class="pl-c1">60</span>});
+            <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>(<span class="pl-s"><span class="pl-pds">'</span>player.died<span class="pl-pds">'</span></span>, {<span class="pl-smi">attacker</span>:<span class="pl-s"><span class="pl-pds">'</span>SomeEnemy<span class="pl-pds">'</span></span>});
+            <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>(<span class="pl-s"><span class="pl-pds">'</span>player.spawn<span class="pl-pds">'</span></span>, {<span class="pl-smi">spawn_node</span>:<span class="pl-s"><span class="pl-pds">'</span>spawn12<span class="pl-pds">'</span></span>});
+            <span class="pl-smi">entity</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>(<span class="pl-s"><span class="pl-pds">'</span>player.health.gain<span class="pl-pds">'</span></span>, {<span class="pl-smi">amount</span>:<span class="pl-s"><span class="pl-pds">'</span>100<span class="pl-pds">'</span></span>});
+
+        } <span class="pl-c"><span class="pl-c">//</span>space</span>
+
+    } <span class="pl-c"><span class="pl-c">//</span>onkeyup</span>
+
+}</pre></div>
+<h4>
+<a id="user-content-more-examples" class="anchor" href="#more-examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>More examples</h4>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">event_id</span> <span class="pl-k">=</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>(<span class="pl-s"><span class="pl-pds">'</span>debug:event1<span class="pl-pds">'</span></span>, 
+    <span class="pl-k">function</span>(<span class="pl-v">e</span>) { <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">'</span>event listener 1 : <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>); });
+
+<span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>( <span class="pl-s"><span class="pl-pds">'</span>debug:event1<span class="pl-pds">'</span></span> , 
+    <span class="pl-k">function</span>(<span class="pl-v">e</span>){ <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">'</span>event listener 2 : <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>); });
+
+<span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">listen</span>( <span class="pl-s"><span class="pl-pds">'</span>debug:event1<span class="pl-pds">'</span></span> , 
+    <span class="pl-k">function</span>(<span class="pl-v">e</span>){ <span class="pl-k">trace</span>(<span class="pl-s"><span class="pl-pds">'</span>event listener 3 : <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>); });
+
+<span class="pl-k">trace</span>( <span class="pl-s"><span class="pl-pds">'</span>registered debug:event1 <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">event_id</span> ); 
+
+<span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>(<span class="pl-s"><span class="pl-pds">'</span>debug:event1<span class="pl-pds">'</span></span>, {
+    <span class="pl-smi">name</span>: <span class="pl-s"><span class="pl-pds">'</span>test event<span class="pl-pds">'</span></span>,
+    <span class="pl-smi">date</span>: <span class="pl-c1">Date</span>.<span class="pl-en">now</span>()
+});
+
+    <span class="pl-c"><span class="pl-c">//</span>remove one of them</span>
+<span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">disconnect</span>( <span class="pl-smi">event_id</span> );
+
+    <span class="pl-c"><span class="pl-c">//</span>now only two listeners</span>
+<span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">fire</span>(<span class="pl-s"><span class="pl-pds">'</span>debug:event1<span class="pl-pds">'</span></span>, {
+    <span class="pl-smi">name</span>: <span class="pl-s"><span class="pl-pds">'</span>test event<span class="pl-pds">'</span></span>,
+    <span class="pl-smi">date</span>: <span class="pl-c1">Date</span>.<span class="pl-en">now</span>()
+});
+
+    <span class="pl-c"><span class="pl-c">//</span>fire next frame</span>
+<span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">queue</span>(<span class="pl-s"><span class="pl-pds">'</span>debug:event1<span class="pl-pds">'</span></span>);
+    
+    <span class="pl-c"><span class="pl-c">//</span>fire two seconds from now</span>
+<span class="pl-en">Luxe</span>.<span class="pl-smi">events</span>.<span class="pl-en">schedule</span>( <span class="pl-c1">2.0</span> , <span class="pl-s"><span class="pl-pds">'</span>debug:event1<span class="pl-pds">'</span></span>);</pre></div>
+<p><a name="user-content-components"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-understanding-components" class="anchor" href="#understanding-components" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Understanding Components</h2>
+<p>code for this guide is found in <a href="https://github.com/luxeengine/luxe-alpha/tree/master/samples/guides/5_components/src/"><strong><code>samples/guides/5_components/</code></strong></a></p>
+<p><a href="/C:/dev/luxe-alpha/docs/content/images/2016/08/guide-basiccomponents.png" target="_blank" rel="noopener noreferrer"><img src="/C:/dev/luxe-alpha/docs/content/images/2016/08/guide-basiccomponents.png" alt="sprites screenshot" style="max-width:100%;"></a>
+<span> guide outcome </span></p>
+<h3>
+<a id="user-content-what-are-entities-and-what-are-components" class="anchor" href="#what-are-entities-and-what-are-components" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What are Entities, and what are Components?</h3>
+<p>You have probably heard about about component/entity systems at some point if you have made games, and with good reason as they are quite useful for the way games are often structured. This was mentioned in the <a href="#three">third guide</a> with regards to sprite animation.</p>
+<p>The terms are quite straight forward -</p>
+<ul>
+<li>An Entity is a place to attach components to</li>
+<li>A Component adds some behaviour to an Entity, the one that it is attached to</li>
+</ul>
+<p><strong>A quick concrete example</strong></p>
+<ul>
+<li>A Sprite on screen is an Entity, an "EnemyTower" sprite</li>
+<li>A "ShootEveryThreeSeconds" is a component</li>
+<li>A "TakeDamageUntilZeroAndThenDie" is a component</li>
+</ul>
+<p>This means that generally an entity doesn't do anything on it's own, it's a blank slate. By attaching components to it, it can become more specific at any time. This gives you the flexibility to compose dynamic items at runtime, and an entity is only defined by the components it has, not the code that is inside of it's class. If a tower wanted to fly for some reason, it can.</p>
+<p><a href="/C:/dev/luxe-alpha/docs/content/images/2016/08/entitycomponents.png" target="_blank" rel="noopener noreferrer"><img src="/C:/dev/luxe-alpha/docs/content/images/2016/08/entitycomponents.png" alt="EntityComponentRelationship" style="max-width:100%;"></a></p>
+<blockquote>
+<p>It's worth knowing that there are a few approaches to "entity component systems" as a concept. In current luxe the component is a class that contains code and is attached to an entity which is a container for components.</p>
+</blockquote>
+<h3>
+<a id="user-content-anatomy-of-a-component-class" class="anchor" href="#anatomy-of-a-component-class" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Anatomy of a Component class</h3>
+<p>Component classes have some default functions that are called for you, much like the game class.
+Have a look at the comments in the code below to see them.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">Component</span>;
+
+<span class="pl-k">class</span> <span class="pl-en">MyComponent</span> <span class="pl-k">extends</span> <span class="pl-en">Component</span> {
+
+    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">init</span>() {
+        <span class="pl-c"><span class="pl-c">//</span>called when initialising the component</span>
+    }
+
+    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">update</span>(<span class="pl-v">dt</span><span class="pl-k">:</span><span class="pl-c1">Float</span>) {
+        <span class="pl-c"><span class="pl-c">//</span>called every frame for you</span>
+    }
+
+    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">onreset</span>() {
+        <span class="pl-c"><span class="pl-c">//</span>called when the scene starts or restarts</span>
+    }
+
+}</pre></div>
+<h3>
+<a id="user-content-component-spatial-transforms" class="anchor" href="#component-spatial-transforms" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Component spatial transforms</h3>
+<p>Components are directly tied to the entity they are attached to.<br>
+When you change the transform from a component class - it is changing the entity itself.</p>
+<p><code>pos.x = 100</code> changes the <strong><em>entity</em></strong> position.<br>
+It is the same as saying <code>entity.pos.x = 100</code>.</p>
+<p>All of the spatial values, <code>pos</code> , <code>rotation</code> and <code>scale</code>, affect the entity transform directly. Keep this in mind!</p>
+<h4>
+<a id="user-content-creating-and-accessing-entities" class="anchor" href="#creating-and-accessing-entities" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating and accessing entities</h4>
+<h3>
+<a id="user-content-creating-entities" class="anchor" href="#creating-entities" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating entities</h3>
+<p>Entities are created using the same common pattern of <code>new luxe.Entity(options)</code>. You can import <code>luxe.Entity</code> too. This entity will automatically be added to the default scene unless you ask it not to be. See the <a href="/C:/dev/luxe-alpha/docs/api/luxe/options/EntityOptions.html">EntityOptions</a> for all the flags.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">entity</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Entity</span>({ <span class="pl-smi">name</span>:<span class="pl-s"><span class="pl-pds">'</span>entity_name<span class="pl-pds">'</span></span> });</pre></div>
+<p>The <code>luxe.Sprite</code> and <code>luxe.Camera</code> class in luxe extend from the Entity class so that you can add components to them.</p>
+<h3>
+<a id="user-content-accessing-entities-from-other-entities-and-components" class="anchor" href="#accessing-entities-from-other-entities-and-components" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Accessing entities from other entities and components</h3>
+<p>By default, entities are stored in scenes by name so you can fetch them later. This means that when creating your sprite, or entity, you will want to pass the name as well. You fetch the sprite from the scene by accessing the entities property from the scene.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">init</span>() {
+
+    <span class="pl-k">var</span> <span class="pl-smi">sprite</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Sprite</span>({
+        <span class="pl-smi">name</span> : <span class="pl-s"><span class="pl-pds">'</span>spritename<span class="pl-pds">'</span></span>
+    });     
+
+}
+
+<span class="pl-k">...</span>
+
+    <span class="pl-c"><span class="pl-c">//</span>at a later time</span>
+<span class="pl-k">var</span> <span class="pl-smi">sprite</span><span class="pl-k">:</span> <span class="pl-en">Sprite</span> <span class="pl-k">=</span> <span class="pl-k">cast</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">scene</span>.<span class="pl-smi">entities</span>.<span class="pl-en">get</span>(<span class="pl-s"><span class="pl-pds">'</span>spritename<span class="pl-pds">'</span></span>);</pre></div>
+<h4>
+<a id="user-content-creating-and-accessing-components" class="anchor" href="#creating-and-accessing-components" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating and accessing components</h4>
+<p>All components should typically extend from the <code>luxe.Component</code> class in order to behave as expected.</p>
+<h3>
+<a id="user-content-adding-components-to-entities" class="anchor" href="#adding-components-to-entities" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding components to entities</h3>
+<p>Components are added to entities using the <code>add</code> function <em>on the entity</em>, and the <code>add</code> function returns the instance for convenience. This was also demonstrated in the <a href="#three">third beginner's guide</a>.</p>
+<p>Remember to name things, since the name of the component is needed later for fetching a reference if you don't have one. Since the same entity can have multiple components of the same type, the name is of the unique instance. i.e If you had two health components on the same entity each one would need to be named to identify them later.</p>
+<p>When you create a custom component, the constructor is in your hands, but remember to call <em>super</em> with at least the name of the instance. You can see this in the example later.</p>
+<p>Also important to mind the timing of the system events. The constructor will be called when <code>new</code> is invoked, while <code>init</code> and other events will probably happen later. This makes the constructor relatively early and can cause confusion when things you expected to exist do not exist yet.</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">component</span> <span class="pl-k">:</span> <span class="pl-en">Component</span>;
+<span class="pl-k">var</span> <span class="pl-smi">entity</span> <span class="pl-k">:</span> <span class="pl-en">Entity</span>;
+
+<span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">ready</span>() {
+
+        <span class="pl-c"><span class="pl-c">//</span> create an entity in the default scene</span>
+    <span class="pl-smi">entity</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Entity</span>({ <span class="pl-smi">name</span>:<span class="pl-s"><span class="pl-pds">'</span>some_entity<span class="pl-pds">'</span></span> });
+
+        <span class="pl-c"><span class="pl-c">//</span> add/attach a component to the entity.</span>
+    <span class="pl-smi">component</span> <span class="pl-k">=</span> <span class="pl-smi">entity</span>.<span class="pl-en">add</span>(<span class="pl-k">new</span> <span class="pl-en">Component</span>({ <span class="pl-smi">name</span>:<span class="pl-s"><span class="pl-pds">'</span>some_component<span class="pl-pds">'</span></span> });
+
+}</pre></div>
+<h3>
+<a id="user-content-accessing-the-entity-the-component-is-attached-to" class="anchor" href="#accessing-the-entity-the-component-is-attached-to" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Accessing the entity the component is attached to</h3>
+<p>When you are inside of a component and want to access the entity that the component is connected to, there is a variable called <code>entity</code> that is declared in the <code>Component</code> class as <code>entity : Entity</code>.</p>
+<p>When the entity is attached to a sub class of Entity (like a Sprite, which <code>extends Entity</code>), you can store a typed reference by using the <code>cast</code> keyword. The <code>onadded</code> function is a good place for that. Now you can use the sprite features without casting each time. Like below :</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">sprite</span> <span class="pl-k">:</span> <span class="pl-en">Sprite</span>;
+
+<span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">onadded</span>() {
+
+    <span class="pl-smi">sprite</span> <span class="pl-k">=</span> <span class="pl-k">cast</span> <span class="pl-smi">entity</span>;
+    <span class="pl-smi">sprite</span>.<span class="pl-smi">flipx</span> <span class="pl-k">=</span> <span class="pl-c1">false</span>; <span class="pl-c"><span class="pl-c">//</span>`Sprite` specific</span>
+
+}</pre></div>
+<h3>
+<a id="user-content-accessing-other-components-attached-to-the-entity" class="anchor" href="#accessing-other-components-attached-to-the-entity" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Accessing other components attached to the entity</h3>
+<p>When you want to access other components attached to the entity, you can use the <code>get</code> function. The <code>get</code> function is available from inside the component class, or from the <code>entity.get</code> endpoint.</p>
+<p>The parameter passed into the get function is the <em>name of the component instance</em> (which is passed into the constructor of the Component when calling the new function, or from <code>super</code> in subclasses).</p>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">var</span> <span class="pl-smi">move</span> <span class="pl-k">:</span> <span class="pl-en">Movement</span>;
+
+<span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">init</span>() {
+
+    <span class="pl-smi">move</span> <span class="pl-k">=</span> <span class="pl-k">cast</span> <span class="pl-en">get</span>(<span class="pl-s"><span class="pl-pds">'</span>move<span class="pl-pds">'</span></span>);
+
+        <span class="pl-smi">move</span>.<span class="pl-smi">speed</span> <span class="pl-k">*</span><span class="pl-k">=</span> <span class="pl-c1">2</span>;
+
+    <span class="pl-k">var</span> <span class="pl-smi">health</span> <span class="pl-k">:</span> <span class="pl-en">Health</span> <span class="pl-k">=</span> <span class="pl-en">get</span>(<span class="pl-s"><span class="pl-pds">'</span>health<span class="pl-pds">'</span></span>);
+
+        <span class="pl-smi">health</span>.<span class="pl-smi">amount</span> <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-c1">10</span>;
+
+}</pre></div>
+<h4>
+<a id="user-content-a-practical-sample" class="anchor" href="#a-practical-sample" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A practical sample</h4>
+<p>To further demonstrate the component entity stuff, we will do the following :</p>
+<ul>
+<li>Create a sprite (which is an entity)</li>
+<li>Attach a custom component that will rotate the sprite</li>
+<li>Attach a custom component that will make the sprite bounce</li>
+</ul>
+<p><a href="/C:/dev/luxe-alpha/docs/content/images/2016/08/entitycomponents2.png" target="_blank" rel="noopener noreferrer"><img src="/C:/dev/luxe-alpha/docs/content/images/2016/08/entitycomponents2.png" alt="EntityComponentRelationship" style="max-width:100%;"></a></p>
+<p>You can mix and match components in this way to create a variety of behaviours with little effort, and to change the behaviour on the fly.</p>
+<h3>
+<a id="user-content-rotatehx" class="anchor" href="#rotatehx" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rotate.hx</h3>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">Vector</span>;
+<span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">Component</span>;
+<span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">Sprite</span>;
+
+<span class="pl-c"><span class="pl-c">//</span>This component will rotate the entity </span>
+<span class="pl-c"><span class="pl-c">//</span>that it is attached to a small amount each frame.</span>
+<span class="pl-c"><span class="pl-c">//</span>It is assumed that the entity is a Sprite! </span>
+
+<span class="pl-k">class</span> <span class="pl-en">Rotate</span> <span class="pl-k">extends</span> <span class="pl-en">Component</span> {
+
+    <span class="pl-k">public</span> <span class="pl-k">var</span> <span class="pl-smi">rotate_speed</span> <span class="pl-k">:</span> <span class="pl-c1">Float</span> <span class="pl-k">=</span> <span class="pl-c1">10</span>;
+    <span class="pl-k">public</span> <span class="pl-k">var</span> <span class="pl-smi">max_rotate_speed</span> <span class="pl-k">:</span> <span class="pl-c1">Float</span> <span class="pl-k">=</span> <span class="pl-c1">60</span>;
+
+    <span class="pl-k">var</span> <span class="pl-smi">sprite</span> <span class="pl-k">:</span> <span class="pl-en">Sprite</span>;
+
+    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">init</span>() {
+        <span class="pl-smi">sprite</span> <span class="pl-k">=</span> <span class="pl-k">cast</span> <span class="pl-smi">entity</span>;
+    }
+
+    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">update</span>( <span class="pl-v">dt</span><span class="pl-k">:</span><span class="pl-c1">Float</span> ) {
+
+            <span class="pl-c"><span class="pl-c">//</span>changes to the transform inside </span>
+            <span class="pl-c"><span class="pl-c">//</span>of components affect the entity directly!</span>
+        <span class="pl-smi">sprite</span>.<span class="pl-smi">rotation_z</span> <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-smi">rotate_speed</span> <span class="pl-k">*</span> <span class="pl-smi">dt</span>;
+
+    } <span class="pl-c"><span class="pl-c">//</span>update</span>
+
+} <span class="pl-c"><span class="pl-c">//</span>Rotate</span>
+</pre></div>
+<h3>
+<a id="user-content-bouncehx" class="anchor" href="#bouncehx" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bounce.hx</h3>
+<div class="highlight highlight-source-hx"><pre><span class="pl-k">import</span> <span class="pl-c1">luxe</span>.<span class="pl-en">Component</span>;
+
+<span class="pl-k">class</span> <span class="pl-en">Bounce</span> <span class="pl-k">extends</span> <span class="pl-en">Component</span> {
+
+    <span class="pl-k">var</span> <span class="pl-smi">dir</span> <span class="pl-k">:</span> <span class="pl-c1">Int</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>;
+    <span class="pl-k">var</span> <span class="pl-smi">speed</span> <span class="pl-k">:</span> <span class="pl-c1">Int</span> <span class="pl-k">=</span> <span class="pl-c1">200</span>;
+
+    <span class="pl-k">override</span> <span class="pl-k">function</span> <span class="pl-en">update</span>( <span class="pl-v">dt</span><span class="pl-k">:</span><span class="pl-c1">Float</span> ) {
+
+        <span class="pl-smi">pos</span>.<span class="pl-smi">y</span> <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-smi">speed</span> <span class="pl-k">*</span> <span class="pl-smi">dir</span> <span class="pl-k">*</span> <span class="pl-smi">dt</span>;
+            <span class="pl-c"><span class="pl-c">//</span>hit the bottom? go back up</span>
+        <span class="pl-k">if</span>(<span class="pl-smi">pos</span>.<span class="pl-smi">y</span> <span class="pl-k">&gt;</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">h</span>) {
+            <span class="pl-smi">dir</span> <span class="pl-k">=</span> <span class="pl-k">-</span><span class="pl-c1">1</span>;
+        }
+            <span class="pl-c"><span class="pl-c">//</span>hit the middle? go down</span>
+        <span class="pl-k">if</span>(<span class="pl-smi">pos</span>.<span class="pl-smi">y</span> <span class="pl-k">&lt;</span> <span class="pl-en">Luxe</span>.<span class="pl-smi">screen</span>.<span class="pl-smi">h</span><span class="pl-k">/</span><span class="pl-c1">2</span>) {
+            <span class="pl-smi">dir</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>;
+        }
+
+    } <span class="pl-c"><span class="pl-c">//</span>update</span>
+
+} <span class="pl-c"><span class="pl-c">//</span>Bounce</span>
+</pre></div>
+<p>The rest of the code can be found in the link at the start of the guide.</p>
+<p><a name="user-content-utils"></a>  <br>
+<a href="#start">back to top</a></p>
+<hr>
+<h2>
+<a id="user-content-utilities-and-helpers" class="anchor" href="#utilities-and-helpers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Utilities and helpers</h2>
+<h3>
+<a id="user-content-geometry-utils" class="anchor" href="#geometry-utils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Geometry utils</h3>
+<p>Often when dealing with geometry or geometrical constructions (like procedurally generating spaces) it's helpful to have functions or classes to make building complex things easier.</p>
+<h4>
+<a id="user-content-these-functions-are-accessible-through-luxeutilsgeometry" class="anchor" href="#these-functions-are-accessible-through-luxeutilsgeometry" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>These functions are accessible through <code>Luxe.utils.geometry</code>
+</h4>
+<p>The geometrical utils object contains a handful of useful functions for exactly that, some examples:</p>
+<ul>
+<li>Determine line segments that make a smooth circle with a radius of <em>r</em>
+</li>
+<li>Generate a random point within a 1 radius circle area</li>
+<li>Find if a point is inside of this polygon (list of positions, or Geometry)</li>
+<li>Find a point of line intersect with an invisible plane</li>
+</ul>
+<p>These functions are easily used by <code>Luxe.utils.geometry</code> from anywhere.</p>
+<p>As the API changes and more additions are added,<br>
+you will find the full list of utilities in the<br>
+<a href="/C:/dev/luxe-alpha/docs/api/luxe/utils/GeometryUtils.html">GeometryUtils API docs</a></p>
+<h3>
+<a id="user-content-general-utilities" class="anchor" href="#general-utilities" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>General utilities</h3>
+<p>These are functions that aren't specific to any discipline so there are many different kinds.<br>
+Some of the examples include :</p>
+<h4>
+<a id="user-content-these-functions-are-accessible-through-luxeutils" class="anchor" href="#these-functions-are-accessible-through-luxeutils" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>These functions are accessible through <code>Luxe.utils</code>
+</h4>
+<ul>
+<li>generate a uniqueid or UUID</li>
+<li>get a haxe stacktrace as a string</li>
+<li>find assets in a sequence</li>
+</ul>
+<h3>
+<a id="user-content-math-utilities" class="anchor" href="#math-utilities" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Math utilities</h3>
+<p>Haxe already has many maths utilities built in, in the <a href="http://api.haxe.org/Math.html" rel="nofollow">Math</a> class.</p>
+<p>On top of that, there are many game or rendering specific maths functions that are convenient to have,</p>
+<p>These are all currently <strong>static functions</strong>, rather than an instance. i.e <code>Maths.radians( 90 )</code></p>
+<h4>
+<a id="user-content-these-functions-are-accessible-through-luxeutilsmaths" class="anchor" href="#these-functions-are-accessible-through-luxeutilsmaths" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>These functions are accessible through <code>luxe.utils.Maths</code>
+</h4>
+<ul>
+<li>is a value within a range (useful for floating point "equality")</li>
+<li>wrap an angle smoothly around a fixed range (like 0<del>60 or 0</del>360)</li>
+<li>the nearest power of two value of a number</li>
+<li>smoothstep interpolations</li>
+<li>degrees/radians conversions</li>
+<li>random number helpers</li>
+</ul>
+<p>You will find the full list of utilities in the<br>
+<a href="/C:/dev/luxe-alpha/docs/api/luxe/utils/Maths.html">Maths API docs</a></p>
+</article></body></html>

@@ -1,6 +1,7 @@
 [![Logo](./content/images/2016/08/icon_text_dark_small.png)](/get)
 
 ---
+**Please note** the instructions below are for the old deprecated luxe alpha only.    
 
 Full code completion and building from the IDE are typically supported.   
 See the following pages for setup instructions.

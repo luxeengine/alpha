@@ -1,14 +1,14 @@
 <a href="/"><img style="width:10em; height:10em;" src="./content/images/2017/10/luxe.logo.png"/> </a>
 
 ---
-<small>If you are looking for the alpha setup guide, [you can find it here](./luxe-alpha-setup-guide.md).</small>
+<small>If you are looking for the alpha setup guide, [you can find it here](./luxe-alpha-setup-guide.html).</small>
 <small>If you are looking for the alpha API docs, [you can find them here](./api).</small>
 
-**please note** this documentation is for the luxe alpha only.   
+**please note** this documentation is for the old deprecated luxe alpha only.   
 luxe 1.0 is coming... see https://luxeengine.com/
 
 <a name="start"></a>
-####[ (alpha) Beginners guide ](#beginnersguide)   
+#### [ (alpha) Beginners guide ](#beginnersguide)   
 **The beginners guide is a linear guide**,   
 it follows a semi logical progression about understanding some of the core concepts while working with luxe alpha. Things like building and running, assets, input and more.
 
@@ -18,7 +18,7 @@ it follows a semi logical progression about understanding some of the core conce
 [#4 - **Text and audio**](#textandaudio)    
 
 <a name="list"></a>
-####[ Feature guide ](#featureguide)   
+#### [ Feature guide ](#featureguide)   
 The feature guide is a piece by piece reference for specific features of the engine, designed to explain and teach what the engine can do.
 
 **gameplay**
@@ -53,7 +53,7 @@ The feature guide is a piece by piece reference for specific features of the eng
 ---
 
 ## #1 - Getting started
-<small>code for this guide is found in [**`samples/guides/1_getting_started/`**](https://github.com/luxeengine/luxe-alpha/tree/master/samples/guides/1_getting_started/src/Main.hx" target="_blank)</small>
+<small>code for this guide is found in [**`samples/guides/1_getting_started/`**](https://github.com/luxeengine/luxe-alpha/tree/master/samples/guides/1_getting_started/src/Main.hx)</small>
 
 ![getting started screenshot](./content/images/2016/08/guide-one.gif)
 <span style="display:block;width:100%;text-align:center"> guide outcome </span>
@@ -167,7 +167,7 @@ class Main extends luxe.Game {
 
 Your project file contains the information necessary to instruct the build tool - `flow` - on how to build your game.
 
-flow is a command line tool but is integrated into editors like so that you can work from those instead, if you prefer. You can see how to configure that here in the [setup guide](/get).
+flow is a command line tool but is integrated into editors like so that you can work from those instead, if you prefer. You can see how to configure that here in the [setup guide](./luxe-alpha-setup-guide.html).
 
 For now, we will stick with the command line for reference on what is happening.
 If you haven't installed the flow shortcut (via snowfall for example) then you need to add `haxelib run` in front of each command below. 
@@ -294,7 +294,7 @@ That's the basics of getting things on screen, updating things every frame, and 
 ---
 
 ## #2 - Images and sprites
-<small>code for this guide is found in [**`samples/guides/2_sprites/`**](https://github.com/luxeengine/luxe-alpha/tree/master/samples/guides/2_sprites/src/Main.hx" target="_blank)</small>
+<small>code for this guide is found in [**`samples/guides/2_sprites/`**](https://github.com/luxeengine/luxe-alpha/tree/master/samples/guides/2_sprites/src/Main.hx)</small>
 
 ![sprites screenshot](./content/images/2016/08/guide-two.gif)
 <span style="display:block;width:100%;text-align:center"> guide outcome </span>
@@ -436,7 +436,7 @@ In the next guide we'll add some animation and more.
 ---
 
 ## #3 - Sprites and animation
-<small>code for this guide is found in [**`samples/guides/3_sprite_animation/`**](https://github.com/luxeengine/luxe-alpha/blob/master/samples/guides/3_sprite_animation/src/Main.hx" target="_blank)</small>
+<small>code for this guide is found in [**`samples/guides/3_sprite_animation/`**](https://github.com/luxeengine/luxe-alpha/blob/master/samples/guides/3_sprite_animation/src/Main.hx)</small>
 
 ![sprites screenshot](./content/images/2016/08/guide-three.gif)
 <span style="display:block;width:100%;text-align:center"> guide outcome </span>
@@ -543,9 +543,9 @@ anim = player.add( new SpriteAnimation({ name:'anim' }) );
 How do we tell it what our animations look like? 
 Sprite animations are usually stored in packed images, which puts the frames of the animation in a single image. 
 
-Here is our player sprite sheet, with an idle and walk animation stored as frames. This particular sprite was created quickly for a previous project by the talented [andrio](https://twitter.com/_andrio" target="_blank).
+Here is our player sprite sheet, with an idle and walk animation stored as frames. This particular sprite was created quickly for a previous project by the talented [andrio](https://twitter.com/_andrio).
 
-_Note that sprite sheets aren't required, you can use separate textures but this is typically inefficient. See [**`tests/features/sprite_animation`**](https://github.com/luxeengine/luxe-alpha/tree/master/tests/features/sprite_animation" target="_blank)_.
+_Note that sprite sheets aren't required, you can use separate textures but this is typically inefficient. See [**`tests/features/sprite_animation`**](https://github.com/luxeengine/luxe-alpha/tree/master/tests/features/sprite_animation)_.
 
 ![](./content/images/2016/08/player.png)
 
@@ -622,7 +622,7 @@ The full code sample is linked at the beginning of the guide and continues on fr
 ---
 
 ## #4 - Text and audio
-<small>code for this guide is found in [**`samples/guides/4_text_and_tweening/`**](https://github.com/luxeengine/luxe-alpha/blob/master/samples/guides/4_text_and_tweening/src/Main.hx" target="_blank)</small>
+<small>code for this guide is found in [**`samples/guides/4_text_and_tweening/`**](https://github.com/luxeengine/luxe-alpha/blob/master/samples/guides/4_text_and_tweening/src/Main.hx)</small>
 
 ![sprites screenshot](./content/images/2016/08/guide-four.gif)
 <span style="display:block;width:100%;text-align:center"> guide outcome </span>
@@ -1064,7 +1064,7 @@ function after(_) {
 } //after
 ```
 
-For a clearer example of rendering to a texture, see [**`tests/rendering/rendertexture`**](https://github.com/luxeengine/luxe-alpha/tree/master/tests/rendering/rendertexture" target="_blank)
+For a clearer example of rendering to a texture, see [**`tests/rendering/rendertexture`**](https://github.com/luxeengine/luxe-alpha/tree/master/tests/rendering/rendertexture)
 
 
 <a name="shaders"></a> &nbsp;  
@@ -1219,7 +1219,7 @@ If you want to color the text in luxe using geometry colors, you must create a w
 
 **Export the fonts as .fnt text based format**. 
 
-###Importing custom fonts
+### Importing custom fonts
 
 To use a custom font, you can use a [parcel](guide.parcels.html) (as shown in the [beginner guide](guide.four.html)), or, you can manually load the font yourself.
 
@@ -1360,7 +1360,7 @@ which contains the asset data within it.
 
 For example, to access the loaded text data from a `load_text` call, it will give you a `TextResource`, which contains a `TextAsset`. To access the value, you would use `loaded_text.asset.text`.
 
-The resource [API docs](/api) have further details.
+The resource [API docs](./api) have further details.
 
 ### Loading assets in a Parcel
 
@@ -1843,7 +1843,7 @@ Luxe.events.schedule( 2.0 , 'debug:event1');
 
 ## Understanding Components
 
-<small>code for this guide is found in [**`samples/guides/5_components/`**](https://github.com/luxeengine/luxe-alpha/tree/master/samples/guides/5_components/src/" target="_blank)</small>
+<small>code for this guide is found in [**`samples/guides/5_components/`**](https://github.com/luxeengine/luxe-alpha/tree/master/samples/guides/5_components/src/)</small>
 
 ![sprites screenshot](./content/images/2016/08/guide-basiccomponents.png)
 <span style="display:block;width:100%;text-align:center"> guide outcome </span>
@@ -1908,7 +1908,7 @@ All of the spatial values, `pos` , `rotation` and `scale`, affect the entity tra
 
 ### Creating entities 
 
-Entities are created using the same common pattern of `new luxe.Entity(options)`. You can import `luxe.Entity` too. This entity will automatically be added to the default scene unless you ask it not to be. See the [EntityOptions](/api/luxe/options/EntityOptions.html) for all the flags.
+Entities are created using the same common pattern of `new luxe.Entity(options)`. You can import `luxe.Entity` too. This entity will automatically be added to the default scene unless you ask it not to be. See the [EntityOptions](./api/luxe/options/EntityOptions.html) for all the flags.
 
 ```haxe
 var entity = new Entity({ name:'entity_name' });
@@ -2103,20 +2103,20 @@ These functions are easily used by `Luxe.utils.geometry` from anywhere.
 
 As the API changes and more additions are added,    
 you will find the full list of utilities in the   
-[GeometryUtils API docs](/api/luxe/utils/GeometryUtils.html)
+[GeometryUtils API docs](./api/luxe/utils/GeometryUtils.html)
 
-###General utilities
+### General utilities
 
 These are functions that aren't specific to any discipline so there are many different kinds.   
 Some of the examples include :
 
-####These functions are accessible through `Luxe.utils`
+#### These functions are accessible through `Luxe.utils`
 
 - generate a uniqueid or UUID
 - get a haxe stacktrace as a string
 - find assets in a sequence
 
-###Math utilities
+### Math utilities
 
 Haxe already has many maths utilities built in, in the [Math](http://api.haxe.org/Math.html) class.
 
@@ -2124,7 +2124,7 @@ On top of that, there are many game or rendering specific maths functions that a
 
 These are all currently **static functions**, rather than an instance. i.e `Maths.radians( 90 )`
 
-####These functions are accessible through `luxe.utils.Maths`
+#### These functions are accessible through `luxe.utils.Maths`
 
 - is a value within a range (useful for floating point "equality")
 - wrap an angle smoothly around a fixed range (like 0~60 or 0~360)
@@ -2135,4 +2135,4 @@ These are all currently **static functions**, rather than an instance. i.e `Math
 
 
 You will find the full list of utilities in the   
-[Maths API docs](/api/luxe/utils/Maths.html)
+[Maths API docs](./api/luxe/utils/Maths.html)

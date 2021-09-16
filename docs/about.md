@@ -1,10 +1,14 @@
 <a href="/"><img style="width:10em; height:10em;" src="./content/images/2017/10/luxe.logo.png"/> </a> <br>
 
+**Please note** the instructions below are for the old deprecated luxe alpha.    
+
 <span style="display:inline-block;width:100%;text-align:center;margin:auto;">A lovingly handcrafted free cross platform game engine
 [guides](./user-guide.md) • [source](https://github.com/luxeengine/luxe-alpha) 
 </span>
 
 ---
+
+**Please note** the instructions below are for the old deprecated luxe alpha.    
 
 # About
 luxe is a lovingly handcrafted free, open source cross platform rapid development game engine for deploying games on Mac, Windows, Linux, Android, iOS and Web. 
@@ -27,8 +31,7 @@ luxe is a lovingly handcrafted free, open source cross platform rapid developmen
 ![](./content/images/2017/10/header_wide.jpg)
 <div style="text-align:center";> 
 
-<h2>Please be aware there is a major transition happening</h2>    
-The transition is from <em>design</em> exploration phase to final implementation of the engine. We are busy with the <strong>execution</strong> phase, which will become available soon. 
+<h2>Please be aware this alpha version of luxe was deprecated as early as 2015/2016. It is not representative of luxe.</h2>. 
 <br/>
 <br/>
 <h2><a href="https://luxeengine.com/">Visit the new site</a> to find out more! <br></h2>
@@ -233,7 +236,7 @@ Released as a port to the web platform (originally in Unity)
 
 <a target="_blank" href="http://play.threesgame.com">
 <div class="screenshot bigger">
-    
+
 ![threes](./content/images/2016/08/threes1.png)
 ![threes](./content/images/2016/08/threes2.png)
 ![threes](./content/images/2016/08/threes3.png)
