@@ -1,6 +1,7 @@
-<a href="/"><img style="width:10em; height:10em;" src="/content/images/2017/10/luxe.logo.png"/> </a>
+<a href="/"><img style="width:10em; height:10em;" src="./content/images/2017/10/luxe.logo.png"/> </a> <br>
+
 <span style="display:inline-block;width:100%;text-align:center;margin:auto;">A lovingly handcrafted free cross platform game engine
-[guides](/guide) • [source](https://github.com/underscorediscovery/luxe) • [twitter](https://twitter.com/luxeengine" target="_blank) • [status](/tag/status) • [dev logs](/tag/dev) • [questions?](https://github.com/luxeengine/support/)
+[guides](./user-guide.md) • [source](https://github.com/luxeengine/luxe-alpha) 
 </span>
 
 ---
