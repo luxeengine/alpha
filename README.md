@@ -15,6 +15,7 @@ This repo is an archive of the old alpha.
 ## view alpha documentation
 
 Documentation is now archived in this repo.
+It can be viewed as md files for some, and downloaded and viewed offline as html files.
 
 [](./docs/)
 
