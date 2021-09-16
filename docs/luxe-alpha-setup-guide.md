@@ -59,9 +59,8 @@ For convenience you can **install command shortcuts**:
 **If you need just the web platform target, you are done!**   
 Native platform targets require c++, and some require configuration. See below.
 
-- You can [set up an IDE / Editor](/setup-an-ide) to work with
-- View the [user guide](/guide) for getting started
-- Consider getting involved in the [community](/#community)
+- You can [set up an IDE / Editor](./setup-an-ide.md) to work with
+- View the [user guide](./user-guide.md) for getting started
 - Explore “[awesome-snowkit](https://github.com/anissen/awesome-snowkit)” for games, examples and more
 
 ---
