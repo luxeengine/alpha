@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+            !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+            arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+            d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+            insertBefore(d,q)}(window,document,'script','_gs');
+            _gs('GSN-518437-J');
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<p><hr/>
+<a href="#" id="search_bar" onclick="return;"><div> search API <em>(or start typing anywhere)</em> </div></a></p>
+<hr/>
+
+<script src="../../../js/omnibar.js"> </script>
+<link rel="stylesheet" type="text/css" href="../../../css/omnibar.css" media="all">
+
+<div id="omnibar"> <a href="#" onclick="return" id="omnibar_close"></a> <input id="omnibar_text" type="text" placeholder="search types..."></input></div>
+<script  id="typelist" data-relpath="../../../" data-types="Luxe,luxe.Audio,luxe.AudioEvent,luxe.AudioHandle,luxe.AudioInstance,luxe.AudioSource,luxe.AudioState,luxe.BitmapFontInfo,luxe.BytesInfo,luxe.Camera,luxe.Circle,luxe.Color,luxe.ColorHSL,luxe.ColorHSV,luxe.Component,luxe.Cursor,luxe.Debug,luxe.DebugError,luxe.Draw,luxe.EmitHandler,luxe.Emitter,luxe.Engine,luxe.Entity,luxe.Ev,luxe.Events,luxe.Game,luxe.GameConfig,luxe.GamepadEvent,luxe.GamepadEventType,luxe.HandlerList,luxe.ID,luxe.IO,luxe.Input,luxe.InputEvent,luxe.InputEventType,luxe.InteractState,luxe.ItemInfo,luxe.JSONInfo,luxe.Key,luxe.KeyEvent,luxe.Log,luxe.Matrix,luxe.Mesh,luxe.ModState,luxe.MouseButton,luxe.MouseEvent,luxe.NineSlice,luxe.Objects,luxe.Parcel,luxe.ParcelChange,luxe.ParcelEvent,luxe.ParcelList,luxe.ParcelProgress,luxe.ParcelState,luxe.Particle,luxe.ParticleEmitter,luxe.ParticleSystem,luxe.Physics,luxe.PhysicsEngine,luxe.PhysicsEvent,luxe.ProjectionType,luxe.Quaternion,luxe.Rectangle,luxe.ResourceEvent,luxe.ResourceState,luxe.ResourceStats,luxe.ResourceType,luxe.Resources,luxe.Scan,luxe.Scene,luxe.Screen,luxe.ShaderInfo,luxe.SizeMode,luxe.SoundInfo,luxe.Sprite,luxe.State,luxe.States,luxe.Tag,luxe.Text,luxe.TextAlign,luxe.TextEvent,luxe.TextEventType,luxe.TextInfo,luxe.TextureInfo,luxe.Timer,luxe.TouchEvent,luxe.Transform,luxe.UserConfig,luxe.Vec,luxe.Vector,luxe.Visual,luxe.WindowEvent,luxe.WindowEventData,luxe.WindowEventType,luxe._Emitter.EmitNode,luxe._Ev.Ev_Impl_,luxe._Events.EventConnection,luxe._Events.EventObject,luxe._Input.MouseButton_Impl_,luxe._Log.LogError,luxe._NineSlice.Slice,luxe._Parcel.ParcelEvent_Impl_,luxe._Parcel.ParcelState_Impl_,luxe._Particles.ParticleEmitterInitData,luxe._Physics.PhysicsEvent_Impl_,luxe._Resources.ResourceEvent_Impl_,luxe._Resources.ResourceState_Impl_,luxe._Resources.ResourceType_Impl_,luxe.collision.Collision,luxe.collision.Results,luxe.collision.ResultsIterator,luxe.collision.ShapeDrawer,luxe.collision.ShapeDrawerLuxe,luxe.collision._Collision.Constructible,luxe.collision.data.RayCollision,luxe.collision.data.RayCollisionHelper,luxe.collision.data.RayIntersection,luxe.collision.data.ShapeCollision,luxe.collision.sat.SAT2D,luxe.collision.shapes.Circle,luxe.collision.shapes.InfiniteState,luxe.collision.shapes.Polygon,luxe.collision.shapes.Ray,luxe.collision.shapes.Shape,luxe.components.Components,luxe.components.cameras.FlyCamera,luxe.components.physics.nape.BoxCollider,luxe.components.physics.nape.BoxColliderOptions,luxe.components.physics.nape.CircleCollider,luxe.components.physics.nape.CircleColliderOptions,luxe.components.physics.nape.NapeBody,luxe.components.physics.nape.NapeBodyOptions,luxe.components.physics.nape.PolygonCollider,luxe.components.physics.nape.PolygonColliderOptions,luxe.components.render.MeshComponent,luxe.components.sprite.SpriteAnimation,luxe.components.sprite.SpriteAnimationData,luxe.components.sprite.SpriteAnimationEventData,luxe.components.sprite.SpriteAnimationFrame,luxe.components.sprite.SpriteAnimationFrameEvent,luxe.components.sprite.SpriteAnimationFrameSource,luxe.components.sprite.SpriteAnimationType,luxe.debug.BatcherDebugView,luxe.debug.DebugInspectorOptions,luxe.debug.DebugView,luxe.debug.Inspector,luxe.debug.ProfilerDebugView,luxe.debug.RenderStats,luxe.debug.SceneDebugView,luxe.debug.StatsDebugView,luxe.debug.TraceDebugView,luxe.debug._ProfilerDebugView.ProfilerBar,luxe.debug._ProfilerDebugView.ProfilerGraph,luxe.debug._ProfilerDebugView.ProfilerValue,luxe.importers.bitmapfont.BitmapFontData,luxe.importers.bitmapfont.BitmapFontParser,luxe.importers.bitmapfont.Character,luxe.importers.obj.Data,luxe.importers.obj.Normal,luxe.importers.obj.Reader,luxe.importers.obj.UV,luxe.importers.obj.Vector,luxe.importers.obj.Vertex,luxe.importers.texturepacker.TexturePackerData,luxe.importers.texturepacker.TexturePackerFrame,luxe.importers.texturepacker.TexturePackerJSON,luxe.importers.texturepacker.TexturePackerJSONType,luxe.importers.texturepacker.TexturePackerMeta,luxe.importers.texturepacker.TexturePackerRect,luxe.importers.texturepacker.TexturePackerSize,luxe.importers.texturepacker.TexturePackerSpriteAnimation,luxe.importers.tiled.TiledImage,luxe.importers.tiled.TiledImageLayer,luxe.importers.tiled.TiledLayer,luxe.importers.tiled.TiledMap,luxe.importers.tiled.TiledMapData,luxe.importers.tiled.TiledMapOptions,luxe.importers.tiled.TiledObject,luxe.importers.tiled.TiledObjectGroup,luxe.importers.tiled.TiledObjectType,luxe.importers.tiled.TiledPolyObject,luxe.importers.tiled.TiledPropertyTile,luxe.importers.tiled.TiledTile,luxe.importers.tiled.TiledTileset,luxe.importers.tiled.TiledUtil,luxe.macros.BuildVersion,luxe.macros.ComponentRules,luxe.macros.EntityRules,luxe.options.AudioResourceOptions,luxe.options.BatcherOptions,luxe.options.BitmapFontOptions,luxe.options.BytesResourceOptions,luxe.options.CameraOptions,luxe.options.CircleGeometryOptions,luxe.options.ColorOptions,luxe.options.ComponentOptions,luxe.options.DrawArcOptions,luxe.options.DrawBoxOptions,luxe.options.DrawCircleOptions,luxe.options.DrawLineOptions,luxe.options.DrawNgonOptions,luxe.options.DrawPlaneOptions,luxe.options.DrawPolygonOptions,luxe.options.DrawRectangleOptions,luxe.options.DrawRingOptions,luxe.options.DrawTextureOptions,luxe.options.EntityOptions,luxe.options.GeometryOptions,luxe.options.JSONResourceOptions,luxe.options.LineGeometryOptions,luxe.options.LoadAudioOptions,luxe.options.LoadFontOptions,luxe.options.LoadShaderOptions,luxe.options.LoadTextureOptions,luxe.options.LuxeCameraOptions,luxe.options.MeshOptions,luxe.options.NineSliceOptions,luxe.options.ParcelOptions,luxe.options.ParcelProgressOptions,luxe.options.ParticleEmitterOptions,luxe.options.ParticleOptions,luxe.options.PlaneGeometryOptions,luxe.options.QuadGeometryOptions,luxe.options.RectangleGeometryOptions,luxe.options.RenderProperties,luxe.options.RenderTextureOptions,luxe.options.ResourceOptions,luxe.options.ShaderOptions,luxe.options.SpriteOptions,luxe.options.StateOptions,luxe.options.StatesOptions,luxe.options.TextOptions,luxe.options.TextResourceOptions,luxe.options.TextureOptions,luxe.options.TileLayerOptions,luxe.options.TileOptions,luxe.options.TilemapOptions,luxe.options.TilemapVisualOptions,luxe.options.TilesetOptions,luxe.options.TransformProperties,luxe.options.VisualOptions,luxe.options._DrawOptions.DrawOptions,luxe.physics.nape.DebugDraw,luxe.physics.nape.PhysicsNape,luxe.physics.nape._DebugDraw.CachedGeometry,luxe.resource.AudioResource,luxe.resource.BytesResource,luxe.resource.JSONResource,luxe.resource.Resource,luxe.resource.TextResource,luxe.structural.BST,luxe.structural.BSTNode,luxe.structural.BSTTraverseMethod,luxe.structural.Bag,luxe.structural.BalancedBST,luxe.structural.BalancedBSTIterator,luxe.structural.BalancedBSTNode,luxe.structural.BalancedBSTTraverseMethod,luxe.structural.Cache,luxe.structural.Heap,luxe.structural.OrderedMap,luxe.structural.OrderedMapIterator,luxe.structural.Pool,luxe.structural.Stack,luxe.structural.StackNode,luxe.structural._Bag.BagNode,luxe.structural._BalancedBST.NodeColor,luxe.tilemaps.Isometric,luxe.tilemaps.IsometricVisual,luxe.tilemaps.Ortho,luxe.tilemaps.OrthoVisual,luxe.tilemaps.Tile,luxe.tilemaps.TileArray,luxe.tilemaps.TileLayer,luxe.tilemaps.TileOffset,luxe.tilemaps.Tilemap,luxe.tilemaps.TilemapOrientation,luxe.tilemaps.TilemapVisual,luxe.tilemaps.TilemapVisualLayerGeometry,luxe.tilemaps.Tileset,luxe.tween.Actuate,luxe.tween.BezierPath,luxe.tween.ComponentPath,luxe.tween.IComponentPath,luxe.tween.LinearPath,luxe.tween.MotionPath,luxe.tween.ObjectHash,luxe.tween.RotationPath,luxe.tween._Actuate.TweenTimer,luxe.tween.actuators.GenericActuator,luxe.tween.actuators.IGenericActuator,luxe.tween.actuators.MethodActuator,luxe.tween.actuators.MotionPathActuator,luxe.tween.actuators.PropertyDetails,luxe.tween.actuators.PropertyPathDetails,luxe.tween.actuators.SimpleActuator,luxe.tween.easing.Back,luxe.tween.easing.BackEaseIn,luxe.tween.easing.BackEaseInOut,luxe.tween.easing.BackEaseOut,luxe.tween.easing.Bounce,luxe.tween.easing.BounceEaseIn,luxe.tween.easing.BounceEaseInOut,luxe.tween.easing.BounceEaseOut,luxe.tween.easing.Cubic,luxe.tween.easing.CubicEaseIn,luxe.tween.easing.CubicEaseInOut,luxe.tween.easing.CubicEaseOut,luxe.tween.easing.Elastic,luxe.tween.easing.ElasticEaseIn,luxe.tween.easing.ElasticEaseInOut,luxe.tween.easing.ElasticEaseOut,luxe.tween.easing.Expo,luxe.tween.easing.ExpoEaseIn,luxe.tween.easing.ExpoEaseInOut,luxe.tween.easing.ExpoEaseOut,luxe.tween.easing.IEasing,luxe.tween.easing.Linear,luxe.tween.easing.LinearEaseNone,luxe.tween.easing.Quad,luxe.tween.easing.QuadEaseIn,luxe.tween.easing.QuadEaseInOut,luxe.tween.easing.QuadEaseOut,luxe.tween.easing.Quart,luxe.tween.easing.QuartEaseIn,luxe.tween.easing.QuartEaseInOut,luxe.tween.easing.QuartEaseOut,luxe.tween.easing.Quint,luxe.tween.easing.QuintEaseIn,luxe.tween.easing.QuintEaseInOut,luxe.tween.easing.QuintEaseOut,luxe.tween.easing.Sine,luxe.tween.easing.SineEaseIn,luxe.tween.easing.SineEaseInOut,luxe.tween.easing.SineEaseOut,luxe.types.user.Game,luxe.utils.GeometryUtils,luxe.utils.Maths,luxe.utils.Random,luxe.utils.Utils,luxe.utils.unifill.CodePoint,luxe.utils.unifill.CodePointIter,luxe.utils.unifill.Exception,luxe.utils.unifill.InternalEncoding,luxe.utils.unifill.InternalEncodingBackwardIter,luxe.utils.unifill.InternalEncodingIter,luxe.utils.unifill.Unicode,luxe.utils.unifill.Unifill,luxe.utils.unifill.Utf16,luxe.utils.unifill.Utf32,luxe.utils.unifill.Utf8,luxe.utils.unifill._CodePoint.CodePoint_Impl_,luxe.utils.unifill._InternalEncoding.UtfX,luxe.utils.unifill._Utf16.StringU16,luxe.utils.unifill._Utf16.StringU16Buffer,luxe.utils.unifill._Utf16.StringU16Buffer_Impl_,luxe.utils.unifill._Utf16.StringU16_Impl_,luxe.utils.unifill._Utf16.Utf16Impl,luxe.utils.unifill._Utf16.Utf16_Impl_,luxe.utils.unifill._Utf32.Utf32_Impl_,luxe.utils.unifill._Utf8.StringU8,luxe.utils.unifill._Utf8.StringU8_Impl_,luxe.utils.unifill._Utf8.Utf8Impl,luxe.utils.unifill._Utf8.Utf8_Impl_,phoenix.BatchState,phoenix.Batcher,phoenix.BatcherEventType,phoenix.BatcherKey,phoenix.BitmapFont,phoenix.BlendEquation,phoenix.BlendMode,phoenix.Camera,phoenix.Circle,phoenix.ClampType,phoenix.Color,phoenix.ColorHSL,phoenix.ColorHSV,phoenix.ComponentOrder,phoenix.DualQuaternion,phoenix.FOVType,phoenix.FilterType,phoenix.Matrix,phoenix.MatrixTransform,phoenix.PrimitiveType,phoenix.ProjectionType,phoenix.Quaternion,phoenix.Ray,phoenix.Rectangle,phoenix.RenderPass,phoenix.RenderPath,phoenix.RenderState,phoenix.RenderTexture,phoenix.Renderer,phoenix.RendererStats,phoenix.Shader,phoenix.Spatial,phoenix.TextAlign,phoenix.Texture,phoenix.TextureDataType,phoenix.TextureFormat,phoenix.TextureID,phoenix.TextureSubmitTarget,phoenix.TextureType,phoenix.Transform,phoenix.Uniforms,phoenix.Vec,phoenix.Vector,phoenix._Batcher.BatcherEventType_Impl_,phoenix._Batcher.BlendEquation_Impl_,phoenix._Batcher.BlendMode_Impl_,phoenix._Batcher.PrimitiveType_Impl_,phoenix._BitmapFont.TextAlign_Impl_,phoenix._Renderer.DefaultShader,phoenix._Renderer.DefaultShaders,phoenix._Shader.Location,phoenix._Shader.Uniform,phoenix._Texture.ClampSlot,phoenix._Texture.ClampSlot_Impl_,phoenix._Texture.ClampType_Impl_,phoenix._Texture.FilterSlot,phoenix._Texture.FilterSlot_Impl_,phoenix._Texture.FilterType_Impl_,phoenix._Texture.TextureSubmitTarget_Impl_,phoenix._Texture.TextureType_Impl_,phoenix._Vector.ComponentOrder_Impl_,phoenix._Vector.Vec_Impl_,phoenix.geometry.ArcGeometry,phoenix.geometry.CircleGeometry,phoenix.geometry.EvTextGeometry,phoenix.geometry.Geometry,phoenix.geometry.GeometryKey,phoenix.geometry.GeometryState,phoenix.geometry.LineGeometry,phoenix.geometry.PackedQuad,phoenix.geometry.PackedQuadOptions,phoenix.geometry.QuadGeometry,phoenix.geometry.QuadPackGeometry,phoenix.geometry.RectangleGeometry,phoenix.geometry.RingGeometry,phoenix.geometry.TextGeometry,phoenix.geometry.TextGeometryOptions,phoenix.geometry.TextureCoord,phoenix.geometry.TextureCoordSet,phoenix.geometry.Vertex,phoenix.geometry._TextGeometry.EvTextGeometry_Impl_,phoenix.utils.Rendering"></script>
+
+
+<p><h1>ProfilerDebugView</h1>
+<small>
+<code><a target="_blank" href="https:/github.com/underscorediscovery/luxe/blob/master/luxe/debug/ProfilerDebugView.hx">luxe.debug.ProfilerDebugView</a></code>
+</small></p>
+<hr/>
+
+<p><code>class</code>extends <code><span><a href="../../../api/luxe/debug/DebugView.html">luxe.debug.DebugView</a></span></code></p>
+<hr/>
+
+<p>&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+                <a name="color_green"><a class="lift" href="#color_green">color_green</a></a><span class="inline-block static">static</span><div class="clear"></div>
+                <code class="signature apipage">color_green : <a href="../../../api/luxe/Color.html">luxe.Color</a></code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="color_normal"><a class="lift" href="#color_normal">color_normal</a></a><span class="inline-block static">static</span><div class="clear"></div>
+                <code class="signature apipage">color_normal : <a href="../../../api/luxe/Color.html">luxe.Color</a></code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="color_red"><a class="lift" href="#color_red">color_red</a></a><span class="inline-block static">static</span><div class="clear"></div>
+                <code class="signature apipage">color_red : <a href="../../../api/luxe/Color.html">luxe.Color</a></code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="debug"><a class="lift" href="#debug">debug</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#debug'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+                <code class="signature apipage">debug : <a href="../../../api/luxe/Debug.html">luxe.Debug</a></code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="lists"><a class="lift" href="#lists">lists</a></a><span class="inline-block static">static</span><div class="clear"></div>
+                <code class="signature apipage">lists : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/String.html">String</a>, <a href="../../../api/luxe/debug/_ProfilerDebugView/ProfilerValue.html">luxe.debug._ProfilerDebugView.ProfilerValue</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="memgraph"><a class="lift" href="#memgraph">memgraph</a></a><div class="clear"></div>
+                <code class="signature apipage">memgraph : <a href="../../../api/luxe/debug/_ProfilerDebugView/ProfilerGraph.html">luxe.debug._ProfilerDebugView.ProfilerGraph</a></code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="memgraph2"><a class="lift" href="#memgraph2">memgraph2</a></a><div class="clear"></div>
+                <code class="signature apipage">memgraph2 : <a href="../../../api/luxe/debug/_ProfilerDebugView/ProfilerGraph.html">luxe.debug._ProfilerDebugView.ProfilerGraph</a></code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="memgraph3"><a class="lift" href="#memgraph3">memgraph3</a></a><div class="clear"></div>
+                <code class="signature apipage">memgraph3 : <a href="../../../api/luxe/debug/_ProfilerDebugView/ProfilerGraph.html">luxe.debug._ProfilerDebugView.ProfilerGraph</a></code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="memgraph4"><a class="lift" href="#memgraph4">memgraph4</a></a><div class="clear"></div>
+                <code class="signature apipage">memgraph4 : <a href="../../../api/luxe/debug/_ProfilerDebugView/ProfilerGraph.html">luxe.debug._ProfilerDebugView.ProfilerGraph</a></code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="memtext"><a class="lift" href="#memtext">memtext</a></a><div class="clear"></div>
+                <code class="signature apipage">memtext : <a href="../../../api/luxe/Text.html">luxe.Text</a></code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="visible"><a class="lift" href="#visible">visible</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#visible'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+                <code class="signature apipage">visible : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+            <span class="small_desc_flat"></span><br/></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="add_offset"><a class="lift" href="#add_offset">add_offset</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <code class="signature apipage">add_offset(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>, _offset:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="create"><a class="lift" href="#create">create</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#create'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">create() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="end"><a class="lift" href="#end">end</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <code class="signature apipage">end(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="hide"><a class="lift" href="#hide">hide</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#hide'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">hide() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="hide_item"><a class="lift" href="#hide_item">hide_item</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <code class="signature apipage">hide_item(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
+            <code class="signature apipage">new(_debug:<a href="../../../api/luxe/Debug.html">luxe.Debug</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="onkeydown"><a class="lift" href="#onkeydown">onkeydown</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#onkeydown'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">onkeydown(e:<a href="../../../api/luxe/KeyEvent.html">luxe.KeyEvent</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="onkeyup"><a class="lift" href="#onkeyup">onkeyup</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#onkeyup'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">onkeyup(e:<a href="../../../api/luxe/KeyEvent.html">luxe.KeyEvent</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="onmousedown"><a class="lift" href="#onmousedown">onmousedown</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#onmousedown'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">onmousedown(e:<a href="../../../api/luxe/MouseEvent.html">luxe.MouseEvent</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="onmousemove"><a class="lift" href="#onmousemove">onmousemove</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#onmousemove'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">onmousemove(e:<a href="../../../api/luxe/MouseEvent.html">luxe.MouseEvent</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="onmouseup"><a class="lift" href="#onmouseup">onmouseup</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#onmouseup'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">onmouseup(e:<a href="../../../api/luxe/MouseEvent.html">luxe.MouseEvent</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="onmousewheel"><a class="lift" href="#onmousewheel">onmousewheel</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#onmousewheel'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">onmousewheel(e:<a href="../../../api/luxe/MouseEvent.html">luxe.MouseEvent</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="ontouchdown"><a class="lift" href="#ontouchdown">ontouchdown</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#ontouchdown'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">ontouchdown(e:<a href="../../../api/luxe/TouchEvent.html">luxe.TouchEvent</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="ontouchmove"><a class="lift" href="#ontouchmove">ontouchmove</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#ontouchmove'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">ontouchmove(e:<a href="../../../api/luxe/TouchEvent.html">luxe.TouchEvent</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="ontouchup"><a class="lift" href="#ontouchup">ontouchup</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#ontouchup'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">ontouchup(e:<a href="../../../api/luxe/TouchEvent.html">luxe.TouchEvent</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="onwindowsized"><a class="lift" href="#onwindowsized">onwindowsized</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#onwindowsized'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">onwindowsized(e:<a href="../../../api/luxe/WindowEvent.html">luxe.WindowEvent</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="process"><a class="lift" href="#process">process</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#process'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">process() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="refresh"><a class="lift" href="#refresh">refresh</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#refresh'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">refresh() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="show"><a class="lift" href="#show">show</a></a><a data-tooltip="inherited from <a href='../../../api/luxe/debug/DebugView.html#show'>luxe.debug.DebugView</a>" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <code class="signature apipage">show() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="show_item"><a class="lift" href="#show_item">show_item</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <code class="signature apipage">show_item(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="start"><a class="lift" href="#start">start</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <code class="signature apipage">start(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>, _max:<a href="http://api.haxe.org/Float.html">Float</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span></p>
+<hr/>
+
+<p>&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

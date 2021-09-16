@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster-shadow.css" media="all">
+
+        <script src="../js/jquery-2.0.3.min.js"> </script>
+        <script src="../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+            !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+            arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+            d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+            insertBefore(d,q)}(window,document,'script','_gs');
+            _gs('GSN-518437-J');
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <blockquote>
+<p>luxe.Draw.arc</p>
+</blockquote>
+<pre><code>    <span class="hljs-comment">//draws a 60 degree arc center screen</span>
+<span class="hljs-keyword">var</span> geometry = Luxe.draw.arc({
+    r : <span class="hljs-number">70</span>,
+    end_angle:<span class="hljs-number">60</span>,
+    x : Luxe.screen.w/<span class="hljs-number">2</span>,
+    y : Luxe.screen.h/<span class="hljs-number">2</span>,
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)
+});
+</code></pre><blockquote>
+<p>luxe.Draw.line</p>
+</blockquote>
+<pre><code>    <span class="hljs-comment">//draws a line horizontally across the screen</span>
+<span class="hljs-keyword">var</span> geometry = Luxe.draw.line({
+    p0 : <span class="hljs-keyword">new</span> Vector( <span class="hljs-number">0</span>, Luxe.screen.h/<span class="hljs-number">2</span> ),
+    p1 : <span class="hljs-keyword">new</span> Vector( Luxe.screen.w, Luxe.screen.h/<span class="hljs-number">2</span> ),
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">0.5</span>,<span class="hljs-number">0.2</span>,<span class="hljs-number">0.2</span>,<span class="hljs-number">1</span>)
+});
+</code></pre><blockquote>
+<p>luxe.Draw.rectangle</p>
+</blockquote>
+<pre><code>    <span class="hljs-comment">//draws a outline rectangle just inside the screen</span>
+<span class="hljs-keyword">var</span> geometry = Luxe.draw.rectangle({
+    x : <span class="hljs-number">10</span>, y : <span class="hljs-number">10</span>,
+    w : Luxe.screen.w - <span class="hljs-number">20</span>,
+    h : Luxe.screen.h - <span class="hljs-number">20</span>,
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">0.4</span>,<span class="hljs-number">0.4</span>,<span class="hljs-number">0.4</span>)
+});
+</code></pre><blockquote>
+<p>luxe.Draw.box</p>
+</blockquote>
+<pre><code>    <span class="hljs-comment">//draw a filled box just inside the screen</span>
+<span class="hljs-keyword">var</span> geometry = Luxe.draw.box({
+    x : <span class="hljs-number">40</span>, y : <span class="hljs-number">40</span>,
+    w : Luxe.screen.w - <span class="hljs-number">80</span>,
+    h : Luxe.screen.h - <span class="hljs-number">80</span>,
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0.5</span>)
+});
+</code></pre><blockquote>
+<p>luxe.Draw.ring</p>
+</blockquote>
+<pre><code>    <span class="hljs-comment">//draw a outline circle center screen</span>
+ring = Luxe.draw.ring({
+    x : Luxe.screen.w/<span class="hljs-number">2</span>,
+    y : Luxe.screen.h/<span class="hljs-number">2</span>,
+    r : <span class="hljs-number">60</span>,
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)
+});
+</code></pre><blockquote>
+<p>luxe.Draw.circle</p>
+</blockquote>
+<pre><code>    <span class="hljs-comment">//draw a solid circle center screen</span>
+<span class="hljs-keyword">var</span> geometry = Luxe.draw.circle({
+    x : Luxe.screen.w/<span class="hljs-number">2</span>,
+    y : Luxe.screen.h/<span class="hljs-number">2</span>,
+    r : <span class="hljs-number">50</span>,
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>).rgb(<span class="hljs-number">0xff4b03</span>)
+});
+</code></pre><blockquote>
+<p>luxe.Draw.text</p>
+</blockquote>
+<pre><code>    <span class="hljs-comment">//draw some center aligned text, center screen</span>
+Luxe.draw.text({
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),
+    pos : Luxe.screen.mid,
+    point_size : <span class="hljs-number">24</span>,
+    align : TextAlign.center,
+    text : <span class="hljs-string">"some text \n indeed"</span>
+});
+</code></pre><blockquote>
+<p>luxe.Draw.texture</p>
+</blockquote>
+<pre><code>    <span class="hljs-comment">//draw a texture center screen</span>
+Luxe.draw.texture({
+    pos : Luxe.screen.mid,
+    texture : Luxe.resources.texture(<span class="hljs-string">'assets/logo.png'</span>),
+    size : <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">60</span>,<span class="hljs-number">60</span>)
+});
+</code></pre><blockquote>
+<p>luxe.Draw.ngon</p>
+</blockquote>
+<pre><code>    <span class="hljs-comment">//draw a solid triangle center screen</span>
+Luxe.draw.ngon({
+    r:<span class="hljs-number">200</span>,
+    sides : <span class="hljs-number">3</span>,
+    solid : <span class="hljs-literal">true</span>,
+    color: <span class="hljs-keyword">new</span> Color(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0.1</span>),
+    x:Luxe.screen.mid.x, y:Luxe.screen.mid.y
+});
+</code></pre><blockquote>
+<p>luxe.Draw.poly</p>
+</blockquote>
+<pre><code>    <span class="hljs-comment">//draw a list of points as a polygon</span>
+Luxe.draw.poly({
+    solid : <span class="hljs-literal">true</span>,
+    color: <span class="hljs-keyword">new</span> Color().rgb(<span class="hljs-number">0xff4b03</span>),
+    points : [
+        <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">28</span>, <span class="hljs-number">114</span>),
+        <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">77</span>, <span class="hljs-number">104</span>),
+        <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">84</span>, <span class="hljs-number">109</span>),
+        <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">108</span>, <span class="hljs-number">184</span>),
+        <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">44</span>, <span class="hljs-number">202</span>),
+        <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">25</span>, <span class="hljs-number">120</span>),
+        <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">28</span>, <span class="hljs-number">114</span>),
+    ]
+});
+</code></pre>
+        </div>
+    </body>
+
+</html>

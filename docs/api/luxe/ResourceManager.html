@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>luxe - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+            !function(g,s,q,r,d){r=g[r]=g[r]||function(){(r.q=r.q||[]).push(
+            arguments)};d=s.createElement(q);q=s.getElementsByTagName(q)[0];
+            d.src='//d1l6p2sc9645hc.cloudfront.net/tracker.js';q.parentNode.
+            insertBefore(d,q)}(window,document,'script','_gs');
+            _gs('GSN-518437-J');
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<p><h1>ResourceManager</h1>
+<small><code>luxe.ResourceManager</code></small></p>
+<hr>
+<p><code>class</code>
+<span class="meta">
+<br/>meta: @:keep
+</span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+                <a name="resourcelist"><a class="lift" href="#resourcelist">resourcelist</a></a><div class="clear"></div><code class="signature apipage">resourcelist : <a href="#">Array</a>&lt;<a href="#">luxe.Resource</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="render_textures"><a class="lift" href="#render_textures">render_textures</a></a><div class="clear"></div><code class="signature apipage">render_textures : <a href="#">Map</a>&lt;<a href="#">String</a>, <a href="#">phoenix.RenderTexture</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="textures"><a class="lift" href="#textures">textures</a></a><div class="clear"></div><code class="signature apipage">textures : <a href="#">Map</a>&lt;<a href="#">String</a>, <a href="#">phoenix.Texture</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="shaders"><a class="lift" href="#shaders">shaders</a></a><div class="clear"></div><code class="signature apipage">shaders : <a href="#">Map</a>&lt;<a href="#">String</a>, <a href="#">phoenix.Shader</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="fonts"><a class="lift" href="#fonts">fonts</a></a><div class="clear"></div><code class="signature apipage">fonts : <a href="#">Map</a>&lt;<a href="#">String</a>, <a href="#">phoenix.BitmapFont</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="data"><a class="lift" href="#data">data</a></a><div class="clear"></div><code class="signature apipage">data : <a href="#">Map</a>&lt;<a href="#">String</a>, <a href="#">luxe.DataResource</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="text"><a class="lift" href="#text">text</a></a><div class="clear"></div><code class="signature apipage">text : <a href="#">Map</a>&lt;<a href="#">String</a>, <a href="#">luxe.TextResource</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="json"><a class="lift" href="#json">json</a></a><div class="clear"></div><code class="signature apipage">json : <a href="#">Map</a>&lt;<a href="#">String</a>, <a href="#">luxe.JSONResource</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="sounds"><a class="lift" href="#sounds">sounds</a></a><div class="clear"></div><code class="signature apipage">sounds : <a href="#">Map</a>&lt;<a href="#">String</a>, <a href="#">luxe.SoundResource</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="stats"><a class="lift" href="#stats">stats</a></a><div class="clear"></div><code class="signature apipage">stats : <a href="#">luxe.ResourceStats</a></code><br/></span>
+            <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="add"><a class="lift" href="#add">add</a></a> <div class="clear"></div><code class="signature apipage">add(res:<a href="#">luxe.Resource</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="remove"><a class="lift" href="#remove">remove</a></a> <div class="clear"></div><code class="signature apipage">remove(res:<a href="#">luxe.Resource</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="uncache"><a class="lift" href="#uncache">uncache</a></a> <div class="clear"></div><code class="signature apipage">uncache(res:<a href="#">luxe.Resource</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="cache"><a class="lift" href="#cache">cache</a></a> <div class="clear"></div><code class="signature apipage">cache(res:<a href="#">luxe.Resource</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_render_texture"><a class="lift" href="#find_render_texture">find_render_texture</a></a> <div class="clear"></div><code class="signature apipage">find_render_texture(_name:<a href="#">String</a><span></span>) : <a href="#">Null</a>&lt;<a href="#">phoenix.RenderTexture</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_texture"><a class="lift" href="#find_texture">find_texture</a></a> <div class="clear"></div><code class="signature apipage">find_texture(_name:<a href="#">String</a><span></span>) : <a href="#">Null</a>&lt;<a href="#">phoenix.Texture</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_shader"><a class="lift" href="#find_shader">find_shader</a></a> <div class="clear"></div><code class="signature apipage">find_shader(_name:<a href="#">String</a><span></span>) : <a href="#">Null</a>&lt;<a href="#">phoenix.Shader</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_font"><a class="lift" href="#find_font">find_font</a></a> <div class="clear"></div><code class="signature apipage">find_font(_name:<a href="#">String</a><span></span>) : <a href="#">Null</a>&lt;<a href="#">phoenix.BitmapFont</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_sound"><a class="lift" href="#find_sound">find_sound</a></a> <div class="clear"></div><code class="signature apipage">find_sound(_name:<a href="#">String</a><span></span>) : <a href="#">Null</a>&lt;<a href="#">luxe.SoundResource</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_text"><a class="lift" href="#find_text">find_text</a></a> <div class="clear"></div><code class="signature apipage">find_text(_name:<a href="#">String</a><span></span>) : <a href="#">Null</a>&lt;<a href="#">luxe.TextResource</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_json"><a class="lift" href="#find_json">find_json</a></a> <div class="clear"></div><code class="signature apipage">find_json(_name:<a href="#">String</a><span></span>) : <a href="#">Null</a>&lt;<a href="#">luxe.JSONResource</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_data"><a class="lift" href="#find_data">find_data</a></a> <div class="clear"></div><code class="signature apipage">find_data(_name:<a href="#">String</a><span></span>) : <a href="#">Null</a>&lt;<a href="#">luxe.DataResource</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="clear"><a class="lift" href="#clear">clear</a></a> <div class="clear"></div><code class="signature apipage">clear(and_persistent:<a href="#">Bool</a><span>=false</span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find"><a class="lift" href="#find">find</a></a> <div class="clear"></div><code class="signature apipage">find(id:<a href="#">String</a><span></span>) : <a href="#">luxe.Resource</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<hr>
+<p>&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>
