@@ -10,12 +10,12 @@
 luxe is a lovingly handcrafted free, open source cross platform rapid development game engine for deploying games on Mac, Windows, Linux, Android, iOS and Web. 
 
 <div style="margin:auto; display:flex; width:75%; justify-content:center;">
-![mac](./content/images/2016/08/mac.png)
-![linux](./content/images/2016/08/linux.png)
-![windows](./content/images/2016/08/windows.png)
-![android](./content/images/2016/08/android.png)
-![ios](./content/images/2016/08/iOS.png)
-![webgl](./content/images/2016/08/webgl.png)
+![mac](./content/images/2016/08/mac.png)   
+![linux](./content/images/2016/08/linux.png)   
+![windows](./content/images/2016/08/windows.png)   
+![android](./content/images/2016/08/android.png)   
+![ios](./content/images/2016/08/iOS.png)   
+![webgl](./content/images/2016/08/webgl.png)   
 </div>
 <br/>
 <span style="display:block;text-align:center">[Here are some games made with it](#games).</span> 
